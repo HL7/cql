@@ -1,0 +1,73 @@
+= 1.1 Change Log
+:page-layout: current
+
+Update 1 Changes:
+
+#954: Changed define clause within the query to let clause to avoid ambiguity in the grammar, as well as potential confusion regarding local vs global defines
+
+#951: Comments moved to the HIDDEN channel
+
+#950: Changed “matches” to “~”
+
+#949: Changed list indexes to be 0-based instead of 1-based
+
+#948: Changed string literals and identifiers to use industry-standard escape sequences
+
+#944: Clarified example in 2.5.8.2
+
+#911: Fixed incorrect reference to MinValue in 9.6.9
+
+#827: Added List<Code> to Code conversion as implicit
+
+#823: Fixed incorrect definition of the Concept type in 9.1.4
+
+#804: Added Exp operator, inverse of Ln
+
+#803: Renamed Expand to Flatten to better reflect operator semantics
+
+#802: Added examples for properly includes and properly included in
+
+#801: Fixed typographical error
+
+#765: Clarified behavior of value set expansion when code system version is not specified
+
+#763: Added weeks as a supported duration
+
+#762: Fixed an invalid cross reference
+
+#741: Corrected out-of-date diagram of interval operations
+
+#735: Fixed mapping of between operator to ELM
+
+#721: Clarified behavior for forward/circular expressions and function definitions
+
+#719: Clarified behavior of a library when no library header is specified
+
+#718: Clarified documentation of the path attribute for the Property type in ELM
+
+#716: Added ability to use between as an interval constructor for comparison
+
+#713: Corrected description of implicit conversion between structured and class types
+
+#714: Corrected signatures for the Multiply operator in 9.6.11
+
+#715: Clarified that during is a synonym of included in
+
+1.1 Review #1: Changed <> operator to !=
+
+1.1 Review #2: Added support for forward function declarations
+
+1.1 Review #3: Fixed table headers for implicit conversion table
+
+1.1 Review #4: Clarified wording for tuple conversion description
+
+1.1 Review #5: Clarified requirements for indexers in property paths
+
+1.1 Review #6: Clarified semantics for multiplication and division involving quantities
+
+#966: Improved semantics of usingDefinition production rule in grammar
+
+#991: Clarified semantics of the conditional expression
+
+#720: Added top-level constructs for code and concept
+
