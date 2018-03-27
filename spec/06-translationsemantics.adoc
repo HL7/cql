@@ -149,7 +149,7 @@ Table 6‑F
 |> |Greater
 |>= |GreaterOrEqual
 |< |Less
-|<= |LessOrEqual
+|\<= |LessOrEqual
 |~ |Equivalent
 |!= |NotEqual
 |!~ |Not of Equivalent

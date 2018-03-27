@@ -41,14 +41,20 @@ CQL defines _tab_, _space_, and _return_ as _whitespace_, meaning they are only 
 
 CQL defines two styles of comments, _single-line_, and _multi-line_. A single-line comment consists of two forward slashes, followed by any text up to the end of the line:
 
+[source,cql]
+----
 define Foo: 1 + 1 // This is a single-line comment
+----
 
 To begin a multi-line comment, the typical forward slash-asterisk token is used. The comment is closed with an asterisk-forward slash, and everything enclosed is ignored:
 
-/* +
-This is a multi-line comment +
-Any text enclosed within is ignored +
+[source,cql]
+----
+/*
+This is a multi-line comment
+Any text enclosed within is ignored
 */
+----
 
 Note that nested multi-line comments are not supported.
 
@@ -102,7 +108,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 |<> |Angle-brackets for delimiting generic types within type specifiers
 |. |Period for qualifiers and accessors
 |, |Comma for delimiting items in a syntactic list
-|= != <= < > >= |Comparison operators for comparing values
+|= != \<= < > >= |Comparison operators for comparing values
 |+ - * / ^ |Arithmetic operators for performing calculations
 |===============================================================================================
 
@@ -113,229 +119,121 @@ Table 3‑C
 
 Keywords are words that are recognized by the parser and used to build the various language constructs. CQL defines the following keywords:
 
+[source,cql]
+----
 after
-
 all
-
 and
-
 as
-
 asc
-
 ascending
-
 before
-
 between
-
 by
-
 called
-
 case
-
 cast
-
 Code
-
 codesystem
-
 codesystems
-
 collapse
-
 Concept
-
 contains
-
 context
-
 convert
-
 date
-
 day
-
 days
-
 default
-
 define
-
 desc
-
 descending
-
 difference
-
 display
-
 distinct
-
 div
-
 duration
-
 during
-
 else
-
 end
-
 ends
-
 except
-
 exists
-
 false
-
 flatten
-
 from
-
 function
-
 hour
-
 hours
-
 if
-
 implies
-
 in
-
 include
-
 includes
-
 included in
-
 intersect
-
 Interval
-
 Is
-
 let
-
 library
-
 List
-
 maximum
-
 meets
-
 millisecond
-
 milliseconds
-
 minimum
-
 minute
-
 minutes
-
 mod
-
 month
-
 months
-
 not
-
 null
-
 occurs
-
 of
-
 or
-
 or after
-
 or before
-
 or less
-
 or more
-
 overlaps
-
 parameter
-
 predecessor
-
 private
-
 properly
-
 public
-
 return
-
 same
-
 singleton
-
 second
-
 seconds
-
 start
-
 starts
-
 sort
-
 successor
-
 such that
-
 then
-
 time
-
 timezone
-
 to
-
 true
-
 Tuple
-
 union
-
 using
-
 valueset
-
 version
-
 week
-
 weeks
-
 where
-
 when
-
 width
-
 with
-
 within
-
 without
-
 xor
-
 year
-
 years
+----
 
 In general, keywords within CQL are also considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted.
 
@@ -346,11 +244,14 @@ Identifiers are used to name various elements within the language. There are two
 
 A simple identifier is any alphabetical character or an underscore, followed by any number of alpha-numeric characters or underscores. For example, the following are all valid simple identifiers:
 
-Foo +
-Foo1 +
-_Foo +
-foo +
+[source,cql]
+----
+Foo
+Foo1
+_Foo
+foo
 FOO
+----
 
 Note also that these are all unique identifiers. By convention, simple identifiers in CQL should not begin with underscores, and should be Pascal-cased (meaning the first letter of every word within the identifier is capitalized), rather than using underscores.
 
@@ -358,14 +259,20 @@ In particular, the use of identifiers that differ only in case should be avoided
 
 A quoted identifier is any sequence of characters enclosed in double-quotes ("):
 
-"Encounter, Performed" +
+[source,cql]
+----
+"Encounter, Performed"
 "Diagnosis, Active"
+----
 
 The use of double-quotes allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
 
 To specify a quoted-identifier that includes a double-quote ("), use a backslash to escape the double-quote (\"):
 
+[source,cql]
+----
 "Encounter \"Inpatient\""
+----
 
 Note that double-quoted identifiers are still case-sensitive, and as with simple identifiers, the use of double-quoted identifiers that differ only in case should be avoided. The enclosing quotation marks are not included in the defined identifier.
 
@@ -409,7 +316,7 @@ case..else..end
 |Between |between +
 _precision_ between +
 difference in _precision_ between
-|Comparison |<= < > >=
+|Comparison |\<= < > >=
 |Timing Phrase |same as +
 includes +
 during +
@@ -434,7 +341,10 @@ When multiple operators appear in a single category, precedence is determined by
 
 To encourage consistency and reduce potential confusion, CQL is a case-sensitive language. This means that case is considered when matching keywords and identifiers in the language. For example, the following CQL is invalid:
 
+[source,cql]
+----
 Define Foo: 1 + 1
+----
 
 The declaration is illegal because the parser will not recognize Define as a keyword.
 
@@ -493,10 +403,13 @@ As with library references, data model references may include a version specifie
 
 Although the examples in this specification generally use the QUICK model (part of the Clinical Quality Framework), CQL itself does not require or depend on a specific data model. For example, the following sample is taken from the CMS146v2_using_QDM.cql file in the Examples section of the specification:
 
-["Encounter, Performed": "Ambulatory/ED Visit"] E +
-with ["Diagnosis": "Acute Pharyngitis"] P such that +
-interval[P."start datetime", P."stop datetime") +
-overlaps after interval[E."start datetime", E."stop datetime")
+[source,cql]
+----
+["Encounter, Performed": "Ambulatory/ED Visit"] E
+  with ["Diagnosis": "Acute Pharyngitis"] P such that
+    interval[P."start datetime", P."stop datetime")
+      overlaps after interval[E."start datetime", E."stop datetime")
+----
 
 In this example, QDM is used as the data model. Note the use of quoted attribute identifiers to allow for the spaces in the names of QDM attributes.
 
@@ -538,10 +451,10 @@ All the system-defined types derive directly from System.Any. The primitive type
 |=========================================================================
 |Type |Range |Step Size
 |Boolean |false..true |N/A
-|Integer |-2^31..2^31 – 1 |1
+|Integer |-2^31^..2^31^ – 1 |1
 |DateTime |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
-|Decimal |-10^28 – 10^-8..10^28 – 10^-8 |10^-8
-|String |All strings of length 2^31-1 or less. |N/A
+|Decimal |-10^28^ – 10^-8^..10^28^ – 10^-8^ |10^-8^
+|String |All strings of length 2^31^-1 or less. |N/A
 |Time |@T00:00:00.0..@T23:59:59.999 |1 millisecond
 |=========================================================================
 
@@ -569,38 +482,55 @@ In various constructs, the type of a value must be specified. For example, when 
 * Named Types
 * Tuple Types
 * Interval Types
-
 * List Types
 * Choice Types
 
 The _named type specifier_ is simply the name of the type. For example:
 
+[source,cql]
+----
 parameter Threshold Integer
+----
 
 This example declares a parameter named Threshold of type Integer.
 
 The _tuple type specifier_ allows the names and types of the elements of the type to be specified. For example:
 
-parameter Demographics Tuple \{ address String, city String, zip String }
+[source,cql]
+----
+parameter Demographics Tuple { address String, city String, zip String }
+----
 
 The _interval type specifier_ allows the point-type of the interval to be specified:
 
+[source,cql]
+----
 parameter Range Interval<Integer>
+----
 
 The _list type specifier_ allows the element-type of a list to be specified:
 
+[source,cql]
+----
 parameter Points List<Integer>
+----
 
 And finally, the _choice type specifier_ allows a choice type to be specified:
 
+[source,cql]
+----
 parameter ChoiceValue Choice<Integer, String>
+----
 
 [[type-testing]]
 === Type Testing
 
 CQL supports the ability to test whether or not a value is of a given type. For example:
 
+[source,cql]
+----
 5 is Integer
+----
 
 returns true because 5 is an Integer.
 
@@ -608,17 +538,18 @@ In general, the _is_ relationship determines whether or not a given type is deri
 
 * Identity – T is T
 * Subtype – T' is T
-+
+
 Note that because of the _identity_ relationship above, the term _subtype_ applies to all derived types, as well as the type itself. In the discussions that follow, if a definition must explicitly refer to only derived types, the term _proper subtype_ will be used.
-+
+
 For interval types, given a point type P, and a point type P' derived from type P, interval type Interval<P'> is a subtype of interval type Interval<P>.
-+
+
 For list types, given an element type E, and an element type E' derived from type E, list type List<E'> is a subtype of list type List<E>.
-+
+
 For tuple types, given a tuple type T with elements E~1~, E~2~, ...E~n~, names N~1~, N~2~, ...N~n~­, and types T~1~, T~2~, ...T~n~, respectively, a tuple type T' with elements E'~1~, E'~2~, ...E'~n~, names N'~1~, N'~2~, ...N'~n~, and types T'~1~, T'~2~, ...T'~n~, type T' is a subtype of type T if and only if:
+
 * The number of elements in each type is the same: |E| = |E'|
 * For each element in T, there is one element in T' with the same name, and the type of the matching element in T' is a subtype of the type of the element in T.
-+
+
 For structured types, the supertype is specified as part of the definition of the type. Subtypes inherit all the elements of the supertype and may define additional elements that are only present on the derived type.
 
 [[choice-types]]
@@ -628,7 +559,10 @@ CQL also supports the notion of a _choice type_, a type that is defined by a lis
 
 In addition, choice types can be used to indicate the type of a list of mixed elements, such as the result of a union:
 
+[source,cql]
+----
 [Procedure] union [Encounter]
+----
 
 This example results in a list that contains both Procedures and Encounters, and the resulting type is Choice<Procedure, Encounter>.
 
@@ -636,17 +570,23 @@ An expression of a choice type can be used anywhere that a value of any of its c
 
 For example, given an Observation type with an element value of type Choice<String, Code, Integer, Decimal, Quantity>, the following expressions are all valid:
 
-Observation.value + 12 +
+[source,cql]
+----
+Observation.value + 12
 Observation.value & ' (observed)' +
 Observation.value in "Valid Values" +
 Observation.value < 5 'mg'
+----
 
 These expressions will result in an implicit cast being applied as follows:
 
+[source,cql]
+----
 (Observation.value as Integer) + 12 +
 (Observation.value as String) & ' (observed)' +
 (Observation.value as Code) in "Valid Values" +
 (Observation.value as Quantity) < 5 'mg'
+----
 
 The semantics for casting will result in a null if the run-time value of the element is not of the appropriate type.
 
@@ -676,11 +616,17 @@ The type of the null selector is Any.
 
 For a list selector, the type may be specified as part of the selector:
 
-List<System.Integer> \{ 1, 2, 3 }
+[source,cql]
+----
+List<System.Integer> { 1, 2, 3 }
+----
 
 Or it may be inferred based on the types of the elements:
 
-\{ 1, 2, 3 }
+[source,cql]
+----
+{ 1, 2, 3 }
+----
 
 For an empty list, with no specifier, the type is List<Any>.
 
@@ -697,7 +643,10 @@ For an instance selector, the type is determined by the name of the type of the 
 
 In general, the result type of an operator or function is determined by the declared return type of the function. For example, the (Integer, Integer) overload of the Add operator returns an Integer value, so the type of an Add invocation is Integer:
 
+[source,cql]
+----
 3 + 4
+----
 
 The CQL Reference appendix gives the signatures and declared return types for all system operators.
 
@@ -725,11 +674,17 @@ Conversion is the operation of turning a value from one type into another. For e
 
 The explicit convert can be used to convert a value from one type to another. For example, to convert the string representation of a date/time to a DateTime value:
 
+[source,cql]
+----
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
+----
 
 If the conversion cannot be performed, a run-time error will be thrown. For example:
 
+[source,cql]
+----
 convert 'Foo' to Integer
+----
 
 will result in an error. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
 
@@ -737,13 +692,13 @@ will result in an error. The convert syntax is equivalent to invoking one of the
 |==============================================================================================================================================================================================================
 |Operator |Description
 |ToBoolean(String) |Converts the string representation of a boolean value to a Boolean value
-|ToInteger(String) |Converts the string representation of an integer value to an Integer value using the format (+|-)d*
+|ToInteger(String) |Converts the string representation of an integer value to an Integer value using the format (+\|-)d*
 |ToDecimal(Integer) |Converts an Integer value to an equivalent Decimal value
-|ToDecimal(String) |Converts the string representation of a decimal value to a Decimal value using the format (+|-)d*.d*
-|ToQuantity(String) |Converts the string representation of a quantity value to a Quantity value using the format (+|-)d*.d*'units'
-|ToDateTime(String) |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
-|ToTime(String) |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff(+|-)hh:mm
-|ToString(Boolean) |Converts a Boolean value to its string representation (true|false)
+|ToDecimal(String) |Converts the string representation of a decimal value to a Decimal value using the format (+\|-)d*.d*
+|ToQuantity(String) |Converts the string representation of a quantity value to a Quantity value using the format (+\|-)d*.d*'units'
+|ToDateTime(String) |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|ToTime(String) |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff(+\|-)hh:mm
+|ToString(Boolean) |Converts a Boolean value to its string representation (true\|false)
 |ToString(Integer) |Converts an Integer value to its string representation
 |ToString(Decimal) |Converts a Decimal value to its string representation
 |ToString(Quantity) |Converts a Quantity value to its string representation
@@ -781,20 +736,29 @@ Table 3‑H
 
 Although implicit conversions can be performed using the explicit convert, the language will also automatically apply implicit conversions when appropriate to produce a correctly typed expression. For example, consider the following multiplication:
 
+[source,cql]
+----
 define MixedMultiply: 1 * 1.0
+----
 
 The type of the literal 1 is Integer, and the type of the literal 1.0 is Decimal. To infer the type of the expression correctly, the language will implicitly convert the type of the 1 to Decimal by inserting a ToDecimal invocation. The multiplication is then performed on two Decimals, and the result type is Decimal.
 
 In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type Person with elements Name of type String and DOB of type DateTime, the following comparison is valid:
 
-define TupleComparison: Person \{ Name: 'Joe', DOB: @1970-01-01 } = Tuple \{ Name: 'Joe', DOB: @1970-01-01 }
+[source,cql]
+----
+define TupleComparison: Person { Name: 'Joe', DOB: @1970-01-01 } = Tuple { Name: 'Joe', DOB: @1970-01-01 }
+----
 
 In this case, the structured value will be implicitly converted to the equivalent tuple type, and the comparison will evaluate to true.
 
 Note that the opposite implicit conversion, from a tuple to a named structured type, does not occur because a named structured type has additional information (namely the type hierarchy) that cannot be inferred from the definition of a tuple type. In such cases, an explicit conversion can be used:
 
-define TupleExpression: Tuple \{ Name: 'Joe', DOB: @1970-01-01 } +
+[source,cql]
+----
+define TupleExpression: Tuple { Name: 'Joe', DOB: @1970-01-01 }
 define TupleConvert: convert TupleExpression to Person
+----
 
 The conversion from a tuple to a structured type requires that the set of elements in the tuple type be the same set or a subset of the elements in the structured type.
 
@@ -803,11 +767,14 @@ The conversion from a tuple to a structured type requires that the set of elemen
 
 Casting is the operation of treating a value of some base type as a more specific type at run-time. The as operator provides this functionality. For example, given a model that defines an ImagingProcedure as a specialization of a Procedure, in the following example:
 
-define AllProcedures: [Procedure] +
-define ImagingProcedures: +
-AllProcedures P +
-where P is ImagingProcedure +
-return P as ImagingProcedure
+[source,cql]
+----
+define AllProcedures: [Procedure]
+define ImagingProcedures:
+  AllProcedures P
+    where P is ImagingProcedure
+    return P as ImagingProcedure
+----
 
 the ImagingProcedures expression returns all procedures that are instances of ImagingProcedure as instances of ImagingProcedure. This means that attributes that are specific to ImagingProcedure can be accessed.
 
@@ -815,18 +782,27 @@ If the run-time type of the value is not of the type specified in the as operato
 
 In addition, CQL supports a _strict_ cast, which has the same semantics as casting, except that if the run-time type of the value is not of the type specified, a run-time error is thrown. The keyword cast is used to indicate a strict cast:
 
+[source,cql]
+----
 define StrictCast: cast First(Procedures) as ImagingProcedure
+----
 
 [[implicit-casting]]
 ==== Implicit Casting
 
 CQL also supports the notion of _implicit casting_ to prevent the need to cast a null literal to a specific type. For example, consider the following expression:
 
+[source,cql]
+----
 define ImplicitCast: 5 * null
+----
 
 The type of the first argument to the multiplication is Integer, and the type of the second argument is Any, an untyped null literal. But multipication of Integer and Any is not defined and Any is a supertype of Integer, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
+[source,cql]
+----
 define ImplicitCast: 5 * (null as Integer)
+----
 
 To avoid the need for this explicit cast, CQL implicitly casts the Any to Integer.
 
@@ -862,7 +838,10 @@ To simplify the expression of complex logic, CQL provides two flavors of conditi
 
 The if expression allows a single condition to select between two expressions:
 
+[source,cql]
+----
 if Count(X) > 0 then X[1] else 0
+----
 
 This expression checks the count of X and returns the first element if it is greater than 0; otherwise, the expression returns 0. Note that if the condition evaluates to null, it is interpreted as false.
 
@@ -870,19 +849,25 @@ The case expression allows multiple conditions to be tested, and comes in two fl
 
 A standard case allows any number of conditions, each with a corresponding expression that will be the result of the case if the associated condition evaluates to true. Note that as with the if expression, if the condition evaluates to null, it is interpreted as false. If none of the conditions evaluate to true, the else expression is the result:
 
-case +
-when X > Y then X +
-when Y > X then Y +
-else 0 +
+[source,cql]
+----
+case
+  when X > Y then X
+  when Y > X then Y
+  else 0
 end
+----
 
 A selected case specifies a comparand, and each case item specifies a possible value for the comparand. If the comparand is equal to a case item, the corresponding expression is the result of the selected case. If the comparand does not equal any of the case items, the else expression is the result:
 
-case X +
-when 1 then 12 +
-when 2 then 14 +
-else 15 +
+[source,cql]
+----
+case X
+  when 1 then 12
+  when 2 then 14
+  else 15
 end
+----
 
 Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
 
@@ -893,33 +878,51 @@ To provide complete support for missing information, CQL supports several operat
 
 To provide a null result, use the null keyword:
 
+[source,cql]
+----
 null
+----
 
 To test whether an expression is null, use the _null test_:
 
-X is null +
+[source,cql]
+----
+X is null
 X is not null
+----
 
 To replace a null with the result of an expression, use a simple if expression:
 
+[source,cql]
+----
 if X is null then Y else X
+----
 
 To return the first non-null expression among two or more expressions, use the Coalesce operator:
 
+[source,cql]
+----
 Coalesce(X, Y, Z)
+----
 
 which is equivalent to:
 
-case +
-when X is not null then X +
-when Y is not null then Y +
-else Z +
+[source,cql]
+----
+case
+  when X is not null then X
+  when Y is not null then Y
+  else Z
 end
+----
 
 In addition, CQL supports the boolean-test operators is [not] true and is [not] false. These operators, like the null-test operator, only return true and false, they will not propagate a null result.
 
-X is true +
+[source,cql]
+----
+X is true
 X is not false
+----
 
 The first example will return true if X evaluates to true, false if X evaluates to false or null. The second example will return true if X evaluates to true or null, false if X evaluates to false. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
 
@@ -930,55 +933,91 @@ Although less common in typical clinical logic, some use cases require string ma
 
 Like lists, strings are 0-based in CQL. To index into a string, use the _indexer_ operator:
 
+[source,cql]
+----
 X[0]
+----
 
 To determine the length of string, use the Length operator:
 
+[source,cql]
+----
 Length(X)
+----
 
 To determine the position of a given pattern within a string, use the PositionOf operator:
 
+[source,cql]
+----
 PositionOf('cde', 'abcdefg')
+----
 
 The PositionOf() operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, PositionOf() returns -1 to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use PositionOf(), and to find patterns at the beginning and end of a string, use StartsWith() and EndsWith(). Regular expression matching can be performed with the Matches() and ReplaceMatches() operators.
 
 To return a substring from a given string, use the Substring operator:
 
+[source,cql]
+----
 Substring('abcdefg', 0, 3)
+----
 
 This example returns the string 'abc'. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is null. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
 To concatenate strings, use the + operator:
 
+[source,cql]
+----
 'abc' + 'defg'
+----
 
 Note that when using + with string values, if either argument is null, the result will be null. To treat null as the empty string (''), use the & operator:
 
+[source,cql]
+----
 'abc' & 'defg'
+----
 
 To combine a list of strings, use the Combine operator:
 
-Combine(\{ 'ab', 'cd', 'ef' })
+[source,cql]
+----
+Combine({ 'ab', 'cd', 'ef' })
+----
 
 The result of this expression is:
 
+[source,cql]
+----
 'abcdef'
+----
 
 To combine a list with a separator, provide the separator argument to the Combine operator:
 
-Combine(\{ 'completed', 'refused', 'pending' }, ';')
+[source,cql]
+----
+Combine({ 'completed', 'refused', 'pending' }, ';')
+----
 
 The result of this expression is:
 
+[source,cql]
+----
 'completed;refused;pending'
+----
 
 To split a string into a list of strings based on a specific separator, use the Split operator:
 
+[source,cql]
+----
 Split('completed;refused;pending', ';')
+----
 
 The result of this expression is:
 
-\{ 'completed', 'refused', 'pending' }
+[source,cql]
+----
+{ 'completed', 'refused', 'pending' }
+----
 
 Use the Upper and Lower operators to return strings with upper or lowercase letters for all characters in the argument.
 
@@ -987,33 +1026,36 @@ Use the Upper and Lower operators to return strings with upper or lowercase lett
 
 The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available context of the query scope, as well as the overall library scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
 
-"Medications" M +
-let ingredients: GetIngredients(M.rxNormCode) +
-return +
-ingredients I +
-let +
-adjustedDoseQuantity: EnsureMicrogramQuantity(M.doseQuantity), +
-dailyDose: +
-GetDailyDose( +
-I.ingredientCode, +
-I.strength, +
-I.doseFormCode, +
-adjustedDoseQuantity, +
-M.dosesPerDay +
-), +
-factor: GetConversionFactor(I.ingredientCode, dailyDose, I.doseFormCode) +
-return \{ +
-rxNormCode: M.rxNormCode, +
-doseFormCode: I.doseFormCode, +
-doseQuantity: adjustedDoseQuantity, +
-dosesPerDay: M.dosesPerDay, +
-ingredientCode: I.ingredientCode, +
-ingredientName: I.ingredientName, +
-strength: I.strength, +
-dailyDose: dailyDose, +
-mme: Quantity \{ value: dailyDose.value * factor, unit: dailyDose.unit + '/d' } +
-} +
-}
+[source,cql]
+----
+"Medications" M
+  let ingredients: GetIngredients(M.rxNormCode)
+  return
+    ingredients I
+      let
+        adjustedDoseQuantity: EnsureMicrogramQuantity(M.doseQuantity),
+        dailyDose:
+          GetDailyDose(
+            I.ingredientCode,
+            I.strength,
+            I.doseFormCode,
+            adjustedDoseQuantity,
+            M.dosesPerDay
+          ),
+        factor: GetConversionFactor(I.ingredientCode, dailyDose, I.doseFormCode)
+      return {
+        rxNormCode: M.rxNormCode,
+        doseFormCode: I.doseFormCode,
+        doseQuantity: adjustedDoseQuantity,
+        dosesPerDay: M.dosesPerDay,
+        ingredientCode: I.ingredientCode,
+        ingredientName: I.ingredientName,
+        strength: I.strength,
+        dailyDose: dailyDose,
+        mme: Quantity { value: dailyDose.value * factor, unit: dailyDose.unit + '/d' }
+      }
+  }
+----
 
 In this query, the same logic defined by the dailyDose expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
 
@@ -1032,71 +1074,92 @@ In addition to the single-source queries discussed in the Author’s Guide, CQL 
 
 We begin by breaking this down into the source components, Encounters, Warfarin Therapy, and Parenteral Therapy:
 
-define "Encounters": [Encounter: "Inpatient"] E +
-where E.period during "Measurement Period" +
-define "Warfarin Therapy": [MedicationAdministration: "Warfarin"] +
+[source,cql]
+----
+define "Encounters": [Encounter: "Inpatient"] E
+  where E.period during "Measurement Period"
+define "Warfarin Therapy": [MedicationAdministration: "Warfarin"]
 define "Parenteral Therapy": [MedicationAdministration: "Parenteral Anticoagulation"]
+----
 
 First, we establish that the encounter had both warfarin and parenteral anticoagulation therapies. This is easy enough to accomplish using with clauses:
 
-define "Encounters with Warfarin and Parenteral Therapies": +
-"Encounters" E +
-with "Warfarin Therapy" W such that W.effectiveTime starts during E.period +
-with "Parenteral Therapy" P such that P.effectiveTime starts during E.period
+[source,cql]
+----
+define "Encounters with Warfarin and Parenteral Therapies":
+  "Encounters" E
+    with "Warfarin Therapy" W such that W.effectiveTime starts during E.period
+    with "Parenteral Therapy" P such that P.effectiveTime starts during E.period
+----
 
 However, the next step involves calculating the duration of overlap between the warfarin and parenteral therapies, and a with clause only filters by a relationship, it does not introduce any data from the related source. To allow queries like this to be easily expressed, CQL allows a from clause to be used to start a query:
 
-define "Encounters with Warfarin and Parenteral Therapies": +
-from "Encounters" E, +
-"Warfarin Therapy" W, +
-"Parenteral Therapy" P +
-where W.effectiveTime starts during E.period +
-and P.effectiveTime starts during E.period
+[source,cql]
+----
+define "Encounters with Warfarin and Parenteral Therapies":
+  from "Encounters" E,
+    "Warfarin Therapy" W,
+    "Parenteral Therapy" P
+  where W.effectiveTime starts during E.period
+    and P.effectiveTime starts during E.period
+----
 
 We now have both the encounter and the warfarin and parenteral therapies in context and can perform calculations involving all three:
 
-define "Encounters with overlapping Warfarin and Parenteral Therapies": +
-from "Encounters" E, +
-"Warfarin Therapy" W, +
-"Parenteral Therapy" P +
-where W.effectiveTime starts during E.period +
-and P.effectiveTime starts during E.period +
-and duration in days of (W.effectiveTime intersect P.effectiveTime) >= 5 +
-and Last([Observation: "INR Value"] I +
-where I.applies during P.effectiveTime sort by I.applies).value >= 2
+[source,cql]
+----
+define "Encounters with overlapping Warfarin and Parenteral Therapies":
+  from "Encounters" E,
+    "Warfarin Therapy" W,
+    "Parenteral Therapy" P
+  where W.effectiveTime starts during E.period
+    and P.effectiveTime starts during E.period
+    and duration in days of (W.effectiveTime intersect P.effectiveTime) >= 5
+    and Last([Observation: "INR Value"] I
+      where I.applies during P.effectiveTime sort by I.applies).value >= 2
+----
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
 
 Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a let clause to be used to introduce an intermediate comutational result within a query:
 
-define "Encounters with overlapping Warfarin and Parenteral Therapies": +
-from "Encounters" E, +
-"Warfarin Therapy" W, +
-"Parenteral Therapy" P +
-let +
-overlapDuration: duration in days of (W.effectiveTime intersect P.effectiveTime), +
-endingINR: +
-Last([Observation: "INR Value"] I +
-where I.applies during P.effectiveTime sort by I.applies +
-).value +
-where W.effectiveTime starts during E.period +
-and P.effectiveTime starts during E.period +
-and ( +
-(overlapDuration >= 5 and endingINR >= 2) +
-or (overlapDuration >= 5 and endingINR < 2 +
-and P.effectiveTime overlaps after E.period) +
-or (overlapDuration < 5 +
-and P.effectiveTime overlaps after E.period) +
-) +
+[source,cql]
+----
+define "Encounters with overlapping Warfarin and Parenteral Therapies":
+  from "Encounters" E,
+    "Warfarin Therapy" W,
+    "Parenteral Therapy" P
+  let
+    overlapDuration: duration in days of (W.effectiveTime intersect P.effectiveTime),
+    endingINR:
+      Last([Observation: "INR Value"] I
+        where I.applies during P.effectiveTime sort by I.applies
+      ).value
+  where W.effectiveTime starts during E.period
+    and P.effectiveTime starts during E.period
+    and (
+      (overlapDuration >= 5 and endingINR >= 2)
+      or (overlapDuration >= 5 and endingINR < 2
+        and P.effectiveTime overlaps after E.period)
+      or (overlapDuration < 5
+        and P.effectiveTime overlaps after E.period)
+    )
 return E
+----
 
 Because the return clause in a query is optional, the type of the result of multi-source queries with no return clause is defined as a list of tuples with an element for each source named the alias for the source within the query and of the type of the elements of the source. For example:
 
+[source,cql]
+----
 from [Encounter] E, [MedicationStatement] M
+----
 
 The result type of this query is:
 
-List<Tuple \{ E Encounter, M MedicationStatement }>
+[source,cql]
+----
+List<Tuple { E Encounter, M MedicationStatement }>
+----
 
 The result will be a list of tuples containing the cartesian product of all Encounters and Medication Statements.
 
@@ -1107,47 +1170,65 @@ In addition, the default for return clauses is distinct, as opposed to all, so i
 
 In addition to the query examples already discussed, it is possible to use any arbitrary expression as the source for a query. For example:
 
-(\{ 1, 2, 3, 4, 5 }) L return L * 2
+[source,cql]
+----
+({ 1, 2, 3, 4, 5 }) L return L * 2
+----
 
 This query results in \{ 2, 4, 6, 8, 10 }. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
 
 The above example also illustrates that queries need not be based on lists of tuples. In fact, they need not be based on lists at all. The following example illustrates the use of a query to redefine a single tuple:
 
-define FirstInpatientEncounter: +
-First([Encounter] E where E.class = 'inpatient' sort by E.period.start desc) +
- +
-define RedefinedEncounter: +
-FirstInpatientEncounter E +
-return Tuple \{ +
-type: E.type, +
-admissionDate: E.period.start +
-dischargeDate: E.period.end +
-}
+[source,cql]
+----
+define FirstInpatientEncounter:
+  First([Encounter] E where E.class = 'inpatient' sort by E.period.start desc)
+
+define RedefinedEncounter:
+  FirstInpatientEncounter E
+    return Tuple {
+      type: E.type,
+      admissionDate: E.period.start
+      dischargeDate: E.period.end
+    }
+----
 
 In addition, even if a given query is based on a list of tuples, the results are not required to be tuples. For example, if only the length of stay is required, the following example could be used to return a list of integers representing the length of stay in days for each encounter:
 
-[Encounter: "Inpatient"] E +
-return duration in days of E.period
+[source,cql]
+----
+[Encounter: "Inpatient"] E
+  return duration in days of E.period
+----
 
 [[defining-functions]]
 == Defining Functions
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. For example:
 
-define function CumulativeDuration(Intervals List<Interval<DateTime>>): +
-Sum((collapse Intervals) X return duration in days of X)
+[source,cql]
+----
+define function CumulativeDuration(Intervals List<Interval<DateTime>>):
+  Sum((collapse Intervals) X return duration in days of X)
+----
 
 This statement defines a function named CumulativeDuration that takes a single argument named Intervals of type List<Interval<DateTime>>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
 
-define Encounters: [Encounter: "Inpatient Visit"] +
+[source,cql]
+----
+define Encounters: [Encounter: "Inpatient Visit"]
 define CD: CumulativeDuration(Encounters E return E.period)
+----
 
 These statements establish an expression named CD that computes the cumulative duration of inpatient encounters for a patient.
 
 Within the library in which it is defined, a function can be invoked directly by name. When a function is defined in a referenced library, the local library alias must be used to invoke the function. For example, assuming a library with the above function definition and referenced with the local alias Core:
 
-define Encounters: [Encounter: "Inpatient Visit"] +
+[source,cql]
+----
+define Encounters: [Encounter: "Inpatient Visit"]
 define CD: Core.CumulativeDuration(Encounters E return E.period)
+----
 
 In this example, the CumulativeDuration function must be invoked using the local library alias Core.
 
@@ -1155,7 +1236,10 @@ Functions can be defined that reference other functions anywhere within any libr
 
 Functions can also be defined as _external_ to support the ability to import functionality defined in external libraries. If a function is defined external, the return type must be provided:
 
+[source,cql]
+----
 define function IsSubsumedBy(code Code, subsumingCode Code) returns Boolean : external
+----
 
 CQL does not prescribe the details for how external functions are resolved or implemented, only that an implementation must accept the arguments as specified by the signature, and is expected to return a value of the declared return type.
 
@@ -1184,11 +1268,17 @@ In FHIRPath, all operations are defined to return collections, and operations th
 
 Wherever an operator is defined to take a non-list-valued type as a parameter, list demotion allows the arguments to be list-valued and are implicitly converted to a singleton value using the singleton from operator:
 
+[source,cql]
+----
 Patient.name.given + ' ' + Patient.name.family
+----
 
 The _disable-demotion_ option controls whether or not this expression is valid. With the option enabled, the expression can be compiled, and will evaluate, so long as the run-time values of given and family contain only a single element. With the option disabled, this expression will no longer compile, and the list-valued arguments must be converted to a single value:
 
+[source,cql]
+----
 Patient.name.given.single() + ' ' + Patient.name.family.single()
+----
 
 This allows the compiler to help the author determine whether a singular value is expected and appropriate, or if the author mistakenly assumed the attribute was singular, when in fact the data model allows multiple values.
 
@@ -1206,7 +1296,10 @@ The FHIRPath specification does not require strongly-typed interpretation. In pa
 
 For example, consider the following FHIRPath:
 
+[source,cql]
+----
 Patient.children().name
+----
 
 This expression returns a list of the name elements of all the children of the Patient instance. To accomplish this in CQL, the result of .children() is a list of elements of choice types, where the types in the choice are the distinct set of types of child elements.
 

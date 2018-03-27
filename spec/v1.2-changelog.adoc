@@ -7,31 +7,18 @@ Adopted the FHIRPath.g4 grammar as the base expression grammar for the language
 
 Expanded semantics to enable FHIRPath expressions:
 
-Added ability to invoke property accessors on a list
-
-Added $ and % identifier scopes
-
-Added implies operator
-
-Added | as a synonym for union
-
-Added & string concatenation operator
-
-Added promotion and demotion of lists
-
-Added options to support enabling aspects of FHIRPath functionality
-
-Added “method-style” invocation syntax
-
-Added rewrite rules for FHIRPath operations
-
-________________________________________________________________________________________________________________________
-Added Repeat, Slice, StartsWith, EndsWith, Matches, ReplaceMatches, LastPositionOf, Children, and Descendents operations
-
-Applied “treat null as empty list” semantics for list operators (e.g. exists (null) now returns false, not null)
-
-Added ToList operator to support efficient list promotion
-________________________________________________________________________________________________________________________
+* Added ability to invoke property accessors on a list
+* Added $ and % identifier scopes
+* Added implies operator
+* Added | as a synonym for union
+* Added & string concatenation operator
+* Added promotion and demotion of lists
+* Added options to support enabling aspects of FHIRPath functionality
+* Added “method-style” invocation syntax
+* Added rewrite rules for FHIRPath operations
+* Added Repeat, Slice, StartsWith, EndsWith, Matches, ReplaceMatches, LastPositionOf, Children, and Descendents operations
+* Applied “treat null as empty list” semantics for list operators (e.g. exists (null) now returns false, not null)
+* Added ToList operator to support efficient list promotion
 
 Corrected String concatenation mapping
 

@@ -1,0 +1,25 @@
+.kw {
+    font-family: monospace;
+    color: blue;
+    background-color: inherit;
+}
+.sym {
+    font-family: monospace;
+    color: grey;
+    background-color: inherit;
+}
+.id {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.lit {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.com {
+    font-family: monospace;
+    color: green;
+    background-color: inherit;
+}

@@ -120,7 +120,25 @@ The following versions of Clinical Quality Language are available:
     <td>1.2</td>
     <td>STU2 Release. Changes:<br/>
       <ul>
-        <li>TODO</li>
+        <li>Adopted FHIRPath grammar as basis for expressions
+            <ul>
+                <li>Support for paths</li>
+                <li>Method-style invocation</li>
+                <li>List promotion and demotion</li>
+                <li>Empty list as null semantics</li>
+                <li>$ and % identifier scopes</li>
+                <li>Additional FHIRPath operators</li>
+            </ul>
+        </li>
+          <li>Support for declaration-only libraries</li>
+          <li>Added choice type support</li>
+          <li>Added Message operator to support run-time messages, errors, and warnings</li>
+          <li>Added external function declarations</li>
+          <li>Added debug and type information to ELM</li>
+          <li>Specified JSON format for ELM</li>
+          <li>Added less than/more than timing phrase modifiers</li>
+          <li>Added on or/or on timing phrase modifiers</li>
+          <li>Relaxed syntactic restriction on terminology target in a retrieve</li>
       </ul>
         <p><a href="v1.2-changelog.html">Change Log</a></p>
     </td>
@@ -130,7 +148,16 @@ The following versions of Clinical Quality Language are available:
     <td>1.1</td>
     <td>DSTU Update. Changes:<br/>
       <ul>
-        <li>TODO</li>
+        <li>Changed define clause to let within queries</li>
+          <li>Changed matches to ~</li>
+          <li>Changed <> to !=</li>
+          <li>Changed lists to be 0-based instead of 1-based</li>
+          <li>Renamed expand to flatten</li>
+          <li>Added implicit conversion from List&lt;Code&gt; to Concept</Code></li>
+          <li>Added Exp operator (inverse of Ln)</li>
+          <li>Added weeks duration</li>
+          <li>Added support for forward declarations</li>
+          <li>Added concept and code declarations</li>
       </ul>
         <p><a href="v1.1-changelog.html">Change Log</a></p>
     </td>

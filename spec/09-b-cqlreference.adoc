@@ -11,11 +11,17 @@ For each type, the definition and semantics are provided. Note that because CQL 
 
 For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the and operator is given as:
 
+[source,cql]
+----
 and(left Boolean, right Boolean) Boolean
+----
 
 Even though and is an infix operator and would be invoked as in the following expression:
 
+[source,cql]
+----
 InDemographic and NeedsScreening
+----
 
 [[types-2]]
 == Types
@@ -25,7 +31,10 @@ InDemographic and NeedsScreening
 
 *Definition:*
 
+[source,cql]
+----
 simple type Any
+----
 
 *Description:*
 
@@ -36,7 +45,10 @@ The Any type is the maximal supertype in the CQL type system, meaning that all t
 
 *Definition:*
 
+[source,cql]
+----
 simple type Boolean
+----
 
 *Description:*
 
@@ -47,13 +59,16 @@ The Boolean type represents the logical boolean values true and false. The resul
 
 *Definition:*
 
-structured type Code +
-\{ +
-code String, +
-display String, +
-system String, +
-version String +
+[source,cql]
+----
+structured type Code
+{
+  code String,
+  display String,
+  system String,
+  version String
 }
+----
 
 *Description:*
 
@@ -64,11 +79,14 @@ The Code type represents single terminology codes within CQL.
 
 *Definition:*
 
-structured type Concept +
-\{ +
-codes List<Code>, +
-display String +
+[source,cql]
+----
+structured type Concept
+{
+  codes List<Code>,
+  display String
 }
+----
 
 *Description:*
 
@@ -79,7 +97,10 @@ The Concept type represents a single terminological concept within CQL.
 
 *Definition:*
 
+[source,cql]
+----
 simple type DateTime
+----
 
 *Description:*
 
@@ -92,37 +113,46 @@ CQL supports date and time values in the range @0001-01-01T00:00:00.0 to @9999-1
 
 *Definition:*
 
+[source,cql]
+----
 simple type Decimal
+----
 
 *Description:*
 
 The Decimal type represents real values within CQL.
 
-CQL supports decimal values in the range -10^28-10^-8 to 10^28-10^-8 with a step size of 10^-8.
+CQL supports decimal values in the range -10^28^-10^-8^ to 10^28^-10^-8^ with a step size of 10^-8^.
 
 [[integer-1]]
 === Integer
 
 *Definition:*
 
+[source,cql]
+----
 simple type Integer
+----
 
 *Description:*
 
 The Integer type represents whole number values within CQL.
 
-CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1.
+CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1.
 
 [[quantity]]
 === Quantity
 
 *Definition:*
 
-structured type Quantity +
-\{ +
-value Decimal +
-unit String +
+[source,cql]
+----
+structured type Quantity
+{
+  value Decimal
+  unit String
 }
+----
 
 *Description:*
 
@@ -133,13 +163,16 @@ The Quantity type represents quantities with a specified unit within CQL.
 
 *Definition:*
 
+[source,cql]
+----
 simple type String
+----
 
 *Description:*
 
 The String type represents string values within CQL.
 
-CQL supports string values up to 2^31-1 characters in length.
+CQL supports string values up to 2^31^-1 characters in length.
 
 For string literals, CQL uses standard escape sequences:
 
@@ -161,7 +194,10 @@ For string literals, CQL uses standard escape sequences:
 
 *Definition:*
 
+[source,cql]
+----
 simple type Time
+----
 
 *Description:*
 
@@ -177,7 +213,10 @@ CQL supports time values in the range @T00:00:00.0 to @T23:59:59.999 with a step
 
 *Signature:*
 
+[source,cql]
+----
 and (left Boolean, right Boolean) Boolean
+----
 
 *Description:*
 
@@ -199,17 +238,23 @@ Table 9‑A
 
 The following examples illustrate the behavior of the and operator:
 
-define IsTrue = true and true +
-define IsFalse = true and false +
-define IsAlsoFalse = false and null +
+[source,cql]
+----
+define IsTrue = true and true
+define IsFalse = true and false
+define IsAlsoFalse = false and null
 define IsNull = true and null
+----
 
 [[implies]]
 === Implies
 
 *Signature:*
 
+[source,cql]
+----
 implies (left Boolean, right Boolean) Boolean
+----
 
 *Description:*
 
@@ -232,7 +277,10 @@ Table 9‑A
 
 *Signature:*
 
+[source,cql]
+----
 not (argument Boolean) Boolean
+----
 
 *Description:*
 
@@ -255,7 +303,10 @@ Table 9‑B
 
 *Signature:*
 
+[source,cql]
+----
 or (left Boolean, right Boolean) Boolean
+----
 
 *Description:*
 
@@ -277,17 +328,23 @@ Table 9‑C
 
 The following examples illustrate the behavior of the or operator:
 
-define IsTrue = true or false +
-define IsAlsoTrue = true or null +
-define IsFalse = false or false +
+[source,cql]
+----
+define IsTrue = true or false
+define IsAlsoTrue = true or null
+define IsFalse = false or false
 define IsNull = false or null
+----
 
 [[xor]]
 === Xor
 
 *Signature:*
 
+[source,cql]
+----
 xor (left Boolean, right Boolean) Boolean
+----
 
 *Description:*
 
@@ -313,8 +370,11 @@ Table 9‑D
 
 *Signature:*
 
-as<T>(argument Any) T +
+[source,cql]
+----
+as<T>(argument Any) T
 cast as<T>(argument Any) T
+----
 
 *Description:*
 
@@ -328,21 +388,29 @@ The cast prefix indicates that if the argument is not of the specified type at r
 
 The following examples illustrate the use of the as operator.
 
-define AllProcedures: [Procedure] +
-define ImagingProcedures: +
-AllProcedures P +
-where P is ImagingProcedure +
-return P as ImagingProcedure +
-define RuntimeError: +
-ImagingProcedures P +
-return cast P as Observation
+[source,cql]
+----
+define AllProcedures: [Procedure]
+
+define ImagingProcedures:
+  AllProcedures P
+    where P is ImagingProcedure
+    return P as ImagingProcedure
+
+define RuntimeError:
+  ImagingProcedures P
+    return cast P as Observation
+----
 
 [[children]]
 === Children
 
 *Signature:*
 
+[source,cql]
+----
 Children(argument Any) List<Any>
+----
 
 *Description:*
 
@@ -357,7 +425,10 @@ If the source is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 convert to<T>(argument Any) T
+----
 
 *Description:*
 
@@ -388,10 +459,13 @@ yyyy-MM-ddThh:mm:ss.fff(Z | +/- hh:mm)
 
 For example, the following are valid string representations for date/time values:
 
+[source,cql]
+----
 '2014-01-01T14:30:00.0Z' // January 1^st^, 2014, 2:30PM UTC +
 '2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00) +
 'T14:30:00.0Z' // 2:30PM UTC +
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
+----
 
 For specific semantics for each conversion, refer to the explicit conversion operator documentation.
 
@@ -400,7 +474,10 @@ For specific semantics for each conversion, refer to the explicit conversion ope
 
 *Signature:*
 
+[source,cql]
+----
 Descendents(argument Any) List<Any>
+----
 
 *Description:*
 
@@ -415,7 +492,10 @@ If the source is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 is<T>(argument Any) Boolean
+----
 
 *Description:*
 
@@ -426,7 +506,10 @@ The is operator allows the type of a result to be tested. If the run-time type o
 
 *Signature:*
 
+[source,cql]
+----
 ToBoolean(argument String) Boolean
+----
 
 *Description:*
 
@@ -452,7 +535,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToConcept(argument Code) Concept
+----
 
 *Description:*
 
@@ -465,7 +551,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToDateTime(argument String) DateTime
+----
 
 *Description:*
 
@@ -477,9 +566,12 @@ In addition, the string must be interpretable as a valid date/time value.
 
 For example, the following are valid string representations for date/time values:
 
-'2014-01-01' // January 1^st^, 2014 +
-'2014-01-01T14:30:00.0Z' // January 1^st^, 2014, 2:30PM UTC +
+[source,cql]
+----
+'2014-01-01' // January 1^st^, 2014
+'2014-01-01T14:30:00.0Z' // January 1^st^, 2014, 2:30PM UTC
 '2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00)
+----
 
 If the input string is not formatted correctly, or does not represent a valid date/time value, a run-time error is thrown.
 
@@ -492,13 +584,19 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToDecimal(argument String) Decimal
+----
 
 *Description:*
 
 The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
 
+[source,cql]
+----
 (+|-)?#0(.0#)?
+----
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -513,13 +611,19 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToInteger(argument String) Integer
+----
 
 *Description:*
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
+[source,cql]
+----
 (+|-)?#0
+----
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -534,13 +638,19 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToQuantity(argument String) Quantity
+----
 
 *Description:*
 
 The ToQuantity operator converts the value of its argument to a Quantity value. The operator accepts strings using the following format:
 
+[source,cql]
+----
 (+|-)?#0(.0#)?('<unit>')?
+----
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
@@ -555,12 +665,15 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-ToString(argument Boolean) String +
-ToString(argument Integer) String +
-ToString(argument Decimal) String +
-ToString(argument Quantity) String +
-ToString(argument DateTime) String +
+[source,cql]
+----
+ToString(argument Boolean) String
+ToString(argument Integer) String
+ToString(argument Decimal) String
+ToString(argument Quantity) String
+ToString(argument DateTime) String
 ToString(argument Time) String
+----
 
 *Description:*
 
@@ -586,7 +699,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ToTime(argument String) Time
+----
 
 *Description:*
 
@@ -598,8 +714,11 @@ In addition, the string must be interpretable as a valid time-of-day value.
 
 For example, the following are valid string representations for time-of-day values:
 
-'T14:30:00.0Z' // 2:30PM UTC +
+[source,cql]
+----
+'T14:30:00.0Z' // 2:30PM UTC
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
+----
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, a run-time error is thrown.
 
@@ -615,11 +734,14 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-Coalesce<T>(argument1 T, argument2 T) T +
-Coalesce<T>(argument1 T, argument2 T, argument3 T) T +
-Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T) T +
-Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T, argument5 T) T +
+[source,cql]
+----
+Coalesce<T>(argument1 T, argument2 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T, argument5 T) T
 Coalesce<T>(arguments List<T>) T
+----
 
 *Description:*
 
@@ -632,7 +754,10 @@ The static type of the first argument determines the type of the result, and all
 
 *Signature:*
 
+[source,cql]
+----
 is null(argument Any) Boolean
+----
 
 *Description:*
 
@@ -643,7 +768,10 @@ The is null operator determines whether or not its argument evaluates to null. I
 
 *Signature:*
 
+[source,cql]
+----
 is false(argument Boolean) Boolean
+----
 
 *Description:*
 
@@ -654,7 +782,10 @@ The is false operator determines whether or not its argument evaluates to false.
 
 *Signature:*
 
+[source,cql]
+----
 is true(argument Boolean) Boolean
+----
 
 *Description:*
 
@@ -668,12 +799,15 @@ The is true operator determines whether or not its argument evaluates to true. I
 
 *Signature:*
 
-between(argument Integer, low Integer, high Integer) Boolean +
-between(argument Decimal, low Decimal, high Decimal) Boolean +
-between(argument Quantity, low Quantity, high Quantity) Boolean +
-between(argument DateTime, low DateTime, high DateTime) Boolean +
-between(argument Time, low Time, high Time) Boolean +
+[source,cql]
+----
+between(argument Integer, low Integer, high Integer) Boolean
+between(argument Decimal, low Decimal, high Decimal) Boolean
+between(argument Quantity, low Quantity, high Quantity) Boolean
+between(argument DateTime, low DateTime, high DateTime) Boolean
+between(argument Time, low Time, high Time) Boolean
 between(argument String, low String, high String) Boolean
+----
 
 *Description:*
 
@@ -690,7 +824,10 @@ If any argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 =<T>(left T, right T) Boolean
+----
 
 *Description:*
 
@@ -717,7 +854,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ~<T>(left T, right T) Boolean
+----
 
 *Description:*
 
@@ -742,12 +882,15 @@ This operator, and the corresponding notion of _equivalence_, are used throughou
 
 *Signature:*
 
->(left Integer, right Integer) Boolean +
->(left Decimal, right Decimal) Boolean +
->(left Quantity, right Quantity) Boolean +
->(left DateTime, right DateTime) Boolean +
->(left Time, right Time) Boolean +
+[source,cql]
+----
+>(left Integer, right Integer) Boolean
+>(left Decimal, right Decimal) Boolean
+>(left Quantity, right Quantity) Boolean
+>(left DateTime, right DateTime) Boolean
+>(left Time, right Time) Boolean
 >(left String, right String) Boolean
+----
 
 *Description:*
 
@@ -764,12 +907,15 @@ If either argument is null, the result is null.
 
 *Signature:*
 
->=(left Integer, right Integer) Boolean +
->=(left Decimal, right Decimal) Boolean +
->=(left Quantity, right Quantity) Boolean +
->=(left DateTime, right DateTime) Boolean +
->=(left Time, right Time) Boolean +
+[source,cql]
+----
+>=(left Integer, right Integer) Boolean
+>=(left Decimal, right Decimal) Boolean
+>=(left Quantity, right Quantity) Boolean
+>=(left DateTime, right DateTime) Boolean
+>=(left Time, right Time) Boolean
 >=(left String, right String) Boolean
+----
 
 *Description:*
 
@@ -786,12 +932,15 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-<(left Integer, right Integer) Boolean +
-<(left Decimal, right Decimal) Boolean +
-<(left Quantity, right Quantity) Boolean +
-<(left DateTime, right DateTime) Boolean +
-<(left Time, right Time) Boolean +
+[source,cql]
+----
+<(left Integer, right Integer) Boolean
+<(left Decimal, right Decimal) Boolean
+<(left Quantity, right Quantity) Boolean
+<(left DateTime, right DateTime) Boolean
+<(left Time, right Time) Boolean
 <(left String, right String) Boolean
+----
 
 *Description:*
 
@@ -808,16 +957,19 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-<=(left Integer, right Integer) Boolean +
-<=(left Decimal, right Decimal) Boolean +
-<=(left Quantity, right Quantity) Boolean +
-<=(left DateTime, right DateTime) Boolean +
-<=(left Time, right Time) Boolean +
+[source,cql]
+----
+<=(left Integer, right Integer) Boolean
+<=(left Decimal, right Decimal) Boolean
+<=(left Quantity, right Quantity) Boolean
+<=(left DateTime, right DateTime) Boolean
+<=(left Time, right Time) Boolean
 <=(left String, right String) Boolean
+----
 
 *Description:*
 
-The _less or equal_ (<=) operator returns true if the first argument is less than or equal to the second argument.
+The _less or equal_ (\<=) operator returns true if the first argument is less than or equal to the second argument.
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
 
@@ -830,7 +982,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 !=<T>(left T, right T) Boolean
+----
 
 *Description:*
 
@@ -843,7 +998,10 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Signature:*
 
+[source,cql]
+----
 !~<T>(left T, right T) Boolean
+----
 
 *Description:*
 
@@ -859,9 +1017,12 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 *Signature:*
 
-Abs(argument Integer) Integer +
-Abs(argument Decimal) Decimal +
+[source,cql]
+----
+Abs(argument Integer) Integer
+Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
+----
 
 *Description:*
 
@@ -876,9 +1037,12 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-+(left Integer, right Integer) Integer +
-+(left Decimal, right Decimal) Decimal +
+[source,cql]
+----
++(left Integer, right Integer) Integer
++(left Decimal, right Decimal) Decimal
 +(left Quantity, right Quantity) Quantity
+----
 
 *Description:*
 
@@ -895,7 +1059,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Ceiling(argument Decimal) Integer
+----
 
 *Description:*
 
@@ -910,9 +1077,12 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-/(left Decimal, right Decimal) Decimal +
-/(left Quantity, right Decimal) Quantity +
+[source,cql]
+----
+/(left Decimal, right Decimal) Decimal
+/(left Quantity, right Decimal) Quantity
 /(left Quantity, right Quantity) Quantity
+----
 
 *Description:*
 
@@ -933,7 +1103,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Floor(argument Decimal) Integer
+----
 
 *Description:*
 
@@ -948,7 +1121,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Exp(argument Decimal) Decimal
+----
 
 *Description:*
 
@@ -963,7 +1139,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Log(argument Decimal, base Decimal) Decimal
+----
 
 *Description:*
 
@@ -978,7 +1157,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Ln(argument Decimal) Decimal
+----
 
 *Description:*
 
@@ -993,7 +1175,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 maximum<T>() T
+----
 
 *Description:*
 
@@ -1016,7 +1201,10 @@ For any other type, attempting to invoke maximum results in an error.
 
 *Signature:*
 
+[source,cql]
+----
 minimum<T>() T
+----
 
 *Description:*
 
@@ -1039,8 +1227,11 @@ For any other type, attempting to invoke minimum results in an error.
 
 *Signature:*
 
-mod(left Integer, right Integer) Integer +
+[source,cql]
+----
+mod(left Integer, right Integer) Integer
 mod(left Decimal, right Decimal) Decimal
+----
 
 *Description:*
 
@@ -1055,11 +1246,14 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-*(left Integer, right Integer) Integer +
-*(left Decimal, right Decimal) Decimal +
-*(left Decimal, right Quantity) Quantity +
-*(left Quantity, right Decimal) Quantity +
+[source,cql]
+----
+*(left Integer, right Integer) Integer
+*(left Decimal, right Decimal) Decimal
+*(left Decimal, right Quantity) Quantity
+*(left Quantity, right Decimal) Quantity
 *(left Quantity, right Quantity) Quantity
+----
 
 *Description:*
 
@@ -1069,8 +1263,11 @@ When invoked with mixed Integer and Decimal arguments, the Integer argument will
 
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
-12 'cm' * 3 'cm' +
+[source,cql]
+----
+12 'cm' * 3 'cm'
 3 'cm' * 12 'cm2'
+----
 
 In this example, the first result will have a unit of 'cm2', and the second result will have a unit of 'cm3'.
 
@@ -1081,9 +1278,12 @@ If either argument is null, the result is null.
 
 *Signature:*
 
--(argument Integer) Integer +
--(argument Decimal) Decimal +
+[source,cql]
+----
+-(argument Integer) Integer
+-(argument Decimal) Decimal
 -(argument Quantity) Quantity
+----
 
 *Description:*
 
@@ -1098,7 +1298,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 predecessor of<T>(argument T) T
+----
 
 *Description:*
 
@@ -1119,8 +1322,11 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-^(argument Integer, exponent Integer) Integer +
+[source,cql]
+----
+^(argument Integer, exponent Integer) Integer
 ^(argument Decimal, exponent Decimal) Decimal
+----
 
 *Description:*
 
@@ -1135,8 +1341,11 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-Round(argument Decimal) Decimal +
+[source,cql]
+----
+Round(argument Decimal) Decimal
 Round(argument Decimal, precision Integer) Decimal
+----
 
 *Description:*
 
@@ -1153,9 +1362,12 @@ Precision determines the decimal place at which the rounding will occur. If prec
 
 *Signature:*
 
--(left Integer, right Integer) Integer +
--(left Decimal, right Decimal) Decimal +
+[source,cql]
+----
+-(left Integer, right Integer) Integer
+-(left Decimal, right Decimal) Decimal
 -(left Quantity, right Quantity) Quantity
+----
 
 *Description:*
 
@@ -1172,7 +1384,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 successor of<T>(argument T) T
+----
 
 *Description:*
 
@@ -1193,7 +1408,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Truncate(argument Decimal) Integer
+----
 
 *Description:*
 
@@ -1208,8 +1426,11 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-div(left Integer, right Integer) Integer +
+[source,cql]
+----
+div(left Integer, right Integer) Integer
 div(left Decimal, right Decimal) Decimal
+----
 
 *Description:*
 
@@ -1227,8 +1448,11 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-Combine(source List<String>) String +
+[source,cql]
+----
+Combine(source List<String>) String
 Combine(source List<String>, separator String) String
+----
 
 *Description:*
 
@@ -1241,8 +1465,11 @@ If either argument is null, or any element in the source list of strings is null
 
 *Signature:*
 
-+(left String, right String) String +
+[source,cql]
+----
++(left String, right String) String
 &(left String, right String) String
+----
 
 *Description:*
 
@@ -1257,7 +1484,10 @@ When using &, null arguments are treated as an empty string ('').
 
 *Signature:*
 
+[source,cql]
+----
 EndsWith(argument String, suffix String) Boolean
+----
 
 *Description:*
 
@@ -1272,7 +1502,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 [](argument String, index Integer) String
+----
 
 *Description:*
 
@@ -1289,7 +1522,10 @@ If the index is greater than the length of the string being indexed, the result 
 
 *Signature:*
 
+[source,cql]
+----
 LastPositionOf(pattern String, argument String) Integer
+----
 
 *Description:*
 
@@ -1304,7 +1540,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Length(argument String) Integer
+----
 
 *Description:*
 
@@ -1317,7 +1556,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Lower(argument String) String
+----
 
 *Description:*
 
@@ -1332,7 +1574,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Matches(argument String, pattern String) Boolean
+----
 
 *Description:*
 
@@ -1347,7 +1592,10 @@ Platforms will typically use native regular expression implementations. These ar
 
 *Signature:*
 
+[source,cql]
+----
 PositionOf(pattern String, argument String) Integer
+----
 
 *Description:*
 
@@ -1362,7 +1610,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Matches(argument String, pattern String, substitution String) String
+----
 
 *Description:*
 
@@ -1377,7 +1628,10 @@ Platforms will typically use native regular expression implementations. These ar
 
 *Signature:*
 
+[source,cql]
+----
 Split(stringToSplit String, separator String) List<String>
+----
 
 *Description:*
 
@@ -1392,7 +1646,10 @@ If the stringToSplit argument does not contain any appearances of the separator,
 
 *Signature:*
 
+[source,cql]
+----
 StartsWith(argument String, prefix String) Boolean
+----
 
 *Description:*
 
@@ -1407,8 +1664,11 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-Substring(stringToSub String, startIndex Integer) String +
+[source,cql]
+----
+Substring(stringToSub String, startIndex Integer) String
 Substring(stringToSub String, startIndex Integer, length Integer) String
+----
 
 *Description:*
 
@@ -1423,7 +1683,10 @@ If stringToSub or startIndex is null, or startIndex is out of range, the result 
 
 *Signature:*
 
+[source,cql]
+----
 Upper(argument String) String
+----
 
 *Description:*
 
@@ -1441,8 +1704,11 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-+(left DateTime, right Quantity) DateTime +
+[source,cql]
+----
++(left DateTime, right Quantity) DateTime
 +(left Time, right Quantity) Time
+----
 
 *Description:*
 
@@ -1467,8 +1733,11 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-after _precision_ of(left DateTime, right DateTime) Boolean +
+[source,cql]
+----
+after _precision_ of(left DateTime, right DateTime) Boolean
 after _precision_ of(left Time, right Time) Boolean
+----
 
 *Description:*
 
@@ -1485,8 +1754,11 @@ If either or both arguments are null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 before _precision_ of(left DateTime, right DateTime) Boolean +
 before _precision_ of(left Time, right Time) Boolean
+----
 
 *Description:*
 
@@ -1503,20 +1775,23 @@ If either or both arguments are null, the result is null.
 
 *Signature:*
 
-DateTime(year Integer) DateTime +
-DateTime(year Integer, month Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer, +
-hour Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer, +
-hour Integer, minute Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer, +
-hour Integer, minute Integer, second Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer, +
-hour Integer, minute Integer, second Integer, millisecond Integer) DateTime +
-DateTime(year Integer, month Integer, day Integer, +
-hour Integer, minute Integer, second Integer, millisecond Integer, +
+[source,cql]
+----
+DateTime(year Integer) DateTime
+DateTime(year Integer, month Integer) DateTime
+DateTime(year Integer, month Integer, day Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer, millisecond Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer, millisecond Integer,
 timezoneOffset Decimal) DateTime
+----
 
 *Description:*
 
@@ -1531,12 +1806,15 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 
 *Signature:*
 
-_precision_ from(argument DateTime) Integer +
-_precision_ from(argument Time) Integer +
-timezone from(argument DateTime) Decimal +
-timezone from(argument Time) Decimal +
-date from(argument DateTime) DateTime +
+[source,cql]
+----
+_precision_ from(argument DateTime) Integer
+_precision_ from(argument Time) Integer
+timezone from(argument DateTime) Decimal
+timezone from(argument Time) Decimal
+date from(argument DateTime) DateTime
 time from(argument DateTime) Time
+----
 
 *Description:*
 
@@ -1553,8 +1831,11 @@ If the argument is null, or is not specified to the level of precision being ext
 
 *Signature:*
 
-difference in _precision_ between(low DateTime, high DateTime) Integer +
+[source,cql]
+----
+difference in _precision_ between(low DateTime, high DateTime) Integer
 difference in _precision_ between(low Time, high Time) Integer
+----
 
 *Description:*
 
@@ -1571,8 +1852,11 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-_duration_ between(low DateTime, high DateTime) Integer +
+[source,cql]
+----
+_duration_ between(low DateTime, high DateTime) Integer
 _duration_ between(low Time, high Time) Integer
+----
 
 *Description:*
 
@@ -1589,7 +1873,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Now() DateTime
+----
 
 *Description:*
 
@@ -1603,8 +1890,11 @@ The Now operator returns the date and time of the start timestamp associated wit
 
 *Signature:*
 
-same _precision_ as(left DateTime, right DateTime) Boolean +
+[source,cql]
+----
+same _precision_ as(left DateTime, right DateTime) Boolean
 same _precision_ as(left Time, right Time) Boolean
+----
 
 *Description:*
 
@@ -1625,8 +1915,11 @@ If either or both arguments are null, the result is null.
 
 *Signature:*
 
-same _precision_ or after(left DateTime, right DateTime) Boolean +
+[source,cql]
+----
+same _precision_ or after(left DateTime, right DateTime) Boolean
 same _precision_ or after(left Time, right Time) Boolean
+----
 
 *Description:*
 
@@ -1647,8 +1940,11 @@ If either or both arguments are null, the result is null.
 
 *Signature:*
 
-same _precision_ or before(left DateTime, right DateTime) Boolean +
+[source,cql]
+----
 same _precision_ or before(left DateTime, right DateTime) Boolean
+same _precision_ or before(left DateTime, right DateTime) Boolean
+----
 
 *Description:*
 
@@ -1669,8 +1965,11 @@ If either or both arguments are null, the result is null.
 
 *Signature:*
 
--(left DateTime, right Quantity) DateTime +
+[source,cql]
+----
+-(left DateTime, right Quantity) DateTime
 -(left Time, right Quantity) Time
+----
 
 *Description:*
 
@@ -1695,12 +1994,15 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-Time(hour Integer) Time +
-Time(hour Integer, minute Integer) Time +
-Time(hour Integer, minute Integer, second Integer) Time +
-Time(hour Integer, minute Integer, second Integer, millisecond Integer) Time +
-Time(hour Integer, minute Integer, second Integer, millisecond Integer, +
+[source,cql]
+----
+Time(hour Integer) Time
+Time(hour Integer, minute Integer) Time
+Time(hour Integer, minute Integer, second Integer) Time
+Time(hour Integer, minute Integer, second Integer, millisecond Integer) Time
+Time(hour Integer, minute Integer, second Integer, millisecond Integer,
 timezoneOffset Decimal) Time
+----
 
 *Description:*
 
@@ -1715,7 +2017,10 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 
 *Signature:*
 
+[source,cql]
+----
 TimeOfDay() Time
+----
 
 *Description:*
 
@@ -1726,7 +2031,10 @@ The TimeOfDay operator returns the time of day of the start timestamp associated
 
 *Signature:*
 
+[source,cql]
+----
 Today() DateTime
+----
 
 *Description:*
 
@@ -1740,9 +2048,12 @@ The Today operator returns the date (with no time component) of the start timest
 
 *Signature:*
 
-after _precision_ (left Interval<T>, right Interval<T>) Boolean +
-after _precision_ (left T, right Interval<T>) Boolean +
+[source,cql]
+----
+after _precision_ (left Interval<T>, right Interval<T>) Boolean
+after _precision_ (left T, right Interval<T>) Boolean
 after _precision_ (left Interval<T>, right T) Boolean
+----
 
 *Description:*
 
@@ -1763,9 +2074,12 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-before _precision_ (left Interval<T>, right Interval<T>) Boolean +
-before _precision_ (left T, right Interval<T>) Boolean +
+[source,cql]
+----
+before _precision_ (left Interval<T>, right Interval<T>) Boolean
+before _precision_ (left T, right Interval<T>) Boolean
 before _precision_ (left interval<T>, right T) Boolean
+----
 
 *Description:*
 
@@ -1786,7 +2100,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 collapse(argument List<Interval<T>>) List<Interval<T>>
+----
 
 *Description:*
 
@@ -1801,7 +2118,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 contains _precision_ (argument Interval<T>, point T) Boolean
+----
 
 *Description:*
 
@@ -1816,7 +2136,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 end of(argument Interval<T>) T
+----
 
 *Description:*
 
@@ -1833,7 +2156,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ends _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1850,7 +2176,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 =(left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1863,7 +2192,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ~(left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1874,7 +2206,10 @@ The ~ operator for intervals returns true if and only if the intervals are over 
 
 *Signature:*
 
+[source,cql]
+----
 except(left Interval<T>, right Interval<T>) Interval<T>
+----
 
 *Description:*
 
@@ -1887,7 +2222,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 in _precision_ (point T, argument Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1902,7 +2240,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 includes _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1919,7 +2260,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1938,7 +2282,10 @@ Note that during is a synonym for included in and may be used to invoke the same
 
 *Signature:*
 
+[source,cql]
+----
 intersect(left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1951,9 +2298,12 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-meets _precision_ (left Interval<T>, right Interval<T>) Boolean +
-meets before _precision_ (left Interval<T>, right Interval<T>) Boolean +
+[source,cql]
+----
+meets _precision_ (left Interval<T>, right Interval<T>) Boolean
+meets before _precision_ (left Interval<T>, right Interval<T>) Boolean
 meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -1972,7 +2322,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 !=(left Interval<T>, right Interval<T>) : Boolean
+----
 
 *Description:*
 
@@ -1985,7 +2338,10 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Signature:*
 
+[source,cql]
+----
 !~(left Interval<T>, right Interval<T>) : Boolean
+----
 
 *Description:*
 
@@ -1998,9 +2354,12 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 *Signature:*
 
-on or after _precision_ (left Interval<T>, right Interval<T>) Boolean +
-on or after _precision_ (left T, right Interval<T>) Boolean +
+[source,cql]
+----
+on or after _precision_ (left Interval<T>, right Interval<T>) Boolean
+on or after _precision_ (left T, right Interval<T>) Boolean
 on or after _precision_ (left Interval<T>, right T) Boolean
+----
 
 *Description:*
 
@@ -2023,9 +2382,12 @@ Note that this operator can be invoked using either the on or after or the after
 
 *Signature:*
 
-on or before _precision_ (left Interval<T>, right Interval<T>) Boolean +
-on or before _precision_ (left T, right Interval<T>) Boolean +
+[source,cql]
+----
+on or before _precision_ (left Interval<T>, right Interval<T>) Boolean
+on or before _precision_ (left T, right Interval<T>) Boolean
 on or before _precision_ (left interval<T>, right T) Boolean
+----
 
 *Description:*
 
@@ -2048,9 +2410,12 @@ Note that this operator can be invoked using either the on or before or the befo
 
 *Signature:*
 
-overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean +
-overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean +
+[source,cql]
+----
+overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean
+overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean
 overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -2069,7 +2434,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 point from(argument Interval<T>) : T
+----
 
 *Description:*
 
@@ -2082,7 +2450,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -2099,7 +2470,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -2118,7 +2492,10 @@ Note that during is a synonym for included in.
 
 *Signature:*
 
+[source,cql]
+----
 start of(argument Interval<T>) T
+----
 
 *Description:*
 
@@ -2135,7 +2512,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 starts _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
 
 *Description:*
 
@@ -2152,7 +2532,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 union(left Interval<T>, right Interval<T>) Interval<T>
+----
 
 *Description:*
 
@@ -2165,7 +2548,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 width of(argument Interval<T>) T
+----
 
 *Description:*
 
@@ -2183,7 +2569,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 contains(argument List<T>, element T) Boolean
+----
 
 *Description:*
 
@@ -2198,7 +2587,10 @@ If the list argument is null, the result is false.
 
 *Signature:*
 
+[source,cql]
+----
 distinct(argument List<T>) List<T>
+----
 
 *Description:*
 
@@ -2213,7 +2605,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 =(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2226,7 +2621,10 @@ If either argument is null, or contains null elements, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ~(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2237,7 +2635,10 @@ The ~ operator for lists returns true if and only if the lists contain elements 
 
 *Signature:*
 
+[source,cql]
+----
 except(left List<T>, right List<T>) List<T>
+----
 
 *Description:*
 
@@ -2252,7 +2653,10 @@ If the left argument is null, the result is null. else if the right argument is 
 
 *Signature:*
 
+[source,cql]
+----
 exists(argument List<T>) Boolean
+----
 
 *Description:*
 
@@ -2265,7 +2669,10 @@ If the argument is null, the result is false.
 
 *Signature:*
 
+[source,cql]
+----
 flatten(argument List<List<T>>) List<T>
+----
 
 *Description:*
 
@@ -2278,7 +2685,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 First(argument List<T>) T
+----
 
 *Description:*
 
@@ -2291,7 +2701,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 in(element T, argument List<T>) Boolean
+----
 
 *Description:*
 
@@ -2306,7 +2719,10 @@ If the left argument is null, the result is null. If the right argument is null,
 
 *Signature:*
 
+[source,cql]
+----
 includes(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2323,7 +2739,10 @@ Note that the order of elements does not matter for the purposes of determining 
 
 *Signature:*
 
+[source,cql]
+----
 included in(left List<T>, right list<T>) Boolean
+----
 
 *Description:*
 
@@ -2340,7 +2759,10 @@ Note that the order of elements does not matter for the purposes of determining 
 
 *Signature:*
 
+[source,cql]
+----
 [](argument List<T>, index Integer) T
+----
 
 *Description:*
 
@@ -2357,7 +2779,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 IndexOf(argument List<T>, element T) Integer
+----
 
 *Description:*
 
@@ -2374,7 +2799,10 @@ If the list argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 intersect(left List<T>, right List<T>) List<T>
+----
 
 *Description:*
 
@@ -2389,7 +2817,10 @@ If either argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Last(argument List<T>) T
+----
 
 *Description:*
 
@@ -2402,7 +2833,10 @@ If the argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Length(argument List<T>) Integer
+----
 
 *Description:*
 
@@ -2415,7 +2849,10 @@ If the argument is null, the result is 0.
 
 *Signature:*
 
+[source,cql]
+----
 !=(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2428,7 +2865,10 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Signature:*
 
+[source,cql]
+----
 !~(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2441,7 +2881,10 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 *Signature:*
 
+[source,cql]
+----
 properly includes(left List<T>, right List<T>) Boolean
+----
 
 *Description:*
 
@@ -2458,7 +2901,10 @@ Note that the order of elements does not matter for the purposes of determining 
 
 *Signature:*
 
+[source,cql]
+----
 properly included in(left List<T>, right list<T>) Boolean
+----
 
 *Description:*
 
@@ -2475,7 +2921,10 @@ Note that the order of elements does not matter for the purposes of determining 
 
 *Signature:*
 
+[source,cql]
+----
 singleton from(argument List<T>) T
+----
 
 *Description:*
 
@@ -2488,7 +2937,10 @@ If the source list is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Skip(argument List<T>, number Integer) List<T>
+----
 
 *Description:*
 
@@ -2505,7 +2957,10 @@ If the number of elements is less than zero, the result is an empty list.
 
 *Signature:*
 
+[source,cql]
+----
 Tail(argument List<T>) List<T>
+----
 
 *Description:*
 
@@ -2518,7 +2973,10 @@ If the source list is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Take(argument List<T>, number Integer) List<T>
+----
 
 *Description:*
 
@@ -2533,7 +2991,10 @@ If number is null, or 0 or less, the result is an empty list.
 
 *Signature:*
 
+[source,cql]
+----
 union(left List<T>, right List<T>) List<T>
+----
 
 *Description:*
 
@@ -2551,7 +3012,10 @@ Note that the union operator can also be invoked with the symbolic operator (|).
 
 *Signature:*
 
+[source,cql]
+----
 AllTrue(argument List<Boolean>) Boolean
+----
 
 *Description:*
 
@@ -2566,7 +3030,10 @@ If the source is null, the result is true.
 
 *Signature:*
 
+[source,cql]
+----
 AnyTrue(argument List<Boolean>) Boolean
+----
 
 *Description:*
 
@@ -2581,8 +3048,11 @@ If the source is null, the result is false.
 
 *Signature:*
 
-Avg(argument List<Decimal>) Decimal +
+[source,cql]
+----
+Avg(argument List<Decimal>) Decimal
 Avg(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2597,7 +3067,10 @@ If the source is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Count(argument List<T>) Integer
+----
 
 *Description:*
 
@@ -2608,12 +3081,15 @@ The Count operator returns the number of non-null elements in the source. If the
 
 *Signature:*
 
-Max(argument List<Integer>) Integer +
-Max(argument List<Decimal>) Decimal +
-Max(argument List<Quantity>) Quantity +
-Max(argument List<DateTime>) DateTime +
-Max(argument List<Time>) Time +
+[source,cql]
+----
+Max(argument List<Integer>) Integer
+Max(argument List<Decimal>) Decimal
+Max(argument List<Quantity>) Quantity
+Max(argument List<DateTime>) DateTime
+Max(argument List<Time>) Time
 Max(argument List<String>) String
+----
 
 *Description:*
 
@@ -2628,12 +3104,15 @@ If the source is null, the result is null.
 
 *Signature:*
 
-Min(argument List<Integer>) Integer +
-Min(argument List<Decimal>) Decimal +
-Min(argument List<Quantity>) Quantity +
-Min(argument List<DateTime>) DateTime +
-Min(argument List<Time>) Time +
+[source,cql]
+----
+Min(argument List<Integer>) Integer
+Min(argument List<Decimal>) Decimal
+Min(argument List<Quantity>) Quantity
+Min(argument List<DateTime>) DateTime
+Min(argument List<Time>) Time
 Min(argument List<String>) String
+----
 
 *Description:*
 
@@ -2648,8 +3127,11 @@ If the source is null, the result is null.
 
 *Signature:*
 
-Median(argument List<Decimal>) Decimal +
+[source,cql]
+----
+Median(argument List<Decimal>) Decimal
 Median(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2664,7 +3146,10 @@ If the source is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Mode(argument List<T>) T
+----
 
 *Description:*
 
@@ -2679,8 +3164,11 @@ If the source is null, the result is null.
 
 *Signature:*
 
-PopulationStdDev(argument List<Decimal>) Decimal +
+[source,cql]
+----
+PopulationStdDev(argument List<Decimal>) Decimal
 PopulationStdDev(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2695,8 +3183,11 @@ If the source is null, the result is null.
 
 *Signature:*
 
-PopulationVariance(argument List<Decimal>) Decimal +
+[source,cql]
+----
+PopulationVariance(argument List<Decimal>) Decimal
 PopulationVariance(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2711,8 +3202,11 @@ If the source is null, the result is null.
 
 *Signature:*
 
-StdDev(argument List<Decimal>) Decimal +
+[source,cql]
+----
+StdDev(argument List<Decimal>) Decimal
 StdDev(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2727,9 +3221,12 @@ If the list is null, the result is null.
 
 *Signature:*
 
-Sum(argument List<Integer>) Integer +
-Sum(argument List<Decimal>) Decimal +
+[source,cql]
+----
+Sum(argument List<Integer>) Integer
+Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2744,8 +3241,11 @@ If the list is null, the result is null.
 
 *Signature:*
 
-Variance(argument List<Decimal>) Decimal +
+[source,cql]
+----
+Variance(argument List<Decimal>) Decimal
 Variance(argument List<Quantity>) Quantity
+----
 
 *Description:*
 
@@ -2763,13 +3263,16 @@ If the source is null, the result is null.
 
 *Signature:*
 
-AgeInYears() Integer +
-AgeInMonths() Integer +
-AgeInWeeks() Integer +
-AgeInDays() Integer +
-AgeInHours() Integer +
-AgeInMinutes() Integer +
+[source,cql]
+----
+AgeInYears() Integer
+AgeInMonths() Integer
+AgeInWeeks() Integer
+AgeInDays() Integer
+AgeInHours() Integer
+AgeInMinutes() Integer
 AgeInSeconds() Integer
+----
 
 *Description:*
 
@@ -2784,13 +3287,16 @@ The Age operators are defined in terms of a DateTime duration calculation. This 
 
 *Signature:*
 
-AgeInYearsAt(asOf DateTime) Integer +
-AgeInMonthsAt(asOf DateTime) Integer +
-AgeInWeeksAt(asOf DateTime) Integer +
-AgeInDaysAt(asOf DateTime) Integer +
-AgeInHoursAt(asOf DateTime) Integer +
-AgeInMinutesAt(asOf DateTime) Integer +
+[source,cql]
+----
+AgeInYearsAt(asOf DateTime) Integer
+AgeInMonthsAt(asOf DateTime) Integer
+AgeInWeeksAt(asOf DateTime) Integer
+AgeInDaysAt(asOf DateTime) Integer
+AgeInHoursAt(asOf DateTime) Integer
+AgeInMinutesAt(asOf DateTime) Integer
 AgeInSecondsAt(asOf DateTime) Integer
+----
 
 *Description:*
 
@@ -2805,13 +3311,16 @@ The AgeAt operators are defined in terms of a DateTime duration calculation. Thi
 
 *Signature:*
 
-CalculateAgeInYears(birthDate DateTime) Integer +
-CalculateAgeInMonths(birthDate DateTime) Integer +
-CalculateAgeInWeeks(birthDate DateTime) Integer +
-CalculateAgeInDays(birthDate DateTime) Integer +
-CalculateAgeInHours(birthDate DateTime) Integer +
-CalculateAgeInMinutes(birthDate DateTime) Integer +
+[source,cql]
+----
+CalculateAgeInYears(birthDate DateTime) Integer
+CalculateAgeInMonths(birthDate DateTime) Integer
+CalculateAgeInWeeks(birthDate DateTime) Integer
+CalculateAgeInDays(birthDate DateTime) Integer
+CalculateAgeInHours(birthDate DateTime) Integer
+CalculateAgeInMinutes(birthDate DateTime) Integer
 CalculateAgeInSeconds(birthDate DateTime) Integer
+----
 
 *Description:*
 
@@ -2826,13 +3335,16 @@ The CalculateAge operators are defined in terms of a DateTime duration calculati
 
 *Signature:*
 
-CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer +
-CalculateAgeInMonthsAt(birthDate DateTime, asOf DateTime) Integer +
-CalculateAgeInWeeksAt(birthDate DateTime, asOf DateTime) Integer +
-CalculateAgeInDaysAt(birthDate DateTime, asOf DateTime) Integer +
-CalculateAgeInHoursAt(birthDate DateTime, asOf DateTime) Integer +
-CalculateAgeInMinutesAt(birthDate DateTime, asOf DateTime) Integer +
+[source,cql]
+----
+CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInMonthsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInWeeksAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInDaysAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInHoursAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInMinutesAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInSecondsAt(birthDate DateTime, asOf DateTime) Integer
+----
 
 *Description:*
 
@@ -2847,8 +3359,11 @@ The CalculateAgeAt operators are defined in terms of a DateTime duration calcula
 
 *Signature:*
 
-=(left Code, right Code) Boolean +
+[source,cql]
+----
+=(left Code, right Code) Boolean
 =(left Concept, right Concept) Boolean
+----
 
 *Description:*
 
@@ -2861,7 +3376,10 @@ If either argument is null, or contains any null components, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 ~(left Code, right Code) Boolean
+----
 
 *Description:*
 
@@ -2878,9 +3396,12 @@ Note carefully that this notion of _equivalence_ is _not_ the same as the notion
 
 *Signature:*
 
-in(code String, codesystem CodeSystemRef) Boolean +
-in(code Code, codesystem CodeSystemRef) Boolean +
+[source,cql]
+----
+in(code String, codesystem CodeSystemRef) Boolean
+in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
+----
 
 *Description:*
 
@@ -2899,9 +3420,12 @@ If the code argument is null, the result is null.
 
 *Signature:*
 
-in(code String, valueset ValueSetRef) Boolean +
-in(code Code, valueset ValueSetRef) Boolean +
+[source,cql]
+----
+in(code String, valueset ValueSetRef) Boolean
+in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
+----
 
 *Description:*
 
@@ -2923,7 +3447,10 @@ If the code argument is null, the result is null.
 
 *Signature:*
 
+[source,cql]
+----
 Message(source T, condition Boolean, code String, severity String, message String) T
+----
 
 *Description:*
 
@@ -2941,10 +3468,10 @@ The severity determines what level of processing should occur for the message th
 * Warning – The operation produces a warning message that is expected to be made conspicuously available to the calling environment, potentially to the end-user of the logic.
 * Trace – The operation produces an informational message that is expected to be made available to a tracing mechanism such as a debug log in the calling environment. In addition, some representation of the contents of the source parameter should be made available to the tracing mechanism.
 * Error – The operation produces a run-time error and return the message to the calling environment. This is the only severity that stops evaluation. All other severities continue evaluation of the expression.
-+
+
 If no severity is supplied, a default severity of Message is assumed.
-+
+
 The message is the content of the actual message that is sent to the calling environment.
-+
+
 Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
 
