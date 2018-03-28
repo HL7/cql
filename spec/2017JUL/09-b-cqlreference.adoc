@@ -1,0 +1,3477 @@
+[[appendix-b-cql-reference]]
+= Appendix B – CQL Reference
+:page-layout: current
+:sectnums:
+:sectanchors:
+:toc:
+
+This appendix provides a reference for all the system-defined types, operators, and functions that can be used within CQL. It is intended to provide complete semantics for each available type and operator as a companion to the Author’s and Developer’s Guides. The reference is organized by operator category.
+
+For each type, the definition and semantics are provided. Note that because CQL does not define a type declaration syntax, the definitions are expressed in a pseudo-syntax.
+
+For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the and operator is given as:
+
+[source,cql]
+----
+and(left Boolean, right Boolean) Boolean
+----
+
+Even though and is an infix operator and would be invoked as in the following expression:
+
+[source,cql]
+----
+InDemographic and NeedsScreening
+----
+
+[[types-2]]
+== Types
+
+[[any]]
+=== Any
+
+*Definition:*
+
+[source,cql]
+----
+simple type Any
+----
+
+*Description:*
+
+The Any type is the maximal supertype in the CQL type system, meaning that all types derive from Any, including list, interval, and structured types. In addition, the type of a null result is Any.
+
+[[boolean-1]]
+=== Boolean
+
+*Definition:*
+
+[source,cql]
+----
+simple type Boolean
+----
+
+*Description:*
+
+The Boolean type represents the logical boolean values true and false. The result of logical operations within CQL use the Boolean type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the Boolean type.
+
+[[code-1]]
+=== Code
+
+*Definition:*
+
+[source,cql]
+----
+structured type Code
+{
+  code String,
+  display String,
+  system String,
+  version String
+}
+----
+
+*Description:*
+
+The Code type represents single terminology codes within CQL.
+
+[[concept-1]]
+=== Concept
+
+*Definition:*
+
+[source,cql]
+----
+structured type Concept
+{
+  codes List<Code>,
+  display String
+}
+----
+
+*Description:*
+
+The Concept type represents a single terminological concept within CQL.
+
+[[datetime]]
+=== DateTime
+
+*Definition:*
+
+[source,cql]
+----
+simple type DateTime
+----
+
+*Description:*
+
+The DateTime type represents date and time values with potential uncertainty within CQL.
+
+CQL supports date and time values in the range @0001-01-01T00:00:00.0 to @9999-12-31T23:59:59.999 with a 1 millisecond step size.
+
+[[decimal-1]]
+=== Decimal
+
+*Definition:*
+
+[source,cql]
+----
+simple type Decimal
+----
+
+*Description:*
+
+The Decimal type represents real values within CQL.
+
+CQL supports decimal values in the range -10^28^-10^-8^ to 10^28^-10^-8^ with a step size of 10^-8^.
+
+[[integer-1]]
+=== Integer
+
+*Definition:*
+
+[source,cql]
+----
+simple type Integer
+----
+
+*Description:*
+
+The Integer type represents whole number values within CQL.
+
+CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1.
+
+[[quantity]]
+=== Quantity
+
+*Definition:*
+
+[source,cql]
+----
+structured type Quantity
+{
+  value Decimal
+  unit String
+}
+----
+
+*Description:*
+
+The Quantity type represents quantities with a specified unit within CQL.
+
+[[string-1]]
+=== String
+
+*Definition:*
+
+[source,cql]
+----
+simple type String
+----
+
+*Description:*
+
+The String type represents string values within CQL.
+
+CQL supports string values up to 2^31^-1 characters in length.
+
+For string literals, CQL uses standard escape sequences:
+
+[cols=",",options="header",]
+|========================================================================================
+|Escape |Character
+|\' |Single-quote
+|\" |Double-quote
+|\r |Carriage Return
+|\n |Line Feed
+|\t |Tab
+|\f |Form Feed
+|\\ |Backslash
+|\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
+|========================================================================================
+
+[[time]]
+=== Time
+
+*Definition:*
+
+[source,cql]
+----
+simple type Time
+----
+
+*Description:*
+
+The Time type represents time-of-day values within CQL.
+
+CQL supports time values in the range @T00:00:00.0 to @T23:59:59.999 with a step size of 1 millisecond.
+
+[[logical-operators-3]]
+== Logical Operators
+
+[[and]]
+=== And
+
+*Signature:*
+
+[source,cql]
+----
+and (left Boolean, right Boolean) Boolean
+----
+
+*Description:*
+
+The and operator returns true if both its arguments are true. If either argument is false, the result is false. Otherwise, the result is null.
+
+The following table defines the truth table for this operator:
+
+[cols=",,,",options="header",]
+|==========================
+| |TRUE |FALSE |NULL
+|TRUE |TRUE |FALSE |NULL
+|FALSE |FALSE |FALSE |FALSE
+|NULL |NULL |FALSE |NULL
+|==========================
+
+Table 9‑A
+
+*Example:*
+
+The following examples illustrate the behavior of the and operator:
+
+[source,cql]
+----
+define IsTrue = true and true
+define IsFalse = true and false
+define IsAlsoFalse = false and null
+define IsNull = true and null
+----
+
+[[implies]]
+=== Implies
+
+*Signature:*
+
+[source,cql]
+----
+implies (left Boolean, right Boolean) Boolean
+----
+
+*Description:*
+
+The implies operator returns the logical implication of its arguments. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
+
+The following table defines the truth table for this operator:
+
+[cols=",,,",options="header",]
+|=======================
+| |TRUE |FALSE |NULL
+|TRUE |TRUE |FALSE |NULL
+|FALSE |TRUE |TRUE |TRUE
+|NULL |TRUE |NULL |NULL
+|=======================
+
+Table 9‑A
+
+[[not]]
+=== Not
+
+*Signature:*
+
+[source,cql]
+----
+not (argument Boolean) Boolean
+----
+
+*Description:*
+
+The not operator returns true if the argument is false and false if the argument is true. Otherwise, the result is null.
+
+The following table defines the truth table for this operator:
+
+[cols=",",options="header",]
+|===========
+| |NOT
+|TRUE |FALSE
+|FALSE |TRUE
+|NULL |NULL
+|===========
+
+Table 9‑B
+
+[[or]]
+=== Or
+
+*Signature:*
+
+[source,cql]
+----
+or (left Boolean, right Boolean) Boolean
+----
+
+*Description:*
+
+The or operator returns true if either of its arguments are true. If both arguments are false, the result is false. Otherwise, the result is null.
+
+The following table defines the truth table for this operator:
+
+[cols=",,,",options="header",]
+|========================
+| |TRUE |FALSE |NULL
+|TRUE |TRUE |TRUE |TRUE
+|FALSE |TRUE |FALSE |NULL
+|NULL |TRUE |NULL |NULL
+|========================
+
+Table 9‑C
+
+*Example:*
+
+The following examples illustrate the behavior of the or operator:
+
+[source,cql]
+----
+define IsTrue = true or false
+define IsAlsoTrue = true or null
+define IsFalse = false or false
+define IsNull = false or null
+----
+
+[[xor]]
+=== Xor
+
+*Signature:*
+
+[source,cql]
+----
+xor (left Boolean, right Boolean) Boolean
+----
+
+*Description:*
+
+The xor (exclusive or) operator returns true if one argument is true and the other is false. If both arguments are true or both arguments are false, the result is false. Otherwise, the result is null.
+
+The following table defines the truth table for this operator:
+
+[cols=",,,",options="header",]
+|========================
+| |TRUE |FALSE |NULL
+|TRUE |FALSE |TRUE |NULL
+|FALSE |TRUE |FALSE |NULL
+|NULL |NULL |NULL |NULL
+|========================
+
+Table 9‑D
+
+[[type-operators-1]]
+== Type Operators
+
+[[as]]
+=== As
+
+*Signature:*
+
+[source,cql]
+----
+as<T>(argument Any) T
+cast as<T>(argument Any) T
+----
+
+*Description:*
+
+The as operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument.
+
+If the argument is not of the specified type at run-time the result is null.
+
+The cast prefix indicates that if the argument is not of the specified type at run-time then an exception is thrown.
+
+*Example:*
+
+The following examples illustrate the use of the as operator.
+
+[source,cql]
+----
+define AllProcedures: [Procedure]
+
+define ImagingProcedures:
+  AllProcedures P
+    where P is ImagingProcedure
+    return P as ImagingProcedure
+
+define RuntimeError:
+  ImagingProcedures P
+    return cast P as Observation
+----
+
+[[children]]
+=== Children
+
+*Signature:*
+
+[source,cql]
+----
+Children(argument Any) List<Any>
+----
+
+*Description:*
+
+For structured types, the Children operator returns a list of all the values of the elements of the type. List-valued elements are expanded and added to the result individually, rather than as a single list.
+
+For list types, the result is the same as invoking Children on each element in the list and flattening the resulting lists into a single result.
+
+If the source is null, the result is null.
+
+[[convert]]
+=== Convert
+
+*Signature:*
+
+[source,cql]
+----
+convert to<T>(argument Any) T
+----
+
+*Description:*
+
+The convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. Note that use of this operator may result in a run-time exception being thrown if there is no valid conversion from the actual value to the target type.
+
+The following table lists the conversions supported in CQL:
+
+[cols=",,,,,,,,,,",options="header",]
+|===============================================================================================
+|From\To |Boolean |Integer |Decimal |Quantity |String |Datetime |Time |Code |Concept |List(Code)
+|Boolean |N/A |- |- |- |Explicit |- |- |- |- |-
+|Integer |- |N/A |Implicit |- |Explicit |- |- |- |- |-
+|Decimal |- |- |N/A |- |Explicit |- |- |- |- |-
+|Quantity |- |- |- |N/A |Explicit |- |- |- |- |-
+|String |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
+|Datetime |- |- |- |- |Explicit |N/A |- |- |- |-
+|Time |- |- |- |- |Explicit |- |N/A |- |- |-
+|Code |- |- |- |- |- |- |- |N/A |Implicit |-
+|Concept |- |- |- |- |- |- |- |- |N/A |Explicit
+|List(Code) | | | | | | | | |Implicit |N/A
+|===============================================================================================
+
+Table 9‑E
+
+For conversions between date/time and string values, ISO-8601 standard format is used:
+
+yyyy-MM-ddThh:mm:ss.fff(Z | +/- hh:mm)
+
+For example, the following are valid string representations for date/time values:
+
+[source,cql]
+----
+'2014-01-01T14:30:00.0Z' // January 1^st^, 2014, 2:30PM UTC +
+'2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00) +
+'T14:30:00.0Z' // 2:30PM UTC +
+'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
+----
+
+For specific semantics for each conversion, refer to the explicit conversion operator documentation.
+
+[[descendents]]
+=== Descendents
+
+*Signature:*
+
+[source,cql]
+----
+Descendents(argument Any) List<Any>
+----
+
+*Description:*
+
+For structured types, the Descendents operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
+
+For list types, the result is the same as invoking Descendents on each element in the list and flattening the resulting lists into a single result.
+
+If the source is null, the result is null.
+
+[[is]]
+=== Is
+
+*Signature:*
+
+[source,cql]
+----
+is<T>(argument Any) Boolean
+----
+
+*Description:*
+
+The is operator allows the type of a result to be tested. If the run-time type of the argument is of the type being tested, the result of the operator is true; otherwise, the result is false.
+
+[[toboolean]]
+=== ToBoolean
+
+*Signature:*
+
+[source,cql]
+----
+ToBoolean(argument String) Boolean
+----
+
+*Description:*
+
+The ToBoolean operator converts the value of its argument to a Boolean value. The operator accepts the following string representations:
+
+[cols=",",options="header",]
+|====================================
+|String Representation |Boolean Value
+|true t yes y 1 |true
+|false f no n 0 |false
+|====================================
+
+Table 9‑F
+
+Note that the operator will ignore case when interpreting the string as a Boolean value.
+
+If the input cannot be interpreted as a valid Boolean value, a run-time error is thrown.
+
+If the argument is null, the result is null.
+
+[[toconcept]]
+=== ToConcept
+
+*Signature:*
+
+[source,cql]
+----
+ToConcept(argument Code) Concept
+----
+
+*Description:*
+
+The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
+
+If the argument is null, the result is null.
+
+[[todatetime]]
+=== ToDateTime
+
+*Signature:*
+
+[source,cql]
+----
+ToDateTime(argument String) DateTime
+----
+
+*Description:*
+
+The ToDateTime operator converts the value of its argument to a DateTime value. The operator expects the string to be formatted using the ISO-8601 date/time representation:
+
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+
+In addition, the string must be interpretable as a valid date/time value.
+
+For example, the following are valid string representations for date/time values:
+
+[source,cql]
+----
+'2014-01-01' // January 1^st^, 2014
+'2014-01-01T14:30:00.0Z' // January 1^st^, 2014, 2:30PM UTC
+'2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00)
+----
+
+If the input string is not formatted correctly, or does not represent a valid date/time value, a run-time error is thrown.
+
+As with date/time literals, date/time values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
+
+If the argument is null, the result is null.
+
+[[todecimal]]
+=== ToDecimal
+
+*Signature:*
+
+[source,cql]
+----
+ToDecimal(argument String) Decimal
+----
+
+*Description:*
+
+The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
+
+[source,cql]
+----
+(+|-)?#0(.0#)?
+----
+
+Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, a run-time error is thrown.
+
+If the argument is null, the result is null.
+
+[[tointeger]]
+=== ToInteger
+
+*Signature:*
+
+[source,cql]
+----
+ToInteger(argument String) Integer
+----
+
+*Description:*
+
+The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
+
+[source,cql]
+----
+(+|-)?#0
+----
+
+Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, a run-time error is thrown.
+
+If the argument is null, the result is null.
+
+[[toquantity]]
+=== ToQuantity
+
+*Signature:*
+
+[source,cql]
+----
+ToQuantity(argument String) Quantity
+----
+
+*Description:*
+
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator accepts strings using the following format:
+
+[source,cql]
+----
+(+|-)?#0(.0#)?('<unit>')?
+----
+
+Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
+
+Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, a run-time error is thrown.
+
+If the argument is null, the result is null.
+
+[[tostring]]
+=== ToString
+
+*Signature:*
+
+[source,cql]
+----
+ToString(argument Boolean) String
+ToString(argument Integer) String
+ToString(argument Decimal) String
+ToString(argument Quantity) String
+ToString(argument DateTime) String
+ToString(argument Time) String
+----
+
+*Description:*
+
+The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:
+
+[cols=",",options="header",]
+|===========================================
+|Type |String Representation
+|Boolean |true|false
+|Integer |(-)?#0
+|Decimal |(-)?#0.0#
+|Quantity |(-)?#0.0# '<unit>'
+|DateTime |YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+|Time |Thh:mm:ss.fff(+|-)hh:mm
+|===========================================
+
+Table 9‑G
+
+If the argument is null, the result is null.
+
+[[totime]]
+=== ToTime
+
+*Signature:*
+
+[source,cql]
+----
+ToTime(argument String) Time
+----
+
+*Description:*
+
+The ToTime operator converts the value of its argument to a Time value. The operator expects the string to be formatted using ISO-8601 time representation:
+
+Thh:mm:ss.fff(+|-)hh:mm
+
+In addition, the string must be interpretable as a valid time-of-day value.
+
+For example, the following are valid string representations for time-of-day values:
+
+[source,cql]
+----
+'T14:30:00.0Z' // 2:30PM UTC
+'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
+----
+
+If the input string is not formatted correctly, or does not represent a valid time-of-day value, a run-time error is thrown.
+
+As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
+
+If the argument is null, the result is null.
+
+[[nullological-operators-3]]
+== Nullological Operators
+
+[[coalesce]]
+=== Coalesce
+
+*Signature:*
+
+[source,cql]
+----
+Coalesce<T>(argument1 T, argument2 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T) T
+Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T, argument5 T) T
+Coalesce<T>(arguments List<T>) T
+----
+
+*Description:*
+
+The Coalesce operator returns the first non-null result in a list of arguments. If all arguments evaluate to null, the result is null.
+
+The static type of the first argument determines the type of the result, and all subsequent arguments must be of that same type.
+
+[[isnull]]
+=== IsNull
+
+*Signature:*
+
+[source,cql]
+----
+is null(argument Any) Boolean
+----
+
+*Description:*
+
+The is null operator determines whether or not its argument evaluates to null. If the argument evaluates to null, the result is true; otherwise, the result is false.
+
+[[isfalse]]
+=== IsFalse
+
+*Signature:*
+
+[source,cql]
+----
+is false(argument Boolean) Boolean
+----
+
+*Description:*
+
+The is false operator determines whether or not its argument evaluates to false. If the argument evaluates to false, the result is true; otherwise, the result is false.
+
+[[istrue]]
+=== IsTrue
+
+*Signature:*
+
+[source,cql]
+----
+is true(argument Boolean) Boolean
+----
+
+*Description:*
+
+The is true operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; otherwise, the result is false.
+
+[[comparison-operators-4]]
+== Comparison Operators
+
+[[between]]
+=== Between
+
+*Signature:*
+
+[source,cql]
+----
+between(argument Integer, low Integer, high Integer) Boolean
+between(argument Decimal, low Decimal, high Decimal) Boolean
+between(argument Quantity, low Quantity, high Quantity) Boolean
+between(argument DateTime, low DateTime, high DateTime) Boolean
+between(argument Time, low Time, high Time) Boolean
+between(argument String, low String, high String) Boolean
+----
+
+*Description:*
+
+The between operator determines whether the first argument is within a given range, inclusive. If the first argument is greater than or equal to the low argument, and less than or equal to the high argument, the result is true, otherwise, the result is false.
+
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If any argument is null, the result is null.
+
+[[equal]]
+=== Equal
+
+*Signature:*
+
+[source,cql]
+----
+=<T>(left T, right T) Boolean
+----
+
+*Description:*
+
+The _equal_ (=) operator returns true if the arguments are equal; false if the arguments are known unequal, and null otherwise. Equality semantics are defined to be value-based.
+
+For simple types, this means that equality returns true if and only if the result of each argument evaluates to the same value.
+
+For decimal values, trailing zeroes are ignored.
+
+For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For tuple types, this means that equality returns true if and only if the tuples are of the same type, and the values for all elements by name are equal.
+
+For list types, this means that equality returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using the same semantics.
+
+For interval types, equality returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the Start and End operators.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If either argument is null, the result is null.
+
+[[equivalent]]
+=== Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+~<T>(left T, right T) Boolean
+----
+
+*Description:*
+
+The ~ operator returns true if the arguments are the same value, or if they are both null; and false otherwise.
+
+For tuple types, this means that two tuple values are equivalent if and only if the tuples are of the same type, and the values for all elements by name are equivalent.
+
+For list types, this means that two list values are equivalent if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
+
+For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
+
+For Code values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining Code equivalence.
+
+For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept.
+
+Note that this operator will always return true or false, even if either or both of its arguments are null, or contain null components.
+
+This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as in, contains, includes, IndexOf(), etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
+
+[[greater]]
+=== Greater
+
+*Signature:*
+
+[source,cql]
+----
+>(left Integer, right Integer) Boolean
+>(left Decimal, right Decimal) Boolean
+>(left Quantity, right Quantity) Boolean
+>(left DateTime, right DateTime) Boolean
+>(left Time, right Time) Boolean
+>(left String, right String) Boolean
+----
+
+*Description:*
+
+The _greater_ (>) operator returns true if the first argument is greater than the second argument.
+
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If either argument is null, the result is null.
+
+[[greater-or-equal]]
+=== Greater Or Equal
+
+*Signature:*
+
+[source,cql]
+----
+>=(left Integer, right Integer) Boolean
+>=(left Decimal, right Decimal) Boolean
+>=(left Quantity, right Quantity) Boolean
+>=(left DateTime, right DateTime) Boolean
+>=(left Time, right Time) Boolean
+>=(left String, right String) Boolean
+----
+
+*Description:*
+
+The _greater or equal_ (>=) operator returns true if the first argument is greater than or equal to the second argument.
+
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If either argument is null, the result is null.
+
+[[less]]
+=== Less
+
+*Signature:*
+
+[source,cql]
+----
+<(left Integer, right Integer) Boolean
+<(left Decimal, right Decimal) Boolean
+<(left Quantity, right Quantity) Boolean
+<(left DateTime, right DateTime) Boolean
+<(left Time, right Time) Boolean
+<(left String, right String) Boolean
+----
+
+*Description:*
+
+The _less_ (<) operator returns true if the first argument is less than the second argument.
+
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If either argument is null, the result is null.
+
+[[less-or-equal]]
+=== Less Or Equal
+
+*Signature:*
+
+[source,cql]
+----
+<=(left Integer, right Integer) Boolean
+<=(left Decimal, right Decimal) Boolean
+<=(left Quantity, right Quantity) Boolean
+<=(left DateTime, right DateTime) Boolean
+<=(left Time, right Time) Boolean
+<=(left String, right String) Boolean
+----
+
+*Description:*
+
+The _less or equal_ (\<=) operator returns true if the first argument is less than or equal to the second argument.
+
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+If either argument is null, the result is null.
+
+[[not-equal]]
+=== Not Equal
+
+*Signature:*
+
+[source,cql]
+----
+!=<T>(left T, right T) Boolean
+----
+
+*Description:*
+
+The _not equal_ (!=) operator returns true if its arguments are not the same value.
+
+The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+
+[[not-equivalent]]
+=== Not Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+!~<T>(left T, right T) Boolean
+----
+
+*Description:*
+
+The _not equivalent_ (!~) operator returns true if its arguments are not equivalent.
+
+The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+
+[[arithmetic-operators-4]]
+== Arithmetic Operators
+
+[[abs]]
+=== Abs
+
+*Signature:*
+
+[source,cql]
+----
+Abs(argument Integer) Integer
+Abs(argument Decimal) Decimal
+Abs(argument Quantity) Quantity
+----
+
+*Description:*
+
+The Abs operator returns the absolute value of its argument.
+
+When taking the absolute value of a quantity, the unit is unchanged.
+
+If the argument is null, the result is null.
+
+[[add]]
+=== Add
+
+*Signature:*
+
+[source,cql]
+----
++(left Integer, right Integer) Integer
++(left Decimal, right Decimal) Decimal
++(left Quantity, right Quantity) Quantity
+----
+
+*Description:*
+
+The _add_ (+) operator performs numeric addition of its arguments.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+If either argument is null, the result is null.
+
+[[ceiling]]
+=== Ceiling
+
+*Signature:*
+
+[source,cql]
+----
+Ceiling(argument Decimal) Integer
+----
+
+*Description:*
+
+The Ceiling operator returns the first integer greater than or equal to the argument.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+[[divide]]
+=== Divide
+
+*Signature:*
+
+[source,cql]
+----
+/(left Decimal, right Decimal) Decimal
+/(left Quantity, right Decimal) Quantity
+/(left Quantity, right Quantity) Quantity
+----
+
+*Description:*
+
+The _divide_ (/) operator performs numeric division of its arguments. Note that this operator is Decimal division; for Integer division, use the _truncated divide_ (div) operator.
+
+When invoked with Integer arguments, the arguments will be implicitly converted to Decimal.
+
+For division operations involving quantities, the resulting quantity will have the appropriate unit. For example:
+
+12 'cm2' / 3 'cm'
+
+In this example, the result will have a unit of 'cm'.
+
+If either argument is null, the result is null.
+
+[[floor]]
+=== Floor
+
+*Signature:*
+
+[source,cql]
+----
+Floor(argument Decimal) Integer
+----
+
+*Description:*
+
+The Floor operator returns the first integer less than or equal to the argument.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+[[exp]]
+=== Exp
+
+*Signature:*
+
+[source,cql]
+----
+Exp(argument Decimal) Decimal
+----
+
+*Description:*
+
+The Exp operator raises _e_ to the power of its argument.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+[[log]]
+=== Log
+
+*Signature:*
+
+[source,cql]
+----
+Log(argument Decimal, base Decimal) Decimal
+----
+
+*Description:*
+
+The Log operator computes the logarithm of its first argument, using the second argument as the base.
+
+When invoked with Integer arguments, the arguments will be implicitly converted to Decimal.
+
+If either argument is null, the result is null.
+
+[[ln]]
+=== Ln
+
+*Signature:*
+
+[source,cql]
+----
+Ln(argument Decimal) Decimal
+----
+
+*Description:*
+
+The Ln operator computes the natural logarithm of its argument.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+[[maximum]]
+=== Maximum
+
+*Signature:*
+
+[source,cql]
+----
+maximum<T>() T
+----
+
+*Description:*
+
+The maximum operator returns the maximum representable value for the given type.
+
+The maximum operator is defined for the Integer, Decimal, DateTime, and Time types.
+
+For Integer, maximum returns the maximum signed 32-bit integer, 2^31^ - 1.
+
+For Decimal, maximum returns the maximum representable decimal value, (10^37^ – 1) / 10^8^ (9999999999999999999999999999.99999999).
+
+For DateTime, maximum returns the maximum representable date/time value, DateTime(9999, 12, 31, 23, 59, 59, 999).
+
+For Time, maximum returns the maximum representable time value, Time(23, 59, 59, 999).
+
+For any other type, attempting to invoke maximum results in an error.
+
+[[minimum]]
+=== Minimum
+
+*Signature:*
+
+[source,cql]
+----
+minimum<T>() T
+----
+
+*Description:*
+
+The minimum operator returns the minimum representable value for the given type.
+
+The minimum operator is defined for the Integer, Decimal, DateTime, and Time types.
+
+For Integer, minimum returns the minimum signed 32-bit integer, -2^31^.
+
+For Decimal, minimum returns the minimum representable decimal value, (-10^37^ – 1) / 10^8^ (-9999999999999999999999999999.99999999).
+
+For DateTime, minimum returns the minimum representable date/time value, DateTime(1, 1, 1, 0, 0, 0, 0).
+
+For Time, minimum returns the minimum representable time value, Time(0, 0, 0, 0).
+
+For any other type, attempting to invoke minimum results in an error.
+
+[[modulo]]
+=== Modulo
+
+*Signature:*
+
+[source,cql]
+----
+mod(left Integer, right Integer) Integer
+mod(left Decimal, right Decimal) Decimal
+----
+
+*Description:*
+
+The mod operator computes the remainder of the division of its arguments.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+If either argument is null, the result is null.
+
+[[multiply]]
+=== Multiply
+
+*Signature:*
+
+[source,cql]
+----
+*(left Integer, right Integer) Integer
+*(left Decimal, right Decimal) Decimal
+*(left Decimal, right Quantity) Quantity
+*(left Quantity, right Decimal) Quantity
+*(left Quantity, right Quantity) Quantity
+----
+
+*Description:*
+
+The _multiply_ (*) operator performs numeric multiplication of its arguments.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
+
+[source,cql]
+----
+12 'cm' * 3 'cm'
+3 'cm' * 12 'cm2'
+----
+
+In this example, the first result will have a unit of 'cm2', and the second result will have a unit of 'cm3'.
+
+If either argument is null, the result is null.
+
+[[negate]]
+=== Negate
+
+*Signature:*
+
+[source,cql]
+----
+-(argument Integer) Integer
+-(argument Decimal) Decimal
+-(argument Quantity) Quantity
+----
+
+*Description:*
+
+The _negate_ (-) operator returns the negative of its argument.
+
+When negating quantities, the unit is unchanged.
+
+If the argument is null, the result is null.
+
+[[predecessor]]
+=== Predecessor
+
+*Signature:*
+
+[source,cql]
+----
+predecessor of<T>(argument T) T
+----
+
+*Description:*
+
+The predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
+
+The predecessor operator is defined for the Integer, Decimal, DateTime, and Time types.
+
+For Integer, predecessor is equivalent to subtracting 1.
+
+For Decimal, predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08.
+
+For DateTime and Time values, predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, predecessor is equivalent to subtracting one second, etc.
+
+If the argument is null, the result is null.
+
+[[power]]
+=== Power
+
+*Signature:*
+
+[source,cql]
+----
+^(argument Integer, exponent Integer) Integer
+^(argument Decimal, exponent Decimal) Decimal
+----
+
+*Description:*
+
+The _power_ (^) operator raises the first argument to the power given by the second argument.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+If either argument is null, the result is null.
+
+[[round]]
+=== Round
+
+*Signature:*
+
+[source,cql]
+----
+Round(argument Decimal) Decimal
+Round(argument Decimal, precision Integer) Decimal
+----
+
+*Description:*
+
+The Round operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+Precision determines the decimal place at which the rounding will occur. If precision is not specified or null, 0 is assumed.
+
+[[subtract]]
+=== Subtract
+
+*Signature:*
+
+[source,cql]
+----
+-(left Integer, right Integer) Integer
+-(left Decimal, right Decimal) Decimal
+-(left Quantity, right Quantity) Quantity
+----
+
+*Description:*
+
+The _subtract_ (-) operator performs numeric subtraction of its arguments.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+If either argument is null, the result is null.
+
+[[successor]]
+=== Successor
+
+*Signature:*
+
+[source,cql]
+----
+successor of<T>(argument T) T
+----
+
+*Description:*
+
+The successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+
+The successor operator is defined for the Integer, Decimal, DateTime, and Time types.
+
+For Integer, successor is equivalent to adding 1.
+
+For Decimal, successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08.
+
+For DateTime and Time values, successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, successor is equivalent to adding one second, etc.
+
+If the argument is null, the result is null.
+
+[[truncate]]
+=== Truncate
+
+*Signature:*
+
+[source,cql]
+----
+Truncate(argument Decimal) Integer
+----
+
+*Description:*
+
+The Truncate operator returns the integer component of its argument.
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+If the argument is null, the result is null.
+
+[[truncated-divide]]
+=== Truncated Divide
+
+*Signature:*
+
+[source,cql]
+----
+div(left Integer, right Integer) Integer
+div(left Decimal, right Decimal) Decimal
+----
+
+*Description:*
+
+The div operator performs truncated division of its arguments.
+
+When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+
+If either argument is null, the result is null.
+
+[[string-operators-3]]
+== String Operators
+
+[[combine]]
+=== Combine
+
+*Signature:*
+
+[source,cql]
+----
+Combine(source List<String>) String
+Combine(source List<String>, separator String) String
+----
+
+*Description:*
+
+The Combine operator combines a list of strings, optionally separating each string with the given separator.
+
+If either argument is null, or any element in the source list of strings is null, the result is null.
+
+[[concatenate]]
+=== Concatenate
+
+*Signature:*
+
+[source,cql]
+----
++(left String, right String) String
+&(left String, right String) String
+----
+
+*Description:*
+
+The _concatenate_ (+ or &) operator performs string concatenation of its arguments.
+
+When using +, if either argument is null, the result is null.
+
+When using &, null arguments are treated as an empty string ('').
+
+[[endswith]]
+=== EndsWith
+
+*Signature:*
+
+[source,cql]
+----
+EndsWith(argument String, suffix String) Boolean
+----
+
+*Description:*
+
+The EndsWith operator returns true if the given string starts with the given suffix.
+
+If the suffix is the empty string, the result is true.
+
+If either argument is null, the result is null.
+
+[[indexer]]
+=== Indexer
+
+*Signature:*
+
+[source,cql]
+----
+[](argument String, index Integer) String
+----
+
+*Description:*
+
+The _indexer_ ([]) operator returns the character at the indexth position in a string.
+
+Indexes in strings are defined to be 0-based.
+
+If either argument is null, the result is null.
+
+If the index is greater than the length of the string being indexed, the result is null.
+
+[[lastpositionof]]
+=== LastPositionOf
+
+*Signature:*
+
+[source,cql]
+----
+LastPositionOf(pattern String, argument String) Integer
+----
+
+*Description:*
+
+The LastPositionOf operator returns the 0-based index of the last appearance of the given pattern in the given string.
+
+If the pattern is not found, the result is -1.
+
+If either argument is null, the result is null.
+
+[[length]]
+=== Length
+
+*Signature:*
+
+[source,cql]
+----
+Length(argument String) Integer
+----
+
+*Description:*
+
+The Length operator returns the number of characters in a string.
+
+If the argument is null, the result is null.
+
+[[lower]]
+=== Lower
+
+*Signature:*
+
+[source,cql]
+----
+Lower(argument String) String
+----
+
+*Description:*
+
+The Lower operator returns the given string with all characters converted to their lower case equivalents.
+
+Note that the definition of _lowercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+
+If the argument is null, the result is null.
+
+[[matches]]
+=== Matches
+
+*Signature:*
+
+[source,cql]
+----
+Matches(argument String, pattern String) Boolean
+----
+
+*Description:*
+
+The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+
+If either argument is null, the result is null.
+
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+
+[[positionof]]
+=== PositionOf
+
+*Signature:*
+
+[source,cql]
+----
+PositionOf(pattern String, argument String) Integer
+----
+
+*Description:*
+
+The PositionOf operator returns the 0-based index of the given pattern in the given string.
+
+If the pattern is not found, the result is -1.
+
+If either argument is null, the result is null.
+
+[[replacematches]]
+=== ReplaceMatches
+
+*Signature:*
+
+[source,cql]
+----
+Matches(argument String, pattern String, substitution String) String
+----
+
+*Description:*
+
+The ReplaceMatches operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+
+If any argument is null, the result is null.
+
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+
+[[split]]
+=== Split
+
+*Signature:*
+
+[source,cql]
+----
+Split(stringToSplit String, separator String) List<String>
+----
+
+*Description:*
+
+The Split operator splits a string into a list of strings using a separator.
+
+If the stringToSplit argument is null, the result is null.
+
+If the stringToSplit argument does not contain any appearances of the separator, the result is a list of strings containing one element that is the value of the stringToSplit argument.
+
+[[startswith]]
+=== StartsWith
+
+*Signature:*
+
+[source,cql]
+----
+StartsWith(argument String, prefix String) Boolean
+----
+
+*Description:*
+
+The StartsWith operator returns true if the given string starts with the given prefix.
+
+If the prefix is the empty string, the result is true.
+
+If either argument is null, the result is null.
+
+[[substring]]
+=== Substring
+
+*Signature:*
+
+[source,cql]
+----
+Substring(stringToSub String, startIndex Integer) String
+Substring(stringToSub String, startIndex Integer, length Integer) String
+----
+
+*Description:*
+
+The Substring operator returns the string within stringToSub, starting at the 0-based index startIndex, and consisting of length characters.
+
+If length is ommitted, the substring returned starts at startIndex and continues to the end of stringToSub.
+
+If stringToSub or startIndex is null, or startIndex is out of range, the result is null.
+
+[[upper]]
+=== Upper
+
+*Signature:*
+
+[source,cql]
+----
+Upper(argument String) String
+----
+
+*Description:*
+
+The Upper operator returns the given string with all characters converted to their upper case equivalents.
+
+Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+
+If the argument is null, the result is null.
+
+[[datetime-operators-2]]
+== Date/Time Operators
+
+[[add-1]]
+=== Add
+
+*Signature:*
+
+[source,cql]
+----
++(left DateTime, right Quantity) DateTime
++(left Time, right Quantity) Time
+----
+
+*Description:*
+
+The _add_ (+) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+
+For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+
+For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+
+The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
+
+DateTime(2014) + 24 months
+
+This example results in the value DateTime(2016) even though the date/time value is not specified to the level of precision of the time-valued quantity.
+
+Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
+
+If either argument is null, the result is null.
+
+[[after]]
+=== After
+
+*Signature:*
+
+[source,cql]
+----
+after _precision_ of(left DateTime, right DateTime) Boolean
+after _precision_ of(left Time, right Time) Boolean
+----
+
+*Description:*
+
+The after__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. Precision must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are null, the result is null.
+
+[[before]]
+=== Before
+
+*Signature:*
+
+[source,cql]
+----
+before _precision_ of(left DateTime, right DateTime) Boolean +
+before _precision_ of(left Time, right Time) Boolean
+----
+
+*Description:*
+
+The before__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. Precision must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are null, the result is null.
+
+[[datetime-1]]
+=== DateTime
+
+*Signature:*
+
+[source,cql]
+----
+DateTime(year Integer) DateTime
+DateTime(year Integer, month Integer) DateTime
+DateTime(year Integer, month Integer, day Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer, millisecond Integer) DateTime
+DateTime(year Integer, month Integer, day Integer,
+hour Integer, minute Integer, second Integer, millisecond Integer,
+timezoneOffset Decimal) DateTime
+----
+
+*Description:*
+
+The DateTime operator constructs a date/time value from the given components.
+
+At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
+
+If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
+
+[[datetime-component-from]]
+=== Date/Time Component From
+
+*Signature:*
+
+[source,cql]
+----
+_precision_ from(argument DateTime) Integer
+_precision_ from(argument Time) Integer
+timezone from(argument DateTime) Decimal
+timezone from(argument Time) Decimal
+date from(argument DateTime) DateTime
+time from(argument DateTime) Time
+----
+
+*Description:*
+
+The _component_-from operator returns the specified component of the argument.
+
+For DateTime values, _precision_ must be one of: year, month, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+
+If the argument is null, or is not specified to the level of precision being extracted, the result is null.
+
+[[difference]]
+=== Difference
+
+*Signature:*
+
+[source,cql]
+----
+difference in _precision_ between(low DateTime, high DateTime) Integer
+difference in _precision_ between(low Time, high Time) Integer
+----
+
+*Description:*
+
+The __difference-__between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
+
+For DateTime values, _precision_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+
+For Time values, _precision_ must be one of: hours, minutes, seconds, or milliseconds.
+
+If either argument is null, the result is null.
+
+[[duration]]
+=== Duration
+
+*Signature:*
+
+[source,cql]
+----
+_duration_ between(low DateTime, high DateTime) Integer
+_duration_ between(low Time, high Time) Integer
+----
+
+*Description:*
+
+The __duration-__between operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.
+
+For DateTime values, _duration_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+
+For Time values, _duration_ must be one of: hours, minutes, seconds, or milliseconds.
+
+If either argument is null, the result is null.
+
+[[now]]
+=== Now
+
+*Signature:*
+
+[source,cql]
+----
+Now() DateTime
+----
+
+*Description:*
+
+The Now operator returns the date and time of the start timestamp associated with the evaluation request. Now is defined in this way for two reasons:
+
+1.  The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
+2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone information as the data delivered with the evaluation request.
+
+[[same-as-1]]
+=== Same As
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ as(left DateTime, right DateTime) Boolean
+same _precision_ as(left Time, right Time) Boolean
+----
+
+*Description:*
+
+The same__-precision-__as operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is true. If a compared component is specified in both dates, but the values are not the same, then the result is false. Otherwise the result is null, as there is not enough information to make a determination.
+
+For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are null, the result is null.
+
+[[same-or-after]]
+=== Same Or After
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ or after(left DateTime, right DateTime) Boolean
+same _precision_ or after(left Time, right Time) Boolean
+----
+
+*Description:*
+
+The same__-precision-__or after operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
+
+For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are null, the result is null.
+
+[[same-or-before]]
+=== Same Or Before
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ or before(left DateTime, right DateTime) Boolean
+same _precision_ or before(left Time, right Time) Boolean
+----
+
+*Description:*
+
+The same__-precision-__or before operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
+
+For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are null, the result is null.
+
+[[subtract-1]]
+=== Subtract
+
+*Signature:*
+
+[source,cql]
+----
+-(left DateTime, right Quantity) DateTime
+-(left Time, right Quantity) Time
+----
+
+*Description:*
+
+The _subtract_ (-) operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+
+For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+
+For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+
+The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
+
+DateTime(2014) - 24 months
+
+This example results in the value DateTime(2012) even though the date/time value is not specified to the level of precision of the time-valued quantity.
+
+Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
+
+If either argument is null, the result is null.
+
+[[time-1]]
+=== Time
+
+*Signature:*
+
+[source,cql]
+----
+Time(hour Integer) Time
+Time(hour Integer, minute Integer) Time
+Time(hour Integer, minute Integer, second Integer) Time
+Time(hour Integer, minute Integer, second Integer, millisecond Integer) Time
+Time(hour Integer, minute Integer, second Integer, millisecond Integer,
+timezoneOffset Decimal) Time
+----
+
+*Description:*
+
+The Time operator constructs a time value from the given components.
+
+At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.
+
+If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
+
+[[timeofday]]
+=== TimeOfDay
+
+*Signature:*
+
+[source,cql]
+----
+TimeOfDay() Time
+----
+
+*Description:*
+
+The TimeOfDay operator returns the time of day of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the TimeOfDay operator in this way.
+
+[[today]]
+=== Today
+
+*Signature:*
+
+[source,cql]
+----
+Today() DateTime
+----
+
+*Description:*
+
+The Today operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.
+
+[[interval-operators-3]]
+== Interval Operators
+
+[[after-1]]
+=== After
+
+*Signature:*
+
+[source,cql]
+----
+after _precision_ (left Interval<T>, right Interval<T>) Boolean
+after _precision_ (left T, right Interval<T>) Boolean
+after _precision_ (left Interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The after operator for intervals returns true if the first interval starts after the second one ends. In other words, if the starting point of the first interval is greater than the ending point of the second interval.
+
+For the point-interval overload, the operator returns true if the given point is greater than the end of the interval.
+
+For the interval-point overload, the operator returns true if the given interval starts after the given point.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[before-1]]
+=== Before
+
+*Signature:*
+
+[source,cql]
+----
+before _precision_ (left Interval<T>, right Interval<T>) Boolean
+before _precision_ (left T, right Interval<T>) Boolean
+before _precision_ (left interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The before operator for intervals returns true if the first interval ends before the second one starts. In other words, if the ending point of the first interval is less than the starting point of the second interval.
+
+For the point-interval overload, the operator returns true if the given point is less than the start of the interval.
+
+For the interval-point overload, the operator returns true if the given interval ends before the given point.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[collapse]]
+=== Collapse
+
+*Signature:*
+
+[source,cql]
+----
+collapse(argument List<Interval<T>>) List<Interval<T>>
+----
+
+*Description:*
+
+The collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals.
+
+If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
+
+If the argument is null, the result is null.
+
+[[contains]]
+=== Contains
+
+*Signature:*
+
+[source,cql]
+----
+contains _precision_ (argument Interval<T>, point T) Boolean
+----
+
+*Description:*
+
+The contains operator for intervals returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[end]]
+=== End
+
+*Signature:*
+
+[source,cql]
+----
+end of(argument Interval<T>) T
+----
+
+*Description:*
+
+The End operator returns the ending point of an interval.
+
+If the high boundary of the interval is open, this operator returns the predecessor of the high value of the interval. Note that if the high value of the interval is null, the result is null.
+
+If the high boundary of the interval is closed and the high value of the interval is not null, this operator returns the high value of the interval. Otherwise, the result is the maximum value of the point type of the interval.
+
+If the argument is null, the result is null.
+
+[[ends]]
+=== Ends
+
+*Signature:*
+
+[source,cql]
+----
+ends _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The ends operator returns true if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
+
+This operator uses the semantics described in the start and end operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[equal-1]]
+=== Equal
+
+*Signature:*
+
+[source,cql]
+----
+=(left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The _equal_ (=) operator for intervals returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the Start and End operators.
+
+If either argument is null, the result is null.
+
+[[equivalent-1]]
+=== Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+~(left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The ~ operator for intervals returns true if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
+
+[[except]]
+=== Except
+
+*Signature:*
+
+[source,cql]
+----
+except(left Interval<T>, right Interval<T>) Interval<T>
+----
+
+*Description:*
+
+The except operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns null.
+
+If either argument is null, the result is null.
+
+[[in]]
+=== In
+
+*Signature:*
+
+[source,cql]
+----
+in _precision_ (point T, argument Interval<T>) Boolean
+----
+
+*Description:*
+
+The in operator for intervals returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[includes]]
+=== Includes
+
+*Signature:*
+
+[source,cql]
+----
+includes _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The includes operator for intervals returns true if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[included-in]]
+=== Included In
+
+*Signature:*
+
+[source,cql]
+----
+included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The included in operator for intervals returns true if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+Note that during is a synonym for included in and may be used to invoke the same operation whever included in may appear.
+
+[[intersect]]
+=== Intersect
+
+*Signature:*
+
+[source,cql]
+----
+intersect(left Interval<T>, right Interval<T>) Interval<T>
+----
+
+*Description:*
+
+The intersect operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns null.
+
+If either argument is null, the result is null.
+
+[[meets]]
+=== Meets
+
+*Signature:*
+
+[source,cql]
+----
+meets _precision_ (left Interval<T>, right Interval<T>) Boolean
+meets before _precision_ (left Interval<T>, right Interval<T>) Boolean
+meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The meets operator returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second, or if the starting point of the first interval is equal to the successor of the ending point of the second.
+
+The meets before operator returns true if the first interval ends immediately before the second interval starts, while the meets after operator returns true if the first interval starts immediately after the second interval ends.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[not-equal-1]]
+=== Not Equal
+
+*Signature:*
+
+[source,cql]
+----
+!=(left Interval<T>, right Interval<T>) : Boolean
+----
+
+*Description:*
+
+The _not equal_ (!=) operator for intervals returns true if its arguments are not the same value.
+
+The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+
+[[not-equivalent-1]]
+=== Not Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+!~(left Interval<T>, right Interval<T>) : Boolean
+----
+
+*Description:*
+
+The _not equivalent_ (!~) operator for intervals returns true if its arguments are not equivalent.
+
+The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+
+[[on-or-after]]
+=== On Or After
+
+*Signature:*
+
+[source,cql]
+----
+on or after _precision_ (left Interval<T>, right Interval<T>) Boolean
+on or after _precision_ (left T, right Interval<T>) Boolean
+on or after _precision_ (left Interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The on or after operator for intervals returns true if the first interval starts on or after the second one ends. In other words, if the starting point of the first interval is greater than or equal to the ending point of the second interval.
+
+For the point-interval overload, the operator returns true if the given point is greater than or equal to the end of the interval.
+
+For the interval-point overload, the operator returns true if the given interval starts on or after the given point.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+Note that this operator can be invoked using either the on or after or the after or on syntax.
+
+[[on-or-before]]
+=== On Or Before
+
+*Signature:*
+
+[source,cql]
+----
+on or before _precision_ (left Interval<T>, right Interval<T>) Boolean
+on or before _precision_ (left T, right Interval<T>) Boolean
+on or before _precision_ (left interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The on or before operator for intervals returns true if the first interval ends on or before the second one starts. In other words, if the ending point of the first interval is less than or equal to the starting point of the second interval.
+
+For the point-interval overload, the operator returns true if the given point is less than or equal to the start of the interval.
+
+For the interval-point overload, the operator returns true if the given interval ends on or before the given point.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+Note that this operator can be invoked using either the on or before or the before or on syntax.
+
+[[overlaps]]
+=== Overlaps
+
+*Signature:*
+
+[source,cql]
+----
+overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean
+overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean
+overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The overlaps operator returns true if the first interval overlaps the second. More precisely, if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
+
+The operator overlaps before returns true if the first interval overlaps the second and starts before it, while the overlaps after operator returns true if the first interval overlaps the second and ends after it.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[point-from]]
+=== Point From
+
+*Signature:*
+
+[source,cql]
+----
+point from(argument Interval<T>) : T
+----
+
+*Description:*
+
+The point from operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.
+
+If the argument is null, the result is null.
+
+[[properly-includes]]
+=== Properly Includes
+
+*Signature:*
+
+[source,cql]
+----
+properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The properly includes operator for intervals returns true if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[properly-included-in]]
+=== Properly Included In
+
+*Signature:*
+
+[source,cql]
+----
+properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The properly included in operator for intervals returns true if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+Note that during is a synonym for included in.
+
+[[start]]
+=== Start
+
+*Signature:*
+
+[source,cql]
+----
+start of(argument Interval<T>) T
+----
+
+*Description:*
+
+The Start operator returns the starting point of an interval.
+
+If the low boundary of the interval is open, this operator returns the successor of the low value of the interval. Note that if the low value of the interval is null, the result is null.
+
+If the low boundary of the interval is closed and the low value of the interval is not null, this operator returns the low value of the interval. Otherwise, the result is the minimum value of the point type of the interval.
+
+If the argument is null, the result is null.
+
+[[starts]]
+=== Starts
+
+*Signature:*
+
+[source,cql]
+----
+starts _precision_ (left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The starts operator returns true if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
+
+This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+
+If either argument is null, the result is null.
+
+[[union]]
+=== Union
+
+*Signature:*
+
+[source,cql]
+----
+union(left Interval<T>, right Interval<T>) Interval<T>
+----
+
+*Description:*
+
+The union operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns null.
+
+If either argument is null, the result is null.
+
+[[width]]
+=== Width
+
+*Signature:*
+
+[source,cql]
+----
+width of(argument Interval<T>) T
+----
+
+*Description:*
+
+The width operator returns the width of an interval. The result of this operator is equivalent to invoking: (start of argument – end of argument) + _point-size_.
+
+Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _width_ is not defined for intervals of these types.
+
+If the argument is null, the result is null.
+
+[[list-operators-2]]
+== List Operators
+
+[[contains-1]]
+=== Contains
+
+*Signature:*
+
+[source,cql]
+----
+contains(argument List<T>, element T) Boolean
+----
+
+*Description:*
+
+The contains operator for lists returns true if the given element is in the list.
+
+This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
+
+If the list argument is null, the result is false.
+
+[[distinct]]
+=== Distinct
+
+*Signature:*
+
+[source,cql]
+----
+distinct(argument List<T>) List<T>
+----
+
+*Description:*
+
+The distinct operator returns the given list with duplicates eliminated.
+
+This operator uses the notion of _equivalence_ to determine whether two elements in the list are the same for the purposes of duplicate elimination. In particular this means that if the list contains multiple null elements, the result will only contain one null element.
+
+If the argument is null, the result is null.
+
+[[equal-2]]
+=== Equal
+
+*Signature:*
+
+[source,cql]
+----
+=(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The _equal_ (=) operator for lists returns true if and only if the lists have the same element type, and have the same elements by value, in the same order.
+
+If either argument is null, or contains null elements, the result is null.
+
+[[equivalent-2]]
+=== Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+~(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The ~ operator for lists returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
+
+[[except-1]]
+=== Except
+
+*Signature:*
+
+[source,cql]
+----
+except(left List<T>, right List<T>) List<T>
+----
+
+*Description:*
+
+The except operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.
+
+This operator uses the notion of _equivalence_ to determine whether two elements are the same for the purposes of computing the difference.
+
+If the left argument is null, the result is null. else if the right argument is null, the result is the left argument.
+
+[[exists]]
+=== Exists
+
+*Signature:*
+
+[source,cql]
+----
+exists(argument List<T>) Boolean
+----
+
+*Description:*
+
+The exists operator returns true if the list contains any elements, including null elements.
+
+If the argument is null, the result is false.
+
+[[flatten]]
+=== Flatten
+
+*Signature:*
+
+[source,cql]
+----
+flatten(argument List<List<T>>) List<T>
+----
+
+*Description:*
+
+The flatten operator flattens a list of lists into a single list.
+
+If the argument is null, the result is null.
+
+[[first]]
+=== First
+
+*Signature:*
+
+[source,cql]
+----
+First(argument List<T>) T
+----
+
+*Description:*
+
+The First operator returns the first element in a list. The operator is equivalent to invoking the indexer with an index of 0.
+
+If the argument is null, the result is null.
+
+[[in-1]]
+=== In
+
+*Signature:*
+
+[source,cql]
+----
+in(element T, argument List<T>) Boolean
+----
+
+*Description:*
+
+The in operator for lists returns true if the given element is in the given list.
+
+This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
+
+If the left argument is null, the result is null. If the right argument is null, the result is false.
+
+[[includes-1]]
+=== Includes
+
+*Signature:*
+
+[source,cql]
+----
+includes(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The includes operator for lists returns true if the first list contains every element of the second list.
+
+This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+If the left argument is null, the result is false, else if the right argument is null, the result is true.
+
+Note that the order of elements does not matter for the purposes of determining inclusion.
+
+[[included-in-1]]
+=== Included In
+
+*Signature:*
+
+[source,cql]
+----
+included in(left List<T>, right list<T>) Boolean
+----
+
+*Description:*
+
+The included in operator for lists returns true if every element of the first list is in the second list.
+
+This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+If the left argument is null, the result is true, else if the right argument is null, the result is false.
+
+Note that the order of elements does not matter for the purposes of determining inclusion.
+
+[[indexer-1]]
+=== Indexer
+
+*Signature:*
+
+[source,cql]
+----
+[](argument List<T>, index Integer) T
+----
+
+*Description:*
+
+The _indexer_ ([]) operator returns the element at the indexth position in a list.
+
+Indexes in lists are defined to be 0-based.
+
+If the index is less than 0, or greater than the number of elements in the list, the result is null.
+
+If either argument is null, the result is null.
+
+[[indexof]]
+=== IndexOf
+
+*Signature:*
+
+[source,cql]
+----
+IndexOf(argument List<T>, element T) Integer
+----
+
+*Description:*
+
+The IndexOf operator returns the 0-based index of the given element in the given source list.
+
+The operator uses the notion of _equivalence_ to determine the index. The search is linear, and returns the index of the first element that is equivalent to the element being searched for.
+
+If the list is empty, or no element is found, the result is -1.
+
+If the list argument is null, the result is null.
+
+[[intersect-1]]
+=== Intersect
+
+*Signature:*
+
+[source,cql]
+----
+intersect(left List<T>, right List<T>) List<T>
+----
+
+*Description:*
+
+The intersect operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
+
+This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+If either argument is null, the result is null.
+
+[[last]]
+=== Last
+
+*Signature:*
+
+[source,cql]
+----
+Last(argument List<T>) T
+----
+
+*Description:*
+
+The Last operator returns the last element in a list. In a list of length N, the operator is equivalent to invoking the indexer with an index of N - 1.
+
+If the argument is null, the result is null.
+
+[[length-1]]
+=== Length
+
+*Signature:*
+
+[source,cql]
+----
+Length(argument List<T>) Integer
+----
+
+*Description:*
+
+The Length operator returns the number of elements in a list.
+
+If the argument is null, the result is 0.
+
+[[not-equal-2]]
+=== Not Equal
+
+*Signature:*
+
+[source,cql]
+----
+!=(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The _not equal_ (!=) operator for lists returns true if its arguments are not the same value.
+
+The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+
+[[not-equivalent-2]]
+=== Not Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+!~(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The _not equivalent_ (!~) operator for lists returns true if its arguments are not equivalent.
+
+The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+
+[[properly-includes-1]]
+=== Properly Includes
+
+*Signature:*
+
+[source,cql]
+----
+properly includes(left List<T>, right List<T>) Boolean
+----
+
+*Description:*
+
+The properly includes operator for lists returns true if the first list contains every element of the second list, and the first list is strictly larger than the second list.
+
+This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+If the left argument is null, the result is false, else if the right argument is null, the result is true if the left argument is not empty.
+
+Note that the order of elements does not matter for the purposes of determining inclusion.
+
+[[properly-included-in-1]]
+=== Properly Included In
+
+*Signature:*
+
+[source,cql]
+----
+properly included in(left List<T>, right list<T>) Boolean
+----
+
+*Description:*
+
+The properly included in operator for lists returns true if every element of the first list is in the second list and the first list is strictly smaller than the second list.
+
+This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+If the left argument is null, the result is true if the right argument is not empty. Otherwise, if the right argument is null, the result is false.
+
+Note that the order of elements does not matter for the purposes of determining inclusion.
+
+[[singleton-from]]
+=== Singleton From
+
+*Signature:*
+
+[source,cql]
+----
+singleton from(argument List<T>) T
+----
+
+*Description:*
+
+The singleton from operator extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown.
+
+If the source list is null, the result is null.
+
+[[skip]]
+=== Skip
+
+*Signature:*
+
+[source,cql]
+----
+Skip(argument List<T>, number Integer) List<T>
+----
+
+*Description:*
+
+The Skip operator returns the elements in the list, skipping the first number elements. If the list has less number elements, the result is empty.
+
+If the source list is null, the result is null.
+
+If the number of elements is null, the result is the entire list, no elements are skipped.
+
+If the number of elements is less than zero, the result is an empty list.
+
+[[tail]]
+=== Tail
+
+*Signature:*
+
+[source,cql]
+----
+Tail(argument List<T>) List<T>
+----
+
+*Description:*
+
+The Tail operator returns all but the first element from the given list. If the list is empty, the result is empty.
+
+If the source list is null, the result is null.
+
+[[take]]
+=== Take
+
+*Signature:*
+
+[source,cql]
+----
+Take(argument List<T>, number Integer) List<T>
+----
+
+*Description:*
+
+The Take operator returns the first number elements from the given list. If the list has less than number elements, the result only contains the elements in the list.
+
+If the source list is null, the result is null.
+
+If number is null, or 0 or less, the result is an empty list.
+
+[[union-1]]
+=== Union
+
+*Signature:*
+
+[source,cql]
+----
+union(left List<T>, right List<T>) List<T>
+----
+
+*Description:*
+
+The union operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list.
+
+If either argument is null, the result is null.
+
+Note that the union operator can also be invoked with the symbolic operator (|).
+
+[[aggregate-functions]]
+== Aggregate Functions
+
+[[alltrue]]
+=== AllTrue
+
+*Signature:*
+
+[source,cql]
+----
+AllTrue(argument List<Boolean>) Boolean
+----
+
+*Description:*
+
+The AllTrue operator returns true if all the non-null elements in the source are true.
+
+If the source contains no non-null elements, true is returned.
+
+If the source is null, the result is true.
+
+[[anytrue]]
+=== AnyTrue
+
+*Signature:*
+
+[source,cql]
+----
+AnyTrue(argument List<Boolean>) Boolean
+----
+
+*Description:*
+
+The AnyTrue operator returns true if any non-null element in the source is true.
+
+If the source contains no non-null elements, false is returned.
+
+If the source is null, the result is false.
+
+[[avg]]
+=== Avg
+
+*Signature:*
+
+[source,cql]
+----
+Avg(argument List<Decimal>) Decimal
+Avg(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The Avg operator returns the average of the non-null elements in the source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[count]]
+=== Count
+
+*Signature:*
+
+[source,cql]
+----
+Count(argument List<T>) Integer
+----
+
+*Description:*
+
+The Count operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is null, the result is 0.
+
+[[max]]
+=== Max
+
+*Signature:*
+
+[source,cql]
+----
+Max(argument List<Integer>) Integer
+Max(argument List<Decimal>) Decimal
+Max(argument List<Quantity>) Quantity
+Max(argument List<DateTime>) DateTime
+Max(argument List<Time>) Time
+Max(argument List<String>) String
+----
+
+*Description:*
+
+The Max operator returns the maximum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[min]]
+=== Min
+
+*Signature:*
+
+[source,cql]
+----
+Min(argument List<Integer>) Integer
+Min(argument List<Decimal>) Decimal
+Min(argument List<Quantity>) Quantity
+Min(argument List<DateTime>) DateTime
+Min(argument List<Time>) Time
+Min(argument List<String>) String
+----
+
+*Description:*
+
+The Min operator returns the minimum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[median]]
+=== Median
+
+*Signature:*
+
+[source,cql]
+----
+Median(argument List<Decimal>) Decimal
+Median(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The Median operator returns the median of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[mode]]
+=== Mode
+
+*Signature:*
+
+[source,cql]
+----
+Mode(argument List<T>) T
+----
+
+*Description:*
+
+The Mode operator returns the statistical mode of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[population-stddev]]
+=== Population StdDev
+
+*Signature:*
+
+[source,cql]
+----
+PopulationStdDev(argument List<Decimal>) Decimal
+PopulationStdDev(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The PopulationStdDev operator returns the statistical standard deviation of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[population-variance]]
+=== Population Variance
+
+*Signature:*
+
+[source,cql]
+----
+PopulationVariance(argument List<Decimal>) Decimal
+PopulationVariance(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The PopulationVariance operator returns the statistical population variance of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[stddev]]
+=== StdDev
+
+*Signature:*
+
+[source,cql]
+----
+StdDev(argument List<Decimal>) Decimal
+StdDev(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The StdDev operator returns the statistical standard deviation of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the list is null, the result is null.
+
+[[sum]]
+=== Sum
+
+*Signature:*
+
+[source,cql]
+----
+Sum(argument List<Integer>) Integer
+Sum(argument List<Decimal>) Decimal
+Sum(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The Sum operator returns the sum of non-null elements in the source.
+
+If the source contains no non-null elements, null is returned.
+
+If the list is null, the result is null.
+
+[[variance]]
+=== Variance
+
+*Signature:*
+
+[source,cql]
+----
+Variance(argument List<Decimal>) Decimal
+Variance(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The Variance operator returns the statistical variance of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[clinical-operators-3]]
+== Clinical Operators
+
+[[age]]
+=== Age
+
+*Signature:*
+
+[source,cql]
+----
+AgeInYears() Integer
+AgeInMonths() Integer
+AgeInWeeks() Integer
+AgeInDays() Integer
+AgeInHours() Integer
+AgeInMinutes() Integer
+AgeInSeconds() Integer
+----
+
+*Description:*
+
+The Age operators calculate the age of the patient as of now in the precision named in the operator.
+
+If the patient’s birthdate is null, the result is null.
+
+The Age operators are defined in terms of a DateTime duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+
+[[ageat]]
+=== AgeAt
+
+*Signature:*
+
+[source,cql]
+----
+AgeInYearsAt(asOf DateTime) Integer
+AgeInMonthsAt(asOf DateTime) Integer
+AgeInWeeksAt(asOf DateTime) Integer
+AgeInDaysAt(asOf DateTime) Integer
+AgeInHoursAt(asOf DateTime) Integer
+AgeInMinutesAt(asOf DateTime) Integer
+AgeInSecondsAt(asOf DateTime) Integer
+----
+
+*Description:*
+
+The AgeAt operators calculate the age of the patient as of the given date in the precision named in the operator.
+
+If the patient’s birthdate is null, or the asOf argument is null, the result is null.
+
+The AgeAt operators are defined in terms of a DateTime duration calculation. This means that if the age of the patient or the given asOf value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+
+[[calculateage]]
+=== CalculateAge
+
+*Signature:*
+
+[source,cql]
+----
+CalculateAgeInYears(birthDate DateTime) Integer
+CalculateAgeInMonths(birthDate DateTime) Integer
+CalculateAgeInWeeks(birthDate DateTime) Integer
+CalculateAgeInDays(birthDate DateTime) Integer
+CalculateAgeInHours(birthDate DateTime) Integer
+CalculateAgeInMinutes(birthDate DateTime) Integer
+CalculateAgeInSeconds(birthDate DateTime) Integer
+----
+
+*Description:*
+
+The CalculateAge operators calculate the age of a person born on the given birthdate as of now in the precision named in the operator.
+
+If the birthdate is null, the result is null.
+
+The CalculateAge operators are defined in terms of a DateTime duration calculation. This means that if the given birthDate is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+
+[[calculateageat]]
+=== CalculateAgeAt
+
+*Signature:*
+
+[source,cql]
+----
+CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInMonthsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInWeeksAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInDaysAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInHoursAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInMinutesAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInSecondsAt(birthDate DateTime, asOf DateTime) Integer
+----
+
+*Description:*
+
+The CalculateAgeAt operators calculate the age of a person born on the given birthdate as of the given date in the precision named in the operator.
+
+If the birthDate is null or the asOf argument is null, the result is null.
+
+The CalculateAgeAt operators are defined in terms of a DateTime duration calculation. This means that if the given birthDate or asOf are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+
+[[equal-3]]
+=== Equal
+
+*Signature:*
+
+[source,cql]
+----
+=(left Code, right Code) Boolean
+=(left Concept, right Concept) Boolean
+----
+
+*Description:*
+
+The _equal_ (=) operator for Codes and Concepts uses tuple equality semantics. This means that the operator will return true if and only if the values for each element by name are equal.
+
+If either argument is null, or contains any null components, the result is null.
+
+[[equivalent-3]]
+=== Equivalent
+
+*Signature:*
+
+[source,cql]
+----
+~(left Code, right Code) Boolean
+----
+
+*Description:*
+
+The ~ operator for Code values returns true if the code and system elements are equivalent. The version and display elements are ignored for the purposes of determining Code equivalence.
+
+For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept. The display element is ignored for the purposes of determining Concept equivalence.
+
+Note that this operator will always return true or false, even if either or both of its arguments are null, or contain null components.
+
+Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information in membership contexts.
+
+[[in-codesystem]]
+=== In (Codesystem)
+
+*Signature:*
+
+[source,cql]
+----
+in(code String, codesystem CodeSystemRef) Boolean
+in(code Code, codesystem CodeSystemRef) Boolean
+in(concept Concept, codesystem CodeSystemRef) Boolean
+----
+
+*Description:*
+
+The in (Codesystem) operators determine whether or not a given code is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem.
+
+For the String overload, if the given code system contains a code with an equivalent code element, the result is true.
+
+For the Code overload, if the given code system contains an equivalent code, the result is true.
+
+For the Concept overload, if the given code system contains a code equivalent to any code in the given concept, the result is true.
+
+If the code argument is null, the result is null.
+
+[[in-valueset]]
+=== In (Valueset)
+
+*Signature:*
+
+[source,cql]
+----
+in(code String, valueset ValueSetRef) Boolean
+in(code Code, valueset ValueSetRef) Boolean
+in(concept Concept, valueset ValueSetRef) Boolean
+----
+
+*Description:*
+
+The in (Valueset) operators determine whether or not a given code is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.
+
+For the String overload, if the given valueset contains a code with an equivalent code element, the result is true.
+
+For the Code overload, if the given valueset contains an equivalent code, the result is true.
+
+For the Concept overload, if the given valueset contains a code equivalent to any code in the given concept, the result is true.
+
+If the code argument is null, the result is null.
+
+[[errors-and-messaging]]
+== Errors and Messaging
+
+[[message]]
+=== Message
+
+*Signature:*
+
+[source,cql]
+----
+Message(source T, condition Boolean, code String, severity String, message String) T
+----
+
+*Description:*
+
+The Message operator provides a run-time mechanism for returning messages, warnings, traces, and errors to the calling environment.
+
+The source operator is any type and the result of the operation is the input source; the operation performs no modifications to input. This allows the message operation to appear at any point in any expression of CQL.
+
+The condition is used to determine whether the message is generated and returned to the calling environment. If condition is true, the message is generated. Otherwise, the operation only returns the results and performs no processing at all.
+
+The code provides a coded representation of the error. Note that this is a token (like a string or integer), not a terminology Code.
+
+The severity determines what level of processing should occur for the message that is generated:
+
+* Message – The operation produces an informational message that is expected to be made available in some way to the calling environment.
+* Warning – The operation produces a warning message that is expected to be made conspicuously available to the calling environment, potentially to the end-user of the logic.
+* Trace – The operation produces an informational message that is expected to be made available to a tracing mechanism such as a debug log in the calling environment. In addition, some representation of the contents of the source parameter should be made available to the tracing mechanism.
+* Error – The operation produces a run-time error and return the message to the calling environment. This is the only severity that stops evaluation. All other severities continue evaluation of the expression.
+
+If no severity is supplied, a default severity of Message is assumed.
+
+The message is the content of the actual message that is sent to the calling environment.
+
+Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
+
