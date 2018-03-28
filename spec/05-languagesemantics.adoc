@@ -348,7 +348,7 @@ The following sketch details an implementation plan for any query using these pr
 4.  For each without clause, use a Filter and express the without in terms of a Not Exists in the condition of the Filter.
 5.  If the return clause is specified, use a ForEach to produce the result of the return. If the return clause specifies Distinct, also attach a Distinct operation to the result.
 6.  If the sort clause is specified, use a Sort operation to produce the final sorted output.
-+
+
 Using this sketch, the evaluation of a query can be performed by pipelining the query into a series of more primitive operations that can be implemented more easily. This approach also lends itself to translation and/or optimization if necessary.
 
 [[timing-calculations]]

@@ -405,7 +405,7 @@ For example:
 [source,cql]
 ----
 [Encounter: "Inpatient"] E
-  return Tuple \{ id: E.identifier, lengthOfStay: duration in days of E.period }
+  return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
 ----
 
 This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the `id` of the encounter as well as a `lengthOfStay` element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections.
@@ -424,11 +424,14 @@ This example returns inpatient encounters, sorted by period.
 
 Calculated values can also be used to determine the sort, ascending ([.kw]#asc#) or descending ([.kw]#desc#), as in:
 
-[Encounter: "Inpatient"] E +
-return Tuple \{ id: E.identifier, lengthOfStay: duration in days of E.period } +
-sort by lengthOfStay desc
+[source,cql]
+----
+[Encounter: "Inpatient"] E
+  return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
+    sort by lengthOfStay desc
+----
 
-Note that the properties that can be specified within the sort clause are determined by the result type of the query. In the above example, `lengthOfStay` can be referenced because it is introduced in the return clause.
+Note that the properties that can be specified within the sort clause are determined by the result type of the query. In the above example, `lengthOfStay` can be referenced because it is introduced in the return clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
 
 If no ascending or descending specifier is provided, the order is ascending.
 
@@ -833,7 +836,7 @@ For example, the following expression retrieves the first Condition with a code 
 [source,cql]
 ----
 define FirstPharyngitis:
-  First([Condition: "Acute Pharyngitis"] C sort by C.onsetDateTime desc)
+  First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
 ----
 
 The values of the elements of a tuple can be accessed using a dot qualifier (.) followed by the name of the element:
@@ -2378,7 +2381,7 @@ We use the same approach. The equivalent retrieve for the first criteria is:
 [source,cql]
 ----
 exists ([DiagnosticOrder: "Pregnancy Test"] O
-  where Last(O.event E where E.status = 'completed' sort by E.date).date
+  where Last(O.event E where E.status = 'completed' sort by date).date
     during MeasurementPeriod)
 ----
 
@@ -2402,7 +2405,7 @@ define InInitialPopulation:
         where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
       ...
       or exists ([DiagnosticOrder: "Pregnancy Test"] O
-        where Last(O.event E where E.status = 'completed' sort by E.date).date
+        where Last(O.event E where E.status = 'completed' sort by date).date
           during MeasurementPeriod)
       ...
     )
@@ -2437,7 +2440,7 @@ define SexuallyActive:
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   ...
   or exists ([DiagnosticOrder: "Pregnancy Test"] O
-    where Last(O.event E where E.status = 'completed' sort by E.date).date
+    where Last(O.event E where E.status = 'completed' sort by date).date
       during MeasurementPeriod)
   ...
 

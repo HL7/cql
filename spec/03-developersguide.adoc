@@ -1115,7 +1115,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
     and P.effectiveTime starts during E.period
     and duration in days of (W.effectiveTime intersect P.effectiveTime) >= 5
     and Last([Observation: "INR Value"] I
-      where I.applies during P.effectiveTime sort by I.applies).value >= 2
+      where I.applies during P.effectiveTime sort by applies).value >= 2
 ----
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
@@ -1132,7 +1132,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
     overlapDuration: duration in days of (W.effectiveTime intersect P.effectiveTime),
     endingINR:
       Last([Observation: "INR Value"] I
-        where I.applies during P.effectiveTime sort by I.applies
+        where I.applies during P.effectiveTime sort by applies
       ).value
   where W.effectiveTime starts during E.period
     and P.effectiveTime starts during E.period
@@ -1181,7 +1181,7 @@ The above example also illustrates that queries need not be based on lists of tu
 [source,cql]
 ----
 define FirstInpatientEncounter:
-  First([Encounter] E where E.class = 'inpatient' sort by E.period.start desc)
+  First([Encounter] E where E.class = 'inpatient' sort by period.start desc)
 
 define RedefinedEncounter:
   FirstInpatientEncounter E
