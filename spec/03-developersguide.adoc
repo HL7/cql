@@ -173,7 +173,7 @@ includes
 included in
 intersect
 Interval
-Is
+is
 let
 library
 List

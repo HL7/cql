@@ -869,7 +869,7 @@ For list types, this means that two list values are equivalent if and only if th
 
 For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
 
-For Code values, equivalence is defined based on the code, system, and version elements only. The display element is ignored for the purposes of determining Code equivalence.
+For Code values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining Code equivalence.
 
 For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept.
 
@@ -1943,7 +1943,7 @@ If either or both arguments are null, the result is null.
 [source,cql]
 ----
 same _precision_ or before(left DateTime, right DateTime) Boolean
-same _precision_ or before(left DateTime, right DateTime) Boolean
+same _precision_ or before(left Time, right Time) Boolean
 ----
 
 *Description:*
@@ -2284,7 +2284,7 @@ Note that during is a synonym for included in and may be used to invoke the same
 
 [source,cql]
 ----
-intersect(left Interval<T>, right Interval<T>) Boolean
+intersect(left Interval<T>, right Interval<T>) Interval<T>
 ----
 
 *Description:*
@@ -3383,7 +3383,7 @@ If either argument is null, or contains any null components, the result is null.
 
 *Description:*
 
-The ~ operator for Code values returns true if the code, system, and version elements are equivalent. The display element is ignored for the purposes of determining Code equivalence.
+The ~ operator for Code values returns true if the code and system elements are equivalent. The version and display elements are ignored for the purposes of determining Code equivalence.
 
 For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept. The display element is ignored for the purposes of determining Concept equivalence.
 
