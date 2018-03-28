@@ -281,6 +281,9 @@ The following changes were made since the initial informative ballot in Septembe
 			<xs:extension base="ExpressionRef">
 				<xs:sequence>
 					<xs:element name="operand" type="Expression" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="signature" type="TypeSpecifier" minOccurs="0" maxOccurs="unbounded">
+						<xs:documentation>Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.</xs:documentation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
