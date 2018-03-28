@@ -108,3 +108,13 @@ Clarifications and errata throughout based on ballot comments
 
 #1348: Clarified let semantics and added documentation for the let clause
 
+Errata:
+
+#1407: Corrected signature for Interval Intersect
+
+#1426: Corrected signature for Same or Before
+
+#1427: Corrected capitalization of is in keywords list
+
+#1431: Relaxed equivalence semantics for Code values to ignore code system version
+

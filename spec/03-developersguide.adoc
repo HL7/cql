@@ -1054,7 +1054,6 @@ The CQL query construct provides for the ability to introduce named expressions 
         dailyDose: dailyDose,
         mme: Quantity { value: dailyDose.value * factor, unit: dailyDose.unit + '/d' }
       }
-  }
 ----
 
 In this query, the same logic defined by the dailyDose expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.

@@ -1000,7 +1000,7 @@ point from Interval[1, 1] // Results in 1 +
 point from Interval[1, 5] // Invalid extractor, this will result in an error
 ----
 
-Attempting to use on a non-unit-interval will result in a run-time error.
+Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
 
 [[operations]]
 == Operations
@@ -1405,7 +1405,7 @@ Note that if X is null, the result is null. If a date/time value does not have a
 [[datetime-arithmetic]]
 ==== Date/Time Arithmetic
 
-By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols (+ and -) are used for this purpose. For example:
+By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols ([.sym]#+# and [.sym]#-#) are used for this purpose. For example:
 
 [source,cql]
 ----
@@ -2086,7 +2086,7 @@ This formulation also has the advantage of allowing for the case that the actual
 
 CQL supports the standard comparison operators (= != < \<= > >=) and the standard arithmetic operators (+ - * /) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as Min, Max, Sum, etc.
 
-Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and throw an error if it is not capable of normalizing the quantities involved in a given expression to a common unit.
+Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return null if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
 
 [[terminology-operators]]
 ==== Terminology Operators
