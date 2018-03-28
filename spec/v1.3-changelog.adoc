@@ -3,5 +3,6 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1379[1379]: Improved formatting for table 9-E
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1433[1433]: Clarified that on and same are synonyms in timing phrases
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1434[1434]: Relaxed quantity operation semantics to return null rather than raise an error for invalid quantity operations
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1435[1435]: Exists operator now ignores null elements in lists
 
 

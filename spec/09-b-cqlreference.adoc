@@ -2676,7 +2676,7 @@ exists(argument List<T>) Boolean
 
 *Description:*
 
-The exists operator returns true if the list contains any elements, including null elements.
+The exists operator returns true if the list contains any non-null elements.
 
 If the argument is null, the result is false.
 
