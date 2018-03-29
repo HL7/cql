@@ -13,6 +13,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1442[1442]: Division of like quantities results in a quantity with the default UCUM unit ('1')
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1443[1443]: Added implicit conversion from Integer or Decimal to Quantity
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1444[1444]: Added Date system-defined type
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1445[1445]: Clarified singular and UCUM temporal units are allowed for date/time arithmetic
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 

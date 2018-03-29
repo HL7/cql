@@ -1831,11 +1831,15 @@ If the argument is null, the result is null.
 
 The _add_ (+) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of: years, months, or days.
+For Date values, the quantity unit must be one of: years, months, weeks, or days.
 
 For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
 For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+
+Note that the quantity units may be specified in singular, plural, or UCUM form.
+
+Note that as with any date/time operations, temporal units may be specified with either singular, plural, or UCUM units.
 
 The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
 
@@ -1861,7 +1865,13 @@ after _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The after__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. Precision must be one of: year, month, week, day, hour, minute, second, or millisecond.
+The after__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. 
+
+For Date values, _precision_ must be one of: year, month, week, or day.
+
+For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -1883,7 +1893,13 @@ before _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The before__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. Precision must be one of: year, month, week, day, hour, minute, second, or millisecond.
+The before__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. 
+
+For Date values, _precision_ must be one of: year, month, week, or day.
+
+For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+
+For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -1984,7 +2000,7 @@ difference in _precision_ between(low Time, high Time) Integer
 
 The __difference-__between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
 
-For Date  values, _precision_ must be one of: years, months, weeks, or days.
+For Date values, _precision_ must be one of: years, months, weeks, or days.
 
 For DateTime values, _precision_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
@@ -2148,6 +2164,8 @@ For Date values, the quantity unit must be one of: years, months, weeks, or days
 For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
 For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+
+Note that the quantity unit may be specified in singular, plural or UCUM units.
 
 The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
 
