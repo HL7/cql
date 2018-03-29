@@ -326,12 +326,14 @@ Table 6‑L
 |AnyTrue |AnyTrue
 |Avg |Avg
 |Count |Count
+|GeometricMean |GeometricMean
 |Max |Max
 |Min |Min
 |Median |Median
 |Mode |Mode
 |PopulationStdDev |PopulationStdDev
 |PopulationVariance |PopulationVariance
+|Product |Product
 |StdDev |StdDev
 |Sum |Sum
 |Variance |Variance

@@ -3290,6 +3290,29 @@ Count(argument List<T>) Integer
 
 The Count operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is null, the result is 0.
 
+[[geometricmean]]
+=== GeometricMean
+
+*Signature:*
+
+[source,cql]
+----
+GeometricMean(argument List<Decimal>) Decimal
+----
+
+*Description:*
+
+The GeometricMean operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N^th^ root of the geometric product of the elements. In other words:
+
+[source,cql]
+----
+GeometricMean(X) = Power(Product(X), 1 / Count(X))
+----
+
+If the source contains no non-null elements, the result is null.
+
+If the source is null, the result is null.
+
 [[max]]
 === Max
 
@@ -3408,6 +3431,26 @@ PopulationVariance(argument List<Quantity>) Quantity
 *Description:*
 
 The PopulationVariance operator returns the statistical population variance of the elements in source.
+
+If the source contains no non-null elements, null is returned.
+
+If the source is null, the result is null.
+
+[[product]]
+=== Product
+
+*Signature:*
+
+[source,cql]
+----
+Product(argument List<Integer>) Integer
+Product(argument List<Decimal>) Decimal
+Product(argument List<Quantity>) Quantity
+----
+
+*Description:*
+
+The Product operator returns the geometric product of the elements in source.
 
 If the source contains no non-null elements, null is returned.
 
