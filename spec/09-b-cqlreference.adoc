@@ -3599,17 +3599,20 @@ Note carefully that this notion of _equivalence_ is _not_ the same as the notion
 in(code String, codesystem CodeSystemRef) Boolean
 in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
+in(codes List<Code>, codeSystem CodeSystemRef) Boolean
 ----
 
 *Description:*
 
-The in (Codesystem) operators determine whether or not a given code is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem.
+The in (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem.
 
 For the String overload, if the given code system contains a code with an equivalent code element, the result is true.
 
 For the Code overload, if the given code system contains an equivalent code, the result is true.
 
 For the Concept overload, if the given code system contains a code equivalent to any code in the given concept, the result is true.
+
+For the List<Code> overload, if the given code system contains a code equivalent to any code in the given list, the result is true.
 
 If the code argument is null, the result is null.
 
@@ -3623,17 +3626,20 @@ If the code argument is null, the result is null.
 in(code String, valueset ValueSetRef) Boolean
 in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
+in(codes List<Code>, valueset ValueSetRef) Boolean
 ----
 
 *Description:*
 
-The in (Valueset) operators determine whether or not a given code is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.
+The in (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.
 
 For the String overload, if the given valueset contains a code with an equivalent code element, the result is true.
 
 For the Code overload, if the given valueset contains an equivalent code, the result is true.
 
 For the Concept overload, if the given valueset contains a code equivalent to any code in the given concept, the result is true.
+
+For the List<Code> overload, if the given valueset contains a code equivalent to any code in the given list, the result is true.
 
 If the code argument is null, the result is null.
 
