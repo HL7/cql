@@ -24,6 +24,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1509[1509]: Clarified case-insensitive behavior of string comparison
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1538[1538]: Clarified instance selector behavior for missing elements
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1539[1539]: Clarified behavior of a quantity with a null unit
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1540[1540]: Corrected ELM documentation for IdentifierRef
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 
