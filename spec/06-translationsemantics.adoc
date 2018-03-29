@@ -72,6 +72,7 @@ The following table defines the mapping between the various CQL literals and the
 |_quantity-literal_ |Quantity
 |_ratio-literal_ |Ratio
 |_string-literal_ |Literal (valueType="String")
+|_date-literal_ |Date
 |_date-time-literal_ |DateTime
 |_time-literal_ |Time
 |_interval-selector_ |Interval
@@ -221,6 +222,7 @@ Table 6‑I
 |+ |Add
 |after |After
 |before |Before
+|Date |Date
 |DateTime |DateTime
 |_component_ from |DateTimeComponentFrom
 |difference..between |DifferenceBetween

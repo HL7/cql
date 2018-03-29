@@ -595,6 +595,7 @@ CQL supports several types of simple values:
 |Integer |16, -28
 |Decimal |100.015
 |String |'pending', 'active', 'complete'
+|Date |@2014-01-25
 |DateTime |@2014-01-25, +
 @2014-01-25T14:30:14.559
 |Time a|
@@ -640,10 +641,10 @@ Note that if the value to be represented contains a single-quote, use a backslas
 'patient\'s condition is normal'
 ----
 
-[[datetime-and-time]]
-==== DateTime and Time
+[[date-datetime-and-time]]
+==== Date, DateTime, and Time
 
-CQL supports the representation of both DateTime and Time values.
+CQL supports the representation of Date, DateTime, and Time values.
 
 DateTime values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. DateTime values are specified using an at-symbol (@) followed by an ISO-8601 textual representation of the DateTime value:
 
@@ -651,6 +652,13 @@ DateTime values are used to represent an instant along the timeline, known to at
 ----
 @2014-01-25
 @2014-01-25T14:30:14.559
+----
+
+Date values are used to represent only dates on a calendar, irrespective of the time of day. Date values are specified using an at-symbol (@) followed by an ISO-8601 textual representation of the Date value:
+
+[source,cql]
+----
+@2014-01-25
 ----
 
 Time values are used to represent a time of day, independent of the date. Time value must be known to at least the hour precision, and potentially to the millisecond precision. Time values are specified using at-symbol (@) followed by an ISO-8601 textual representation of the Time value:
@@ -667,7 +675,7 @@ For both DateTime and Time values, timezone may be specified as either UTC time 
 
 For more information on the use of date/time values within CQL, refer to the Date/Time Operators section.
 
-Specifically, because DateTime and Time values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date/time operations, refer to the Comparing Dates and Times section.
+Specifically, because Date, DateTime, and Time values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date/time operations, refer to the Comparing Dates and Times section.
 
 [[clinical-values]]
 === Clinical Values
@@ -1188,15 +1196,16 @@ Operations on date and time data are an essential component of expressing clinic
 [[constructing-datetime-values]]
 ==== Constructing Date/Time Values
 
-In addition to the literals described in the DateTime and Time section, the DateTime and Time operators allow for the construction of specific date/time values based on the values for their components. For example:
+In addition to the literals described in the Date, DateTime, and Time section, the Date/Time operators allow for the construction of specific date/time values based on the values for their components. For example:
 
 [source,cql]
 ----
+Date(2014, 7, 5)
 DateTime(2014, 7, 5)
 DateTime(2014, 7, 5, 4, 0, 0, 0, -7)
 ----
 
-The first example constructs the DateTime July 5, 2014. The second example constructs a DateTime of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
+The first example constructs the Date July 5, 2014. The second example constructs the DateTime July 5, 2014. The third example constructs a DateTime of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
 
 The DateTime operator takes the following arguments:
 
@@ -1259,7 +1268,7 @@ Table 2‑M
 
 The current date and time operators are defined based on the timestamp of the evaluation request for two reasons:
 
-1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now() or Today() will always return the same result within the same evaluation (determinism).
+1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now(), Today(), or TimeOfDay() will always return the same result within the same evaluation (determinism).
 2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same time zone information as the data delivered with the evaluation request.
 
 By defining the date construction operators in this way, most clinical logic can safely ignore timezone information, and the logic will be evaluated with the expected semantics. However, if timezone information is relevant to a particular calculation, it can still be accessed as a component of each datetime value.
@@ -1402,7 +1411,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 [cols=",,",options="header",]
 |==================================================================================
 |Component |Description |Result Type
-|date from X |Extracts the date of its argument (with no time components) |DateTime
+|date from X |Extracts the date of its argument (with no time components) |Date
 |time from X |Extracts the time of its argument |Time
 |year from X |Extracts the year component its argument |Integer
 |month from X |Extracts the month component of its argument |Integer
@@ -1770,14 +1779,14 @@ Because CQL supports date/time values with varying levels of precision, interval
 
 [source,cql]
 ----
-interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
+Interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
 ----
 
 However, if the boundaries of the interval are specified to a lower precision, the interval is interpreted as beginning at some time within the most specified precision, and ending at some time within the most specified precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime in the year 2015:
 
 [source,cql]
 ----
-interval[DateTime(2014), DateTime(2015)]
+Interval[DateTime(2014), DateTime(2015)]
 ----
 
 When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date/time values.
@@ -1786,7 +1795,7 @@ In addition, the boundaries may even be specified to different levels of precisi
 
 [source,cql]
 ----
-interval[DateTime(2014), DateTime(2015, 1, 1)]
+Interval[DateTime(2014), DateTime(2015, 1, 1)]
 ----
 
 [[list-operators]]
@@ -1816,8 +1825,8 @@ If a list contains a single element, the singleton from operator can be used to 
 
 [source,cql]
 ----
-singleton from \{ 1 }
-singleton from \{ 1, 2, 3 }
+singleton from { 1 }
+singleton from { 1, 2, 3 }
 ----
 
 Using singleton from on a list with multiple elements will result in a run-time error.

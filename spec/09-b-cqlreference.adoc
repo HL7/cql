@@ -92,6 +92,22 @@ structured type Concept
 
 The Concept type represents a single terminological concept within CQL.
 
+[[date]]
+=== Date
+
+*Definition:*
+
+[source,cql]
+----
+simple type Date
+----
+
+*Description:*
+
+The Date type represents date values with potential uncertainty within CQL.
+
+CQL supports date values in the range @0001-01-01 to @9999-12-31 with a 1 day step size.
+
 [[datetime]]
 === DateTime
 
@@ -456,18 +472,19 @@ The following table lists the conversions supported in CQL:
 
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |DateTime |Time |Code |Concept |List(Code)
-|Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |-
-|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |-
-|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |-
-|Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |-
-|Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |-
-|String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
-|DateTime |- |- |- |- |- |Explicit |N/A |- |- |- |-
-|Time |- |- |- |- |- |Explicit |- |N/A |- |- |-
-|Code |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|Concept |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|List(Code) | | | | | | | | | |Implicit |N/A
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List(Code)
+|Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
+|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|Date |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|DateTime |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
+|Time |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|Code |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|Concept |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|List(Code) | | | | | | | | | | |Implicit |N/A
 |===============================================================================================
 
 Table 9‑E
@@ -565,6 +582,38 @@ The ToConcept operator converts a value of type Code to a Concept value with the
 
 If the argument is null, the result is null.
 
+[[todate]]
+=== ToDate
+
+*Signature:*
+
+[source,cql]
+----
+ToDate(argument String) DateTime
+----
+
+*Description:*
+
+The ToDate operator converts the value of its argument to a Date value. The operator expects the string to be formatted using the ISO-8601 date representation:
+
+YYYY-MM-DD
+
+In addition, the string must be interpretable as a valid date value.
+
+For example, the following are valid string representations for date values:
+
+[source,cql]
+----
+'2014-01' // January, 2014
+'2014-01-01' // January 1^st^, 2014
+----
+
+If the input string is not formatted correctly, or does not represent a valid date value, a run-time error is thrown.
+
+As with date literals, date values may be specified to any precision.
+
+If the argument is null, the result is null.
+
 [[todatetime]]
 === ToDateTime
 
@@ -572,12 +621,15 @@ If the argument is null, the result is null.
 
 [source,cql]
 ----
+ToDateTime(argument Date) DateTime
 ToDateTime(argument String) DateTime
 ----
 
 *Description:*
 
-The ToDateTime operator converts the value of its argument to a DateTime value. The operator expects the string to be formatted using the ISO-8601 date/time representation:
+The ToDateTime operator converts the value of its argument to a DateTime value. 
+
+For the string overload, the operator expects the string to be formatted using the ISO-8601 date/time representation:
 
 YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 
@@ -595,6 +647,8 @@ For example, the following are valid string representations for date/time values
 If the input string is not formatted correctly, or does not represent a valid date/time value, a run-time error is thrown.
 
 As with date/time literals, date/time values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
+
+For the Date overload, the result will be a DateTime with the time components set to zero, except for the timezone, which will be set to the timezone of the evaluation request timestamp.
 
 If the argument is null, the result is null.
 
@@ -718,6 +772,7 @@ ToString(argument Integer) String
 ToString(argument Decimal) String
 ToString(argument Quantity) String
 ToString(argument Ratio) String
+ToString(argument Date) String
 ToString(argument DateTime) String
 ToString(argument Time) String
 ----
@@ -734,6 +789,7 @@ The ToString operator converts the value of its argument to a String value. The 
 |Decimal |(-)?#0.0#
 |Quantity |(-)?#0.0# '<unit>'
 |Ratio |<quantity>:<quantity>
+|Date |YYYY-MM-DD
 |DateTime |YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 |Time |Thh:mm:ss.fff(+|-)hh:mm
 |===========================================
@@ -852,6 +908,7 @@ The is true operator determines whether or not its argument evaluates to true. I
 between(argument Integer, low Integer, high Integer) Boolean
 between(argument Decimal, low Decimal, high Decimal) Boolean
 between(argument Quantity, low Quantity, high Quantity) Boolean
+between(argument Date, low Date, high Date) Boolean
 between(argument DateTime, low DateTime, high DateTime) Boolean
 between(argument Time, low Time, high Time) Boolean
 between(argument String, low String, high String) Boolean
@@ -863,7 +920,7 @@ The between operator determines whether the first argument is within a given ran
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If any argument is null, the result is null.
 
@@ -935,6 +992,7 @@ This operator, and the corresponding notion of _equivalence_, are used throughou
 >(left Integer, right Integer) Boolean
 >(left Decimal, right Decimal) Boolean
 >(left Quantity, right Quantity) Boolean
+>(left Date, right Date) Boolean
 >(left DateTime, right DateTime) Boolean
 >(left Time, right Time) Boolean
 >(left String, right String) Boolean
@@ -946,7 +1004,7 @@ The _greater_ (>) operator returns true if the first argument is greater than th
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If either argument is null, the result is null.
 
@@ -960,6 +1018,7 @@ If either argument is null, the result is null.
 >=(left Integer, right Integer) Boolean
 >=(left Decimal, right Decimal) Boolean
 >=(left Quantity, right Quantity) Boolean
+>=(left Date, right Date) Boolean
 >=(left DateTime, right DateTime) Boolean
 >=(left Time, right Time) Boolean
 >=(left String, right String) Boolean
@@ -971,7 +1030,7 @@ The _greater or equal_ (>=) operator returns true if the first argument is great
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If either argument is null, the result is null.
 
@@ -985,6 +1044,7 @@ If either argument is null, the result is null.
 <(left Integer, right Integer) Boolean
 <(left Decimal, right Decimal) Boolean
 <(left Quantity, right Quantity) Boolean
+<(left Date, right Date) Boolean
 <(left DateTime, right DateTime) Boolean
 <(left Time, right Time) Boolean
 <(left String, right String) Boolean
@@ -996,7 +1056,7 @@ The _less_ (<) operator returns true if the first argument is less than the seco
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If either argument is null, the result is null.
 
@@ -1010,6 +1070,7 @@ If either argument is null, the result is null.
 <=(left Integer, right Integer) Boolean
 <=(left Decimal, right Decimal) Boolean
 <=(left Quantity, right Quantity) Boolean
+<=(left Date, right Date) Boolean
 <=(left DateTime, right DateTime) Boolean
 <=(left Time, right Time) Boolean
 <=(left String, right String) Boolean
@@ -1021,7 +1082,7 @@ The _less or equal_ (\<=) operator returns true if the first argument is less th
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If either argument is null, the result is null.
 
@@ -1235,11 +1296,13 @@ maximum<T>() T
 
 The maximum operator returns the maximum representable value for the given type.
 
-The maximum operator is defined for the Integer, Decimal, DateTime, and Time types.
+The maximum operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
 
 For Integer, maximum returns the maximum signed 32-bit integer, 2^31^ - 1.
 
 For Decimal, maximum returns the maximum representable decimal value, (10^37^ – 1) / 10^8^ (9999999999999999999999999999.99999999).
+
+For Date, maximum returns the maximum representable date value, Date(9999, 12, 31).
 
 For DateTime, maximum returns the maximum representable date/time value, DateTime(9999, 12, 31, 23, 59, 59, 999).
 
@@ -1261,11 +1324,13 @@ minimum<T>() T
 
 The minimum operator returns the minimum representable value for the given type.
 
-The minimum operator is defined for the Integer, Decimal, DateTime, and Time types.
+The minimum operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
 
 For Integer, minimum returns the minimum signed 32-bit integer, -2^31^.
 
 For Decimal, minimum returns the minimum representable decimal value, (-10^37^ – 1) / 10^8^ (-9999999999999999999999999999.99999999).
+
+For Date, minimum returns the minimum representable date value, DateTime(1, 1, 1).
 
 For DateTime, minimum returns the minimum representable date/time value, DateTime(1, 1, 1, 0, 0, 0, 0).
 
@@ -1358,13 +1423,13 @@ predecessor of<T>(argument T) T
 
 The predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
-The predecessor operator is defined for the Integer, Decimal, DateTime, and Time types.
+The predecessor operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
 
 For Integer, predecessor is equivalent to subtracting 1.
 
-For Decimal, predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08.
+For Decimal, predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08^.
 
-For DateTime and Time values, predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, predecessor is equivalent to subtracting one second, etc.
+For Date, DateTime, and Time values, predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, predecessor is equivalent to subtracting one second, etc.
 
 If the argument is null, the result is null.
 
@@ -1444,13 +1509,13 @@ successor of<T>(argument T) T
 
 The successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The successor operator is defined for the Integer, Decimal, DateTime, and Time types.
+The successor operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
 
 For Integer, successor is equivalent to adding 1.
 
-For Decimal, successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08.
+For Decimal, successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08^.
 
-For DateTime and Time values, successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, successor is equivalent to adding one second, etc.
+For Date, DateTime and Time values, successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, successor is equivalent to adding one second, etc.
 
 If the argument is null, the result is null.
 
@@ -1757,6 +1822,7 @@ If the argument is null, the result is null.
 
 [source,cql]
 ----
++(left Date, right Quantity) Date
 +(left DateTime, right Quantity) DateTime
 +(left Time, right Quantity) Time
 ----
@@ -1764,6 +1830,8 @@ If the argument is null, the result is null.
 *Description:*
 
 The _add_ (+) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+
+For Date values, the quantity unit must be one of: years, months, or days.
 
 For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
@@ -1786,6 +1854,7 @@ If either argument is null, the result is null.
 
 [source,cql]
 ----
+after _precision_ of(left Date, right Date) Boolean
 after _precision_ of(left DateTime, right DateTime) Boolean
 after _precision_ of(left Time, right Time) Boolean
 ----
@@ -1807,7 +1876,8 @@ If either or both arguments are null, the result is null.
 
 [source,cql]
 ----
-before _precision_ of(left DateTime, right DateTime) Boolean +
+before _precision_ of(left Date, right Date) Boolean
+before _precision_ of(left DateTime, right DateTime) Boolean
 before _precision_ of(left Time, right Time) Boolean
 ----
 
@@ -1821,6 +1891,24 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are null, the result is null.
 
+[[date-1]]
+=== Date
+
+*Signature:*
+
+[source,cql]
+----
+Date(year Integer) Date
+Date(year Integer, month Integer) Date
+Date(year Integer, month Integer, day Integer) Date
+----
+
+*Description:*
+
+The Date operator constructs a date value from the given components.
+
+At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, month may be null, but if it is, day must be null as well.
+
 [[datetime-1]]
 === DateTime
 
@@ -1832,16 +1920,16 @@ DateTime(year Integer) DateTime
 DateTime(year Integer, month Integer) DateTime
 DateTime(year Integer, month Integer, day Integer) DateTime
 DateTime(year Integer, month Integer, day Integer,
-hour Integer) DateTime
+  hour Integer) DateTime
 DateTime(year Integer, month Integer, day Integer,
-hour Integer, minute Integer) DateTime
+  hour Integer, minute Integer) DateTime
 DateTime(year Integer, month Integer, day Integer,
-hour Integer, minute Integer, second Integer) DateTime
+  hour Integer, minute Integer, second Integer) DateTime
 DateTime(year Integer, month Integer, day Integer,
-hour Integer, minute Integer, second Integer, millisecond Integer) DateTime
+  hour Integer, minute Integer, second Integer, millisecond Integer) DateTime
 DateTime(year Integer, month Integer, day Integer,
-hour Integer, minute Integer, second Integer, millisecond Integer,
-timezoneOffset Decimal) DateTime
+  hour Integer, minute Integer, second Integer, millisecond Integer,
+  timezoneOffset Decimal) DateTime
 ----
 
 *Description:*
@@ -1859,17 +1947,20 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 
 [source,cql]
 ----
+_precision_ from(argument Date) Integer
 _precision_ from(argument DateTime) Integer
 _precision_ from(argument Time) Integer
 timezone from(argument DateTime) Decimal
 timezone from(argument Time) Decimal
-date from(argument DateTime) DateTime
+date from(argument DateTime) Date
 time from(argument DateTime) Time
 ----
 
 *Description:*
 
 The _component_-from operator returns the specified component of the argument.
+
+For Date values, _precision_ must be one of: year, month, or day.
 
 For DateTime values, _precision_ must be one of: year, month, day, hour, minute, second, or millisecond.
 
@@ -1884,6 +1975,7 @@ If the argument is null, or is not specified to the level of precision being ext
 
 [source,cql]
 ----
+difference in _precision_ between(low Date, high Date) Integer
 difference in _precision_ between(low DateTime, high DateTime) Integer
 difference in _precision_ between(low Time, high Time) Integer
 ----
@@ -1891,6 +1983,8 @@ difference in _precision_ between(low Time, high Time) Integer
 *Description:*
 
 The __difference-__between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
+
+For Date  values, _precision_ must be one of: years, months, weeks, or days.
 
 For DateTime values, _precision_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
@@ -1905,6 +1999,7 @@ If either argument is null, the result is null.
 
 [source,cql]
 ----
+_duration_ between(low Date, high Date) Integer
 _duration_ between(low DateTime, high DateTime) Integer
 _duration_ between(low Time, high Time) Integer
 ----
@@ -1912,6 +2007,8 @@ _duration_ between(low Time, high Time) Integer
 *Description:*
 
 The __duration-__between operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.
+
+For Date values, _duration_ must be one of: years, months, weeks, or days.
 
 For DateTime values, _duration_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
@@ -1943,6 +2040,7 @@ The Now operator returns the date and time of the start timestamp associated wit
 
 [source,cql]
 ----
+same _precision_ as(left Date, right Date) Boolean
 same _precision_ as(left DateTime, right DateTime) Boolean
 same _precision_ as(left Time, right Time) Boolean
 ----
@@ -1950,6 +2048,8 @@ same _precision_ as(left Time, right Time) Boolean
 *Description:*
 
 The same__-precision-__as operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is true. If a compared component is specified in both dates, but the values are not the same, then the result is false. Otherwise the result is null, as there is not enough information to make a determination.
+
+For Date values, _precision_ must be one of: year, month, week, or day.
 
 For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
 
@@ -1970,6 +2070,7 @@ If no precision is specified, millisecond precision is used.
 
 [source,cql]
 ----
+same _precision_ or after(left Date, right Date) Boolean
 same _precision_ or after(left DateTime, right DateTime) Boolean
 same _precision_ or after(left Time, right Time) Boolean
 ----
@@ -1977,6 +2078,8 @@ same _precision_ or after(left Time, right Time) Boolean
 *Description:*
 
 The same__-precision-__or after operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
+
+For Date values, _precision_ must be one of: year, month, week, or day.
 
 For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
 
@@ -1999,6 +2102,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 [source,cql]
 ----
+same _precision_ or before(left Date, right Date) Boolean
 same _precision_ or before(left DateTime, right DateTime) Boolean
 same _precision_ or before(left Time, right Time) Boolean
 ----
@@ -2006,6 +2110,8 @@ same _precision_ or before(left Time, right Time) Boolean
 *Description:*
 
 The same__-precision-__or before operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
+
+For Date values, _precision_ must be one of: year, month, week, or day.
 
 For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
 
@@ -2028,6 +2134,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 [source,cql]
 ----
+-(left Date, right Quantity) Date
 -(left DateTime, right Quantity) DateTime
 -(left Time, right Quantity) Time
 ----
@@ -2035,6 +2142,8 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 *Description:*
 
 The _subtract_ (-) operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+
+For Date values, the quantity unit must be one of: years, months, weeks, or days.
 
 For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
@@ -2094,7 +2203,7 @@ The TimeOfDay operator returns the time of day of the start timestamp associated
 
 [source,cql]
 ----
-Today() DateTime
+Today() Date
 ----
 
 *Description:*
@@ -3153,6 +3262,7 @@ The Count operator returns the number of non-null elements in the source. If the
 Max(argument List<Integer>) Integer
 Max(argument List<Decimal>) Decimal
 Max(argument List<Quantity>) Quantity
+Max(argument List<Date>) Date
 Max(argument List<DateTime>) DateTime
 Max(argument List<Time>) Time
 Max(argument List<String>) String
@@ -3176,6 +3286,7 @@ If the source is null, the result is null.
 Min(argument List<Integer>) Integer
 Min(argument List<Decimal>) Decimal
 Min(argument List<Quantity>) Quantity
+Min(argument List<Date>) Date
 Min(argument List<DateTime>) DateTime
 Min(argument List<Time>) Time
 Min(argument List<String>) String
@@ -3347,7 +3458,9 @@ The Age operators calculate the age of the patient as of now in the precision na
 
 If the patient’s birthdate is null, the result is null.
 
-The Age operators are defined in terms of a DateTime duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The Age operators are defined in terms of a date/time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+
+Note that for AgeInYears, the birthDate is specified as a Date, not a DateTime.
 
 [[ageat]]
 === AgeAt
@@ -3356,7 +3469,7 @@ The Age operators are defined in terms of a DateTime duration calculation. This 
 
 [source,cql]
 ----
-AgeInYearsAt(asOf DateTime) Integer
+AgeInYearsAt(asOf Date) Integer
 AgeInMonthsAt(asOf DateTime) Integer
 AgeInWeeksAt(asOf DateTime) Integer
 AgeInDaysAt(asOf DateTime) Integer
@@ -3371,7 +3484,7 @@ The AgeAt operators calculate the age of the patient as of the given date in the
 
 If the patient’s birthdate is null, or the asOf argument is null, the result is null.
 
-The AgeAt operators are defined in terms of a DateTime duration calculation. This means that if the age of the patient or the given asOf value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The AgeAt operators are defined in terms of a date/time duration calculation. This means that if the age of the patient or the given asOf value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
 
 [[calculateage]]
 === CalculateAge
@@ -3380,7 +3493,7 @@ The AgeAt operators are defined in terms of a DateTime duration calculation. Thi
 
 [source,cql]
 ----
-CalculateAgeInYears(birthDate DateTime) Integer
+CalculateAgeInYears(birthDate Date) Integer
 CalculateAgeInMonths(birthDate DateTime) Integer
 CalculateAgeInWeeks(birthDate DateTime) Integer
 CalculateAgeInDays(birthDate DateTime) Integer
@@ -3395,7 +3508,7 @@ The CalculateAge operators calculate the age of a person born on the given birth
 
 If the birthdate is null, the result is null.
 
-The CalculateAge operators are defined in terms of a DateTime duration calculation. This means that if the given birthDate is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The CalculateAge operators are defined in terms of a date/time duration calculation. This means that if the given birthDate is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
 
 [[calculateageat]]
 === CalculateAgeAt
@@ -3404,7 +3517,7 @@ The CalculateAge operators are defined in terms of a DateTime duration calculati
 
 [source,cql]
 ----
-CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInYearsAt(birthDate Date, asOf Date) Integer
 CalculateAgeInMonthsAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInWeeksAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInDaysAt(birthDate DateTime, asOf DateTime) Integer
@@ -3419,7 +3532,7 @@ The CalculateAgeAt operators calculate the age of a person born on the given bir
 
 If the birthDate is null or the asOf argument is null, the result is null.
 
-The CalculateAgeAt operators are defined in terms of a DateTime duration calculation. This means that if the given birthDate or asOf are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The CalculateAgeAt operators are defined in terms of a date/time duration calculation. This means that if the given birthDate or asOf are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
 
 [[equal-3]]
 === Equal
