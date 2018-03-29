@@ -8,6 +8,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1436[1436]: Clarified aliases are not allowed in sort clauses
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1437[1437]: Added Ratio system-defined type
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1438[1438]: Fixed take() FHIRPath mapping
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1439[1439]: Added difference of and duration between operators
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 

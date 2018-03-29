@@ -303,7 +303,7 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |Primary |. [] ()
 |Conversion Phrase |convert..to
 |Unary Arithmetic |unary +/-
-|Extractor |start/end/duration/width/successor/predecessor of +
+|Extractor |start/end/difference/duration/width/successor/predecessor of +
 _component_/singleton from
 |Exponentiation |^
 |Multiplicative |* / div mod
@@ -1213,7 +1213,7 @@ CQL provides for the definition of functions. A function in CQL is a named expre
 [source,cql]
 ----
 define function CumulativeDuration(Intervals List<Interval<DateTime>>):
-  Sum((collapse Intervals) X return duration in days of X)
+  Sum((collapse Intervals) X return all duration in days of X)
 ----
 
 This statement defines a function named CumulativeDuration that takes a single argument named Intervals of type List<Interval<DateTime>>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:

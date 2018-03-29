@@ -827,7 +827,7 @@ Implementation of these semantics can be simplified by recognizing that all the 
 ** =, <, >, \<=, >=, +, -, unary +/-, *, /
 ** implicit conversion between integer point values and uncertainties
 * Precision-based duration and difference between date/times
-+
+
 All the other operations and semantics can be achieved using only these primitives. For example, given _A_ and _B_, both date/time values, the comparison:
 
 [source,cql]

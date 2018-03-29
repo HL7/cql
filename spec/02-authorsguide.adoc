@@ -1594,21 +1594,23 @@ width of Interval[3, 5]
 
 The first expression returns 2 (ending boundary of 4, minus the starting boundary of 3, plus 1), while the second expression returns 3 (ending boundary of 5, minus the starting boundary of 3, plus 1). In other words, the width operator returns the number of points that are included in the interval.
 
-For date/time intervals, CQL defines a duration in operator as well as a difference in operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
+For date/time intervals, CQL defines a duration of operator as well as a difference of operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
 
 [source,cql]
 ----
 duration in days of X
+difference in days of X
 ----
 
-is equivalent to:
+These expressions are equivalent to:
 
 [source,cql]
 ----
-days between start of X and end of X
+duration in days between start of X and end of X
+difference in days between start of X and end of X
 ----
 
-This returns the number of whole days between the starting and ending dates of the interval X.
+The first expression returns the number of whole days between the starting and ending dates of the interval X, while the second expression returns the number of day boundaries crossed between the starting and ending dates of the interval X.
 
 [[comparing-intervals]]
 ==== Comparing Intervals
