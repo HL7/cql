@@ -697,6 +697,8 @@ will result in an error. The convert syntax is equivalent to invoking one of the
 |ToInteger(String) |Converts the string representation of an integer value to an Integer value using the format (+\|-)d*
 |ToDecimal(Integer) |Converts an Integer value to an equivalent Decimal value
 |ToDecimal(String) |Converts the string representation of a decimal value to a Decimal value using the format (+\|-)d*.d*
+|ToQuantity(Decimal) |Converts a Decimal value to a Quantity with a default unit ('1')
+|ToQuantity(Integer) |Converts an Integer value to a Quantity with a default unit ('1') 
 |ToQuantity(String) |Converts the string representation of a quantity value to a Quantity value using the format (+\|-)d*.d*'units'
 |ToRatio(String) |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
 |ToDateTime(String) |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
@@ -723,14 +725,14 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Datetime |Time |Code |Concept |List(Code)
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |DateTime |Time |Code |Concept |List(Code)
 |Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |-
-|Integer |- |N/A |Implicit |- |- |Explicit |- |- |- |- |-
-|Decimal |- |- |N/A |- |- |Explicit |- |- |- |- |-
+|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |-
+|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |-
 |Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |-
 |Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |-
 |String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
-|Datetime |- |- |- |- |- |Explicit |N/A |- |- |- |-
+|DateTime |- |- |- |- |- |Explicit |N/A |- |- |- |-
 |Time |- |- |- |- |- |Explicit |- |N/A |- |- |-
 |Code |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |Concept |- |- |- |- |- |- |- |- |- |N/A |Explicit
@@ -830,9 +832,10 @@ Because of the possibility that a given invocation signature may be resolved to 
 1.  Exact match – If the invocation type is an exact match to the declared type of the argument
 2.  Subtype – If the invocation type is a subtype of the declared type of the argument
 3.  Compatible – If the invocation type is compatible with the declared type of the argument (e.g., the invocation type is Any)
-4.  Implicit Conversion – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument
-5.  Demotion – The invocation type of the argument can be demoted to the declared type
-6.  Promotion – The invocation type of the argument can be promoted to the declared type
+4.  Implicit Conversion To Simple Type – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a simple type
+5.  Implicit Conversion To Class Type - An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a class type
+6.  Demotion – The invocation type of the argument can be demoted to the declared type
+7.  Promotion – The invocation type of the argument can be promoted to the declared type
 
 These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path should be used.
 

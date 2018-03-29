@@ -456,14 +456,14 @@ The following table lists the conversions supported in CQL:
 
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Datetime |Time |Code |Concept |List(Code)
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |DateTime |Time |Code |Concept |List(Code)
 |Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |-
-|Integer |- |N/A |Implicit |- |- |Explicit |- |- |- |- |-
-|Decimal |- |- |N/A |- |- |Explicit |- |- |- |- |-
+|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |-
+|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |-
 |Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |-
 |Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |-
 |String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
-|Datetime |- |- |- |- |- |Explicit |N/A |- |- |- |-
+|DateTime |- |- |- |- |- |Explicit |N/A |- |- |- |-
 |Time |- |- |- |- |- |Explicit |- |N/A |- |- |-
 |Code |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |Concept |- |- |- |- |- |- |- |- |- |N/A |Explicit
@@ -659,12 +659,16 @@ If the argument is null, the result is null.
 
 [source,cql]
 ----
+ToQuantity(argument Decimal) Quantity
+ToQuantity(argument Integer) Quantity
 ToQuantity(argument String) Quantity
 ----
 
 *Description:*
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator accepts strings using the following format:
+The ToQuantity operator converts the value of its argument to a Quantity value. 
+
+For the String overload, the operator accepts strings using the following format:
 
 [source,cql]
 ----
@@ -676,6 +680,8 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, a run-time error is thrown.
+
+For the Integer and Decimal overloads, the operator returns a quantity with the value of the argument and a unit of '1' (the default unit).
 
 If the argument is null, the result is null.
 
