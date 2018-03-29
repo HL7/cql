@@ -700,7 +700,7 @@ seconds
 milliseconds
 ----
 
-In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) unit code using the string representation of the UCUM code immediately following the numeric value, as shown in the first example in this section. UCUM codes can be specified in the case-sensitive (c/s) or case-insenstive form (c/i).
+In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) unit code using the string representation of the UCUM code immediately following the numeric value, as shown in the first example in this section. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For quantities, number can be an integer or decimal. Note however that most operations involving time-based quantities ignore the decimal portion of a time-based quantity.
 
