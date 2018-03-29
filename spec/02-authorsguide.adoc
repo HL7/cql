@@ -1308,7 +1308,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression but that no attempt is made to enforce singular or plural usage.
 
-Note also that the UCUM time-period units can be used when expressing duration quantities.
+Note also that the UCUM time-period units can be used when expressing duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, calculations involving durations shall round using calendar semantics as specified in ISO8601.
 
 [[comparing-dates-and-times]]
 ==== Comparing Dates and Times

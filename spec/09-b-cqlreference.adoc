@@ -1839,8 +1839,6 @@ For Time values, the quantity unit must be one of: hours, minutes, seconds, or m
 
 Note that the quantity units may be specified in singular, plural, or UCUM form.
 
-Note that as with any date/time operations, temporal units may be specified with either singular, plural, or UCUM units.
-
 The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
 
 DateTime(2014) + 24 months
@@ -2165,7 +2163,7 @@ For DateTime values, the quantity unit must be one of: years, months, weeks, day
 
 For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
 
-Note that the quantity unit may be specified in singular, plural or UCUM units.
+Note that the quantity units may be specified in singular, plural or UCUM form.
 
 The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
 
