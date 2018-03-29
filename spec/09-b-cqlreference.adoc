@@ -280,6 +280,8 @@ define IsAlsoFalse = false and null
 define IsNull = true and null
 ----
 
+Note that CQL does not prescribe short-circuit evaluation of logical operators.
+
 [[implies]]
 === Implies
 
@@ -369,6 +371,8 @@ define IsAlsoTrue = true or null
 define IsFalse = false or false
 define IsNull = false or null
 ----
+
+Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
 [[xor]]
 === Xor
