@@ -892,7 +892,7 @@ If the tuple is of a specific type, the name of the type can be used instead of 
 define PatientExpression: Patient { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
-If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element.
+If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be null.
 
 Note that tuples can contain other tuples, as well as lists:
 

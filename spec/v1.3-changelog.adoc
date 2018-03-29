@@ -22,6 +22,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1483[1483]: BinaryExpression and TernaryExpression ELM types are now abstract
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1500[1500]: Union, Intersect, and Except are now NaryExpressions
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1509[1509]: Clarified case-insensitive behavior of string comparison
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1538[1538]: Clarified instance selector behavior for missing elements
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 
