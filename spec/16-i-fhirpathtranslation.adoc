@@ -220,7 +220,7 @@ X.tail() === Slice(X, 1, null)
 [[take-1]]
 == .take()
 
-X.take(Y) === Slice(X, 0, Y)
+X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
 
 [[toboolean-1]]
 == .toBoolean()
