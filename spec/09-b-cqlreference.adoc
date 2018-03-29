@@ -2840,7 +2840,9 @@ The except operator returns the set difference of two lists. More precisely, the
 
 This operator uses the notion of _equivalence_ to determine whether two elements are the same for the purposes of computing the difference.
 
-If the left argument is null, the result is null. else if the right argument is null, the result is the left argument.
+The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
+
+If the left argument is null, the result is null. If the right argument is null, the result is the left argument.
 
 [[exists]]
 === Exists
@@ -3003,6 +3005,8 @@ intersect(left List<T>, right List<T>) List<T>
 The intersect operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+
+The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
 If either argument is null, the result is null.
 
@@ -3192,7 +3196,7 @@ union(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The union operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list.
+The union operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
 
 If either argument is null, the result is null.
 

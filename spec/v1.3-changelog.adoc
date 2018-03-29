@@ -16,6 +16,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1445[1445]: Clarified singular and UCUM temporal units are allowed for date/time arithmetic
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1446[1446]: Changed conversion of List<Code> to Concept from implicit to explicit
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1447[1447]: Added overloads of In to support List<Code>
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1475[1475]: Clarified set semantics of intersect and except
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 
