@@ -70,6 +70,7 @@ The following table defines the mapping between the various CQL literals and the
 |_integer-literal_ |Literal (valueType="Integer")
 |_decimal-literal_ |Literal (valueType="Decimal")
 |_quantity-literal_ |Quantity
+|_ratio-literal_ |Ratio
 |_string-literal_ |Literal (valueType="String")
 |_date-time-literal_ |DateTime
 |_time-literal_ |Time

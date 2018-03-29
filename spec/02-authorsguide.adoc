@@ -547,7 +547,7 @@ Note that the query construct in CQL supports other clauses that are not discuss
 CQL supports several categories of values:
 
 * Simple values, such as strings, numbers, and dates
-* Clinical values, such as quantities and valuesets
+* Clinical values, such as quantities, ratios, and valuesets
 * Structured values (called tuples), such as Medications, Encounters, and Patients
 * Lists, which can contain any number of elements of the same type
 * Intervals, which define ranges of ordered values, such as numbers or dates
@@ -672,7 +672,7 @@ Specifically, because DateTime and Time values may be specified to varying level
 [[clinical-values]]
 === Clinical Values
 
-In addition to simple values, CQL supports some types of values that are specific to the clinical quality domain. For example, CQL supports _codes_, _concepts_, _quantities_, and _valuesets_.
+In addition to simple values, CQL supports some types of values that are specific to the clinical quality domain. For example, CQL supports _codes_, _concepts_, _quantities_, _ratios_, and _valuesets_.
 
 [[quantities]]
 ==== Quantities
@@ -705,6 +705,19 @@ In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) uni
 For quantities, number can be an integer or decimal. Note however that most operations involving time-based quantities ignore the decimal portion of a time-based quantity.
 
 For a discussion of the operations available for quantities, see the Quantity Operators section.
+
+[[ratios]]
+==== Ratios
+
+A ratio is a relationship between two quantities, expressed in CQL using standard mathematical notation:
+
+[source,cql]
+----
+1:128
+5 'mg'/10 'mL'
+----
+
+For a discussion of the operations available for ratios, see the Ratio Operators section.
 
 [[code]]
 ==== Code
@@ -2087,9 +2100,22 @@ define IsTall: height > 2 'm'
 
 This formulation also has the advantage of allowing for the case that the actual value of height is expressed in inches.
 
-CQL supports the standard comparison operators (= != < \<= > >=) and the standard arithmetic operators (+ - * /) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as Min, Max, Sum, etc.
+CQL supports the standard comparison operators (= != ~ !~ < \<= > >=) and the standard arithmetic operators (+ - * /) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as Min, Max, Sum, etc.
 
 Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return null if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
+
+[[ratio-operators]]
+==== Ratio Operators
+
+All ratios in CQL have _numerator_ and _denominator_ components, which can be accessed in the same way as properties. For example:
+
+[source,cql]
+----
+define TitreRatio: 1:128
+define TitreNumerator: TitreRatio.numerator // 1
+----
+
+CQL supports the equality operators (= != ~ !~) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components.
 
 [[terminology-operators]]
 ==== Terminology Operators

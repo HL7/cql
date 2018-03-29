@@ -158,6 +158,24 @@ structured type Quantity
 
 The Quantity type represents quantities with a specified unit within CQL.
 
+[[ratio]]
+==== Ratio
+
+*Definition:*
+
+[source,cql]
+----
+structured type Ratio
+{
+  numerator Quantity
+  denominator Quantity
+}
+----
+
+*Description:*
+
+The Ratio type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentation (e.g. 5 'mg':10'mL').
+
 [[string-1]]
 === String
 
@@ -436,19 +454,20 @@ The convert operator converts a value to a specific type. The result of the oper
 
 The following table lists the conversions supported in CQL:
 
-[cols=",,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |String |Datetime |Time |Code |Concept |List(Code)
-|Boolean |N/A |- |- |- |Explicit |- |- |- |- |-
-|Integer |- |N/A |Implicit |- |Explicit |- |- |- |- |-
-|Decimal |- |- |N/A |- |Explicit |- |- |- |- |-
-|Quantity |- |- |- |N/A |Explicit |- |- |- |- |-
-|String |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
-|Datetime |- |- |- |- |Explicit |N/A |- |- |- |-
-|Time |- |- |- |- |Explicit |- |N/A |- |- |-
-|Code |- |- |- |- |- |- |- |N/A |Implicit |-
-|Concept |- |- |- |- |- |- |- |- |N/A |Explicit
-|List(Code) | | | | | | | | |Implicit |N/A
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Datetime |Time |Code |Concept |List(Code)
+|Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |-
+|Integer |- |N/A |Implicit |- |- |Explicit |- |- |- |- |-
+|Decimal |- |- |N/A |- |- |Explicit |- |- |- |- |-
+|Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |-
+|Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |-
+|String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
+|Datetime |- |- |- |- |- |Explicit |N/A |- |- |- |-
+|Time |- |- |- |- |- |Explicit |- |N/A |- |- |-
+|Code |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|Concept |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|List(Code) | | | | | | | | | |Implicit |N/A
 |===============================================================================================
 
 Table 9‑E
@@ -660,6 +679,27 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is null, the result is null.
 
+[[toratio]]
+==== ToRatio
+
+*Signature:*
+
+[source,cql]
+----
+ToRatio(argument String) Ratio
+----
+
+*Description:*
+
+The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
+
+[source,cql]
+----
+<quantity>:<quantity>
+----
+
+where <quantity> is the format used to by the ToQuantity operator.
+
 [[tostring]]
 === ToString
 
@@ -671,6 +711,7 @@ ToString(argument Boolean) String
 ToString(argument Integer) String
 ToString(argument Decimal) String
 ToString(argument Quantity) String
+ToString(argument Ratio) String
 ToString(argument DateTime) String
 ToString(argument Time) String
 ----
@@ -686,6 +727,7 @@ The ToString operator converts the value of its argument to a String value. The 
 |Integer |(-)?#0
 |Decimal |(-)?#0.0#
 |Quantity |(-)?#0.0# '<unit>'
+|Ratio |<quantity>:<quantity>
 |DateTime |YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 |Time |Thh:mm:ss.fff(+|-)hh:mm
 |===========================================
