@@ -1524,6 +1524,8 @@ For calculations involving weeks, Sunday is considered the first day of the week
 
 In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in null rather than true or false. For a detailed discussion of the behavior of uncertainties, refer to the Uncertainty section.
 
+When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp.
+
 If either or both arguments are null, the result is null.
 
 For a detailed set of examples of calculating time intervals, please refer to Appendix H - Time Interval Calculation Examples.

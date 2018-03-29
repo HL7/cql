@@ -10,6 +10,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1438[1438]: Fixed take() FHIRPath mapping
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1439[1439]: Added difference of and duration between operators
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1440[1440]: Require case-sensitivity for UCUM units
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1441[1441]: Added clarifying guidance regarding date/time calculations involving date/time values with different timezone offsets
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1442[1442]: Division of like quantities results in a quantity with the default UCUM unit ('1')
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1443[1443]: Added implicit conversion from Integer or Decimal to Quantity
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1444[1444]: Added Date system-defined type
