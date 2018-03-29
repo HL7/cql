@@ -472,7 +472,7 @@ The following table lists the conversions supported in CQL:
 
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List(Code)
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
 |Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
 |Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
@@ -484,7 +484,7 @@ The following table lists the conversions supported in CQL:
 |Time |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
 |Code |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |Concept |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|List(Code) | | | | | | | | | | |Implicit |N/A
+|List<Code> | | | | | | | | | | |Explicit |N/A
 |===============================================================================================
 
 Table 9‑E

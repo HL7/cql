@@ -730,7 +730,7 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List(Code)
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
 |Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
 |Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
@@ -742,7 +742,7 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 |Time |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
 |Code |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |Concept |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|List(Code) | | | | | | | | | | |Implicit |N/A
+|List<Code> | | | | | | | | | | |Explicit |N/A
 |===============================================================================================
 
 Table 3‑H
