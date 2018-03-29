@@ -641,6 +641,17 @@ Note that if the value to be represented contains a single-quote, use a backslas
 'patient\'s condition is normal'
 ----
 
+Comparison of string values in CQL is case-sensitive, meaning that the strings 'patient' and 'Patient' are not equal:
+
+[source,cql]
+----
+'Patient' = 'Patient'
+'Patient' != 'patient'
+'Patient' ~ 'patient'
+----
+
+For case- and locale-insensitive comparison, use the equivalent (~) operator.
+
 [[date-datetime-and-time]]
 ==== Date, DateTime, and Time
 
