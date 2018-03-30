@@ -21,6 +21,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1479[1479]: Clarified calendar semantics for date/time arithmetic, even when using UCUM time-period units
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1483[1483]: BinaryExpression and TernaryExpression ELM types are now abstract
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1500[1500]: Union, Intersect, and Except are now NaryExpressions
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1507[1507]: Generalized named type specifier rule to allow for multiple-qualifier type names
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1509[1509]: Clarified case-insensitive behavior of string comparison
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1538[1538]: Clarified instance selector behavior for missing elements
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1539[1539]: Clarified behavior of a quantity with a null unit
