@@ -2431,6 +2431,35 @@ The except operator for intervals returns the set difference of two intervals. M
 
 If either argument is null, the result is null.
 
+[[expand]]
+=== Expand
+
+*Signature:*
+
+[source,cql]
+----
+expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
+----
+
+*Description:*
+
+The expand operator returns the set of intervals of width per for all the intervals in the input.
+
+The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ('1'). For date/time intervals, this means a temporal duration.
+
+For example:
+
+[source,cql]
+----
+expand EffectivePeriods per day
+----
+
+Note that if the values in the intervals have a higher precision than the per quantity, the higher precision values will be truncated to the granularity specified by the per quantity.
+
+If the list of intervals is empty, the result is empty. If the list of intervals contains nulls, they will be excluded from the resulting list.
+
+If the argument is null, the result is null.
+
 [[in]]
 === In
 

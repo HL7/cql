@@ -161,6 +161,7 @@ end
 ends
 except
 exists
+expand
 false
 flatten
 from
@@ -200,6 +201,7 @@ or less
 or more
 overlaps
 parameter
+per
 predecessor
 private
 properly
@@ -317,6 +319,7 @@ case..else..end
 |Unary Logical |not exists
 |Between |between +
 _precision_ between +
+duration in _precision_ between +
 difference in _precision_ between
 |Comparison |\<= < > >=
 |Timing Phrase |same as +
@@ -330,7 +333,7 @@ within
 |Conjunction |and
 |Disjunction |or xor
 |Implication |implies
-|Binary List |union intersect except
+|Binary List |union intersect except expand
 |==============================================================
 
 Table 3‑D
