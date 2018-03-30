@@ -180,7 +180,17 @@ The default value for a parameter is optional, but if no default is provided, th
 parameter MeasurementPeriod Interval<DateTime>
 ----
 
-If a parameter definition does not indicate a default value, the parameter is considered _required_, meaning that a value must be supplied by the evaluation environment, typically as part of the evaluation request.
+If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be null.
+
+In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
+
+. Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
+. Parameter defaults cannot reference expressions or functions defined in the current library
+. Parameter defaults cannot reference included libraries
+. Parameter defaults cannot perform terminology operations
+. Parameter defaults cannot reference other parameters
+
+In other words, the value for the default of a parameter must be able to be calculated at compile-time.
 
 [[context]]
 === Context
