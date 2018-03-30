@@ -107,7 +107,33 @@ The following versions of Clinical Quality Language are available:
     <td>1.3</td>
     <td>STU3 Ballot. Changes:<br/>
       <ul>
-        <li>TODO:</li>
+        <li><b>Language Changes:</b>
+          <ul>
+            <li>Added Ratio and Date system-defined types</li>
+            <li>Added difference of and duration between syntax</li>
+            <li>Named type specifiers now allow multiple qualifiers</li>
+            <li>Added Product and GeometricMean aggregate operators</li>
+            <li>Added Expand interval set operator</li>
+            <li>Invalid quantity operations and conversions now return null instead of error</li>
+            <li>Exists now ignores null elements</li>
+            <li>Added implicit conversion from Integer or Decimal to Quantity</li>
+          </ul>
+        </li>
+        <li><b>ELM Changes:</b>
+          <ul>
+            <li>Added signature element to FunctionRef</li>
+            <li>Added ELM classes for new operators</li>
+            <li>BinaryExpression and TernaryExpression are now abstract</li>
+            <li>Union, Intersect, and Except are now NaryExpressions</li>
+          </ul>
+        </li>
+        <li><b>FHIRPath Support:</b>
+          <ul>
+            <li>Added mappings for hasValue, conformsTo, memberOf, subsumes, subsumedBy, toChars</li>
+            <li>Added support for new aggregate()</li>
+            <li>Added support for $index and $total accessors</li>
+          </ul>
+        </li>
       </ul>
       <p><a href="v1.3-changelog.html">Detailed change log</a></p>
     </td>

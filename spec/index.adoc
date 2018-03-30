@@ -1,153 +1,66 @@
 = Clinical Quality Language (CQL)
 :page-layout: current
 
-image:extracted-media/media/image1.png[image,width=144,height=148]
+*HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)*
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1.2*
-
-*January 2017*
+*May 2018*
 
 *HL7 STU Specification*
 
-*Sponsored by:*
+Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
 
-____________________________________________________________________________________________________________________________________
-*Clinical Decision Support and Clinical Quality Information Work Groups*
+In addition, this specification describes a machine-readable canonical representation called Expression Logical Model (ELM) targeted at implementations and designed to enable sharing of clinical knowledge.
 
-*in collaboration with the Health and Human Services Standards and Interoperability Framework Clinical Quality Framework Initiative*
-____________________________________________________________________________________________________________________________________
+link:title.html[Title Page]
 
-* link:00-overview.html[0. Overview]
-* link:01-introduction.html[1. Introduction]
-* link:02-authorsguide.html[2. Author's Guide]
-* link:03-developersguide.html[3. Developer's Guide]
-* link:04-logicalspecification.html[4. Logical Specification]
-* link:05-languagesemantics.html[5. Language Semantics]
-* link:06-translationsemantics.html[6. Translation Semantics]
-* link:07-physicalrepresentation.html[7. Physical Representation]
-* link:08-a-cqlsyntax.html[Appendix A: CQL Syntax Formal Specification]
-* link:09-b-cqlreference.html[Appendix B: CQL Reference]
-* link:10-c-referenceimplementations.html[Appendix C: Reference Implementations]
-* link:11-d-references.html[Appendix D: References]
-* link:12-e-acronyms.html[Appendix E: Acronyms]
-* link:13-f-glossary.html[Appendix F: Glossary]
-* link:14-g-formattingconventions.html[Appendix G: Formatting Conventions]
-* link:15-h-timeintervalcalculations.html[Appendix H: Time Interval Calculations]
-* link:16-i-fhirpathtranslation.html[Appendix I: FHIRPath Function Translations]
+link:license.html[License]
 
-Copyright © 2014-2017 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
+****
+NOTE To Reviewers:
 
-Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?ref=nav[*IP Compliance Policy*].
+A summary of changes to this version can be found in the link:history.html[Version History], and a detailed listing of changes is available in the link:v1.3-changelog.html[1.3 Change Log].
 
-*Identifying Information for Specification:*
+In addition, we are considering a breaking change to the query syntax and seeking feedback on the change. Please review and provide comments on this change:
 
-*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 1.2
+link:querychange.html[Query Change Proposal]
+****
 
-*Realm:* Universal
+link:00-executivesummary.html[0. Executive Summary]
 
-*Ballot Level:* Standard for Trial Use (STU)
+[[organization-of-this-specification]]
+== Organization of this Specification
 
-*Ballot Cycle:* January 2017
+The organization of this specification follows the outline of the perspectives discussed in the Approach section—conceptual, logical, and physical. Below is a listing of the chapters with a short summary of the content of each.
 
-*Specification Date:* May 2017
+link:01-introduction.html[Chapter 1] – Introduction provides introductory and background material for the specification.
 
-[cols=",",]
-|==================================================================
-|Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD +
-University of Utah Health Care +
-guilherme.delfiol@utah.edu
-|Co-Chair (CDS): |Robert Jenders, MD, MS +
-jenders@ucla.edu
-|Co-Chair (CDS): |Kensaku Kawamoto, MD, PhD +
-University of Utah Health Care +
-kensaku.kawamoto@utah.edu
-|Co-Chair (CDS): |Howard Strasberg +
-Walters Kluwer Health +
-howard.strasberg@wolterskluwer.com
-|Co-Chair (CQI): |Patricia Craig +
-The Joint Commission +
-pcraig@jointcommission.org
-|Co-Chair (CQI): |Floyd Eisenberg +
-iParsimony LLC +
-FEisenberg@iParsimony.com
-|Co-Chair (CQI): |Chris Millet +
-chris@thelazycompany.com
-|Co-Chair (CQI): |Walter Suarez, MD, MPH +
-Kaiser Permanente +
-walter.q.suarez@kp.org
-|Co-Chair (CQI): a|
-Kanwarpreet Sethi
+link:02-authorsguide.html[Chapter 2] – Author’s Guide provides a high-level discussion of the Clinical Quality Language syntax. This discussion is a self-contained introduction to the language targeted at clinical quality authors.
 
-Lantana Consulting Group
+link:03-developersguide.html[Chapter 3] – Developer’s Guide provides a more in-depth look at the Clinical Quality Language targeted at developers familiar with typical development languages such as Java, C#, and SQL.
 
-kp.sethi@lantanagroup.com
+link:04-logicalspecification.html[Chapter 4] – Logical Specification provides a complete description of the elements that can be used to represent quality logic. Note that Chapters 2 and 3 describe the same functional capabilities of the language, and that anything that can be expressed in one mechanism can be equivalently expressed in the other.
 
-|Co-Chair (ITS): |Paul Knapp +
-Knapp Consulting Inc. +
-pknapp@pknapp.com
-|Co-Chair (ITS): a|
-Dale Nelson
+link:05-languagesemantics.html[Chapter 5] – Language Semantics describes the intended semantics of the language, covering topics such as data layer integration and expected run-time behavior.
 
-Lantana Consulting Group
+link:06-translationsemantics.html[Chapter 6] – Translation Semantics describes the mapping between CQL and ELM, as well as outlines for how to perform translation from CQL to ELM, and vice versa.
 
-dale.nelson@squaretrends.com
+link:07-physicalrepresentation.html[Chapter 7] – Physical Representation is reference documentation for the XML schema used to persist ELM.
 
-|Co-Chair (ITS): a|
-Andy Stechishin +
-HL7 Canada
+link:08-a-cqlsyntax.html[Appendix A – CQL Syntax Formal Specification] discusses the ANTLR4 grammar for the Clinical Quality Language.
 
-andy.stechishin@gmail.com
+link:09-b-cqlreference.html[Appendix B] – CQL Reference provides a complete reference for the types and operators available in CQL, and is intended to be used by authors and developers alike.
 
-|Co-Author: a|
-Bryn Rhodes
+link:10-c-referenceimplementations.html[Appendix C] – Reference Implementations provides information about where to find reference implementations for a CQL-ELM translator, a CQL Execution Framework for JavaScript, and other related tooling.
 
-Database Consulting Group
+link:11-d-references.html[Appendix D] – References
 
-bryn@databaseconsultinggroup.com
+link:12-e-acronyms.html[Appendix E] – Acronyms
 
-|Co-Author: a|
-Chris Moesel
+link:13-f-glossary.html[Appendix F] – Glossary
 
-The MITRE Corporation +
-cmoesel@mitre.org
+link:14-g-formattingconventions.html[Appendix G] – Formatting Conventions
 
-|Co-Author: a|
-Marc Hadley
+link:15-h-timeintervalcalculations.html[Appendix H] – Timing Interval Calculation Examples
 
-The MITRE Corporation
-
-mhadley@mitre.org
-
-|Co-Author: a|
-Mark Kramer
-
-The MITRE Corporation
-
-mkramer@mitre.org
-
-|Co-Author: a|
-Robert Dingwell
-
-The MITRE Corporation
-
-bobd@mitre.org
-
-|Co-Editor: |Aziz Boxwala, PhD +
-Meliorix +
-aziz.boxwala@meliorix.com
-|==================================================================
-
-Acknowledgments
-
-The authors wish to recognize the S&I Framework Clinical Quality Framework Initiative Work Group and the HL7 Clinical Decision Support, Clinical Quality Improvement, and Implementable Technology Specifications Work Groups for their contributions to this document.
-
-Copyrights
-
-This material includes SNOMED Clinical Terms ® (SNOMED CT®), which are used by permission of the International Health Terminology Standards Development Organization (IHTSDO). All rights reserved. SNOMED CT was originally created by The College of American Pathologists. "SNOMED ®" and "SNOMED CT ®" are registered trademarks of the IHTSDO.
-
-This material contains content from LOINC® (http://loinc.org). The LOINC table, LOINC codes, and LOINC panels and forms file are copyright (c) 1995-2011, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and available at no cost under the license at http://loinc.org/terms-of-use.
-
-This material contains content from the Unified Code for Units of Measure (UCUM) (http://unitsofmeasure.org). The UCUM specification is copyright (c) 1999-2013, Regenstrief Institute, Inc. and available at no cost under the license at http://unitsofmeasure.org/trac/wiki/TermsOfUse.
-
-This material contains quality measure content developed by the National Committee for Quality Assurance (NCQA). The measure content is copyright (c) 2008-2013 National Committee for Quality Assurance and used in accordance with the NCQA license terms for non-commercial use.
+link:16-i-fhirpathtranslation.html[Appendix I] – FHIRPath Function Translation
 
