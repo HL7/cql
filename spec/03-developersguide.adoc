@@ -308,7 +308,7 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 _component_/singleton from
 |Exponentiation |^
 |Multiplicative |* / div mod
-|Additive |+ -
+|Additive |+ - &
 |Conditional |if..then..else +
 case..else..end
 |Unary List |distinct collapse flatten
@@ -329,6 +329,7 @@ within
 |Membership |in contains
 |Conjunction |and
 |Disjunction |or xor
+|Implication |implies
 |Binary List |union intersect except
 |==============================================================
 
