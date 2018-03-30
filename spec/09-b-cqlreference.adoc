@@ -2804,7 +2804,9 @@ The contains operator for lists returns true if the given element is in the list
 
 This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
 
-If the list argument is null, the result is false.
+If the list argument is null, the result is null.
+
+If the element argument is null, the result is true if the list contains at least one null element, and false otherwise.
 
 [[distinct]]
 === Distinct
@@ -2938,7 +2940,9 @@ The in operator for lists returns true if the given element is in the given list
 
 This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
 
-If the left argument is null, the result is null. If the right argument is null, the result is false.
+If the list argument is null, the result is null.
+
+If the element argument is null, the result is true if the list contains at least one null element, and false otherwise.
 
 [[includes-1]]
 === Includes
@@ -3697,7 +3701,9 @@ For the Concept overload, if the given code system contains a code equivalent to
 
 For the List<Code> overload, if the given code system contains a code equivalent to any code in the given list, the result is true.
 
-If the code argument is null, the result is null.
+If the code argument is null, the result is false.
+
+If the code system reference cannot be resolved, a run-time error is thrown.
 
 [[in-valueset]]
 === In (Valueset)
@@ -3724,7 +3730,9 @@ For the Concept overload, if the given valueset contains a code equivalent to an
 
 For the List<Code> overload, if the given valueset contains a code equivalent to any code in the given list, the result is true.
 
-If the code argument is null, the result is null.
+If the code argument is null, the result is false.
+
+If the value set reference cannot be resolved, a run-time error is thrown.
 
 [[errors-and-messaging]]
 == Errors and Messaging

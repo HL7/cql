@@ -34,6 +34,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1560[1560]: Corrected population context example
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1561[1561]: Added singleton overloads for included in and includes
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1569[1569]: Corrected missing operators in operator precedence chart
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1574[1574]: Clarified null-handling behavior for in and contains
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 
