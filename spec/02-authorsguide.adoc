@@ -692,7 +692,7 @@ Time values are used to represent a time of day, independent of the date. Time v
 
 Note that the Time value literal format is identical to the time value portion of the DateTime literal format.
 
-For both DateTime and Time values, timezone may be specified as either UTC time (Z), or as a timezone offset. If no timezone is specified, the timezone of the evaluation request timestamp is used.
+For both DateTime and Time values, timezone may be specified as either UTC time (Z), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
 For more information on the use of date/time values within CQL, refer to the Date/Time Operators section.
 
@@ -1259,7 +1259,7 @@ DateTime(null, null, 11) // invalid
 
 The first three expressions above are valid, constructing dates with a specified precision of years, months, and days, respectively. However, the fourth expression is invalid, because it attempts to create a date with a day but no year or month component.
 
-The only component that is ever defaulted is the timezone component. If no timezone component is supplied, the timezone component is defaulted to the timezone of the timestamp associated with the evaluation request.
+The only component that is ever defaulted is the timezone offset component. If no timezone offset component is supplied, the timezone offset component is defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 The Time operator takes the following arguments:
 
@@ -1275,7 +1275,7 @@ The Time operator takes the following arguments:
 
 Table 2‑L
 
-As with the DateTime operator, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone is not supplied, it will be defaulted to the timezone of the timestamp associated with the evaluation request.
+As with the DateTime operator, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
@@ -1292,11 +1292,11 @@ Table 2‑M
 The current date and time operators are defined based on the timestamp of the evaluation request for two reasons:
 
 1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now(), Today(), or TimeOfDay() will always return the same result within the same evaluation (determinism).
-2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same time zone information as the data delivered with the evaluation request.
+2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone information as the data delivered with the evaluation request.
 
-By defining the date construction operators in this way, most clinical logic can safely ignore timezone information, and the logic will be evaluated with the expected semantics. However, if timezone information is relevant to a particular calculation, it can still be accessed as a component of each datetime value.
+By defining the date construction operators in this way, most clinical logic can safely ignore timezone offset information, and the logic will be evaluated with the expected semantics. However, if timezone offset information is relevant to a particular calculation, it can still be accessed as a component of each datetime value.
 
-In addition, all operations on dates and times are defined to take timezone information into account, ensuring that datetime operations perform correctly and consistently.
+In addition, all operations on dates and times are defined to take timezone offset information into account, ensuring that datetime operations perform correctly and consistently.
 
 In addition to date and time values, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
@@ -1448,7 +1448,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 
 Table 2‑O
 
-Note that if X is null, the result is null. If a date/time value does not have a particular component specified, extracting that component will result in null. Note also that if the timezone component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone of the evaluation request, the result of extracting the timezone component will be the default timezone, not null.
+Note that if X is null, the result is null. If a date/time value does not have a particular component specified, extracting that component will result in null. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the default timezone offset, not null.
 
 [[datetime-arithmetic]]
 ==== Date/Time Arithmetic

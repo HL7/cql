@@ -650,9 +650,9 @@ For example, the following are valid string representations for date/time values
 
 If the input string is not formatted correctly, or does not represent a valid date/time value, the result is null.
 
-As with date/time literals, date/time values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
+As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
-For the Date overload, the result will be a DateTime with the time components set to zero, except for the timezone, which will be set to the timezone of the evaluation request timestamp.
+For the Date overload, the result will be a DateTime with the time components set to zero, except for the timezone offset, which will be set to the timezone offset of the evaluation request timestamp.
 
 If the argument is null, the result is null.
 
@@ -834,7 +834,7 @@ For example, the following are valid string representations for time-of-day valu
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is null.
 
-As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
+As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
 If the argument is null, the result is null.
 
@@ -2024,6 +2024,8 @@ difference in _precision_ between(low Time, high Time) Integer
 
 The __difference-__between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
 
+As with all date/time calculations, difference calculations are performed respecting the timezone offset depending on the precision.
+
 For Date values, _precision_ must be one of: years, months, weeks, or days.
 
 For DateTime values, _precision_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
@@ -2071,7 +2073,7 @@ Now() DateTime
 The Now operator returns the date and time of the start timestamp associated with the evaluation request. Now is defined in this way for two reasons:
 
 1.  The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
-2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone information as the data delivered with the evaluation request.
+2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
 
 [[same-as-1]]
 === Same As
