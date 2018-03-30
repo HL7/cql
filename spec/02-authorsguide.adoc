@@ -330,7 +330,7 @@ define InInitialPopulation:
 context Population
 
 define PopulationCount:
-  Count(InInitialPopulation)
+  Count(InInitialPopulation IP where IP is true)
 ----
 
 In the above example, the [.id]#PopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.

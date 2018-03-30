@@ -31,6 +31,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1553[1553]: Clarified that parameter defaults must be compile-time evaluable
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1555[1555]: Relaxed semantics of conversion failures to return null instead of run-time errors
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1556[1556]: Clarify semantics for string overload of valueset membership operator (in)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1560[1560]: Corrected population context example
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 
