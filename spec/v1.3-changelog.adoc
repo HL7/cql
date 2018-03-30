@@ -29,6 +29,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1549[1549]: Publish CQL as a web-based specification
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1552[1552]: Clarified that ELM and CQL do not prescribe short-circuit evaluation
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1553[1553]: Clarified that parameter defaults must be compile-time evaluable
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1555[1555]: Relaxed semantics of conversion failures to return null instead of run-time errors
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
 

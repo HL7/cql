@@ -470,7 +470,7 @@ convert to<T>(argument Any) T
 
 *Description:*
 
-The convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. Note that use of this operator may result in a run-time exception being thrown if there is no valid conversion from the actual value to the target type.
+The convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. If there is no valid conversion from the actual value to the target type, the result is null.
 
 The following table lists the conversions supported in CQL:
 
@@ -566,7 +566,7 @@ Table 9‑F
 
 Note that the operator will ignore case when interpreting the string as a Boolean value.
 
-If the input cannot be interpreted as a valid Boolean value, a run-time error is thrown.
+If the input cannot be interpreted as a valid Boolean value, the result is null.
 
 If the argument is null, the result is null.
 
@@ -612,7 +612,7 @@ For example, the following are valid string representations for date values:
 '2014-01-01' // January 1^st^, 2014
 ----
 
-If the input string is not formatted correctly, or does not represent a valid date value, a run-time error is thrown.
+If the input string is not formatted correctly, or does not represent a valid date value, the result is null.
 
 As with date literals, date values may be specified to any precision.
 
@@ -648,7 +648,7 @@ For example, the following are valid string representations for date/time values
 '2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00)
 ----
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, a run-time error is thrown.
+If the input string is not formatted correctly, or does not represent a valid date/time value, the result is null.
 
 As with date/time literals, date/time values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
 
@@ -679,7 +679,7 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, a run-time error is thrown.
+If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is null.
 
 If the argument is null, the result is null.
 
@@ -706,7 +706,7 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, a run-time error is thrown.
+If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is null.
 
 If the argument is null, the result is null.
 
@@ -737,7 +737,7 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, a run-time error is thrown.
+If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is null.
 
 For the Integer and Decimal overloads, the operator returns a quantity with the value of the argument and a unit of '1' (the default unit).
 
@@ -763,6 +763,10 @@ The ToRatio operator converts the value of its argument to a Ratio value. The op
 ----
 
 where <quantity> is the format used to by the ToQuantity operator.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Ratio value, the result is null.
+
+If the argument is null, the result is null.
 
 [[tostring]]
 === ToString
@@ -828,7 +832,7 @@ For example, the following are valid string representations for time-of-day valu
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
 ----
 
-If the input string is not formatted correctly, or does not represent a valid time-of-day value, a run-time error is thrown.
+If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is null.
 
 As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone is supplied, the timezone of the evaluation request timestamp is assumed.
 

@@ -683,14 +683,14 @@ The explicit convert can be used to convert a value from one type to another. Fo
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
 ----
 
-If the conversion cannot be performed, a run-time error will be thrown. For example:
+If the conversion cannot be performed, the result is null. For example:
 
 [source,cql]
 ----
 convert 'Foo' to Integer
 ----
 
-will result in an error. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
+will result in null. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
 
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
