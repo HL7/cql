@@ -12,7 +12,7 @@
 	"tool": "jekyll",
 	"resources": {
 	},
-	"canonicalBase": "http://hl7.org/cql",
+	"canonicalBase": "http://cql.hl7.org",
 	"version": "3.0.1",
 	"source": "ig.xml"
 }

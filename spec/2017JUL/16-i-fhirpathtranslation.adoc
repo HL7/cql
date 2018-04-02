@@ -1,6 +1,6 @@
 [[appendix-i-fhirpath-function-translation]]
 = Appendix I – FHIRPath Function Translation
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

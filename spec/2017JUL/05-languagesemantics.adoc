@@ -1,6 +1,6 @@
 [[language-semantics]]
 = 5. Language Semantics
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

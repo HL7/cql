@@ -1,6 +1,6 @@
 [[appendix-d-references]]
 = Appendix D – References
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

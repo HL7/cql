@@ -1,6 +1,6 @@
 [[appendix-b-cql-reference]]
 = Appendix B – CQL Reference
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

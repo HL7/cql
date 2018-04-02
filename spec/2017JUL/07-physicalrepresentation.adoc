@@ -1,6 +1,6 @@
 [[physical-representation]]
 = 7. Physical Representation
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

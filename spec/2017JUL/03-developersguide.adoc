@@ -1,6 +1,6 @@
 [[developers-guide]]
 = 3. Developer’s Guide
-:page-layout: current
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:
