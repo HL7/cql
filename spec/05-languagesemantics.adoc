@@ -348,7 +348,7 @@ The following sketch details an implementation plan for any query using these pr
 4.  For each without clause, use a Filter and express the without in terms of a Not Exists in the condition of the Filter.
 5.  If the return clause is specified, use a ForEach to produce the result of the return. If the return clause specifies Distinct, also attach a Distinct operation to the result.
 6.  If the sort clause is specified, use a Sort operation to produce the final sorted output.
-
++
 Using this sketch, the evaluation of a query can be performed by pipelining the query into a series of more primitive operations that can be implemented more easily. This approach also lends itself to translation and/or optimization if necessary.
 
 [[timing-calculations]]
@@ -364,7 +364,6 @@ This section provides precise definitions for the terms involved in dealing with
 [cols=",,",options="header",]
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Term |Definition |Notes
-|Date interval |Part of the time axis bounded by two Date values. |A Date interval comprises all Date values between the two boundary Dates and, unless otherwise stated, the boundary Date values themselves.
 |DateTime interval |Part of the time axis bounded by two DateTime values. |A DateTime interval comprises all DateTime values between the two boundary DateTimes and, unless otherwise stated, the boundary DateTime values themselves.
 |Duration |Quantity attributed to a DateTime interval, the value of which is equal to the difference between the time points of the final instant and the initial instants of the time interval. |In case of discontinuities in the time scale, such as a leap second or the change from winter time to summer time and back, the computation of the duration requires the subtraction or addition of the change of duration of the discontinuity.
 |Nominal duration |Duration expressed in years, months, or days. |The duration of a calendar year, a calendar month, or a calendar day depends on its position in the calendar. Therefore, the exact duration of a nominal duration can only be evaluated if the duration of the calendar years, calendar months, or calendar days used is known.
@@ -828,7 +827,7 @@ Implementation of these semantics can be simplified by recognizing that all the 
 ** =, <, >, \<=, >=, +, -, unary +/-, *, /
 ** implicit conversion between integer point values and uncertainties
 * Precision-based duration and difference between date/times
-
++
 All the other operations and semantics can be achieved using only these primitives. For example, given _A_ and _B_, both date/time values, the comparison:
 
 [source,cql]

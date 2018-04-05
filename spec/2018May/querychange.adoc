@@ -1,5 +1,5 @@
 = Query Change Proposal
-:page-layout: current
+:page-layout: 2018May
 
 The current query syntax is defined as:
 

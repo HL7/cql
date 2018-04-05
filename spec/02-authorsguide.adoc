@@ -180,17 +180,7 @@ The default value for a parameter is optional, but if no default is provided, th
 parameter MeasurementPeriod Interval<DateTime>
 ----
 
-If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be null.
-
-In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
-
-. Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
-. Parameter defaults cannot reference expressions or functions defined in the current library
-. Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations
-. Parameter defaults cannot reference other parameters
-
-In other words, the value for the default of a parameter must be able to be calculated at compile-time.
+If a parameter definition does not indicate a default value, the parameter is considered _required_, meaning that a value must be supplied by the evaluation environment, typically as part of the evaluation request.
 
 [[context]]
 === Context
@@ -330,7 +320,7 @@ define InInitialPopulation:
 context Population
 
 define PopulationCount:
-  Count(InInitialPopulation IP where IP is true)
+  Count(InInitialPopulation)
 ----
 
 In the above example, the [.id]#PopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.
@@ -415,7 +405,7 @@ For example:
 [source,cql]
 ----
 [Encounter: "Inpatient"] E
-  return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
+  return Tuple \{ id: E.identifier, lengthOfStay: duration in days of E.period }
 ----
 
 This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the `id` of the encounter as well as a `lengthOfStay` element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections.
@@ -434,14 +424,11 @@ This example returns inpatient encounters, sorted by period.
 
 Calculated values can also be used to determine the sort, ascending ([.kw]#asc#) or descending ([.kw]#desc#), as in:
 
-[source,cql]
-----
-[Encounter: "Inpatient"] E
-  return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
-    sort by lengthOfStay desc
-----
+[Encounter: "Inpatient"] E +
+return Tuple \{ id: E.identifier, lengthOfStay: duration in days of E.period } +
+sort by lengthOfStay desc
 
-Note that the properties that can be specified within the sort clause are determined by the result type of the query. In the above example, `lengthOfStay` can be referenced because it is introduced in the return clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
+Note that the properties that can be specified within the sort clause are determined by the result type of the query. In the above example, `lengthOfStay` can be referenced because it is introduced in the return clause.
 
 If no ascending or descending specifier is provided, the order is ascending.
 
@@ -557,7 +544,7 @@ Note that the query construct in CQL supports other clauses that are not discuss
 CQL supports several categories of values:
 
 * Simple values, such as strings, numbers, and dates
-* Clinical values, such as quantities, ratios, and valuesets
+* Clinical values, such as quantities and valuesets
 * Structured values (called tuples), such as Medications, Encounters, and Patients
 * Lists, which can contain any number of elements of the same type
 * Intervals, which define ranges of ordered values, such as numbers or dates
@@ -605,7 +592,6 @@ CQL supports several types of simple values:
 |Integer |16, -28
 |Decimal |100.015
 |String |'pending', 'active', 'complete'
-|Date |@2014-01-25
 |DateTime |@2014-01-25, +
 @2014-01-25T14:30:14.559
 |Time a|
@@ -651,21 +637,10 @@ Note that if the value to be represented contains a single-quote, use a backslas
 'patient\'s condition is normal'
 ----
 
-Comparison of string values in CQL is case-sensitive, meaning that the strings 'patient' and 'Patient' are not equal:
+[[datetime-and-time]]
+==== DateTime and Time
 
-[source,cql]
-----
-'Patient' = 'Patient'
-'Patient' != 'patient'
-'Patient' ~ 'patient'
-----
-
-For case- and locale-insensitive comparison, use the equivalent (~) operator.
-
-[[date-datetime-and-time]]
-==== Date, DateTime, and Time
-
-CQL supports the representation of Date, DateTime, and Time values.
+CQL supports the representation of both DateTime and Time values.
 
 DateTime values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. DateTime values are specified using an at-symbol (@) followed by an ISO-8601 textual representation of the DateTime value:
 
@@ -673,13 +648,6 @@ DateTime values are used to represent an instant along the timeline, known to at
 ----
 @2014-01-25
 @2014-01-25T14:30:14.559
-----
-
-Date values are used to represent only dates on a calendar, irrespective of the time of day. Date values are specified using an at-symbol (@) followed by an ISO-8601 textual representation of the Date value:
-
-[source,cql]
-----
-@2014-01-25
 ----
 
 Time values are used to represent a time of day, independent of the date. Time value must be known to at least the hour precision, and potentially to the millisecond precision. Time values are specified using at-symbol (@) followed by an ISO-8601 textual representation of the Time value:
@@ -692,16 +660,16 @@ Time values are used to represent a time of day, independent of the date. Time v
 
 Note that the Time value literal format is identical to the time value portion of the DateTime literal format.
 
-For both DateTime and Time values, timezone may be specified as either UTC time (Z), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
+For both DateTime and Time values, timezone may be specified as either UTC time (Z), or as a timezone offset. If no timezone is specified, the timezone of the evaluation request timestamp is used.
 
 For more information on the use of date/time values within CQL, refer to the Date/Time Operators section.
 
-Specifically, because Date, DateTime, and Time values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date/time operations, refer to the Comparing Dates and Times section.
+Specifically, because DateTime and Time values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date/time operations, refer to the Comparing Dates and Times section.
 
 [[clinical-values]]
 === Clinical Values
 
-In addition to simple values, CQL supports some types of values that are specific to the clinical quality domain. For example, CQL supports _codes_, _concepts_, _quantities_, _ratios_, and _valuesets_.
+In addition to simple values, CQL supports some types of values that are specific to the clinical quality domain. For example, CQL supports _codes_, _concepts_, _quantities_, and _valuesets_.
 
 [[quantities]]
 ==== Quantities
@@ -729,24 +697,11 @@ seconds
 milliseconds
 ----
 
-In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) unit code using the string representation of the UCUM code immediately following the numeric value, as shown in the first example in this section. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) unit code using the string representation of the UCUM code immediately following the numeric value, as shown in the first example in this section. UCUM codes can be specified in the case-sensitive (c/s) or case-insenstive form (c/i).
 
 For quantities, number can be an integer or decimal. Note however that most operations involving time-based quantities ignore the decimal portion of a time-based quantity.
 
 For a discussion of the operations available for quantities, see the Quantity Operators section.
-
-[[ratios]]
-==== Ratios
-
-A ratio is a relationship between two quantities, expressed in CQL using standard mathematical notation:
-
-[source,cql]
-----
-1:128
-5 'mg'/10 'mL'
-----
-
-For a discussion of the operations available for ratios, see the Ratio Operators section.
 
 [[code]]
 ==== Code
@@ -878,7 +833,7 @@ For example, the following expression retrieves the first Condition with a code 
 [source,cql]
 ----
 define FirstPharyngitis:
-  First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
+  First([Condition: "Acute Pharyngitis"] C sort by C.onsetDateTime desc)
 ----
 
 The values of the elements of a tuple can be accessed using a dot qualifier (.) followed by the name of the element:
@@ -902,7 +857,7 @@ If the tuple is of a specific type, the name of the type can be used instead of 
 define PatientExpression: Patient { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
-If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be null.
+If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element.
 
 Note that tuples can contain other tuples, as well as lists:
 
@@ -1045,7 +1000,7 @@ point from Interval[1, 1] // Results in 1 +
 point from Interval[1, 5] // Invalid extractor, this will result in an error
 ----
 
-Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
+Attempting to use on a non-unit-interval will result in a run-time error.
 
 [[operations]]
 == Operations
@@ -1173,8 +1128,6 @@ INRResult > 5 or DischargedOnOverlapTherapy
 
 Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard Boolean (two-valued) logic also hold. The complete semantics for each operator are described in the Logical Operators section of Appendix B – CQL Reference.
 
-To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
-
 [[arithmetic-operators]]
 === Arithmetic Operators
 
@@ -1219,16 +1172,15 @@ Operations on date and time data are an essential component of expressing clinic
 [[constructing-datetime-values]]
 ==== Constructing Date/Time Values
 
-In addition to the literals described in the Date, DateTime, and Time section, the Date/Time operators allow for the construction of specific date/time values based on the values for their components. For example:
+In addition to the literals described in the DateTime and Time section, the DateTime and Time operators allow for the construction of specific date/time values based on the values for their components. For example:
 
 [source,cql]
 ----
-Date(2014, 7, 5)
 DateTime(2014, 7, 5)
 DateTime(2014, 7, 5, 4, 0, 0, 0, -7)
 ----
 
-The first example constructs the Date July 5, 2014. The second example constructs the DateTime July 5, 2014. The third example constructs a DateTime of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
+The first example constructs the DateTime July 5, 2014. The second example constructs a DateTime of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
 
 The DateTime operator takes the following arguments:
 
@@ -1259,7 +1211,7 @@ DateTime(null, null, 11) // invalid
 
 The first three expressions above are valid, constructing dates with a specified precision of years, months, and days, respectively. However, the fourth expression is invalid, because it attempts to create a date with a day but no year or month component.
 
-The only component that is ever defaulted is the timezone offset component. If no timezone offset component is supplied, the timezone offset component is defaulted to the timezone offset of the timestamp associated with the evaluation request.
+The only component that is ever defaulted is the timezone component. If no timezone component is supplied, the timezone component is defaulted to the timezone of the timestamp associated with the evaluation request.
 
 The Time operator takes the following arguments:
 
@@ -1275,7 +1227,7 @@ The Time operator takes the following arguments:
 
 Table 2‑L
 
-As with the DateTime operator, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the DateTime operator, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone is not supplied, it will be defaulted to the timezone of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
@@ -1291,12 +1243,12 @@ Table 2‑M
 
 The current date and time operators are defined based on the timestamp of the evaluation request for two reasons:
 
-1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now(), Today(), or TimeOfDay() will always return the same result within the same evaluation (determinism).
-2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone information as the data delivered with the evaluation request.
+1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now() or Today() will always return the same result within the same evaluation (determinism).
+2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same time zone information as the data delivered with the evaluation request.
 
-By defining the date construction operators in this way, most clinical logic can safely ignore timezone offset information, and the logic will be evaluated with the expected semantics. However, if timezone offset information is relevant to a particular calculation, it can still be accessed as a component of each datetime value.
+By defining the date construction operators in this way, most clinical logic can safely ignore timezone information, and the logic will be evaluated with the expected semantics. However, if timezone information is relevant to a particular calculation, it can still be accessed as a component of each datetime value.
 
-In addition, all operations on dates and times are defined to take timezone offset information into account, ensuring that datetime operations perform correctly and consistently.
+In addition, all operations on dates and times are defined to take timezone information into account, ensuring that datetime operations perform correctly and consistently.
 
 In addition to date and time values, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
@@ -1331,7 +1283,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression but that no attempt is made to enforce singular or plural usage.
 
-Note also that the UCUM time-period units can be used when expressing duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, calculations involving durations shall round using calendar semantics as specified in ISO8601.
+Note also that the UCUM time-period units can be used when expressing duration quantities.
 
 [[comparing-dates-and-times]]
 ==== Comparing Dates and Times
@@ -1434,7 +1386,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 [cols=",,",options="header",]
 |==================================================================================
 |Component |Description |Result Type
-|date from X |Extracts the date of its argument (with no time components) |Date
+|date from X |Extracts the date of its argument (with no time components) |DateTime
 |time from X |Extracts the time of its argument |Time
 |year from X |Extracts the year component its argument |Integer
 |month from X |Extracts the month component of its argument |Integer
@@ -1448,12 +1400,12 @@ These examples extract the date from X, the year from X, and the minute from X. 
 
 Table 2‑O
 
-Note that if X is null, the result is null. If a date/time value does not have a particular component specified, extracting that component will result in null. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the default timezone offset, not null.
+Note that if X is null, the result is null. If a date/time value does not have a particular component specified, extracting that component will result in null. Note also that if the timezone component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone of the evaluation request, the result of extracting the timezone component will be the default timezone, not null.
 
 [[datetime-arithmetic]]
 ==== Date/Time Arithmetic
 
-By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols ([.sym]#+# and [.sym]#-#) are used for this purpose. For example:
+By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols (+ and -) are used for this purpose. For example:
 
 [source,cql]
 ----
@@ -1547,8 +1499,6 @@ For calculations involving weeks, Sunday is considered the first day of the week
 
 In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in null rather than true or false. For a detailed discussion of the behavior of uncertainties, refer to the Uncertainty section.
 
-When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp.
-
 If either or both arguments are null, the result is null.
 
 For a detailed set of examples of calculating time intervals, please refer to Appendix H - Time Interval Calculation Examples.
@@ -1628,23 +1578,21 @@ width of Interval[3, 5]
 
 The first expression returns 2 (ending boundary of 4, minus the starting boundary of 3, plus 1), while the second expression returns 3 (ending boundary of 5, minus the starting boundary of 3, plus 1). In other words, the width operator returns the number of points that are included in the interval.
 
-For date/time intervals, CQL defines a duration of operator as well as a difference of operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
+For date/time intervals, CQL defines a duration in operator as well as a difference in operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
 
 [source,cql]
 ----
 duration in days of X
-difference in days of X
 ----
 
-These expressions are equivalent to:
+is equivalent to:
 
 [source,cql]
 ----
-duration in days between start of X and end of X
-difference in days between start of X and end of X
+days between start of X and end of X
 ----
 
-The first expression returns the number of whole days between the starting and ending dates of the interval X, while the second expression returns the number of day boundaries crossed between the starting and ending dates of the interval X.
+This returns the number of whole days between the starting and ending dates of the interval X.
 
 [[comparing-intervals]]
 ==== Comparing Intervals
@@ -1804,14 +1752,14 @@ Because CQL supports date/time values with varying levels of precision, interval
 
 [source,cql]
 ----
-Interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
+interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
 ----
 
 However, if the boundaries of the interval are specified to a lower precision, the interval is interpreted as beginning at some time within the most specified precision, and ending at some time within the most specified precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime in the year 2015:
 
 [source,cql]
 ----
-Interval[DateTime(2014), DateTime(2015)]
+interval[DateTime(2014), DateTime(2015)]
 ----
 
 When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date/time values.
@@ -1820,7 +1768,7 @@ In addition, the boundaries may even be specified to different levels of precisi
 
 [source,cql]
 ----
-Interval[DateTime(2014), DateTime(2015, 1, 1)]
+interval[DateTime(2014), DateTime(2015, 1, 1)]
 ----
 
 [[list-operators]]
@@ -1850,8 +1798,8 @@ If a list contains a single element, the singleton from operator can be used to 
 
 [source,cql]
 ----
-singleton from { 1 }
-singleton from { 1, 2, 3 }
+singleton from \{ 1 }
+singleton from \{ 1, 2, 3 }
 ----
 
 Using singleton from on a list with multiple elements will result in a run-time error.
@@ -2060,15 +2008,6 @@ Figure 2‑D
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
-In addition, CQL supports an expand operator that determines the list of _unit_ intervals from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition EffectivePeriods contains the list of intervals corresponding to prescription periods:
-
-[source,cql]
-----
-expand EffectivePeriods per day
-----
-
-This expression would result in the list of unit intervals, one for each day in the intervals in the input.
-
 [[aggregate-operators]]
 === Aggregate Operators
 
@@ -2145,22 +2084,9 @@ define IsTall: height > 2 'm'
 
 This formulation also has the advantage of allowing for the case that the actual value of height is expressed in inches.
 
-CQL supports the standard comparison operators (= != ~ !~ < \<= > >=) and the standard arithmetic operators (+ - * /) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as Min, Max, Sum, etc.
+CQL supports the standard comparison operators (= != < \<= > >=) and the standard arithmetic operators (+ - * /) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as Min, Max, Sum, etc.
 
-Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return null if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
-
-[[ratio-operators]]
-==== Ratio Operators
-
-All ratios in CQL have _numerator_ and _denominator_ components, which can be accessed in the same way as properties. For example:
-
-[source,cql]
-----
-define TitreRatio: 1:128
-define TitreNumerator: TitreRatio.numerator // 1
-----
-
-CQL supports the equality operators (= != ~ !~) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components.
+Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and throw an error if it is not capable of normalizing the quantities involved in a given expression to a common unit.
 
 [[terminology-operators]]
 ==== Terminology Operators
@@ -2452,7 +2378,7 @@ We use the same approach. The equivalent retrieve for the first criteria is:
 [source,cql]
 ----
 exists ([DiagnosticOrder: "Pregnancy Test"] O
-  where Last(O.event E where E.status = 'completed' sort by date).date
+  where Last(O.event E where E.status = 'completed' sort by E.date).date
     during MeasurementPeriod)
 ----
 
@@ -2476,7 +2402,7 @@ define InInitialPopulation:
         where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
       ...
       or exists ([DiagnosticOrder: "Pregnancy Test"] O
-        where Last(O.event E where E.status = 'completed' sort by date).date
+        where Last(O.event E where E.status = 'completed' sort by E.date).date
           during MeasurementPeriod)
       ...
     )
@@ -2511,7 +2437,7 @@ define SexuallyActive:
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   ...
   or exists ([DiagnosticOrder: "Pregnancy Test"] O
-    where Last(O.event E where E.status = 'completed' sort by date).date
+    where Last(O.event E where E.status = 'completed' sort by E.date).date
       during MeasurementPeriod)
   ...
 

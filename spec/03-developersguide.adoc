@@ -68,14 +68,12 @@ Literals provide for the representation of basic values within CQL. The followin
 |Literal |Description
 |Null |The null literal (null)
 |Boolean |The boolean literals (true and false)
-|Integer |Sequences of digits in the range 0..2^32^-1
-|Decimal |Sequences of digits with a decimal point, in the range 0.0.. 10^28^ –10^-8^
+|Integer |Sequences of digits in the range 0..2^32-1
+|Decimal |Sequences of digits with a decimal point, in the range 0.0.. 10^28 –10^-8
 |String |Strings of any character enclosed within single-ticks (')
-|Date |The at-symbol (@) followed by an ISO-8601 compliant representation of a date
 |DateTime |The at-symbol (@) followed by an ISO-8601 compliant representation of a date/time
 |Time |The at-symbol (@) followed by an ISO-8601 compliant representation of a time
 |Quantity |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
-|Ratio |A ratio of two quantities, separated by a colon (:)
 |============================================================================================================
 
 Table 3‑B
@@ -161,7 +159,6 @@ end
 ends
 except
 exists
-expand
 false
 flatten
 from
@@ -201,7 +198,6 @@ or less
 or more
 overlaps
 parameter
-per
 predecessor
 private
 properly
@@ -306,11 +302,11 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |Primary |. [] ()
 |Conversion Phrase |convert..to
 |Unary Arithmetic |unary +/-
-|Extractor |start/end/difference/duration/width/successor/predecessor of +
+|Extractor |start/end/duration/width/successor/predecessor of +
 _component_/singleton from
 |Exponentiation |^
 |Multiplicative |* / div mod
-|Additive |+ - &
+|Additive |+ -
 |Conditional |if..then..else +
 case..else..end
 |Unary List |distinct collapse flatten
@@ -319,7 +315,6 @@ case..else..end
 |Unary Logical |not exists
 |Between |between +
 _precision_ between +
-duration in _precision_ between +
 difference in _precision_ between
 |Comparison |\<= < > >=
 |Timing Phrase |same as +
@@ -332,8 +327,7 @@ within
 |Membership |in contains
 |Conjunction |and
 |Disjunction |or xor
-|Implication |implies
-|Binary List |union intersect except expand
+|Binary List |union intersect except
 |==============================================================
 
 Table 3‑D
@@ -458,7 +452,6 @@ All the system-defined types derive directly from System.Any. The primitive type
 |Type |Range |Step Size
 |Boolean |false..true |N/A
 |Integer |-2^31^..2^31^ – 1 |1
-|Date |@0001-01-01..@9999-12-31 |1 day
 |DateTime |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
 |Decimal |-10^28^ – 10^-8^..10^28^ – 10^-8^ |10^-8^
 |String |All strings of length 2^31^-1 or less. |N/A
@@ -475,7 +468,6 @@ In addition, CQL defines several structured types to facilitate representation a
 |Code |Represents a clinical terminology code, including the code identifier, system, version, and display.
 |Concept |Represents a single concept as a list of equivalent Codes.
 |Quantity |Represents a quantity with a dimension, specified in UCUM units.
-|Ratio |Represents a ratio between two quantities
 |==========================================================================================================
 
 Table 3‑F
@@ -618,7 +610,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Decimal, DateTime, Time, and Quantity.
 
 The type of the null selector is Any.
 
@@ -687,14 +679,14 @@ The explicit convert can be used to convert a value from one type to another. Fo
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
 ----
 
-If the conversion cannot be performed, the result is null. For example:
+If the conversion cannot be performed, a run-time error will be thrown. For example:
 
 [source,cql]
 ----
 convert 'Foo' to Integer
 ----
 
-will result in null. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
+will result in an error. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
 
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
@@ -703,20 +695,13 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |ToInteger(String) |Converts the string representation of an integer value to an Integer value using the format (+\|-)d*
 |ToDecimal(Integer) |Converts an Integer value to an equivalent Decimal value
 |ToDecimal(String) |Converts the string representation of a decimal value to a Decimal value using the format (+\|-)d*.d*
-|ToQuantity(Decimal) |Converts a Decimal value to a Quantity with a default unit ('1')
-|ToQuantity(Integer) |Converts an Integer value to a Quantity with a default unit ('1') 
 |ToQuantity(String) |Converts the string representation of a quantity value to a Quantity value using the format (+\|-)d*.d*'units'
-|ToRatio(String) |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
-|ToDate(String) |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
-|ToDateTime(Date) |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
 |ToDateTime(String) |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
 |ToTime(String) |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff(+\|-)hh:mm
 |ToString(Boolean) |Converts a Boolean value to its string representation (true\|false)
 |ToString(Integer) |Converts an Integer value to its string representation
 |ToString(Decimal) |Converts a Decimal value to its string representation
 |ToString(Quantity) |Converts a Quantity value to its string representation
-|ToString(Ratio) |Converts a Ratio value to its string representation
-|ToString(Date) |Converts a Date value to its string representation
 |ToString(DateTime) |Converts a DateTime value to its string representation
 |ToString(Time) |Converts a Time value to its string representation
 |ToConcept(Code) |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
@@ -732,21 +717,19 @@ For a complete description of these conversion operators, refer to the Type Oper
 
 In addition to the explicit conversion operators discussed above, CQL supports the implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
-[cols=",,,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|Date |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|DateTime |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
-|Time |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|Code |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|Concept |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|List<Code> | | | | | | | | | | |Explicit |N/A
+|From\To |Boolean |Integer |Decimal |Quantity |String |Datetime |Time |Code |Concept |List(Code)
+|Boolean |N/A |- |- |- |Explicit |- |- |- |- |-
+|Integer |- |N/A |Implicit |- |Explicit |- |- |- |- |-
+|Decimal |- |- |N/A |- |Explicit |- |- |- |- |-
+|Quantity |- |- |- |N/A |Explicit |- |- |- |- |-
+|String |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |- |- |-
+|Datetime |- |- |- |- |Explicit |N/A |- |- |- |-
+|Time |- |- |- |- |Explicit |- |N/A |- |- |-
+|Code |- |- |- |- |- |- |- |N/A |Implicit |-
+|Concept |- |- |- |- |- |- |- |- |N/A |Explicit
+|List(Code) | | | | | | | | |Implicit |N/A
 |===============================================================================================
 
 Table 3‑H
@@ -842,10 +825,9 @@ Because of the possibility that a given invocation signature may be resolved to 
 1.  Exact match – If the invocation type is an exact match to the declared type of the argument
 2.  Subtype – If the invocation type is a subtype of the declared type of the argument
 3.  Compatible – If the invocation type is compatible with the declared type of the argument (e.g., the invocation type is Any)
-4.  Implicit Conversion To Simple Type – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a simple type
-5.  Implicit Conversion To Class Type - An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a class type
-6.  Demotion – The invocation type of the argument can be demoted to the declared type
-7.  Promotion – The invocation type of the argument can be promoted to the declared type
+4.  Implicit Conversion – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument
+5.  Demotion – The invocation type of the argument can be demoted to the declared type
+6.  Promotion – The invocation type of the argument can be promoted to the declared type
 
 These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path should be used.
 
@@ -1072,6 +1054,7 @@ The CQL query construct provides for the ability to introduce named expressions 
         dailyDose: dailyDose,
         mme: Quantity { value: dailyDose.value * factor, unit: dailyDose.unit + '/d' }
       }
+  }
 ----
 
 In this query, the same logic defined by the dailyDose expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
@@ -1133,7 +1116,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
     and P.effectiveTime starts during E.period
     and duration in days of (W.effectiveTime intersect P.effectiveTime) >= 5
     and Last([Observation: "INR Value"] I
-      where I.applies during P.effectiveTime sort by applies).value >= 2
+      where I.applies during P.effectiveTime sort by I.applies).value >= 2
 ----
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
@@ -1150,7 +1133,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
     overlapDuration: duration in days of (W.effectiveTime intersect P.effectiveTime),
     endingINR:
       Last([Observation: "INR Value"] I
-        where I.applies during P.effectiveTime sort by applies
+        where I.applies during P.effectiveTime sort by I.applies
       ).value
   where W.effectiveTime starts during E.period
     and P.effectiveTime starts during E.period
@@ -1199,7 +1182,7 @@ The above example also illustrates that queries need not be based on lists of tu
 [source,cql]
 ----
 define FirstInpatientEncounter:
-  First([Encounter] E where E.class = 'inpatient' sort by period.start desc)
+  First([Encounter] E where E.class = 'inpatient' sort by E.period.start desc)
 
 define RedefinedEncounter:
   FirstInpatientEncounter E
@@ -1226,7 +1209,7 @@ CQL provides for the definition of functions. A function in CQL is a named expre
 [source,cql]
 ----
 define function CumulativeDuration(Intervals List<Interval<DateTime>>):
-  Sum((collapse Intervals) X return all duration in days of X)
+  Sum((collapse Intervals) X return duration in days of X)
 ----
 
 This statement defines a function named CumulativeDuration that takes a single argument named Intervals of type List<Interval<DateTime>>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:

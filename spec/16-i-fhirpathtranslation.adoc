@@ -7,11 +7,6 @@
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 
-[[aggregate]]
-== .aggregate()
-
-X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
-
 [[all]]
 == .all()
 
@@ -37,6 +32,13 @@ X.anyFalse() === AnyTrue(X A return not A)
 
 X.anyTrue() === AnyTrue(X)
 
+[[as-1]]
+== .as()
+
+X.as(<type>) === X as <type>
+
+X.as(<type>) === X a where a is <type> return a as <type>
+
 [[children-1]]
 == .children()
 
@@ -46,13 +48,6 @@ X.anyTrue() === AnyTrue(X)
 == .combine()
 
 X.combine(Y) === Flatten(\{ X, Y })
-
-[[conformsto]]
-== .conformsTo()
-
-X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
-
-Note that this mapping relies on an external library, FHIRSupport to provide conformance validation checking.
 
 [[contains-2]]
 == .contains()
@@ -96,11 +91,6 @@ X.exists(<condition>) === exists (X $this where <condition>)
 
 X.first() === First(X)
 
-[[hasvalue]]
-== .hasValue()
-
-X.hasValue() === X is not null
-
 [[iif]]
 == .iif()
 
@@ -113,45 +103,15 @@ X.iif(Y, Z) === if X then Y else Z
 
 X.indexOf(Y) === PositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of IndexOf
 
-[[isboolean]]
-== .isBoolean()
+[[is-1]]
+== .is()
 
-X.isBoolean() === IsBoolean(X)
+X.is(<type>) === X is <type>
 
 [[isdistinct]]
 == .isDistinct()
 
 X.isDistinct() === Count(X) = Count(distinct X)
-
-[[isdate]]
-== .isDate()
-
-X.isDate() === IsDate(X)
-
-[[isdatetime]]
-== .isDateTime()
-
-X.isDateTime() === IsDateTime(X)
-
-[[isdecimal]]
-== .isDecimal()
-
-X.isDecimal() === IsDecimal(X)
-
-[[isinteger]]
-== .isInteger()
-
-X.isInteger() === IsInteger(X)
-
-[[isquantity]]
-== .isQuantity()
-
-X.isQuantity() === IsQuantity(X)
-
-[[istime]]
-== .isTime()
-
-X.isTime() === IsTime(X)
 
 [[last-1]]
 == .last()
@@ -173,15 +133,10 @@ X.length() === Length(X)
 
 X.matches(Y) === Matches(X, Y)
 
-[[memberof]]
-== .memberOf()
-
-X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
-
 [[oftype]]
 == .ofType()
 
-X.ofType(T) === X $this where $this is T return $this as <type>
+X.ofType(T) === X $this where $this is T
 
 Note that the argument T is required to be a literal string, and is interpreted as the name of a type. For non-named-types, type specifier syntax applies.
 
@@ -252,16 +207,6 @@ X.substring(Y) === SubString(X, Y)
 
 X.substring(Y, Z) === SubString(X, Y, Z)
 
-[[subsumes]]
-== .subsumes()
-
-X.subsumes(Y) === Subsumes(X, Y)
-
-[[subsumedby]]
-== .subsumedBy()
-
-X.subsumedBy(Y) === SubsumedBy(X, Y)
-
 [[supersetof]]
 == .supersetOf()
 
@@ -275,17 +220,12 @@ X.tail() === Slice(X, 1, null)
 [[take-1]]
 == .take()
 
-X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
+X.take(Y) === Slice(X, 0, Y)
 
 [[toboolean-1]]
 == .toBoolean()
 
 X.toBoolean() === ToBoolean(X)
-
-[[tochars]]
-== .toChars()
-
-X.toChars() === ToChars(X)
 
 [[todatetime-1]]
 == .toDateTime()

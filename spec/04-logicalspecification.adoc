@@ -63,7 +63,7 @@ The following table lists the simple value classes available in ELM:
 
 Table 4‑B
 
-The _Literal_ class is used to represent values for simple primitive types: Boolean, String, Integer, Decimal, Date, DateTime, and Time.
+The _Literal_ class is used to represent values for simple primitive types: Boolean, String, Integer, Decimal, DateTime, and Time.
 
 The result type of a _Literal_ is the type of the primitive being represented.
 
@@ -678,6 +678,6 @@ There is an optional severity parameter which allows the severity of the message
 * Warning – The operation produces a warning message that is expected to be made conspicuously available to the calling environment, potentially to the end-user of the logic.
 * Trace – The operation produces an informational message that is expected to be made available to a tracing mechanism such as a debug log in the calling environment.
 * Error – The operation produces a run-time error and return the message to the calling environment. This is the only severity that stops evaluation. All other severities continue evaluation of the expression.
-
++
 If no severity is supplied, a default severity of Message is assumed.
 

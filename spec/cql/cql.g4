@@ -2,7 +2,7 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.3 - May 2018 STU3 Ballot
+ * Version 1.2 - Jan 2017 STU Ballot
  */
 
 import fhirpath;
@@ -15,14 +15,14 @@ library
     :
     libraryDefinition?
     usingDefinition*
-    includeDefinition*
-    codesystemDefinition*
-    valuesetDefinition*
-    codeDefinition*
-    conceptDefinition*
-    parameterDefinition*
-    statement*
-    ;
+	includeDefinition*
+	codesystemDefinition*
+	valuesetDefinition*
+	codeDefinition*
+	conceptDefinition*
+	parameterDefinition*
+	statement*
+	;
 
 /*
  * Definitions
@@ -114,7 +114,7 @@ typeSpecifier
     ;
 
 namedTypeSpecifier
-    : (qualifier '.')* identifier
+    : (modelIdentifier '.')? identifier
     ;
 
 modelIdentifier
@@ -281,7 +281,7 @@ expression
     | 'not' expression                                                                              #notExpression
     | 'exists' expression                                                                           #existenceExpression
     | expression 'properly'? 'between' expressionTerm 'and' expressionTerm                          #betweenExpression
-    | ('duration' 'in')? pluralDateTimePrecision 'between' expressionTerm 'and' expressionTerm      #durationBetweenExpression
+    | pluralDateTimePrecision 'between' expressionTerm 'and' expressionTerm                         #durationBetweenExpression
     | 'difference' 'in' pluralDateTimePrecision 'between' expressionTerm 'and' expressionTerm       #differenceBetweenExpression
     | expression ('<=' | '<' | '>' | '>=') expression                                               #inequalityExpression
     | expression intervalOperatorPhrase expression                                                  #timingExpression
@@ -317,7 +317,6 @@ expressionTerm
     | ('start' | 'end') 'of' expressionTerm                              #timeBoundaryExpressionTerm
     | dateTimeComponent 'from' expressionTerm                            #timeUnitExpressionTerm
     | 'duration' 'in' pluralDateTimePrecision 'of' expressionTerm        #durationExpressionTerm
-    | 'difference' 'in' pluralDateTimePrecision 'of' expressionTerm      #differenceExpressionTerm
     | 'width' 'of' expressionTerm                                        #widthExpressionTerm
     | 'successor' 'of' expressionTerm                                    #successorExpressionTerm
     | 'predecessor' 'of' expressionTerm                                  #predecessorExpressionTerm
@@ -330,7 +329,6 @@ expressionTerm
     | 'if' expression 'then' expression 'else' expression                #ifThenElseExpressionTerm
     | 'case' expression? caseExpressionItem+ 'else' expression 'end'     #caseExpressionTerm
     | ('distinct' | 'collapse' | 'flatten') expression                   #aggregateExpressionTerm
-    | 'expand' expression ('per' (dateTimePrecision | expression))?      #expandExpressionTerm
     ;
 
 caseExpressionItem
@@ -391,10 +389,6 @@ term
     | '(' expression ')'    #parenthesizedTerm
     ;
 
-ratio
-    : quantity ':' quantity
-    ;
-
 literal
         : ('true' | 'false')                                    #booleanLiteral
         | 'null'                                                #nullLiteral
@@ -403,7 +397,6 @@ literal
         | DATETIME                                              #dateTimeLiteral
         | TIME                                                  #timeLiteral
         | quantity                                              #quantityLiteral
-        | ratio                                                 #ratioLiteral
         ;
 
 intervalSelector
@@ -445,8 +438,8 @@ conceptSelector
     ;
 
 identifier
-    : IDENTIFIER
-    | QUOTEDIDENTIFIER
+    : IDENTIFIER | QUOTEDIDENTIFIER
+    // Include here any keyword that should not be a reserved word
     | 'all'
     | 'Code'
     | 'code'
@@ -457,7 +450,7 @@ identifier
     | 'display'
     | 'distinct'
     | 'end'
-    // | 'exists' NOTE: This is excluded because including it causes a significant performance degradation in the ANTLR parser, still looking into a fix for this
+    | 'exists'
     | 'not'
     | 'start'
     | 'time'
