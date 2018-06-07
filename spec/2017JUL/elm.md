@@ -1,5 +1,5 @@
 ---
-layout: 2017JUL
+layout: 2017Jul
 title: Expression Logical Model (ELM)
 ---
 

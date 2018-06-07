@@ -1,0 +1,135 @@
+= Clinical Quality Language (CQL)
+:page-layout: 2017Jul
+
+image:extracted-media/media/image1.png[image,width=144,height=148]
+
+*HL7 Standard: Clinical Quality Language Specification, Release 1 STU2 (CQL 1.2)*
+
+*January 2017*
+
+*HL7 STU Specification*
+
+*Sponsored by:*
+
+____________________________________________________________________________________________________________________________________
+*Clinical Decision Support and Clinical Quality Information Work Groups*
+
+*in collaboration with the Health and Human Services Standards and Interoperability Framework Clinical Quality Framework Initiative*
+____________________________________________________________________________________________________________________________________
+
+Copyright © 2014-2017 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
+
+Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?ref=nav[*IP Compliance Policy*].
+
+*Identifying Information for Specification:*
+
+*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 1 STU2 (CQL 1.2)
+
+*Realm:* Universal
+
+*Ballot Level:* Standard for Trial Use (STU)
+
+*Ballot Cycle:* January 2017
+
+*Specification Date:* May 2017
+
+[cols=",",]
+|==================================================================
+|Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD +
+University of Utah Health Care +
+guilherme.delfiol@utah.edu
+|Co-Chair (CDS): |Robert Jenders, MD, MS +
+jenders@ucla.edu
+|Co-Chair (CDS): |Kensaku Kawamoto, MD, PhD +
+University of Utah Health Care +
+kensaku.kawamoto@utah.edu
+|Co-Chair (CDS): |Howard Strasberg +
+Walters Kluwer Health +
+howard.strasberg@wolterskluwer.com
+|Co-Chair (CQI): |Patricia Craig +
+The Joint Commission +
+pcraig@jointcommission.org
+|Co-Chair (CQI): |Floyd Eisenberg +
+iParsimony LLC +
+FEisenberg@iParsimony.com
+|Co-Chair (CQI): |Chris Millet +
+chris@thelazycompany.com
+|Co-Chair (CQI): |Walter Suarez, MD, MPH +
+Kaiser Permanente +
+walter.q.suarez@kp.org
+|Co-Chair (CQI): a|
+Kanwarpreet Sethi
+
+Lantana Consulting Group
+
+kp.sethi@lantanagroup.com
+
+|Co-Chair (ITS): |Paul Knapp +
+Knapp Consulting Inc. +
+pknapp@pknapp.com
+|Co-Chair (ITS): a|
+Dale Nelson
+
+Lantana Consulting Group
+
+dale.nelson@squaretrends.com
+
+|Co-Chair (ITS): a|
+Andy Stechishin +
+HL7 Canada
+
+andy.stechishin@gmail.com
+
+|Co-Author: a|
+Bryn Rhodes
+
+Database Consulting Group
+
+bryn@databaseconsultinggroup.com
+
+|Co-Author: a|
+Chris Moesel
+
+The MITRE Corporation +
+cmoesel@mitre.org
+
+|Co-Author: a|
+Marc Hadley
+
+The MITRE Corporation
+
+mhadley@mitre.org
+
+|Co-Author: a|
+Mark Kramer
+
+The MITRE Corporation
+
+mkramer@mitre.org
+
+|Co-Author: a|
+Robert Dingwell
+
+The MITRE Corporation
+
+bobd@mitre.org
+
+|Co-Editor: |Aziz Boxwala, PhD +
+Meliorix +
+aziz.boxwala@meliorix.com
+|==================================================================
+
+Acknowledgments
+
+The authors wish to recognize the S&I Framework Clinical Quality Framework Initiative Work Group and the HL7 Clinical Decision Support, Clinical Quality Improvement, and Implementable Technology Specifications Work Groups for their contributions to this document.
+
+Copyrights
+
+This material includes SNOMED Clinical Terms ® (SNOMED CT®), which are used by permission of the International Health Terminology Standards Development Organization (IHTSDO). All rights reserved. SNOMED CT was originally created by The College of American Pathologists. "SNOMED ®" and "SNOMED CT ®" are registered trademarks of the IHTSDO.
+
+This material contains content from LOINC® (http://loinc.org). The LOINC table, LOINC codes, and LOINC panels and forms file are copyright (c) 1995-2011, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and available at no cost under the license at http://loinc.org/terms-of-use.
+
+This material contains content from the Unified Code for Units of Measure (UCUM) (http://unitsofmeasure.org). The UCUM specification is copyright (c) 1999-2013, Regenstrief Institute, Inc. and available at no cost under the license at http://unitsofmeasure.org/trac/wiki/TermsOfUse.
+
+This material contains quality measure content developed by the National Committee for Quality Assurance (NCQA). The measure content is copyright (c) 2008-2013 National Committee for Quality Assurance and used in accordance with the NCQA license terms for non-commercial use.
+
