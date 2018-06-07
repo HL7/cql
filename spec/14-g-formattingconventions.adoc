@@ -10,14 +10,14 @@ This guidance describes syntactic conventions for formatting statements and expr
 * _Whitespace_ - Whitespace defines the separation between all tokens in the language (e.g. spaces, tabs, returns, etc.)
 * _Comment_ - Comments are ignored by the language, allowing for descriptive text to be included
 * _Literal_ - Literals allow basic values to be represented within the language
-* _Symbol_ - Symbols such as +, -, *, and /
-* _Keyword_ - Grammar-recognized keywords such as define and where
+* _Symbol_ - Symbols such as [.sym]#+#, [.sym]#-#, [.sym]#*#, and [.sym]#/#
+* _Keyword_ - Grammar-recognized keywords such as [.id]#define# and [.id]#where#
 * _Identifier_ - User-defined identifiers
 
 [[case-related-conventions]]
 == Case-Related Conventions
 
-CQL is a case-sensitive language, meaning that the grammar uses the case of letters when comparing identifiers and keywords. For example, the keyword define must be expressed with all lower case letters, Define is not recognized. This aspect of CQL encourages consistency and reduces the potential for naming clashes with keywords in the language.
+CQL is a case-sensitive language, meaning that the grammar uses the case of letters when comparing identifiers and keywords. For example, the keyword [.id]#define# must be expressed with all lower case letters, [.id]#Define# is not recognized. This aspect of CQL encourages consistency and reduces the potential for naming clashes with keywords in the language.
 
 This discussion defines the following terms to describe different approaches to casing:
 
@@ -55,7 +55,7 @@ To help maintain readability of CQL, lines should fit reasonably within standard
 [[operators-and-functions-1]]
 == Operators and Functions
 
-CQL distinguishes between _operators_, which use symbols such as +, *, and and, and _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
+CQL distinguishes between _operators_, which use symbols such as [.sym]#+#, [.sym]#*#, and and, [.id]#and# _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
 
 [[operators]]
 === Operators
@@ -141,7 +141,7 @@ Always separate the contents of the tuple with a space:
 { name: 'Patrick', birthDate: @2014-01-01 }
 ----
 
-Do not put a space between the tuple element name and the value specifier (:), but always put a space between the value specifier and the value.
+Do not put a space between the tuple element name and the value specifier ([.sym]#:#), but always put a space between the value specifier and the value.
 
 The Tuple keyword is optional, but this means that the empty tuple has a special construct:
 

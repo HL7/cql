@@ -261,7 +261,7 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
-A quoted identifier is any sequence of characters enclosed in double-quotes ("):
+A quoted identifier is any sequence of characters enclosed in double-quotes ([.sym]#"#):
 
 [source,cql]
 ----
@@ -271,7 +271,7 @@ A quoted identifier is any sequence of characters enclosed in double-quotes ("):
 
 The use of double-quotes allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
 
-To specify a quoted-identifier that includes a double-quote ("), use a backslash to escape the double-quote (\"):
+To specify a quoted-identifier that includes a double-quote ([.sym]#"#), use a backslash to escape the double-quote ([.sym]#\"#):
 
 [source,cql]
 ----
@@ -352,7 +352,7 @@ To encourage consistency and reduce potential confusion, CQL is a case-sensitive
 Define Foo: 1 + 1
 ----
 
-The declaration is illegal because the parser will not recognize Define as a keyword.
+The declaration is illegal because the parser will not recognize [.kw]#Define# as a keyword.
 
 [[libraries-1]]
 == Libraries
@@ -376,7 +376,7 @@ Libraries may reference other libraries to any degree of nesting, so long as no 
 [[access-modifiers]]
 === Access Modifiers
 
-Each component of a library may have an access modifier applied, either public or private. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
+Each component of a library may have an access modifier applied, either [.kw]#public# or [.kw]#private#. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
 
 [[identifier-resolution]]
 === Identifier Resolution
@@ -422,7 +422,7 @@ In this example, QDM is used as the data model. Note the use of quoted attribute
 [[multiple-data-models]]
 === Multiple Data Models
 
-Because CQL allows multiple using declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name Encounter. In general, the resolution process for class names within CQL proceeds as follows:
+Because CQL allows multiple [.kw]#using# declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name [.id]#Encounter#. In general, the resolution process for class names within CQL proceeds as follows:
 
 * If the class name has no qualifier, then each model used in the current library is searched for an exact match.
 ** If an exact match is found in more than one model, the reference is considered ambiguous and an error is thrown that the class reference is ambiguous among the matches found.
@@ -500,7 +500,7 @@ The _named type specifier_ is simply the name of the type. For example:
 parameter Threshold Integer
 ----
 
-This example declares a parameter named Threshold of type Integer.
+This example declares a parameter named [.id]#Threshold# of type [.id]#Integer#.
 
 The _tuple type specifier_ allows the names and types of the elements of the type to be specified. For example:
 
@@ -540,7 +540,7 @@ CQL supports the ability to test whether or not a value is of a given type. For 
 5 is Integer
 ----
 
-returns true because 5 is an Integer.
+returns [.kw]#true# because [.lit]#5# is an [.id]#Integer#.
 
 In general, the _is_ relationship determines whether or not a given type is derived from another type. Given a type T and a type T' derived from type T, the following definitions hold:
 
@@ -563,20 +563,20 @@ For structured types, the supertype is specified as part of the definition of th
 [[choice-types]]
 === Choice Types
 
-CQL also supports the notion of a _choice type_, a type that is defined by a list of component types. For example, an element of a tuple type may be a choice of Integer or String, meaning that the element may contain a value that is either an Integer, or a String.
+CQL also supports the notion of a _choice type_, a type that is defined by a list of component types. For example, an element of a tuple type may be a choice of [.id]#Integer# or [.id]#String#, meaning that the element may contain a value that is either an [.id]#Integer#, or a [.id]#String#.
 
-In addition, choice types can be used to indicate the type of a list of mixed elements, such as the result of a union:
+In addition, choice types can be used to indicate the type of a list of mixed elements, such as the result of a [.kw]#union#:
 
 [source,cql]
 ----
 [Procedure] union [Encounter]
 ----
 
-This example results in a list that contains both Procedures and Encounters, and the resulting type is Choice<Procedure, Encounter>.
+This example results in a list that contains both Procedures and Encounters, and the resulting type is [.id]#Choice<Procedure#, [.id]#Encounter>#.
 
 An expression of a choice type can be used anywhere that a value of any of its component types is expected, and an implicit cast will be used to restrict the choice type to the correct component type.
 
-For example, given an Observation type with an element value of type Choice<String, Code, Integer, Decimal, Quantity>, the following expressions are all valid:
+For example, given an [.id]#Observation# type with an element [.id]#value# of type [.id]#Choice<String#, [.id]#Code#, [.id]#Integer#, [.id]#Decimal#, [.id]#Quantity>#, the following expressions are all valid:
 
 [source,cql]
 ----
@@ -596,17 +596,17 @@ These expressions will result in an implicit cast being applied as follows:
 (Observation.value as Quantity) < 5 'mg'
 ----
 
-The semantics for casting will result in a null if the run-time value of the element is not of the appropriate type.
+The semantics for casting will result in a [.kw]#null# if the run-time value of the element is not of the appropriate type.
 
 When accessing an element of a choice type with structured types as components, any element can be accessed. Note, however, that if the element being accessed is present in multiple components, the resulting expression may be a choice type if the elements have different types.
 
-In addition, the choice type enables the set operations, union, intersect, and except to be generalized to work on lists of different types.
+In addition, the choice type enables the set operations, [.kw]#union#, [.kw]#intersect#, and [.kw]#except# to be generalized to work on lists of different types.
 
-For union, this means that the inputs can be lists of different types of elements, and the type of the result is now a choice type with components of each of the input types. If the input types are the same, the result is a choice with a single component which degenerates to the component type.
+For [.kw]#union#, this means that the inputs can be lists of different types of elements, and the type of the result is now a choice type with components of each of the input types. If the input types are the same, the result is a choice with a single component which degenerates to the component type.
 
-For intersect, this means the inputs can be lists of different types of elements, and the type of the result is a choice with only the types that are common between the input types. Again, if this results in a choice with a single component, it degenerates to the component type.
+For [.kw]#intersect#, this means the inputs can be lists of different types of elements, and the type of the result is a choice with only the types that are common between the input types. Again, if this results in a choice with a single component, it degenerates to the component type.
 
-For except, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
+For [.kw]#except#, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
 
 [[type-inference]]
 === Type Inference
@@ -680,7 +680,7 @@ Conversion is the operation of turning a value from one type into another. For e
 [[explicit-conversion]]
 ==== Explicit Conversion
 
-The explicit convert can be used to convert a value from one type to another. For example, to convert the string representation of a date/time to a DateTime value:
+The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a date/time to a [.id]#DateTime# value:
 
 [source,cql]
 ----
@@ -758,9 +758,9 @@ Although implicit conversions can be performed using the explicit convert, the l
 define MixedMultiply: 1 * 1.0
 ----
 
-The type of the literal 1 is Integer, and the type of the literal 1.0 is Decimal. To infer the type of the expression correctly, the language will implicitly convert the type of the 1 to Decimal by inserting a ToDecimal invocation. The multiplication is then performed on two Decimals, and the result type is Decimal.
+The type of the literal [.lit]#1# is [.id]#Integer#, and the type of the literal [.lit]#1.0# is [.id]#Decimal#. To infer the type of the expression correctly, the language will implicitly convert the type of the [.lit]#1# to [.id]#Decimal# by inserting a [.id]#ToDecimal# invocation. The multiplication is then performed on two [.id]#Decimals#, and the result type is [.id]#Decimal#.
 
-In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type Person with elements Name of type String and DOB of type DateTime, the following comparison is valid:
+In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type [.id]#Person# with elements [.id]#Name# of type [.id]#String# and [.id]#DOB# of type [.id]#DateTime#, the following comparison is valid:
 
 [source,cql]
 ----
@@ -782,7 +782,7 @@ The conversion from a tuple to a structured type requires that the set of elemen
 [[casting]]
 === Casting
 
-Casting is the operation of treating a value of some base type as a more specific type at run-time. The as operator provides this functionality. For example, given a model that defines an ImagingProcedure as a specialization of a Procedure, in the following example:
+Casting is the operation of treating a value of some base type as a more specific type at run-time. The [.kw]#as# operator provides this functionality. For example, given a model that defines an [.id]#ImagingProcedure# as a specialization of a [.id]#Procedure#, in the following example:
 
 [source,cql]
 ----
@@ -793,11 +793,11 @@ define ImagingProcedures:
     return P as ImagingProcedure
 ----
 
-the ImagingProcedures expression returns all procedures that are instances of ImagingProcedure as instances of ImagingProcedure. This means that attributes that are specific to ImagingProcedure can be accessed.
+the [.id]#ImagingProcedures# expression returns all procedures that are instances of [.id]#ImagingProcedure# as instances of [.id]#ImagingProcedure#. This means that attributes that are specific to [.id]#ImagingProcedure# can be accessed.
 
-If the run-time type of the value is not of the type specified in the as operator, the result is null.
+If the run-time type of the value is not of the type specified in the [.kw]#as# operator, the result is [.kw]#null#.
 
-In addition, CQL supports a _strict_ cast, which has the same semantics as casting, except that if the run-time type of the value is not of the type specified, a run-time error is thrown. The keyword cast is used to indicate a strict cast:
+In addition, CQL supports a _strict_ cast, which has the same semantics as casting, except that if the run-time type of the value is not of the type specified, a run-time error is thrown. The keyword [.kw]#cast# is used to indicate a strict cast:
 
 [source,cql]
 ----
@@ -807,21 +807,21 @@ define StrictCast: cast First(Procedures) as ImagingProcedure
 [[implicit-casting]]
 ==== Implicit Casting
 
-CQL also supports the notion of _implicit casting_ to prevent the need to cast a null literal to a specific type. For example, consider the following expression:
+CQL also supports the notion of _implicit casting_ to prevent the need to cast a [.kw]#null# literal to a specific type. For example, consider the following expression:
 
 [source,cql]
 ----
 define ImplicitCast: 5 * null
 ----
 
-The type of the first argument to the multiplication is Integer, and the type of the second argument is Any, an untyped null literal. But multipication of Integer and Any is not defined and Any is a supertype of Integer, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
+The type of the first argument to the multiplication is [.id]#Integer#, and the type of the second argument is [.id]#Any#, an untyped [.kw]#null# literal. But multipication of [.id]#Integer# and [.id]#Any# is not defined and [.id]#Any# is a supertype of [.id]#Integer#, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
 [source,cql]
 ----
 define ImplicitCast: 5 * (null as Integer)
 ----
 
-To avoid the need for this explicit cast, CQL implicitly casts the Any to Integer.
+To avoid the need for this explicit cast, CQL implicitly casts the [.id]#Any# to [.id]#Integer#.
 
 [[promotion-and-demotion]]
 === Promotion and Demotion
@@ -830,9 +830,9 @@ To simplify the expression of logic involving lists and intervals, CQL defines _
 
 Promotion is used to implicitly convert a value to a list of values of that type. Whenever an operation that expects a list-valued argument is passed a single value, the single value is promoted to a list of the same type containing the single value as its only element.
 
-Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenver an operation that expects a singleton is passed a list, the list is demoted to a singleton using singleton from.
+Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenver an operation that expects a singleton is passed a list, the list is demoted to a singleton using [.kw]#singleton from#.
 
-For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using point from.
+For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using [.kw]#point from#.
 
 [[conversion-precedence]]
 === Conversion Precedence
@@ -852,7 +852,7 @@ These conversion precedences can be viewed as ordered from _least converting_ to
 [[conditional-expressions]]
 == Conditional Expressions
 
-To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the if expression, and the case expression.
+To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the [.kw]#if# expression, and the [.kw]#case# expression.
 
 The if expression allows a single condition to select between two expressions:
 
@@ -861,11 +861,11 @@ The if expression allows a single condition to select between two expressions:
 if Count(X) > 0 then X[1] else 0
 ----
 
-This expression checks the count of X and returns the first element if it is greater than 0; otherwise, the expression returns 0. Note that if the condition evaluates to null, it is interpreted as false.
+This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to null, it is interpreted as false.
 
-The case expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
+The [.kw]#case# expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
 
-A standard case allows any number of conditions, each with a corresponding expression that will be the result of the case if the associated condition evaluates to true. Note that as with the if expression, if the condition evaluates to null, it is interpreted as false. If none of the conditions evaluate to true, the else expression is the result:
+A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to null, it is interpreted as false. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
 
 [source,cql]
 ----
@@ -894,14 +894,14 @@ Note that if the source expression in a selected case is null, no condition will
 
 To provide complete support for missing information, CQL supports several operators for testing for and dealing with null results.
 
-To provide a null result, use the null keyword:
+To provide a null result, use the [.kw]#null# keyword:
 
 [source,cql]
 ----
 null
 ----
 
-To test whether an expression is null, use the _null test_:
+To test whether an expression is [.kw]#null#, use the _null test_:
 
 [source,cql]
 ----
@@ -909,14 +909,14 @@ X is null
 X is not null
 ----
 
-To replace a null with the result of an expression, use a simple if expression:
+To replace a null with the result of an expression, use a simple [.kw]#if# expression:
 
 [source,cql]
 ----
 if X is null then Y else X
 ----
 
-To return the first non-null expression among two or more expressions, use the Coalesce operator:
+To return the first non-null expression among two or more expressions, use the [.id]#Coalesce# operator:
 
 [source,cql]
 ----
@@ -934,7 +934,7 @@ case
 end
 ----
 
-In addition, CQL supports the boolean-test operators is [not] true and is [not] false. These operators, like the null-test operator, only return true and false, they will not propagate a null result.
+In addition, CQL supports the boolean-test operators [.kw]#is [not] true# and [.kw]#is [not] false#. These operators, like the null-test operator, only return [.kw]#true# and [.kw]#false#, they will not propagate a [.kw]#null# result.
 
 [source,cql]
 ----
@@ -942,7 +942,7 @@ X is true
 X is not false
 ----
 
-The first example will return true if X evaluates to true, false if X evaluates to false or null. The second example will return true if X evaluates to true or null, false if X evaluates to false. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
+The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
 
 [[string-operators]]
 == String Operators
@@ -956,46 +956,46 @@ Like lists, strings are 0-based in CQL. To index into a string, use the _indexer
 X[0]
 ----
 
-To determine the length of string, use the Length operator:
+To determine the length of string, use the [.id]#Length# operator:
 
 [source,cql]
 ----
 Length(X)
 ----
 
-To determine the position of a given pattern within a string, use the PositionOf operator:
+To determine the position of a given pattern within a string, use the [.id]#PositionOf# operator:
 
 [source,cql]
 ----
 PositionOf('cde', 'abcdefg')
 ----
 
-The PositionOf() operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, PositionOf() returns -1 to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use PositionOf(), and to find patterns at the beginning and end of a string, use StartsWith() and EndsWith(). Regular expression matching can be performed with the Matches() and ReplaceMatches() operators.
+The [.id]#PositionOf()# operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, [.id]#PositionOf()# returns [.lit]#-1# to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use [.id]#PositionOf()#, and to find patterns at the beginning and end of a string, use [.id]#StartsWith()# and [.id]#EndsWith()#. Regular expression matching can be performed with the [.id]#Matches()# and [.id]#ReplaceMatches()# operators.
 
-To return a substring from a given string, use the Substring operator:
+To return a substring from a given string, use the [.id]#Substring# operator:
 
 [source,cql]
 ----
 Substring('abcdefg', 0, 3)
 ----
 
-This example returns the string 'abc'. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is null. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
+This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.id]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
-To concatenate strings, use the + operator:
+To concatenate strings, use the [.sym]#+# operator:
 
 [source,cql]
 ----
 'abc' + 'defg'
 ----
 
-Note that when using + with string values, if either argument is null, the result will be null. To treat null as the empty string (''), use the & operator:
+Note that when using [.sym]#+# with string values, if either argument is [.kw]#null#, the result will be [.kw]#null#. To treat [.kw]#null# as the empty string ([.sym]#''#), use the [.sym]#&# operator:
 
 [source,cql]
 ----
 'abc' & 'defg'
 ----
 
-To combine a list of strings, use the Combine operator:
+To combine a list of strings, use the [.id]#Combine# operator:
 
 [source,cql]
 ----
@@ -1009,7 +1009,7 @@ The result of this expression is:
 'abcdef'
 ----
 
-To combine a list with a separator, provide the separator argument to the Combine operator:
+To combine a list with a separator, provide the separator argument to the [.id]#Combine# operator:
 
 [source,cql]
 ----
@@ -1023,7 +1023,7 @@ The result of this expression is:
 'completed;refused;pending'
 ----
 
-To split a string into a list of strings based on a specific separator, use the Split operator:
+To split a string into a list of strings based on a specific separator, use the [.id]#Split# operator:
 
 [source,cql]
 ----
@@ -1037,7 +1037,7 @@ The result of this expression is:
 { 'completed', 'refused', 'pending' }
 ----
 
-Use the Upper and Lower operators to return strings with upper or lowercase letters for all characters in the argument.
+Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or lowercase letters for all characters in the argument.
 
 [[introducing-context-in-queries]]
 == Introducing Context in Queries
@@ -1074,9 +1074,9 @@ The CQL query construct provides for the ability to introduce named expressions 
       }
 ----
 
-In this query, the same logic defined by the dailyDose expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
+In this query, the same logic defined by the [.id]#dailyDose# expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
 
-Note also the ability to reference a previously defined let in the same scope, as in the use of adjustedDoseQuantity in the definition of dailyDose.
+Note also the ability to reference a previously defined let in the same scope, as in the use of [.id]#adjustedDoseQuantity# in the definition of [.id]#dailyDose#.
 
 [[multi-source-queries]]
 == Multi-Source Queries
@@ -1099,7 +1099,7 @@ define "Warfarin Therapy": [MedicationAdministration: "Warfarin"]
 define "Parenteral Therapy": [MedicationAdministration: "Parenteral Anticoagulation"]
 ----
 
-First, we establish that the encounter had both warfarin and parenteral anticoagulation therapies. This is easy enough to accomplish using with clauses:
+First, we establish that the encounter had both warfarin and parenteral anticoagulation therapies. This is easy enough to accomplish using [.kw]#with# clauses:
 
 [source,cql]
 ----
@@ -1109,7 +1109,7 @@ define "Encounters with Warfarin and Parenteral Therapies":
     with "Parenteral Therapy" P such that P.effectiveTime starts during E.period
 ----
 
-However, the next step involves calculating the duration of overlap between the warfarin and parenteral therapies, and a with clause only filters by a relationship, it does not introduce any data from the related source. To allow queries like this to be easily expressed, CQL allows a from clause to be used to start a query:
+However, the next step involves calculating the duration of overlap between the warfarin and parenteral therapies, and a with clause only filters by a relationship, it does not introduce any data from the related source. To allow queries like this to be easily expressed, CQL allows a [.kw]#from# clause to be used to start a query:
 
 [source,cql]
 ----
@@ -1138,7 +1138,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
 
-Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a let clause to be used to introduce an intermediate comutational result within a query:
+Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate comutational result within a query:
 
 [source,cql]
 ----
@@ -1180,7 +1180,7 @@ List<Tuple { E Encounter, M MedicationStatement }>
 
 The result will be a list of tuples containing the cartesian product of all Encounters and Medication Statements.
 
-In addition, the default for return clauses is distinct, as opposed to all, so if no return clause is specified, duplicates will be eliminated from the result.
+In addition, the default for return clauses is [.kw]#distinct#, as opposed to [.kw]#all#, so if no return clause is specified, duplicates will be eliminated from the result.
 
 [[non-retrieve-queries]]
 == Non-Retrieve Queries
@@ -1192,7 +1192,7 @@ In addition to the query examples already discussed, it is possible to use any a
 ({ 1, 2, 3, 4, 5 }) L return L * 2
 ----
 
-This query results in \{ 2, 4, 6, 8, 10 }. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
+This query results in [.sym]#\{# [.lit]#2#, [.lit]#4#, [.lit]#6#, [.lit]#8#, [.lit]#10# [.sym]#}#. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
 
 The above example also illustrates that queries need not be based on lists of tuples. In fact, they need not be based on lists at all. The following example illustrates the use of a query to redefine a single tuple:
 
@@ -1229,7 +1229,7 @@ define function CumulativeDuration(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ----
 
-This statement defines a function named CumulativeDuration that takes a single argument named Intervals of type List<Interval<DateTime>>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
+This statement defines a function named [.id]#CumulativeDuration# that takes a single argument named [.id]#Intervals# of type [.kw]#List<Interval<DateTime>>#. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
 
 [source,cql]
 ----
@@ -1239,7 +1239,7 @@ define CD: CumulativeDuration(Encounters E return E.period)
 
 These statements establish an expression named CD that computes the cumulative duration of inpatient encounters for a patient.
 
-Within the library in which it is defined, a function can be invoked directly by name. When a function is defined in a referenced library, the local library alias must be used to invoke the function. For example, assuming a library with the above function definition and referenced with the local alias Core:
+Within the library in which it is defined, a function can be invoked directly by name. When a function is defined in a referenced library, the local library alias must be used to invoke the function. For example, assuming a library with the above function definition and referenced with the local alias [.id]#Core#:
 
 [source,cql]
 ----
@@ -1247,7 +1247,7 @@ define Encounters: [Encounter: "Inpatient Visit"]
 define CD: Core.CumulativeDuration(Encounters E return E.period)
 ----
 
-In this example, the CumulativeDuration function must be invoked using the local library alias Core.
+In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
 
@@ -1274,7 +1274,7 @@ Paths in FHIRPath are constructed by concatenating labels using a dot qualifier:
 
 Patient.name.given
 
-In this case, the path begins at the Patient expression and accesses the name property, followed by the given property of each name. Because the given path invocation is targeting the list of names, the property access is invoked for each name in the list, resulting in a list of all the given elements for every name in the Patient.
+In this case, the path begins at the [.id]#Patient# expression and accesses the [.id]#name# property, followed by the [.id]#given# property of each [.id]#name#. Because the [.id]#given# path invocation is targeting the list of names, the property access is invoked for each name in the list, resulting in a list of all the given elements for every name in the Patient.
 
 However, because property access on a list may actually be the result of mistakenly expecting the property to be singular, this behavior can be disabled with the _disable-list-traversal_ option.
 
@@ -1283,14 +1283,14 @@ However, because property access on a list may actually be the result of mistake
 
 In FHIRPath, all operations are defined to return collections, and operations that expect singleton values are defined to throw an error when they are invoked with collections containing multiple elements. In CQL, this behavior is implemented using list promotion and demotion.
 
-Wherever an operator is defined to take a non-list-valued type as a parameter, list demotion allows the arguments to be list-valued and are implicitly converted to a singleton value using the singleton from operator:
+Wherever an operator is defined to take a non-list-valued type as a parameter, list demotion allows the arguments to be list-valued and are implicitly converted to a singleton value using the [.kw]#singleton from# operator:
 
 [source,cql]
 ----
 Patient.name.given + ' ' + Patient.name.family
 ----
 
-The _disable-demotion_ option controls whether or not this expression is valid. With the option enabled, the expression can be compiled, and will evaluate, so long as the run-time values of given and family contain only a single element. With the option disabled, this expression will no longer compile, and the list-valued arguments must be converted to a single value:
+The _disable-demotion_ option controls whether or not this expression is valid. With the option enabled, the expression can be compiled, and will evaluate, so long as the run-time values of [.id]#given# and [.id]#family# contain only a single element. With the option disabled, this expression will no longer compile, and the list-valued arguments must be converted to a single value:
 
 [source,cql]
 ----
@@ -1304,12 +1304,12 @@ The _disable-promotion_ option controls whether or not list promotion is allowed
 [[missing-information-1]]
 === Missing Information
 
-FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (\{ }) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
+FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection ([.sym]#\{ }#) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
 
 [[type-resolution]]
 === Type Resolution
 
-The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as .children() and .descendents(). However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
+The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as [.id]#.children()# and [.id]#.descendents()#. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
 
 For example, consider the following FHIRPath:
 
@@ -1318,14 +1318,14 @@ For example, consider the following FHIRPath:
 Patient.children().name
 ----
 
-This expression returns a list of the name elements of all the children of the Patient instance. To accomplish this in CQL, the result of .children() is a list of elements of choice types, where the types in the choice are the distinct set of types of child elements.
+This expression returns a list of the name elements of all the children of the Patient instance. To accomplish this in CQL, the result of [.id]#.children()# is a list of elements of choice types, where the types in the choice are the distinct set of types of child elements.
 
 This approach enables the flexibility of FHIRPath expressions but still maintains compile-time type resolution.
 
 [[method-invocation]]
 === Method Invocation
 
-The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare context variables such as $this that can be addressed in the body of the method.
+The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare context variables such as [.id]#$this# that can be addressed in the body of the method.
 
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the FHIRPath Function Translation Appendix.
 

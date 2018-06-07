@@ -10,195 +10,195 @@ This appendix provides detailed mappings for each FHIRPath function in terms of 
 [[aggregate]]
 == .aggregate()
 
-X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
+X.aggregate(<iteration>, <init>) [.sym]#===# Aggregate(<iteration>, <init>)
 
 [[all]]
 == .all()
 
-X.all(<condition>) === AllTrue(X $this let a: <condition> where a return a)
+X.all(<condition>) [.sym]#===# AllTrue(X $this let a: <condition> where a return a)
 
 [[allfalse]]
 == .allFalse()
 
-X.allFalse() === AllTrue(X A return not A)
+X.allFalse() [.sym]#===# AllTrue(X A return not A)
 
 [[alltrue-1]]
 == .allTrue()
 
-X.allTrue() === AllTrue(X)
+X.allTrue() [.sym]#===# AllTrue(X)
 
 [[anyfalse]]
 == .anyFalse()
 
-X.anyFalse() === AnyTrue(X A return not A)
+X.anyFalse() [.sym]#===# AnyTrue(X A return not A)
 
 [[anytrue-1]]
 == .anyTrue()
 
-X.anyTrue() === AnyTrue(X)
+X.anyTrue() [.sym]#===# AnyTrue(X)
 
 [[children-1]]
 == .children()
 
-.children(X) === Children(X)
+.children(X) [.sym]#===# Children(X)
 
 [[combine-1]]
 == .combine()
 
-X.combine(Y) === Flatten(\{ X, Y })
+X.combine(Y) [.sym]#===# Flatten(\{ X, Y })
 
 [[conformsto]]
 == .conformsTo()
 
-X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
+X.conformsTo(Y) [.sym]#===# FHIRSupport.ConformsTo(Y)
 
 Note that this mapping relies on an external library, FHIRSupport to provide conformance validation checking.
 
 [[contains-2]]
 == .contains()
 
-X.contains(Y) === PositionOf(Y, X) >= 0
+X.contains(Y) [.sym]#===# PositionOf(Y, X) [.sym]#>=# 0
 
 [[count-1]]
 == .count()
 
-X.count() === Count(X)
+X.count() [.sym]#===# Count(X)
 
 [[descendents-1]]
 == .descendents()
 
-.descendents(X) === Descendents(X)
+.descendents(X) [.sym]#===# Descendents(X)
 
 [[distinct-1]]
 == .distinct()
 
-X.distinct() === distinct X
+X.distinct() [.sym]#===# distinct X
 
 [[empty]]
 == .empty()
 
-X.empty() === not exists X
+X.empty() [.sym]#===# not exists X
 
 [[endswith-1]]
 == .endsWith()
 
-X.endsWith(Y) === EndsWith(X, Y)
+X.endsWith(Y) [.sym]#===# EndsWith(X, Y)
 
 [[exists-1]]
 == .exists()
 
-X.exists() === exists X
+X.exists() [.sym]#===# exists X
 
-X.exists(<condition>) === exists (X $this where <condition>)
+X.exists(<condition>) [.sym]#===# exists (X $this where <condition>)
 
 [[first-1]]
 == .first()
 
-X.first() === First(X)
+X.first() [.sym]#===# First(X)
 
 [[hasvalue]]
 == .hasValue()
 
-X.hasValue() === X is not null
+X.hasValue() [.sym]#===# X is not null
 
 [[iif]]
 == .iif()
 
-X.iif(Y) === if X then Y else null
+X.iif(Y) [.sym]#===# if X then Y else null
 
-X.iif(Y, Z) === if X then Y else Z
+X.iif(Y, Z) [.sym]#===# if X then Y else Z
 
 [[indexof-1]]
 == .indexOf()
 
-X.indexOf(Y) === PositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of IndexOf
+X.indexOf(Y) [.sym]#===# PositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of IndexOf
 
 [[isboolean]]
 == .isBoolean()
 
-X.isBoolean() === IsBoolean(X)
+X.isBoolean() [.sym]#===# IsBoolean(X)
 
 [[isdistinct]]
 == .isDistinct()
 
-X.isDistinct() === Count(X) = Count(distinct X)
+X.isDistinct() [.sym]#===# Count(X) [.sym]#=# Count(distinct X)
 
 [[isdate]]
 == .isDate()
 
-X.isDate() === IsDate(X)
+X.isDate() [.sym]#===# IsDate(X)
 
 [[isdatetime]]
 == .isDateTime()
 
-X.isDateTime() === IsDateTime(X)
+X.isDateTime() [.sym]#===# IsDateTime(X)
 
 [[isdecimal]]
 == .isDecimal()
 
-X.isDecimal() === IsDecimal(X)
+X.isDecimal() [.sym]#===# IsDecimal(X)
 
 [[isinteger]]
 == .isInteger()
 
-X.isInteger() === IsInteger(X)
+X.isInteger() [.sym]#===# IsInteger(X)
 
 [[isquantity]]
 == .isQuantity()
 
-X.isQuantity() === IsQuantity(X)
+X.isQuantity() [.sym]#===# IsQuantity(X)
 
 [[istime]]
 == .isTime()
 
-X.isTime() === IsTime(X)
+X.isTime() [.sym]#===# IsTime(X)
 
 [[last-1]]
 == .last()
 
-X.last() === Last(X)
+X.last() [.sym]#===# Last(X)
 
 [[lastindexof]]
 == .lastIndexOf()
 
-X.lastIndexOf(Y) === LastPositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
+X.lastIndexOf(Y) [.sym]#===# LastPositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
 
 [[length-2]]
 == .length()
 
-X.length() === Length(X)
+X.length() [.sym]#===# Length(X)
 
 [[matches-1]]
 == .matches()
 
-X.matches(Y) === Matches(X, Y)
+X.matches(Y) [.sym]#===# Matches(X, Y)
 
 [[memberof]]
 == .memberOf()
 
-X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
+X.memberOf(Y) [.sym]#===# InValueSet(X, Y) [.sym]#//# where Y is required to be a ValueSetRef
 
 [[oftype]]
 == .ofType()
 
-X.ofType(T) === X $this where $this is T return $this as <type>
+X.ofType(T) [.sym]#===# X $this where $this is T return $this as <type>
 
 Note that the argument T is required to be a literal string, and is interpreted as the name of a type. For non-named-types, type specifier syntax applies.
 
 [[not-1]]
 == .not()
 
-X.not() === not X
+X.not() [.sym]#===# not X
 
 [[now-1]]
 == .now()
 
-now() === Now()
+now() [.sym]#===# Now()
 
 [[repeat]]
 == .repeat()
 
-X.repeat(<element>) === Repeat(X, <element>)
+X.repeat(<element>) [.sym]#===# Repeat(X, <element>)
 
 The type of X.repeat(<element>) is inferred as the type of:
 
@@ -207,19 +207,19 @@ X.select(<element>).select(<element>)
 [[replace]]
 == .replace()
 
-X.replace(Y, Z) === Replace(X, Y, Z)
+X.replace(Y, Z) [.sym]#===# Replace(X, Y, Z)
 
 [[replacematches-1]]
 == .replaceMatches()
 
-X.replaceMatches(Y, Z) === ReplaceMatches(X, Y, Z)
+X.replaceMatches(Y, Z) [.sym]#===# ReplaceMatches(X, Y, Z)
 
 [[select]]
 == .select()
 
 If the result type of <element> is not list-valued:
 
-X.select(<element>) === X $this let a: <element> where a is not null return a
+X.select(<element>) [.sym]#===# X $this let a: <element> where a is not null return a
 
 If the result type of <element> is list-valued:
 
@@ -228,101 +228,101 @@ X.select(<element>) === Flatten(X $this let a: <element> where a is not null ret
 [[single]]
 == .single()
 
-X.single() === singleton from X
+X.single() [.sym]#===# singleton from X
 
 [[skip-1]]
 == .skip()
 
-X.skip(Y) === Slice(X, Y, null)
+X.skip(Y) [.sym]#===# Slice(X, Y, null)
 
 [[startswith-1]]
 == .startsWith()
 
-X.startsWith(Y) === StartsWith(X, Y)
+X.startsWith(Y) [.sym]#===# StartsWith(X, Y)
 
 [[subsetof]]
 == .subsetOf()
 
-X.subsetOf(Y) === X included in Y
+X.subsetOf(Y) [.sym]#===# X included in Y
 
 [[substring-1]]
 == .substring()
 
-X.substring(Y) === SubString(X, Y)
+X.substring(Y) [.sym]#===# SubString(X, Y)
 
-X.substring(Y, Z) === SubString(X, Y, Z)
+X.substring(Y, Z) [.sym]#===# SubString(X, Y, Z)
 
 [[subsumes]]
 == .subsumes()
 
-X.subsumes(Y) === Subsumes(X, Y)
+X.subsumes(Y) [.sym]#===# Subsumes(X, Y)
 
 [[subsumedby]]
 == .subsumedBy()
 
-X.subsumedBy(Y) === SubsumedBy(X, Y)
+X.subsumedBy(Y) [.sym]#===# SubsumedBy(X, Y)
 
 [[supersetof]]
 == .supersetOf()
 
-X.supersetOf(Y) === X includes Y
+X.supersetOf(Y) [.sym]#===# X includes Y
 
 [[tail-1]]
 == .tail()
 
-X.tail() === Slice(X, 1, null)
+X.tail() [.sym]#===# Slice(X, 1, null)
 
 [[take-1]]
 == .take()
 
-X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
+X.take(Y) [.sym]#===# Slice(X, 0, Coalesce(Y, 0))
 
 [[toboolean-1]]
 == .toBoolean()
 
-X.toBoolean() === ToBoolean(X)
+X.toBoolean() [.sym]#===# ToBoolean(X)
 
 [[tochars]]
 == .toChars()
 
-X.toChars() === ToChars(X)
+X.toChars() [.sym]#===# ToChars(X)
 
 [[todatetime-1]]
 == .toDateTime()
 
-X.toDateTime() === ToDateTime(X)
+X.toDateTime() [.sym]#===# ToDateTime(X)
 
 [[today-1]]
 == .today()
 
-today() === Today()
+today() [.sym]#===# Today()
 
 [[todecimal-1]]
 == .toDecimal()
 
-X.toDecimal() === ToDecimal(X)
+X.toDecimal() [.sym]#===# ToDecimal(X)
 
 [[tointeger-1]]
 == .toInteger()
 
-X.toInteger() === ToInteger(X)
+X.toInteger() [.sym]#===# ToInteger(X)
 
 [[tostring-1]]
 == .toString()
 
-X.toString() === ToString(X)
+X.toString() [.sym]#===# ToString(X)
 
 [[totime-1]]
 == .toTime()
 
-X.toTime() === ToTime(X)
+X.toTime() [.sym]#===# ToTime(X)
 
 [[trace]]
 == .trace()
 
-X.output(Y) === Trace(X, Y) // Add to ELM
+X.output(Y) [.sym]#===# Trace(X, Y) [.sym]#//# Add to ELM
 
 [[where]]
 == .where()
 
-X.where(<condition>) === X $this where <condition>
+X.where(<condition>) [.sym]#===# X $this where <condition>

@@ -54,7 +54,7 @@ For example, consider the following retrieve element:
 </operand>
 ----
 
-In this example, the data type is specified as "quick:Condition", indicating that the result of the retrieve is a list of Condition instances. In addition, each instance must conform to the profile defined by the identifier "qicore-condition".
+In this example, the data type is specified as "[.id]#quick:Condition#", indicating that the result of the retrieve is a list of Condition instances. In addition, each instance must conform to the profile defined by the identifier "[.id]#qicore-condition#".
 
 To help communicate validity of an artifact for a specific use, this specification defines two conformance levels related to this use of templates:
 
@@ -219,7 +219,7 @@ Because the language is pure functional, every expression and operator is define
 
 Once an expression has been semantically validated, its return type is known. This means that the expression is guaranteed to return either a value of that type, or a _null_, indicating the evaluation did not result in a value.
 
-In general, operations are defined to result in null if any of their arguments are null. For example, the result of evaluating 2 + null is null. In this way, missing information results in an unknown result. There are exceptions to this rule, notably the logical operators, and the null-handling operators. The behavior for these operators (and others that do not follow this rule) are described in detail in the documentation for each operator.
+In general, operations are defined to result in null if any of their arguments are null. For example, the result of evaluating 2 [.sym]#+# null is null. In this way, missing information results in an unknown result. There are exceptions to this rule, notably the logical operators, and the null-handling operators. The behavior for these operators (and others that do not follow this rule) are described in detail in the documentation for each operator.
 
 Evaluation takes place within an execution model that provides access to the data and parameters provided to the evaluation. Data is provided to the evaluation as a set of lists of structured values representing a patient’s clinical information. In order to be represented in this data set, a given structured value must be a _cacheable_ item. A cacheable item must have the following:
 
@@ -599,7 +599,7 @@ case
 end
 ----
 
-Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A = B or A < B_ is _not_ equivalent to _A \<= B_ because of the uncertainty.
+Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A [.sym]#=# B or A [.sym]#<# B_ is _not_ equivalent to _A [.sym]#\<=# B_ because of the uncertainty.
 
 [[arithmetic-operators-2]]
 ==== Arithmetic Operators
@@ -613,7 +613,7 @@ uncertainty[17, 44] + uncertainty[5, 10] // returns uncertainty[22, 54]
 
 The above expression can be read:
 
-_some value between 17 and 44_ + _some value between 5 and 10_
+_some value between 17 and 44_ [.sym]#+# _some value between 5 and 10_
 
 The result of this calculation simply adds the respective boundaries to determine what the range of possible values of this calculation would be, in this case _some value between 22 and 54_.
 
@@ -817,7 +817,7 @@ start of A in [start of B - 3 days, start of B + 3 days]
 [[interval-operators-1]]
 ==== Interval Operators
 
-In general, interval comparisons are already defined in terms of the fundamental comparison operators (=, >, <, >=, \<=, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
+In general, interval comparisons are already defined in terms of the fundamental comparison operators ([.sym]#=#, [.sym]#>#, [.sym]#<#, [.sym]#>=#, [.sym]#\<=#, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
 
 [[implementing-precision-based-timing-with-uncertainty]]
 === Implementing Precision-Based Timing with Uncertainty
@@ -825,7 +825,7 @@ In general, interval comparisons are already defined in terms of the fundamental
 Implementation of these semantics can be simplified by recognizing that all the date/time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:
 
 * Support for run-time operations on integer-based uncertainties, including:
-** =, <, >, \<=, >=, +, -, unary +/-, *, /
+** [.sym]#=#, [.sym]#<#, [.sym]#>#, [.sym]#\<=#, [.sym]#>=#, [.sym]#+#, [.sym]#-#, [.sym]#unary +/-#, [.sym]#*#, [.sym]#/#
 ** implicit conversion between integer point values and uncertainties
 * Precision-based duration and difference between date/times
 

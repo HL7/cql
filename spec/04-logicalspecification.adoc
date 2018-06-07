@@ -9,7 +9,7 @@ This chapter describes the Expression Logical Model (ELM) and how it is used to 
 
 The ELM defines a mechanism for representing artifact logic independent of syntax and special-purpose constructs introduced at the syntactic level. ELM is equivalent to CQL syntax in terms of expressive power: every possible expression in CQL has an equivalent canonical-form expression in ELM. Higher-level constructs such as timing phrases and implicit conversions are represented in terms of the more primitive operators in ELM. This takes the burden of interpretation of higher-level constructs off of implementers, allowing them to focus on the implementation of a more primitive set of functionality.
 
-Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 + 2 can be represented as instances of the appropriate classes:
+Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 [.sym]#+# 2 can be represented as instances of the appropriate classes:
 
 image:extracted-media/media/image10.png[image,width=107,height=99]
 
@@ -365,7 +365,7 @@ The _Tuple_ class represents construction of a new structured value, with the va
 
 To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some contexts, such as within a _Filter_ expression, the source is implicit. If used outside such a context, a source must be provided.
 
-The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (.) as well as indexers ([x]) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
+The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers ([.sym]#.#) as well as indexers ([.sym]#[x]#) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
 
 The following table lists the structured value operators available in ELM:
 

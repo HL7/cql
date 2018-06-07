@@ -9,14 +9,14 @@ This appendix provides a reference for all the system-defined types, operators, 
 
 For each type, the definition and semantics are provided. Note that because CQL does not define a type declaration syntax, the definitions are expressed in a pseudo-syntax.
 
-For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the and operator is given as:
+For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the [.kw]#and# operator is given as:
 
 [source,cql]
 ----
 and(left Boolean, right Boolean) Boolean
 ----
 
-Even though and is an infix operator and would be invoked as in the following expression:
+Even though [.kw]#and# is an infix operator and would be invoked as in the following expression:
 
 [source,cql]
 ----
@@ -38,7 +38,7 @@ simple type Any
 
 *Description:*
 
-The Any type is the maximal supertype in the CQL type system, meaning that all types derive from Any, including list, interval, and structured types. In addition, the type of a null result is Any.
+The [.id]#Any# type is the maximal supertype in the CQL type system, meaning that all types derive from [.id]#Any#, including list, interval, and structured types. In addition, the type of a [.kw]#null# result is [.id]#Any#.
 
 [[boolean-1]]
 === Boolean
@@ -52,7 +52,7 @@ simple type Boolean
 
 *Description:*
 
-The Boolean type represents the logical boolean values true and false. The result of logical operations within CQL use the Boolean type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the Boolean type.
+The [.id]#Boolean# type represents the logical boolean values [.kw]#true# and [.kw]#false#. The result of logical operations within CQL use the [.id]#Boolean# type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the [.id]#Boolean# type.
 
 [[code-1]]
 === Code
@@ -72,7 +72,7 @@ structured type Code
 
 *Description:*
 
-The Code type represents single terminology codes within CQL.
+The [.id]#Code# type represents single terminology codes within CQL.
 
 [[concept-1]]
 === Concept
@@ -90,7 +90,7 @@ structured type Concept
 
 *Description:*
 
-The Concept type represents a single terminological concept within CQL.
+The [.id]#Concept# type represents a single terminological concept within CQL.
 
 [[date]]
 === Date
@@ -104,7 +104,7 @@ simple type Date
 
 *Description:*
 
-The Date type represents date values with potential uncertainty within CQL.
+The [.id]#Date# type represents date values with potential uncertainty within CQL.
 
 CQL supports date values in the range @0001-01-01 to @9999-12-31 with a 1 day step size.
 
@@ -120,9 +120,9 @@ simple type DateTime
 
 *Description:*
 
-The DateTime type represents date and time values with potential uncertainty within CQL.
+The [.id]#DateTime# type represents date and time values with potential uncertainty within CQL.
 
-CQL supports date and time values in the range @0001-01-01T00:00:00.0 to @9999-12-31T23:59:59.999 with a 1 millisecond step size.
+CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to [.lit]#@9999-12-31T23:59:59.999# with a 1 millisecond step size.
 
 [[decimal-1]]
 === Decimal
@@ -136,9 +136,9 @@ simple type Decimal
 
 *Description:*
 
-The Decimal type represents real values within CQL.
+The [.id]#Decimal# type represents real values within CQL.
 
-CQL supports decimal values in the range -10^28^-10^-8^ to 10^28^-10^-8^ with a step size of 10^-8^.
+CQL supports decimal values in the range [.lit]#-10^28^-10^-8^# to [.lit]#10^28^-10^-8^# with a step size of [.lit]#10^-8^#.
 
 [[integer-1]]
 === Integer
@@ -152,9 +152,9 @@ simple type Integer
 
 *Description:*
 
-The Integer type represents whole number values within CQL.
+The [.id]#Integer# type represents whole number values within CQL.
 
-CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1.
+CQL supports integer values in the range [.lit]#-2^31^# to [.lit]#2^31^-1# with a step size of [.lit]#1#.
 
 [[quantity]]
 === Quantity
@@ -172,7 +172,7 @@ structured type Quantity
 
 *Description:*
 
-The Quantity type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
+The [.id]#Quantity# type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
 
 [[ratio]]
 ==== Ratio
@@ -190,7 +190,7 @@ structured type Ratio
 
 *Description:*
 
-The Ratio type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
+The [.id]#Ratio# type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
 
 [[string-1]]
 === String
@@ -204,9 +204,9 @@ simple type String
 
 *Description:*
 
-The String type represents string values within CQL.
+The [.id]#String# type represents string values within CQL.
 
-CQL supports string values up to 2^31^-1 characters in length.
+CQL supports string values up to [.lit]#2^31^-1# characters in length.
 
 For string literals, CQL uses standard escape sequences:
 
@@ -235,9 +235,9 @@ simple type Time
 
 *Description:*
 
-The Time type represents time-of-day values within CQL.
+The [.id]#Time# type represents time-of-day values within CQL.
 
-CQL supports time values in the range @T00:00:00.0 to @T23:59:59.999 with a step size of 1 millisecond.
+CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.999# with a step size of 1 millisecond.
 
 [[logical-operators-3]]
 == Logical Operators
@@ -254,7 +254,7 @@ and (left Boolean, right Boolean) Boolean
 
 *Description:*
 
-The and operator returns true if both its arguments are true. If either argument is false, the result is false. Otherwise, the result is null.
+The [.kw]#and# operator returns true if both its arguments are true. If either argument is false, the result is false. Otherwise, the result is null.
 
 The following table defines the truth table for this operator:
 
@@ -270,7 +270,7 @@ Table 9‑A
 
 *Example:*
 
-The following examples illustrate the behavior of the and operator:
+The following examples illustrate the behavior of the [.kw]#and# operator:
 
 [source,cql]
 ----
@@ -294,7 +294,7 @@ implies (left Boolean, right Boolean) Boolean
 
 *Description:*
 
-The implies operator returns the logical implication of its arguments. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
+The [.kw]#implies# operator returns the logical implication of its arguments. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
 
 The following table defines the truth table for this operator:
 
@@ -320,7 +320,7 @@ not (argument Boolean) Boolean
 
 *Description:*
 
-The not operator returns true if the argument is false and false if the argument is true. Otherwise, the result is null.
+The [.kw]#not# operator returns true if the argument is false and false if the argument is true. Otherwise, the result is null.
 
 The following table defines the truth table for this operator:
 
@@ -346,7 +346,7 @@ or (left Boolean, right Boolean) Boolean
 
 *Description:*
 
-The or operator returns true if either of its arguments are true. If both arguments are false, the result is false. Otherwise, the result is null.
+The [.kw]#or# operator returns true if either of its arguments are true. If both arguments are false, the result is false. Otherwise, the result is null.
 
 The following table defines the truth table for this operator:
 
@@ -362,7 +362,7 @@ Table 9‑C
 
 *Example:*
 
-The following examples illustrate the behavior of the or operator:
+The following examples illustrate the behavior of the [.kw]#or# operator:
 
 [source,cql]
 ----
@@ -386,7 +386,7 @@ xor (left Boolean, right Boolean) Boolean
 
 *Description:*
 
-The xor (exclusive or) operator returns true if one argument is true and the other is false. If both arguments are true or both arguments are false, the result is false. Otherwise, the result is null.
+The [.kw]#xor# (exclusive or) operator returns true if one argument is true and the other is false. If both arguments are true or both arguments are false, the result is false. Otherwise, the result is null.
 
 The following table defines the truth table for this operator:
 
@@ -416,15 +416,15 @@ cast as<T>(argument Any) T
 
 *Description:*
 
-The as operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument.
+The [.kw]#as# operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument.
 
-If the argument is not of the specified type at run-time the result is null.
+If the argument is not of the specified type at run-time the result is [.kw]#null#.
 
-The cast prefix indicates that if the argument is not of the specified type at run-time then an exception is thrown.
+The [.kw]#cast# prefix indicates that if the argument is not of the specified type at run-time then an exception is thrown.
 
 *Example:*
 
-The following examples illustrate the use of the as operator.
+The following examples illustrate the use of the [.kw]#as# operator.
 
 [source,cql]
 ----
@@ -452,9 +452,9 @@ Children(argument Any) List<Any>
 
 *Description:*
 
-For structured types, the Children operator returns a list of all the values of the elements of the type. List-valued elements are expanded and added to the result individually, rather than as a single list.
+For structured types, the [.id]#Children# operator returns a list of all the values of the elements of the type. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
-For list types, the result is the same as invoking Children on each element in the list and flattening the resulting lists into a single result.
+For list types, the result is the same as invoking [.id]#Children# on each element in the list and flattening the resulting lists into a single result.
 
 If the source is null, the result is null.
 
@@ -470,7 +470,7 @@ convert to<T>(argument Any) T
 
 *Description:*
 
-The convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. If there is no valid conversion from the actual value to the target type, the result is null.
+The [.kw]#convert# operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. If there is no valid conversion from the actual value to the target type, the result is null.
 
 The following table lists the conversions supported in CQL:
 
@@ -495,7 +495,7 @@ Table 9‑E
 
 For conversions between date/time and string values, ISO-8601 standard format is used:
 
-yyyy-MM-ddThh:mm:ss.fff(Z | +/- hh:mm)
+yyyy-MM-ddThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)
 
 For example, the following are valid string representations for date/time values:
 
@@ -521,9 +521,9 @@ Descendents(argument Any) List<Any>
 
 *Description:*
 
-For structured types, the Descendents operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
+For structured types, the [.id]#Descendents# operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
-For list types, the result is the same as invoking Descendents on each element in the list and flattening the resulting lists into a single result.
+For list types, the result is the same as invoking [.id]#Descendents# on each element in the list and flattening the resulting lists into a single result.
 
 If the source is null, the result is null.
 
@@ -539,7 +539,7 @@ is<T>(argument Any) Boolean
 
 *Description:*
 
-The is operator allows the type of a result to be tested. If the run-time type of the argument is of the type being tested, the result of the operator is true; otherwise, the result is false.
+The [.kw]#is# operator allows the type of a result to be tested. If the run-time type of the argument is of the type being tested, the result of the operator is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
 [[toboolean]]
 === ToBoolean
@@ -553,7 +553,7 @@ ToBoolean(argument String) Boolean
 
 *Description:*
 
-The ToBoolean operator converts the value of its argument to a Boolean value. The operator accepts the following string representations:
+The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations:
 
 [cols=",",options="header",]
 |====================================
@@ -564,11 +564,11 @@ The ToBoolean operator converts the value of its argument to a Boolean value. Th
 
 Table 9‑F
 
-Note that the operator will ignore case when interpreting the string as a Boolean value.
+Note that the operator will ignore case when interpreting the string as a [.id]#Boolean# value.
 
-If the input cannot be interpreted as a valid Boolean value, the result is null.
+If the input cannot be interpreted as a valid [.id]#Boolean# value, the result is [.kw]#null#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[toconcept]]
 === ToConcept
@@ -582,9 +582,9 @@ ToConcept(argument Code) Concept
 
 *Description:*
 
-The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
+The [.id]#ToConcept# operator converts a value of type [.id]#Code# to a [.id]#Concept# value with the given [.id]#Code# as its primary and only [.id]#Code#. If the [.id]#Code# has a [.id]#display# value, the resulting [.id]#Concept# will have the same [.id]#display# value.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[todate]]
 === ToDate
@@ -598,7 +598,7 @@ ToDate(argument String) DateTime
 
 *Description:*
 
-The ToDate operator converts the value of its argument to a Date value. The operator expects the string to be formatted using the ISO-8601 date representation:
+The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# value. The operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 
@@ -612,11 +612,11 @@ For example, the following are valid string representations for date values:
 '2014-01-01' // January 1^st^, 2014
 ----
 
-If the input string is not formatted correctly, or does not represent a valid date value, the result is null.
+If the input string is not formatted correctly, or does not represent a valid date value, the result is [.kw]#null#.
 
 As with date literals, date values may be specified to any precision.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[todatetime]]
 === ToDateTime
@@ -631,11 +631,11 @@ ToDateTime(argument String) DateTime
 
 *Description:*
 
-The ToDateTime operator converts the value of its argument to a DateTime value. 
+The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#DateTime# value.
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 date/time representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff([.sym]#+|-#)hh:mm
 
 In addition, the string must be interpretable as a valid date/time value.
 
@@ -648,13 +648,13 @@ For example, the following are valid string representations for date/time values
 '2014-01-01T14:30:00.0-07:00' // January 1^st^, 2014, 2:30PM Mountain Standard (GMT-7:00)
 ----
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, the result is null.
+If the input string is not formatted correctly, or does not represent a valid date/time value, the result is [.kw]#null#.
 
 As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
-For the Date overload, the result will be a DateTime with the time components set to zero, except for the timezone offset, which will be set to the timezone offset of the evaluation request timestamp.
+For the [.id]#Date# overload, the result will be a [.id]#DateTime# with the time components set to zero, except for the timezone offset, which will be set to the timezone offset of the evaluation request timestamp.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[todecimal]]
 === ToDecimal
@@ -668,7 +668,7 @@ ToDecimal(argument String) Decimal
 
 *Description:*
 
-The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
+The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
 [source,cql]
 ----
@@ -677,11 +677,11 @@ The ToDecimal operator converts the value of its argument to a Decimal value. Th
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
+Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for [.id]#Decimal# values within CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is null.
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[tointeger]]
 === ToInteger
@@ -695,7 +695,7 @@ ToInteger(argument String) Integer
 
 *Description:*
 
-The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
+The [.id]#ToInteger# operator converts the value of its argument to an [.id]#Integer# value. The operator accepts strings using the following format:
 
 [source,cql]
 ----
@@ -704,11 +704,11 @@ The ToInteger operator converts the value of its argument to an Integer value. T
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
+Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Integer# values in CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is null.
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#null#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[toquantity]]
 === ToQuantity
@@ -724,9 +724,9 @@ ToQuantity(argument String) Quantity
 
 *Description:*
 
-The ToQuantity operator converts the value of its argument to a Quantity value. 
+The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value.
 
-For the String overload, the operator accepts strings using the following format:
+For the [.id]#String# overload, the operator accepts strings using the following format:
 
 [source,cql]
 ----
@@ -735,13 +735,13 @@ For the String overload, the operator accepts strings using the following format
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
-Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
+Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for [.id]#Decimal# values in CQL.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is null.
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Quantity# value, the result is [.kw]#null#.
 
-For the Integer and Decimal overloads, the operator returns a quantity with the value of the argument and a unit of '1' (the default unit).
+For the [.id]#Integer# and [.id]#Decimal# overloads, the operator returns a quantity with the value of the argument and a unit of '[.lit]#1#' (the default unit).
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[toratio]]
 ==== ToRatio
@@ -755,18 +755,18 @@ ToRatio(argument String) Ratio
 
 *Description:*
 
-The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
+The [.id]#ToRatio# operator converts the value of its argument to a [.id]#Ratio# value. The operator accepts strings using the following format:
 
 [source,cql]
 ----
 <quantity>:<quantity>
 ----
 
-where <quantity> is the format used to by the ToQuantity operator.
+where <quantity> is the format used to by the [.id]#ToQuantity# operator.
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Ratio value, the result is null.
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Ratio# value, the result is [.kw]#null#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[tostring]]
 === ToString
@@ -787,7 +787,7 @@ ToString(argument Time) String
 
 *Description:*
 
-The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:
+The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type:
 
 [cols=",",options="header",]
 |===========================================
@@ -804,7 +804,7 @@ The ToString operator converts the value of its argument to a String value. The 
 
 Table 9‑G
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[totime]]
 === ToTime
@@ -818,9 +818,9 @@ ToTime(argument String) Time
 
 *Description:*
 
-The ToTime operator converts the value of its argument to a Time value. The operator expects the string to be formatted using ISO-8601 time representation:
+The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:
 
-Thh:mm:ss.fff(+|-)hh:mm
+Thh:mm:ss.fff([.sym]#+|-#)hh:mm
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -832,11 +832,11 @@ For example, the following are valid string representations for time-of-day valu
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
 ----
 
-If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is null.
+If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is [.kw]#null#.
 
 As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[nullological-operators-3]]
 == Nullological Operators
@@ -857,7 +857,7 @@ Coalesce<T>(arguments List<T>) T
 
 *Description:*
 
-The Coalesce operator returns the first non-null result in a list of arguments. If all arguments evaluate to null, the result is null.
+The [.id]#Coalesce# operator returns the first non-null result in a list of arguments. If all arguments evaluate to [.kw]#null#, the result is [.kw]#null#.
 
 The static type of the first argument determines the type of the result, and all subsequent arguments must be of that same type.
 
@@ -873,7 +873,7 @@ is null(argument Any) Boolean
 
 *Description:*
 
-The is null operator determines whether or not its argument evaluates to null. If the argument evaluates to null, the result is true; otherwise, the result is false.
+The [.kw]#is null# operator determines whether or not its argument evaluates to [.kw]#null#. If the argument evaluates to [.kw]#null#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
 [[isfalse]]
 === IsFalse
@@ -887,7 +887,7 @@ is false(argument Boolean) Boolean
 
 *Description:*
 
-The is false operator determines whether or not its argument evaluates to false. If the argument evaluates to false, the result is true; otherwise, the result is false.
+The [.kw]#is false# operator determines whether or not its argument evaluates to [.kw]#false#. If the argument evaluates to [.kw]#false#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
 [[istrue]]
 === IsTrue
@@ -901,7 +901,7 @@ is true(argument Boolean) Boolean
 
 *Description:*
 
-The is true operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; otherwise, the result is false.
+The [.kw]#is true# operator determines whether or not its argument evaluates to [.kw]#true#. If the argument evaluates to [.kw]#true#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
 [[comparison-operators-4]]
 == Comparison Operators
@@ -924,15 +924,15 @@ between(argument String, low String, high String) Boolean
 
 *Description:*
 
-The between operator determines whether the first argument is within a given range, inclusive. If the first argument is greater than or equal to the low argument, and less than or equal to the high argument, the result is true, otherwise, the result is false.
+The between operator determines whether the first argument is within a given range, inclusive. If the first argument is greater than or equal to the low argument, and less than or equal to the high argument, the result is [.kw]#true#, otherwise, the result is [.kw]#false#.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null.
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#.
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-If any argument is null, the result is null.
+If any argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[equal]]
 === Equal
@@ -946,25 +946,25 @@ If any argument is null, the result is null.
 
 *Description:*
 
-The _equal_ (=) operator returns true if the arguments are equal; false if the arguments are known unequal, and null otherwise. Equality semantics are defined to be value-based.
+The _equal_ ([.sym]#=#) operator returns [.kw]#true# if the arguments are equal; [.kw]#false# if the arguments are known unequal, and [.kw]#null# otherwise. Equality semantics are defined to be value-based.
 
-For simple types, this means that equality returns true if and only if the result of each argument evaluates to the same value.
+For simple types, this means that equality returns [.kw]#true# if and only if the result of each argument evaluates to the same value.
 
 For string values, equality is strictly lexical based on the Unicode values for the individual characters in the strings.
 
 For decimal values, trailing zeroes are ignored.
 
-For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For tuple types, this means that equality returns true if and only if the tuples are of the same type, and the values for all elements by name are equal.
+For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements by name are equal.
 
-For list types, this means that equality returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using the same semantics.
+For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using the same semantics.
 
-For interval types, equality returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the Start and End operators.
+For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[equivalent]]
 === Equivalent
@@ -978,7 +978,7 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The ~ operator returns true if the arguments are the same value, or if they are both null; and false otherwise.
+The [.sym]#~# operator returns [.kw]#true# if the arguments are the same value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
 For string values, equivalence is case- and locale-insensitive.
 
@@ -986,15 +986,15 @@ For tuple types, this means that two tuple values are equivalent if and only if 
 
 For list types, this means that two list values are equivalent if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
 
-For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
+For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators are equivalent.
 
-For Code values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining Code equivalence.
+For [.id]#Code# values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
-For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept.
+For [.id]#Concept# values, equivalence is defined as a non-empty intersection of the codes in each [.id]#Concept#.
 
-Note that this operator will always return true or false, even if either or both of its arguments are null, or contain null components.
+Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
-This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as in, contains, includes, IndexOf(), etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
+This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as [.kw]#in#, [.kw]#contains#, [.kw]#includes#, [.id]#IndexOf()#, etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
 
 [[greater]]
 === Greater
@@ -1014,15 +1014,15 @@ This operator, and the corresponding notion of _equivalence_, are used throughou
 
 *Description:*
 
-The _greater_ (>) operator returns true if the first argument is greater than the second argument.
+The _greater_ ([.sym]#>#) operator returns [.kw]#true# if the first argument is greater than the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[greater-or-equal]]
 === Greater Or Equal
@@ -1042,15 +1042,15 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _greater or equal_ (>=) operator returns true if the first argument is greater than or equal to the second argument.
+The _greater or equal_ ([.sym]#>=#) operator returns [.kw]#true# if the first argument is greater than or equal to the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[less]]
 === Less
@@ -1070,15 +1070,15 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _less_ (<) operator returns true if the first argument is less than the second argument.
+The _less_ ([.sym]#<#) operator returns [.kw]#true# if the first argument is less than the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[less-or-equal]]
 === Less Or Equal
@@ -1098,15 +1098,15 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _less or equal_ (\<=) operator returns true if the first argument is less than or equal to the second argument.
+The _less or equal_ ([.sym]#\<=#) operator returns [.kw]#true# if the first argument is less than or equal to the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[not-equal]]
 === Not Equal
@@ -1120,9 +1120,9 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _not equal_ (!=) operator returns true if its arguments are not the same value.
+The _not equal_ ([.sym]#!=#) operator returns [.kw]#true# if its arguments are not the same value.
 
-The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+The _not equal_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equal_ operator.
 
 [[not-equivalent]]
 === Not Equivalent
@@ -1136,9 +1136,9 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Description:*
 
-The _not equivalent_ (!~) operator returns true if its arguments are not equivalent.
+The _not equivalent_ ([.sym]#!~#) operator returns [.kw]#true# if its arguments are not equivalent.
 
-The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+The _not equivalent_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equivalent_ operator.
 
 [[arithmetic-operators-4]]
 == Arithmetic Operators
@@ -1157,11 +1157,11 @@ Abs(argument Quantity) Quantity
 
 *Description:*
 
-The Abs operator returns the absolute value of its argument.
+The [.id]#Abs# operator returns the absolute value of its argument.
 
 When taking the absolute value of a quantity, the unit is unchanged.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[add]]
 === Add
@@ -1177,13 +1177,13 @@ If the argument is null, the result is null.
 
 *Description:*
 
-The _add_ (+) operator performs numeric addition of its arguments.
+The _add_ ([.sym]#+#) operator performs numeric addition of its arguments.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be added, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[ceiling]]
 === Ceiling
@@ -1197,11 +1197,11 @@ Ceiling(argument Decimal) Integer
 
 *Description:*
 
-The Ceiling operator returns the first integer greater than or equal to the argument.
+The [.id]#Ceiling# operator returns the first integer greater than or equal to the argument.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[divide]]
 === Divide
@@ -1217,9 +1217,9 @@ If the argument is null, the result is null.
 
 *Description:*
 
-The _divide_ (/) operator performs numeric division of its arguments. Note that this operator is Decimal division; for Integer division, use the _truncated divide_ (div) operator.
+The _divide_ ([.sym]#/#) operator performs numeric division of its arguments. Note that this operator is [.id]#Decimal# division; for [.id]#Integer# division, use the _truncated divide_ ([.kw]#div#) operator.
 
-When invoked with Integer arguments, the arguments will be implicitly converted to Decimal.
+When invoked with [.id]#Integer# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
 
 For division operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
@@ -1228,9 +1228,9 @@ For division operations involving quantities, the resulting quantity will have t
 12 'cm2' / 3 'cm'
 ----
 
-In this example, the result will have a unit of 'cm'. Note that when performing division of quantities with the same units, the result will have the default UCUM unit (`'1'`). When a quantity has no units specified, it is treated as a quantity with the default unit ('1'). When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+In this example, the result will have a unit of [.lit]#'cm'#. Note that when performing division of quantities with the same units, the result will have the default UCUM unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[floor]]
 === Floor
@@ -1244,11 +1244,11 @@ Floor(argument Decimal) Integer
 
 *Description:*
 
-The Floor operator returns the first integer less than or equal to the argument.
+The [.id]#Floor# operator returns the first integer less than or equal to the argument.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[exp]]
 === Exp
@@ -1262,11 +1262,11 @@ Exp(argument Decimal) Decimal
 
 *Description:*
 
-The Exp operator raises _e_ to the power of its argument.
+The [.id]#Exp# operator raises _e_ to the power of its argument.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[log]]
 === Log
@@ -1280,11 +1280,11 @@ Log(argument Decimal, base Decimal) Decimal
 
 *Description:*
 
-The Log operator computes the logarithm of its first argument, using the second argument as the base.
+The [.id]#Log# operator computes the logarithm of its first argument, using the second argument as the base.
 
-When invoked with Integer arguments, the arguments will be implicitly converted to Decimal.
+When invoked with [.id]#Integer# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[ln]]
 === Ln
@@ -1298,11 +1298,11 @@ Ln(argument Decimal) Decimal
 
 *Description:*
 
-The Ln operator computes the natural logarithm of its argument.
+The [.id]#Ln# operator computes the natural logarithm of its argument.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[maximum]]
 === Maximum
@@ -1316,21 +1316,21 @@ maximum<T>() T
 
 *Description:*
 
-The maximum operator returns the maximum representable value for the given type.
+The [.kw]#maximum# operator returns the maximum representable value for the given type.
 
-The maximum operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
-For Integer, maximum returns the maximum signed 32-bit integer, 2^31^ - 1.
+For [.id]#Integer#, [.kw]#maximum# returns the maximum signed 32-bit integer, 2^31^ - 1.
 
-For Decimal, maximum returns the maximum representable decimal value, (10^37^ – 1) / 10^8^ (9999999999999999999999999999.99999999).
+For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal value, (10^37^ – 1) / 10^8^ (9999999999999999999999999999.99999999).
 
-For Date, maximum returns the maximum representable date value, Date(9999, 12, 31).
+For [.id]#Date#, [.kw]#maximum# returns the maximum representable date value, [.id]#Date#([.lit]#9999#, [.lit]#12#, [.lit]#31#).
 
-For DateTime, maximum returns the maximum representable date/time value, DateTime(9999, 12, 31, 23, 59, 59, 999).
+For [.id]#DateTime#, [.kw]#maximum# returns the maximum representable date/time value, [.id]#DateTime#([.lit]#9999#, [.lit]#12#, [.lit]#31#, [.lit]#23#, [.lit]#59#, [.lit]#59#, [.lit]#999#).
 
-For Time, maximum returns the maximum representable time value, Time(23, 59, 59, 999).
+For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.id]#Time#([.lit]#23#, [.lit]#59#, [.it]#59#, [.lit]#999#).
 
-For any other type, attempting to invoke maximum results in an error.
+For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
 [[minimum]]
 === Minimum
@@ -1344,21 +1344,21 @@ minimum<T>() T
 
 *Description:*
 
-The minimum operator returns the minimum representable value for the given type.
+The [.kw]#minimum# operator returns the minimum representable value for the given type.
 
-The minimum operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
-For Integer, minimum returns the minimum signed 32-bit integer, -2^31^.
+For [.id]#Integer#, [.kw]#minimum# returns the minimum signed 32-bit integer, -2^31^.
 
-For Decimal, minimum returns the minimum representable decimal value, (-10^37^ – 1) / 10^8^ (-9999999999999999999999999999.99999999).
+For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal value, (-10^37^ – 1) / 10^8^ (-9999999999999999999999999999.99999999).
 
-For Date, minimum returns the minimum representable date value, DateTime(1, 1, 1).
+For [.id]#Date#, [.kw]#minimum# returns the minimum representable date value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#).
 
-For DateTime, minimum returns the minimum representable date/time value, DateTime(1, 1, 1, 0, 0, 0, 0).
+For [.id]#DateTime#, [.kw]#minimum# returns the minimum representable date/time value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#, [.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
 
-For Time, minimum returns the minimum representable time value, Time(0, 0, 0, 0).
+For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.id]#Time#([.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
 
-For any other type, attempting to invoke minimum results in an error.
+For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
 [[modulo]]
 === Modulo
@@ -1373,11 +1373,11 @@ mod(left Decimal, right Decimal) Decimal
 
 *Description:*
 
-The mod operator computes the remainder of the division of its arguments.
+The [.kw]#mod# operator computes the remainder of the division of its arguments.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[multiply]]
 === Multiply
@@ -1395,9 +1395,9 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _multiply_ (*) operator performs numeric multiplication of its arguments.
+The _multiply_ ([.sym]#*#) operator performs numeric multiplication of its arguments.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
@@ -1407,9 +1407,9 @@ For multiplication operations involving quantities, the resulting quantity will 
 3 'cm' * 12 'cm2'
 ----
 
-In this example, the first result will have a unit of 'cm2', and the second result will have a unit of 'cm3'. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+In this example, the first result will have a unit of [.lit]#'cm2'#, and the second result will have a unit of [.lit]#'cm3'#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[negate]]
 === Negate
@@ -1425,11 +1425,11 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _negate_ (-) operator returns the negative of its argument.
+The _negate_ ([.sym]#-#) operator returns the negative of its argument.
 
 When negating quantities, the unit is unchanged.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[predecessor]]
 === Predecessor
@@ -1443,19 +1443,19 @@ predecessor of<T>(argument T) T
 
 *Description:*
 
-The predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
+The [.kw]#predecessor# operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
-The predecessor operator is defined for the Integer, Decimal, Quantity, Date, DateTime, and Time types.
+The [.kw]#predecessor# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Quantity#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
-For Integer, predecessor is equivalent to subtracting 1.
+For [.id]#Integer#, [.kw]#predecessor# is equivalent to subtracting 1.
 
-For Decimal, predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08^.
+For [.id]#Decimal#, [.kw]#predecessor# is equivalent to subtracting the minimum precision value for the [.id]#Decimal# type, or 10^-08^.
 
-For Date, DateTime, and Time values, predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, predecessor is equivalent to subtracting one second, etc.
+For [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values, [.kw]#predecessor# is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the [.id]#DateTime# is fully specified, [.kw]#predecessor# is equivalent to subtracting 1 millisecond; if the [.id]#DateTime# is specified to the second, [.kw]#predecessor# is equivalent to subtracting one second, etc.
 
-For Quantity values, the predecessor is equivalent to subtracting 1 if the quantity is an integer, and the minimum precision value for the Decimal type if the quantity is a decimal. The units are unchanged.
+For [.id]#Quantity# values, the [.kw]#predecessor# is equivalent to subtracting 1 if the quantity is an integer, and the minimum precision value for the [.id]#Decimal# type if the quantity is a decimal. The units are unchanged.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[power]]
 === Power
@@ -1470,11 +1470,11 @@ If the argument is null, the result is null.
 
 *Description:*
 
-The _power_ (^) operator raises the first argument to the power given by the second argument.
+The _power_ ([.sym]#^#) operator raises the first argument to the power given by the second argument.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[round]]
 === Round
@@ -1489,13 +1489,13 @@ Round(argument Decimal, precision Integer) Decimal
 
 *Description:*
 
-The Round operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
+The [.id]#Round# operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
-Precision determines the decimal place at which the rounding will occur. If precision is not specified or null, 0 is assumed.
+Precision determines the decimal place at which the rounding will occur. If precision is not specified or [.kw]#null#, 0 is assumed.
 
 [[subtract]]
 === Subtract
@@ -1511,13 +1511,13 @@ Precision determines the decimal place at which the rounding will occur. If prec
 
 *Description:*
 
-The _subtract_ (-) operator performs numeric subtraction of its arguments.
+The _subtract_ ([.sym]#-#) operator performs numeric subtraction of its arguments.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be subtracted, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[successor]]
 === Successor
@@ -1531,19 +1531,19 @@ successor of<T>(argument T) T
 
 *Description:*
 
-The successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+The [.kw]#successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The successor operator is defined for the Integer, Quantity, Decimal, Date, DateTime, and Time types.
+The [.kw]#successor# operator is defined for the [.id]#Integer#, [.id]#Quantity#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
-For Integer, successor is equivalent to adding 1.
+For [.id]#Integer#, [.kw]#successor# is equivalent to adding 1.
 
-For Decimal, successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08^.
+For [.id]#Decimal#, [.kw]#successor# is equivalent to adding the minimum precision value for the [.id]#Decimal# type, or 10^-08^.
 
-For Date, DateTime and Time values, successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, successor is equivalent to adding one second, etc.
+For [.id]#Date#, [.id]#DateTime# and [.id]#Time# values, [.kw]#successor# is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the [.id]#DateTime# is fully specified, [.kw]#successor# is equivalent to adding 1 millisecond; if the [.id]#DateTime# is specified to the second, [.kw]#successor# is equivalent to adding one second, etc.
 
-For Quantity values, the successor is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the Decimal type if the quantity is a decimal. The units are unchanged.
+For [.id]#Quantity# values, the [.kw]#successor# is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the [.id]#Decimal# type if the quantity is a decimal. The units are unchanged.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[truncate]]
 === Truncate
@@ -1557,11 +1557,11 @@ Truncate(argument Decimal) Integer
 
 *Description:*
 
-The Truncate operator returns the integer component of its argument.
+The [.id]#Truncate# operator returns the integer component of its argument.
 
-When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[truncated-divide]]
 === Truncated Divide
@@ -1576,11 +1576,11 @@ div(left Decimal, right Decimal) Decimal
 
 *Description:*
 
-The div operator performs truncated division of its arguments.
+The [.kw]#div# operator performs truncated division of its arguments.
 
-When invoked with mixed Integer and Decimal arguments, the Integer argument will be implicitly converted to Decimal.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[string-operators-3]]
 == String Operators
@@ -1598,9 +1598,9 @@ Combine(source List<String>, separator String) String
 
 *Description:*
 
-The Combine operator combines a list of strings, optionally separating each string with the given separator.
+The [.id]#Combine# operator combines a list of strings, optionally separating each string with the given separator.
 
-If either argument is null, or any element in the source list of strings is null, the result is null.
+If either argument is [.kw]#null#, or any element in the source list of strings is [.kw]#null#, the result is [.kw]#null#.
 
 [[concatenate]]
 === Concatenate
@@ -1615,11 +1615,11 @@ If either argument is null, or any element in the source list of strings is null
 
 *Description:*
 
-The _concatenate_ (+ or &) operator performs string concatenation of its arguments.
+The _concatenate_ ([.sym]#+# or [.sym]#&#) operator performs string concatenation of its arguments.
 
-When using +, if either argument is null, the result is null.
+When using [.sym]#+#, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
-When using &, null arguments are treated as an empty string ('').
+When using [.sym]#&#, [.kw]#null# arguments are treated as an empty string ([.sym]#''#).
 
 [[endswith]]
 === EndsWith
@@ -1633,11 +1633,11 @@ EndsWith(argument String, suffix String) Boolean
 
 *Description:*
 
-The EndsWith operator returns true if the given string starts with the given suffix.
+The [.id]#EndsWith# operator returns true if the given string starts with the given suffix.
 
 If the suffix is the empty string, the result is true.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[indexer]]
 === Indexer
@@ -1651,13 +1651,13 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _indexer_ ([]) operator returns the character at the indexth position in a string.
+The _indexer_ ([.sym]#[]#) operator returns the character at the indexth position in a string.
 
 Indexes in strings are defined to be 0-based.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the index is greater than the length of the string being indexed, the result is null.
+If the index is greater than the length of the string being indexed, the result is [.kw]#null#.
 
 [[lastpositionof]]
 === LastPositionOf
@@ -1671,11 +1671,11 @@ LastPositionOf(pattern String, argument String) Integer
 
 *Description:*
 
-The LastPositionOf operator returns the 0-based index of the last appearance of the given pattern in the given string.
+The [.id]#LastPositionOf# operator returns the 0-based index of the last appearance of the given pattern in the given string.
 
 If the pattern is not found, the result is -1.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[length]]
 === Length
@@ -1689,9 +1689,9 @@ Length(argument String) Integer
 
 *Description:*
 
-The Length operator returns the number of characters in a string.
+The [.id]#Length# operator returns the number of characters in a string.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[lower]]
 === Lower
@@ -1705,11 +1705,11 @@ Lower(argument String) String
 
 *Description:*
 
-The Lower operator returns the given string with all characters converted to their lower case equivalents.
+The [.id]#Lower# operator returns the given string with all characters converted to their lower case equivalents.
 
 Note that the definition of _lowercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[matches]]
 === Matches
@@ -1723,9 +1723,9 @@ Matches(argument String, pattern String) Boolean
 
 *Description:*
 
-The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+The [.id]#Matches# operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
 
@@ -1741,11 +1741,11 @@ PositionOf(pattern String, argument String) Integer
 
 *Description:*
 
-The PositionOf operator returns the 0-based index of the given pattern in the given string.
+The [.id]#PositionOf# operator returns the 0-based index of the given pattern in the given string.
 
 If the pattern is not found, the result is -1.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[replacematches]]
 === ReplaceMatches
@@ -1759,9 +1759,9 @@ Matches(argument String, pattern String, substitution String) String
 
 *Description:*
 
-The ReplaceMatches operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+The [.id]#ReplaceMatches# operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
 
-If any argument is null, the result is null.
+If any argument is [.kw]#null#, the result is [.kw]#null#.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
 
@@ -1777,11 +1777,11 @@ Split(stringToSplit String, separator String) List<String>
 
 *Description:*
 
-The Split operator splits a string into a list of strings using a separator.
+The [.id]#Split# operator splits a string into a list of strings using a separator.
 
-If the stringToSplit argument is null, the result is null.
+If the [.id]#stringToSplit# argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the stringToSplit argument does not contain any appearances of the separator, the result is a list of strings containing one element that is the value of the stringToSplit argument.
+If the [.id]#stringToSplit# argument does not contain any appearances of the separator, the result is a list of strings containing one element that is the value of the [.id]#stringToSplit# argument.
 
 [[startswith]]
 === StartsWith
@@ -1795,11 +1795,11 @@ StartsWith(argument String, prefix String) Boolean
 
 *Description:*
 
-The StartsWith operator returns true if the given string starts with the given prefix.
+The [.id]#StartsWith# operator returns true if the given string starts with the given prefix.
 
 If the prefix is the empty string, the result is true.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[substring]]
 === Substring
@@ -1814,11 +1814,11 @@ Substring(stringToSub String, startIndex Integer, length Integer) String
 
 *Description:*
 
-The Substring operator returns the string within stringToSub, starting at the 0-based index startIndex, and consisting of length characters.
+The [.id]#Substring# operator returns the string within [.id]#stringToSub#, starting at the 0-based index [.id]#startIndex#, and consisting of [.id]#length# characters.
 
-If length is ommitted, the substring returned starts at startIndex and continues to the end of stringToSub.
+If [.id]#length# is ommitted, the substring returned starts at [.id]#startIndex# and continues to the end of [.id]#stringToSub#.
 
-If stringToSub or startIndex is null, or startIndex is out of range, the result is null.
+If [.id]#stringToSub# or [.id]#startIndex# is [.kw]#null#, or [.id]#startIndex# is out of range, the result is [.kw]#null#.
 
 [[upper]]
 === Upper
@@ -1832,11 +1832,11 @@ Upper(argument String) String
 
 *Description:*
 
-The Upper operator returns the given string with all characters converted to their upper case equivalents.
+The [.id]#Upper# operator returns the given string with all characters converted to their upper case equivalents.
 
 Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[datetime-operators-2]]
 == Date/Time Operators
@@ -1855,13 +1855,13 @@ If the argument is null, the result is null.
 
 *Description:*
 
-The _add_ (+) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+The _add_ ([.sym]#+#) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of: years, months, weeks, or days.
+For [.id]#Date# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
-For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
 Note that the quantity units may be specified in singular, plural, or UCUM form.
 
@@ -1869,11 +1869,11 @@ The operation is performed by converting the time-based quantity to the highest 
 
 DateTime(2014) + 24 months
 
-This example results in the value DateTime(2016) even though the date/time value is not specified to the level of precision of the time-valued quantity.
+This example results in the value [.id]#DateTime(2016)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[after]]
 === After
@@ -1889,19 +1889,19 @@ after _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The after__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. 
+The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument.
 
-For Date values, _precision_ must be one of: year, month, week, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-If either or both arguments are null, the result is null.
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 [[before]]
 === Before
@@ -1917,19 +1917,19 @@ before _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The before__-precision-__of operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. 
+The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument.
 
-For Date values, _precision_ must be one of: year, month, week, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-If either or both arguments are null, the result is null.
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 [[date-1]]
 === Date
@@ -1945,9 +1945,9 @@ Date(year Integer, month Integer, day Integer) Date
 
 *Description:*
 
-The Date operator constructs a date value from the given components.
+The [.id]#Date# operator constructs a date value from the given components.
 
-At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, month may be null, but if it is, day must be null as well.
+At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#month# may be [.kw]#null#, but if it is, [.id]#day# must be [.kw]#null# as well.
 
 [[datetime-1]]
 === DateTime
@@ -1974,11 +1974,11 @@ DateTime(year Integer, month Integer, day Integer,
 
 *Description:*
 
-The DateTime operator constructs a date/time value from the given components.
+The [.id]#DateTime# operator constructs a date/time value from the given components.
 
-At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
+At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#hour# may be [.kw]#null#, but if it is, [.id]#minute#, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
-If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
+If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offset of the evaluation request.
 
 [[datetime-component-from]]
 === Date/Time Component From
@@ -1998,15 +1998,15 @@ time from(argument DateTime) Time
 
 *Description:*
 
-The _component_-from operator returns the specified component of the argument.
+The _component_-[.kw]#from# operator returns the specified component of the argument.
 
-For Date values, _precision_ must be one of: year, month, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-If the argument is null, or is not specified to the level of precision being extracted, the result is null.
+If the argument is [.kw]#null#, or is not specified to the level of precision being extracted, the result is [.kw]#null#.
 
 [[difference]]
 === Difference
@@ -2022,17 +2022,17 @@ difference in _precision_ between(low Time, high Time) Integer
 
 *Description:*
 
-The __difference-__between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
+The __difference-__[.kw]#between# operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
 
 As with all date/time calculations, difference calculations are performed respecting the timezone offset depending on the precision.
 
-For Date values, _precision_ must be one of: years, months, weeks, or days.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
-For DateTime values, _precision_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-For Time values, _precision_ must be one of: hours, minutes, seconds, or milliseconds.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[duration]]
 === Duration
@@ -2048,15 +2048,15 @@ _duration_ between(low Time, high Time) Integer
 
 *Description:*
 
-The __duration-__between operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.
+The __duration-__[.kw]#between# operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.
 
-For Date values, _duration_ must be one of: years, months, weeks, or days.
+For [.id]#Date# values, _duration_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
-For DateTime values, _duration_ must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For [.id]#DateTime# values, _duration_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-For Time values, _duration_ must be one of: hours, minutes, seconds, or milliseconds.
+For [.id]#Time# values, _duration_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[now]]
 === Now
@@ -2070,7 +2070,7 @@ Now() DateTime
 
 *Description:*
 
-The Now operator returns the date and time of the start timestamp associated with the evaluation request. Now is defined in this way for two reasons:
+The [.id]#Now# operator returns the date and time of the start timestamp associated with the evaluation request. [.id]#Now# is defined in this way for two reasons:
 
 1.  The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
 2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
@@ -2089,21 +2089,21 @@ same _precision_ as(left Time, right Time) Boolean
 
 *Description:*
 
-The same__-precision-__as operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is true. If a compared component is specified in both dates, but the values are not the same, then the result is false. Otherwise the result is null, as there is not enough information to make a determination.
+The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is [.kw]#true#. If a compared component is specified in both dates, but the values are not the same, then the result is [.kw]#false#. Otherwise the result is [.kw]#null#, as there is not enough information to make a determination.
 
-For Date values, _precision_ must be one of: year, month, week, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-If either or both arguments are null, the result is null.
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, millisecond precision is used.
+If no precision is specified, [.kw]#millisecond# precision is used.
 
 [[same-or-after]]
 === Same Or After
@@ -2119,21 +2119,21 @@ same _precision_ or after(left Time, right Time) Boolean
 
 *Description:*
 
-The same__-precision-__or after operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
+The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
 
-For Date values, _precision_ must be one of: year, month, week, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-If either or both arguments are null, the result is null.
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, the millisecond precision is used.
+If no precision is specified, the [.kw]#millisecond# precision is used.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -2151,21 +2151,21 @@ same _precision_ or before(left Time, right Time) Boolean
 
 *Description:*
 
-The same__-precision-__or before operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
+The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
 
-For Date values, _precision_ must be one of: year, month, week, or day.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
 
-For DateTime values, _precision_ must be one of: year, month, week, day, hour, minute, second, or millisecond.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For Time values, _precision_ must be one of: hour, minute, second, or millisecond.
+For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be null, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-If either or both arguments are null, the result is null.
+If either or both arguments are [.kw]#null#, the result is null.
 
-If no precision is specified, the millisecond precision is used.
+If no precision is specified, the [.kw]#millisecond# precision is used.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -2183,25 +2183,25 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 *Description:*
 
-The _subtract_ (-) operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+The _subtract_ ([.sym]#-#) operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of: years, months, weeks, or days.
+For [.id]#Date# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
-For DateTime values, the quantity unit must be one of: years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-For Time values, the quantity unit must be one of: hours, minutes, seconds, or milliseconds.
+For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
 Note that the quantity units may be specified in singular, plural or UCUM form.
 
 The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
 
-DateTime(2014) - 24 months
+[.id]#DateTime(2014)# [.sym]#-# [.lit]#24# [.id]#months#
 
-This example results in the value DateTime(2012) even though the date/time value is not specified to the level of precision of the time-valued quantity.
+This example results in the value [.id]#DateTime(2012)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[time-1]]
 === Time
@@ -2220,11 +2220,11 @@ timezoneOffset Decimal) Time
 
 *Description:*
 
-The Time operator constructs a time value from the given components.
+The [.id]#Time# operator constructs a time value from the given components.
 
-At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.
+At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#minute# may be [.kw]#null#, but if it is, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
-If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
+If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offset of the evaluation request.
 
 [[timeofday]]
 === TimeOfDay
@@ -2238,7 +2238,7 @@ TimeOfDay() Time
 
 *Description:*
 
-The TimeOfDay operator returns the time of day of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the TimeOfDay operator in this way.
+The [.id]#TimeOfDay# operator returns the time of day of the start timestamp associated with the evaluation request. See the [.id]#Now# operator for more information on the rationale for defining the [.id]#TimeOfDay# operator in this way.
 
 [[today]]
 === Today
@@ -2252,7 +2252,7 @@ Today() Date
 
 *Description:*
 
-The Today operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.
+The [.id]#Today# operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the [.id]#Now# operator for more information on the rationale for defining the [.id]#Today# operator in this way.
 
 [[interval-operators-3]]
 == Interval Operators
@@ -2271,17 +2271,17 @@ after _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The after operator for intervals returns true if the first interval starts after the second one ends. In other words, if the starting point of the first interval is greater than the ending point of the second interval.
+The [.kw]#after# operator for intervals returns [.kw]#true# if the first interval starts after the second one ends. In other words, if the starting point of the first interval is greater than the ending point of the second interval.
 
-For the point-interval overload, the operator returns true if the given point is greater than the end of the interval.
+For the point-interval overload, the operator returns [.kw]#true# if the given point is greater than the end of the interval.
 
-For the interval-point overload, the operator returns true if the given interval starts after the given point.
+For the interval-point overload, the operator returns [.kw]#true# if the given interval starts after the given point.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[before-1]]
 === Before
@@ -2297,17 +2297,17 @@ before _precision_ (left interval<T>, right T) Boolean
 
 *Description:*
 
-The before operator for intervals returns true if the first interval ends before the second one starts. In other words, if the ending point of the first interval is less than the starting point of the second interval.
+The [.kw]#before# operator for intervals returns [.kw]#true# if the first interval ends before the second one starts. In other words, if the ending point of the first interval is less than the starting point of the second interval.
 
-For the point-interval overload, the operator returns true if the given point is less than the start of the interval.
+For the point-interval overload, the operator returns [.kw]#true# if the given point is less than the start of the interval.
 
-For the interval-point overload, the operator returns true if the given interval ends before the given point.
+For the interval-point overload, the operator returns [.kw]#true# if the given interval ends before the given point.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[collapse]]
 === Collapse
@@ -2321,11 +2321,11 @@ collapse(argument List<Interval<T>>) List<Interval<T>>
 
 *Description:*
 
-The collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals.
+The [.kw]#collapse# operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[contains]]
 === Contains
@@ -2339,11 +2339,11 @@ contains _precision_ (argument Interval<T>, point T) Boolean
 
 *Description:*
 
-The contains operator for intervals returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.
+The [.kw]#contains# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered [.kw]#true#.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[end]]
 === End
@@ -2357,13 +2357,13 @@ end of(argument Interval<T>) T
 
 *Description:*
 
-The End operator returns the ending point of an interval.
+The [.id]#End# operator returns the ending point of an interval.
 
-If the high boundary of the interval is open, this operator returns the predecessor of the high value of the interval. Note that if the high value of the interval is null, the result is null.
+If the high boundary of the interval is open, this operator returns the [.kw]#predecessor# of the high value of the interval. Note that if the high value of the interval is [.kw]#null#, the result is [.kw]#null#.
 
 If the high boundary of the interval is closed and the high value of the interval is not null, this operator returns the high value of the interval. Otherwise, the result is the maximum value of the point type of the interval.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[ends]]
 === Ends
@@ -2377,13 +2377,13 @@ ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The ends operator returns true if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
+The [.kw]#ends# operator returns [.kw]#true# if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
-This operator uses the semantics described in the start and end operators to determine interval boundaries.
+This operator uses the semantics described in the [.kw]#start# and [.kw]#end# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[equal-1]]
 === Equal
@@ -2397,9 +2397,9 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _equal_ (=) operator for intervals returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the Start and End operators.
+The _equal_ ([.sym]#=#) operator for intervals returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[equivalent-1]]
 === Equivalent
@@ -2413,7 +2413,7 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The ~ operator for intervals returns true if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
+The [.sym]#~# operator for intervals returns [.kw]#true# if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators are equivalent.
 
 [[except]]
 === Except
@@ -2427,9 +2427,9 @@ except(left Interval<T>, right Interval<T>) Interval<T>
 
 *Description:*
 
-The except operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns null.
+The [.kw]#except# operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns [.kw]#null#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[expand]]
 === Expand
@@ -2443,9 +2443,9 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 *Description:*
 
-The expand operator returns the set of intervals of width per for all the intervals in the input.
+The [.kw]#expand# operator returns the set of intervals of width per for all the intervals in the input.
 
-The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ('1'). For date/time intervals, this means a temporal duration.
+The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ('[.lit]#1#'). For date/time intervals, this means a temporal duration.
 
 For example:
 
@@ -2456,9 +2456,9 @@ expand EffectivePeriods per day
 
 Note that if the values in the intervals have a higher precision than the per quantity, the higher precision values will be truncated to the granularity specified by the per quantity.
 
-If the list of intervals is empty, the result is empty. If the list of intervals contains nulls, they will be excluded from the resulting list.
+If the list of intervals is empty, the result is empty. If the list of intervals contains [.kw]#nulls#, they will be excluded from the resulting list.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[in]]
 === In
@@ -2472,11 +2472,11 @@ in _precision_ (point T, argument Interval<T>) Boolean
 
 *Description:*
 
-The in operator for intervals returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.
+The [.kw]#in# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered true.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[includes]]
 === Includes
@@ -2491,15 +2491,15 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The includes operator for intervals returns true if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
+The [.kw]#includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, the operator returns true if the interval includes (i.e. contains) the point.
+For the point overload, the operator returns [.kw]#true# if the interval includes (i.e. contains) the point.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[included-in]]
 === Included In
@@ -2514,17 +2514,17 @@ included in _precision_ (left T, right Interval<T>) Boolean
 
 *Description:*
 
-The included in operator for intervals returns true if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
+The [.kw]#included in# operator for intervals returns [.kw]#true# if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, the operator returns true if the point is included in (i.e. in) the interval.
+For the point overload, the operator returns [.kw]#true# if the point is included in (i.e. in) the interval.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-Note that during is a synonym for included in and may be used to invoke the same operation wherever included in may appear.
+Note that [.kw]#during# is a synonym for included in and may be used to invoke the same operation wherever [.kw]#included in# may appear.
 
 [[intersect]]
 === Intersect
@@ -2538,9 +2538,9 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 
 *Description:*
 
-The intersect operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns null.
+The [.kw]#intersect# operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns [.kw]#null#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[meets]]
 === Meets
@@ -2556,15 +2556,15 @@ meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The meets operator returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second, or if the starting point of the first interval is equal to the successor of the ending point of the second.
+The [.kw]#meets# operator returns [.kw]#true# if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second, or if the starting point of the first interval is equal to the successor of the ending point of the second.
 
-The meets before operator returns true if the first interval ends immediately before the second interval starts, while the meets after operator returns true if the first interval starts immediately after the second interval ends.
+The [.kw]#meets before# operator returns [.kw]#true# if the first interval ends immediately before the second interval starts, while the [.kw]#meets after# operator returns [.kw]#true# if the first interval starts immediately after the second interval ends.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[not-equal-1]]
 === Not Equal
@@ -2578,9 +2578,9 @@ If either argument is null, the result is null.
 
 *Description:*
 
-The _not equal_ (!=) operator for intervals returns true if its arguments are not the same value.
+The _not equal_ ([.sym]#!=#) operator for intervals returns [.kw]#true# if its arguments are not the same value.
 
-The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+The _not equal_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equal_ operator.
 
 [[not-equivalent-1]]
 === Not Equivalent
@@ -2594,9 +2594,9 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Description:*
 
-The _not equivalent_ (!~) operator for intervals returns true if its arguments are not equivalent.
+The _not equivalent_ ([.sym]#!~#) operator for intervals returns [.kw]#true# if its arguments are not equivalent.
 
-The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+The _not equivalent_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equivalent_ operator.
 
 [[on-or-after]]
 === On Or After
@@ -2612,17 +2612,17 @@ on or after _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The on or after operator for intervals returns true if the first interval starts on or after the second one ends. In other words, if the starting point of the first interval is greater than or equal to the ending point of the second interval.
+The [.kw]#on or after# operator for intervals returns [.kw]#true# if the first interval starts on or after the second one ends. In other words, if the starting point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point-interval overload, the operator returns true if the given point is greater than or equal to the end of the interval.
+For the point-interval overload, the operator returns [.kw]#true# if the given point is greater than or equal to the end of the interval.
 
-For the interval-point overload, the operator returns true if the given interval starts on or after the given point.
+For the interval-point overload, the operator returns [.kw]#true# if the given interval starts on or after the given point.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that this operator can be invoked using either the [.kw]#on or after# or the [.kw]#after or on# syntax.
 
@@ -2642,17 +2642,17 @@ on or before _precision_ (left interval<T>, right T) Boolean
 
 *Description:*
 
-The on or before operator for intervals returns true if the first interval ends on or before the second one starts. In other words, if the ending point of the first interval is less than or equal to the starting point of the second interval.
+The [.kw]#on or before# operator for intervals returns [.kw]#true# if the first interval ends on or before the second one starts. In other words, if the ending point of the first interval is less than or equal to the starting point of the second interval.
 
-For the point-interval overload, the operator returns true if the given point is less than or equal to the start of the interval.
+For the point-interval overload, the operator returns [.kw]#true# if the given point is less than or equal to the start of the interval.
 
-For the interval-point overload, the operator returns true if the given interval ends on or before the given point.
+For the interval-point overload, the operator returns [.kw]#true# if the given interval ends on or before the given point.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
 
@@ -2674,15 +2674,15 @@ overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The overlaps operator returns true if the first interval overlaps the second. More precisely, if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
+The [.kw]#overlaps# operator returns [.kw]#true# if the first interval overlaps the second. More precisely, if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
 
-The operator overlaps before returns true if the first interval overlaps the second and starts before it, while the overlaps after operator returns true if the first interval overlaps the second and ends after it.
+The operator [.kw]#overlaps before# returns [.kw]#true# if the first interval overlaps the second and starts before it, while the [.kw]#overlaps after# operator returns [.kw]#true# if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[point-from]]
 === Point From
@@ -2696,9 +2696,9 @@ point from(argument Interval<T>) : T
 
 *Description:*
 
-The point from operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.
+The [.kw]#point from# operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[properly-includes]]
 === Properly Includes
@@ -2712,13 +2712,13 @@ properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The properly includes operator for intervals returns true if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.
+The [.kw]#properly includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[properly-included-in]]
 === Properly Included In
@@ -2732,15 +2732,15 @@ properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The properly included in operator for intervals returns true if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
+The [.kw]#properly included# in operator for intervals returns [.kw]#true# if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-Note that during is a synonym for included in.
+Note that [.kw]#during# is a synonym for [.kw]#included in#.
 
 [[start]]
 === Start
@@ -2754,13 +2754,13 @@ start of(argument Interval<T>) T
 
 *Description:*
 
-The Start operator returns the starting point of an interval.
+The [.id]#Start# operator returns the starting point of an interval.
 
-If the low boundary of the interval is open, this operator returns the successor of the low value of the interval. Note that if the low value of the interval is null, the result is null.
+If the low boundary of the interval is open, this operator returns the [.kw]#successor# of the low value of the interval. Note that if the low value of the interval is [.kw]#null#, the result is [.kw]#null#.
 
 If the low boundary of the interval is closed and the low value of the interval is not null, this operator returns the low value of the interval. Otherwise, the result is the minimum value of the point type of the interval.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[starts]]
 === Starts
@@ -2774,13 +2774,13 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The starts operator returns true if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
+The [.kw]#starts# operator returns [.kw]#true# if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the Start and End operators to determine interval boundaries.
+This operator uses the semantics described in the [.id]#Start# and [.id]#End# operators to determine interval boundaries.
 
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[union]]
 === Union
@@ -2794,9 +2794,9 @@ union(left Interval<T>, right Interval<T>) Interval<T>
 
 *Description:*
 
-The union operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns null.
+The [.kw]#union# operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns [.kw]#null#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[width]]
 === Width
@@ -2810,11 +2810,11 @@ width of(argument Interval<T>) T
 
 *Description:*
 
-The width operator returns the width of an interval. The result of this operator is equivalent to invoking: (start of argument – end of argument) + _point-size_.
+The [.kw]#width# operator returns the width of an interval. The result of this operator is equivalent to invoking: ([.kw]#start of# [.id]#argument# [.sym]#–# [.kw]#end of# [.id]#argument#) [.sym]#+# [.id]#_point-size_#.
 
 Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _width_ is not defined for intervals of these types.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[list-operators-2]]
 == List Operators
@@ -2831,13 +2831,13 @@ contains(argument List<T>, element T) Boolean
 
 *Description:*
 
-The contains operator for lists returns true if the given element is in the list.
+The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list.
 
-This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
+This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a [.kw]#null#, and the element being searched for is [.kw]#null#, the result will be [.kw]#true#.
 
-If the list argument is null, the result is null.
+If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the element argument is null, the result is true if the list contains at least one null element, and false otherwise.
+If the element argument is [.kw]#null#, the result is [.kw]#true# if the list contains at least one [.kw]#null# element, and [.kw]#false# otherwise.
 
 [[distinct]]
 === Distinct
@@ -2851,11 +2851,11 @@ distinct(argument List<T>) List<T>
 
 *Description:*
 
-The distinct operator returns the given list with duplicates eliminated.
+The [.kw]#distinct# operator returns the given list with duplicates eliminated.
 
-This operator uses the notion of _equivalence_ to determine whether two elements in the list are the same for the purposes of duplicate elimination. In particular this means that if the list contains multiple null elements, the result will only contain one null element.
+This operator uses the notion of _equivalence_ to determine whether two elements in the list are the same for the purposes of duplicate elimination. In particular this means that if the list contains multiple [.kw]#null# elements, the result will only contain one [.kw]#null# element.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[equal-2]]
 === Equal
@@ -2869,9 +2869,9 @@ If the argument is null, the result is null.
 
 *Description:*
 
-The _equal_ (=) operator for lists returns true if and only if the lists have the same element type, and have the same elements by value, in the same order.
+The _equal_ ([.sym]#=#) operator for lists returns [.kw]#true# if and only if the lists have the same element type, and have the same elements by value, in the same order.
 
-If either argument is null, or contains null elements, the result is null.
+If either argument is [.kw]#null#, or contains null elements, the result is [.kw]#null#.
 
 [[equivalent-2]]
 === Equivalent
@@ -2885,7 +2885,7 @@ If either argument is null, or contains null elements, the result is null.
 
 *Description:*
 
-The ~ operator for lists returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
+The [.sym]#~# operator for lists returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
 
 [[except-1]]
 === Except
@@ -2899,13 +2899,13 @@ except(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The except operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.
+The [.kw]#except# operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.
 
 This operator uses the notion of _equivalence_ to determine whether two elements are the same for the purposes of computing the difference.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
-If the left argument is null, the result is null. If the right argument is null, the result is the left argument.
+If the left argument is [.kw]#null#, the result is [.kw]#null#. If the right argument is [.kw]#null#, the result is the left argument.
 
 [[exists]]
 === Exists
@@ -2919,9 +2919,9 @@ exists(argument List<T>) Boolean
 
 *Description:*
 
-The exists operator returns true if the list contains any non-null elements.
+The [.kw]#exists# operator returns [.kw]#true# if the list contains any non-null elements.
 
-If the argument is null, the result is false.
+If the argument is [.kw]#null#, the result is [.kw]#false#.
 
 [[flatten]]
 === Flatten
@@ -2935,9 +2935,9 @@ flatten(argument List<List<T>>) List<T>
 
 *Description:*
 
-The flatten operator flattens a list of lists into a single list.
+The [.kw]#flatten# operator flattens a list of lists into a single list.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[first]]
 === First
@@ -2951,9 +2951,9 @@ First(argument List<T>) T
 
 *Description:*
 
-The First operator returns the first element in a list. The operator is equivalent to invoking the indexer with an index of 0.
+The [.id]#First# operator returns the first element in a list. The operator is equivalent to invoking the indexer with an index of 0.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[in-1]]
 === In
@@ -2967,13 +2967,13 @@ in(element T, argument List<T>) Boolean
 
 *Description:*
 
-The in operator for lists returns true if the given element is in the given list.
+The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list.
 
-This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a null, and the element being searched for is null, the result will be true.
+This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a [.kw]#null#, and the element being searched for is [.kw]#null#, the result will be [.kw]#true#.
 
-If the list argument is null, the result is null.
+If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the element argument is null, the result is true if the list contains at least one null element, and false otherwise.
+If the element argument is [.kw]#null#, the result is [.kw]#true# if the list contains at least one [.kw]#null# element, and [.kw]#false# otherwise.
 
 [[includes-1]]
 === Includes
@@ -2988,13 +2988,13 @@ includes(left List<T>, right T) Boolean
 
 *Description:*
 
-The includes operator for lists returns true if the first list contains every element of the second list.
+The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list.
 
-For the singleton overload, this operator returns true if the list includes (i.e. contains) the singleton.
+For the singleton overload, this operator returns [.kw]#true# if the list includes (i.e. contains) the singleton.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
-If the left argument is null, the result is false, else if the right argument is null, the result is true.
+If the left argument is [.kw]#null#, the result is [.kw]#false#, else if the right argument is [.kw]#null#, the result is [.kw]#true#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -3011,13 +3011,13 @@ included in(left T, right list<T>) Boolean
 
 *Description:*
 
-The included in operator for lists returns true if every element of the first list is in the second list.
+The [.kw]#included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list.
 
-For the singleton overload, this operator returns true if the singleton is included in (i.e. in) the list.
+For the singleton overload, this operator returns [.kw]#true# if the singleton is included in (i.e. in) the list.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
-If the left argument is null, the result is true, else if the right argument is null, the result is false.
+If the left argument is [.kw]#null#, the result is [.kw]#true#, else if the right argument is [.kw]#null#, the result is [.kw]#false#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -3033,13 +3033,13 @@ Note that the order of elements does not matter for the purposes of determining 
 
 *Description:*
 
-The _indexer_ ([]) operator returns the element at the indexth position in a list.
+The _indexer_ ([.sym]#[]#) operator returns the element at the [.id]#index#^th^ position in a list.
 
 Indexes in lists are defined to be 0-based.
 
-If the index is less than 0, or greater than the number of elements in the list, the result is null.
+If the [.id]#index# is less than 0, or greater than the number of elements in the list, the result is [.kw]#null#.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[indexof]]
 === IndexOf
@@ -3053,13 +3053,13 @@ IndexOf(argument List<T>, element T) Integer
 
 *Description:*
 
-The IndexOf operator returns the 0-based index of the given element in the given source list.
+The [.id]#IndexOf# operator returns the 0-based index of the given element in the given source list.
 
 The operator uses the notion of _equivalence_ to determine the index. The search is linear, and returns the index of the first element that is equivalent to the element being searched for.
 
 If the list is empty, or no element is found, the result is -1.
 
-If the list argument is null, the result is null.
+If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[intersect-1]]
 === Intersect
@@ -3073,13 +3073,13 @@ intersect(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The intersect operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
+The [.kw]#intersect# operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[last]]
 === Last
@@ -3093,9 +3093,9 @@ Last(argument List<T>) T
 
 *Description:*
 
-The Last operator returns the last element in a list. In a list of length N, the operator is equivalent to invoking the indexer with an index of N - 1.
+The [.id]#Last# operator returns the last element in a list. In a list of length N, the operator is equivalent to invoking the indexer with an index of N [.sym]#-# 1.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[length-1]]
 === Length
@@ -3109,9 +3109,9 @@ Length(argument List<T>) Integer
 
 *Description:*
 
-The Length operator returns the number of elements in a list.
+The [.id]#Length# operator returns the number of elements in a list.
 
-If the argument is null, the result is 0.
+If the argument is [.kw]#null#, the result is [.kw]#0#.
 
 [[not-equal-2]]
 === Not Equal
@@ -3125,9 +3125,9 @@ If the argument is null, the result is 0.
 
 *Description:*
 
-The _not equal_ (!=) operator for lists returns true if its arguments are not the same value.
+The _not equal_ ([.sym]#!=#) operator for lists returns [.kw]#true# if its arguments are not the same value.
 
-The _not equal_ operator is a shorthand for invocation of logical negation (not) of the _equal_ operator.
+The _not equal_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equal_ operator.
 
 [[not-equivalent-2]]
 === Not Equivalent
@@ -3141,9 +3141,9 @@ The _not equal_ operator is a shorthand for invocation of logical negation (not)
 
 *Description:*
 
-The _not equivalent_ (!~) operator for lists returns true if its arguments are not equivalent.
+The _not equivalent_ ([.sym]#!~#) operator for lists returns [.kw]#true# if its arguments are not equivalent.
 
-The _not equivalent_ operator is a shorthand for invocation of logical negation (not) of the _equivalent_ operator.
+The _not equivalent_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equivalent_ operator.
 
 [[properly-includes-1]]
 === Properly Includes
@@ -3157,11 +3157,11 @@ properly includes(left List<T>, right List<T>) Boolean
 
 *Description:*
 
-The properly includes operator for lists returns true if the first list contains every element of the second list, and the first list is strictly larger than the second list.
+The [.kw]#properly includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list, and the first list is strictly larger than the second list.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
-If the left argument is null, the result is false, else if the right argument is null, the result is true if the left argument is not empty.
+If the left argument is [.kw]#null#, the result is [.kw]#false#, else if the right argument is [.kw]#null#, the result is [.kw]#true# if the left argument is not empty.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -3177,11 +3177,11 @@ properly included in(left List<T>, right list<T>) Boolean
 
 *Description:*
 
-The properly included in operator for lists returns true if every element of the first list is in the second list and the first list is strictly smaller than the second list.
+The [.kw]#properly included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list and the first list is strictly smaller than the second list.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
-If the left argument is null, the result is true if the right argument is not empty. Otherwise, if the right argument is null, the result is false.
+If the left argument is [.kw]#null#, the result is [.kw]#true# if the right argument is not empty. Otherwise, if the right argument is [.kw]#null#, the result is [.kw]#false#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -3197,9 +3197,9 @@ singleton from(argument List<T>) T
 
 *Description:*
 
-The singleton from operator extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown.
+The [.kw]#singleton from# operator extracts a single element from the source list. If the source list is empty, the result is [.kw]#null#. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown.
 
-If the source list is null, the result is null.
+If the source list is [.kw]#null#, the result is [.kw]#null#.
 
 [[skip]]
 === Skip
@@ -3213,11 +3213,11 @@ Skip(argument List<T>, number Integer) List<T>
 
 *Description:*
 
-The Skip operator returns the elements in the list, skipping the first number elements. If the list has less number elements, the result is empty.
+The [.id]#Skip# operator returns the elements in the list, skipping the first [.id]#number# elements. If the list has less [.id]#number# elements, the result is empty.
 
-If the source list is null, the result is null.
+If the source list is [.kw]#null#, the result is [.kw]#null#.
 
-If the number of elements is null, the result is the entire list, no elements are skipped.
+If the number of elements is [.kw]#null#, the result is the entire list, no elements are skipped.
 
 If the number of elements is less than zero, the result is an empty list.
 
@@ -3233,9 +3233,9 @@ Tail(argument List<T>) List<T>
 
 *Description:*
 
-The Tail operator returns all but the first element from the given list. If the list is empty, the result is empty.
+The [.id]#Tail# operator returns all but the first element from the given list. If the list is empty, the result is empty.
 
-If the source list is null, the result is null.
+If the source list is [.kw]#null#, the result is [.kw]#null#.
 
 [[take]]
 === Take
@@ -3249,11 +3249,11 @@ Take(argument List<T>, number Integer) List<T>
 
 *Description:*
 
-The Take operator returns the first number elements from the given list. If the list has less than number elements, the result only contains the elements in the list.
+The [.id]#Take# operator returns the first [.id]#number# elements from the given list. If the list has less than [.id]#number# elements, the result only contains the elements in the list.
 
-If the source list is null, the result is null.
+If the source list is [.kw]#null#, the result is [.kw]#null#.
 
-If number is null, or 0 or less, the result is an empty list.
+If number is [.kw]#null#, or [.lit]#03 or less, the result is an empty list.
 
 [[union-1]]
 === Union
@@ -3267,11 +3267,11 @@ union(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The union operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
+The [.kw]#union# operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
 
-If either argument is null, the result is null.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-Note that the union operator can also be invoked with the symbolic operator (|).
+Note that the union operator can also be invoked with the symbolic operator ([.sym]#|#).
 
 [[aggregate-functions]]
 == Aggregate Functions
@@ -3288,11 +3288,11 @@ AllTrue(argument List<Boolean>) Boolean
 
 *Description:*
 
-The AllTrue operator returns true if all the non-null elements in the source are true.
+The [.id]#AllTrue# operator returns [.kw]#true# if all the non-null elements in the source are [.kw]#true#.
 
-If the source contains no non-null elements, true is returned.
+If the source contains no non-null elements, [.kw]#true# is returned.
 
-If the source is null, the result is true.
+If the source is [.kw]#null#, the result is [.kw]#true#.
 
 [[anytrue]]
 === AnyTrue
@@ -3306,11 +3306,11 @@ AnyTrue(argument List<Boolean>) Boolean
 
 *Description:*
 
-The AnyTrue operator returns true if any non-null element in the source is true.
+The [.id]#AnyTrue# operator returns [.kw]#true# if any non-null element in the source is [.kw]#true#.
 
-If the source contains no non-null elements, false is returned.
+If the source contains no non-null elements, [.kw]#false# is returned.
 
-If the source is null, the result is false.
+If the source is [.kw]#null#, the result is [.kw]#false#.
 
 [[avg]]
 === Avg
@@ -3325,11 +3325,11 @@ Avg(argument List<Quantity>) Quantity
 
 *Description:*
 
-The Avg operator returns the average of the non-null elements in the source.
+The [.id]#Avg# operator returns the average of the non-null elements in the source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[count]]
 === Count
@@ -3343,7 +3343,7 @@ Count(argument List<T>) Integer
 
 *Description:*
 
-The Count operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is null, the result is 0.
+The [.id]#Count# operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is [.kw]#null#, the result is [.kw]#0#.
 
 [[geometricmean]]
 === GeometricMean
@@ -3357,16 +3357,16 @@ GeometricMean(argument List<Decimal>) Decimal
 
 *Description:*
 
-The GeometricMean operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N^th^ root of the geometric product of the elements. In other words:
+The [.id]#GeometricMean# operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N^th^ root of the geometric product of the elements. In other words:
 
 [source,cql]
 ----
 GeometricMean(X) = Power(Product(X), 1 / Count(X))
 ----
 
-If the source contains no non-null elements, the result is null.
+If the source contains no non-null elements, the result is [.kw]#null#.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[max]]
 === Max
@@ -3386,11 +3386,11 @@ Max(argument List<String>) String
 
 *Description:*
 
-The Max operator returns the maximum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
+The [.id]#Max# operator returns the maximum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[min]]
 === Min
@@ -3410,11 +3410,11 @@ Min(argument List<String>) String
 
 *Description:*
 
-The Min operator returns the minimum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
+The [.id]#Min# operator returns the minimum element in the source. Comparison semantics are defined by the comparison operators for the type of value being aggregated.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[median]]
 === Median
@@ -3429,11 +3429,11 @@ Median(argument List<Quantity>) Quantity
 
 *Description:*
 
-The Median operator returns the median of the elements in source.
+The [.id]#Median# operator returns the median of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[mode]]
 === Mode
@@ -3447,11 +3447,11 @@ Mode(argument List<T>) T
 
 *Description:*
 
-The Mode operator returns the statistical mode of the elements in source.
+The [.id]#Mode# operator returns the statistical mode of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[population-stddev]]
 === Population StdDev
@@ -3466,11 +3466,11 @@ PopulationStdDev(argument List<Quantity>) Quantity
 
 *Description:*
 
-The PopulationStdDev operator returns the statistical standard deviation of the elements in source.
+The [.id]#PopulationStdDev# operator returns the statistical standard deviation of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[population-variance]]
 === Population Variance
@@ -3485,11 +3485,11 @@ PopulationVariance(argument List<Quantity>) Quantity
 
 *Description:*
 
-The PopulationVariance operator returns the statistical population variance of the elements in source.
+The [.id]#PopulationVariance# operator returns the statistical population variance of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[product]]
 === Product
@@ -3505,11 +3505,11 @@ Product(argument List<Quantity>) Quantity
 
 *Description:*
 
-The Product operator returns the geometric product of the elements in source.
+The [.id]#Product# operator returns the geometric product of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[stddev]]
 === StdDev
@@ -3524,11 +3524,11 @@ StdDev(argument List<Quantity>) Quantity
 
 *Description:*
 
-The StdDev operator returns the statistical standard deviation of the elements in source.
+The [.id]#StdDev# operator returns the statistical standard deviation of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the list is null, the result is null.
+If the list is [.kw]#null#, the result is [.kw]#null#.
 
 [[sum]]
 === Sum
@@ -3544,11 +3544,11 @@ Sum(argument List<Quantity>) Quantity
 
 *Description:*
 
-The Sum operator returns the sum of non-null elements in the source.
+The [.id]#Sum# operator returns the sum of non-null elements in the source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the list is null, the result is null.
+If the list is [.kw]#null#, the result is [.kw]#null#.
 
 [[variance]]
 === Variance
@@ -3563,11 +3563,11 @@ Variance(argument List<Quantity>) Quantity
 
 *Description:*
 
-The Variance operator returns the statistical variance of the elements in source.
+The [.id]#Variance# operator returns the statistical variance of the elements in source.
 
-If the source contains no non-null elements, null is returned.
+If the source contains no non-null elements, [.kw]#null# is returned.
 
-If the source is null, the result is null.
+If the source is [.kw]#null#, the result is [.kw]#null#.
 
 [[clinical-operators-3]]
 == Clinical Operators
@@ -3590,13 +3590,13 @@ AgeInSeconds() Integer
 
 *Description:*
 
-The Age operators calculate the age of the patient as of now in the precision named in the operator.
+The [.id]#Age# operators calculate the age of the patient as of now in the precision named in the operator.
 
-If the patient’s birthdate is null, the result is null.
+If the patient’s birthdate is [.kw]#null#, the result is [.kw]#null#.
 
-The Age operators are defined in terms of a date/time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The Age operators are defined in terms of a date/time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
-Note that for AgeInYears, the birthDate is specified as a Date, not a DateTime.
+Note that for [.id]#AgeInYears#, the [.id]#birthDate# is specified as a [.id]#Date#, not a [.id]#DateTime#.
 
 [[ageat]]
 === AgeAt
@@ -3616,11 +3616,11 @@ AgeInSecondsAt(asOf DateTime) Integer
 
 *Description:*
 
-The AgeAt operators calculate the age of the patient as of the given date in the precision named in the operator.
+The [.id]#AgeAt# operators calculate the age of the patient as of the given date in the precision named in the operator.
 
-If the patient’s birthdate is null, or the asOf argument is null, the result is null.
+If the patient’s birthdate is [.kw]#null#, or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 
-The AgeAt operators are defined in terms of a date/time duration calculation. This means that if the age of the patient or the given asOf value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The [.id]#AgeAt# operators are defined in terms of a date/time duration calculation. This means that if the age of the patient or the given [.id]#asOf# value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
 [[calculateage]]
 === CalculateAge
@@ -3640,11 +3640,11 @@ CalculateAgeInSeconds(birthDate DateTime) Integer
 
 *Description:*
 
-The CalculateAge operators calculate the age of a person born on the given birthdate as of now in the precision named in the operator.
+The [.id]#CalculateAge# operators calculate the age of a person born on the given birthdate as of now in the precision named in the operator.
 
-If the birthdate is null, the result is null.
+If the birthdate is [.kw]#null#, the result is [.kw]#null#.
 
-The CalculateAge operators are defined in terms of a date/time duration calculation. This means that if the given birthDate is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The [.id]#CalculateAge# operators are defined in terms of a date/time duration calculation. This means that if the given [.id]#birthDate# is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
 [[calculateageat]]
 === CalculateAgeAt
@@ -3664,11 +3664,11 @@ CalculateAgeInSecondsAt(birthDate DateTime, asOf DateTime) Integer
 
 *Description:*
 
-The CalculateAgeAt operators calculate the age of a person born on the given birthdate as of the given date in the precision named in the operator.
+The [.id]#CalculateAgeAt# operators calculate the age of a person born on the given birthdate as of the given date in the precision named in the operator.
 
-If the birthDate is null or the asOf argument is null, the result is null.
+If the [.id]#birthDate# is [.kw]#null# or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 
-The CalculateAgeAt operators are defined in terms of a date/time duration calculation. This means that if the given birthDate or asOf are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return null.
+The [.id]#CalculateAgeAt# operators are defined in terms of a date/time duration calculation. This means that if the given [.id]#birthDate# or [.id]#asOf# are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
 [[equal-3]]
 === Equal
@@ -3683,9 +3683,9 @@ The CalculateAgeAt operators are defined in terms of a date/time duration calcul
 
 *Description:*
 
-The _equal_ (=) operator for Codes and Concepts uses tuple equality semantics. This means that the operator will return true if and only if the values for each element by name are equal.
+The _equal_ ([.sym]#=#) operator for Codes and Concepts uses tuple equality semantics. This means that the operator will return [.kw]#true# if and only if the values for each element by name are equal.
 
-If either argument is null, or contains any null components, the result is null.
+If either argument is [.kw]#null#, or contains any [.kw]#null# components, the result is [.kw]#null#.
 
 [[equivalent-3]]
 === Equivalent
@@ -3699,11 +3699,11 @@ If either argument is null, or contains any null components, the result is null.
 
 *Description:*
 
-The ~ operator for Code values returns true if the code and system elements are equivalent. The version and display elements are ignored for the purposes of determining Code equivalence.
+The [.sym]#~# operator for [.id]#Code# values returns [.kw]#true# if the [.id]#code# and [.id]#system# elements are equivalent. The [.id]#version# and [.id]#display# elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
-For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept. The display element is ignored for the purposes of determining Concept equivalence.
+For [.id]#Concept# values, equivalence is defined as a non-empty intersection of the codes in each [.id]#Concept#. The [.id]#display# element is ignored for the purposes of determining [.id]#Concept# equivalence.
 
-Note that this operator will always return true or false, even if either or both of its arguments are null, or contain null components.
+Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
 Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information in membership contexts.
 
@@ -3722,19 +3722,19 @@ in(codes List<Code>, codeSystem CodeSystemRef) Boolean
 
 *Description:*
 
-The in (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem.
+The [.kw]#in# (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined [.kw]#codesystem#.
 
-For the String overload, if the given code system contains a code with an equivalent code element, the result is true.
+For the [.id]#String# overload, if the given code system contains a code with an equivalent code element, the result is [.kw]#true#.
 
-For the Code overload, if the given code system contains an equivalent code, the result is true.
+For the [.id]#Code# overload, if the given code system contains an equivalent code, the result is [.kw]#true#.
 
-For the Concept overload, if the given code system contains a code equivalent to any code in the given concept, the result is true.
+For the [.id]#Concept# overload, if the given code system contains a code equivalent to any code in the given concept, the result is [.kw]#true#.
 
-For the List<Code> overload, if the given code system contains a code equivalent to any code in the given list, the result is true.
+For the [.id]#List<Code># overload, if the given code system contains a code equivalent to any code in the given list, the result is [.kw]#true#.
 
-If the code argument is null, the result is false.
+If the [.id]#code# argument is [.kw]#null#, the result is [.kw]#false#.
 
-If the code system reference cannot be resolved, a run-time error is thrown.
+If the [.id]#code# system reference cannot be resolved, a run-time error is thrown.
 
 [[in-valueset]]
 === In (Valueset)
@@ -3751,17 +3751,17 @@ in(codes List<Code>, valueset ValueSetRef) Boolean
 
 *Description:*
 
-The in (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.
+The [.kw]#in# (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined [.kw]#valueset#.
 
-For the String overload, if the given valueset contains a code with an equivalent code element, the result is true. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
+For the [.id]#String# overload, if the given valueset contains a code with an equivalent code element, the result is [.kw]#true#. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
-For the Code overload, if the given valueset contains an equivalent code, the result is true.
+For the [.id]#Code# overload, if the given valueset contains an equivalent code, the result is [.kw]#true#.
 
-For the Concept overload, if the given valueset contains a code equivalent to any code in the given concept, the result is true.
+For the [.id]#Concept# overload, if the given valueset contains a code equivalent to any code in the given concept, the result is [.kw]#true#.
 
-For the List<Code> overload, if the given valueset contains a code equivalent to any code in the given list, the result is true.
+For the [.id]#List<Code># overload, if the given valueset contains a code equivalent to any code in the given list, the result is [.kw]#true#.
 
-If the code argument is null, the result is false.
+If the code argument is [.kw]#null#, the result is [.kw]#false#.
 
 If the value set reference cannot be resolved, a run-time error is thrown.
 
@@ -3780,7 +3780,7 @@ Message(source T, condition Boolean, code String, severity String, message Strin
 
 *Description:*
 
-The Message operator provides a run-time mechanism for returning messages, warnings, traces, and errors to the calling environment.
+The [.id]#Message# operator provides a run-time mechanism for returning messages, warnings, traces, and errors to the calling environment.
 
 The source operator is any type and the result of the operation is the input source; the operation performs no modifications to input. This allows the message operation to appear at any point in any expression of CQL.
 
