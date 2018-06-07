@@ -300,12 +300,12 @@ The following changes were made since the initial informative ballot in Septembe
 		<xs:complexContent>
 			<xs:extension base="ExpressionRef">
 				<xs:sequence>
-					<xs:element name="operand" type="Expression" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="signature" type="TypeSpecifier" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="operand" type="Expression" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -2572,6 +2572,11 @@ An aggregate operation performed over an empty list is defined to return null, e
 		<xs:complexContent>
 			<xs:extension base="Expression">
 				<xs:sequence>
+					<xs:element name="signature" type="TypeSpecifier" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="source" type="Expression" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="path" type="xs:string" use="optional"/>
