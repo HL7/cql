@@ -2393,7 +2393,7 @@ If the source argument is null, the result is null.</xs:documentation>
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="Expression">
+			<xs:extension base="OperatorExpression">
 				<xs:sequence>
 					<xs:element name="source" type="Expression"/>
 				</xs:sequence>
