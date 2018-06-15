@@ -13,7 +13,7 @@
 
 *FHIR®* – Fast Healthcare Interoperability Resources (hl7.org/fhir) – is a next generation standards framework created by HL7. FHIR combines the best features of HL7’s Version 2, Version 3 and CDA® product lines while leveraging the latest web standards and applying a tight focus on implementability.
 
-*FHIR Profile* – A FHIR Profile is a statement of use of one or more FHIR Resources. It may include constraints on Resources and Data Types, Terminology Binding Statements and Extension Definitions. See the FHIR documentation for more information.
+*FHIR Profile* – A FHIR Profile is a statement of use of one or more FHIR Resources. It may include constraints on Resources and Data Types, Terminology Binding Statements and Extension Definitions. See the <<03-developersguide#using-fhirpath,FHIR documentation>> for more information.
 
 *nullological* – A category of operations for dealing with missing information. The term is actually due to Hugh Darwen, who introduced it in a paper to describe the behavior of operations in edge cases (e.g. empty sets or strings of length zero) and given his long history of opposing the use of “nulls” in relational systems, would probably not be pleased with the way the term has been co-opted in this context.
 
