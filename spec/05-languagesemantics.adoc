@@ -203,14 +203,14 @@ Operator |Generally, the type of the node is determined by resolving the type of
 
 Table 5‑C
 
-During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of context-sensitive operators such as Current and Property to be determined. Refer to the Execution Model (5.2.4) section for a description of the evaluation-time stack.
+During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of context-sensitive operators such as Current and Property to be determined. Refer to the <<Execution Model>> (5.2.4) section for a description of the evaluation-time stack.
 
 Details for the specifics of type determination for each operator are provided with the documentation for those operators.
 
 [[execution-model]]
 === Execution Model
 
-All logic in CQL is represented as _expressions_. The language is pure functional, meaning no operations are allowed to have side effects of any kind. An expression may consist of any number of other expressions and operations, so long as they are all combined according to the semantic rules for each operation as described in the Semantic Validation (5.2.3) section.
+All logic in CQL is represented as _expressions_. The language is pure functional, meaning no operations are allowed to have side effects of any kind. An expression may consist of any number of other expressions and operations, so long as they are all combined according to the semantic rules for each operation as described in the <<Semantic Validation>> (5.2.3) section.
 
 Because the language is pure functional, every expression and operator is defined to return the same value on every evaluation within the same artifact evaluation. In particular this means:
 
@@ -233,7 +233,7 @@ Evaluation takes place within an execution model that provides access to the dat
 
 Table 5‑D
 
-Evaluation consists of two phases, a _pre-processing_ phase, and an _evaluation_ phase. The pre-processing phase is used to determine the initial data requirements for a rule. During this phase any retrieve expressions in the rule are analyzed to determine what data must be provided to the evaluation in order to successfully complete a rule evaluation. This set of data descriptors is produced using the method described in the Artifact Data Requirements (5.1.3) section. This means in particular that only retrieves whose Codes and DateRange expressions are compile-time evaluable should be considered to determine initial data requirements. This means that these expressions may not reference any clinical information, though they are allowed to reference parameter values.
+Evaluation consists of two phases, a _pre-processing_ phase, and an _evaluation_ phase. The pre-processing phase is used to determine the initial data requirements for a rule. During this phase any retrieve expressions in the rule are analyzed to determine what data must be provided to the evaluation in order to successfully complete a rule evaluation. This set of data descriptors is produced using the method described in the <<Artifact Data Requirements>> (5.1.3) section. This means in particular that only retrieves whose Codes and DateRange expressions are compile-time evaluable should be considered to determine initial data requirements. This means that these expressions may not reference any clinical information, though they are allowed to reference parameter values.
 
 During the evaluation phase, the result of the expression is determined. Conceptually, evaluation proceeds as follows:
 

@@ -27,7 +27,7 @@ Each of these components is defined fully within the ELM UML model. This model i
 
 The documentation provided here serves only as a high-level structural reference for the ELM. The actual content of the specification is defined by the XMI file, and that provides the “source-of-truth” for the ELM specification.
 
-Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in Appendix B – CQL Reference.
+Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in <<09-b-cqlreference.adoc#appendix-b-cql-reference,Appendix B – CQL Reference>>.
 
 [[expressions]]
 == Expressions
@@ -67,7 +67,7 @@ The _Literal_ class is used to represent values for simple primitive types: Bool
 
 The result type of a _Literal_ is the type of the primitive being represented.
 
-For more information on the primitive types, see the Types section in the CQL Reference.
+For more information on the primitive types, see the <<09-b-cqlreference.adoc#types,Types>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[comparison-operators-1]]
 == Comparison Operators
@@ -96,7 +96,7 @@ image:extracted-media/media/image11.png[image,width=109,height=102]
 
 Figure 4‑B
 
-For more information on the semantics of the various comparison operators, see the Comparison Operators section of the CQL Reference.
+For more information on the semantics of the various comparison operators, see the <<09-b-cqlreference.adoc#comparison-operators,Comparison Operators>> section of the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[logical-operators-1]]
 == Logical Operators
@@ -125,7 +125,7 @@ image:extracted-media/media/image12.png[image,width=138,height=217]
 
 Figure 4‑C
 
-For more information on the semantics of these operators, refer to the Logical Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#logical-operators,Logical Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[nullological-operators-1]]
 == Nullological Operators
@@ -146,7 +146,7 @@ The following table lists the logical operators available in ELM:
 
 Table 4‑E
 
-For more information on the semantics of these operators, refer to the Nullological Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#nullological-operators,Nullological Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[conditional-operators]]
 == Conditional Operators
@@ -228,7 +228,7 @@ image:extracted-media/media/image16.png[image,width=102,height=94]
 
 Figure 4‑G
 
-For more information on the semantics of these operators, refer to the Arithmetic Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators,Arithmetic Operators>> section in the <<09-b-cqlreference#appendix-b-cql-reference,CQL Reference>>.
 
 [[string-operators-1]]
 == String Operators
@@ -262,7 +262,7 @@ The following table lists the string operators available in ELM:
 
 Table 4‑H
 
-For more information on the semantics of these operators, refer to the String Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#string-operators,String Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[date-and-time-operators]]
 == Date and Time Operators
@@ -296,7 +296,7 @@ The following table lists the date and time operators available in ELM:
 
 Table 4‑I
 
-For more information on the semantics of these operators, refer to the Date/Time Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#date/time-operators,Date/Time Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[interval-operators]]
 == Interval Operators
@@ -354,7 +354,7 @@ Table 4‑J
 
 Note that ELM does not include a definition for During because it is synonymous with IncludedIn.
 
-For more information on the semantics of these operators, refer to the Interval Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#interval-operators,Interval Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[structured-values]]
 == Structured Values
@@ -442,7 +442,7 @@ The following table provides a complete listing of the list operators available 
 
 Table 4‑L
 
-For more information on the semantics of these operators, refer to the List Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#list-operators,List Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[aggregate-operators-1]]
 == Aggregate Operators
@@ -473,7 +473,7 @@ The following table lists the aggregate operators available in ELM:
 
 Table 4‑M
 
-For more information on the semantics of these operators, refer to the Aggregate Functions section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[type-specifiers-and-operators]]
 == Type Specifiers and Operators
@@ -496,7 +496,7 @@ ELM provides the following elements for type specifiers, testing, casting, and c
 
 Table 4‑N
 
-For more information on the semantics of these operators, refer to the Type Operators section in the CQL Reference.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#type-operators,Type Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[queries-2]]
 == Queries
@@ -522,7 +522,7 @@ ELM provides a mechanism for expressing the structure of a query using the follo
 
 Table 4‑O
 
-For more information on query semantics, refer to the Queries section of the Author’s Guide, as well as the Multi-Source Queries and Non-Retrieve Queries sections of the Developer’s Guide.
+For more information on query semantics, refer to the <<02-authorsguide.adoc#queries,Queries>> section of the <<02-authorsguide.adoc#authors-guide,Author’s Guide>>, as well as the <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>> and <<03-developersguide.adoc#non-retrieve-queries,Non-Retrieve Queries>> sections of the <<03-developersguide.adoc#developers-guide,Developer’s Guide>>.
 
 [[reusing-logic]]
 == Reusing Logic
@@ -548,7 +548,7 @@ The following table lists the expression definition components available in ELM:
 
 Table 4‑P
 
-The _ExpressionDef_ class introduces the notion of _context_ which can be either Patient or Population. This context defines how the contained expression is evaluated, either with respect to a single patient, defined by the evaluation environment, or with respect to a population. For more information about patient context, please refer to the External Data section.
+The _ExpressionDef_ class introduces the notion of _context_ which can be either Patient or Population. This context defines how the contained expression is evaluated, either with respect to a single patient, defined by the evaluation environment, or with respect to a population. For more information about patient context, please refer to the <<External Data>> section.
 
 [[external-data]]
 == External Data
