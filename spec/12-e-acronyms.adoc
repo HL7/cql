@@ -5,6 +5,7 @@
 :sectanchors:
 :toc:
 
+[[table-12-a]]
 [cols=",",options="header",]
 |==============================================================================
 |Acronym |Definition/Description

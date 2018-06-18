@@ -16,6 +16,7 @@ As with any traditional computer language, CQL uses typical lexical elements suc
 
 CQL defines the following basic lexical elements:
 
+[[table-3-a]]
 [cols=",",options="header",]
 |================================================================================
 |Element |Description
@@ -63,6 +64,7 @@ Note that nested multi-line comments are not supported.
 
 Literals provide for the representation of basic values within CQL. The following types of literals are supported:
 
+[[table-3-b]]
 [cols=",",options="header",]
 |============================================================================================================
 |Literal |Description
@@ -100,6 +102,7 @@ CQL uses standard escape sequences for string literals:
 
 Symbols provide structure to the grammar and allow symbolic invocation of common operators such as addition. CQL defines the following symbols:
 
+[[table-3-c]]
 [cols=",",options="header",]
 |===============================================================================================
 |Symbol |Description
@@ -300,6 +303,7 @@ CQL escape sequences for strings also work for identifiers:
 
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precendence in CQL from highest to lowest:
 
+[[table-3-d]]
 [cols=",",options="header",]
 |==============================================================
 |Category |Operators
@@ -453,6 +457,7 @@ The maximal supertype is System.Any. All other types derive from System.Any, mea
 
 All the system-defined types derive directly from System.Any. The primitive types and their ranges are summarized here:
 
+[[table-3-e]]
 [cols=",,",options="header",]
 |=========================================================================
 |Type |Range |Step Size
@@ -469,6 +474,7 @@ Table 3‑E
 
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
+[[table-3-f]]
 [cols=",",options="header",]
 |==========================================================================================================
 |Type |Description
@@ -696,6 +702,7 @@ convert 'Foo' to Integer
 
 will result in null. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
 
+[[table-3-g]]
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
 |Operator |Description
@@ -732,6 +739,7 @@ For a complete description of these conversion operators, refer to the <<09-b-cq
 
 In addition to the explicit conversion operators discussed above, CQL supports the implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
+[[table-3-h]]
 [cols=",,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>

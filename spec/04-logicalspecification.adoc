@@ -11,6 +11,7 @@ The ELM defines a mechanism for representing artifact logic independent of synta
 
 Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 [.sym]#+# 2 can be represented as instances of the appropriate classes:
 
+[[figure-4-a]]
 image:extracted-media/media/image10.png[image,width=107,height=99]
 
 Figure 4‑A
@@ -34,6 +35,7 @@ Note that the semantics for the operations described here are defined both in th
 
 The ELM Expression component defines a mechanism for representing the structure of logic. The following table lists the core elements defined by the ELM:
 
+[[table-4-a]]
 [cols=",",options="header",]
 |=====================================================================
 |Expression |Description
@@ -55,6 +57,7 @@ Support for simple values is provided by the _Literal_ class. This class defines
 
 The following table lists the simple value classes available in ELM:
 
+[[table-4-b]]
 [cols=",",options="header",]
 |=========================================
 |Expression |Description
@@ -76,6 +79,7 @@ ELM defines a standard set of comparison operators for use with simple values. E
 
 The following table lists the comparison operators available in ELM:
 
+[[table-4-c]]
 [cols=",",options="header",]
 |================================================================================================
 |Expression |Description
@@ -92,6 +96,7 @@ Table 4‑C
 
 The following example illustrates a simple _Equal_ comparison:
 
+[[figure-4-b]]
 image:extracted-media/media/image11.png[image,width=109,height=102]
 
 Figure 4‑B
@@ -107,6 +112,7 @@ Note that these operators are defined with 3-valued logic semantics, allowing th
 
 The following table lists the logical operators available in ELM:
 
+[[table-4-d]]
 [cols=",",options="header",]
 |========================================================
 |Expression |Description
@@ -121,6 +127,7 @@ Table 4‑D
 
 The following example illustrates a simple _And_ expression:
 
+[[figure-4-c]]
 image:extracted-media/media/image12.png[image,width=138,height=217]
 
 Figure 4‑C
@@ -134,6 +141,7 @@ ELM defines several nullological operators that are useful for dealing with pote
 
 The following table lists the logical operators available in ELM:
 
+[[table-4-e]]
 [cols=",",options="header",]
 |======================================================================================
 |Expression |Description
@@ -159,6 +167,7 @@ The case expression has two varieties, one that is equivalent to repeated condit
 
 The following table lists the conditional operators available in ELM:
 
+[[table-4-f]]
 [cols=",",options="header",]
 |======================================================================================
 |Expression |Description
@@ -170,18 +179,21 @@ Table 4‑F
 
 The following examples illustrates a simple _If_ expression (i.e. if / then / else):
 
+[[figure-4-d]]
 image:extracted-media/media/image13.png[image,width=143,height=193]
 
 Figure 4‑D
 
 The following example illustrates a more complex multi-conditional _Case_ expression:
 
+[[figure-4-e]]
 image:extracted-media/media/image14.png[image,width=230,height=397]
 
 Figure 4‑E
 
 And finally, an equivalent comparand-based _Case_ expression:
 
+[[figure-4-f]]
 image:extracted-media/media/image15.png[image,width=184,height=286]
 
 Figure 4‑F
@@ -195,6 +207,7 @@ Note that if an operand evaluates to null, the result of the operation is define
 
 The following table lists the arithmetic operators available in ELM:
 
+[[table-4-g]]
 [cols=",",options="header",]
 |=========================================================================================================================
 |Expression |Description
@@ -224,6 +237,7 @@ Table 4‑G
 
 The following example illustrates a simple _Add_ expression:
 
+[[figure-4-g]]
 image:extracted-media/media/image16.png[image,width=102,height=94]
 
 Figure 4‑G
@@ -241,6 +255,7 @@ Note that except as noted within the documentation for each operator, if any arg
 
 The following table lists the string operators available in ELM:
 
+[[table-4-h]]
 [cols=",",options="header",]
 |========================================================================================
 |Expression |Description
@@ -273,6 +288,7 @@ Except as noted within the documentation for each operator, if any argument eval
 
 The following table lists the date and time operators available in ELM:
 
+[[table-4-i]]
 [cols=",",options="header",]
 |=========================================================================================================================
 |Expression |Description
@@ -296,7 +312,7 @@ The following table lists the date and time operators available in ELM:
 
 Table 4‑I
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#date/time-operators,Date/Time Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators,Date/Time Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
 
 [[interval-operators]]
 == Interval Operators
@@ -313,6 +329,7 @@ In addition, the language supports operators for combining and manipulating inte
 
 The following table provides a complete listing of the interval operators available in ELM:
 
+[[table-4-j]]
 [cols=",",options="header",]
 |========================================================================================================================================================================
 |Expression |Description
@@ -369,6 +386,7 @@ The path attribute specifies a property path relative to the source structured v
 
 The following table lists the structured value operators available in ELM:
 
+[[table-4-k]]
 [cols=",",options="header",]
 |===============================================================
 |Expression |Description
@@ -384,12 +402,14 @@ Table 4‑K
 
 The following example illustrates the construction of a tuple using the _Tuple_ class:
 
+[[figure-4-h]]
 image:extracted-media/media/image17.png[image,width=190,height=157]
 
 Figure 4‑H
 
 The following example illustrates the construction of a structured value using the _Instance_ class:
 
+[[figure-4-i]]
 image:extracted-media/media/image18.png[image,width=184,height=152]
 
 Figure 4‑I
@@ -407,6 +427,7 @@ ELM also supports a flattening operator, _Flatten_ to construct a single list fr
 
 The following table provides a complete listing of the list operators available in ELM:
 
+[[table-4-l]]
 [cols=",",options="header",]
 |=============================================================================================================================================================================================================
 |Expression |Description
@@ -453,6 +474,7 @@ Unless noted in the documentation for each operator, aggregate operators deal wi
 
 The following table lists the aggregate operators available in ELM:
 
+[[table-4-m]]
 [cols=",",options="header",]
 |=========================================================================================
 |Expression |Description
@@ -480,6 +502,7 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 
 ELM provides the following elements for type specifiers, testing, casting, and conversion:
 
+[[table-4-n]]
 [cols=",",options="header",]
 |================================================================================================================================
 |Element |Description
@@ -503,6 +526,7 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 
 ELM provides a mechanism for expressing the structure of a query using the following classes:
 
+[[table-4-o]]
 [cols=",",options="header",]
 |==========================================================================================================================================================================================================================================================
 |Class |Description
@@ -537,6 +561,7 @@ Note that circular expression references are not allowed, but that named express
 
 The following table lists the expression definition components available in ELM:
 
+[[table-4-p]]
 [cols=",",options="header",]
 |===================================================================================================================
 |Expression |Description
@@ -565,6 +590,7 @@ Note that because every expression is being evaluated within a context (either P
 
 The following table lists the expressions relevant to defining external data in ELM:
 
+[[table-4-q]]
 [cols=",",options="header",]
 |=====================================================================
 |Expression |Description
@@ -580,6 +606,7 @@ For working with clinical data, ELM defines operators for terminology sets, quan
 
 The following table lists the classes representing clinical information in ELM:
 
+[[table-4-r]]
 [cols=",",options="header",]
 |=======================================================================================================================
 |Class |Description
@@ -611,6 +638,7 @@ Parameter values, if any, are expected to be provided as part of the evaluation 
 
 The following table lists the expressions relevant to parameters in ELM:
 
+[[table-4-s]]
 [cols=",",options="header",]
 |=================================================
 |Expression |Description
@@ -629,6 +657,7 @@ The name of the model is an implementation-specific identifier that provides the
 
 The following table lists the elements relevant to data models in ELM:
 
+[[table-4-t]]
 [cols=",",options="header",]
 |=================================================================================
 |Element |Description
@@ -646,6 +675,7 @@ Once defined, libraries can then be referenced by other libraries with the _Incl
 
 The following table lists the elements relevant to libraries in ELM:
 
+[[table-4-u]]
 [cols=",",options="header",]
 |==============================================================================================================================================
 |Element |Description

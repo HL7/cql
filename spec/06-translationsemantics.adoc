@@ -23,6 +23,7 @@ The identifier and version of the library are set as part of the library metadat
 
 The following table specifies the ELM equivalent for each CQL declaration:
 
+[[table-6-a]]
 [cols=",",options="header",]
 |===============================
 |CQL Declaration |ELM Equivalent
@@ -43,6 +44,7 @@ Table 6‑A
 
 To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivalent TypeSpecifier abstract class is defined, with appropriate subclasses to represent the various types of specifiers, as detailed in the following table:
 
+[[table-6-b]]
 [cols=",",options="header",]
 |================================================
 |CQL Specifier |ELM Equivalent
@@ -62,6 +64,7 @@ Note that for named type specifiers, the name of the type is a qualified identif
 
 The following table defines the mapping between the various CQL literals and their equivalent representation in ELM:
 
+[[table-6-c]]
 [cols=",",options="header",]
 |================================================
 |CQL Literal |ELM Equivalent
@@ -91,6 +94,7 @@ Most of the functions and operations available in CQL have a direct counterpart 
 [[logical-operators-2]]
 ==== Logical Operators
 
+[[table-6-d]]
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
@@ -106,6 +110,7 @@ Table 6‑D
 [[type-operators]]
 ==== Type Operators
 
+[[table-6-e]]
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
@@ -129,6 +134,7 @@ Note also that when translating to ELM, an implementation could emit all implici
 [[nullological-operators-2]]
 ==== Nullological Operators
 
+[[table-6-f]]
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
@@ -143,6 +149,7 @@ Table 6‑F
 [[comparison-operators-3]]
 ==== Comparison Operators
 
+[[table-6-g]]
 [cols=",",options="header",]
 |================================================================================
 |CQL Operator |ELM Equivalent
@@ -162,6 +169,7 @@ Table 6‑G
 [[arithmetic-operators-3]]
 ==== Arithmetic Operators
 
+[[table-6-h]]
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
@@ -192,6 +200,7 @@ Table 6‑H
 [[string-operators-2]]
 ==== String Operators
 
+[[table-6-i]]
 [cols=",",options="header",]
 |===============================================================================
 |CQL Operator |ELM Equivalent
@@ -216,6 +225,7 @@ Table 6‑I
 [[datetime-operators-1]]
 ==== Date/Time Operators
 
+[[table-6-j]]
 [cols=",",options="header",]
 |=======================================
 |CQL Operator |ELM Equivalent
@@ -242,6 +252,7 @@ Table 6‑J
 [[interval-operators-2]]
 ==== Interval Operators
 
+[[table-6-k]]
 [cols=",",options="header",]
 |========================================
 |CQL Operator |ELM Equivalent
@@ -284,6 +295,7 @@ Table 6‑K
 [[list-operators-1]]
 ==== List Operators
 
+[[table-6-l]]
 [cols=",",options="header",]
 |========================================
 |CQL Operator |ELM Equivalent
@@ -319,6 +331,7 @@ Table 6‑L
 [[aggregate-operators-2]]
 ==== Aggregate Operators
 
+[[table-6-m]]
 [cols=",",options="header",]
 |======================================
 |CQL Operator |ELM Equivalent
@@ -344,6 +357,7 @@ Table 6‑M
 [[clinical-operators-2]]
 ==== Clinical Operators
 
+[[table-6-n]]
 [cols=",",options="header",]
 |==================================================================================
 |CQL Operator |ELM Equivalent
@@ -369,6 +383,7 @@ In general, the various phrases of CQL do not have a direct representation in EL
 
 The CQL query construct has a direct representation in ELM, as shown by the following table:
 
+[[table-6-o]]
 [cols=",",options="header",]
 |==========================================
 |CQL Construct |ELM Equivalent
