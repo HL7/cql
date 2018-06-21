@@ -25,14 +25,14 @@ Clinical Decision Support and Clinical Quality Measurement are closely related, 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
 
 [[table-1-a]]
-[cols=",,,,",options="header",]
+[cols=",,,,",options="header"]
+{set:cellbgcolor:#D9E6FC}
 |========================================================================================================================================================================================
-| |Model Type |Quality Information |Computable Expression Logic |Metadata
-|Clinical Decision Support (CDS) |Physical and logical |Virtual Medical Record (vMR) |CDS Knowledge Artifact Specification |CDS Knowledge Artifact Specification/Decision Support Service
-|Electronic Clinical Quality Measurement (eCQM) |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
-| |Logical |Quality Data Model (QDM) |Quality Data Model (QDM) |
+| ^.^| *Model Type* ^.^|*Quality Information* ^.^|*Computable Expression Logic* ^.^|*Metadata*
+|*Clinical Decision Support (CDS)* |Physical and logical{set:cellbgcolor:#F0F5FA} |Virtual Medical Record (vMR) |CDS Knowledge Artifact Specification |CDS Knowledge Artifact Specification/Decision Support Service
+1.2+|*Electronic Clinical Quality Measurement (eCQM)*{set:cellbgcolor:#D9E6FC}|Physical{set:cellbgcolor:white}|Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
+1.1+|Logical{set:cellbgcolor:#F0F5FA}|Quality Data Model (QDM) |Quality Data Model (QDM)|
 |========================================================================================================================================================================================
-
 Table 1‑A
 
 The discrepancy shown here between standards used in the different domains introduces burdens on both vendors and providers in electronic healthcare quality domains, including:
@@ -116,13 +116,14 @@ The audience for this specification includes stakeholders and interested parties
 The specification is written with the following major roles in mind:
 
 [[table-1-b]]
-[cols=",",options="header",]
+[cols=",",options="header"]
+{set:cellbgcolor:#D9E6FC}
 |====================================================================================================================================================================================================================================
-|Role |Description
-|Author |A clinical domain expert or clinical artifact author intending to use the Clinical Quality Language specification to author or understand quality artifacts
-|Developer |A developer interested in building more complex clinical quality artifacts as well as shared libraries for use by authors
-|Integrator |A health IT professional interested in integrating quality artifacts based on the Clinical Quality Language specification into a health quality system
-|Implementer |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
+^.^|*Role* ^.^|*Description*
+|*Author*{set:cellbgcolor:#F0F5FA}  |A clinical domain expert or clinical artifact author intending to use the Clinical Quality Language specification to author or understand quality artifacts
+|*Developer*{set:cellbgcolor:white} |A developer interested in building more complex clinical quality artifacts as well as shared libraries for use by authors
+|*Integrator*{set:cellbgcolor:#F0F5FA}  |A health IT professional interested in integrating quality artifacts based on the Clinical Quality Language specification into a health quality system
+|*Implementer*{set:cellbgcolor:white} |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
 |====================================================================================================================================================================================================================================
 
 Table 1‑B

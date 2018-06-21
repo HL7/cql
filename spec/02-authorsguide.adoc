@@ -1242,7 +1242,7 @@ The first example constructs the Date July 5, 2014. The second example construct
 
 The [.id]#DateTime# operator takes the following arguments:
 
-[table-2-k]]
+[[table-2-k]]
 [cols=",,",options="header",]
 |==================================================================================
 |Name |Type |Description
