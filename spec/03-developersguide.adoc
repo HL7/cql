@@ -18,14 +18,15 @@ CQL defines the following basic lexical elements:
 
 [[table-3-a]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |================================================================================
-|Element |Description
-|Whitespace |Whitespace defines the separation between all tokens in the language
-|Comment |Comments are ignored by the language, allowing for descriptive text
-|Literal |Literals allow basic values to be represented within the language
-|Symbol |Symbols such as +, -, *, and /
-|Keyword |Grammar-recognized keywords such as define and where
-|Identifier |User-defined identifiers
+^|*Element* ^|*Description*
+|*Whitespace* {set:cellbgcolor:#F0F5FA}|Whitespace defines the separation between all tokens in the language
+|*Comment*{set:cellbgcolor:white} |Comments are ignored by the language, allowing for descriptive text
+|*Literal*{set:cellbgcolor:#F0F5FA} |Literals allow basic values to be represented within the language
+|*Symbol*{set:cellbgcolor:white} |Symbols such as [.sym]#+#, [.sym]#-#, [.sym]#*#, and [.sym]#/#
+|*Keyword* {set:cellbgcolor:#F0F5FA}|Grammar-recognized keywords such as define and where
+|*Identifier*{set:cellbgcolor:white} |User-defined identifiers
 |================================================================================
 
 Table 3‑A
@@ -66,18 +67,19 @@ Literals provide for the representation of basic values within CQL. The followin
 
 [[table-3-b]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |============================================================================================================
-|Literal |Description
-|Null |The null literal (null)
-|Boolean |The boolean literals (true and false)
-|Integer |Sequences of digits in the range 0..2^32^-1
-|Decimal |Sequences of digits with a decimal point, in the range 0.0.. 10^28^ –10^-8^
-|String |Strings of any character enclosed within single-ticks (')
-|Date |The at-symbol (@) followed by an ISO-8601 compliant representation of a date
-|DateTime |The at-symbol (@) followed by an ISO-8601 compliant representation of a date/time
-|Time |The at-symbol (@) followed by an ISO-8601 compliant representation of a time
-|Quantity |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
-|Ratio |A ratio of two quantities, separated by a colon (:)
+^|*Literal* ^|*Description*
+|*Null*{set:cellbgcolor:#F0F5FA} |The null literal ([.kw]#null#)
+|*Boolean*{set:cellbgcolor:white} |The boolean literals ([.kw]#true# and [.kw]#false#)
+|*Integer*{set:cellbgcolor:#F0F5FA} |Sequences of digits in the range 0..2^32^-1
+|*Decimal*{set:cellbgcolor:white} |Sequences of digits with a decimal point, in the range 0.0.. 10^28^ –10^-8^
+|*String*{set:cellbgcolor:#F0F5FA} |Strings of any character enclosed within single-ticks ([.lit]#'#)
+|*Date*{set:cellbgcolor:white} |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
+|*DateTime*{set:cellbgcolor:#F0F5FA} |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date/time
+|*Time*{set:cellbgcolor:white} |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a time
+|*Quantity*{set:cellbgcolor:#F0F5FA} |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
+|*Ratio*{set:cellbgcolor:white} |A ratio of two quantities, separated by a colon ([.sym]#:#)
 |============================================================================================================
 
 Table 3‑B
@@ -104,17 +106,18 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 
 [[table-3-c]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |===============================================================================================
-|Symbol |Description
-|: |Definition operator, typically read as “defined as”
-|() |Parentheses for delimiting groups, as well as specifying and passing function parameters
-|[] |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
-|\{} |Braces for delimiting lists, tuples, and function bodies
-|<> |Angle-brackets for delimiting generic types within type specifiers
-|. |Period for qualifiers and accessors
-|, |Comma for delimiting items in a syntactic list
-|= != \<= < > >= |Comparison operators for comparing values
-|+ - * / ^ |Arithmetic operators for performing calculations
+^|*Symbol* ^|*Description*
+|*:*{set:cellbgcolor:#F0F5FA} |Definition operator, typically read as “defined as”
+|*()* {set:cellbgcolor:white}|Parentheses for delimiting groups, as well as specifying and passing function parameters
+|*[]*{set:cellbgcolor:#F0F5FA} |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
+|*{}*{set:cellbgcolor:white} |Braces for delimiting lists, tuples, and function bodies
+|*<>* {set:cellbgcolor:#F0F5FA}|Angle-brackets for delimiting generic types within type specifiers
+|*.*{set:cellbgcolor:white} |Period for qualifiers and accessors
+|*,*{set:cellbgcolor:#F0F5FA} |Comma for delimiting items in a syntactic list
+|*= != \<= < > >=*{set:cellbgcolor:white} |Comparison operators for comparing values
+|*+ - * / ^* {set:cellbgcolor:#F0F5FA}|Arithmetic operators for performing calculations
 |===============================================================================================
 
 Table 3‑C
@@ -285,17 +288,18 @@ Note that double-quoted identifiers are still case-sensitive, and as with simple
 
 CQL escape sequences for strings also work for identifiers:
 
+[[table-3-d]]
 [cols=",",options="header",]
 |========================================================================================
-|Escape |Character
-|\' |Single-quote
-|\" |Double-quote
-|\r |Carriage Return
-|\n |Line Feed
-|\t |Tab
-|\f |Form Feed
-|\\ |Backslash
-|\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
+|Escape {set:cellbgcolor:white}|Character
+|*\'* {set:cellbgcolor:#F0F5FA}|Single-quote
+|*\"*{set:cellbgcolor:white} |Double-quote
+|*\r* {set:cellbgcolor:#F0F5FA}|Carriage Return
+|*\n* {set:cellbgcolor:white}|Line Feed
+|*\t* {set:cellbgcolor:#F0F5FA}|Tab
+|*\f*{set:cellbgcolor:white} |Form Feed
+|*\\* {set:cellbgcolor:#F0F5FA}|Backslash
+|*\uXXXX*{set:cellbgcolor:white} |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
 [[operator-precedence]]
@@ -303,41 +307,42 @@ CQL escape sequences for strings also work for identifiers:
 
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precendence in CQL from highest to lowest:
 
-[[table-3-d]]
+[[table-3-d1]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |==============================================================
-|Category |Operators
-|Primary |. [] ()
-|Conversion Phrase |convert..to
-|Unary Arithmetic |unary +/-
-|Extractor |start/end/difference/duration/width/successor/predecessor of +
-_component_/singleton from
-|Exponentiation |^
-|Multiplicative |* / div mod
-|Additive |+ - &
-|Conditional |if..then..else +
-case..else..end
-|Unary List |distinct collapse flatten
-|Unary Test |is null/true/false
-|Type Operators |is as cast..as
-|Unary Logical |not exists
-|Between |between +
-_precision_ between +
-duration in _precision_ between +
-difference in _precision_ between
-|Comparison |\<= < > >=
-|Timing Phrase |same as +
-includes +
-during +
-before/after +
-within
-|Interval Operators |meets overlaps starts ends
-|Equality |= != ~ !~
-|Membership |in contains
-|Conjunction |and
-|Disjunction |or xor
-|Implication |implies
-|Binary List |union intersect except expand
+^|*Category* ^|*Operators*
+|*Primary*{set:cellbgcolor:#F0F5FA} |[.sym]#.# [.sym]#[]# [.sym]#()#
+|*Conversion Phrase*{set:cellbgcolor:white} |[.kw]#convert#..[.kw]#to#
+|*Unary Arithmetic*{set:cellbgcolor:#F0F5FA} |unary [.sym]#+/-#
+|*Extractor*{set:cellbgcolor:white} |[.kw]#start#/[.kw]#end#/[.kw]#difference#/[.kw]#duration#/[.kw]#width#/[.kw]#successor#/[.kw]#predecessor of# +
+_component_/[.kw]#singleton from#
+|*Exponentiation*{set:cellbgcolor:#F0F5FA} |[.sym]#^#
+|*Multiplicative*{set:cellbgcolor:white} |[.sym]#*# [.sym]#/# [.kw]#div mod#
+|*Additive*{set:cellbgcolor:#F0F5FA} |[.sym]#+# [.sym]#-# [.sym]#&#
+|*Conditional*{set:cellbgcolor:white} |[.kw]#if#..[.kw]#then#..[.kw]#else# +
+[.kw]#case#..[.kw]#else#..[.kw]#end#
+|*Unary List*{set:cellbgcolor:#F0F5FA} |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten#
+|*Unary Test*{set:cellbgcolor:white} |[.kw]#is null#/[.kw]#true#/[.kw]#false#
+|*Type Operators*{set:cellbgcolor:#F0F5FA} |[.kw]#is as cast#..[.kw]#as#
+|*Unary Logical*{set:cellbgcolor:white} |[.kw]#not exists#
+|*Between*{set:cellbgcolor:#F0F5FA} |[.kw]#between# +
+_precision_ [.kw]#between# +
+[.kw]#duration in# _precision_ [.kw]#between# +
+[.kw]#difference in# _precision_ [.kw]#between#
+|*Comparison*{set:cellbgcolor:white} |[.sym]#\<=# [.sym]#<# [.sym]#># [.sym]#>=#
+|*Timing Phrase*{set:cellbgcolor:#F0F5FA} |[.kw]#same as# +
+[.kw]#includes# +
+[.kw]#during# +
+[.kw]#before/after# +
+[.kw]#within#
+|*Interval Operators*{set:cellbgcolor:white} |[.kw]#meets overlaps starts ends#
+|*Equality*{set:cellbgcolor:#F0F5FA} |[.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#
+|*Membership*{set:cellbgcolor:white} |[.kw]#in contains#
+|*Conjunction*{set:cellbgcolor:#F0F5FA} |[.kw]#and#
+|*Disjunction*{set:cellbgcolor:white} |[.kw]#or xor#
+|*Implication*{set:cellbgcolor:#F0F5FA} |[.kw]#implies#
+|*Binary List*{set:cellbgcolor:white} |[.kw]#union intersect except expand#
 |==============================================================
 
 Table 3‑D
@@ -459,15 +464,16 @@ All the system-defined types derive directly from System.Any. The primitive type
 
 [[table-3-e]]
 [cols=",,",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=========================================================================
-|Type |Range |Step Size
-|Boolean |false..true |N/A
-|Integer |-2^31^..2^31^ – 1 |1
-|Date |@0001-01-01..@9999-12-31 |1 day
-|DateTime |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
-|Decimal |-10^28^ – 10^-8^..10^28^ – 10^-8^ |10^-8^
-|String |All strings of length 2^31^-1 or less. |N/A
-|Time |@T00:00:00.0..@T23:59:59.999 |1 millisecond
+^|*Type* ^|*Range* ^|*Step Size*
+|*Boolean*{set:cellbgcolor:#F0F5FA} |false..true |N/A
+|*Integer*{set:cellbgcolor:white} |-2^31^..2^31^ – 1 |1
+|*Date*{set:cellbgcolor:#F0F5FA} |@0001-01-01..@9999-12-31 |1 day
+|*DateTime*{set:cellbgcolor:white} |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
+|*Decimal*{set:cellbgcolor:#F0F5FA} |-10^28^ – 10^-8^..10^28^ – 10^-8^ |10^-8^
+|*String*{set:cellbgcolor:white} |All strings of length 2^31^-1 or less. |N/A
+|*Time*{set:cellbgcolor:#F0F5FA} |@T00:00:00.0..@T23:59:59.999 |1 millisecond
 |=========================================================================
 
 Table 3‑E
@@ -476,12 +482,13 @@ In addition, CQL defines several structured types to facilitate representation a
 
 [[table-3-f]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |==========================================================================================================
-|Type |Description
-|Code |Represents a clinical terminology code, including the code identifier, system, version, and display.
-|Concept |Represents a single concept as a list of equivalent Codes.
-|Quantity |Represents a quantity with a dimension, specified in UCUM units.
-|Ratio |Represents a ratio between two quantities
+^|*Type* ^|*Description*
+|*Code*{set:cellbgcolor:#F0F5FA} |Represents a clinical terminology code, including the code identifier, system, version, and display.
+|*Concept* {set:cellbgcolor:white}|Represents a single concept as a list of equivalent Codes.
+|*Quantity*{set:cellbgcolor:#F0F5FA} |Represents a quantity with a dimension, specified in UCUM units.
+|*Ratio*{set:cellbgcolor:white} |Represents a ratio between two quantities
 |==========================================================================================================
 
 Table 3‑F
@@ -704,30 +711,31 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 
 [[table-3-g]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |==============================================================================================================================================================================================================
-|Operator |Description
-|ToBoolean(String) |Converts the string representation of a boolean value to a Boolean value
-|ToInteger(String) |Converts the string representation of an integer value to an Integer value using the format (+\|-)d*
-|ToDecimal(Integer) |Converts an Integer value to an equivalent Decimal value
-|ToDecimal(String) |Converts the string representation of a decimal value to a Decimal value using the format (+\|-)d*.d*
-|ToQuantity(Decimal) |Converts a Decimal value to a Quantity with a default unit ('1')
-|ToQuantity(Integer) |Converts an Integer value to a Quantity with a default unit ('1') 
-|ToQuantity(String) |Converts the string representation of a quantity value to a Quantity value using the format (+\|-)d*.d*'units'
-|ToRatio(String) |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
-|ToDate(String) |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
-|ToDateTime(Date) |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
-|ToDateTime(String) |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
-|ToTime(String) |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff(+\|-)hh:mm
-|ToString(Boolean) |Converts a Boolean value to its string representation (true\|false)
-|ToString(Integer) |Converts an Integer value to its string representation
-|ToString(Decimal) |Converts a Decimal value to its string representation
-|ToString(Quantity) |Converts a Quantity value to its string representation
-|ToString(Ratio) |Converts a Ratio value to its string representation
-|ToString(Date) |Converts a Date value to its string representation
-|ToString(DateTime) |Converts a DateTime value to its string representation
-|ToString(Time) |Converts a Time value to its string representation
-|ToConcept(Code) |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
-|ToConcept(List<Code>) |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
+^|*Operator* ^|*Description*
+|*ToBoolean(String)*{set:cellbgcolor:#F0F5FA} |Converts the string representation of a boolean value to a Boolean value
+|*ToInteger(String)*{set:cellbgcolor:white} |Converts the string representation of an integer value to an Integer value using the format ([.sym]#+\|-#)d*
+|*ToDecimal(Integer)*{set:cellbgcolor:#F0F5FA} |Converts an Integer value to an equivalent Decimal value
+|*ToDecimal(String)*{set:cellbgcolor:white} |Converts the string representation of a decimal value to a Decimal value using the format ([.sym]#+\|-#)d*.d*
+|*ToQuantity(Decimal)*{set:cellbgcolor:#F0F5FA} |Converts a Decimal value to a Quantity with a default unit ('1')
+|*ToQuantity(Integer)*{set:cellbgcolor:white} |Converts an Integer value to a Quantity with a default unit ('1')
+|*ToQuantity(String)*{set:cellbgcolor:#F0F5FA} |Converts the string representation of a quantity value to a Quantity value using the format ([.sym]#+\|-#)d*.d*'units'
+|*ToRatio(String)*{set:cellbgcolor:white} |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
+|*ToDate(String)*{set:cellbgcolor:#F0F5FA} |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
+|*ToDateTime(Date)*{set:cellbgcolor:white} |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
+|*ToDateTime(String)*{set:cellbgcolor:#F0F5FA} |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|*ToTime(String)*{set:cellbgcolor:white} |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|*ToString(Boolean)*{set:cellbgcolor:#F0F5FA} |Converts a Boolean value to its string representation (true\|false)
+|*ToString(Integer)* {set:cellbgcolor:white}|Converts an Integer value to its string representation
+|*ToString(Decimal)*{set:cellbgcolor:#F0F5FA} |Converts a Decimal value to its string representation
+|*ToString(Quantity)*{set:cellbgcolor:white} |Converts a Quantity value to its string representation
+|*ToString(Ratio)*{set:cellbgcolor:#F0F5FA} |Converts a Ratio value to its string representation
+|*ToString(Date)*{set:cellbgcolor:white} |Converts a Date value to its string representation
+|*ToString(DateTime)*{set:cellbgcolor:#F0F5FA} |Converts a DateTime value to its string representation
+|*ToString(Time)* {set:cellbgcolor:white}|Converts a Time value to its string representation
+|*ToConcept(Code)*{set:cellbgcolor:#F0F5FA} |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
+|*ToConcept(List<Code>)*{set:cellbgcolor:white} |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
 |==============================================================================================================================================================================================================
 
 Table 3‑G
@@ -741,20 +749,21 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 
 [[table-3-h]]
 [cols=",,,,,,,,,,,",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|Boolean |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|Integer |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|Decimal |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|Quantity |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|Ratio |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|String |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|Date |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|DateTime |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
-|Time |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|Code |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|Concept |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|List<Code> | | | | | | | | | | |Explicit |N/A
+^|*From\To* ^|*Boolean* ^|*Integer* ^|*Decimal* ^|*Quantity* ^|*Ratio* ^|*String* ^|*Date* ^|*DateTime* ^|*Time* ^|*Code* ^|*Concept* ^|*List<Code>*
+|*Boolean*{set:cellbgcolor:#F0F5FA} |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
+|*Integer*{set:cellbgcolor:white} |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Decimal*{set:cellbgcolor:#F0F5FA} |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Quantity* {set:cellbgcolor:white}|- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|*Ratio*{set:cellbgcolor:#F0F5FA} |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|*String*{set:cellbgcolor:white} |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|*Date*{set:cellbgcolor:#F0F5FA} |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|*DateTime* {set:cellbgcolor:white}|- |- |- |- |- |Explicit |- |N/A |- |- |- |-
+|*Time*{set:cellbgcolor:#F0F5FA} |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|*Code*{set:cellbgcolor:white} |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|*Concept*{set:cellbgcolor:#F0F5FA} |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|*List<Code>* {set:cellbgcolor:white}| | | | | | | | | | |Explicit |N/A
 |===============================================================================================
 
 Table 3‑H

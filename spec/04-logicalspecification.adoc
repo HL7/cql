@@ -37,13 +37,14 @@ The ELM Expression component defines a mechanism for representing the structure 
 
 [[table-4-a]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=====================================================================
-|Expression |Description
-|Expression |Abstract base class for all expressions in ELM
-|UnaryExpression |Abstract base class for unary expressions in ELM
-|BinaryExpression |Abstract base class for binary expressions in ELM
-|TernaryExpression |Abstract base class for ternary expressions in ELM
-|NaryExpression |Abstract base class for n-ary expressions in ELM
+^|*Expression* ^|*Description*
+|*Expression*{set:cellbgcolor:#F0F5FA} |Abstract base class for all expressions in ELM
+|*UnaryExpression*{set:cellbgcolor:white} |Abstract base class for unary expressions in ELM
+|*BinaryExpression*{set:cellbgcolor:#F0F5FA} |Abstract base class for binary expressions in ELM
+|*TernaryExpression*{set:cellbgcolor:white} |Abstract base class for ternary expressions in ELM
+|*NaryExpression*{set:cellbgcolor:#F0F5FA} |Abstract base class for n-ary expressions in ELM
 |=====================================================================
 
 Table 4‑A
@@ -59,9 +60,10 @@ The following table lists the simple value classes available in ELM:
 
 [[table-4-b]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=========================================
-|Expression |Description
-|Literal |Represents simple value literals
+^|*Expression* ^|*Description*
+|*Literal* {set:cellbgcolor:#F0F5FA}|Represents simple value literals
 |=========================================
 
 Table 4‑B
@@ -81,15 +83,16 @@ The following table lists the comparison operators available in ELM:
 
 [[table-4-c]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |================================================================================================
-|Expression |Description
-|Equal |Returns true if the operands are equal
-|Equivalent |Returns true if the operands are equivalent
-|NotEqual |Returns true if the operands are not equal
-|Less |Returns true if the first operand is less than the second operand
-|LessOrEqual |Returns true if the first operand is less than or equal to the second operand
-|Greater |Returns true if the first operand is greater than the second operand
-|GreaterOrEqual |Returns true if the first operand is greater than or equal to the second operand
+^|*Expression* ^|*Description*
+|*Equal* {set:cellbgcolor:#F0F5FA}|Returns true if the operands are equal
+|*Equivalent*{set:cellbgcolor:white} |Returns true if the operands are equivalent
+|*NotEqual*{set:cellbgcolor:#F0F5FA} |Returns true if the operands are not equal
+|*Less*{set:cellbgcolor:white} |Returns true if the first operand is less than the second operand
+|*LessOrEqual* {set:cellbgcolor:#F0F5FA}|Returns true if the first operand is less than or equal to the second operand
+|*Greater*{set:cellbgcolor:white} |Returns true if the first operand is greater than the second operand
+|*GreaterOrEqual* {set:cellbgcolor:#F0F5FA}|Returns true if the first operand is greater than or equal to the second operand
 |================================================================================================
 
 Table 4‑C
@@ -114,13 +117,14 @@ The following table lists the logical operators available in ELM:
 
 [[table-4-d]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |========================================================
-|Expression |Description
-|And |Returns the logical conjunction of its operands
-|Or |Returns the logical disjunction of its operands
-|Not |Returns the logical negation of its operand
-|Implies |Returns the logical implication of its operands
-|Xor |Returns the exclusive or of its operands
+^|*Expression* ^|*Description*
+|*And* {set:cellbgcolor:#F0F5FA}|Returns the logical conjunction of its operands
+|*Or*{set:cellbgcolor:white} |Returns the logical disjunction of its operands
+|*Not* {set:cellbgcolor:#F0F5FA}|Returns the logical negation of its operand
+|*Implies* {set:cellbgcolor:white}|Returns the logical implication of its operands
+|*Xor*{set:cellbgcolor:#F0F5FA} |Returns the exclusive or of its operands
 |========================================================
 
 Table 4‑D
@@ -143,13 +147,14 @@ The following table lists the logical operators available in ELM:
 
 [[table-4-e]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |======================================================================================
-|Expression |Description
-|Null |Returns a typed null
-|IsNull |Returns true if the argument is _null_, false otherwise
-|IsTrue |Returns true if the argument is _true_, false otherwise
-|IsFalse |Returns true if the argument is _false_, false otherwise
-|Coalesce |Returns the first non-null argument, null if there are no non-null arguments
+^|*Expression* ^|*Description*
+|*Null* {set:cellbgcolor:#F0F5FA}|Returns a typed null
+|*IsNull* {set:cellbgcolor:white}|Returns true if the argument is _null_, false otherwise
+|*IsTrue* {set:cellbgcolor:#F0F5FA}|Returns true if the argument is _true_, false otherwise
+|*IsFalse* {set:cellbgcolor:white}|Returns true if the argument is _false_, false otherwise
+|*Coalesce* {set:cellbgcolor:#F0F5FA}|Returns the first non-null argument, null if there are no non-null arguments
 |======================================================================================
 
 Table 4‑E
@@ -169,10 +174,11 @@ The following table lists the conditional operators available in ELM:
 
 [[table-4-f]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |======================================================================================
-|Expression |Description
-|If |Allows for conditional evaluation between two expressions.
-|Case |Allows for multiple conditional expressions, or a comparand with multiple cases.
+^|*Expression* ^|*Description*
+|*If*{set:cellbgcolor:#F0F5FA} |Allows for conditional evaluation between two expressions.
+|*Case* {set:cellbgcolor:white}|Allows for multiple conditional expressions, or a comparand with multiple cases.
 |======================================================================================
 
 Table 4‑F
@@ -209,28 +215,29 @@ The following table lists the arithmetic operators available in ELM:
 
 [[table-4-g]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=========================================================================================================================
-|Expression |Description
-|Add |Performs numeric addition of its arguments
-|Subtract |Performs numeric subtraction of its arguments
-|Multiply |Performs numeric multiplication of its arguments
-|Divide |Performs numeric division of its arguments
-|TruncatedDivide |Performs integer division of its arguments
-|Modulo |Computes the remainder of the division of its arguments
-|Ceiling |Returns the first integer greater than or equal to its argument
-|Floor |Returns the first integer less than or equal to its argument
-|Truncate |Returns the integer component of its argument
-|Abs |Returns the absolute value of its argument
-|Negate |Returns the negative value of its argument
-|Round |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
-|Ln |Computes the natural logarithm of its argument
-|Log |Computes the logarithm of its first argument, using the second argument as the base
-|Exp |Raises e to the power given by its argument
-|Power |Raises the first argument to the power given by the second argument
-|Successor |Returns the successor of its argument
-|Predecessor |Returns the predecessor of its argument
-|MinValue |Returns the minimum representable value for a type
-|MaxValue |Returns the maximum representable value for a type
+^|*Expression* ^|*Description*
+|*Add* {set:cellbgcolor:#F0F5FA} |Performs numeric addition of its arguments
+|*Subtract*{set:cellbgcolor:white} |Performs numeric subtraction of its arguments
+|*Multiply* {set:cellbgcolor:#F0F5FA} |Performs numeric multiplication of its arguments
+|*Divide* {set:cellbgcolor:white}|Performs numeric division of its arguments
+|*TruncatedDivide* {set:cellbgcolor:#F0F5FA} |Performs integer division of its arguments
+|*Modulo* {set:cellbgcolor:white}|Computes the remainder of the division of its arguments
+|*Ceiling* {set:cellbgcolor:#F0F5FA} |Returns the first integer greater than or equal to its argument
+|*Floor*{set:cellbgcolor:white} |Returns the first integer less than or equal to its argument
+|*Truncate*{set:cellbgcolor:#F0F5FA}  |Returns the integer component of its argument
+|*Abs* {set:cellbgcolor:white}|Returns the absolute value of its argument
+|*Negate* {set:cellbgcolor:#F0F5FA} |Returns the negative value of its argument
+|*Round*{set:cellbgcolor:white} |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
+|*Ln* {set:cellbgcolor:#F0F5FA} |Computes the natural logarithm of its argument
+|*Log*{set:cellbgcolor:white}|Computes the logarithm of its first argument, using the second argument as the base
+|*Exp*{set:cellbgcolor:#F0F5FA}  |Raises e to the power given by its argument
+|*Power* {set:cellbgcolor:white}|Raises the first argument to the power given by the second argument
+|*Successor* {set:cellbgcolor:#F0F5FA} |Returns the successor of its argument
+|*Predecessor* {set:cellbgcolor:white}|Returns the predecessor of its argument
+|*MinValue*{set:cellbgcolor:#F0F5FA}  |Returns the minimum representable value for a type
+|*MaxValue* {set:cellbgcolor:white}|Returns the maximum representable value for a type
 |=========================================================================================================================
 
 Table 4‑G
@@ -257,22 +264,23 @@ The following table lists the string operators available in ELM:
 
 [[table-4-h]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |========================================================================================
-|Expression |Description
-|Concatenate |Returns the concatenation of its arguments
-|Combine |Combines a list of strings, optionally separating them with the given separator
-|StartsWith |Returns true if the string starts with a given prefix
-|EndsWith |Returns true if the string ends with a given suffix
-|Split |Splits a string into a list of strings along a given separator
-|LastPositionOf |Returns the starting position of the last appearance of a given pattern
-|Length |Returns the length of its argument
-|Matches |Returns true if the string matches a given regular expression pattern
-|ReplaceMatches |Replaces matches of a given pattern with a given substitution
-|Upper |Returns the upper case representation of its argument
-|Lower |Returns the lower case representation of its argument
-|Indexer |Returns the nth character of its argument
-|PositionOf |Returns the starting position of a given pattern within a string
-|Substring |Returns a substring of its argument
+^|*Expression* ^|*Description*
+|*Concatenate* {set:cellbgcolor:#F0F5FA}|Returns the concatenation of its arguments
+|*Combine*{set:cellbgcolor:white} |Combines a list of strings, optionally separating them with the given separator
+|*StartsWith* {set:cellbgcolor:#F0F5FA}|Returns true if the string starts with a given prefix
+|*EndsWith* {set:cellbgcolor:white}|Returns true if the string ends with a given suffix
+|*Split*{set:cellbgcolor:#F0F5FA} |Splits a string into a list of strings along a given separator
+|*LastPositionOf* {set:cellbgcolor:white}|Returns the starting position of the last appearance of a given pattern
+|*Length* {set:cellbgcolor:#F0F5FA}|Returns the length of its argument
+|*Matches* {set:cellbgcolor:white}|Returns true if the string matches a given regular expression pattern
+|*ReplaceMatches*{set:cellbgcolor:#F0F5FA} |Replaces matches of a given pattern with a given substitution
+|*Upper*{set:cellbgcolor:white} |Returns the upper case representation of its argument
+|*Lower* {set:cellbgcolor:#F0F5FA}|Returns the lower case representation of its argument
+|*Indexer* {set:cellbgcolor:white}|Returns the nth character of its argument
+|*PositionOf* {set:cellbgcolor:#F0F5FA}|Returns the starting position of a given pattern within a string
+|*Substring* {set:cellbgcolor:white}|Returns a substring of its argument
 |========================================================================================
 
 Table 4‑H
@@ -290,24 +298,25 @@ The following table lists the date and time operators available in ELM:
 
 [[table-4-i]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=========================================================================================================================
-|Expression |Description
-|DateTimeComponentFrom |Returns a specified component of its argument
-|Today |Returns the date (with no time components specified) of the start timestamp associated with the evaluation request
-|Now |Returns the date and time of the start timestamp associated with the evaluation request
-|TimeOfDay |Returns the time-of-day of the start timestamp associated with the evaluation request
-|DateTime |Constructs a date/time value from its arguments
-|Time |Constructs a time value from its arguments
-|DateFrom |Returns the date (with no time component) of the argument
-|TimeFrom |Returns the time of the argument
-|TimezoneFrom |Returns the timezone offset (in hours) of the argument
-|SameAs |Performs precision-based equality comparison of two date/time values
-|SameOrBefore |Performs precision-based less-or-equal comparison of two date/time values
-|SameOrAfter |Performs precision-based greater-or-equal comparison of two date/time values
-|Before |Performs precision-based less-than comparison of two date/time values
-|After |Performs precision-based greater-than comparison of two date/time values
-|DurationBetween |Computes the number of whole periods between two dates
-|DifferenceBetween |Computes the number of whole period boundaries crossed between two dates
+^|*Expression* ^|*Description*
+|*DateTimeComponentFrom* {set:cellbgcolor:#F0F5FA}|Returns a specified component of its argument
+|*Today*{set:cellbgcolor:white} |Returns the date (with no time components specified) of the start timestamp associated with the evaluation request
+|*Now*{set:cellbgcolor:#F0F5FA} |Returns the date and time of the start timestamp associated with the evaluation request
+|*TimeOfDay* {set:cellbgcolor:white}|Returns the time-of-day of the start timestamp associated with the evaluation request
+|*DateTime*{set:cellbgcolor:#F0F5FA} |Constructs a date/time value from its arguments
+|*Time*{set:cellbgcolor:white} |Constructs a time value from its arguments
+|*DateFrom* {set:cellbgcolor:#F0F5FA}|Returns the date (with no time component) of the argument
+|*TimeFrom* {set:cellbgcolor:white}|Returns the time of the argument
+|*TimezoneFrom* {set:cellbgcolor:#F0F5FA}|Returns the timezone offset (in hours) of the argument
+|*SameAs*{set:cellbgcolor:white} |Performs precision-based equality comparison of two date/time values
+|*SameOrBefore* {set:cellbgcolor:#F0F5FA}|Performs precision-based less-or-equal comparison of two date/time values
+|*SameOrAfter* {set:cellbgcolor:white}|Performs precision-based greater-or-equal comparison of two date/time values
+|*Before*{set:cellbgcolor:#F0F5FA} |Performs precision-based less-than comparison of two date/time values
+|*After* {set:cellbgcolor:white}|Performs precision-based greater-than comparison of two date/time values
+|*DurationBetween* {set:cellbgcolor:#F0F5FA}|Computes the number of whole periods between two dates
+|*DifferenceBetween* {set:cellbgcolor:white}|Computes the number of whole period boundaries crossed between two dates
 |=========================================================================================================================
 
 Table 4‑I
@@ -331,40 +340,41 @@ The following table provides a complete listing of the interval operators availa
 
 [[table-4-j]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |========================================================================================================================================================================
-|Expression |Description
-|Interval |Constructs a new interval value
-|Equal |Returns true if the arguments are the same interval
-|NotEqual |Returns true if the arguments are not the same interval
-|Equivalent |Returns true if the intervals are equivalent
-|Contains |Returns true if the interval contains the given point
-|In |Returns true if the given point is in the interval
-|Includes |Returns true if the first interval completely includes the second (i.e., starts on or before and ends on or after)
-|IncludedIn |Returns true if the first interval is completely included in the second (i.e., starts on or after and ends on or before)
-|ProperIncludes |Returns true if the first interval completely includes the second and the first interval is strictly larger (i.e., includes and not equal)
-|ProperIncludedIn |Returns true if the first interval is completely included in the second and the second interval is strictly larger (i.e., included in and not equal)
-|Before |Returns true if the first interval ends before the second one starts
-|After |Returns true if the first interval starts after the second one ends
-|SameOrBefore |Returns true if the first interval ends on or before the second one starts
-|SameOrAfter |Returns true if the first interval starts on or after the second one ends
-|Meets |Returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends
-|MeetsBefore |Returns true if the first interval ends immediately before the second interval starts
-|MeetsAfter |Returns true if the first interval starts immediately after the second interval ends
-|Overlaps |Returns true if the first interval overlaps the second
-|OverlapsBefore |Returns true if the first interval starts before and overlaps the second
-|OverlapsAfter |Returns true if the first interval ends after and overlaps the second
-|Union |Returns the interval that results from combining the arguments
-|Intersect |Returns the interval that results from the intersection of the arguments
-|Except |Returns the interval that results from subtracting the second interval from +
+^|*Expression* ^|*Description*
+|*Interval*{set:cellbgcolor:#F0F5FA} |Constructs a new interval value
+|*Equal*{set:cellbgcolor:white} |Returns true if the arguments are the same interval
+|*NotEqual*{set:cellbgcolor:#F0F5FA} |Returns true if the arguments are not the same interval
+|*Equivalent* {set:cellbgcolor:white}|Returns true if the intervals are equivalent
+|*Contains* {set:cellbgcolor:#F0F5FA}|Returns true if the interval contains the given point
+|*In* {set:cellbgcolor:white}|Returns true if the given point is in the interval
+|*Includes* {set:cellbgcolor:#F0F5FA}|Returns true if the first interval completely includes the second (i.e., starts on or before and ends on or after)
+|*IncludedIn* {set:cellbgcolor:white}|Returns true if the first interval is completely included in the second (i.e., starts on or after and ends on or before)
+|*ProperIncludes* {set:cellbgcolor:#F0F5FA}|Returns true if the first interval completely includes the second and the first interval is strictly larger (i.e., includes and not equal)
+|*ProperIncludedIn* {set:cellbgcolor:white}|Returns true if the first interval is completely included in the second and the second interval is strictly larger (i.e., included in and not equal)
+|*Before*{set:cellbgcolor:#F0F5FA} |Returns true if the first interval ends before the second one starts
+|*After* {set:cellbgcolor:white}|Returns true if the first interval starts after the second one ends
+|*SameOrBefore* {set:cellbgcolor:#F0F5FA}|Returns true if the first interval ends on or before the second one starts
+|*SameOrAfter* {set:cellbgcolor:white}|Returns true if the first interval starts on or after the second one ends
+|*Meets*{set:cellbgcolor:#F0F5FA} |Returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends
+|*MeetsBefore*{set:cellbgcolor:white} |Returns true if the first interval ends immediately before the second interval starts
+|*MeetsAfter* {set:cellbgcolor:#F0F5FA}|Returns true if the first interval starts immediately after the second interval ends
+|*Overlaps* {set:cellbgcolor:white}|Returns true if the first interval overlaps the second
+|*OverlapsBefore*{set:cellbgcolor:#F0F5FA} |Returns true if the first interval starts before and overlaps the second
+|*OverlapsAfter* {set:cellbgcolor:white}|Returns true if the first interval ends after and overlaps the second
+|*Union*{set:cellbgcolor:#F0F5FA} |Returns the interval that results from combining the arguments
+|*Intersect* {set:cellbgcolor:white}|Returns the interval that results from the intersection of the arguments
+|*Except*{set:cellbgcolor:#F0F5FA} |Returns the interval that results from subtracting the second interval from +
 the first
-|Length |Returns the length of the interval
-|Start |Returns the starting point of the interval
-|End |Returns the ending point of the interval
-|Starts |Returns true if the first interval starts the second
-|Ends |Returns true if the first interval ends the second
-|Collapse |Returns the unique set of intervals that completely cover the range covered by the given intervals
-|Width |Returns the width of the interval
-|PointFrom |Extracts a single point from a unit interval. If the interval is wider than one, an error is thrown
+|*Length* {set:cellbgcolor:white}|Returns the length of the interval
+|*Start* {set:cellbgcolor:#F0F5FA}|Returns the starting point of the interval
+|*End*{set:cellbgcolor:white} |Returns the ending point of the interval
+|*Starts* {set:cellbgcolor:#F0F5FA}|Returns true if the first interval starts the second
+|*Ends*{set:cellbgcolor:white} |Returns true if the first interval ends the second
+|*Collapse* {set:cellbgcolor:#F0F5FA}|Returns the unique set of intervals that completely cover the range covered by the given intervals
+|*Width*{set:cellbgcolor:white} |Returns the width of the interval
+|*PointFrom* {set:cellbgcolor:#F0F5FA}|Extracts a single point from a unit interval. If the interval is wider than one, an error is thrown
 |========================================================================================================================================================================
 
 Table 4‑J
@@ -388,14 +398,15 @@ The following table lists the structured value operators available in ELM:
 
 [[table-4-k]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |===============================================================
-|Expression |Description
-|Tuple |Constructs a new tuple value
-|Instance |Constructs a new instance of a structured value
-|Property |Returns the value of an element of a structured value
-|Equal |Returns true if its arguments are equal
-|NotEqual |Retruns true if its arguments are not equal
-|Equivalent |Returns true if its arguments are equivalent
+^|*Expression* ^|*Description*
+|*Tuple*{set:cellbgcolor:#F0F5FA} |Constructs a new tuple value
+|*Instance* {set:cellbgcolor:white}|Constructs a new instance of a structured value
+|*Property*{set:cellbgcolor:#F0F5FA} |Returns the value of an element of a structured value
+|*Equal* {set:cellbgcolor:white}|Returns true if its arguments are equal
+|*NotEqual* {set:cellbgcolor:#F0F5FA}|Retruns true if its arguments are not equal
+|*Equivalent* {set:cellbgcolor:white}|Returns true if its arguments are equivalent
 |===============================================================
 
 Table 4‑K
@@ -429,36 +440,37 @@ The following table provides a complete listing of the list operators available 
 
 [[table-4-l]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=============================================================================================================================================================================================================
-|Expression |Description
-|List |Constructs a list from its arguments
-|Exists |Returns true if its argument contains any elements
-|Equal |Returns true if its arguments have the same number of elements, and for each element considered in order, the elements are equal
-|NotEqual |Returns true if its arguments are not equal
-|Equivalent |Returns true if its arguments are equivalent
-|Union |Returns a list containing all the unique elements of its arguments
-|Except |Returns a list containing only the elements in the first list that are not in the second list
-|Intersect |Returns a list containing only the elements that are in all of its arguments
-|Times |Combines the elements from two lists, returning a list with an element for each possible combination of elements from the source list.
-|Filter |Returns a list containing only the elements for which the given condition evaluates to true
-|SingletonFrom |Extracts the single element from a list with at most one element.
-|IndexOf |Returns the 0-based index of an element within the list, or 0 if the element is not present
-|Indexer |Returns the element at the given 0-based index in the list
-|In |Returns true if the given element is in a given list
-|Contains |Returns true if the given list contains a given element
-|Includes |Returns true if every element in the second list is in the first list
-|IncludedIn |Returns true if every element in the first list is in the second list
-|ProperIncludes |Returns true if every element in the second list is in the first list, and the first list is strictly larger than the second
-|ProperIncludedIn |Returns true if the second list contains every element in the first list, and the second list is strictly larger than the first
-|Sort |Returns a list with the same elements, sorted by the given sort criteria
-|ForEach |Returns a list whose elements are determined by evaluating a given expression for each element in its argument
-|Flatten |Flattens a list of lists into a single list with all the elements from every list in the input. Duplicates are not eliminated by this operation
-|Distinct |Returns a list that contains the unique elements within its argument
-|Current |Returns the contents of the current scope
-|First |Returns the first element in the given list
-|Last |Returns the last element in the given list
-|Slice |Returns a portion of the elements in the given list, beginning at a startIndex and ending just before an endIndex
-|Repeat |Returns a list whose elements are determined by evaluating a given expression for each element in the argument, and repeating the evaluation on the resulting list until no new elements are returned
+^|*Expression* ^|*Description*
+|*List* {set:cellbgcolor:#F0F5FA}|Constructs a list from its arguments
+|*Exists* {set:cellbgcolor:white}|Returns true if its argument contains any elements
+|*Equal* {set:cellbgcolor:#F0F5FA}|Returns true if its arguments have the same number of elements, and for each element considered in order, the elements are equal
+|*NotEqual* {set:cellbgcolor:white}|Returns true if its arguments are not equal
+|*Equivalent*{set:cellbgcolor:#F0F5FA} |Returns true if its arguments are equivalent
+|*Union* {set:cellbgcolor:white}|Returns a list containing all the unique elements of its arguments
+|*Except* {set:cellbgcolor:#F0F5FA}|Returns a list containing only the elements in the first list that are not in the second list
+|*Intersect* {set:cellbgcolor:white}|Returns a list containing only the elements that are in all of its arguments
+|*Times* {set:cellbgcolor:#F0F5FA}|Combines the elements from two lists, returning a list with an element for each possible combination of elements from the source list.
+|*Filter* {set:cellbgcolor:white}|Returns a list containing only the elements for which the given condition evaluates to true
+|*SingletonFrom* {set:cellbgcolor:#F0F5FA}|Extracts the single element from a list with at most one element.
+|*IndexOf*{set:cellbgcolor:white} |Returns the 0-based index of an element within the list, or 0 if the element is not present
+|*Indexer* {set:cellbgcolor:#F0F5FA}|Returns the element at the given 0-based index in the list
+|*In*{set:cellbgcolor:white} |Returns true if the given element is in a given list
+|*Contains* {set:cellbgcolor:#F0F5FA}|Returns true if the given list contains a given element
+|*Includes*{set:cellbgcolor:white} |Returns true if every element in the second list is in the first list
+|*IncludedIn*{set:cellbgcolor:#F0F5FA} |Returns true if every element in the first list is in the second list
+|*ProperIncludes* {set:cellbgcolor:white}|Returns true if every element in the second list is in the first list, and the first list is strictly larger than the second
+|*ProperIncludedIn* {set:cellbgcolor:#F0F5FA}|Returns true if the second list contains every element in the first list, and the second list is strictly larger than the first
+|*Sort* {set:cellbgcolor:white}|Returns a list with the same elements, sorted by the given sort criteria
+|*ForEach*{set:cellbgcolor:#F0F5FA} |Returns a list whose elements are determined by evaluating a given expression for each element in its argument
+|*Flatten* {set:cellbgcolor:white}|Flattens a list of lists into a single list with all the elements from every list in the input. Duplicates are not eliminated by this operation
+|*Distinct*{set:cellbgcolor:#F0F5FA} |Returns a list that contains the unique elements within its argument
+|*Current* {set:cellbgcolor:white}|Returns the contents of the current scope
+|*First*{set:cellbgcolor:#F0F5FA} |Returns the first element in the given list
+|*Last* {set:cellbgcolor:white}|Returns the last element in the given list
+|*Slice* {set:cellbgcolor:#F0F5FA}|Returns a portion of the elements in the given list, beginning at a startIndex and ending just before an endIndex
+|*Repeat* {set:cellbgcolor:white}|Returns a list whose elements are determined by evaluating a given expression for each element in the argument, and repeating the evaluation on the resulting list until no new elements are returned
 |=============================================================================================================================================================================================================
 
 Table 4‑L
@@ -476,21 +488,22 @@ The following table lists the aggregate operators available in ELM:
 
 [[table-4-m]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=========================================================================================
-|Expression |Description
-|Count |Returns the number of non-null elements in the source
-|Sum |Computes the sum of non-null elements in the source
-|Min |Returns the minimum element in the source
-|Max |Returns the max element in the source
-|Avg |Returns the average of the elements in the source
-|Median |Returns the median of the elements in the source
-|Mode |Returns the mode of the elements in the source
-|Variance |Returns the statistical variance of the elements in the source
-|PopulationVariance |Returns the population variance of the elements in the source
-|StdDev |Returns the standard deviation of the elements in the source
-|PopulationStdDev |Returns the population standard deviation of the elements in the source
-|AllTrue |Returns true if all the non-null elements in source are true
-|AnyTrue |Returns true if any non-null element in source is true
+^|*Expression* ^|*Description*
+|*Count* {set:cellbgcolor:#F0F5FA}|Returns the number of non-null elements in the source
+|*Sum*{set:cellbgcolor:white} |Computes the sum of non-null elements in the source
+|*Min* {set:cellbgcolor:#F0F5FA}|Returns the minimum element in the source
+|*Max* {set:cellbgcolor:white}|Returns the max element in the source
+|*Avg* {set:cellbgcolor:#F0F5FA}|Returns the average of the elements in the source
+|*Median* {set:cellbgcolor:white}|Returns the median of the elements in the source
+|*Mode*{set:cellbgcolor:#F0F5FA} |Returns the mode of the elements in the source
+|*Variance* {set:cellbgcolor:white}|Returns the statistical variance of the elements in the source
+|*PopulationVariance* {set:cellbgcolor:#F0F5FA}|Returns the population variance of the elements in the source
+|*StdDev* {set:cellbgcolor:white}|Returns the standard deviation of the elements in the source
+|*PopulationStdDev* {set:cellbgcolor:#F0F5FA}|Returns the population standard deviation of the elements in the source
+|*AllTrue*{set:cellbgcolor:white} |Returns true if all the non-null elements in source are true
+|*AnyTrue*{set:cellbgcolor:#F0F5FA} |Returns true if any non-null element in source is true
 |=========================================================================================
 
 Table 4‑M
@@ -504,17 +517,18 @@ ELM provides the following elements for type specifiers, testing, casting, and c
 
 [[table-4-n]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |================================================================================================================================
-|Element |Description
-|Is |Returns true if the type of the argument is the given type
-|As |Returns the argument as the type if it is of the given type, null otherwise
-|Convert |Returns the argument converted to the given type, if possible. If no conversion is possible, a run-time error is thrown
-|NamedTypeSpecifier |Specifies a named type
-|IntervalTypeSpecifier |Specifies an interval type
-|ListTypeSpecifier |Specifies a list type
-|TupleTypeSpecifier |Specifies a tuple type
-|Children |Returns the values of all immediate children of the source
-|Descendents |Returns the values of all children of the source, recursively
+^|*Element* ^|*Description*
+|*Is*{set:cellbgcolor:#F0F5FA} |Returns true if the type of the argument is the given type
+|*As* {set:cellbgcolor:white}|Returns the argument as the type if it is of the given type, null otherwise
+|*Convert* {set:cellbgcolor:#F0F5FA}|Returns the argument converted to the given type, if possible. If no conversion is possible, a run-time error is thrown
+|*NamedTypeSpecifier* {set:cellbgcolor:white}|Specifies a named type
+|*IntervalTypeSpecifier* {set:cellbgcolor:#F0F5FA}|Specifies an interval type
+|*ListTypeSpecifier* {set:cellbgcolor:white}|Specifies a list type
+|*TupleTypeSpecifier* {set:cellbgcolor:#F0F5FA}|Specifies a tuple type
+|*Children*{set:cellbgcolor:white} |Returns the values of all immediate children of the source
+|*Descendents* {set:cellbgcolor:#F0F5FA}|Returns the values of all children of the source, recursively
 |================================================================================================================================
 
 Table 4‑N
@@ -528,20 +542,21 @@ ELM provides a mechanism for expressing the structure of a query using the follo
 
 [[table-4-o]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |==========================================================================================================================================================================================================================================================
-|Class |Description
-|Query |Defines a query in ELM, containing clauses as defined by the other elements in this section.
-|AliasedQuerySource |The AliasedQuerySource element defines a single source for inclusion in the query context. The type of the source is determined by the expression element, and the source can be accessed within the query context by the given alias.
-|LetClause |The LetClause element allows any number of expression definitions to be introduced within a query context. Defined expressions can be referenced by name within the query context.
-|With |The With clause restricts the elements of a given source to only those elements that have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-join in database languages.
-|Without |The Without clause restricts the elements of a given source to only those elements that do not have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-difference in database languages.
-|SortClause |The SortClause element defines the sort order for the query, and is made up of any number of elements that are descendants of the SortByItem class (ByDirection, ByColumn, or ByExpression).
-|ByDirection |Indicates that the sort should be performed ascending or descending. This sortByItem can only appear by itself in a sort clause, and is used when the query is based on a list of non-tuple-valued elements.
-|ByColumn |Indicates that the sort should be performed based on the values of a specified column.
-|ByExpression |Indicates that the sort should be performed based on the result of an expression.
-|ReturnClause |The ReturnClause element defines the shape of the result set of the query.
-|AliasRef |Within a Query, references a defined alias
-|QueryLetRef |Within a Query, references an introduced let expression
+^|*Class* ^|*Description*
+|*Query* {set:cellbgcolor:#F0F5FA}|Defines a query in ELM, containing clauses as defined by the other elements in this section.
+|*AliasedQuerySource* {set:cellbgcolor:white}|The AliasedQuerySource element defines a single source for inclusion in the query context. The type of the source is determined by the expression element, and the source can be accessed within the query context by the given alias.
+|*LetClause*{set:cellbgcolor:#F0F5FA} |The LetClause element allows any number of expression definitions to be introduced within a query context. Defined expressions can be referenced by name within the query context.
+|*With*{set:cellbgcolor:white} |The With clause restricts the elements of a given source to only those elements that have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-join in database languages.
+|*Without* {set:cellbgcolor:#F0F5FA}|The Without clause restricts the elements of a given source to only those elements that do not have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-difference in database languages.
+|*SortClause*{set:cellbgcolor:white} |The SortClause element defines the sort order for the query, and is made up of any number of elements that are descendants of the SortByItem class (ByDirection, ByColumn, or ByExpression).
+|*ByDirection* {set:cellbgcolor:#F0F5FA}|Indicates that the sort should be performed ascending or descending. This sortByItem can only appear by itself in a sort clause, and is used when the query is based on a list of non-tuple-valued elements.
+|*ByColumn* {set:cellbgcolor:white}|Indicates that the sort should be performed based on the values of a specified column.
+|*ByExpression* {set:cellbgcolor:#F0F5FA}|Indicates that the sort should be performed based on the result of an expression.
+|*ReturnClause* {set:cellbgcolor:white}|The ReturnClause element defines the shape of the result set of the query.
+|*AliasRef*{set:cellbgcolor:#F0F5FA} |Within a Query, references a defined alias
+|*QueryLetRef* {set:cellbgcolor:white}|Within a Query, references an introduced let expression
 |==========================================================================================================================================================================================================================================================
 
 Table 4‑O
@@ -563,12 +578,13 @@ The following table lists the expression definition components available in ELM:
 
 [[table-4-p]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |===================================================================================================================
-|Expression |Description
-|ExpressionDef |Defines a named expression that can be referenced by other expressions
-|ExpressionRef |Returns the result of evaluating a named expression
-|FunctionDef |Defines a function that can be referenced by other expressions, or within the body of other functions.
-|FunctionRef |Returns the result of evaluating a function with the given arguments
+^|*Expression* ^|*Description*
+|*ExpressionDef*{set:cellbgcolor:#F0F5FA} |Defines a named expression that can be referenced by other expressions
+|*ExpressionRef* {set:cellbgcolor:white}|Returns the result of evaluating a named expression
+|*FunctionDef* {set:cellbgcolor:#F0F5FA}|Defines a function that can be referenced by other expressions, or within the body of other functions.
+|*FunctionRef* {set:cellbgcolor:white}|Returns the result of evaluating a function with the given arguments
 |===================================================================================================================
 
 Table 4‑P
@@ -592,9 +608,10 @@ The following table lists the expressions relevant to defining external data in 
 
 [[table-4-q]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=====================================================================
-|Expression |Description
-|Retrieve |Defines clinical data that will be used within the artifact
+^|*Expression* ^|*Description*
+|*Retrieve* {set:cellbgcolor:#F0F5FA}|Defines clinical data that will be used within the artifact
 |=====================================================================
 
 Table 4‑Q
@@ -608,23 +625,24 @@ The following table lists the classes representing clinical information in ELM:
 
 [[table-4-r]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=======================================================================================================================
-|Class |Description
-|CodeSystemDef |Defines a code system identifier that can be referenced by name
-|CodeSystemRef |References a code system by its previously defined name
-|InCodeSystem |Tests a string, code, or concept for membership in a codesystem
-|ValueSetDef |Defines a valueset identifier that can be referenced by name
-|ValueSetRef |References a valueset by its previously defined name
-|InValueSet |Tests a string, code, or concept for membership in a valueset
-|CodeDef |Defines a code identifier that can be referenced by name
-|CodeRef |References a code by its previously defined name
-|ConceptDef |Defines a concept identifier that can be referenced by name
-|ConceptRef |References a concept by its previously defined name
-|Code |Selects an existing code from a defined codesystem
-|Concept |Selects an existing concept containing a list of codes
-|Quantity |Returns a clinical quantity with a specified unit
-|CalculateAge |Calculates the age in the specified precision of a person born on the given date as of today.
-|CalculateAgeAt |Calculates the age in the specified precision of a person born on the first date as of the second date.
+^|*Class* ^|*Description*
+|*CodeSystemDef* {set:cellbgcolor:#F0F5FA}|Defines a code system identifier that can be referenced by name
+|*CodeSystemRef*{set:cellbgcolor:white} |References a code system by its previously defined name
+|*InCodeSystem*{set:cellbgcolor:#F0F5FA} |Tests a string, code, or concept for membership in a codesystem
+|*ValueSetDef* {set:cellbgcolor:white}|Defines a valueset identifier that can be referenced by name
+|*ValueSetRef* {set:cellbgcolor:#F0F5FA}|References a valueset by its previously defined name
+|*InValueSet* {set:cellbgcolor:white}|Tests a string, code, or concept for membership in a valueset
+|*CodeDef* {set:cellbgcolor:#F0F5FA}|Defines a code identifier that can be referenced by name
+|*CodeRef* {set:cellbgcolor:white}|References a code by its previously defined name
+|*ConceptDef* {set:cellbgcolor:#F0F5FA}|Defines a concept identifier that can be referenced by name
+|*ConceptRef* {set:cellbgcolor:white}|References a concept by its previously defined name
+|*Code*{set:cellbgcolor:#F0F5FA} |Selects an existing code from a defined codesystem
+|*Concept* {set:cellbgcolor:white}|Selects an existing concept containing a list of codes
+|*Quantity*{set:cellbgcolor:#F0F5FA} |Returns a clinical quantity with a specified unit
+|*CalculateAge*{set:cellbgcolor:white} |Calculates the age in the specified precision of a person born on the given date as of today.
+|*CalculateAgeAt* {set:cellbgcolor:#F0F5FA}|Calculates the age in the specified precision of a person born on the first date as of the second date.
 |=======================================================================================================================
 
 Table 4‑R
@@ -640,10 +658,11 @@ The following table lists the expressions relevant to parameters in ELM:
 
 [[table-4-s]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=================================================
-|Expression |Description
-|ParameterDef |Defines a parameter to the artifact
-|ParameterRef |Returns the value of a parameter
+^|*Expression* ^|*Description*
+|*ParameterDef* {set:cellbgcolor:#F0F5FA}|Defines a parameter to the artifact
+|*ParameterRef* {set:cellbgcolor:white}|Returns the value of a parameter
 |=================================================
 
 Table 4‑S
@@ -659,9 +678,10 @@ The following table lists the elements relevant to data models in ELM:
 
 [[table-4-t]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=================================================================================
-|Element |Description
-|UsingDef |Defines a data model that can be used by expressions within the library
+^|*Element* ^|*Description*
+|*UsingDef* {set:cellbgcolor:#F0F5FA}|Defines a data model that can be used by expressions within the library
 |=================================================================================
 
 Table 4‑T
@@ -677,10 +697,11 @@ The following table lists the elements relevant to libraries in ELM:
 
 [[table-4-u]]
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |==============================================================================================================================================
-|Element |Description
-|IncludeDef |Defines a library reference; public components of the included library can be referenced by components of the referencing library.
-|VersionedIdentifier |Defines the versioned identifier construct used to label the various declarations throughout ELM
+^|*Element* ^|*Description*
+|*IncludeDef*{set:cellbgcolor:#F0F5FA} |Defines a library reference; public components of the included library can be referenced by components of the referencing library.
+|*VersionedIdentifier* {set:cellbgcolor:white}|Defines the versioned identifier construct used to label the various declarations throughout ELM
 |==============================================================================================================================================
 
 Table 4‑U
@@ -691,9 +712,10 @@ Table 4‑U
 ELM defines a utility operation that is useful for generating run-time messages, warnings, traces, and errors. The operator is a single, general-purpose function intended to provide a single implementation point for messaging and run-time error functionality when those messages are generated from ELM logic.
 
 [cols=",",options="header",]
+{set:cellbgcolor:#D9E6FC}
 |=============================================================================================================================
-|Element |Description
-|Message |Provides a mechanism for generating and returning messages, warnings, errors, and traces to the calling environment.
+^|*Element* ^|*Description*
+|*Message*{set:cellbgcolor:#F0F5FA} |Provides a mechanism for generating and returning messages, warnings, errors, and traces to the calling environment.
 |=============================================================================================================================
 
 The source parameter is always a generic value, which is always the result of the operator and is purely passthrough. This allows the operation to appear at any point in any expression of ELM.
