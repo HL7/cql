@@ -16,12 +16,11 @@ The physical representation for ELM is defined by the following schemata:
 
 [[table-7-a]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================================================================================================
-^|*Schema* ^|*Description*
-|*expression.xsd* {set:cellbgcolor:#F0F5FA}|Defines expression logic components without reference to clinically relevant constructs
-|*clinicalexpression.xsd* {set:cellbgcolor:white}|Introduces expression components that contain clinically-relevant constructs
-|*library.xsd* {set:cellbgcolor:#F0F5FA} |Defines the overall library container for ELM
+|Schema |Description
+|*expression.xsd* |Defines expression logic components without reference to clinically relevant constructs
+|*clinicalexpression.xsd* |Introduces expression components that contain clinically-relevant constructs
+|*library.xsd* |Defines the overall library container for ELM
 |=======================================================================================================
 
 Table 7‑A
@@ -34,20 +33,18 @@ As with the logical portion of the specification, this documentation is intended
 The schema for ELM is described for XML using the above XSDs. To support multiple serialization formats, the following media types and namespaces are defined:
 
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |======================================================================
-^|*Content Type* ^|*Description*
-|*text/cql* {set:cellbgcolor:#F0F5FA}|The content is a text document containing CQL
-|*application/elm+xml* {set:cellbgcolor:white}|The content is an ELM document, rendered as XML
-|*application/elm+json* {set:cellbgcolor:#F0F5FA}|The content is an ELM document, rendered as JSON
+|Content Type |Description
+|*text/cql* |The content is a text document containing CQL
+|*application/elm+xml* |The content is an ELM document, rendered as XML
+|*application/elm+json* |The content is an ELM document, rendered as JSON
 |======================================================================
 
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===================================
-^|*Namespace* ^|*Description*
-|*urn:hl7-org:elm:r1* {set:cellbgcolor:#F0F5FA}|The URI for ELM
-|*urn:hl7-org:cql:r1* {set:cellbgcolor:white}|The URI for CQL
+|Namespace |Description
+|*urn:hl7-org:elm:r1* |The URI for ELM
+|*urn:hl7-org:cql:r1* |The URI for CQL
 |===================================
 
 When serializing an ELM document using JSON, each XML element is serialized as a JSON object, according to the following rules:
@@ -69,14 +66,13 @@ In addition, the implementation environment must provide a mechanism for data mo
 
 [[table-7-b]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-^|*Component* ^|*Description*
-|*URL* {set:cellbgcolor:#F0F5FA}|The XML namespace associated with the model. This namespace is used by the CQL-to-ELM translator to establish the URL used to reference types from the model schema within an ELM document.
-|*Schema Location* {set:cellbgcolor:white}|The physical location of the model xsd relative to the ELM document. This information can be provided, but is not required.
-|*Target Qualifier* {set:cellbgcolor:#F0F5FA} |If specified, determines the namespace qualifier that should be used when referencing types of the data model within the ELM document.
-|*Patient Type* {set:cellbgcolor:white}|The name of the type that is used to represent patient information within the model.
-|*Patient Birth Date* {set:cellbgcolor:#F0F5FA}|The name of the birth date property on the patient type. This information is used by the CQL-to-ELM translator to render references to patient-age-related functions (AgeInYears, AgeInYearsAt, etc.) into the non-patient-aware age-related functions in ELM (CalculateAgeInYears, CalculateAgeInYearsAt, etc.). This information is not required, but if it is not present, references to patient-age-related functions will be passed directly through to ELM as FunctionRefs.
+|Component |Description
+|*URL* |The XML namespace associated with the model. This namespace is used by the CQL-to-ELM translator to establish the URL used to reference types from the model schema within an ELM document.
+|*Schema Location* |The physical location of the model xsd relative to the ELM document. This information can be provided, but is not required.
+|*Target Qualifier* |If specified, determines the namespace qualifier that should be used when referencing types of the data model within the ELM document.
+|*Patient Type* |The name of the type that is used to represent patient information within the model.
+|*Patient Birth Date* |The name of the birth date property on the patient type. This information is used by the CQL-to-ELM translator to render references to patient-age-related functions (AgeInYears, AgeInYearsAt, etc.) into the non-patient-aware age-related functions in ELM (CalculateAgeInYears, CalculateAgeInYearsAt, etc.). This information is not required, but if it is not present, references to patient-age-related functions will be passed directly through to ELM as FunctionRefs.
 |=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 Table 7‑B
@@ -85,14 +81,13 @@ For each type available in the data model, the following information should be p
 
 [[table-7-c]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |================================================================================================================================================================================================================================================================================================================================================================================================
-^|*Component* ^|*Description*
-|*Name* {set:cellbgcolor:#F0F5FA}|The name of the type within the data model. This corresponds to the name of the class within the class model, or the name of the type in the case of an xsd. In FHIR, for example, this corresponds to the name of the underlying resource.
-|*Identifier* {set:cellbgcolor:white}|A unique identifier for the class that may be independent of the name. In FHIR, for example, this corresponds to the profile identifier.
-|*Label* {set:cellbgcolor:#F0F5FA}|This information specifies the name of the type as it is referenced from CQL. Note that this need not be a language-valid identifier, as CQL allows quoted-identifiers to be used. However, the label must be unique. In the simplest case, the label corresponds directly with the class name. Whether or not a label is provided, a class can still be referenced from CQL by its name.
-|*Primary Code Filter* {set:cellbgcolor:white}|If the type has the notion of a primary code filter (e.g., Encounter), the name of the attribute that is to be used if no code filter attribute is named within a retrieve
-|*Retrievable* {set:cellbgcolor:#F0F5FA}|A boolean flag indicating whether the class can be referenced as a topic in a retrieve. If this flag is not set, values of this class cannot be retrieved directly, but may still be accessible as elements of other class values.
+|Component |Description
+|*Name* |The name of the type within the data model. This corresponds to the name of the class within the class model, or the name of the type in the case of an xsd. In FHIR, for example, this corresponds to the name of the underlying resource.
+|*Identifier* |A unique identifier for the class that may be independent of the name. In FHIR, for example, this corresponds to the profile identifier.
+|*Label* |This information specifies the name of the type as it is referenced from CQL. Note that this need not be a language-valid identifier, as CQL allows quoted-identifiers to be used. However, the label must be unique. In the simplest case, the label corresponds directly with the class name. Whether or not a label is provided, a class can still be referenced from CQL by its name.
+|*Primary Code Filter* |If the type has the notion of a primary code filter (e.g., Encounter), the name of the attribute that is to be used if no code filter attribute is named within a retrieve
+|*Retrievable* |A boolean flag indicating whether the class can be referenced as a topic in a retrieve. If this flag is not set, values of this class cannot be retrieved directly, but may still be accessible as elements of other class values.
 |================================================================================================================================================================================================================================================================================================================================================================================================
 
 Table 7‑C

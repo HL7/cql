@@ -7,67 +7,66 @@
 
 [[table-12-a]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==============================================================================
-^|*Acronym* ^|*Definition/Description*
-|*AHRQ* {set:cellbgcolor:#F0F5FA}|Agency for Healthcare Research and Quality
-|*ANTLR4* {set:cellbgcolor:white}|ANother Tool for Language Recognition (version 4)
-|*CDA* {set:cellbgcolor:#F0F5FA}|Clinical Document Architecture
-|*CDS* {set:cellbgcolor:white}|Clinical Decision Support
-|*CDSC L3* {set:cellbgcolor:#F0F5FA}|Clinical Decision Support Consortium Level 3
-|*CDS KAS* {set:cellbgcolor:white}|Clinical Decision Support Knowledge Artifact Specification
-|*CMS* {set:cellbgcolor:#F0F5FA}|Centers for Medicare & Medicaid Services
-|*CPT* {set:cellbgcolor:white}|Current Procedural Terminology
-|*CQL* {set:cellbgcolor:#F0F5FA}|Clinical Quality Language
-|*CQM* {set:cellbgcolor:white}|Clinical Quality Measure
-|*CREF* {set:cellbgcolor:#F0F5FA}|Allscripts Common Rule Engine Format (CREF) specification
-|*CTS2* {set:cellbgcolor:white}|Common Terminology Services 2
-|*DAM* {set:cellbgcolor:#F0F5FA}|Domain Analysis Model
-|*DSTU* {set:cellbgcolor:white}|Draft Standard for Trial Use
-|*eCQI* {set:cellbgcolor:#F0F5FA}|Electronic Clinical Quality Improvement
-|*eCQM* {set:cellbgcolor:white}|Electronic Clinical Quality Measure
-|*EHR* {set:cellbgcolor:#F0F5FA}|Electronic Health Record
-|*ELM* {set:cellbgcolor:white}|Expression Logical Model
-|*EMR* {set:cellbgcolor:#F0F5FA}|Electronic Medical Record
-|*eRecs* {set:cellbgcolor:white}|AHRQ Electronic Recommendations
-|*FHIR* {set:cellbgcolor:#F0F5FA}|Fast Healthcare Interoperability Resources
-|*GEM* {set:cellbgcolor:white}|Guidelines Element Model
-|*HeD* {set:cellbgcolor:#F0F5FA}|Health eDecisions
-|*HIE* {set:cellbgcolor:white}|Health Information Exchange
-|*HIT* {set:cellbgcolor:#F0F5FA}|Health Information Technology
-|*HITECH Act* {set:cellbgcolor:white} |Health Information Technology for Economic and Clinical Health Act
-|*HIPAA* {set:cellbgcolor:#F0F5FA}|Health Insurance Portability and Accountability Act
-|*HITSP* {set:cellbgcolor:white}|Health Information Technology Standards Panel
-|*HL7* {set:cellbgcolor:#F0F5FA}|Health Level 7
-|*HQMF* {set:cellbgcolor:white}|Health Quality Measure Format
-|*ICD-9-CM* {set:cellbgcolor:#F0F5FA}|International Classification of Diseases, Ninth Revision
-|*ICD-10* {set:cellbgcolor:white}|International Classification of Diseases, Tenth Revision
-|*IHTSDO* {set:cellbgcolor:#F0F5FA}|International Health Terminology Standards Development Organization
-|*ISO* {set:cellbgcolor:white}|International Organization for Standardization
-|*LOINC* {set:cellbgcolor:#F0F5FA}|Logical Observation Identifiers Names and Codes
-|*MAT* {set:cellbgcolor:white}|Measure Authoring Tool
-|*NCQA* {set:cellbgcolor:#F0F5FA}|National Committee for Quality Assurance
-|*NQF* {set:cellbgcolor:white}|National Quality Foundation
-|*OID* {set:cellbgcolor:#F0F5FA}|Object Identifier
-|*ONC* {set:cellbgcolor:white}|Office of the National Coordinator for Health Information Technology
-|*PHR* {set:cellbgcolor:#F0F5FA}|Personal Health Record
-|*QDM* {set:cellbgcolor:white}|Quality Data Model
-|*QRDA* {set:cellbgcolor:#F0F5FA}|Quality Reporting Document Architecture
-|*QUICK* {set:cellbgcolor:white}|Quality Improvement and Clinical Knowledge
-|*RIM* {set:cellbgcolor:#F0F5FA}|Reference Information Model
-|*SI* {set:cellbgcolor:white}|International System of Units
-|*SNOMED-CT* {set:cellbgcolor:#F0F5FA}|Systematized Nomenclature of Medicine – Clinical Terms
-|*SQL* {set:cellbgcolor:white}|Structured Query Language
-|*UCUM* {set:cellbgcolor:#F0F5FA}|Unified Code for Units of Measure
-|*UML* {set:cellbgcolor:white}|Unified Modeling Language
-|*URI* {set:cellbgcolor:#F0F5FA}|Uniform Resource Identifier
-|*URL* {set:cellbgcolor:white}|Uniform Resource Locator
-|*URN* {set:cellbgcolor:#F0F5FA}|Uniform Resource Name
-|*USHIK* {set:cellbgcolor:white}|United States Health Information Knowledgebase
-|*UTC* {set:cellbgcolor:#F0F5FA}|Coordinated Universal Time
-|*VSAC* {set:cellbgcolor:white}|Value Set Authority Center
-|*XMI* {set:cellbgcolor:#F0F5FA}|XML Metadata Interchange
-|*XML* {set:cellbgcolor:white}|eXtended Markup Language
+|Acronym |Definition/Description
+|*AHRQ* |Agency for Healthcare Research and Quality
+|*ANTLR4* |ANother Tool for Language Recognition (version 4)
+|*CDA* |Clinical Document Architecture
+|*CDS* |Clinical Decision Support
+|*CDSC L3* |Clinical Decision Support Consortium Level 3
+|*CDS KAS* |Clinical Decision Support Knowledge Artifact Specification
+|*CMS* |Centers for Medicare & Medicaid Services
+|*CPT* |Current Procedural Terminology
+|*CQL* |Clinical Quality Language
+|*CQM* |Clinical Quality Measure
+|*CREF* |Allscripts Common Rule Engine Format (CREF) specification
+|*CTS2* |Common Terminology Services 2
+|*DAM* |Domain Analysis Model
+|*DSTU* |Draft Standard for Trial Use
+|*eCQI* |Electronic Clinical Quality Improvement
+|*eCQM* |Electronic Clinical Quality Measure
+|*EHR* |Electronic Health Record
+|*ELM* |Expression Logical Model
+|*EMR* |Electronic Medical Record
+|*eRecs* |AHRQ Electronic Recommendations
+|*FHIR* |Fast Healthcare Interoperability Resources
+|*GEM* |Guidelines Element Model
+|*HeD* |Health eDecisions
+|*HIE* |Health Information Exchange
+|*HIT* |Health Information Technology
+|*HITECH Act* |Health Information Technology for Economic and Clinical Health Act
+|*HIPAA* |Health Insurance Portability and Accountability Act
+|*HITSP* |Health Information Technology Standards Panel
+|*HL7* |Health Level 7
+|*HQMF* |Health Quality Measure Format
+|*ICD-9-CM* |International Classification of Diseases, Ninth Revision
+|*ICD-10* |International Classification of Diseases, Tenth Revision
+|*IHTSDO* |International Health Terminology Standards Development Organization
+|*ISO* |International Organization for Standardization
+|*LOINC* |Logical Observation Identifiers Names and Codes
+|*MAT* |Measure Authoring Tool
+|*NCQA* |National Committee for Quality Assurance
+|*NQF* |National Quality Foundation
+|*OID* |Object Identifier
+|*ONC* |Office of the National Coordinator for Health Information Technology
+|*PHR* |Personal Health Record
+|*QDM* |Quality Data Model
+|*QRDA* |Quality Reporting Document Architecture
+|*QUICK* |Quality Improvement and Clinical Knowledge
+|*RIM* |Reference Information Model
+|*SI* |International System of Units
+|*SNOMED-CT* |Systematized Nomenclature of Medicine – Clinical Terms
+|*SQL* |Structured Query Language
+|*UCUM* |Unified Code for Units of Measure
+|*UML* |Unified Modeling Language
+|*URI* |Uniform Resource Identifier
+|*URL* |Uniform Resource Locator
+|*URN* |Uniform Resource Name
+|*USHIK* |United States Health Information Knowledgebase
+|*UTC* |Coordinated Universal Time
+|*VSAC* |Value Set Authority Center
+|*XMI* |XML Metadata Interchange
+|*XML* |eXtended Markup Language
 |==============================================================================
 
 Table 12‑A

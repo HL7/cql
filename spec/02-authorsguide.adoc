@@ -29,21 +29,20 @@ Libraries in CQL provide the overall packaging for CQL definitions. Each library
 Libraries can contain any or all of the following constructs:
 
 [[table-2-a]]
-[cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
+[cols=",",options="header"]
 |====================================================================================================================================================================
-^|*Construct* ^|*Description*
-|*library*{set:cellbgcolor:#F0F5FA} |Header information for the library, including the name and version, if any.
-|*using*{set:cellbgcolor:white} |Data model information, specifying that the library may access types from the referenced data model.
-|*include*{set:cellbgcolor:#F0F5FA} |Referenced library information, specifying that the library may access constructs defined in the referenced library.
-|*codesystem*{set:cellbgcolor:white} |Codesystem information, specifying that logic within the library may reference the specified codesystem by the given name.
-|*valueset*{set:cellbgcolor:#F0F5FA} |Valueset information, specifying that logic within the library may reference the specified valueset by the given name.
-|*code* {set:cellbgcolor:white}|Code information, specifying that logic within the library may reference the specified code by the given name.
-|*concept*{set:cellbgcolor:#F0F5FA} |Concept information, specifying that logic within the library may reference the specified concept by the given name.
-|*parameter*{set:cellbgcolor:white} |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context*{set:cellbgcolor:#F0F5FA} |Patient/population context, specifying the overall context for the statements that follow.
-|*define*{set:cellbgcolor:white} |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
-|*function*{set:cellbgcolor:#F0F5FA} |Libraries may also contain function definitions. These are most often used as part of shared libraries.
+|Construct |Description
+|*library* |Header information for the library, including the name and version, if any.
+|*using* |Data model information, specifying that the library may access types from the referenced data model.
+|*include* |Referenced library information, specifying that the library may access constructs defined in the referenced library.
+|*codesystem* |Codesystem information, specifying that logic within the library may reference the specified codesystem by the given name.
+|*valueset* |Valueset information, specifying that logic within the library may reference the specified valueset by the given name.
+|*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
+|*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
+|*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
+|*context* |Patient/population context, specifying the overall context for the statements that follow.
+|*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
+|*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
 
 Table 2‑A
@@ -147,12 +146,11 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 
 [[table-2-b]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=====================================================================================================================================================================================
-^|*Element* ^|*Description*
-|*Name*{set:cellbgcolor:#F0F5FA} |A unique identifier for the parameter within the library
-|*Type*{set:cellbgcolor:white} |The type of the parameter – Note that the type is only required if no default value is provided. Otherwise, the type of the parameter is determined based on the default value.
-|*Default Value*{set:cellbgcolor:#F0F5FA} |An optional default value for the parameter
+|Element |Description
+|*Name* |A unique identifier for the parameter within the library
+|*Type* |The type of the parameter – Note that the type is only required if no default value is provided. Otherwise, the type of the parameter is determined based on the default value.
+|*Default Value* |An optional default value for the parameter
 |=====================================================================================================================================================================================
 
 Table 2‑B
@@ -203,11 +201,10 @@ The context declaration defines the overall context for statements within the la
 
 [[table-2-c]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================================================================================================================================
-^|*Context* ^|*Description*
-|*Patient*{set:cellbgcolor:#F0F5FA}  |The Patient context specifies that expressions should be interpreted with reference to a single patient.
-|*Population*{set:cellbgcolor:white} |The Population context specifies that expressions should be interpreted with reference to the entire population of patients.
+|Context |Description
+|*Patient* |The Patient context specifies that expressions should be interpreted with reference to a single patient.
+|*Population* |The Population context specifies that expressions should be interpreted with reference to the entire population of patients.
 |========================================================================================================================================
 
 Table 2‑C
@@ -356,13 +353,12 @@ The query construct has a _primary source_ and four main _clauses_ that each all
 
 [[table-2-d]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================================================================================================================================
-^|*Clause* ^|*Operation*
-|*Relationship (with/without)*{set:cellbgcolor:#F0F5FA} |Allows relationships between the primary source and other clinical information to be used to filter the result.
-|*Where*{set:cellbgcolor:white} |The where clause allows conditions to be expressed that filter the result to only the information that meets the condition.
-|*Return*{set:cellbgcolor:#F0F5FA} |The return clause allows the result set to be shaped as needed, removing elements, or including new calculated values.
-|*Sort*{set:cellbgcolor:white} |The sort clause allows the result set to be ordered according to any criteria as needed.
+|Clause |Operation
+|*Relationship (with/without)* |Allows relationships between the primary source and other clinical information to be used to filter the result.
+|*Where* |The where clause allows conditions to be expressed that filter the result to only the information that meets the condition.
+|*Return* |The return clause allows the result set to be shaped as needed, removing elements, or including new calculated values.
+|*Sort* |The sort clause allows the result set to be ordered according to any criteria as needed.
 |============================================================================================================================================
 
 Table 2‑D
@@ -608,17 +604,16 @@ CQL supports several types of simple values:
 
 [[table-2-e]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================================
-^|*Value* ^|*Examples*
-|*Boolean*{set:cellbgcolor:#F0F5FA}  |[.kw]#true#, [.kw]#false#
-|*Integer*{set:cellbgcolor:white} |[.lit]#16#, [.lit]#-28#
-|*Decimal*{set:cellbgcolor:#F0F5FA}  |[.lit]#100.015#
-|*String*{set:cellbgcolor:white} |[.lit]#'pending'#, [.lit]#'active'#, [.lit]#'complete'#
-|*Date*{set:cellbgcolor:#F0F5FA}  |[.lit]#@2014-01-25#
-|*DateTime*{set:cellbgcolor:white} |[.lit]#@2014-01-25#, +
+|Value |Examples
+|*Boolean* |[.kw]#true#, [.kw]#false#
+|*Integer* |[.lit]#16#, [.lit]#-28#
+|*Decimal* |[.lit]#100.015#
+|*String* |[.lit]#'pending'#, [.lit]#'active'#, [.lit]#'complete'#
+|*Date* |[.lit]#@2014-01-25#
+|*DateTime* |[.lit]#@2014-01-25#, +
 [.lit]#@2014-01-25T14:30:14.559#
-|*Time*{set:cellbgcolor:#F0F5FA}  |
+|*Time* |
 [.lit]#@T12:00:00.0Z#
 
 [.lit]#@T14:30:14.559-07:00#
@@ -767,13 +762,12 @@ The [.id]#Code# type has the following elements:
 
 [[table-2-f]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================================
-^|*Name* ^|*Type* ^|*Description*
-|*code*{set:cellbgcolor:#F0F5FA} |[.id]#String# |The identifier for the code.
-|*display*{set:cellbgcolor:white} |[.id]#String# |A description of the code.
-|*system*{set:cellbgcolor:#F0F5FA} |[.id]#String# |The identifier of the code system.
-|*version*{set:cellbgcolor:white} |[.id]#String# |The version of the code system.
+|Name |Type |Description
+|*code* |[.id]#String# |The identifier for the code.
+|*display* |[.id]#String# |A description of the code.
+|*system* |[.id]#String# |The identifier of the code system.
+|*version* |[.id]#String# |The version of the code system.
 |==================================================
 
 Table 2‑F
@@ -798,11 +792,10 @@ The Concept type has the following elements:
 
 [[table-2-g]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=========================================================================
-^|*Name* ^|*Type* ^|*Description*
-|*codes*{set:cellbgcolor:#F0F5FA}  |[.id]#List<Code># |The list of equivalent codes representing the concept.
-|*display*{set:cellbgcolor:white} |[.id]#String# |A description of the concept.
+|Name |Type |Description
+|*codes* |[.id]#List<Code># |The list of equivalent codes representing the concept.
+|*display* |[.id]#String# |A description of the concept.
 |=========================================================================
 
 Table 2‑G
@@ -1077,18 +1070,17 @@ The most basic operation in CQL involves comparison of two values. This is accom
 
 [[table-2-h]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========================================================================================================================================
-^|*Operator* ^|*Name* ^|*Description*
-^.^|*=*{set:cellbgcolor:#F0F5FA} |Equality |Returns true if the arguments are the same value
-^.^|*!=* {set:cellbgcolor:white}|Inequality |Returns true if the arguments are not the same value
-^.^|*>*{set:cellbgcolor:#F0F5FA} |Greater than |Returns true if the left argument is greater than the right argument
-^.^|*<*{set:cellbgcolor:white} |Less than |Returns true if the left argument is less than the right argument
-^.^|*>=*{set:cellbgcolor:#F0F5FA} |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument
-^.^|*\<=*{set:cellbgcolor:white} |Less than or equal |Returns true if the left argument is less than or equal to the right argument
-^.^|*between*{set:cellbgcolor:#F0F5FA} | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument
-^.^|*~*{set:cellbgcolor:white} |Equivalent |Returns true if the arguments are the same value, or are both unknown
-^.^|*!~*{set:cellbgcolor:#F0F5FA} |Inequivalent |Returns true if the arguments are not equivalent
+|Operator |Name |Description
+|*=* |Equality |Returns true if the arguments are the same value
+|*!=* |Inequality |Returns true if the arguments are not the same value
+|*>* |Greater than |Returns true if the left argument is greater than the right argument
+|*<* |Less than |Returns true if the left argument is less than the right argument
+|*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument
+|*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument
+|*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument
+|*~* |Equivalent |Returns true if the arguments are the same value, or are both unknown
+|*!~* |Inequivalent |Returns true if the arguments are not equivalent
 |===========================================================================================================================================
 
 Table 2‑H
@@ -1170,13 +1162,12 @@ Combining the results of comparisons and other boolean-valued expressions is ess
 
 [[table-2-i]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================
-^|*Operator* ^|*Description*
-^|*and*{set:cellbgcolor:#F0F5FA} |Logical conjunction
-^|*or*{set:cellbgcolor:white} |Logical disjunction
-^|*xor*{set:cellbgcolor:#F0F5FA} |Exclusive logical disjunction
-^|*not*{set:cellbgcolor:white} |Logical negation
+|Operator |Description
+|*and* |Logical conjunction
+|*or* |Logical disjunction
+|*xor* |Exclusive logical disjunction
+|*not* |Logical negation
 |==================================
 
 Table 2‑I
@@ -1202,25 +1193,24 @@ The following table lists the arithmetic operations available in CQL:
 
 [[table-2-j]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========================================================================================================================
-^|*Operator* ^|*Name* ^|*Description*
-^|*+* {set:cellbgcolor:#F0F5FA}|addition |Performs numeric addition of its arguments
-^|*-* {set:cellbgcolor:white}|subtraction |Performs numeric subtraction of its arguments
-^|***{set:cellbgcolor:#F0F5FA} |multiply |Performs numeric multiplication of its arguments
-^|*/* {set:cellbgcolor:white}|divide |Performs numeric division of its arguments
-^|*div* {set:cellbgcolor:#F0F5FA}|truncated divide |Performs integer division of its arguments
-^|*mod*{set:cellbgcolor:white} |modulo |Computes the remainder of the integer division of its arguments
-^|*Ceiling* {set:cellbgcolor:#F0F5FA}| |Returns the first integer greater than or equal to its argument
-^|*Floor*{set:cellbgcolor:white} | |Returns the first integer less than or equal to its argument
-^|*Truncate*{set:cellbgcolor:#F0F5FA} | |Returns the integer component of its argument
-^|*Abs*{set:cellbgcolor:white} | |Returns the absolute value of its argument
-^|*-* {set:cellbgcolor:#F0F5FA}|negate |Returns the negative value of its argument
-^|*Round*{set:cellbgcolor:white} | |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
-^|*Ln*{set:cellbgcolor:#F0F5FA} |natural logarithm |Computes the natural logarithm of its argument
-^|*Log*{set:cellbgcolor:white} |logarithm |Computes the logarithm of its first argument, using the second argument as the base
-^|*Exp*{set:cellbgcolor:#F0F5FA} |exponent |Raises e to the power given by its argument
-^|*^*{set:cellbgcolor:white} |exponentiation |Raises the first argument to the power given by the second argument
+|Operator |Name |Description
+|*+* |addition |Performs numeric addition of its arguments
+|*-* |subtraction |Performs numeric subtraction of its arguments
+|*** |multiply |Performs numeric multiplication of its arguments
+|*/* |divide |Performs numeric division of its arguments
+|*div* |truncated divide |Performs integer division of its arguments
+|*mod* |modulo |Computes the remainder of the integer division of its arguments
+|*Ceiling* | |Returns the first integer greater than or equal to its argument
+|*Floor* | |Returns the first integer less than or equal to its argument
+|*Truncate* | |Returns the integer component of its argument
+|*Abs* | |Returns the absolute value of its argument
+|*-* |negate |Returns the negative value of its argument
+|*Round* | |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
+|*Ln* |natural logarithm |Computes the natural logarithm of its argument
+|*Log* |logarithm |Computes the logarithm of its first argument, using the second argument as the base
+|*Exp* |exponent |Raises e to the power given by its argument
+|*^* |exponentiation |Raises the first argument to the power given by the second argument
 |===========================================================================================================================
 
 Table 2‑J
@@ -1254,17 +1244,16 @@ The [.id]#DateTime# operator takes the following arguments:
 
 [[table-2-k]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================================================================
-^|*Name* ^|*Type* ^|*Description*
-|*Year*{set:cellbgcolor:#F0F5FA} |[.id]#Integer# |The year component of the datetime
-|*Month*{set:cellbgcolor:white} |[.id]#Integer# |The month component of the datetime
-|*Day*{set:cellbgcolor:#F0F5FA} |[.id]#Integer# |The day component of the datetime
-|*Hour*{set:cellbgcolor:white} |[.id]#Integer# |The hour component of the datetime
-|*Minute*{set:cellbgcolor:#F0F5FA} |[.id]#Integer# |The minute component of the datetime
-|*Second*{set:cellbgcolor:white} |[.id]#Integer# |The second component of the datetime
-|*Millisecond*{set:cellbgcolor:#F0F5FA} |[.id]#Integer# |The millisecond component of the datetime
-|*Timezone Offset*{set:cellbgcolor:white} |[.id]#Decimal# |The timezone offset component of the datetime (in hours)
+|Name |Type |Description
+|*Year* |[.id]#Integer# |The year component of the datetime
+|*Month* |[.id]#Integer# |The month component of the datetime
+|*Day* |[.id]#Integer# |The day component of the datetime
+|*Hour* |[.id]#Integer# |The hour component of the datetime
+|*Minute* |[.id]#Integer# |The minute component of the datetime
+|*Second* |[.id]#Integer# |The second component of the datetime
+|*Millisecond* |[.id]#Integer# |The millisecond component of the datetime
+|*Timezone Offset* |[.id]#Decimal# |The timezone offset component of the datetime (in hours)
 |==================================================================================
 
 Table 2‑K
@@ -1287,14 +1276,13 @@ The [.id]#Time# operator takes the following arguments:
 
 [[table-2-l]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================================================================
-^|*Name* ^|*Type* ^|*Description*
-|*Hour*{set:cellbgcolor:#F0F5FA}  |[.id]#Integer# |The hour component of the datetime
-|*Minute* {set:cellbgcolor:white}|[.id]#Integer# |The minute component of the datetime
-|*Second*{set:cellbgcolor:#F0F5FA}  |[.id]#Integer# |The second component of the datetime
-|*Millisecond*{set:cellbgcolor:white} |[.id]#Integer# |The millisecond component of the datetime
-|*Timezone Offset* {set:cellbgcolor:#F0F5FA} |[.id]#Decimal# |The timezone offset component of the datetime
+|Name |Type |Description
+|*Hour* |[.id]#Integer# |The hour component of the datetime
+|*Minute* |[.id]#Integer# |The minute component of the datetime
+|*Second* |[.id]#Integer# |The second component of the datetime
+|*Millisecond* |[.id]#Integer# |The millisecond component of the datetime
+|*Timezone Offset* |[.id]#Decimal# |The timezone offset component of the datetime
 |=======================================================================
 
 Table 2‑L
@@ -1305,12 +1293,11 @@ In addition to the ability to construct specific dates and times using component
 
 [[table-2-m]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===============================================================================================================
-^|*Operator* ^|*Description*
-|*Now*{set:cellbgcolor:#F0F5FA}  |Returns the date and time of the start timestamp associated with the evaluation request
-|*Today*{set:cellbgcolor:white} |Returns the date (with no time components) of the start timestamp associated with the evaluation request
-|*TimeOfDay*{set:cellbgcolor:#F0F5FA}  |Returns the time-of-day of the start timestamp associated with the evaluation request
+|Operator |Description
+|*Now* |Returns the date and time of the start timestamp associated with the evaluation request
+|*Today* |Returns the date (with no time components) of the start timestamp associated with the evaluation request
+|*TimeOfDay* |Returns the time-of-day of the start timestamp associated with the evaluation request
 |===============================================================================================================
 
 Table 2‑M
@@ -1398,14 +1385,13 @@ Note that when determining equality, these semantics imply that if either date/t
 
 [[table-2-n]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================
-^.^|*Operator* ^|*Precision-based Operator*
-|*=* {set:cellbgcolor:#F0F5FA}|[.kw]#same as#
-|*<* {set:cellbgcolor:white}|[.kw]#before#
-|*>*{set:cellbgcolor:#F0F5FA} |[.kw]#after#
-|*\<=*{set:cellbgcolor:white} |[.kw]#same or before#
-|*>=*{set:cellbgcolor:#F0F5FA} |[.kw]#same or after#
+|Operator |Precision-based Operator
+|*=* |[.kw]#same as#
+|*<* |[.kw]#before#
+|*>* |[.kw]#after#
+|*\<=* |[.kw]#same or before#
+|*>=* |[.kw]#same or after#
 |==================================
 
 Table 2‑N
@@ -1461,19 +1447,18 @@ These examples extract the date from X, the year from X, and the minute from X. 
 
 [[table-2-o]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================================================================
-^|*Component* ^|*Description* ^|*Result Type*
-|*date from X*{set:cellbgcolor:#F0F5FA} |Extracts the date of its argument (with no time components) |[.id]#Date#
-|*time from X*{set:cellbgcolor:white} |Extracts the time of its argument |[.id]#Time#
-|*year from X*{set:cellbgcolor:#F0F5FA} |Extracts the year component its argument |[.id]#Integer#
-|*month from X*{set:cellbgcolor:white} |Extracts the month component of its argument |[.id]#Integer#
-|*day from X*{set:cellbgcolor:#F0F5FA} |Extracts the day component of its argument |[.id]#Integer#
-|*hour from X*{set:cellbgcolor:white} |Extracts the hour component of its argument |[.id]#Integer#
-|*minute from X*{set:cellbgcolor:#F0F5FA} |Extracts the minute component of its argument |[.id]#Integer#
-|*second from X*{set:cellbgcolor:white} |Extracts the second component of its argument |[.id]#Integer#
-|*millisecond from X*{set:cellbgcolor:#F0F5FA} |Extracts the millisecond component of its argument |[.id]#Integer#
-|*timezone from X*{set:cellbgcolor:white} |Extracts the timezone offset component of its argument |[.id]#Decimal#
+|Component |Description |Result Type
+|*date from X* |Extracts the date of its argument (with no time components) |[.id]#Date#
+|*time from X* |Extracts the time of its argument |[.id]#Time#
+|*year from X* |Extracts the year component its argument |[.id]#Integer#
+|*month from X* |Extracts the month component of its argument |[.id]#Integer#
+|*day from X* |Extracts the day component of its argument |[.id]#Integer#
+|*hour from X* |Extracts the hour component of its argument |[.id]#Integer#
+|*minute from X* |Extracts the minute component of its argument |[.id]#Integer#
+|*second from X* |Extracts the second component of its argument |[.id]#Integer#
+|*millisecond from X* |Extracts the millisecond component of its argument |[.id]#Integer#
+|*timezone from X* |Extracts the timezone offset component of its argument |[.id]#Decimal#
 |==================================================================================
 
 Table 2‑O
@@ -1757,16 +1742,15 @@ The following table describes the operators that can be used to construct timing
 
 [[table-2-q]]
 [cols=",,,,,,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |====================================================================================================
-^.^|*Operator* ^.^|*Beginning Boundary (starts/ends)* ^.^|*Ending Boundary (start/end)* ^.^|*Duration Offset* ^.^|*Or Less/ +
-Or More* ^.^|*Or Before/ Or After* ^.^|*Less Than/ More Than* ^.^|*Or On/ On Or*
-|*same as*{set:cellbgcolor:#F0F5FA} |yes |yes |no |no |yes |no |no
-|*before*{set:cellbgcolor:white} |yes |yes |yes |yes |no |yes |yes
-|*after*{set:cellbgcolor:#F0F5FA} |yes |yes |yes |yes |no |yes |yes
-|*within...of*{set:cellbgcolor:white} |yes |yes |required |no |no |no |no
-|*during*{set:cellbgcolor:#F0F5FA} |yes |no |no |no |no |no |no
-|*includes*{set:cellbgcolor:white} |no |yes |no |no |no |no |no
+|Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/ +
+Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
+|*same as* |yes |yes |no |no |yes |no |no
+|*before* |yes |yes |yes |yes |no |yes |yes
+|*after* |yes |yes |yes |yes |no |yes |yes
+|*within...of* |yes |yes |required |no |no |no |no
+|*during* |yes |no |no |no |no |no |no
+|*includes* |no |yes |no |no |no |no |no
 |====================================================================================================
 
 Table 2‑Q
@@ -1947,13 +1931,12 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 
 [[table-2-r]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=============================================================================================================================
-^|*Operator* ^|*Description*
-|*X [.kw]#includes# Y* {set:cellbgcolor:#F0F5FA}|Returns true if every element in list Y is also in list X, using equivalence semantics
-|*X [.kw]#properly includes# Y*{set:cellbgcolor:white} |Returns true if every element in list Y is also in list X and list X has more elements than list Y
-|*X [.kw]#included in# Y* {set:cellbgcolor:#F0F5FA}|Returns true if every element in list X is also in list Y, using equivalence semantics
-|*X [.kw]#properly included in# Y*{set:cellbgcolor:white} |Returns true if every element in list X is also in list Y, and list Y has more elements than list X
+|Operator |Description
+|*X [.kw]#includes# Y* |Returns true if every element in list Y is also in list X, using equivalence semantics
+|*X [.kw]#properly includes# Y* |Returns true if every element in list Y is also in list X and list X has more elements than list Y
+|*X [.kw]#included in# Y* |Returns true if every element in list X is also in list Y, using equivalence semantics
+|*X [.kw]#properly included in# Y* |Returns true if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
 Table 2‑R
@@ -2142,22 +2125,21 @@ The following table lists the aggregate operators available in CQL:
 
 [[table-2-s]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=========================================================================================================================================================================================================================
-^|*Operator* ^|*Description*
-|*Count*{set:cellbgcolor:#F0F5FA} |Returns the number of elements in its argument
-|*Sum*{set:cellbgcolor:white} |Returns the numeric sum of the elements in the list
-|*Min*{set:cellbgcolor:#F0F5FA} |Returns the minimum value of any element in the list
-|*Max*{set:cellbgcolor:white} |Returns the maximum value of any element in the list
-|*Avg*{set:cellbgcolor:#F0F5FA} |Returns the numeric average (mean) of all elements in the list
-|*Median*{set:cellbgcolor:white} |Returns the statistical median of all elements in the list
-|*Mode*{set:cellbgcolor:#F0F5FA} |Returns the most frequently occurring value in the list
-|*StdDev*{set:cellbgcolor:white} |Returns the sample standard deviation (square root of the sample variance) of the elements in the list
-|*PopStdDev*{set:cellbgcolor:#F0F5FA} |Returns the population standard deviation (square root of the population variance) of the elements in the list
-|*Variance*{set:cellbgcolor:white} |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
-|*PopVariance*{set:cellbgcolor:#F0F5FA} |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
-|*AllTrue*{set:cellbgcolor:white} |Returns true if all the elements in the list are true, false otherwise
-|*AnyTrue*{set:cellbgcolor:#F0F5FA} |Returns true if any of the elements in the list are true, false otherwise
+|Operator |Description
+|*Count* |Returns the number of elements in its argument
+|*Sum* |Returns the numeric sum of the elements in the list
+|*Min* |Returns the minimum value of any element in the list
+|*Max* |Returns the maximum value of any element in the list
+|*Avg* |Returns the numeric average (mean) of all elements in the list
+|*Median* |Returns the statistical median of all elements in the list
+|*Mode* |Returns the most frequently occurring value in the list
+|*StdDev* |Returns the sample standard deviation (square root of the sample variance) of the elements in the list
+|*PopStdDev* |Returns the population standard deviation (square root of the population variance) of the elements in the list
+|*Variance* |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
+|*PopVariance* |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
+|*AllTrue* |Returns true if all the elements in the list are true, false otherwise
+|*AnyTrue* |Returns true if any of the elements in the list are true, false otherwise
 |=========================================================================================================================================================================================================================
 
 Table 2‑S
@@ -2227,26 +2209,25 @@ To support determination of patient age consistently throughout quality logic, C
 
 [[table-2-t]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |================================================================================================================================================
-^|*Operator* ^|*Description*
-|*AgeInYearsAt(X)*{set:cellbgcolor:#F0F5FA} |Determines the age of the patient in years as of the date X
-|*AgeInYears()*{set:cellbgcolor:white} |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
-|*AgeInMonthsAt(X)*{set:cellbgcolor:#F0F5FA} |Determines the age of the patient in months as of the date X
-|*AgeInMonths()*{set:cellbgcolor:white} |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
-|*AgeInDaysAt(X)*{set:cellbgcolor:#F0F5FA} |Determines the age of the patient in days as of the date X
-|*AgeInDays()*{set:cellbgcolor:white} |Determines the age of the patient in days as of today. Equivalent to AgeInDaysAt(Today())
-|*AgeInHoursAt(X)*{set:cellbgcolor:#F0F5FA} |Determines the age of the patient in hours as of the date/time X
-|*AgeInHours()*{set:cellbgcolor:white} |Determines the age of the patient in hours as of now. +
+|Operator |Description
+|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date X
+|*AgeInYears()* |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
+|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date X
+|*AgeInMonths()* |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
+|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date X
+|*AgeInDays()* |Determines the age of the patient in days as of today. Equivalent to AgeInDaysAt(Today())
+|*AgeInHoursAt(X)* |Determines the age of the patient in hours as of the date/time X
+|*AgeInHours()* |Determines the age of the patient in hours as of now. +
 Equivalent to AgeInHoursAt(Now())
-|*CalculateAgeInYearsAt(D, X)* {set:cellbgcolor:#F0F5FA}|Determines the age of a person with birthdate D in years as of the date X
-|*CalculateAgeInYears(D)*{set:cellbgcolor:white} |Determines the age of a person with birthdate D in years as of today. Equivalent to CalculateAgeInYearsAt(D, Today())
-|*CalculateAgeInMonthsAt(D, X)*{set:cellbgcolor:#F0F5FA} |Determines the age of a person with birthdate D in months as of the date X
-|*CalculateAgeInMonths(D)*{set:cellbgcolor:white} |Determines the age of a person with birthdate D in months as of today. Equivalent to CalculateAgeInMonthsAt(D, Today())
-|*CalculateAgeInDaysAt(D, X)* {set:cellbgcolor:#F0F5FA}|Determines the age of a person with birthdate D in days as of the date X
-|*CalculateAgeInDays(D)*{set:cellbgcolor:white} |Determines the age of a person with birthdate D in days as of today. Equivalent to CalculateAgeInDaysAt(D, Today())
-|*CalculateAgeInHoursAt(D, X)*{set:cellbgcolor:#F0F5FA} |Determines the age of a person with birthdate D in hours as of the datetime X
-|*CalculateAgeInHours(D)*{set:cellbgcolor:white} |Determines the age of a person with birthdate D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
+|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birthdate D in years as of the date X
+|*CalculateAgeInYears(D)* |Determines the age of a person with birthdate D in years as of today. Equivalent to CalculateAgeInYearsAt(D, Today())
+|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birthdate D in months as of the date X
+|*CalculateAgeInMonths(D)* |Determines the age of a person with birthdate D in months as of today. Equivalent to CalculateAgeInMonthsAt(D, Today())
+|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birthdate D in days as of the date X
+|*CalculateAgeInDays(D)* |Determines the age of a person with birthdate D in days as of today. Equivalent to CalculateAgeInDaysAt(D, Today())
+|*CalculateAgeInHoursAt(D, X)* |Determines the age of a person with birthdate D in hours as of the datetime X
+|*CalculateAgeInHours(D)* |Determines the age of a person with birthdate D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
 
 Table 2‑T
@@ -2311,14 +2292,13 @@ The following table lists the QDM data elements involved and their mappings to t
 
 [[table-2-u]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===================================================
-^|*QDM Data Element* ^|*QUICK Equivalent*
-|*Patient Characteristic Birthdate* {set:cellbgcolor:#F0F5FA}|Patient.birthDate
-|*Patient Characteristic Sex*{set:cellbgcolor:white} |Patient.gender
-|*Diagnosis* {set:cellbgcolor:#F0F5FA}|Condition
-|*Laboratory Test, Order*{set:cellbgcolor:white} |DiagnosticOrder
-|*Laboratory Test, Result*{set:cellbgcolor:#F0F5FA} |DiagnosticReport
+|QDM Data Element |QUICK Equivalent
+|*Patient Characteristic Birthdate* |Patient.birthDate
+|*Patient Characteristic Sex* |Patient.gender
+|*Diagnosis* |Condition
+|*Laboratory Test, Order* |DiagnosticOrder
+|*Laboratory Test, Result* |DiagnosticReport
 |===================================================
 
 Table 2‑U

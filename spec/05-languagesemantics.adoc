@@ -75,12 +75,11 @@ Because of the way data access is modeled within CQL, the data requirements of a
 
 [[table-5-a]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========================================================================================================================================================================================================================================
-^|*Item* ^|*Description*
-|*Clinical Data Type* {set:cellbgcolor:#F0F5FA}|The type of clinical data to be retrieved. This includes both the data type and the template identifier.
-|*Codes* {set:cellbgcolor:white}|The set of codes defining the clinical data. Only clinical data with matching codes (based on the code path of the retrieve) in the set will be retrieved. If no codes are specified, clinical data with any code will be retrieved.
-|*Date Range*{set:cellbgcolor:#F0F5FA} |The date range for clinical data. Only data within the specified date range (based on the date range path of the retrieve) will be retrieved. +
+|Item |Description
+|*Clinical Data Type* |The type of clinical data to be retrieved. This includes both the data type and the template identifier.
+|*Codes* |The set of codes defining the clinical data. Only clinical data with matching codes (based on the code path of the retrieve) in the set will be retrieved. If no codes are specified, clinical data with any code will be retrieved.
+|*Date Range* |The date range for clinical data. Only data within the specified date range (based on the date range path of the retrieve) will be retrieved. +
 If no date range is specified, clinical data of any date will be retrieved.
 |===========================================================================================================================================================================================================================================
 
@@ -100,12 +99,11 @@ This process produces a set of clinical data descriptors with the following stru
 
 [[table-5-b]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |======================================================================================
-^|*Property* ^|*Description*
-|*Clinical Data Type*{set:cellbgcolor:#F0F5FA} |The type of clinical data required (including template identifier)
-|*Codes*{set:cellbgcolor:white} |The set of applicable codes, possibly empty (meaning all codes)
-|*Date Range*{set:cellbgcolor:#F0F5FA} |The applicable date range, possibly empty (meaning all dates)
+|Property |Description
+|*Clinical Data Type* |The type of clinical data required (including template identifier)
+|*Codes* |The set of applicable codes, possibly empty (meaning all codes)
+|*Date Range* |The applicable date range, possibly empty (meaning all dates)
 |======================================================================================
 
 Table 5‑B
@@ -192,20 +190,19 @@ The graph of the expression being validated is traversed to determine the result
 
 [[table-5-c]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================================================================================================================================================================
-^|*Node Category* ^|*Type Determination*
-|*Literal*{set:cellbgcolor:#F0F5FA} |The type of the node is the type of the literal being represented.
-|*Property* {set:cellbgcolor:white}|The type of the node is the declared type of the property being referenced.
-|*ParameterRef* {set:cellbgcolor:#F0F5FA}|The type of the node is the parameterType of the parameter being referenced.
-|*ExpressionRef* {set:cellbgcolor:white}|The type of the node is the type of the expression being referenced.
-|*Retrieve* {set:cellbgcolor:#F0F5FA}|The type of the node is a list of the type of the data being requested.
+|Node Category |Type Determination
+|*Literal* |The type of the node is the type of the literal being represented.
+|*Property* |The type of the node is the declared type of the property being referenced.
+|*ParameterRef* |The type of the node is the parameterType of the parameter being referenced.
+|*ExpressionRef* |The type of the node is the type of the expression being referenced.
+|*Retrieve* |The type of the node is a list of the type of the data being requested.
 |*FunctionRef/ +
-Operator* {set:cellbgcolor:white}|Generally, the type of the node is determined by resolving the type of each operand, and then using that signature to determine the resulting type of the operator.
-|*ValueSetRef* {set:cellbgcolor:#F0F5FA}|The type of the node is a list of codes.
-|*Query* {set:cellbgcolor:white}|If the query has a return clause, the result is a list of the type of the return expression. Otherwise, the result type is determined by the source of the query.
-|*AliasRef* {set:cellbgcolor:#F0F5FA}|The type of the node is the element type of the type of the query source referenced by the alias.
-|*QueryLetRef*{set:cellbgcolor:white} |The type of the node is the type of the referenced expression defined within the query context.
+Operator* |Generally, the type of the node is determined by resolving the type of each operand, and then using that signature to determine the resulting type of the operator.
+|*ValueSetRef* |The type of the node is a list of codes.
+|*Query* |If the query has a return clause, the result is a list of the type of the return expression. Otherwise, the result type is determined by the source of the query.
+|*AliasRef* |The type of the node is the element type of the type of the query source referenced by the alias.
+|*QueryLetRef* |The type of the node is the type of the referenced expression defined within the query context.
 |============================================================================================================================================================================
 
 Table 5‑C
@@ -232,12 +229,11 @@ Evaluation takes place within an execution model that provides access to the dat
 
 [[table-5-d]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================================================================================
-^|*Property* ^|*Description*
-|*Identifier* {set:cellbgcolor:#F0F5FA}|A property or set of properties that uniquely identify the item
-|*Codes*{set:cellbgcolor:white} |A code or list of codes that identify the associated clinical codes for the item
-|*Date*{set:cellbgcolor:#F0F5FA} |A date time defining the clinically relevant date and/or time of the item
+|Property |Description
+|*Identifier* |A property or set of properties that uniquely identify the item
+|*Codes* |A code or list of codes that identify the associated clinical codes for the item
+|*Date* |A date time defining the clinically relevant date and/or time of the item
 |=======================================================================================
 
 Table 5‑D
@@ -250,15 +246,14 @@ The graph of the expression being evaluated is traversed and the result of each 
 
 [[table-5-e]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |======================================================================================================================================================================================================================================================================================================================
-^|*Node Category* ^|*Evaluation*
-|*Literal*{set:cellbgcolor:#F0F5FA} |The result of the node is the value of the literal represented.
-|*FunctionRef/Operation*{set:cellbgcolor:white} |The result of the node is the result of the operation described by the node given the results of the operand nodes of the expression.
-|*Retrieve* {set:cellbgcolor:#F0F5FA}|The result of the node is the result of retrieving the data represented by the retrieve—i.e., a list of structured values of the type defined in the retrieve representing the patient information being retrieved.
-|*ExpressionRef* {set:cellbgcolor:white}|The result of the node is the result of evaluating the referenced expression.
-|*ParameterRef*{set:cellbgcolor:#F0F5FA} |The result of the node is the value of the referenced parameter.
-|*ValueSetRef* {set:cellbgcolor:white}|The result of the node is the expansion set of the referenced value set definition. Note that in the case of the InValueSet operator specifically, the expansion set need not be materialized; the membership test can be passed to a terminology service using only the valueset definition information.
+|Node Category |Evaluation
+|*Literal* |The result of the node is the value of the literal represented.
+|*FunctionRef/Operation* |The result of the node is the result of the operation described by the node given the results of the operand nodes of the expression.
+|*Retrieve* |The result of the node is the result of retrieving the data represented by the retrieve—i.e., a list of structured values of the type defined in the retrieve representing the patient information being retrieved.
+|*ExpressionRef* |The result of the node is the result of evaluating the referenced expression.
+|*ParameterRef* |The result of the node is the value of the referenced parameter.
+|*ValueSetRef* |The result of the node is the expansion set of the referenced value set definition. Note that in the case of the InValueSet operator specifically, the expansion set need not be materialized; the membership test can be passed to a terminology service using only the valueset definition information.
 |======================================================================================================================================================================================================================================================================================================================
 
 Table 5‑E
@@ -267,12 +262,11 @@ During evaluation, the implementation must maintain a stack that is used to repr
 
 [[table-5-f]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |====================================================================================================================================================================
-^|*Operation* ^|*Stack Effect*
-|*Query*{set:cellbgcolor:#F0F5FA} |Query evaluation is discussed in detail below.
-|*Filter* {set:cellbgcolor:white}|For each item in the _source_ operand, the item is pushed on to the stack, the _condition_ expression is evaluated, and the item is popped off of the stack.
-|*ForEach* {set:cellbgcolor:#F0F5FA}|For each item in the _source_ operand, the item is pushed on to the stack, the _element_ expression is evaluated, and the item is popped off of the stack.
+|Operation |Stack Effect
+|*Query* |Query evaluation is discussed in detail below.
+|*Filter* |For each item in the _source_ operand, the item is pushed on to the stack, the _condition_ expression is evaluated, and the item is popped off of the stack.
+|*ForEach* |For each item in the _source_ operand, the item is pushed on to the stack, the _element_ expression is evaluated, and the item is popped off of the stack.
 |====================================================================================================================================================================
 
 Table 5‑F
@@ -376,19 +370,18 @@ This section provides precise definitions for the terms involved in dealing with
 
 [[table-5-g]]
 [cols=",,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-^|*Term* ^|*Definition* ^|*Notes*
-|*Date interval* {set:cellbgcolor:#F0F5FA}|Part of the time axis bounded by two Date values. |A Date interval comprises all Date values between the two boundary Dates and, unless otherwise stated, the boundary Date values themselves.
-|*DateTime interval* {set:cellbgcolor:white}|Part of the time axis bounded by two DateTime values. |A DateTime interval comprises all DateTime values between the two boundary DateTimes and, unless otherwise stated, the boundary DateTime values themselves.
-|*Duration* {set:cellbgcolor:#F0F5FA}|Quantity attributed to a DateTime interval, the value of which is equal to the difference between the time points of the final instant and the initial instants of the time interval. |In case of discontinuities in the time scale, such as a leap second or the change from winter time to summer time and back, the computation of the duration requires the subtraction or addition of the change of duration of the discontinuity.
-|*Nominal duration* {set:cellbgcolor:white}|Duration expressed in years, months, or days. |The duration of a calendar year, a calendar month, or a calendar day depends on its position in the calendar. Therefore, the exact duration of a nominal duration can only be evaluated if the duration of the calendar years, calendar months, or calendar days used is known.
-|*Second* {set:cellbgcolor:#F0F5FA}|Base unit of measurement of time in the SI as defined by the International Committee of Weights and Measures. |
-|*Millisecond* {set:cellbgcolor:white}|Unit of time equal to 0.001 seconds. |
-|*Minute*{set:cellbgcolor:#F0F5FA} |Unit of time equal to 60 seconds. |
-|*Hour*{set:cellbgcolor:white} |Unit of time equal to 60 minutes. |
-|*Day* {set:cellbgcolor:#F0F5FA}|Unit of time equal to 24 hours. |
-|*Calendar day*{set:cellbgcolor:white} |Time interval starting at midnight and ending at the next midnight, the latter being also the starting instant of the next calendar day. |
+|Term |Definition |Notes
+|*Date interval* |Part of the time axis bounded by two Date values. |A Date interval comprises all Date values between the two boundary Dates and, unless otherwise stated, the boundary Date values themselves.
+|*DateTime interval* |Part of the time axis bounded by two DateTime values. |A DateTime interval comprises all DateTime values between the two boundary DateTimes and, unless otherwise stated, the boundary DateTime values themselves.
+|*Duration* |Quantity attributed to a DateTime interval, the value of which is equal to the difference between the time points of the final instant and the initial instants of the time interval. |In case of discontinuities in the time scale, such as a leap second or the change from winter time to summer time and back, the computation of the duration requires the subtraction or addition of the change of duration of the discontinuity.
+|*Nominal duration* |Duration expressed in years, months, or days. |The duration of a calendar year, a calendar month, or a calendar day depends on its position in the calendar. Therefore, the exact duration of a nominal duration can only be evaluated if the duration of the calendar years, calendar months, or calendar days used is known.
+|*Second* |Base unit of measurement of time in the SI as defined by the International Committee of Weights and Measures. |
+|*Millisecond* |Unit of time equal to 0.001 seconds. |
+|*Minute* |Unit of time equal to 60 seconds. |
+|*Hour* |Unit of time equal to 60 minutes. |
+|*Day* |Unit of time equal to 24 hours. |
+|*Calendar day* |Time interval starting at midnight and ending at the next midnight, the latter being also the starting instant of the next calendar day. |
 A calendar day is often also referred to as a day.
 
 The duration of a calendar day is 24 hours, except if modified by:
@@ -396,17 +389,17 @@ The duration of a calendar day is 24 hours, except if modified by:
 * The insertion or deletion of leap seconds, by decision of the International Earth Rotation Service (IERS), or
 * The insertion or deletion of other time intervals, as may be prescribed by local authorities to alter the time scale of local time.
 
-|*Day* {set:cellbgcolor:#F0F5FA}|Duration of a calendar day. |The term “day” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day and ends at the same time of day at the next calendar day.
-|*Calendar month* {set:cellbgcolor:white}|Time interval resulting from the division of a calendar year into 12 time intervals, each with a specific name and containing a specific number of calendar days. |A calendar month is often referred to as a month.
-|*Month* {set:cellbgcolor:#F0F5FA}|Duration of 28, 29, 30, or 31 calendar days, depending on the start and/or the end of the corresponding time interval within the specific calendar month. |The term “month” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at the same time of day at the same calendar day of the next calendar month, if it exists. In other cases, the ending calendar day has to be agreed on.
-|*Calendar year*{set:cellbgcolor:white} |Cyclic time interval in a calendar which is required for one revolution of the Earth around the Sun and approximated to an integral number of calendar days. |
+|*Day* |Duration of a calendar day. |The term “day” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day and ends at the same time of day at the next calendar day.
+|*Calendar month* |Time interval resulting from the division of a calendar year into 12 time intervals, each with a specific name and containing a specific number of calendar days. |A calendar month is often referred to as a month.
+|*Month* |Duration of 28, 29, 30, or 31 calendar days, depending on the start and/or the end of the corresponding time interval within the specific calendar month. |The term “month” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at the same time of day at the same calendar day of the next calendar month, if it exists. In other cases, the ending calendar day has to be agreed on.
+|*Calendar year* |Cyclic time interval in a calendar which is required for one revolution of the Earth around the Sun and approximated to an integral number of calendar days. |
 A calendar year is also referred to as a year.
 
 Unless otherwise specified, the term designates a calendar year in the Gregorian calendar.
 
-|*Year* {set:cellbgcolor:#F0F5FA}|Duration of 365 or 366 calendar days depending on the start and/or the end of the corresponding time interval within the specific calendar year. |The term “year” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at the same time of day at the same calendar date of the next calendar year, if it exists. In other cases, the ending calendar day has to be agreed on.
-|*Common year* {set:cellbgcolor:white}|Calendar year in the Gregorian calendar that has 365 calendar days. |
-|*Leap year*{set:cellbgcolor:#F0F5FA} |Calendar year in the Gregorian calendar that has 366 calendar days. |
+|*Year* |Duration of 365 or 366 calendar days depending on the start and/or the end of the corresponding time interval within the specific calendar year. |The term “year” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at the same time of day at the same calendar date of the next calendar year, if it exists. In other cases, the ending calendar day has to be agreed on.
+|*Common year* |Calendar year in the Gregorian calendar that has 365 calendar days. |
+|*Leap year* |Calendar year in the Gregorian calendar that has 366 calendar days. |
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 Table 5‑G
@@ -415,17 +408,16 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 
 [[table-5-h]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |======================================================================================================================================================================================================================================================================================================================================================================
-^|*Component* ^|*Type* ^|*Range* ^|*Notes*
-|*Year* {set:cellbgcolor:#F0F5FA}|Integer |[0001, 9999] |A CQL environment must be able to represent the minimum year of 0001, and a maximum year of 9999. Environments may represent dates in years before or after these years, the range specified here is the minimum required.
-|*Month* {set:cellbgcolor:white}|Integer |[1, 12] |Months are specified by their ordinal position (i.e. January = 1, February = 2, etc.)
-|*Day* {set:cellbgcolor:#F0F5FA}|Integer |[1, 31] |If the day specified is not present in the month (i.e. February 30^th^), the day value is reduced by the number of days in the given month, and the month is incremented by 1.
-|*Hour* {set:cellbgcolor:white}|Integer |[0, 23] |
-|*Minute*{set:cellbgcolor:#F0F5FA} |Integer |[0, 59] |
-|*Second*{set:cellbgcolor:white} |Integer |[0, 59] |
-|*Millisecond* {set:cellbgcolor:#F0F5FA}|Integer |[0, 999] |999 milliseconds is the maximum required precision. Note that many operations require the ability to compute the “next” or “prior” instant, and these semantics depend on the step-size of 1 millisecond, so systems that support more than millisecond precision will need to quantize to the millisecond to achieve these semantics.
-|*Timezone Offset* {set:cellbgcolor:white}|Real |[-12.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
+|Component |Type |Range |Notes
+|*Year* |Integer |[0001, 9999] |A CQL environment must be able to represent the minimum year of 0001, and a maximum year of 9999. Environments may represent dates in years before or after these years, the range specified here is the minimum required.
+|*Month* |Integer |[1, 12] |Months are specified by their ordinal position (i.e. January = 1, February = 2, etc.)
+|*Day* |Integer |[1, 31] |If the day specified is not present in the month (i.e. February 30^th^), the day value is reduced by the number of days in the given month, and the month is incremented by 1.
+|*Hour* |Integer |[0, 23] |
+|*Minute* |Integer |[0, 59] |
+|*Second* |Integer |[0, 59] |
+|*Millisecond* |Integer |[0, 999] |999 milliseconds is the maximum required precision. Note that many operations require the ability to compute the “next” or “prior” instant, and these semantics depend on the step-size of 1 millisecond, so systems that support more than millisecond precision will need to quantize to the millisecond to achieve these semantics.
+|*Timezone Offset* |Real |[-12.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
 |======================================================================================================================================================================================================================================================================================================================================================================
 
 Table 5‑H
@@ -437,17 +429,16 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 
 [[table-5-i]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
-^|*Precision* ^|*Type* ^|*Range* ^|*Semantics*
-|*Year*{set:cellbgcolor:#F0F5FA} |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date/time value. If the resulting year is out of range, an error is thrown. If the month and day of the date/time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29) + 1 year = DateTime(2013, 2, 28). The resulting date/time value will have the same time components.
-|*Month* {set:cellbgcolor:white}|Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date/time value will have the same time components.
-|*Week* {set:cellbgcolor:#F0F5FA}|Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
-|*Day* {set:cellbgcolor:white}|Integer |[1, 31] |The days, positive or negative, are added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
-|*Hour* {set:cellbgcolor:#F0F5FA}|Integer |[0, 23] |The hours, positive or negative, are added to the hour component, with each 24 hour block counting as a calendar day, and respecting calendar month and calendar year lengths.
-|*Minute* {set:cellbgcolor:white}|Integer |[0, 59] |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
-|*Second*{set:cellbgcolor:#F0F5FA} |Integer |[0, 59] |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
-|*Millisecond* {set:cellbgcolor:white}|Integer |[0, 999] |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
+|Precision |Type |Range |Semantics
+|*Year* |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date/time value. If the resulting year is out of range, an error is thrown. If the month and day of the date/time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29) + 1 year = DateTime(2013, 2, 28). The resulting date/time value will have the same time components.
+|*Month* |Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date/time value will have the same time components.
+|*Week* |Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
+|*Day* |Integer |[1, 31] |The days, positive or negative, are added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
+|*Hour* |Integer |[0, 23] |The hours, positive or negative, are added to the hour component, with each 24 hour block counting as a calendar day, and respecting calendar month and calendar year lengths.
+|*Minute* |Integer |[0, 59] |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
+|*Second* |Integer |[0, 59] |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
+|*Millisecond* |Integer |[0, 999] |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 Table 5‑I

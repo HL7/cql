@@ -25,17 +25,16 @@ The following table specifies the ELM equivalent for each CQL declaration:
 
 [[table-6-a]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===============================
-^|*CQL Declaration* ^|*ELM Equivalent*
-|[.kw]#library#{set:cellbgcolor:#F0F5FA} |Library
-|[.kw]#using#{set:cellbgcolor:white} |UsingDef
-|[.kw]#include# {set:cellbgcolor:#F0F5FA}|IncludeDef
-|[.kw]#codesystem#{set:cellbgcolor:white} |CodeSystemDef
-|[.kw]#valueset# {set:cellbgcolor:#F0F5FA}|ValueSetDef
-|[.kw]#parameter# {set:cellbgcolor:white}|ParameterDef
-|[.kw]#define# {set:cellbgcolor:#F0F5FA}|ExpressionDef
-|[.kw]#function#{set:cellbgcolor:white} |FunctionDef
+|CQL Declaration |ELM Equivalent
+|[.kw]#library# |Library
+|[.kw]#using# |UsingDef
+|[.kw]#include# |IncludeDef
+|[.kw]#codesystem# |CodeSystemDef
+|[.kw]#valueset# |ValueSetDef
+|[.kw]#parameter# |ParameterDef
+|[.kw]#define# |ExpressionDef
+|[.kw]#function# |FunctionDef
 |===============================
 
 Table 6‑A
@@ -47,14 +46,13 @@ To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivale
 
 [[table-6-b]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |================================================
-^|*CQL Specifier* ^|*ELM Equivalent*
-|*_named-type-specifier_* {set:cellbgcolor:#F0F5FA}|NamedTypeSpecifier
-|*_interval-type-specifier_* {set:cellbgcolor:white}|IntervalTypeSpecifier
-|*_list-type-specifier_* {set:cellbgcolor:#F0F5FA}|ListTypeSpecifier
-|*_tuple-type-specifier_* {set:cellbgcolor:white}|TupleTypeSpecifier
-|*_choice-type-specifier_* {set:cellbgcolor:#F0F5FA}|ChoiceTypeSpecifier
+|CQL Specifier |ELM Equivalent
+|*_named-type-specifier_* |NamedTypeSpecifier
+|*_interval-type-specifier_* |IntervalTypeSpecifier
+|*_list-type-specifier_* |ListTypeSpecifier
+|*_tuple-type-specifier_* |TupleTypeSpecifier
+|*_choice-type-specifier_* |ChoiceTypeSpecifier
 |================================================
 
 Table 6‑B
@@ -68,23 +66,22 @@ The following table defines the mapping between the various CQL literals and the
 
 [[table-6-c]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |================================================
-^|*CQL Literal* ^|*ELM Equivalent*
-|[.kw]#null# {set:cellbgcolor:#F0F5FA}|Null
-|*_boolean-literal_* {set:cellbgcolor:white}|Boolean
-|*_integer-literal_*{set:cellbgcolor:#F0F5FA} |Literal (valueType="Integer")
-|*_decimal-literal_*{set:cellbgcolor:white} |Literal (valueType="Decimal")
-|*_quantity-literal_*{set:cellbgcolor:#F0F5FA} |Quantity
-|*_ratio-literal_* {set:cellbgcolor:white}|Ratio
-|*_string-literal_* {set:cellbgcolor:#F0F5FA}|Literal (valueType="String")
-|*_date-literal_* {set:cellbgcolor:white}|Date
-|*_date-time-literal_* {set:cellbgcolor:#F0F5FA}|DateTime
-|*_time-literal_*{set:cellbgcolor:white} |Time
-|*_interval-selector_* {set:cellbgcolor:#F0F5FA}|Interval
-|*_list-selector_* {set:cellbgcolor:white}|List
-|*_tuple-selector_* {set:cellbgcolor:#F0F5FA}|Tuple
-|*_instance-selector_* {set:cellbgcolor:white}|Instance
+|CQL Literal |ELM Equivalent
+|[.kw]#null# |Null
+|*_boolean-literal_* |Boolean
+|*_integer-literal_* |Literal (valueType="Integer")
+|*_decimal-literal_* |Literal (valueType="Decimal")
+|*_quantity-literal_* |Quantity
+|*_ratio-literal_* |Ratio
+|*_string-literal_* |Literal (valueType="String")
+|*_date-literal_* |Date
+|*_date-time-literal_* |DateTime
+|*_time-literal_* |Time
+|*_interval-selector_* |Interval
+|*_list-selector_* |List
+|*_tuple-selector_* |Tuple
+|*_instance-selector_* |Instance
 |================================================
 
 Table 6‑C
@@ -99,14 +96,13 @@ Most of the functions and operations available in CQL have a direct counterpart 
 
 [[table-6-d]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.kw]#and# {set:cellbgcolor:#F0F5FA}|And
-|[.kw]#not# {set:cellbgcolor:white}|Not
-|[.kw]#or# {set:cellbgcolor:#F0F5FA}|Or
-|[.kw]#xor# {set:cellbgcolor:white}|Xor
-|[.kw]#*implies*# {set:cellbgcolor:#F0F5FA}|Implies
+|CQL Operator |ELM Equivalent
+|[.kw]#and# |And
+|[.kw]#not# |Not
+|[.kw]#or# |Or
+|[.kw]#xor# |Xor
+|[.kw]#*implies*# |Implies
 |============================
 
 Table 6‑D
@@ -116,14 +112,13 @@ Table 6‑D
 
 [[table-6-e]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.kw]#as#{set:cellbgcolor:#F0F5FA} |As
-|[.kw]#convert#{set:cellbgcolor:white} |Convert
-|[.kw]#is#{set:cellbgcolor:#F0F5FA} |Is
-|[.id]#Children#{set:cellbgcolor:white} |Children
-|[.id]#Descendents# {set:cellbgcolor:#F0F5FA}|Descendents
+|CQL Operator |ELM Equivalent
+|[.kw]#as# |As
+|[.kw]#convert# |Convert
+|[.kw]#is# |Is
+|[.id]#Children# |Children
+|[.id]#Descendents# |Descendents
 |============================
 
 Table 6‑E
@@ -141,13 +136,12 @@ Note also that when translating to ELM, an implementation could emit all implici
 
 [[table-6-f]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.id]#Coalesce#{set:cellbgcolor:#F0F5FA} |Coalesce
-|[.kw]#is null# {set:cellbgcolor:white}|IsNull
-|[.kw]#is false# {set:cellbgcolor:#F0F5FA}|IsFalse
-|[.kw]#is true# {set:cellbgcolor:white}|IsTrue
+|CQL Operator |ELM Equivalent
+|[.id]#Coalesce# |Coalesce
+|[.kw]#is null# |IsNull
+|[.kw]#is false# |IsFalse
+|[.kw]#is true# |IsTrue
 |============================
 
 Table 6‑F
@@ -157,18 +151,17 @@ Table 6‑F
 
 [[table-6-g]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |================================================================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.kw]#between#{set:cellbgcolor:#F0F5FA} |And of comparisons (for point types) or IncludedIn (for Interval types)
-|[.sym]#=# {set:cellbgcolor:white}|Equal
-|[.sym]#># {set:cellbgcolor:#F0F5FA}|Greater
-|[.sym]#>=# {set:cellbgcolor:white}|GreaterOrEqual
-|[.sym]#<# {set:cellbgcolor:#F0F5FA}|Less
-|[.sym]#\<=# {set:cellbgcolor:white}|LessOrEqual
-|[.sym]#~# {set:cellbgcolor:#F0F5FA}|Equivalent
-|[.sym]#!=# {set:cellbgcolor:white}|NotEqual
-|[.sym]#!~# {set:cellbgcolor:#F0F5FA}|Not of Equivalent
+|CQL Operator |ELM Equivalent
+|[.kw]#between# |And of comparisons (for point types) or IncludedIn (for Interval types)
+|[.sym]#=# |Equal
+|[.sym]#># |Greater
+|[.sym]#>=# |GreaterOrEqual
+|[.sym]#<# |Less
+|[.sym]#\<=# |LessOrEqual
+|[.sym]#~# |Equivalent
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
 |================================================================================
 
 Table 6‑G
@@ -178,29 +171,28 @@ Table 6‑G
 
 [[table-6-h]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |============================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.id]#Abs# {set:cellbgcolor:#F0F5FA}|Abs
-|[.sym]#+# {set:cellbgcolor:white}|Add
-|[.id]#Ceiling# {set:cellbgcolor:#F0F5FA}|Ceiling
-|[.sym]#/# {set:cellbgcolor:white}|Divide
-|[.id]#Floor# {set:cellbgcolor:#F0F5FA}|Floor
-|[.id]#Exp# {set:cellbgcolor:white}|Exp
-|[.id]#Log#{set:cellbgcolor:#F0F5FA} |Log
-|[.id]#Ln# {set:cellbgcolor:white}|Ln
-|[.kw]#maximum# {set:cellbgcolor:#F0F5FA}|MaxValue
-|[.kw]#minimum# {set:cellbgcolor:white}|MinValue
-|[.kw]#mod# {set:cellbgcolor:#F0F5FA}|Modulo
-|[.sym]#*# {set:cellbgcolor:white}|Multiply
-|[.sym]#-# *(unary minus)* {set:cellbgcolor:#F0F5FA}|Negate
-|[.kw]#predecessor# {set:cellbgcolor:white}|Predecessor
-|^ {set:cellbgcolor:#F0F5FA}|Power
-|[.id]#Round# {set:cellbgcolor:white}|Round
-|[.sym]#-# {set:cellbgcolor:#F0F5FA}|Subtract
-|[.kw]#successor# {set:cellbgcolor:white}|Successor
-|[.id]#Truncate# {set:cellbgcolor:#F0F5FA}|Truncate
-|[.kw]#div# {set:cellbgcolor:white}|TruncatedDivide
+|CQL Operator |ELM Equivalent
+|[.id]#Abs# |Abs
+|[.sym]#+# |Add
+|[.id]#Ceiling# |Ceiling
+|[.sym]#/# |Divide
+|[.id]#Floor# |Floor
+|[.id]#Exp# |Exp
+|[.id]#Log# |Log
+|[.id]#Ln# |Ln
+|[.kw]#maximum# |MaxValue
+|[.kw]#minimum# |MinValue
+|[.kw]#mod# |Modulo
+|[.sym]#*# |Multiply
+|[.sym]#-# *(unary minus)* |Negate
+|[.kw]#predecessor# |Predecessor
+|[.sym]#^# |Power
+|[.id]#Round# |Round
+|[.sym]#-# |Subtract
+|[.kw]#successor# |Successor
+|[.id]#Truncate# |Truncate
+|[.kw]#div# |TruncatedDivide
 |============================
 
 Table 6‑H
@@ -210,23 +202,22 @@ Table 6‑H
 
 [[table-6-i]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===============================================================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.id]#Combine# {set:cellbgcolor:#F0F5FA} |Combine
-|[.sym]#+#, [.sym]#&# {set:cellbgcolor:white}|Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
-|[.id]#EndsWith# {set:cellbgcolor:#F0F5FA} |EndsWith
-|[.sym]#[]# {set:cellbgcolor:white}|Indexer
-|[.id]#*LastPositionOf*#{set:cellbgcolor:#F0F5FA}  |LastPositionOf
-|[.id]#Length# {set:cellbgcolor:white}|Length
-|[.id]#Lower# {set:cellbgcolor:#F0F5FA} |Lower
-|[.id]#Matches# {set:cellbgcolor:white}|Matches
-|[.id]#PositionOf#{set:cellbgcolor:#F0F5FA}  |PositionOf
-|[.id]#ReplaceMatches# {set:cellbgcolor:white}|ReplaceMatches
-|[.id]#Split# {set:cellbgcolor:#F0F5FA} |Split
-|[.id]#StartsWith# {set:cellbgcolor:white}|StartsWith
-|[.id]#Substring# {set:cellbgcolor:#F0F5FA} |Substring
-|[.id]#Upper# {set:cellbgcolor:white}|Upper
+|CQL Operator |ELM Equivalent
+|[.id]#Combine# |Combine
+|[.sym]#+#, [.sym]#&# |Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
+|[.id]#EndsWith# |EndsWith
+|[.sym]#[]# |Indexer
+|[.id]#*LastPositionOf*# |LastPositionOf
+|[.id]#Length# |Length
+|[.id]#Lower# |Lower
+|[.id]#Matches# |Matches
+|[.id]#PositionOf# |PositionOf
+|[.id]#ReplaceMatches# |ReplaceMatches
+|[.id]#Split# |Split
+|[.id]#StartsWith# |StartsWith
+|[.id]#Substring# |Substring
+|[.id]#Upper# |Upper
 |===============================================================================
 
 Table 6‑I
@@ -236,25 +227,24 @@ Table 6‑I
 
 [[table-6-j]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.sym]#+# {set:cellbgcolor:#F0F5FA}|Add
-|[.kw]#after# {set:cellbgcolor:white}|After
-|[.kw]#before# {set:cellbgcolor:#F0F5FA}|Before
-|[.id]#Date# {set:cellbgcolor:white}|Date
-|[.id]#DateTime# {set:cellbgcolor:#F0F5FA} |DateTime
-|*_component_* [.kw]#from# {set:cellbgcolor:white}|DateTimeComponentFrom
-|[.kw]#difference#..[.kw]#between#{set:cellbgcolor:#F0F5FA} |DifferenceBetween
-|[.kw]#duration#..[.kw]#between#{set:cellbgcolor:white} |DurationBetween
-|[.id]#Now#{set:cellbgcolor:#F0F5FA} |Now
-|[.kw]#same as# {set:cellbgcolor:white}|SameAs
-|[.kw]#same or after# {set:cellbgcolor:#F0F5FA}|SameOrAfter
-|[.kw]#same or before# {set:cellbgcolor:white}|SameOrBefore
-|[.sym]#-# {set:cellbgcolor:#F0F5FA}|Subtract
-|[.id]#Time# {set:cellbgcolor:white}|Time
-|[.id]#TimeOfDay# {set:cellbgcolor:#F0F5FA}|TimeOfDay
-|[.id]#Today# {set:cellbgcolor:white}|Today
+|CQL Operator |ELM Equivalent
+|[.sym]#+# |Add
+|[.kw]#after# |After
+|[.kw]#before# |Before
+|[.id]#Date# |Date
+|[.id]#DateTime# |DateTime
+|*_component_* [.kw]#from# |DateTimeComponentFrom
+|[.kw]#difference#..[.kw]#between# |DifferenceBetween
+|[.kw]#duration#..[.kw]#between# |DurationBetween
+|[.id]#Now# |Now
+|[.kw]#same as# |SameAs
+|[.kw]#same or after# |SameOrAfter
+|[.kw]#same or before# |SameOrBefore
+|[.sym]#-# |Subtract
+|[.id]#Time# |Time
+|[.id]#TimeOfDay# |TimeOfDay
+|[.id]#Today# |Today
 |=======================================
 
 Table 6‑J
@@ -264,41 +254,40 @@ Table 6‑J
 
 [[table-6-k]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.kw]#after# {set:cellbgcolor:#F0F5FA}|After
-|[.kw]#before# {set:cellbgcolor:white}|Before
-|[.kw]#collapse# {set:cellbgcolor:#F0F5FA} |Collapse
-|[.kw]#contains# {set:cellbgcolor:white} |Contains
-|[.kw]#end of# {set:cellbgcolor:#F0F5FA}|End
-|[.kw]#ends# {set:cellbgcolor:white}|Ends
-|[.sym]#=# {set:cellbgcolor:#F0F5FA}|Equal
-|[.kw]#except# {set:cellbgcolor:white}|Except
-|[.kw]#in# {set:cellbgcolor:#F0F5FA}|In
-|[.kw]#includes# {set:cellbgcolor:white} |Includes
-|[.kw]#during# {set:cellbgcolor:#F0F5FA}|IncludedIn
-|[.kw]#included in# {set:cellbgcolor:white}|IncludedIn
-|[.kw]#intersect# {set:cellbgcolor:#F0F5FA} |Intersect
-|[.sym]#~# {set:cellbgcolor:white}|Equivalent
-|[.kw]#meets# {set:cellbgcolor:#F0F5FA} |Meets
-|[.kw]#meets after# {set:cellbgcolor:white} |MeetsAfter
-|[.kw]#meets before# {set:cellbgcolor:#F0F5FA}|MeetsBefore
-|[.sym]#!=# {set:cellbgcolor:white}|NotEqual
-|[.sym]#!~# {set:cellbgcolor:#F0F5FA}|Not of Equivalent
-|[.kw]#overlaps# {set:cellbgcolor:white}|Overlaps
-|[.kw]#on or after# {set:cellbgcolor:#F0F5FA}|SameOrAfter
-|[.kw]#on or before# {set:cellbgcolor:white}|SameOrBefore
-|[.kw]#overlaps after# {set:cellbgcolor:#F0F5FA}|OverlapsAfter
-|[.kw]#overlaps before# {set:cellbgcolor:white}|OverlapsBefore
-|[.kw]#point from# {set:cellbgcolor:#F0F5FA}|PointFrom
-|[.kw]#properly includes# {set:cellbgcolor:white}|ProperlyIncludes
-|[.kw]#properly included in# {set:cellbgcolor:#F0F5FA}|ProperlyIncludedIn
-|[.kw]#properly during# {set:cellbgcolor:white}|ProperlyIncludedIn
-|[.kw]#start of# {set:cellbgcolor:#F0F5FA}|Start
-|[.kw]#starts# {set:cellbgcolor:white} |Starts
-|[.kw]#union# {set:cellbgcolor:#F0F5FA} |Union
-|[.kw]#width of# {set:cellbgcolor:white}|Width
+|CQL Operator |ELM Equivalent
+|[.kw]#after# |After
+|[.kw]#before# |Before
+|[.kw]#collapse# |Collapse
+|[.kw]#contains# |Contains
+|[.kw]#end of# |End
+|[.kw]#ends# |Ends
+|[.sym]#=# |Equal
+|[.kw]#except# |Except
+|[.kw]#in# |In
+|[.kw]#includes# |Includes
+|[.kw]#during# |IncludedIn
+|[.kw]#included in# |IncludedIn
+|[.kw]#intersect# |Intersect
+|[.sym]#~# |Equivalent
+|[.kw]#meets# |Meets
+|[.kw]#meets after# |MeetsAfter
+|[.kw]#meets before# |MeetsBefore
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
+|[.kw]#overlaps# |Overlaps
+|[.kw]#on or after# |SameOrAfter
+|[.kw]#on or before# |SameOrBefore
+|[.kw]#overlaps after# |OverlapsAfter
+|[.kw]#overlaps before# |OverlapsBefore
+|[.kw]#point from# |PointFrom
+|[.kw]#properly includes# |ProperlyIncludes
+|[.kw]#properly included in# |ProperlyIncludedIn
+|[.kw]#properly during# |ProperlyIncludedIn
+|[.kw]#start of# |Start
+|[.kw]#starts# |Starts
+|[.kw]#union# |Union
+|[.kw]#width of# |Width
 |========================================
 
 Table 6‑K
@@ -308,34 +297,33 @@ Table 6‑K
 
 [[table-6-l]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.kw]#contains# {set:cellbgcolor:#F0F5FA}|Contains
-|[.kw]#distinct# {set:cellbgcolor:white}|Distinct
-|[.sym]#=# {set:cellbgcolor:#F0F5FA}|Equal
-|[.kw]#except# {set:cellbgcolor:white}|Except
-|[.kw]#exists# {set:cellbgcolor:#F0F5FA}|Exists
-|[.kw]#flatten# {set:cellbgcolor:white}|Flatten
-|[.id]#First# {set:cellbgcolor:#F0F5FA}|First
-|[.kw]#in# {set:cellbgcolor:white}|In
-|[.kw]#includes# {set:cellbgcolor:#F0F5FA}|Includes
-|[.kw]#included in# {set:cellbgcolor:white}|IncludedIn
-|[.sym]#[]# {set:cellbgcolor:#F0F5FA}|Indexer
-|[.id]#IndexOf# {set:cellbgcolor:white}|IndexOf
-|[.kw]#intersect# {set:cellbgcolor:#F0F5FA}|Intersect
-|[.id]#Last# {set:cellbgcolor:white}|Last
-|[.id]#Length# {set:cellbgcolor:#F0F5FA}|Length
-|[.sym]#~# {set:cellbgcolor:white}|Equivalent
-|[.sym]#!=# {set:cellbgcolor:#F0F5FA}|NotEqual
-|[.sym]#!~# {set:cellbgcolor:white}|Not of Equivalent
-|[.kw]#properly includes# {set:cellbgcolor:#F0F5FA}|ProperlyIncludes
-|[.kw]#properly included in# {set:cellbgcolor:white}|ProperlyIncludedIn
-|[.kw]#singleton from# {set:cellbgcolor:#F0F5FA}|SingletonFrom
-|[.id]#Skip(n)# {set:cellbgcolor:white}|Slice(n, null)
-|[.id]#Tail# {set:cellbgcolor:#F0F5FA}|Slice(1, null)
-|[.id]#Take(n)# {set:cellbgcolor:white}|Slice(0, n)
-|[.kw]#union# {set:cellbgcolor:#F0F5FA}|Union
+|CQL Operator |ELM Equivalent
+|[.kw]#contains# |Contains
+|[.kw]#distinct# |Distinct
+|[.sym]#=# |Equal
+|[.kw]#except# |Except
+|[.kw]#exists# |Exists
+|[.kw]#flatten# |Flatten
+|[.id]#First# |First
+|[.kw]#in# |In
+|[.kw]#includes# |Includes
+|[.kw]#included in# |IncludedIn
+|[.sym]#[]# |Indexer
+|[.id]#IndexOf# |IndexOf
+|[.kw]#intersect# |Intersect
+|[.id]#Last# |Last
+|[.id]#Length# |Length
+|[.sym]#~# |Equivalent
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
+|[.kw]#properly includes# |ProperlyIncludes
+|[.kw]#properly included in# |ProperlyIncludedIn
+|[.kw]#singleton from# |SingletonFrom
+|[.id]#Skip(n)# |Slice(n, null)
+|[.id]#Tail# |Slice(1, null)
+|[.id]#Take(n)# |Slice(0, n)
+|[.kw]#union# |Union
 |========================================
 
 Table 6‑L
@@ -345,24 +333,23 @@ Table 6‑L
 
 [[table-6-m]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |======================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.id]#AllTrue# {set:cellbgcolor:#F0F5FA}|AllTrue
-|[.id]#AnyTrue# {set:cellbgcolor:white}|AnyTrue
-|[.id]#Avg# {set:cellbgcolor:#F0F5FA}|Avg
-|[.id]#Count# {set:cellbgcolor:white}|Count
-|[.id]#GeometricMean# {set:cellbgcolor:#F0F5FA}|GeometricMean
-|[.id]#Max# {set:cellbgcolor:white}|Max
-|[.id]#Min# {set:cellbgcolor:#F0F5FA}|Min
-|[.id]#Median# {set:cellbgcolor:white}|Median
-|[.id]#Mode# {set:cellbgcolor:#F0F5FA}|Mode
-|[.id]#PopulationStdDev# {set:cellbgcolor:white}|PopulationStdDev
-|[.id]#PopulationVariance# {set:cellbgcolor:#F0F5FA}|PopulationVariance
-|[.id]#Product# {set:cellbgcolor:white}|Product
-|[.id]#StdDev# {set:cellbgcolor:#F0F5FA}|StdDev
-|[.id]#Sum# {set:cellbgcolor:white}|Sum
-|[.id]#Variance# {set:cellbgcolor:#F0F5FA}|Variance
+|CQL Operator |ELM Equivalent
+|[.id]#AllTrue# |AllTrue
+|[.id]#AnyTrue# |AnyTrue
+|[.id]#Avg# |Avg
+|[.id]#Count# |Count
+|[.id]#GeometricMean# |GeometricMean
+|[.id]#Max# |Max
+|[.id]#Min# |Min
+|[.id]#Median# |Median
+|[.id]#Mode# |Mode
+|[.id]#PopulationStdDev# |PopulationStdDev
+|[.id]#PopulationVariance# |PopulationVariance
+|[.id]#Product# |Product
+|[.id]#StdDev# |StdDev
+|[.id]#Sum# |Sum
+|[.id]#Variance# |Variance
 |======================================
 
 Table 6‑M
@@ -372,17 +359,16 @@ Table 6‑M
 
 [[table-6-n]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==================================================================================
-^|*CQL Operator* ^|*ELM Equivalent*
-|[.id]#AgeIn#*__-precision__* {set:cellbgcolor:#F0F5FA}|CalculateAge (with patient birthdate reference supplied)
-|[.id]#AgeIn#*__-precision-__*[.id]#At# {set:cellbgcolor:white}|CalculateAgeAt (with patient birthdate reference supplied)
-|[.id]#CalculateAgeIn#*__-precision__* {set:cellbgcolor:#F0F5FA}|CalculateAge
-|[.id]#CalculateAgeIn#*__-precision-__*[.id]#At# {set:cellbgcolor:white}|CalculateAgeAt
-|[.sym]#=# {set:cellbgcolor:#F0F5FA}|Equal
-|[.sym]#~# {set:cellbgcolor:white}|Equivalent
-|[.kw]#in# *(Codesystem)* {set:cellbgcolor:#F0F5FA}|InCodeSystem
-|[.kw]#in# *(Valueset)* {set:cellbgcolor:white}|InValueSet
+|CQL Operator |ELM Equivalent
+|[.id]#AgeIn#*__-precision__* |CalculateAge (with patient birthdate reference supplied)
+|[.id]#AgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt (with patient birthdate reference supplied)
+|[.id]#CalculateAgeIn#*__-precision__* |CalculateAge
+|[.id]#CalculateAgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt
+|[.sym]#=# |Equal
+|[.sym]#~# |Equivalent
+|[.kw]#in# *(Codesystem)* |InCodeSystem
+|[.kw]#in# *(Valueset)* |InValueSet
 |==================================================================================
 
 Table 6‑N
@@ -399,17 +385,16 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 
 [[table-6-o]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==========================================
-^|*CQL Construct* ^|*ELM Equivalent*
-|*_query_* {set:cellbgcolor:#F0F5FA}|Query
-|*_aliased-query-source_* {set:cellbgcolor:white}|AliasedQuerySource
-|*_let-clause_* {set:cellbgcolor:#F0F5FA}|LetClause
-|*_with-clause_* {set:cellbgcolor:white}|With
-|*_without-clause_* {set:cellbgcolor:#F0F5FA}|Without
-|*_where-clause_* {set:cellbgcolor:white}|Query (where element)
-|*_return-clause_* {set:cellbgcolor:#F0F5FA}|ReturnClause
-|*_sort-clause_* {set:cellbgcolor:white}|SortClause
+|CQL Construct |ELM Equivalent
+|*_query_* |Query
+|*_aliased-query-source_* |AliasedQuerySource
+|*_let-clause_* |LetClause
+|*_with-clause_* |With
+|*_without-clause_* |Without
+|*_where-clause_* |Query (where element)
+|*_return-clause_* |ReturnClause
+|*_sort-clause_* |SortClause
 |==========================================
 
 Table 6‑O

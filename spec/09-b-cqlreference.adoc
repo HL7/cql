@@ -260,12 +260,11 @@ The following table defines the truth table for this operator:
 
 [[table-9-a]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |==========================
-| ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*TRUE* {set:cellbgcolor:#F0F5FA} ^|TRUE ^|FALSE ^|NULL
-^|*FALSE*{set:cellbgcolor:white} ^|FALSE ^|FALSE ^|FALSE
-^|*NULL* {set:cellbgcolor:#F0F5FA} ^|NULL ^|FALSE ^|NULL
+| |TRUE |FALSE |NULL
+|*TRUE*  |TRUE |FALSE |NULL
+|*FALSE* |FALSE |FALSE |FALSE
+|*NULL*  |NULL |FALSE |NULL
 |==========================
 
 Table 9‑A
@@ -302,12 +301,11 @@ The following table defines the truth table for this operator:
 
 [[table-9-a1]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |=======================
-| ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*TRUE* {set:cellbgcolor:#F0F5FA} ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*FALSE* {set:cellbgcolor:white} ^|*TRUE* ^|*TRUE* ^|*TRUE*
-^|*NULL* {set:cellbgcolor:#F0F5FA} ^|*TRUE* ^|*NULL* ^|*NULL*
+| |TRUE |FALSE |NULL
+|*TRUE* |*TRUE* |*FALSE* |*NULL*
+|*FALSE* |*TRUE* |*TRUE* |*TRUE*
+|*NULL* |*TRUE* |*NULL* |*NULL*
 |=======================
 
 Table 9‑A
@@ -330,12 +328,11 @@ The following table defines the truth table for this operator:
 
 [[table-9-b]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========
-|  ^|*NOT*
-^|*TRUE* {set:cellbgcolor:#F0F5FA} ^|*FALSE*
-^|*FALSE* {set:cellbgcolor:white} ^|*TRUE*
-^|*NULL* {set:cellbgcolor:#F0F5FA} ^|*NULL*
+|  |NOT
+|*TRUE* |*FALSE*
+|*FALSE* |*TRUE*
+|*NULL* |*NULL*
 |===========
 
 Table 9‑B
@@ -358,12 +355,11 @@ The following table defines the truth table for this operator:
 
 [[table-9-c]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================
-| ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*TRUE* {set:cellbgcolor:#F0F5FA} ^|*TRUE* ^|*TRUE* ^|*TRUE*
-^|*FALSE* {set:cellbgcolor:white} ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*NULL* {set:cellbgcolor:#F0F5FA} ^|*TRUE* ^|*NULL* ^|*NULL*
+| |TRUE |FALSE |NULL
+|*TRUE* |*TRUE* |*TRUE* |*TRUE*
+|*FALSE* |*TRUE* |*FALSE* |*NULL*
+|*NULL* |*TRUE* |*NULL* |*NULL*
 |========================
 
 Table 9‑C
@@ -400,12 +396,11 @@ The following table defines the truth table for this operator:
 
 [[table-9-d]]
 [cols=",,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |========================
-| ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*TRUE* {set:cellbgcolor:#F0F5FA} ^|*FALSE* ^|*TRUE* ^|*NULL*
-^|*FALSE* {set:cellbgcolor:white} ^|*TRUE* ^|*FALSE* ^|*NULL*
-^|*NULL* {set:cellbgcolor:#F0F5FA} ^|*NULL* ^|*NULL* ^|*NULL*
+| |TRUE |FALSE |NULL
+|*TRUE* |*FALSE* |*TRUE* |*NULL*
+|*FALSE* |*TRUE* |*FALSE* |*NULL*
+|*NULL* |*NULL* |*NULL* |*NULL*
 |========================
 
 Table 9‑D
@@ -485,22 +480,21 @@ The [.kw]#convert# operator converts a value to a specific type. The result of t
 The following table lists the conversions supported in CQL:
 
 [[table-9-e]]
-[cols=",,,,,,,,,,,",options="header",]
-{set:cellbgcolor:#D9E6FC}
+[cols=",,,,,,,,,,,,",options="header",]
 |===============================================================================================
-^|*From\To* ^|*Boolean* ^|*Integer* ^|*Decimal* ^|*Quantity* ^|*Ratio* ^|*String* ^|*Date* ^|*DateTime* ^|*Time* ^|*Code* ^|*Concept* ^|*List<Code>*
-|*Boolean* {set:cellbgcolor:#F0F5FA}|N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* {set:cellbgcolor:white}|- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Decimal* {set:cellbgcolor:#F0F5FA}|- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|*Quantity* {set:cellbgcolor:white}|- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|*Ratio* {set:cellbgcolor:#F0F5FA}|- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|*String* {set:cellbgcolor:white}|Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|*Date* {set:cellbgcolor:#F0F5FA}|- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* {set:cellbgcolor:white}|- |- |- |- |- |Explicit |- |N/A |- |- |- |-
-|*Time* {set:cellbgcolor:#F0F5FA}|- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|*Code* {set:cellbgcolor:white}|- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|*Concept* {set:cellbgcolor:#F0F5FA}|- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|*List<Code>* {set:cellbgcolor:white}| | | | | | | | | | |Explicit |N/A
+|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
+|*Boolean* |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Decimal* |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Quantity* |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|*DateTime* |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
+|*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|*List<Code>* | | | | | | | | | | |Explicit |N/A
 |===============================================================================================
 
 Table 9‑E
@@ -569,11 +563,10 @@ The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Bool
 
 [[table-9-f]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |====================================
-^|*String Representation* ^|*Boolean Value*
-|[.id]#true t yes y 1# {set:cellbgcolor:#F0F5FA}|[.kw]#true#
-|[.id]#false f no n 0# {set:cellbgcolor:white}|[.kw]#false#
+|String Representation |Boolean Value
+|[.id]#true t yes y 1# |[.kw]#true#
+|[.id]#false f no n 0# |[.kw]#false#
 |====================================
 
 Table 9‑F
@@ -805,17 +798,16 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 
 [[table-9-g]]
 [cols=",",options="header",]
-{set:cellbgcolor:#D9E6FC}
 |===========================================
-^|*Type* ^|*String Representation*
-|[.id]#Boolean# {set:cellbgcolor:#F0F5FA} |[.kw]#true\|false#
-|[.id]#Integer# {set:cellbgcolor:white}|([.sym]#-#)?#0
-|[.id]#Decimal# {set:cellbgcolor:#F0F5FA} |([.sym]#-#)?\#0.0#
-|[.id]#Quantity# {set:cellbgcolor:white}|([.sym]#-#)?\#0.0# '<unit>'
-|[.id]#Ratio# {set:cellbgcolor:#F0F5FA} |<quantity>:<quantity>
-|[.id]#Date# {set:cellbgcolor:white}|YYYY-MM-DD
-|[.id]#DateTime# {set:cellbgcolor:#F0F5FA} |YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm
-|[.id]#Time# {set:cellbgcolor:white}|Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|Type |String Representation
+|[.id]#Boolean# |[.kw]#true\|false#
+|[.id]#Integer# |([.sym]#-#)?#0
+|[.id]#Decimal# |([.sym]#-#)?\#0.0#
+|[.id]#Quantity# |([.sym]#-#)?\#0.0# '<unit>'
+|[.id]#Ratio# |<quantity>:<quantity>
+|[.id]#Date# |YYYY-MM-DD
+|[.id]#DateTime# |YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|[.id]#Time# |Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
 |===========================================
 
 Table 9‑G

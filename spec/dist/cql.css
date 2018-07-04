@@ -23,3 +23,43 @@
     color: green;
     background-color: inherit;
 }
+
+<style type="text/css" media="screen">
+
+table{
+margin-bottom: 10px;
+border: 1px black solid;
+margin-right: auto;
+}
+
+table th{
+    border:1px solid silver;
+    padding:3px 7px 2px 7px;
+    font-size: 12px;
+    line-height: 1.4em;
+    font-family: verdana;
+    padding: 3px;
+    vertical-align: center;
+    background-color: #D9E6FC;
+    text-align: center;
+}
+
+table td{
+    border:1px solid silver;
+    padding:3px 7px 2px 7px;
+    font-size: 11px;
+    line-height: 1.2em;
+    font-family: verdana;
+    padding: 3px;
+    vertical-align: top;
+}
+
+table p{
+    font-size: 11px;
+
+}
+
+tr:nth-child(odd) {background-color: #F0F5FA}
+
+
+</style>
