@@ -24,8 +24,6 @@
     background-color: inherit;
 }
 
-<style type="text/css" media="screen">
-
 table{
 margin-bottom: 10px;
 border: 1px black solid;
@@ -62,4 +60,8 @@ table p{
 tr:nth-child(odd) {background-color: #F0F5FA}
 
 
-</style>
+.anchor:link {color: blue;}
+
+.anchor:visited {color: red;}
+
+.anchor:hover {color: pink;}
