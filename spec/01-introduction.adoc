@@ -30,7 +30,7 @@ Considering each of these components separately, the next step involves identify
 | | Model Type | Quality Information | Computable Expression Logic | Metadata
 | *Clinical Decision Support (CDS)* |Physical and logical |Virtual Medical Record (vMR) |CDS Knowledge Artifact Specification |CDS Knowledge Artifact Specification/Decision Support Service
 1.2+| *Electronic Clinical Quality Measurement (eCQM)* |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
-1.1+|*Logical* |Quality Data Model (QDM) |Quality Data Model (QDM)|
+1.1+|Logical |Quality Data Model (QDM) |Quality Data Model (QDM)|
 |========================================================================================================================================================================================
 Table 1‑A
 
