@@ -1236,7 +1236,7 @@ For division operations involving quantities, the resulting quantity will have t
 12 'cm2' / 3 'cm'
 ----
 
-In this example, the result will have a unit of [.lit]#'cm'#. Note that when performing division of quantities with the same units, the result will have the default UCUM unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+In this example, the result will have a unit of [.lit]#'cm'#. Note that when performing division of quantities with the same units, the result will have the default UCUM unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
