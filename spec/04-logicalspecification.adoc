@@ -442,7 +442,7 @@ The following table provides a complete listing of the list operators available 
 |*Times* |Combines the elements from two lists, returning a list with an element for each possible combination of elements from the source list.
 |*Filter* |Returns a list containing only the elements for which the given condition evaluates to true
 |*SingletonFrom* |Extracts the single element from a list with at most one element.
-|*IndexOf* |Returns the 0-based index of an element within the list, or 0 if the element is not present
+|*IndexOf* |Returns the 0-based index of an element within the list, or -1 if the element is not present
 |*Indexer* |Returns the element at the given 0-based index in the list
 |*In* |Returns true if the given element is in a given list
 |*Contains* |Returns true if the given list contains a given element
