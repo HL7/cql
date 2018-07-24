@@ -119,10 +119,10 @@ The following example illustrates a valueset declaration:
 
 [source,cql]
 ----
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
-This definition establishes the local identifier [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local identifier [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
@@ -823,9 +823,9 @@ The following example illustrates some typical valueset declarations:
 
 [source,cql]
 ----
-valueset "Acute Pharyngitis": '2.16.840.1.113883.3.464.1003.102.12.1011'
-valueset "Acute Tonsillitis": '2.16.840.1.113883.3.464.1003.102.12.1012'
-valueset "Ambulatory/ED Visit": '2.16.840.1.113883.3.464.1003.101.12.1061'
+valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
+valueset "Acute Tonsillitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1012'
+valueset "Ambulatory/ED Visit": 'urn:oid:2.16.840.1.113883.3.464.1003.101.12.1061'
 ----
 
 Each valueset declaration defines a local identifier that can be used to reference the valueset within the library, as well as the global identifier for the valueset, typically an object identifier (OID) or uniform resource identifier (URI).
@@ -855,18 +855,18 @@ The following example illustrates the use of static binding based only on the ve
 
 [source,cql]
 ----
-valueset "Diabetes": '2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
+valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
 ----
 
 The next example illustrates a static binding based on both the version of the valueset, as well as the versions of the code systems within the valueset:
 
 [source,cql]
 ----
-codesystem "SNOMED-CT:2013-09": '2.16.840.1.113883.6.96' version '2031-09'
-codesystem "ICD-9-CM:2014": '2.16.840.1.113883.6.103' version '2014'
-codesystem "ICD-10-CM:2014": '2.16.840.1.113883.6.90' version '2014'
+codesystem "SNOMED-CT:2013-09": 'urn:oid:2.16.840.1.113883.6.96' version '2031-09'
+codesystem "ICD-9-CM:2014": 'urn:oid:2.16.840.1.113883.6.103' version '2014'
+codesystem "ICD-10-CM:2014": 'urn:oid:2.16.840.1.113883.6.90' version '2014'
 
-valueset "Diabetes": '2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
+valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
   codesystems ( "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" )
 ----
 
@@ -2196,7 +2196,7 @@ In addition to providing first-class _valueset_ and _codesystem_ constructs, CQL
 
 [source,cql]
 ----
-valueset "Acute Pharyngitis": '2.16.840.1.113883.3.464.1003.102.12.1011'
+valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
@@ -2392,7 +2392,7 @@ This criteria requires that the gender attribute of a Patient be a code that is 
 
 [source,cql]
 ----
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
 Putting it all together, we now have:
@@ -2408,7 +2408,7 @@ parameter MeasurementPeriod default Interval[
   @2014-01-01T00:00:00.0
 )
 
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 
 context Patient
 
@@ -2591,7 +2591,7 @@ library CMS153_CQM version '2'
 
 using QUICK
 
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
 parameter MeasurementPeriod default Interval[
   @2013-01-01T00:00:00.0,
@@ -2659,7 +2659,7 @@ using QUICK
 
 codesystem "SNOMED": 'http://snomed.info/sct'
 
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
 
 context Patient
@@ -2767,7 +2767,7 @@ library CMS153_Common version '2'
 
 using QUICK
 
-valueset "Female Administrative Sex": '2.16.840.1.113883.3.560.100.2'
+valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
 
 context Patient
