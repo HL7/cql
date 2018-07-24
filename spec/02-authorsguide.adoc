@@ -832,7 +832,11 @@ Each valueset declaration defines a local identifier that can be used to referen
 
 These valueset identifiers can then be used throughout the library. For example:
 
+
+[source,cql]
+----
 define Pharyngitis: [Condition: "Acute Pharyngitis"]
+----
 
 This example defines [.id]#Pharyngitis# as any Condition where the code is in the [.id]#"Acute Pharyngitis"# valueset.
 
