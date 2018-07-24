@@ -831,6 +831,8 @@ ToTime(argument String) Time
 The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:
 
 Thh:mm:ss.fff([.sym]#+|-#)hh:mm
+or
+Thh:mm:ss.fffZ
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
