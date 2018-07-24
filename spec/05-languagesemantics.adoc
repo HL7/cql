@@ -431,7 +431,7 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 [cols=",,,",options="header",]
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Precision |Type |Range |Semantics
-|*Year* |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date/time value. If the resulting year is out of range, an error is thrown. If the month and day of the date/time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29) + 1 year = DateTime(2013, 2, 28). The resulting date/time value will have the same time components.
+|*Year* |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date/time value. If the resulting year is out of range, an error is thrown. If the month and day of the date/time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29, 0, 0) + 1 year = DateTime(2013, 2, 28, 0, 0). The resulting date/time value will have the same time components.
 |*Month* |Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date/time value will have the same time components.
 |*Week* |Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
 |*Day* |Integer |[1, 31] |The days, positive or negative, are added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
@@ -657,7 +657,7 @@ This implicit conversion means that in general, the notion of uncertainty will n
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2) > 2
+days between Date(2014, 1, 15) and Date(2014, 2) > 2
 ----
 
 Even though determining the correct answer to this question involves the use of uncertainty, it is implicit in the way the operations are defined, and does not surface to the CQL authors.
@@ -678,36 +678,36 @@ However, to support the case where one or the other comparand in the duration op
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2)
+days between Date(2014, 1, 15) and Date(2014, 2)
 ----
 
 The number of days between these two dates cannot be determined reliably, but a definite range of possible values can be determined. The lower bound of that range is found by determining the duration between the maximum possible value of the first comparand and the minimum possible value of the second comparand; and the upper bound is determined using the minimum possible value of the first comparand and the maximum possible value of the second:
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2, 1) // 17 days
-days between DateTime(2014, 1, 15) and DateTime(2014, 2, 28) // 44 days
+days between Date(2014, 1, 15) and Date(2014, 2, 1) // 17 days
+days between Date(2014, 1, 15) and Date(2014, 2, 28) // 44 days
 ----
 
 Intuitively, what this means is that the number of days between January 15^th^, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2) > 2
+days between Date(2014, 1, 15) and Date(2014, 2) > 2
 ----
 
 This comparison returns true, because the lower bound of the uncertainty, 17, is greater than 2, so no matter what the actual date of the second comparand, it would always be at least 17 days. By contrast:
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2) > 50
+days between Date(2014, 1, 15) and Date(2014, 2) > 50
 ----
 
 This comparison returns false, because the upper bound of the uncertainty, 44, is less than 50, so no matter what the actual date of the second comparand, it would always be at most 44 days. And finally:
 
 [source,cql]
 ----
-days between DateTime(2014, 1, 15) and DateTime(2014, 2) > 20
+days between Date(2014, 1, 15) and Date(2014, 2) > 20
 ----
 
 This comparison returns unknown (null), because the value being compared, 20, falls within the uncertainty, so no determination can be reliably made.
