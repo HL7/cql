@@ -234,7 +234,7 @@ Difference calculations are performed by truncating the date/time values at the 
 
 Implementations need to consider the calculation of the "difference between" two date/times with different timezone offsets. There are multiple use cases when this might occur, but the most prevalent is likely due to Daylight Saving Time (DST).
 
-To support the expected results in all cases, normalization of date/time values may be needed, depending on the precision used in the difference calculation. Normalization refers to adjustement of one or both of the two date/time values used in the difference calculation, if the timezone offsets are not the same, to a common timezone offset.
+To support the expected results in all cases, normalization of date/time values may be needed, depending on the precision used in the difference calculation. Normalization refers to adjustment of one or both of the two date/time values used in the difference calculation, if the timezone offsets are not the same, to a common timezone offset.
 
 When difference is calculated for hours or finer units, timezone offsets should be normalized prior to truncation to correctly consider real (actual elapsed) time. When difference is calculated for days or coarser units, however, the time components (including timezone offset) should be truncated without normalization to correctly reflect the difference in calendar days, months, and years.
 
