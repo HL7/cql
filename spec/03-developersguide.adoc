@@ -839,7 +839,7 @@ To simplify the expression of logic involving lists and intervals, CQL defines _
 
 Promotion is used to implicitly convert a value to a list of values of that type. Whenever an operation that expects a list-valued argument is passed a single value, the single value is promoted to a list of the same type containing the single value as its only element.
 
-Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenver an operation that expects a singleton is passed a list, the list is demoted to a singleton using [.kw]#singleton from#.
+Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenever an operation that expects a singleton is passed a list, the list is demoted to a singleton using [.kw]#singleton from#.
 
 For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using [.kw]#point from#.
 
