@@ -109,7 +109,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 |*:* |Definition operator, typically read as “defined as”
 |*()* |Parentheses for delimiting groups, as well as specifying and passing function parameters
 |*[]* |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
-|*{}* |Braces for delimiting lists, tuples, and function bodies
+|*{}* |Braces for delimiting lists and tuples
 |*<>* |Angle-brackets for delimiting generic types within type specifiers
 |*.* |Period for qualifiers and accessors
 |*,* |Comma for delimiting items in a syntactic list
