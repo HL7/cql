@@ -788,9 +788,7 @@ In addition, CQL provides a Code literal that can be used to reference an existi
 Code '66071002' from "SNOMED-CT:2014" display 'Type B viral hepatitis'
 ----
 
-The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code.
-
-Note that the [.kw]#display# clause is optional. The above example references the code [.lit]#'66071002'# from the [.id]#"SNOMED-CT:2014"# code system.
+The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional.
 
 [[concept]]
 ==== Concept
