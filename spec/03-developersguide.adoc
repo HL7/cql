@@ -1201,7 +1201,7 @@ In addition to the query examples already discussed, it is possible to use any a
 ({ 1, 2, 3, 4, 5 }) L return L * 2
 ----
 
-This query results in [.sym]#\{# [.lit]#2#, [.lit]#4#, [.lit]#6#, [.lit]#8#, [.lit]#10# [.sym]#}#. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
+This query results in [.sym]#{# [.lit]#2#, [.lit]#4#, [.lit]#6#, [.lit]#8#, [.lit]#10# [.sym]#}#. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
 
 The above example also illustrates that queries need not be based on lists of tuples. In fact, they need not be based on lists at all. The following example illustrates the use of a query to redefine a single tuple:
 
