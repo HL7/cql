@@ -349,6 +349,8 @@ Beyond the retrieve expression, CQL provides a _query_ construct that allows the
 
 Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to <<05-languagesemantics.adoc#clinical-data-retrieval-in-quality-artifacts,Clinical Data Retrieval in Quality Artifacts>>.
 
+By default, queries always return a distinct list of results.  In other words, any duplicate values are suppressed from the results.
+
 The query construct has a _primary source_ and four main _clauses_ that each allow for different types of operations to be performed:
 
 [[table-2-d]]
