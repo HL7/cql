@@ -643,6 +643,8 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 For the string overload, the operator expects the string to be formatted using the ISO-8601 date/time representation:
 
 YYYY-MM-DDThh:mm:ss.fff([.sym]#+|-#)hh:mm
+or
+YYYY-MM-DDThh:mm:ss.fffZ
 
 In addition, the string must be interpretable as a valid date/time value.
 
