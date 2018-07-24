@@ -1641,7 +1641,7 @@ EndsWith(argument String, suffix String) Boolean
 
 *Description:*
 
-The [.id]#EndsWith# operator returns true if the given string starts with the given suffix.
+The [.id]#EndsWith# operator returns true if the given string ends with the given suffix.
 
 If the suffix is the empty string, the result is true.
 
