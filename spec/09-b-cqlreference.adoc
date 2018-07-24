@@ -2264,7 +2264,7 @@ Today() Date
 
 *Description:*
 
-The [.id]#Today# operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the [.id]#<<Now>># operator for more information on the rationale for defining the [.id]#Today# operator in this way.
+The [.id]#Today# operator returns the date of the start timestamp associated with the evaluation request. See the [.id]#<<Now>># operator for more information on the rationale for defining the [.id]#Today# operator in this way.
 
 [[interval-operators-3]]
 == Interval Operators
