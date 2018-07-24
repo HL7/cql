@@ -2115,7 +2115,7 @@ Count([Encounter])
 
 This expression returns the number of [.id]#Encounter# events.
 
-The [.id]#Sum# operator, however, works only on lists of numbers:
+The [.id]#Sum# operator, however, works only on lists of numbers or lists of quantities:
 
 [source,cql]
 ----
