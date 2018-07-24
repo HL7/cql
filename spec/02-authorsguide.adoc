@@ -723,13 +723,21 @@ CQL supports the following built-in units for time granularities:
 
 [source,cql]
 ----
+year
 years
+month
 months
+week
 weeks
+dat
 days
+hour
 hours
+minute
 minutes
+second
 seconds
+millisecond
 milliseconds
 ----
 
