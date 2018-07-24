@@ -284,7 +284,7 @@ The outline of the process is:
 
 * Evaluate the sources
 * For each item in the source
-** evaluate any defines within the query
+** evaluate any let clauses within the query
 ** evaluate each with or without clause in the query
 ** evaluate the where clause, if present
 ** evaluate the return clause
