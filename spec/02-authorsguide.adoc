@@ -979,7 +979,7 @@ For more information on missing information, see the <<03-developersguide.adoc#n
 [[list-values]]
 === List Values
 
-CQL supports the representation of lists of any type of value (including other lists), but all the elements within a given list must be of the same type.
+CQL supports the representation of lists of any type of value (including other lists).  Although some operations may result in lists containing mixed types, in normal use cases, lists contain items that are all of the same type.
 
 Lists can be constructed directly, as in:
 
