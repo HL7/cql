@@ -106,7 +106,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 [cols=",",options="header",]
 |===============================================================================================
 |Symbol |Description
-|*:* |Definition operator, typically read as “defined as”
+|*:* |Definition operator, typically read as “defined as”. Also used to separate the numerator from denominator in Ratio literals
 |*()* |Parentheses for delimiting groups, as well as specifying and passing function parameters
 |*[]* |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
 |*{}* |Braces for delimiting lists and tuples
