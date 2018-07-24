@@ -801,7 +801,7 @@ The Concept type has the following elements:
 [cols=",,",options="header",]
 |=========================================================================
 |Name |Type |Description
-|*codes* |[.id]#List<Code># |The list of equivalent codes representing the concept.
+|*codes* |[.id]#List<Code># |The list of semantically equivalent codes representing the concept.
 |*display* |[.id]#String# |A description of the concept.
 |=========================================================================
 
