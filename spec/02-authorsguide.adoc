@@ -2746,8 +2746,8 @@ In addition, this library should include the proposal aspect of the intervention
 [source,cql]
 ----
 define ChlamydiaScreeningRequest: ProcedureRequest {
-  type: Code '442487003' from "SNOMED-CT" +
-  display ' Screening for Chlamydia trachomatis (procedure)',
+  type: Code '442487003' from "SNOMED-CT"
+  display 'Screening for Chlamydia trachomatis (procedure)',
   status: 'proposed'
   // values for other elements of the request...
 }
