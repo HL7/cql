@@ -755,7 +755,7 @@ A ratio is a relationship between two quantities, expressed in CQL using standar
 [source,cql]
 ----
 1:128
-5 'mg'/10 'mL'
+5 'mg' : 10 'mL'
 ----
 
 For a discussion of the operations available for ratios, see the <<Ratio Operators>> section.
