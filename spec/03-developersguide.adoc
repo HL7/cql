@@ -979,7 +979,7 @@ To determine the position of a given pattern within a string, use the [.id]#Posi
 PositionOf('cde', 'abcdefg')
 ----
 
-The [.id]#PositionOf()# operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, [.id]#PositionOf()# returns [.lit]#-1# to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use [.id]#PositionOf()#, and to find patterns at the beginning and end of a string, use [.id]#StartsWith()# and [.id]#EndsWith()#. Regular expression matching can be performed with the [.id]#Matches()# and [.id]#ReplaceMatches()# operators.
+The [.id]#PositionOf()# operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, [.id]#PositionOf()# returns [.lit]#-1# to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use [.id]#LastPositionOf()#, and to find patterns at the beginning and end of a string, use [.id]#StartsWith()# and [.id]#EndsWith()#. Regular expression matching can be performed with the [.id]#Matches()# and [.id]#ReplaceMatches()# operators.
 
 To return a substring from a given string, use the [.id]#Substring# operator:
 
