@@ -608,7 +608,7 @@ CQL supports several types of simple values:
 [cols=",",options="header",]
 |=======================================
 |Value |Examples
-|*Boolean* |[.kw]#true#, [.kw]#false#
+|*Boolean* |[.kw]#true#, [.kw]#false#, [.kw]#null#
 |*Integer* |[.lit]#16#, [.lit]#-28#
 |*Decimal* |[.lit]#100.015#
 |*String* |[.lit]#'pending'#, [.lit]#'active'#, [.lit]#'complete'#
@@ -626,7 +626,7 @@ Table 2‑E
 [[boolean]]
 ==== Boolean
 
-The Boolean type in CQL supports the logical values [.kw]#true# and [.kw]#false#. These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators.
+The Boolean type in CQL supports the logical values [.kw]#true# and [.kw]#false#. These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> for more.
 
 [[integer]]
 ==== Integer
