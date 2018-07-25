@@ -23,11 +23,11 @@ https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cq
 
 A reference implementation for executing CQL is currently under development. This reference implementation was used in CQF pilots and has been integrated into production eCQM testing tools.
 
-The CQL execution framework is licensed under the open source http://www.apache.org/licenses/LICENSE-2.0[Apache Version 2.0] license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/clinical_quality_language.
+The CQL execution framework is licensed under the open source Apache Version 2.0 license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/cql-execution.
 
 For an overview of the project along with current status, refer to the following document:
 
-https://github.com/cqframework/clinical_quality_language/blob/master/Src/coffeescript/cql-execution/OVERVIEW.md
+https://github.com/cqframework/cql-execution/blob/master/OVERVIEW.md
 
 [[other-cql-related-tools]]
 == Other CQL-related Tools
