@@ -3707,6 +3707,9 @@ If either argument is [.kw]#null#, or contains any [.kw]#null# components, the r
 [source,cql]
 ----
 ~(left Code, right Code) Boolean
+~(left Concept, right Concept) Boolean
+~(left Code, right Concept) Boolean
+~(left Concept, right Code) Boolean
 ----
 
 *Description:*
