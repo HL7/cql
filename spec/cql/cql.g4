@@ -15,14 +15,14 @@ library
     :
     libraryDefinition?
     usingDefinition*
-    includeDefinition*
-    codesystemDefinition*
-    valuesetDefinition*
-    codeDefinition*
-    conceptDefinition*
-    parameterDefinition*
-    statement*
-    ;
+	includeDefinition*
+	codesystemDefinition*
+	valuesetDefinition*
+	codeDefinition*
+	conceptDefinition*
+	parameterDefinition*
+	statement*
+	;
 
 /*
  * Definitions
@@ -226,16 +226,7 @@ query
     ;
 
 sourceClause
-    : singleSourceClause
-    | multipleSourceClause
-    ;
-
-singleSourceClause
-    : aliasedQuerySource
-    ;
-
-multipleSourceClause
-    : 'from' aliasedQuerySource (',' aliasedQuerySource)*
+    : 'from'? aliasedQuerySource (',' aliasedQuerySource)*
     ;
 
 letClause
@@ -304,7 +295,7 @@ dateTimeComponent
     | 'timezone'
     ;
 
-pluralDateTimePrecision
+        pluralDateTimePrecision
     : 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds' | 'milliseconds'
     ;
 
