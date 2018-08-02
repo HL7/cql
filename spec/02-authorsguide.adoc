@@ -1407,7 +1407,7 @@ Note that when determining equality, these semantics imply that if either date/t
 
 Table 2‑N
 
-If no precision is specified, these operators are equivalent to the symbolic comparison operators, implying comparison precision to the millisecond. However, each operator allows a precision specifier to be used. For example:
+Comparison, like equality, when no precision is specified, is performed to the unit with the most precision of either input. However, each operator allows a precision specifier to be used. For example:
 
 [source,cql]
 ----
