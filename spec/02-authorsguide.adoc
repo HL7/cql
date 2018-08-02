@@ -1236,6 +1236,7 @@ Operations on date and time data are an essential component of expressing clinic
 * Extraction – Extracting specific components from date/time values
 * Arithmetic – Performing date/time arithmetic
 * Duration – Computing durations between date/time values
+* Difference - Computing the difference between date/time values
 
 [[constructing-datetime-values]]
 ==== Constructing Date/Time Values
