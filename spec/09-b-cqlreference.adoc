@@ -122,7 +122,7 @@ simple type DateTime
 
 The [.id]#DateTime# type represents date and time values with potential uncertainty within CQL.
 
-CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to [.lit]#@9999-12-31T23:59:59.999# with a 1 millisecond step size.
+CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to [.lit]#@9999-12-31T23:59:59.999# with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset.
 
 [[decimal-1]]
 === Decimal
@@ -237,7 +237,7 @@ simple type Time
 
 The [.id]#Time# type represents time-of-day values within CQL.
 
-CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.999# with a step size of 1 millisecond.
+CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.999# with a step size of 1 millisecond. Not that Time values may also optionally indicate an offset.
 
 [[logical-operators-3]]
 == Logical Operators
