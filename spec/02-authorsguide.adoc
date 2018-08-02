@@ -1083,15 +1083,15 @@ The most basic operation in CQL involves comparison of two values. This is accom
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
-|*=* |Equality |Returns true if the arguments are the same value
-|*!=* |Inequality |Returns true if the arguments are not the same value
-|*>* |Greater than |Returns true if the left argument is greater than the right argument
-|*<* |Less than |Returns true if the left argument is less than the right argument
-|*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument
-|*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument
-|*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument
-|*~* |Equivalent |Returns true if the arguments are the same value, or are both unknown
-|*!~* |Inequivalent |Returns true if the arguments are not equivalent
+|*=* |Equality |Returns true if the arguments are the same value. Returns null if either or both arguments are null
+|*!=* |Inequality |Returns true if the arguments are not the same value. Returns null if either or both arguments are null
+|*>* |Greater than |Returns true if the left argument is greater than the right argument. Returns null if either or both arguments are null
+|*<* |Less than |Returns true if the left argument is less than the right argument. Returns null if either or both arguments are null
+|*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument. Returns null if either or both arguments are null
+|*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument. Returns null if either or both arguments are null
+|*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns null if any or all arguments are null.
+|*~* |Equivalent |Returns true if the arguments are the same value, or are both unknown. Returns null if either or both arguments are null
+|*!~* |Inequivalent |Returns true if the arguments are not equivalent. Returns null if either or both arguments are null
 |===========================================================================================================================================
 
 Table 2‑H
