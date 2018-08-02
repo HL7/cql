@@ -42,9 +42,9 @@ System type names are always PascalCase.
 
 CQL treats all whitespace as a single token, meaning that it doesn't matter whether you use spaces or tabs to separate keywords and other tokens, so long as you have some whitespace as defined by the rules of the language. This allows authors to format their expressions using whatever conventions are appropriate for their environment. While this flexibility is beneficial in that it allows CQL to be used in a wide variety of settings, it can also lead to inconsistent formatting, reducing readability. As such, these simple conventions are recommended to ensure consistent formatting:
 
-Use tabs to indent, rather than multiple spaces. The use of tabs reduces keystrokes and simplifies maintenance of the resulting CQL.
+It is possible to use either tabs or multiple spaces to indent, each having advantages and disadvantages. However, authors must remain consistent within a library, avoiding using both tabs and spaces to indent simultaneously.
 
-Indent using a single tab for related content. This makes it visually clear where the dependencies are in any given expression and helps to organize statements and clauses.
+Indent using a single tab or a consistent number of spaces for related content. This makes it visually clear where the dependencies are in any given expression and helps to organize statements and clauses.
 
 Always use a space after a comma. This helps to visually separate items in a list.
 
