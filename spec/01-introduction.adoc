@@ -168,7 +168,7 @@ The Clinical Quality Language specification is designed as a general purpose que
 [[health-quality-measure-format-hqmf]]
 === Health Quality Measure Format (HQMF)
 
-Health Quality Measure Format is an HL7 V3 Standard for the representation of electronic Clinical Quality Measures (eCQMs). HQMF uses a conceptual model of clinical information called Quality Data Model (QDM) to represent patient information in population criteria for the measure. QDM originally (and through version 4.3) also included an expression language for use in eCQMs. Clinical Quality Language is capable of providing more precise and flexible semantics and HQMF-based eCQMs are in the process of transitioning to use Clinical Quality Language.
+Health Quality Measure Format is an HL7 V3 Standard for the representation of electronic Clinical Quality Measures (eCQMs). HQMF uses a conceptual model of clinical information called Quality Data Model (QDM) to represent patient information in population criteria for the measure. QDM originally (and through version 4.3) also included an expression language for use in eCQMs. Clinical Quality Language is capable of providing more precise and flexible semantics and HQMF-based eCQMs have transitioned to using Clinical Quality Language.
 
 [[clinical-decision-support-knowledge-artifact-specification-kas]]
 === Clinical Decision Support Knowledge Artifact Specification (KAS)
