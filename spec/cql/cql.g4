@@ -15,14 +15,14 @@ library
     :
     libraryDefinition?
     usingDefinition*
-    includeDefinition*
-    codesystemDefinition*
-    valuesetDefinition*
-    codeDefinition*
-    conceptDefinition*
-    parameterDefinition*
-    statement*
-    ;
+	includeDefinition*
+	codesystemDefinition*
+	valuesetDefinition*
+	codeDefinition*
+	conceptDefinition*
+	parameterDefinition*
+	statement*
+	;
 
 /*
  * Definitions
@@ -226,16 +226,7 @@ query
     ;
 
 sourceClause
-    : singleSourceClause
-    | multipleSourceClause
-    ;
-
-singleSourceClause
-    : aliasedQuerySource
-    ;
-
-multipleSourceClause
-    : 'from' aliasedQuerySource (',' aliasedQuerySource)*
+    : 'from'? aliasedQuerySource (',' aliasedQuerySource)*
     ;
 
 letClause
@@ -304,33 +295,33 @@ dateTimeComponent
     | 'timezone'
     ;
 
-pluralDateTimePrecision
+        pluralDateTimePrecision
     : 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds' | 'milliseconds'
     ;
 
 expressionTerm
-    : term                                                               #termExpressionTerm
-    | expressionTerm '.' invocation                                      #invocationExpressionTerm
-    | expressionTerm '[' expression ']'                                  #indexedExpressionTerm
-    | 'convert' expression 'to' typeSpecifier                            #conversionExpressionTerm
-    | ('+' | '-') expressionTerm                                         #polarityExpressionTerm
-    | ('start' | 'end') 'of' expressionTerm                              #timeBoundaryExpressionTerm
-    | dateTimeComponent 'from' expressionTerm                            #timeUnitExpressionTerm
-    | 'duration' 'in' pluralDateTimePrecision 'of' expressionTerm        #durationExpressionTerm
-    | 'difference' 'in' pluralDateTimePrecision 'of' expressionTerm      #differenceExpressionTerm
-    | 'width' 'of' expressionTerm                                        #widthExpressionTerm
-    | 'successor' 'of' expressionTerm                                    #successorExpressionTerm
-    | 'predecessor' 'of' expressionTerm                                  #predecessorExpressionTerm
-    | 'singleton' 'from' expressionTerm                                  #elementExtractorExpressionTerm
-    | 'point' 'from' expressionTerm                                      #pointExtractorExpressionTerm
-    | ('minimum' | 'maximum') namedTypeSpecifier                         #typeExtentExpressionTerm
-    | expressionTerm '^' expressionTerm                                  #powerExpressionTerm
-    | expressionTerm ('*' | '/' | 'div' | 'mod') expressionTerm          #multiplicationExpressionTerm
-    | expressionTerm ('+' | '-' | '&') expressionTerm                    #additionExpressionTerm
-    | 'if' expression 'then' expression 'else' expression                #ifThenElseExpressionTerm
-    | 'case' expression? caseExpressionItem+ 'else' expression 'end'     #caseExpressionTerm
-    | ('distinct' | 'collapse' | 'flatten') expression                   #aggregateExpressionTerm
-    | 'expand' expression ('per' (dateTimePrecision | expression))?      #expandExpressionTerm
+    : term                                                                          #termExpressionTerm
+    | expressionTerm '.' invocation                                                 #invocationExpressionTerm
+    | expressionTerm '[' expression ']'                                             #indexedExpressionTerm
+    | 'convert' expression 'to' typeSpecifier                                       #conversionExpressionTerm
+    | ('+' | '-') expressionTerm                                                    #polarityExpressionTerm
+    | ('start' | 'end') 'of' expressionTerm                                         #timeBoundaryExpressionTerm
+    | dateTimeComponent 'from' expressionTerm                                       #timeUnitExpressionTerm
+    | 'duration' 'in' pluralDateTimePrecision 'of' expressionTerm                   #durationExpressionTerm
+    | 'difference' 'in' pluralDateTimePrecision 'of' expressionTerm                 #differenceExpressionTerm
+    | 'width' 'of' expressionTerm                                                   #widthExpressionTerm
+    | 'successor' 'of' expressionTerm                                               #successorExpressionTerm
+    | 'predecessor' 'of' expressionTerm                                             #predecessorExpressionTerm
+    | 'singleton' 'from' expressionTerm                                             #elementExtractorExpressionTerm
+    | 'point' 'from' expressionTerm                                                 #pointExtractorExpressionTerm
+    | ('minimum' | 'maximum') namedTypeSpecifier                                    #typeExtentExpressionTerm
+    | expressionTerm '^' expressionTerm                                             #powerExpressionTerm
+    | expressionTerm ('*' | '/' | 'div' | 'mod') expressionTerm                     #multiplicationExpressionTerm
+    | expressionTerm ('+' | '-' | '&') expressionTerm                               #additionExpressionTerm
+    | 'if' expression 'then' expression 'else' expression                           #ifThenElseExpressionTerm
+    | 'case' expression? caseExpressionItem+ 'else' expression 'end'                #caseExpressionTerm
+    | ('distinct' | 'flatten') expression                                           #aggregateExpressionTerm
+    | ('expand' | 'collapse') expression ('per' (dateTimePrecision | expression))?  #setAggregateExpressionTerm
     ;
 
 caseExpressionItem
