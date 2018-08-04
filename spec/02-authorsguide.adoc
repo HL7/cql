@@ -2151,7 +2151,7 @@ The following table lists the aggregate operators available in CQL:
 |*PopVariance* |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
 |*AllTrue* |Returns true if all the elements in the list are true, false otherwise
 |*AnyTrue* |Returns true if any of the elements in the list are true, false otherwise
-|*GeometricMean*| Return the geometric mean of the non-null elements in the llist
+|*GeometricMean*| Return the geometric mean of the non-null elements in the list
 |*Product*| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
 
