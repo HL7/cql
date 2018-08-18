@@ -65,3 +65,7 @@ link:15-h-timeintervalcalculations.html[Appendix H] – Timing Interval Calculat
 
 link:16-i-fhirpathtranslation.html[Appendix I] – FHIRPath Function Translation
 
+link:17-j-listoftables.html[Appendix J] – List Of Tables
+
+link:18-k-listoffigures.html[Appendix K] – List Of Figures
+

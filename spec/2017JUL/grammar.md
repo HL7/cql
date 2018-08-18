@@ -1,5 +1,5 @@
 ---
-layout: 2017Jul
+layout: 2017JUL
 title: Clinical Quality Language Grammar
 ---
 

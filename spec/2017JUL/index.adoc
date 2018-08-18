@@ -1,5 +1,5 @@
 = Clinical Quality Language (CQL)
-:page-layout: 2017Jul
+:page-layout: 2017JUL
 
 *HL7 Standard: Clinical Quality Language Specification, Release 1 STU2 (CQL 1.2)*
 
