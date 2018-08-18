@@ -1,6 +1,7 @@
 [[language-semantics]]
 = 5. Language Semantics
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

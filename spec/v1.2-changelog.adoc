@@ -1,5 +1,6 @@
 = 1.2 Change Log
 :page-layout: current
+:backend: xhtml
 
 Update 2 Changes:
 

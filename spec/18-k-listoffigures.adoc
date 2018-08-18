@@ -1,6 +1,7 @@
 [[appendix-k-list-of-figures]]
 = Appendix K - List Of Figures
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

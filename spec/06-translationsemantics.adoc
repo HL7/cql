@@ -1,6 +1,7 @@
 [[translation-semantics]]
 = 6. Translation Semantics
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:
