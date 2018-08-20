@@ -1,10 +1,12 @@
-[[authors-guide]]
-= 2. Author’s Guide
 :page-layout: current
 :backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:
+:toc-placement: left
+
+[[authors-guide]]
+= 2. Author’s Guide
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
@@ -1491,7 +1493,7 @@ The above expression computes the date one year before today, taking into accoun
 
 Note that as with the numeric arithmetic operators, if either or both arguments are [.kw]#null#, the result of the operation is [.kw]#null#.
 
-The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value. For example, consider the following addition:
+The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then adding it to the date/time value. For example, consider the following addition:
 
 [source,cql]
 ----

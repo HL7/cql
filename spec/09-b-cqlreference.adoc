@@ -1880,13 +1880,17 @@ For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#mi
 
 Note that the quantity units may be specified in singular, plural, or UCUM form.
 
-The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
+The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
 
-DateTime(2014) + 24 months
+[.id]#DateTime(2014)# [.sym]#+# [.lit]#24# [.id]#months#
 
 This example results in the value [.id]#DateTime(2016)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
 
-Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
+Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored. For example, the following addition:
+
+[.id]#DateTime(2014)# [.sym]#+# [.lit]#18# [.id]#months#
+
+This example results in the value [.id]#DateTime(2015)#
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2208,13 +2212,17 @@ For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#mi
 
 Note that the quantity units may be specified in singular, plural or UCUM form.
 
-The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
+The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
 
 [.id]#DateTime(2014)# [.sym]#-# [.lit]#24# [.id]#months#
 
 This example results in the value [.id]#DateTime(2012)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
 
-Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.
+Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.  For example, the following subtraction:
+
+[.id]#DateTime(2014)# [.sym]#-# [.lit]#18# [.id]#months#
+
+This example results in the value [.id]#DateTime(2013)#
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2469,7 +2477,7 @@ For example:
 expand EffectivePeriods per day
 ----
 
-Note that if the values in the intervals have a higher precision than the per quantity, the higher precision values will be truncated to the granularity specified by the per quantity.
+Note that if the values in the intervals are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains [.kw]#nulls#, they will be excluded from the resulting list.
 

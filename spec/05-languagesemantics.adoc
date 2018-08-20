@@ -426,7 +426,7 @@ Table 5‑H
 [[datetime-arithmetic-1]]
 === Date/Time Arithmetic
 
-CQL allows time durations, represented as Quantities, to be added to or subtracted from date/time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase in the next higher precision. The following table describes these operations for each precision:
+CQL allows time durations, represented as Quantities, to be added to or subtracted from date/time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
 
 [[table-5-i]]
 [cols=",,,",options="header",]
