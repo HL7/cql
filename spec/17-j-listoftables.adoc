@@ -1,6 +1,7 @@
 [[appendix-j-list-of-tables]]
 = Appendix J - List Of Tables
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

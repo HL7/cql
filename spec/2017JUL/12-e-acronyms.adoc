@@ -1,6 +1,6 @@
 [[appendix-e-acronyms]]
 = Appendix E – Acronyms
-:page-layout: 2017Jul
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

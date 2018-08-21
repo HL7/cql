@@ -1,5 +1,6 @@
 = Query Change Proposal
 :page-layout: current
+:backend: xhtml
 
 The current query syntax is defined as:
 

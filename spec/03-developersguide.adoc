@@ -1,6 +1,7 @@
 [[developers-guide]]
 = 3. Developer’s Guide
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

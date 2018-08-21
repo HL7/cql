@@ -1,6 +1,7 @@
 [[physical-representation]]
 = 7. Physical Representation
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

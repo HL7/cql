@@ -1,5 +1,6 @@
 = 1.3 Change Log
 :page-layout: current
+:backend: xhtml
 
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1377[1377]: Corrected link to Type Operators section
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1378[1378]: Corrected link to Type Operators section

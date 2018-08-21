@@ -1,6 +1,7 @@
 [[appendix-e-acronyms]]
 = Appendix E – Acronyms
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

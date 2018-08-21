@@ -1,6 +1,7 @@
 [[appendix-g-formatting-conventions]]
 = Appendix G – Formatting Conventions
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

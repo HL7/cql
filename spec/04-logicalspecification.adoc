@@ -1,6 +1,7 @@
 [[logical-specification]]
 = 4. Logical Specification
 :page-layout: current
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:
@@ -25,6 +26,9 @@ The ELM consists of the following components:
 * Library – This component defines the structure of a library, the container, and the basic unit of sharing.
 
 Each of these components is defined fully within the ELM UML model. This model is defined formally as an XMI, and the model definition is also presented as an Enterprise Architect Project file (.eap) for viewing.
+
+* link:elm/model/elm.xmi[Raw XMI Model Definition]
+* link:elm/model/ELM.eap[Raw EAP Model Definition]
 
 The documentation provided here serves only as a high-level structural reference for the ELM. The actual content of the specification is defined by the XMI file, and that provides the “source-of-truth” for the ELM specification.
 

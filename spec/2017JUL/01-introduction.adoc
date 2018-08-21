@@ -1,6 +1,6 @@
 [[introduction]]
 = 1. Introduction
-:page-layout: 2017Jul
+:page-layout: 2017JUL
 :sectnums:
 :sectanchors:
 :toc:

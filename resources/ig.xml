@@ -7,9 +7,9 @@
   <status value="draft"/>
   <experimental value="false"/>
   <publisher value="HL7"/>
-  <package>
-    <name value="base"/>
-  </package>
+  <!--<package>-->
+    <!--<name value="base"/>-->
+  <!--</package>-->
   <page>
     <source value="index.html"/>
     <title value="CQL Specification"/>
