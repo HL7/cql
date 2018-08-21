@@ -6,7 +6,7 @@
 :sectanchors:
 :toc:
 
-This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the <<02-authorsguide.adoc#authors-guide,Author’s Guide>>  in the discussions that follow.
+This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the link:02-authorsguide.html[Author’s Guide] in the discussions that follow.
 
 [[lexical-elements]]
 == Lexical Elements
@@ -488,7 +488,7 @@ In addition, CQL defines several structured types to facilitate representation a
 
 Table 3‑F
 
-For more information about these types, refer to the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>> section on <<09-b-cqlreference.adoc#types,Types>>.
+For more information about these types, refer to the link:09-b-cqlreference.html[CQL Reference] section on <<09-b-cqlreference.adoc#types-2,Types>>.
 
 [[specifying-types]]
 === Specifying Types
@@ -734,7 +734,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 
 Table 3‑G
 
-For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators,Type Operators>> section in the <<09-b-cqlreference.adoc#appendix-b-cql-reference,CQL Reference>>.
+For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
 [[implicit-conversions]]
 ==== Implicit Conversions
@@ -1337,7 +1337,7 @@ This approach enables the flexibility of FHIRPath expressions but still maintain
 
 The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare context variables such as [.id]#$this# that can be addressed in the body of the method.
 
-This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the <<16-i-fhirpathtranslation.adoc#appendix-i-fhirpath-function-translation,FHIRPath Function Translation Appendix>>.
+This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the link:16-i-fhirpathtranslation.html[FHIRPath Function Translation Appendix].
 
 The _disable-method-invocation_ option controls whether or not method-style invocation is allowed in the translator.
 

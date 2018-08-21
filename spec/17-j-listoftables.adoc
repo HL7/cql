@@ -146,35 +146,35 @@
 [[translation-semantics]]
 == Translation Semantics
 
-1.  <<06translationsemantics.adoc#table-6-a,Table 6-A>>
+1.  <<06-translationsemantics.adoc#table-6-a,Table 6-A>>
 
-2.  <<06translationsemantics.adoc#table-6-b,Table 6-B>>
+2.  <<06-translationsemantics.adoc#table-6-b,Table 6-B>>
 
-3.  <<06translationsemantics.adoc#table-6-c,Table 6-C>>
+3.  <<06-translationsemantics.adoc#table-6-c,Table 6-C>>
 
-4.  <<06translationsemantics.adoc#table-6-d,Table 6-D>>
+4.  <<06-translationsemantics.adoc#table-6-d,Table 6-D>>
 
-5.  <<06translationsemantics.adoc#table-6-e,Table 6-E>>
+5.  <<06-translationsemantics.adoc#table-6-e,Table 6-E>>
 
-6.  <<06translationsemantics.adoc#table-6-f,Table 6-F>>
+6.  <<06-translationsemantics.adoc#table-6-f,Table 6-F>>
 
-7.  <<06translationsemantics.adoc#table-6-g,Table 6-G>>
+7.  <<06-translationsemantics.adoc#table-6-g,Table 6-G>>
 
-8.  <<06translationsemantics.adoc#table-6-h,Table 6-H>>
+8.  <<06-translationsemantics.adoc#table-6-h,Table 6-H>>
 
-9.  <<06translationsemantics.adoc#table-6-i,Table 6-I>>
+9.  <<06-translationsemantics.adoc#table-6-i,Table 6-I>>
 
-10.  <<06translationsemantics.adoc#table-6-j,Table 6-J>>
+10.  <<06-translationsemantics.adoc#table-6-j,Table 6-J>>
 
-11.  <<06translationsemantics.adoc#table-6-k,Table 6-K>>
+11.  <<06-translationsemantics.adoc#table-6-k,Table 6-K>>
 
-12.  <<06translationsemantics.adoc#table-6-l,Table 6-L>>
+12.  <<06-translationsemantics.adoc#table-6-l,Table 6-L>>
 
-13.  <<06translationsemantics.adoc#table-6-m,Table 6-M>>
+13.  <<06-translationsemantics.adoc#table-6-m,Table 6-M>>
 
-14.  <<06translationsemantics.adoc#table-6-n,Table 6-N>>
+14.  <<06-translationsemantics.adoc#table-6-n,Table 6-N>>
 
-15.  <<06translationsemantics.adoc#table-6-o,Table 6-O>>
+15.  <<06-translationsemantics.adoc#table-6-o,Table 6-O>>
 
 [[physical-representation]]
 == Physical Representation

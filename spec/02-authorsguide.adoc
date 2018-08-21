@@ -1,12 +1,10 @@
+[[authors-guide]]
+= 2. Author’s Guide
 :page-layout: current
 :backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:
-:toc-placement: left
-
-[[authors-guide]]
-= 2. Author’s Guide
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
@@ -20,7 +18,7 @@ At the highest level, CQL is organized around the concept of a _library_, which 
 
 In the sections that follow, the various constructs introduced above will be discussed in more detail, beginning with the kinds of declarations that can be made in a CQL library, and then moving through the various ways that clinical information is referenced and queried within CQL, an overview of the operators available in CQL, and ending with a detailed walkthrough of authoring specific quality artifacts using a running example.
 
-Note that throughout the discussion, readers may wish to refer to <<09-b-cqlreference.adoc#appendix-b-cql-reference,Appendix B – CQL Reference>> for more detailed discussion of particular concepts.
+Note that throughout the discussion, readers may wish to refer to link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
 
 [[declarations]]
 == Declarations
@@ -1194,7 +1192,7 @@ AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
 ----
 
-Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard Boolean (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators,Logical Operators>> section of <<09-b-cqlreference.adoc#appendix-b-cql-references,Appendix B – CQL Reference>>.
+Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard Boolean (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of link:09-b-cqlreference.html[Appendix B – CQL Reference].
 
 To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
 
@@ -1574,13 +1572,13 @@ If the first argument is after the second, the result will be negative.
 
 For calculations involving weeks, Sunday is considered the first day of the week.
 
-In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-lanuagesemantics.adoc#uncertainty,Uncertainty>> section.
+In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 
 When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-For a detailed set of examples of calculating time intervals, please refer to <<15-h-timeintervalcalculations.adoc#appendix-h-time-interval-calculation-examples,Appendix H - Time Interval Calculation Examples>>.
+For a detailed set of examples of calculating time intervals, please refer to link:15-h-timeintervalcalculations.html[Appendix H - Time Interval Calculation Examples].
 
 [[timing-and-interval-operators]]
 === Timing and Interval Operators
@@ -2257,7 +2255,7 @@ Note that when Age operators are invoked in a Population context, the result is 
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<15-h-timeintervalcalculations.adoc#appendix-h-time-interval-calculation-examples,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<15-h-timeintervalcalculations.adoc#examples,Examples>> included with this specification.
 
 [[running-example]]
 === Running Example

@@ -76,7 +76,7 @@ Using QDM:
   
 * link:examples\CMS55v1_QDM.cql[CQL]
 * link:examples\CMS55v1_QDM.xml[ELM (XML)]
-* link:examples\CMS55v1_QDM.json[ELM (JSON)]
+//* link:examples\CMS55v1_QDM.json[ELM (JSON)]
 
 === CMS135
 
@@ -100,9 +100,9 @@ Using QDM:
 
 === CMS154v1
 
-* link:examples\CMS154v1_NQF00069.cql[CQL]
-* link:examples\CMS154v1_NQF00069.xml[ELM (XML)]
-* link:examples\CMS154v1_NQF00069.json[ELM (JSON)]
+* link:examples\CMS154v1_NQF0069.cql[CQL]
+* link:examples\CMS154v1_NQF0069.xml[ELM (XML)]
+* link:examples\CMS154v1_NQF0069.json[ELM (JSON)]
 
 === CMS179v2
 
