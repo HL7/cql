@@ -627,7 +627,7 @@ Table 2‑E
 [[boolean]]
 ==== Boolean
 
-The Boolean type in CQL supports the logical values [.kw]#true# and [.kw]#false#. These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> for more.
+The Boolean type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> for more.
 
 [[integer]]
 ==== Integer
@@ -667,7 +667,7 @@ Comparison of [.id]#String# values in CQL is case-sensitive, meaning that the st
 'Patient' ~ 'patient'
 ----
 
-For case- and locale-insensitive comparison, use the equivalent ([.sym]#~#) operator.
+For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent ([.sym]#~#) operator.
 
 [[date-datetime-and-time]]
 ==== Date, DateTime, and Time
@@ -1093,7 +1093,7 @@ The most basic operation in CQL involves comparison of two values. This is accom
 |*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument. Returns null if either or both arguments are null
 |*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument. Returns null if either or both arguments are null
 |*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns null if any or all arguments are null.
-|*~* |Equivalent |Returns true if the arguments are the same value, or are both unknown. Returns null if either or both arguments are null
+|*~* |Equivalent |Returns true if the arguments are equivalent in value, or are both unknown. Returns null if either or both arguments are null
 |*!~* |Inequivalent |Returns true if the arguments are not equivalent. Returns null if either or both arguments are null
 |===========================================================================================================================================
 
@@ -1194,7 +1194,7 @@ INRResult > 5 or DischargedOnOverlapTherapy
 
 Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard Boolean (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of link:09-b-cqlreference.html[Appendix B – CQL Reference].
 
-To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
+To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
 
 [[arithmetic-operators]]
 === Arithmetic Operators
@@ -1998,7 +1998,7 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ----
 
-Note that the distinct operator uses the notion of equivalence ([.sym]#~#) to detect duplicates. Because equivalence is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equivalence (i.e. tuples are equal if they have the same type and the same values (or no value) for each element of the same name).
+Note that the distinct operator uses the notion of equivalence ([.sym]#~#) to detect duplicates. Because equivalence is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equivalence (i.e. tuples are equal if they have the same type and an equivalent value (or no value) for each element of the same name).
 
 To combine all the elements from multiple lists, use the [.kw]#union# operator:
 
@@ -2210,7 +2210,7 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
-These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same values for the code, system, and version elements). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
+These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have an equivalent value for the code, system, and version elements). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
 
 Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is true if any Code in the Concept is a member of the given valueset.
 
