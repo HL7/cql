@@ -2488,7 +2488,14 @@ For example:
 
 [source,cql]
 ----
-expand EffectivePeriods per day
+expand { Interval[@2018-01-01, @2018-01-04] } per day
+----
+
+The following is the result of the example:
+
+[source,cql]
+----
+{ Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
 ----
 
 Note that if the values in the intervals are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity.
