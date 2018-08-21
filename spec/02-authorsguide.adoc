@@ -669,7 +669,7 @@ Comparison of [.id]#String# values in CQL is case-sensitive, meaning that the st
 'Patient' ~ 'patient'
 ----
 
-For case- and locale-insensitive comparison, use the equivalent ([.sym]#~#) operator.
+For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent ([.sym]#~#) operator.
 
 [[date-datetime-and-time]]
 ==== Date, DateTime, and Time
