@@ -2358,7 +2358,7 @@ collapse(argument List<Interval<T>>) List<Interval<T>>
 
 *Description:*
 
-The [.kw]#collapse# operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals.
+The [.kw]#collapse# operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals. In other words, adjacent intervals within a sorted list are merged if they either overlap or meet.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
