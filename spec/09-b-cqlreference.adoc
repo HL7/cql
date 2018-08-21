@@ -1916,6 +1916,8 @@ For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
@@ -1943,6 +1945,8 @@ For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [
 For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -2051,6 +2055,8 @@ For [.id]#DateTime# values, _precision_ must be one of: [.kw]#years#, [.kw]#mont
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 [[duration]]
@@ -2074,6 +2080,8 @@ For [.id]#Date# values, _duration_ must be one of: [.kw]#years#, [.kw]#months#, 
 For [.id]#DateTime# values, _duration_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
 For [.id]#Time# values, _duration_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
+
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2116,6 +2124,8 @@ For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
@@ -2145,6 +2155,8 @@ For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [
 For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -2177,6 +2189,8 @@ For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [
 For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
