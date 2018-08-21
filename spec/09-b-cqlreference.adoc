@@ -992,7 +992,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Description:*
 
-The [.sym]#~# operator returns [.kw]#true# if the arguments are the same value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
+The [.sym]#~# operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
 For string values, equivalence is case- and locale-insensitive.
 

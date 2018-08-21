@@ -1092,7 +1092,7 @@ The most basic operation in CQL involves comparison of two values. This is accom
 |*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument. Returns null if either or both arguments are null
 |*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument. Returns null if either or both arguments are null
 |*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns null if any or all arguments are null.
-|*~* |Equivalent |Returns true if the arguments are the same value, or are both unknown. Returns null if either or both arguments are null
+|*~* |Equivalent |Returns true if the arguments are equivalent in value, or are both unknown. Returns null if either or both arguments are null
 |*!~* |Inequivalent |Returns true if the arguments are not equivalent. Returns null if either or both arguments are null
 |===========================================================================================================================================
 
@@ -1997,7 +1997,7 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ----
 
-Note that the distinct operator uses the notion of equivalence ([.sym]#~#) to detect duplicates. Because equivalence is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equivalence (i.e. tuples are equal if they have the same type and the same values (or no value) for each element of the same name).
+Note that the distinct operator uses the notion of equivalence ([.sym]#~#) to detect duplicates. Because equivalence is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equivalence (i.e. tuples are equal if they have the same type and an equivalent value (or no value) for each element of the same name).
 
 To combine all the elements from multiple lists, use the [.kw]#union# operator:
 
@@ -2209,7 +2209,7 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
-These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same values for the code, system, and version elements). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
+These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have an equivalent value for the code, system, and version elements). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
 
 Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is true if any Code in the Concept is a member of the given valueset.
 
