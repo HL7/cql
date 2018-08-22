@@ -160,7 +160,7 @@ The parameters defined in a library may be referenced by name in any expression 
 
 [source,cql]
 ----
-parameter MeasurementPeriod default Interval[@2013-01-01T00:00:00.0, @2014-01-01T00:00:00.0)
+parameter MeasurementPeriod default Interval[@2013-01-01, @2014-01-01)
 ----
 
 Note the syntax for the default here is called an _interval selector_ and will be discussed in more detail in the section on <<Interval Values>>.
@@ -1082,7 +1082,26 @@ Intervals can be constructed based on any type that supports unique and ordered 
 Interval[@2014-01-01T00:00:00.0, @2015-01-01T00:00:00.0)
 ----
 
-This expression results in an interval that begins at midnight on January 1, 2014, and ends just before midnight on January 1, 2015.
+This expression results in an interval that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
+
+[source,cql]
+----
+Interval[@2014-01-01T00:00:00.0, @2014-12-31T23:59:59.999]
+----
+
+Furthermore, take the following example:
+
+[source,cql]
+----
+Interval[@2014-01-01, @2015-01-01)
+----
+
+This expression results in an interval that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
+
+[source,cql]
+----
+Interval[@2014-01-01, @2014-12-31]
+----
 
 Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid interval will result in a run-time error. For example:
 
