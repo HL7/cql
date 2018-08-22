@@ -474,6 +474,8 @@ All the system-defined types derive directly from System.Any. The primitive type
 
 Table 3‑E
 
+Note that CQL supports three-valued logic, see the section on <<02-authorsguide.adoc#missing-information,Missing Information>> in the Author's Guide, as well as the section on <<Missing Information>> in the Developer's guide for more.
+
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
 [[table-3-f]]
