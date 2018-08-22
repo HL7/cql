@@ -278,10 +278,10 @@ The following examples illustrate the behavior of the [.kw]#and# operator:
 
 [source,cql]
 ----
-define IsTrue = true and true
-define IsFalse = true and false
-define IsAlsoFalse = false and null
-define IsNull = true and null
+define IsTrue: true and true
+define IsFalse: true and false
+define IsAlsoFalse: false and null
+define IsNull: true and null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -313,6 +313,18 @@ The following table defines the truth table for this operator:
 
 Table 9‑A
 
+*Example:*
+
+The following examples illustrate the behavior of the [.kw]#implies# operator:
+
+[source,cql]
+----
+define IsTrue: false implies false
+define IsAlsoTrue: false implies null
+define IsFalse: true implies false
+define IsNull: true implies null
+----
+
 [[not]]
 === Not
 
@@ -339,6 +351,15 @@ The following table defines the truth table for this operator:
 |===========
 
 Table 9‑B
+
+The following examples illustrate the behavior of the [.kw]#not# operator:
+
+[source,cql]
+----
+define IsTrue: not false
+define IsFalse: not true
+define IsNull: not null
+----
 
 [[or]]
 === Or
@@ -373,10 +394,10 @@ The following examples illustrate the behavior of the [.kw]#or# operator:
 
 [source,cql]
 ----
-define IsTrue = true or false
-define IsAlsoTrue = true or null
-define IsFalse = false or false
-define IsNull = false or null
+define IsTrue: true or false
+define IsAlsoTrue: true or null
+define IsFalse: false or false
+define IsNull: false or null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -407,6 +428,16 @@ The following table defines the truth table for this operator:
 |========================
 
 Table 9‑D
+
+The following examples illustrate the behavior of the [.kw]#xor# operator:
+
+[source,cql]
+----
+define IsTrue: true xor false
+define IsAlsoTrue: false xor true
+define IsFalse: true xor true
+define IsNull: true xor null
+----
 
 [[type-operators-1]]
 == Type Operators
@@ -550,6 +581,14 @@ is<T>(argument Any) Boolean
 
 The [.kw]#is# operator allows the type of a result to be tested. If the run-time type of the argument is of the type being tested, the result of the operator is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
+The following examples illustrate the behavior of the [.kw]#is# operator:
+
+[source,cql]
+----
+define IsTrue: 5 is Integer
+define IsFalse: '5' is Integer
+----
+
 [[toboolean]]
 === ToBoolean
 
@@ -580,6 +619,15 @@ If the input cannot be interpreted as a valid [.id]#Boolean# value, the result i
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#ToBoolean# operator:
+
+[source,cql]
+----
+define IsTrue: ToBoolean('y')
+define IsFalse: ToBoolean('0')
+define IsNull: ToBoolean('falsetto')
+----
+
 [[toconcept]]
 === ToConcept
 
@@ -595,6 +643,14 @@ ToConcept(argument Code) Concept
 The [.id]#ToConcept# operator converts a value of type [.id]#Code# to a [.id]#Concept# value with the given [.id]#Code# as its primary and only [.id]#Code#. If the [.id]#Code# has a [.id]#display# value, the resulting [.id]#Concept# will have the same [.id]#display# value.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#ToConcept# operator:
+
+[source,cql]
+----
+define IsValid: ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
+define IsNull: ToConcept(null as Code)
+----
 
 [[todate]]
 === ToDate
@@ -695,6 +751,14 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#ToDecimal# operator:
+
+[source,cql]
+----
+define IsValid: ToDecimal('-0.1')
+define IsNull: ToDecimal('+-0.1')
+----
+
 [[tointeger]]
 === ToInteger
 
@@ -721,6 +785,14 @@ Note that the integer value returned by this operator must be a valid value in t
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#null#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#ToInteger# operator:
+
+[source,cql]
+----
+define IsValid: ToDecimal('-1')
+define IsNull: ToDecimal('one')
+----
 
 [[toquantity]]
 === ToQuantity
@@ -755,6 +827,16 @@ For the [.id]#Integer# and [.id]#Decimal# overloads, the operator returns a quan
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#ToQuantity# operator:
+
+[source,cql]
+----
+define DecimalOverload: ToQuantity(0.1) // 0.1 '1'
+define IntegerOverload: ToQuantity(13) // 13 '1'
+define StringOverload: ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
+define IsNull: ToQuantity('444 \'cm')
+----
+
 [[toratio]]
 ==== ToRatio
 
@@ -779,6 +861,14 @@ where <quantity> is the format used to by the [.id]#ToQuantity# operator.
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Ratio# value, the result is [.kw]#null#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#ToRatio# operator:
+
+[source,cql]
+----
+define IsValid: ToRatio('1.0 \'mg\':2.0 \'mg\'')
+define IsNull: ToRatio('1.0 \'mg\';2.0 \'mg\'')
+----
 
 [[tostring]]
 === ToString
@@ -820,6 +910,22 @@ Table 9‑G
 The result of any ToString must be round-trippable back to the source value.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+
+The following examples illustrate the behavior of the [.id]#ToString# operator:
+
+[source,cql]
+----
+define BooleanOverload: ToString(true)
+define IntegerOverload: ToString(13)
+define DecimalOverload: ToString(0.1)
+define QuantityOverload: ToString(-0.1 'mg')
+define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
+define DateOverload: ToString(@2012-01-01)
+define DateTimeOverload: ToString(@2012-01-01T12:30:00.000-05:00)
+define TimeOverload: ToString(@T12:30:00.000-05:00)
+define IsNull: ToString(null as Integer)
+----
 
 [[totime]]
 === ToTime
@@ -878,6 +984,15 @@ The [.id]#Coalesce# operator returns the first non-null result in a list of argu
 
 The static type of the first argument determines the type of the result, and all subsequent arguments must be of that same type.
 
+The following examples illustrate the behavior of the [.id]#Coalesce# operator:
+
+[source,cql]
+----
+define Coalesce15: Coalesce(null, 15, null)
+define IsNull: Coalesce({ null, null, null })
+define CoalesceError: Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
+----
+
 [[isnull]]
 === IsNull
 
@@ -891,6 +1006,14 @@ is null(argument Any) Boolean
 *Description:*
 
 The [.kw]#is null# operator determines whether or not its argument evaluates to [.kw]#null#. If the argument evaluates to [.kw]#null#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
+
+The following examples illustrate the behavior of the [.kw]#is null# operator:
+
+[source,cql]
+----
+define IsTrue: null is null
+define IsFalse: true is null
+----
 
 [[isfalse]]
 === IsFalse
@@ -906,6 +1029,14 @@ is false(argument Boolean) Boolean
 
 The [.kw]#is false# operator determines whether or not its argument evaluates to [.kw]#false#. If the argument evaluates to [.kw]#false#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
 
+The following examples illustrate the behavior of the [.kw]#is false# operator:
+
+[source,cql]
+----
+define IsFalseIsTrue: false is false
+define IsFalseIsFalse: null is false
+----
+
 [[istrue]]
 === IsTrue
 
@@ -919,6 +1050,14 @@ is true(argument Boolean) Boolean
 *Description:*
 
 The [.kw]#is true# operator determines whether or not its argument evaluates to [.kw]#true#. If the argument evaluates to [.kw]#true#, the result is [.kw]#true#; otherwise, the result is [.kw]#false#.
+
+The following examples illustrate the behavior of the [.kw]#is true# operator:
+
+[source,cql]
+----
+define IsTrueIsTrue: true is true
+define IsTrueIsFalse: false is true
+----
 
 [[comparison-operators-4]]
 == Comparison Operators
@@ -950,6 +1089,16 @@ For comparisons involving date/time values with imprecision, note that the resul
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#between# operator:
+
+[source,cql]
+----
+define IntegerBetweenIsTrue: 4 between 2 and 6
+define DecimalBetweenIsFalse: 3.5 between 3.6 and 4.8
+define QuantityBetweenIsNull: 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
+define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
+----
 
 [[equal]]
 === Equal
@@ -983,6 +1132,19 @@ For comparisons involving date/time or time values with imprecision, note that t
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _equal_ operator:
+
+[source,cql]
+----
+define IntegerEqualIsTrue: 4 = (2 + 2)
+define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
+define StringEqualIsFalse: 'CQL is awesome!' = 'cql is awesome!'
+define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
+define ListEqualIsNull: { null, 1, 2, 3 } = { null, 1, 2, 3 }
+define DateTimeEqualIsNull: @2012-01-01 = @2012-01-01T12
+define NullEqualIsNull: null = null
+----
+
 [[equivalent]]
 === Equivalent
 
@@ -995,7 +1157,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Description:*
 
-The [.sym]#~# operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
+The _equivalence_ ([.sym]#~#) operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
 For string values, equivalence is case- and locale-insensitive.
 
@@ -1012,6 +1174,19 @@ For [.id]#Concept# values, equivalence is defined as a non-empty intersection of
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
 This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as [.kw]#in#, [.kw]#contains#, [.kw]#includes#, [.id]#IndexOf()#, etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
+
+The following examples illustrate the behavior of the _equivalence_ operator:
+
+[source,cql]
+----
+define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
+define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
+define StringEquivalentIsTrue: 'CQL is awesome!' ~ 'cql is awesome!'
+define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
+define ListEquivalentIsTrue: { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
+define DateTimeEquivalentIsFalse: @2012-01-01 ~ @2012-01-01T12
+define NullEquivalentIsTrue: null ~ null
+----
 
 [[greater]]
 === Greater
@@ -1041,6 +1216,17 @@ For comparisons involving date/time values with imprecision, note that the resul
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _greater_ operator:
+
+[source,cql]
+----
+define IntegerGreaterIsTrue: 4 > 3
+define DecimalGreaterIsFalse: 3.5 > 3.5
+define QuantityGreaterIsNull: 3.6 'cm2' > 3.5 'cm'
+define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
+define NullGreaterIsNull: null > 5
+----
+
 [[greater-or-equal]]
 === Greater Or Equal
 
@@ -1068,6 +1254,17 @@ For comparisons involving quantities, the dimensions of each quantity must be th
 For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the _greater or equal_ operator:
+
+[source,cql]
+----
+define IntegerGreaterOrEqualIsTrue: 4 >= (2 + 2)
+define DecimalGreaterOrEqualIsFalse: 3.5 >= (3.5 + 0.1)
+define QuantityGreaterOrEqualIsNull: 3.6 'cm2' >= 3.5 'cm'
+define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
+define NullGreaterOrEqualIsNull: null >= 5
+----
 
 [[less]]
 === Less
@@ -1097,6 +1294,17 @@ For comparisons involving date/time values with imprecision, note that the resul
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _less_ operator:
+
+[source,cql]
+----
+define IntegerLessIsTrue: 4 < (2 + 2 + 2)
+define DecimalLessIsFalse: 3.5 < 3.5
+define QuantityLessIsNull: 3.6 'cm2' < 3.5 'cm'
+define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
+define NullLessIsNull: null < 5
+----
+
 [[less-or-equal]]
 === Less Or Equal
 
@@ -1125,6 +1333,17 @@ For comparisons involving date/time values with imprecision, note that the resul
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _less or equal_ operator:
+
+[source,cql]
+----
+define IntegerLessOrEqualIsTrue: 4 <= (2 + 2)
+define DecimalLessOrEqualIsFalse: 3.5 <= (3.5 - 0.1)
+define QuantityLessOrEqualIsNull: 3.6 'cm2' <= 3.6 'cm'
+define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
+define NullLessOrEqualIsNull: null <= 5
+----
+
 [[not-equal]]
 === Not Equal
 
@@ -1141,6 +1360,19 @@ The _not equal_ ([.sym]#!=#) operator returns [.kw]#true# if its arguments are n
 
 The _not equal_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equal_ operator.
 
+The following examples illustrate the behavior of the _not equal_ operator:
+
+[source,cql]
+----
+define IntegerNotEqualIsFalse: 4 != (2 + 2)
+define DecimalNotEqualIsTrue: 3.5 != (3.5 - 0.1)
+define StringNotEqualIsTrue: 'CQL is awesome!' != 'cql is awesome!'
+define QuantityNotEqualIsNull: 3.5 'cm2' != 3.5 'cm'
+define ListNotEqualIsNull: { null, 1, 2, 3 } != { null, 1, 2, 3 }
+define DateTimeNotEqualIsNull: @2012-01-01 != @2012-01-01T12
+define NullNotEqualIsNull: null != null
+----
+
 [[not-equivalent]]
 === Not Equivalent
 
@@ -1156,6 +1388,19 @@ The _not equal_ operator is a shorthand for invocation of logical negation ([.kw
 The _not equivalent_ ([.sym]#!~#) operator returns [.kw]#true# if its arguments are not equivalent.
 
 The _not equivalent_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equivalent_ operator.
+
+The following examples illustrate the behavior of the _not equivalent_ operator:
+
+[source,cql]
+----
+define IntegerNotEquivalentIsFalse: 4 !~ (2 + 2)
+define DecimalNotEquivalentIsTrue: 3.5 !~ (3.5 - 0.1)
+define StringNotEquivalentIsFalse: 'CQL is awesome!' !~ 'cql is awesome!'
+define QuantityNotEquivalentIsTrue: 3.5 'cm2' !~ 3.5 'cm'
+define ListNotEquivalentIsFalse: { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
+define DateTimeNotEquivalentIsTrue: @2012-01-01 !~ @2012-01-01T12
+define NullNotEquivalentIsFalse: null !~ null
+----
 
 [[arithmetic-operators-4]]
 == Arithmetic Operators
@@ -1180,6 +1425,16 @@ When taking the absolute value of a quantity, the unit is unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Abs# operator:
+
+[source,cql]
+----
+define IntegerAbs: Abs(-5) // 5
+define IntegerAbsIsNull: Abs(null as Integer)
+define DecimalAbs: Abs(-5.5) // 5.5
+define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
+----
+
 [[add]]
 === Add
 
@@ -1202,6 +1457,17 @@ When adding quantities, the dimensions of each quantity must be the same, but no
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _add_ operator:
+
+[source,cql]
+----
+define IntegerAdd: 2 + 2 // 4
+define IntegerAddIsNull: 2 + null
+define DecimalAdd: 2.5 + 5 // 7.5
+define QuantityAdd: -5.5 'mg' + 2 'mg' // -3.5 'mg'
+define QuantityAddIsNull: -5.5 'cm' + 2 'cm2'
+----
+
 [[ceiling]]
 === Ceiling
 
@@ -1219,6 +1485,15 @@ The [.id]#Ceiling# operator returns the first integer greater than or equal to t
 When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Ceiling# operator:
+
+[source,cql]
+----
+define IntegerCeiling: Ceiling(1) // 1
+define DecimalCeiling: Ceiling(1.1) // 2
+define QuantityCeilingIsNull: Ceiling(null as Decimal)
+----
 
 [[divide]]
 === Divide
@@ -1249,6 +1524,17 @@ In this example, the result will have a unit of [.lit]#'cm'#. Note that when per
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _divide_ operator:
+
+[source,cql]
+----
+define IntegerDivide: 4.0 / 2 // 2.0
+define DecimalDivide: 9.9 / 3.0 // 3.3
+define DecimalDivideIsNull: 2.2 / null
+define DecimalDivideIsError: 2.2 / 0
+define QuantityDivide: -5.5 'mg' / 2.0 'mg' // -2.75
+----
+
 [[floor]]
 === Floor
 
@@ -1266,6 +1552,15 @@ The [.id]#Floor# operator returns the first integer less than or equal to the ar
 When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Floor# operator:
+
+[source,cql]
+----
+define IntegerFloor: Floor(1) // 1
+define DecimalFloor: Floor(2.1) // 2
+define QuantityFloorIsNull: Floor(null as Decimal)
+----
 
 [[exp]]
 === Exp
@@ -1285,6 +1580,15 @@ When invoked with an [.id]#Integer# argument, the argument will be implicitly co
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Exp# operator:
+
+[source,cql]
+----
+define IntegerExp: Exp(0) // 1.0
+define DecimalExp: Exp(-0.0) // 1.0
+define QuantityExpIsNull: Exp(null as Decimal)
+----
+
 [[log]]
 === Log
 
@@ -1303,6 +1607,15 @@ When invoked with [.id]#Integer# arguments, the arguments will be implicitly con
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Log# operator:
+
+[source,cql]
+----
+define IntegerLog: Log(16, 2) // 4.0
+define DecimalLog: Log(100.0, 10.0) // 2.0
+define QuantityLogIsNull: Log(null, 10.0)
+----
+
 [[ln]]
 === Ln
 
@@ -1320,6 +1633,15 @@ The [.id]#Ln# operator computes the natural logarithm of its argument.
 When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Ln# operator:
+
+[source,cql]
+----
+define IntegerLn: Ln(1) // 0.0
+define DecimalLn: Ln(1.0) // 0.0
+define QuantityLnIsNull: Ln(null as Decimal)
+----
 
 [[maximum]]
 === Maximum
@@ -1349,6 +1671,15 @@ For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
+The following examples illustrate the behavior of the [.kw]#maximum# operator:
+
+[source,cql]
+----
+define IntegerMaximum: maximum Integer // 2147483647
+define DateTimeMaximum: maximum DateTime // @9999-12-31T23:59:59.999
+define ErrorMaximum: maximum Quantity
+----
+
 [[minimum]]
 === Minimum
 
@@ -1377,6 +1708,15 @@ For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
+The following examples illustrate the behavior of the [.kw]#minimum# operator:
+
+[source,cql]
+----
+define IntegerMinimum: minimum Integer // -2147483648
+define DateTimeMinimum: minimum DateTime // @0001-01-01T00:00:00.000
+define ErrorMinimum: minimum Quantity
+----
+
 [[modulo]]
 === Modulo
 
@@ -1395,6 +1735,15 @@ The [.kw]#mod# operator computes the remainder of the division of its arguments.
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#mod# operator:
+
+[source,cql]
+----
+define IntegerModulo: 3 mod 2 // 1
+define DecimalModulo: 2.5 mod 2 // 0.5
+define ModuloIsNull: 2.5 mod null
+----
 
 [[multiply]]
 === Multiply
@@ -1448,6 +1797,16 @@ When negating quantities, the unit is unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _negate_ operator:
+
+[source,cql]
+----
+define IntegerNegate: -3 // -3
+define DecimalNegate: -(-3.3) // 3.3
+define QuantityNegate: -3.3 'mg' // -3.3 'mg'
+define NegateIsNull: -(null as Integer)
+----
+
 [[predecessor]]
 === Predecessor
 
@@ -1474,6 +1833,16 @@ For [.id]#Quantity# values, the [.kw]#predecessor# is equivalent to subtracting 
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#predecessor# operator:
+
+[source,cql]
+----
+define IntegerPredecessor: predecessor of 100 // 99
+define DecimalPredecessor: predecessor of 1.0 // 0.99999999
+define DatePredecessor: predecessor of @2014-01-01 // @2013-12-31
+define PredecessorIsNull: predecessor of (null as Quantity)
+----
+
 [[power]]
 === Power
 
@@ -1492,6 +1861,16 @@ The _power_ ([.sym]#^#) operator raises the first argument to the power given by
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the _power_ operator:
+
+[source,cql]
+----
+define IntegerPower: 2^3 // 8
+define IntegerPowerFun: Power(2, 3) // 8
+define DecimalPower: 2.5^2.0 // 6.25
+define NegateIsNull: 2.5^null
+----
 
 [[round]]
 === Round
@@ -1514,6 +1893,15 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 Precision determines the decimal place at which the rounding will occur. If precision is not specified or [.kw]#null#, 0 is assumed.
 
+The following examples illustrate the behavior of the [.id]#Round# operator:
+
+[source,cql]
+----
+define IntegerRound: Round(1) // 1
+define DecimalRound: Round(3.14159, 3) // 3.142
+define RoundIsNull: Round(null)
+----
+
 [[subtract]]
 === Subtract
 
@@ -1535,6 +1923,17 @@ When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#I
 When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be subtracted, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the _subtract_ operator:
+
+[source,cql]
+----
+define IntegerSubtract: 2 - 1 // 1
+define DecimalSubtract: 3.14 - 3.12 // 0.02
+define QuantitySubtract: 3.14 'mg' - 3.12 'mg' // 0.02 'mg'
+define QuantitySubtractError: 3.14 'cm' - 3.12 'cm2'
+define SubtractIsNull: 3 - null
+----
 
 [[successor]]
 === Successor
@@ -1562,6 +1961,16 @@ For [.id]#Quantity# values, the [.kw]#successor# is equivalent to adding 1 if th
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#successor# operator:
+
+[source,cql]
+----
+define IntegerSuccessor: successor of 100 // 101
+define DecimalSuccessor: successor of 1.0 // 1.00000001
+define DateSuccessor: successor of @2014-01-01 // @2014-01-02
+define SuccessorIsNull: successor of (null as Quantity)
+----
+
 [[truncate]]
 === Truncate
 
@@ -1579,6 +1988,15 @@ The [.id]#Truncate# operator returns the integer component of its argument.
 When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Truncate# operator:
+
+[source,cql]
+----
+define IntegerTruncate: Truncate(101) // 101
+define DecimalTruncate: Truncate(1.00000001) // 1
+define TruncateIsNull: Truncate(null)
+----
 
 [[truncated-divide]]
 === Truncated Divide
@@ -1598,6 +2016,15 @@ The [.kw]#div# operator performs truncated division of its arguments.
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#div# operator:
+
+[source,cql]
+----
+define IntegerTruncatedDivide: 4 div 2 // 2
+define DecimalTruncatedDivide: 4.14 div 2.06 // 2
+define TruncatedDivideIsNull: 3 div null
+----
 
 [[string-operators-3]]
 == String Operators
