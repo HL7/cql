@@ -295,14 +295,29 @@ In addition, the retrieve expression allows the filtering attribute name to be s
 
 This requests clinical statements that assert the presence of a condition with a severity in the [.id]#"Acute Severity"# valueset.
 
-Note that the terminology reference [.id]#"Acute Severity"# in the above examples is a valueset, but it could also be a code system, or a specific code:
+Note that the terminology reference [.id]#"Acute Severity"# in the above examples is a valueset, but it could also be a code system, a concept, or a specific code:
 
 [source,cql]
 ----
-[Condition: severity in "Acute"]
+codesystem "SNOMED:2014": 'http://snomed.info/sct'
+code "Acute Pharyngitis Code":
+  '363746003' from "SNOMED:2014" display 'Acute pharyngitis (disorder)'
+code "Acute Viral Pharyngitis Code":
+  '195662009' from "SNOMED:2014" display 'Acute viral pharyngitis (disorder)'
+concept "Acute Pharyngitis Concepts":
+  { "Acute Pharyngitis Code", "Acute Viral Pharyngitis Code" } display 'Acute Pharyngitis Concepts'
+
+define "Get Condition from Code Declaration":
+  [Condition: severity in "Acute Pharyngitis Code"]
+
+define "Get Condition from Concept Declaration":
+  [Condition: severity in "Acute Pharyngitis Concepts"]
+
+define "Get Condition from CodeSystem Declaration":
+  [Condition: severity in "SNOMED:2014"]
 ----
 
-Assuming there is a code declaration with the identifier [.id]#"Acute"#, this example will return conditions for the patient where the severity is equal to the [.id]#"Acute"# code.
+The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the severity is equal to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from Concept Declaration"# expression returns conditions for the patient where the severity is contained within the [.id]#"Acute Pharyngitis Concepts"# concept. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the severity is contained within the [.id]#"SNOMED:2014"# code system.
 
 [[retrieve-context]]
 === Retrieve Context
@@ -627,7 +642,7 @@ Table 2‑E
 [[boolean]]
 ==== Boolean
 
-The Boolean type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#missing-information,Missing Information>> in the Developer's guide for more.
+The Boolean type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#missing-information-1,Missing Information>> in the Developer's guide for more.
 
 [[integer]]
 ==== Integer
