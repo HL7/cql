@@ -55,6 +55,8 @@ simple type Boolean
 
 The [.id]#Boolean# type represents the logical boolean values [.kw]#true# and [.kw]#false#. The result of logical operations within CQL use the [.id]#Boolean# type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the [.id]#Boolean# type.
 
+For more information, see the <<Logical Operators>> section.
+
 [[code-1]]
 === Code
 
