@@ -510,6 +510,7 @@ conceptSelector
 
 identifier
     : IDENTIFIER
+    | DELIMITEDIDENTIFIER
     | QUOTEDIDENTIFIER
     | 'all'
     | 'Code'
@@ -567,6 +568,10 @@ IDENTIFIER
         : ([A-Za-z] | '_')([A-Za-z0-9] | '_')*            // Added _ to support CQL (FHIR could constrain it out)
         ;
 
+DELIMITEDIDENTIFIER
+        : '`' (ESC | .)*? '`'
+        ;
+
 QUOTEDIDENTIFIER
         : '"' (ESC | .)*? '"'
         ;
@@ -594,7 +599,7 @@ LINE_COMMENT
         ;
 
 fragment ESC
-        : '\\' (["'\\/fnrt] | UNICODE)    // allow \", \', \\, \/, \f, etc. and \uXXX
+        : '\\' ([`'"\\/fnrt] | UNICODE)    // allow \`, \', \", \\, \/, \f, etc. and \uXXX
         ;
 
 fragment UNICODE

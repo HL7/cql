@@ -90,6 +90,7 @@ CQL uses standard escape sequences for string literals:
 |Escape |Character
 |\' |Single-quote
 |\" |Double-quote
+|\` |Backtick
 |\r |Carriage Return
 |\n |Line Feed
 |\t |Tab
@@ -243,12 +244,12 @@ year
 years
 ----
 
-In general, keywords within CQL are also considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted.
+In general, keywords within CQL are also considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
 
 [[identifiers]]
 === Identifiers
 
-Identifiers are used to name various elements within the language. There are two types of identifiers in CQL, simple, and quoted.
+Identifiers are used to name various elements within the language. There are three types of identifiers in CQL, simple, delimited, and quoted.
 
 A simple identifier is any alphabetical character or an underscore, followed by any number of alpha-numeric characters or underscores. For example, the following are all valid simple identifiers:
 
@@ -265,6 +266,14 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
+A delimited identifier is any sequence of charaters enclosed in backticks ([.sym]#`#):
+
+[source, cql]
+----
+`Encounter, Performed`
+`Diagnosis, Active`
+----
+
 A quoted identifier is any sequence of characters enclosed in double-quotes ([.sym]#"#):
 
 [source,cql]
@@ -273,16 +282,16 @@ A quoted identifier is any sequence of characters enclosed in double-quotes ([.s
 "Diagnosis, Active"
 ----
 
-The use of double-quotes allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
+The use of double-quotes and backticks allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
 
-To specify a quoted-identifier that includes a double-quote ([.sym]#"#), use a backslash to escape the double-quote ([.sym]#\"#):
+To specify a quoted or delimited identifier that includes a double-quote ([.sym]#"#) or backtick ([.sym]#`#), use a backslash to escape the delimiter:
 
 [source,cql]
 ----
 "Encounter \"Inpatient\""
 ----
 
-Note that double-quoted identifiers are still case-sensitive, and as with simple identifiers, the use of double-quoted identifiers that differ only in case should be avoided. The enclosing quotation marks are not included in the defined identifier.
+Note that double-quoted and delimited identifiers are still case-sensitive, and as with simple identifiers, the use of identifiers that differ only in case should be avoided. The enclosing delimiter marks are not included in the defined identifier.
 
 CQL escape sequences for strings also work for identifiers:
 
@@ -292,6 +301,7 @@ CQL escape sequences for strings also work for identifiers:
 |Escape |Character
 |*\'* |Single-quote
 |*\"* |Double-quote
+|*\`* |Backtick
 |*\r* |Carriage Return
 |*\n* |Line Feed
 |*\t* |Tab
