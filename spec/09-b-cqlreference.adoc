@@ -790,8 +790,8 @@ The following examples illustrate the behavior of the [.id]#ToInteger# operator:
 
 [source,cql]
 ----
-define IsValid: ToDecimal('-1')
-define IsNull: ToDecimal('one')
+define IsValid: ToInteger('-1')
+define IsNull: ToInteger('one')
 ----
 
 [[toquantity]]
@@ -2046,6 +2046,15 @@ The [.id]#Combine# operator combines a list of strings, optionally separating ea
 
 If either argument is [.kw]#null#, or any element in the source list of strings is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Combine# operator:
+
+[source,cql]
+----
+define CombineList: Combine({ 'super', 'califragilistic', 'expialidocious' }) // 'supercalifragilisticexpialidocious'
+define CombineWithSeparator: Combine({ 'CQL', 'is', 'awesome' }, ' ') // 'CQL is awesome'
+define CombineIsNull: Combine({ 'the', 'next', 'arg', 'is', null })
+----
+
 [[concatenate]]
 === Concatenate
 
@@ -2065,6 +2074,16 @@ When using [.sym]#+#, if either argument is [.kw]#null#, the result is [.kw]#nul
 
 When using [.sym]#&#, [.kw]#null# arguments are treated as an empty string ([.sym]#''#).
 
+The following examples illustrate the behavior of the _concatenate_ operator:
+
+[source,cql]
+----
+define ConcatenatePlus: 'CQL is' + ' awesome' // 'CQL is awesome'
+define ConcatenateAnd: 'CQL is' & ' awesome' // 'CQL is awesome'
+define ConcatenateFun: Concatenate('CQL is', ' awesome') // 'CQL is awesome'
+define ConcatenateIsNull: 'CQL is' + null
+----
+
 [[endswith]]
 === EndsWith
 
@@ -2082,6 +2101,15 @@ The [.id]#EndsWith# operator returns true if the given string ends with the give
 If the suffix is the empty string, the result is true.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#EndsWith# operator:
+
+[source,cql]
+----
+define EndsWithIsTrue: EndsWith('CQL is awesome', 'some')
+define EndsWithIsFalse: EndsWith('CQL is awesome', 'Some')
+define EndsWithIsNull: EndsWith('CQL is awesome', null)
+----
 
 [[indexer]]
 === Indexer
@@ -2103,6 +2131,15 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the index is greater than the length of the string being indexed, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _indexer_ operator:
+
+[source,cql]
+----
+define Indexer2: 'CQL is awesome'[2] // 'L'
+define IndexerIsNull: 'CQL is awesome'[14]
+define IndexerIsAlsoNull: 'CQL is awesome'[null]
+----
+
 [[lastpositionof]]
 === LastPositionOf
 
@@ -2121,6 +2158,15 @@ If the pattern is not found, the result is -1.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#LastPositionOf# operator:
+
+[source,cql]
+----
+define LastPositionOfFound: LastPositionOf('awesome', 'CQL is awesome') // 7
+define LastPositionOfNotFound: LastPositionOf('Some', 'CQL is awesome') // -1
+define LastPositionOfIsNull: LastPositionOf(null, 'CQL is awesome')
+----
+
 [[length]]
 === Length
 
@@ -2136,6 +2182,14 @@ Length(argument String) Integer
 The [.id]#Length# operator returns the number of characters in a string.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Length# operator:
+
+[source,cql]
+----
+define Length14: Length('CQL is awesome') // 14
+define LengthIsNull: Length(null as String)
+----
 
 [[lower]]
 === Lower
@@ -2155,6 +2209,14 @@ Note that the definition of _lowercase_ for a given character is a locale-depend
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Lower# operator:
+
+[source,cql]
+----
+define LowerCQL: Lower('CQL is awesome') // 'cql is awesome'
+define LowerIsNull: Lower(null)
+----
+
 [[matches]]
 === Matches
 
@@ -2172,6 +2234,15 @@ The [.id]#Matches# operator returns true if the given string matches the given r
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+
+The following examples illustrate the behavior of the [.id]#Matches# operator:
+
+[source,cql]
+----
+define MatchesTrue: Matches('1,2three', '\\d,\\d\\w+')
+define MatchesFalse: Matches('1,2three', '\\w+')
+define MatchesIsNull: Matches('12three', null)
+----
 
 [[positionof]]
 === PositionOf
@@ -2191,6 +2262,15 @@ If the pattern is not found, the result is -1.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#PositionOf# operator:
+
+[source,cql]
+----
+define PositionOfFound: PositionOf('s', 'CQL is awesome') // 5
+define PositionOfNotFound: PositionOf('\\d', 'CQL is awesome') // -1
+define PositionOfIsNull: PositionOf(null, 'CQL is awesome')
+----
+
 [[replacematches]]
 === ReplaceMatches
 
@@ -2208,6 +2288,15 @@ The [.id]#ReplaceMatches# operator matches the given string using the given regu
 If any argument is [.kw]#null#, the result is [.kw]#null#.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+
+The following examples illustrate the behavior of the [.id]#ReplaceMatches# operator:
+
+[source,cql]
+----
+define ReplaceMatchesFound: ReplaceMatches('CQL is awesome', 'awesome', 'amazing') // 'CQL is amazing'
+define ReplaceMatchesNotFound: ReplaceMatches('CQL is awesome', 'awesome!', 'amazing') // 'CQL is awesome'
+define ReplaceMatchesIsNull: ReplaceMatches('CQL is awesome', 'awesome', null)
+----
 
 [[split]]
 === Split
@@ -2227,6 +2316,15 @@ If the [.id]#stringToSplit# argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the [.id]#stringToSplit# argument does not contain any appearances of the separator, the result is a list of strings containing one element that is the value of the [.id]#stringToSplit# argument.
 
+The following examples illustrate the behavior of the [.id]#Split# operator:
+
+[source,cql]
+----
+define SplitFound: Split('CQL is awesome', ' ') // { 'CQL', 'is', 'awesome' }
+define SplitNotFound: Split('CQL is awesome', ',') // { 'CQL is awesome' }
+define SplitIsNull: Split(null, ' ')
+----
+
 [[startswith]]
 === StartsWith
 
@@ -2245,6 +2343,15 @@ If the prefix is the empty string, the result is true.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#StartsWith# operator:
+
+[source,cql]
+----
+define StartsWithIsTrue: StartsWith('CQL is awesome', 'CQL')
+define StartsWithIsFalse: StartsWith('CQL is awesome', 'CQl')
+define StartsWithIsNull: StartsWith('CQL is awesome', null)
+----
+
 [[substring]]
 === Substring
 
@@ -2260,9 +2367,19 @@ Substring(stringToSub String, startIndex Integer, length Integer) String
 
 The [.id]#Substring# operator returns the string within [.id]#stringToSub#, starting at the 0-based index [.id]#startIndex#, and consisting of [.id]#length# characters.
 
-If [.id]#length# is ommitted, the substring returned starts at [.id]#startIndex# and continues to the end of [.id]#stringToSub#.
+If [.id]#length# is omitted, the substring returned starts at [.id]#startIndex# and continues to the end of [.id]#stringToSub#.
 
 If [.id]#stringToSub# or [.id]#startIndex# is [.kw]#null#, or [.id]#startIndex# is out of range, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Substring# operator:
+
+[source,cql]
+----
+define SubstringWithoutLength: Substring('CQL is awesome', 7) // 'awesome'
+define SubstringWithLength: Substring('CQL is awesome', 7, 3) // 'awe'
+define SubstringIsNull: Substring('CQL is awesome', null)
+define SubstringIsAlsoNull: Substring('CQL is awesome', 14)
+----
 
 [[upper]]
 === Upper
@@ -2281,6 +2398,14 @@ The [.id]#Upper# operator returns the given string with all characters converted
 Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Upper# operator:
+
+[source,cql]
+----
+define UpperCQL: Upper('cql IS AWESOME') // 'CQL IS AWESOME'
+define UpperIsNull: Upper(null)
+----
 
 [[datetime-operators-2]]
 == Date/Time Operators
