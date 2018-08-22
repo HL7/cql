@@ -782,6 +782,19 @@ The [.id]#Code# type has the following elements:
 
 Table 2‑F
 
+The following example illustrates the code declaration:
+
+[source,cql]
+----
+codesystem "LOINC": 'http://loinc.org'
+
+code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
+code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
+code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
+----
+
+The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+
 In addition, CQL provides a Code literal that can be used to reference an existing code from a specific code system:
 
 [source,cql]
@@ -809,6 +822,21 @@ The Concept type has the following elements:
 Table 2‑G
 
 Note that the semantics of [.id]#Concept# are such that the codes within a given concept should all be semantically equivalent at the code level, but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
+
+The following example illustrates the concept declaration:
+
+[source,cql]
+----
+codesystem "LOINC": 'http://loinc.org'
+
+code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
+code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
+code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
+
+concept "Blood Pressure Concepts": { "Blood Pressure", "Systolic Blood Pressure", "Diastolic Blood Pressure" } display 'Blood Pressure Concepts'
+----
+
+The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
 The following example illustrates the use of a [.id]#Concept# literal:
 
@@ -875,7 +903,7 @@ codesystem "ICD-9-CM:2014": 'urn:oid:2.16.840.1.113883.6.103' version '2014'
 codesystem "ICD-10-CM:2014": 'urn:oid:2.16.840.1.113883.6.90' version '2014'
 
 valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
-  codesystems ( "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" )
+  codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
 ----
 
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
@@ -883,7 +911,7 @@ See the <<Terminology Operators>> section for more information on the use of val
 [[codesystems]]
 ==== Codesystems
 
-In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions.
+In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<valuesets>> section for an example codesystems declaration.
 
 See the <<Terminology Operators>> section for more information on the use of codesystems within CQL.
 
