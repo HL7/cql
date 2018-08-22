@@ -1272,6 +1272,8 @@ define function IsSubsumedBy(code Code, subsumingCode Code) returns Boolean : ex
 
 CQL does not prescribe the details for how external functions are resolved or implemented, only that an implementation must accept the arguments as specified by the signature, and is expected to return a value of the declared return type.
 
+Take heed that although there may be use cases for which external functions are the best option, they are not without drawbacks. Chief among the drawbacks that arise when using external functions are the challenges associated with interoperability. Since external functions are implementation specific, CQL libraries that are authored relying on external functions are also implementation specific. Therefore, the use of external functions is discouraged because they hinder one of the foundational benefits of CQL, which is data exchange.
+
 [[using-fhirpath]]
 == Using FHIRPath
 
