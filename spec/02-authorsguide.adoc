@@ -1470,7 +1470,13 @@ Note that when determining equality, these semantics imply that if either date/t
 
 Table 2‑N
 
-Comparison, like equality, when no precision is specified, is performed to the unit with the most precision of either input. However, each operator allows a precision specifier to be used. For example:
+Comparison, like equality, when no precision is specified, is performed to the unit with the most precision of either input. For example:
+----
+Date@2015-01-03 = DateTime@2015-01-03
+----
+This expression returns true, since the DateTime value is only specified to the day.
+
+However, each operator also allows a precision specifier to be used. For example:
 
 [source,cql]
 ----
