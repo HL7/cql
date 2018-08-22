@@ -399,6 +399,7 @@ Note that although the alias in this example is a single-letter abbreviation, [.
 [Encounter: "Inpatient"] Enc
 ----
 
+Note that alias names, as with all language constructs, may be the subject of language conventions. See the link:14-g-formattingconventions.html[Formatting Conventions] section for more information.
 [[filtering]]
 === Filtering
 
