@@ -872,3 +872,16 @@ Because the difference operation will return an uncertainty when imprecise date/
 
 Note also that a compile-time implicit conversion to uncertainty may also simplify the implementation, avoiding the need for integer-valued primitives to determine at run-time whether they are operating on an uncertainty.
 
+Note that with an increased burden on implementation, uncertainty resolution could likely be more robust. For example, consider the following statement:
+
+DateTime(2014) + 364 days
+
+In the above example, it is almost certainly the case that the result of the addition would result in some date in DateTime(2015). However, CQL currently would return a DateTime(2014) because the addition does not result in a whole calendar period for the specified precision. An argument could be made that uncertainty resolution could be more robust as DateTime(2014) is an undefined DateTime ocurring sometime during 2014, which can be represented as the following interval:
+
+[@2014-01-01T00:00:00.000, @2014-12-31T23:59:59.999]
+
+Therefore, it is relevant to consider that the above addition could be added to the interval above resulting in the following:
+
+[@2014-12-31T00:00:00.000, @2015-12-30T23:59:59.999]
+
+However, this behavior would potentially result in a significant implementation burden and represent a significant misalignment with FHIRPath if CQL were to adopt this behavior.
