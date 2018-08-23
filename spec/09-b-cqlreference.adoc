@@ -1084,7 +1084,12 @@ The between operator determines whether the first argument is within a given ran
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#.
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+
+[source,cql]
+----
+define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
+----
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
@@ -1097,7 +1102,6 @@ The following examples illustrate the behavior of the [.kw]#between# operator:
 define IntegerBetweenIsTrue: 4 between 2 and 6
 define DecimalBetweenIsFalse: 3.5 between 3.6 and 4.8
 define QuantityBetweenIsNull: 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
-define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ----
 
 [[equal]]
@@ -1212,7 +1216,12 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+
+[source,cql]
+----
+define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
+----
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1223,7 +1232,6 @@ The following examples illustrate the behavior of the _greater_ operator:
 define IntegerGreaterIsTrue: 4 > 3
 define DecimalGreaterIsFalse: 3.5 > 3.5
 define QuantityGreaterIsNull: 3.6 'cm2' > 3.5 'cm'
-define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
 define NullGreaterIsNull: null > 5
 ----
 
@@ -1251,7 +1259,12 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+
+[source,cql]
+----
+define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
+----
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1262,7 +1275,6 @@ The following examples illustrate the behavior of the _greater or equal_ operato
 define IntegerGreaterOrEqualIsTrue: 4 >= (2 + 2)
 define DecimalGreaterOrEqualIsFalse: 3.5 >= (3.5 + 0.1)
 define QuantityGreaterOrEqualIsNull: 3.6 'cm2' >= 3.5 'cm'
-define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
 define NullGreaterOrEqualIsNull: null >= 5
 ----
 
@@ -1290,7 +1302,12 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+
+[source,cql]
+----
+define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
+----
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1329,7 +1346,12 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+
+[source,cql]
+----
+define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
+----
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1340,7 +1362,6 @@ The following examples illustrate the behavior of the _less or equal_ operator:
 define IntegerLessOrEqualIsTrue: 4 <= (2 + 2)
 define DecimalLessOrEqualIsFalse: 3.5 <= (3.5 - 0.1)
 define QuantityLessOrEqualIsNull: 3.6 'cm2' <= 3.6 'cm'
-define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
 define NullLessOrEqualIsNull: null <= 5
 ----
 
