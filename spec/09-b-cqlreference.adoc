@@ -4449,6 +4449,16 @@ If the source contains no non-null elements, [.kw]#true# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#true#.
 
+The following examples illustrate the behavior of the [.id]#AllTrue# operator:
+
+[source,cql]
+----
+define AllTrueIsTrue: AllTrue({ true, null, true })
+define AllTrueIsAlsoTrue: AllTrue({ null, null, null })
+define AllTrueIsTrueWhenNull: AllTrue(null)
+define AllTrueIsFalse: AllTrue({ true, false, null })
+----
+
 [[anytrue]]
 === AnyTrue
 
@@ -4466,6 +4476,16 @@ The [.id]#AnyTrue# operator returns [.kw]#true# if any non-null element in the s
 If the source contains no non-null elements, [.kw]#false# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#false#.
+
+The following examples illustrate the behavior of the [.id]#AnyTrue# operator:
+
+[source,cql]
+----
+define AnyTrueIsTrue: AnyTrue({ true, false, null })
+define AnyTrueIsFalse: AnyTrue({ false, false, null })
+define AnyTrueIsAlsoFalse: AnyTrue({ null, null, null })
+define AnyTrueIsFalseWhenNull: AnyTrue(null)
+----
 
 [[avg]]
 === Avg
@@ -4486,6 +4506,15 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Avg# operator:
+
+[source,cql]
+----
+define DecimalAvg: Avg({ 5.5, 4.7, 4.8 }) // 5.0
+define QuantityAvg: Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
+define AvgIsNull: Avg(null as List<Decimal>)
+----
+
 [[count]]
 === Count
 
@@ -4498,7 +4527,16 @@ Count(argument List<T>) Integer
 
 *Description:*
 
-The [.id]#Count# operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is [.kw]#null#, the result is [.kw]#0#.
+The [.id]#Count# operator returns the number of non-null elements in the source. If the list contains no non-null elements, the result is 0. If the list is [.kw]#null#, the result is [.lit]#0#.
+
+The following examples illustrate the behavior of the [.id]#Count# operator:
+
+[source,cql]
+----
+define Count5: Count({ 1, 2, 3, 4, 5 }) // 5
+define Count0: Count({ null, null, null }) // 0
+define CountNull0: Count(null as List<Decimal>) // 0
+----
 
 [[geometricmean]]
 === GeometricMean
@@ -4522,6 +4560,15 @@ GeometricMean(X) = Power(Product(X), 1 / Count(X))
 If the source contains no non-null elements, the result is [.kw]#null#.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#GeometricMean# operator:
+
+[source,cql]
+----
+define GeometricMean4: GeometricMean({ 2.0, 8.0 }) // 4.0
+define GeometricMeanIsNull: GeometricMean({ null, null, null })
+define GeometricMeanIsAlsoNull: GeometricMean(null as List<Decimal>)
+----
 
 [[max]]
 === Max
@@ -4547,6 +4594,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Max# operator:
+
+[source,cql]
+----
+define IntegerMax: Max({ 2, 4, 8, 6 }) // 8
+define DateMax: Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-12-31
+define MaxIsNull: Max({ null as Quantity, null as Quantity, null as Quantity })
+define MaxIsAlsoNull: Max(null as List<Decimal>)
+----
+
 [[min]]
 === Min
 
@@ -4571,6 +4628,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Min# operator:
+
+[source,cql]
+----
+define IntegerMin: Min({ 2, 4, 8, 6 }) // 2
+define DateMin: Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
+define MinIsNull: Min({ null as Quantity, null as Quantity, null as Quantity })
+define MinIsAlsoNull: Min(null as List<Decimal>)
+----
+
 [[median]]
 === Median
 
@@ -4590,6 +4657,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Median# operator:
+
+[source,cql]
+----
+define DecimalMedian: Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
+define QuantityMedian: Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
+define MedianIsNull: Median({ null as Quantity, null as Quantity, null as Quantity })
+define MedianIsAlsoNull: Median(null as List<Decimal>)
+----
+
 [[mode]]
 === Mode
 
@@ -4607,6 +4684,16 @@ The [.id]#Mode# operator returns the statistical mode of the elements in source.
 If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Mode# operator:
+
+[source,cql]
+----
+define DecimalMode: Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
+define QuantityMode: Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
+define ModeIsNull: Mode({ null as Quantity, null as Quantity, null as Quantity })
+define ModeIsAlsoNull: Mode(null as List<Decimal>)
+----
 
 [[population-stddev]]
 === Population StdDev
@@ -4627,6 +4714,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#PopulationStdDev# operator:
+
+[source,cql]
+----
+define DecimalPopulationStdDev: PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.41421356
+define QuantityPopulationStdDev: PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'
+define PopulationStdDevIsNull: PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
+define PopulationStdDevIsAlsoNull: PopulationStdDev(null as List<Decimal>)
+----
+
 [[population-variance]]
 === Population Variance
 
@@ -4645,6 +4742,16 @@ The [.id]#PopulationVariance# operator returns the statistical population varian
 If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#PopulationVariance# operator:
+
+[source,cql]
+----
+define DecimalPopulationVariance: PopulationVariance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0
+define QuantityPopulationVariance: PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'
+define PopulationVarianceIsNull: PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })
+define PopulationVarianceIsAlsoNull: PopulationVariance(null as List<Decimal>)
+----
 
 [[product]]
 === Product
@@ -4666,6 +4773,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Product# operator:
+
+[source,cql]
+----
+define DecimalProduct: Product({ 1.0, 2.0, 3.0, 4.0 }) // 24.0
+define QuantityProduct: Product({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg' }) // 24.0 'mg'
+define ProductIsNull: Product({ null as Quantity, null as Quantity, null as Quantity })
+define ProductIsAlsoNull: Product(null as List<Decimal>)
+----
+
 [[stddev]]
 === StdDev
 
@@ -4684,6 +4801,16 @@ The [.id]#StdDev# operator returns the statistical standard deviation of the ele
 If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the list is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#StdDev# operator:
+
+[source,cql]
+----
+define DecimalStdDev: StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
+define QuantityStdDev: StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
+define StdDevIsNull: StdDev({ null as Quantity, null as Quantity, null as Quantity })
+define StdDevIsAlsoNull: StdDev(null as List<Decimal>)
+----
 
 [[sum]]
 === Sum
@@ -4705,6 +4832,16 @@ If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the list is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#Sum# operator:
+
+[source,cql]
+----
+define DecimalSum: Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
+define QuantitySum: Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
+define SumIsNull: Sum({ null as Quantity, null as Quantity, null as Quantity })
+define SumIsAlsoNull: Sum(null as List<Decimal>)
+----
+
 [[variance]]
 === Variance
 
@@ -4723,6 +4860,16 @@ The [.id]#Variance# operator returns the statistical variance of the elements in
 If the source contains no non-null elements, [.kw]#null# is returned.
 
 If the source is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Variance# operator:
+
+[source,cql]
+----
+define DecimalVariance: Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
+define QuantityVariance: Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
+define VarianceIsNull: Variance({ null as Quantity, null as Quantity, null as Quantity })
+define VarianceIsAlsoNull: Variance(null as List<Decimal>)
+----
 
 [[clinical-operators-3]]
 == Clinical Operators
@@ -4825,6 +4972,14 @@ If the [.id]#birthDate# is [.kw]#null# or the [.id]#asOf# argument is [.kw]#null
 
 The [.id]#CalculateAgeAt# operators are defined in terms of a date/time duration calculation. This means that if the given [.id]#birthDate# or [.id]#asOf# are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#CalculateAgeAt# operator:
+
+[source,cql]
+----
+define CalculateAgeAt: CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
+define CalculateAgeAtIsNull: CalculateAgeInYearsAt(@2000-01-01, null)
+----
+
 [[equal-3]]
 === Equal
 
@@ -4842,6 +4997,18 @@ The _equal_ ([.sym]#=#) operator for Codes and Concepts uses tuple equality sema
 
 If either argument is [.kw]#null#, or contains any [.kw]#null# components, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _equal_ operator:
+
+[source,cql]
+----
+define Code1: Code { system: 'http://loinc.org', code: '8480-6', version: '1.0', display: 'Systolic blood pressure' }
+define Concept1: Concept { codes: { Code1 }, display: 'Concepts' }
+define Concept2: Concept { codes: { Code1 }, display: 'More Concepts' }
+define EqualIsTrue: Code1 = Code1
+define EqualIsFalse: Concept1 = Concept2
+define EqualIsNull: Code1 = null
+----
+
 [[equivalent-3]]
 === Equivalent
 
@@ -4857,13 +5024,25 @@ If either argument is [.kw]#null#, or contains any [.kw]#null# components, the r
 
 *Description:*
 
-The [.sym]#~# operator for [.id]#Code# values returns [.kw]#true# if the [.id]#code# and [.id]#system# elements are equivalent. The [.id]#version# and [.id]#display# elements are ignored for the purposes of determining [.id]#Code# equivalence.
+The _equivalent_ ([.sym]#~#) operator for [.id]#Code# values returns [.kw]#true# if the [.id]#code# and [.id]#system# elements are equivalent. The [.id]#version# and [.id]#display# elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
 For [.id]#Concept# values, equivalence is defined as a non-empty intersection of the codes in each [.id]#Concept#. The [.id]#display# element is ignored for the purposes of determining [.id]#Concept# equivalence.
 
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
 Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information in membership contexts.
+
+The following examples illustrate the behavior of the _equivalent_ operator:
+
+[source,cql]
+----
+define Code1: Code { system: 'http://loinc.org', code: '8480-6', display: 'Systolic blood pressure' }
+define Concept1: Concept { codes: { Code1 }, display: 'Concepts' }
+define Concept2: Concept { codes: { null }, display: 'More Concepts' }
+define EquivalentIsTrue: Code1 ~ Code1
+define EquivalentIsAlsoTrue: Concept2 ~ Concept2
+define EquivalentIsFalse: Concept1 ~ Concept2
+----
 
 [[in-codesystem]]
 === In (Codesystem)
@@ -4894,6 +5073,16 @@ If the [.id]#code# argument is [.kw]#null#, the result is [.kw]#false#.
 
 If the [.id]#code# system reference cannot be resolved, a run-time error is thrown.
 
+The following examples illustrate the behavior of the [.kw]#in# (Codesystem) operator:
+
+[source,cql]
+----
+codesystem "SNOMED:2014": 'http://snomed.info/sct'
+define StringInCodesystem: '12345678' in "SNOMED:2014"
+define CodeInCodesystem: Code { system: "SNOMED:2014", code: '12345678' } in "SNOMED:2014"
+define NullStringInCodesystem: null as String in "SNOMED:2014" // false
+----
+
 [[in-valueset]]
 === In (Valueset)
 
@@ -4922,6 +5111,16 @@ For the [.id]#List<Code># overload, if the given valueset contains a code equiva
 If the code argument is [.kw]#null#, the result is [.kw]#false#.
 
 If the value set reference cannot be resolved, a run-time error is thrown.
+
+The following examples illustrate the behavior of the [.kw]#in# (Valueset) operator:
+
+[source,cql]
+----
+valueset "A Super Awesome ValueSet": 'http://super.awesome/valueset'
+define StringInValueset: '12345678' in "A Super Awesome ValueSet"
+define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678' } in "A Super Awesome ValueSet"
+define NullStringInValueset: null as String in "A Super Awesome ValueSet" // false
+----
 
 [[errors-and-messaging]]
 == Errors and Messaging
@@ -4959,3 +5158,11 @@ The message is the content of the actual message that is sent to the calling env
 
 Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
 
+The following examples illustrate the behavior of the [.id]#Message# operator:
+
+[source,cql]
+----
+parameter Numerator Integer
+parameter Denominator Integer
+define ErrorMessage: Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')
+----
