@@ -1157,7 +1157,7 @@ define NullEqualIsNull: null = null
 
 *Description:*
 
-The _equivalence_ ([.sym]#~#) operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
+The _equivalent_ ([.sym]#~#) operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
 For string values, equivalence is case- and locale-insensitive.
 
@@ -1175,7 +1175,7 @@ Note that this operator will always return [.kw]#true# or [.kw]#false#, even if 
 
 This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as [.kw]#in#, [.kw]#contains#, [.kw]#includes#, [.id]#IndexOf()#, etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
 
-The following examples illustrate the behavior of the _equivalence_ operator:
+The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
@@ -2977,6 +2977,15 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#after# operator:
+
+[source,cql]
+----
+define AfterIsTrue: 5 after Interval[1, 4]
+define AfterIsFalse: Interval[1, 4] after 5
+define AfterIsNull: Interval[1, 4] after null
+----
+
 [[before-1]]
 === Before
 
@@ -3003,6 +3012,15 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#before# operator:
+
+[source,cql]
+----
+define BeforeIsTrue: 0 before Interval[1, 4]
+define BeforeIsFalse: Interval[1, 4] before 0
+define BeforeIsNull: Interval[1, 4] before null
+----
+
 [[collapse]]
 === Collapse
 
@@ -3021,6 +3039,14 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#collapse# operator:
+
+[source,cql]
+----
+define Collapse1To9: collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
+define CollapseIsNull: collapse null
+----
+
 [[contains]]
 === Contains
 
@@ -3038,6 +3064,15 @@ The [.kw]#contains# operator for intervals returns [.kw]#true# if the given poin
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#contains# operator:
+
+[source,cql]
+----
+define ContainsIsTrue: Interval[1, 5] contains 4
+define ContainsIsFalse: Interval[1, 5] contains 6
+define ContainsIsNull: Interval[1, 5] contains null
+----
 
 [[end]]
 === End
@@ -3059,6 +3094,14 @@ If the high boundary of the interval is closed and the high value of the interva
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.id]#End# operator:
+
+[source,cql]
+----
+define EndOfInterval: end of Interval[1, 5] // 5
+define EndIsNull: end of (null as Interval<Integer>)
+----
+
 [[ends]]
 === Ends
 
@@ -3079,6 +3122,15 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#ends# operator:
+
+[source,cql]
+----
+define EndsIsTrue: Interval[0, 5] ends Interval[-1, 5]
+define EndsIsFalse: Interval[-1, 7] ends Interval[0, 7]
+define EndsIsNull: Interval[1, 5] ends null
+----
+
 [[equal-1]]
 === Equal
 
@@ -3095,6 +3147,15 @@ The _equal_ ([.sym]#=#) operator for intervals returns [.kw]#true# if and only i
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the _equal_ operator:
+
+[source,cql]
+----
+define EqualIsTrue: Interval[0, 5] = Interval[0, 5]
+define EqualIsFalse: Interval[-1, 7] = Interval[0, 7]
+define EqualIsNull: Interval[1, 5] = null
+----
+
 [[equivalent-1]]
 === Equivalent
 
@@ -3107,7 +3168,16 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Description:*
 
-The [.sym]#~# operator for intervals returns [.kw]#true# if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#<<Start>># and [.id]#<<End>># operators are equivalent.
+The _equivalent_ ([.sym]#~#) operator for intervals returns [.kw]#true# if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#<<Start>># and [.id]#<<End>># operators are equivalent.
+
+The following examples illustrate the behavior of the _equivalent_ operator:
+
+[source,cql]
+----
+define EquivalentIsTrue: Interval[0, 5] ~ Interval[0, 5]
+define EquivalentIsAlsoTrue: Interval[1, null] ~ Interval[1, null]
+define EquivalentIsFalse: Interval[-1, 7] ~ Interval[0, 7]
+----
 
 [[except]]
 === Except
@@ -3124,6 +3194,14 @@ except(left Interval<T>, right Interval<T>) Interval<T>
 The [.kw]#except# operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns [.kw]#null#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#except# operator:
+
+[source,cql]
+----
+define Except: Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
+define ExceptIsNull: null except Interval[-1, 7]
+----
 
 [[expand]]
 === Expand
@@ -3179,6 +3257,15 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#in# operator:
+
+[source,cql]
+----
+define InIsTrue: 3 in Interval[0, 5]
+define InIsFalse: -1 in Interval[0, 7]
+define InIsNull: 3 in (null as Interval<Integer>)
+----
+
 [[includes]]
 === Includes
 
@@ -3201,6 +3288,15 @@ This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<E
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#includes# operator:
+
+[source,cql]
+----
+define IncludesIsTrue: Interval[-1, 5] includes Interval[0, 5]
+define IncludesIsFalse: Interval[-1, 5] includes 6
+define IncludesIsNull: Interval[-1, 5] includes null
+----
 
 [[included-in]]
 === Included In
@@ -3227,6 +3323,15 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that [.kw]#during# is a synonym for included in and may be used to invoke the same operation wherever [.kw]#included in# may appear.
 
+The following examples illustrate the behavior of the [.kw]#included in# operator:
+
+[source,cql]
+----
+define IncludedInIsTrue: Interval[1, 5] included in Interval[0, 5]
+define IncludedInIsFalse: -1 during Interval[0, 7]
+define IncludedInIsNull: 3 included in (null as Interval<Integer>)
+----
+
 [[intersect]]
 === Intersect
 
@@ -3242,6 +3347,14 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 The [.kw]#intersect# operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns [.kw]#null#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#intersect# operator:
+
+[source,cql]
+----
+define Intersect: Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
+define IntersectIsNull: Interval[3, 5] intersect (null as Interval<Integer>)
+----
 
 [[meets]]
 === Meets
@@ -3267,6 +3380,16 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#meets#, [.kw]#meets before#, and [.kw]#meets after# operators:
+
+[source,cql]
+----
+define MeetsIsTrue: Interval[6, 10] meets Interval[0, 5]
+define MeetsBeforeIsTrue: Interval[-5, -1] meets before Interval[0, 5]
+define MeetsAfterIsFalse: Interval[6, 10] meets after Interval[0, 7]
+define MeetsIsNull: Interval[6, 10] meets (null as Interval<Integer>)
+----
+
 [[not-equal-1]]
 === Not Equal
 
@@ -3283,6 +3406,15 @@ The _not equal_ ([.sym]#!=#) operator for intervals returns [.kw]#true# if its a
 
 The _not equal_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equal_ operator.
 
+The following examples illustrate the behavior of the _not equal_ operator:
+
+[source,cql]
+----
+define NotEqualIsFalse: Interval[0, 5] != Interval[0, 5]
+define NotEqualIsTrue: Interval[-1, 7] != Interval[0, 7]
+define NotEqualIsNull: Interval[1, 5] != null
+----
+
 [[not-equivalent-1]]
 === Not Equivalent
 
@@ -3298,6 +3430,15 @@ The _not equal_ operator is a shorthand for invocation of logical negation ([.kw
 The _not equivalent_ ([.sym]#!~#) operator for intervals returns [.kw]#true# if its arguments are not equivalent.
 
 The _not equivalent_ operator is a shorthand for invocation of logical negation ([.kw]#not#) of the _equivalent_ operator.
+
+The following examples illustrate the behavior of the _not equivalent_ operator:
+
+[source,cql]
+----
+define NotEquivalentIsFalse: Interval[0, 5] !~ Interval[0, 5]
+define NotEquivalentIsAlsoFalse: Interval[1, null] !~ Interval[1, null]
+define NotEquivalentIsTrue: Interval[-1, 7] !~ Interval[0, 7]
+----
 
 [[on-or-after]]
 === On Or After
@@ -3329,6 +3470,15 @@ Note that this operator can be invoked using either the [.kw]#on or after# or th
 
 In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
+The following examples illustrate the behavior of the [.kw]#on or after# operator:
+
+[source,cql]
+----
+define OnOrAfterIsTrue: Interval[6, 10] on or after Interval[0, 5]
+define OnOrAfterIsFalse: 6 after or on Interval[0, 7]
+define OnOrAfterIsNull: Interval[6, 10] on or after (null as Integer)
+----
+
 [[on-or-before]]
 === On Or Before
 
@@ -3357,9 +3507,16 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
 
-Note that this operator can be invoked using either the [.kw]#on or after# or the [.kw]#after or on# syntax.
-
 In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
+
+The following examples illustrate the behavior of the [.kw]#on or before# operator:
+
+[source,cql]
+----
+define OnOrBeforeIsTrue: Interval[0, 5] on or before Interval[5, 10]
+define OnOrBeforeIsFalse: 1 before or on Interval[0, 7]
+define OnOrBeforeIsNull: Interval[6, 10] on or before (null as Integer)
+----
 
 [[overlaps]]
 === Overlaps
@@ -3385,6 +3542,16 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#overlaps#, [.kw]#overlaps before#, and [.kw]#overlaps after# operators:
+
+[source,cql]
+----
+define OverlapsIsTrue: Interval[0, 4] overlaps Interval[1, 4]
+define OverlapsBeforeIsTrue: Interval[0, 4] overlaps before Interval[1, 4]
+define OverlapsAfterIsFalse: Interval[0, 4] overlaps after Interval[1, 4]
+define OverlapsIsNull: Interval[6, 10] overlaps (null as Interval<Integer>)
+----
+
 [[point-from]]
 === Point From
 
@@ -3400,6 +3567,15 @@ point from(argument Interval<T>) : T
 The [.kw]#point from# operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#point from# operator:
+
+[source,cql]
+----
+define PointFrom: point from Interval[4, 4] // 4
+define PointFromError: point from Interval[1, 4]
+define PointFromIsNull: point from (null as Interval<Integer>)
+----
 
 [[properly-includes]]
 === Properly Includes
@@ -3420,6 +3596,15 @@ This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<E
 If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#properly includes# operator:
+
+[source,cql]
+----
+define ProperlyIncludesIsTrue: Interval[-1, 5] properly includes Interval[0, 5]
+define ProperlyIncludesIsFalse: Interval[-1, 5] properly includes Interval[-1, 5]
+define ProperlyIncludesIsNull: Interval[-1, 5] properly includes null
+----
 
 [[properly-included-in]]
 === Properly Included In
@@ -3443,6 +3628,15 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that [.kw]#during# is a synonym for [.kw]#included in#.
 
+The following examples illustrate the behavior of the [.kw]#properly included in# operator:
+
+[source,cql]
+----
+define ProperlyIncludedInIsTrue: Interval[1, 5] properly included in Interval[0, 5]
+define ProperlyIncludedInIsFalse: Interval[0, 7] properly during Interval[0, 7]
+define ProperlyIncludedInIsNull: Interval[1, 5] properly included in (null as Interval<Integer>)
+----
+
 [[start]]
 === Start
 
@@ -3462,6 +3656,14 @@ If the low boundary of the interval is open, this operator returns the [.kw]#suc
 If the low boundary of the interval is closed and the low value of the interval is not null, this operator returns the low value of the interval. Otherwise, the result is the minimum value of the point type of the interval.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Start# operator:
+
+[source,cql]
+----
+define StartOfInterval: start of Interval[1, 5] // 1
+define StartIsNull: start of (null as Interval<Integer>)
+----
 
 [[starts]]
 === Starts
@@ -3483,6 +3685,15 @@ If precision is specified and the point type is a date/time type, comparisons us
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+The following examples illustrate the behavior of the [.kw]#starts# operator:
+
+[source,cql]
+----
+define StartsIsTrue: Interval[0, 5] starts Interval[0, 7]
+define StartsIsFalse: Interval[0, 7] starts Interval[0, 6]
+define StartsIsNull: Interval[1, 5] starts null
+----
+
 [[union]]
 === Union
 
@@ -3498,6 +3709,14 @@ union(left Interval<T>, right Interval<T>) Interval<T>
 The [.kw]#union# operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns [.kw]#null#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#union# operator:
+
+[source,cql]
+----
+define Union: Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
+define UnionIsNull: Interval[3, 5] union (null as Interval<Integer>)
+----
 
 [[width]]
 === Width
@@ -3516,6 +3735,14 @@ The [.kw]#width# operator returns the width of an interval. The result of this o
 Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _width_ is not defined for intervals of these types.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.kw]#width# operator:
+
+[source,cql]
+----
+define Width: width of Interval[3, 7] // 4
+define WidthIsNull: width of (null as Interval<Integer>)
+----
 
 [[list-operators-2]]
 == List Operators
