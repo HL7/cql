@@ -1651,7 +1651,7 @@ For calculations involving weeks, Sunday is considered the first of the week for
 
 In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 
-When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp.
+When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 

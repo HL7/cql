@@ -102,7 +102,7 @@ Duration [.sym]#=# year (date 2) [.sym]#-# year (date 1) [.sym]#=# 2014 [.sym]#-
 [[definition-1]]
 === Definition
 
-A month in CQL is defines as the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at:
+A month in CQL is defined as the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at:
 
 * The same time of day at the same calendar day of the ending calendar month, if it exists
 * The same time of day at the immediately following calendar date of the ending calendar month, if the same calendar date of the ending month in the ending year does not exist.
@@ -235,7 +235,7 @@ Difference calculations are performed by truncating the date/time values at the 
 
 Implementations need to consider the calculation of the "difference between" two date/times with different timezone offsets. There are multiple use cases when this might occur, but the most prevalent is likely due to Daylight Saving Time (DST).
 
-To support the expected results in all cases, normalization of date/time values may be needed, depending on the precision used in the difference calculation. Normalization refers to adjustment of one or both of the two date/time values used in the difference calculation, if the timezone offsets are not the same, to a common timezone offset.
+To support the expected results in all cases, normalization of date/time values may be needed, depending on the precision used in the difference calculation. Normalization refers to adjustment of one or both of the two date/time values used in the difference calculation, if the timezone offsets are not the same, to a common timezone offset (namely, the timezone offset of the evaluation request timestamp).
 
 When difference is calculated for hours or finer units, timezone offsets should be normalized prior to truncation to correctly consider real (actual elapsed) time. When difference is calculated for days or coarser units, however, the time components (including timezone offset) should be truncated without normalization to correctly reflect the difference in calendar days, months, and years.
 
