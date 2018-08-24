@@ -1421,6 +1421,10 @@ Note that CQL supports both plural and singular duration units to allow for the 
 
 Note also that the UCUM time-period units can be used when expressing duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, calculations involving durations shall round using calendar semantics as specified in ISO8601.
 
+For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
+
+For comparisons involving time durations (where no anchor to a calendar is available), the duration of a year is considered to be 365 days, and the duration of a month is considered to be 30 days. Duration calculations involving weeks consider a week as equivalent to 7 days.
+
 [[comparing-dates-and-times]]
 ==== Comparing Dates and Times
 
@@ -1453,6 +1457,8 @@ Date(2014) < Date(2014, 2, 15)
 ----
 
 The result in this example is [.kw]#null# because the first date could be any date within the year 2014, so it could be less than the second date, but it could be greater.
+
+Note that due to variability in the way week numbers are calculated, the weeks are not valid for date/time comparisons and will result in an error.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
@@ -1543,6 +1549,8 @@ These examples extract the date from X, the year from X, and the minute from X. 
 |==================================================================================
 
 Table 2‑O
+
+Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
 Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date/time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the default timezone offset, not null.
 
@@ -1639,7 +1647,7 @@ milliseconds
 
 If the first argument is after the second, the result will be negative.
 
-For calculations involving weeks, Sunday is considered the first day of the week.
+For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be 7 days.
 
 In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 

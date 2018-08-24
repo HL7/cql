@@ -2485,11 +2485,13 @@ after _precision_ of(left Time, right Time) Boolean
 
 The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument.
 
-For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
@@ -2525,11 +2527,13 @@ before _precision_ of(left Time, right Time) Boolean
 
 The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument.
 
-For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
@@ -2640,6 +2644,8 @@ For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
+Note specifically that due to variability in the way week numbers are determined, extraction of a week component is not supported.
+
 If the argument is [.kw]#null#, or is not specified to the level of precision being extracted, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _component_-[.kw]#from# operator:
@@ -2676,6 +2682,8 @@ For [.id]#Date# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#,
 For [.id]#DateTime# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
+
+For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
@@ -2758,11 +2766,13 @@ same _precision_ as(left Time, right Time) Boolean
 
 The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is [.kw]#true#. If a compared component is specified in both dates, but the values are not the same, then the result is [.kw]#false#. Otherwise the result is [.kw]#null#, as there is not enough information to make a determination.
 
-For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
@@ -2800,11 +2810,13 @@ same _precision_ or after(left Time, right Time) Boolean
 
 The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
 
-For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
@@ -2844,11 +2856,13 @@ same _precision_ or before(left Time, right Time) Boolean
 
 The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
 
-For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, or [.kw]#day#.
+For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
-For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#week#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+For [.id]#DateTime# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
 
 For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
 
