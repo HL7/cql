@@ -4943,8 +4943,12 @@ Note that for [.id]#AgeInYears#, the [.id]#birthDate# is specified as a [.id]#Da
 [source,cql]
 ----
 AgeInYearsAt(asOf Date) Integer
+AgeInYearsAt(asOf DateTime) Integer
+AgeInMonthsAt(asOf Date) Integer
 AgeInMonthsAt(asOf DateTime) Integer
+AgeInWeeksAt(asOf Date) Integer
 AgeInWeeksAt(asOf DateTime) Integer
+AgeInDaysAt(asOf Date) Integer
 AgeInDaysAt(asOf DateTime) Integer
 AgeInHoursAt(asOf DateTime) Integer
 AgeInMinutesAt(asOf DateTime) Integer
@@ -4953,7 +4957,7 @@ AgeInSecondsAt(asOf DateTime) Integer
 
 *Description:*
 
-The [.id]#AgeAt# operators calculate the age of the patient as of the given date in the precision named in the operator.
+The [.id]#AgeAt# operators calculate the age of the patient as of the given date/time in the precision named in the operator.
 
 If the patient’s birthdate is [.kw]#null#, or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4967,8 +4971,12 @@ The [.id]#AgeAt# operators are defined in terms of a date/time duration calculat
 [source,cql]
 ----
 CalculateAgeInYears(birthDate Date) Integer
+CalculateAgeInYears(birthDate DateTime) Integer
+CalculateAgeInMonths(birthDate Date) Integer
 CalculateAgeInMonths(birthDate DateTime) Integer
+CalculateAgeInWeeks(birthDate Date) Integer
 CalculateAgeInWeeks(birthDate DateTime) Integer
+CalculateAgeInDays(birthDate Date) Integer
 CalculateAgeInDays(birthDate DateTime) Integer
 CalculateAgeInHours(birthDate DateTime) Integer
 CalculateAgeInMinutes(birthDate DateTime) Integer
@@ -4977,7 +4985,7 @@ CalculateAgeInSeconds(birthDate DateTime) Integer
 
 *Description:*
 
-The [.id]#CalculateAge# operators calculate the age of a person born on the given birthdate as of now in the precision named in the operator.
+The [.id]#CalculateAge# operators calculate the age of a person born on the given birth date/time as of today/now in the precision named in the operator.
 
 If the birthdate is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4991,8 +4999,12 @@ The [.id]#CalculateAge# operators are defined in terms of a date/time duration c
 [source,cql]
 ----
 CalculateAgeInYearsAt(birthDate Date, asOf Date) Integer
+CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInMonthsAt(birthDate Date, asOf Date) Integer
 CalculateAgeInMonthsAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInWeeksAt(birthDate Date, asOf Date) Integer
 CalculateAgeInWeeksAt(birthDate DateTime, asOf DateTime) Integer
+CalculateAgeInDaysAt(birthDate Date, asOf Date) Integer
 CalculateAgeInDaysAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInHoursAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInMinutesAt(birthDate DateTime, asOf DateTime) Integer
@@ -5001,7 +5013,7 @@ CalculateAgeInSecondsAt(birthDate DateTime, asOf DateTime) Integer
 
 *Description:*
 
-The [.id]#CalculateAgeAt# operators calculate the age of a person born on the given birthdate as of the given date in the precision named in the operator.
+The [.id]#CalculateAgeAt# operators calculate the age of a person born on the given birth date/time as of the given date/time in the precision named in the operator.
 
 If the [.id]#birthDate# is [.kw]#null# or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 

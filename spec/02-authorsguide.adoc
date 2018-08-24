@@ -2302,26 +2302,26 @@ To support determination of patient age consistently throughout quality logic, C
 [cols=",",options="header",]
 |================================================================================================================================================
 |Operator |Description
-|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date X
+|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date/time X
 |*AgeInYears()* |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
-|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the datetime X
+|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date/time X
 |*AgeInMonths()* |Determines the age of the patient in months as of now. Equivalent to AgeInMonthsAt(Now())
-|*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the datetime X
+|*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the date/time X
 |*AgeInWeeks()* |Determines the age of the patient in weeks as of now. Equivalent to AgeInWeeksAt(Now())
-|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the datetime X
+|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date/time X
 |*AgeInDays()* |Determines the age of the patient in days as of now. Equivalent to AgeInDaysAt(Now())
 |*AgeInHoursAt(X)* |Determines the age of the patient in hours as of the datetime X
 |*AgeInHours()* |Determines the age of the patient in hours as of now. Equivalent to AgeInHoursAt(Now())
-|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birthdate D in years as of the date X
-|*CalculateAgeInYears(D)* |Determines the age of a person with birthdate D in years as of today. Equivalent to CalculateAgeInYearsAt(D, Today())
-|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birthdate D in months as of the datetime X
-|*CalculateAgeInMonths(D)* |Determines the age of a person with birthdate D in months as of now. Equivalent to CalculateAgeInMonthsAt(D, Now())
-|*CalculateAgeInWeeksAt(D, X)* |Determines the age of a person with birthdate D in weeks as of the date/time X
-|*CalculateAgeInWeeks(D)* |Determines the age of a person with birthdate D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Now())
-|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birthdate D in days as of the datetime X
-|*CalculateAgeInDays(D)* |Determines the age of a person with birthdate D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Now())
-|*CalculateAgeInHoursAt(D, X)* |Determines the age of a person with birthdate D in hours as of the datetime X
-|*CalculateAgeInHours(D)* |Determines the age of a person with birthdate D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
+|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birth date/time D in years as of the date/time X
+|*CalculateAgeInYears(D)* |Determines the age of a person with birth date/time D in years as of today/now. Equivalent to CalculateAgeInYearsAt(D, Today()) or CalculateAgeInYearsAt(D, Now())
+|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birth date/time D in months as of the date/time X
+|*CalculateAgeInMonths(D)* |Determines the age of a person with birth date/time D in months as of today/now. Equivalent to CalculateAgeInMonthsAt(D, Today()) or CalculateAgeInMonthsAt(D, Now())
+|*CalculateAgeInWeeksAt(D, X)* |Determines the age of a person with birth date/time D in weeks as of the date/time X
+|*CalculateAgeInWeeks(D)* |Determines the age of a person with birth date/time D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Today()) or CalculateAgeInWeeksAt(D, Now())
+|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birth date/time D in days as of the date/time X
+|*CalculateAgeInDays(D)* |Determines the age of a person with birth date/time D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
+|*CalculateAgeInHoursAt(D, X)* |Determines the age of a person with birth datetime D in hours as of the datetime X
+|*CalculateAgeInHours(D)* |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
 
 Table 2‑T
