@@ -399,6 +399,20 @@ VersionedIdentifier is composed of two parts:
 
 The VersionedIdentifier therefore points to an individual 'versioned' instance of a resource such as the third version of a library.
 
+[[data-model]]
+== Data Model
+
+ELM does not reference any specific data model, and so can be used to represent logic expressed against any data model. These data models are specified using the _UsingDef_ class. This class provides attributes for specifying the name and version of the data model. An ELM library can reference any number of models.
+
+The name of the model is an implementation-specific identifier that provides the environment with a mechanism for finding the model description. The details of how that model description is provided are part of the physical representation.
+
+=== UsingDef
+
+[source,elm]
+----
+UsingDef : Element
+----
+
 [[parameters-1]]
 == Parameters
 
@@ -435,20 +449,6 @@ ParameterRef : Expression
 ----
 
 The ParameterRef expression allows the value of a parameter to be referenced as part of an expression.
-
-[[data-model]]
-== Data Model
-
-ELM does not reference any specific data model, and so can be used to represent logic expressed against any data model. These data models are specified using the _UsingDef_ class. This class provides attributes for specifying the name and version of the data model. An ELM library can reference any number of models.
-
-The name of the model is an implementation-specific identifier that provides the environment with a mechanism for finding the model description. The details of how that model description is provided are part of the physical representation.
-
-=== UsingDef
-
-[source,elm]
-----
-UsingDef : Element
-----
 
 [[expressions]]
 == Expressions
@@ -1749,7 +1749,7 @@ The DateTimeComponentFrom operator returns the specified component of the argume
 
 If the argument is null, the result is null.
 
-The precision must be one of year, month, day, hour, minute, second, or millisecond. Note specifically that since there is variability how weeks are counted, week precision is not supported, and will result in an error.
+The precision must be one of Year, Month, Day, Hour, Minute, Second, or Millisecond. Note specifically that since there is variability how weeks are counted, Week precision is not supported, and will result in an error.
 
 === DifferenceBetween
 
@@ -1758,11 +1758,13 @@ The precision must be one of year, month, day, hour, minute, second, or millisec
 DifferenceBetween : BinaryExpression
 ----
 
-The DifferenceBetween operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
+The DifferenceBetween operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. Because this operation is only counting boundaries crossed, the result is always an integer.
 
 For Date values, precision must be one of Year, Month, Week, or Day.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
+
+For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining boundaries.
 
 If either argument is null, the result is null.
 
@@ -1816,7 +1818,7 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are null, the result is null.
 
-For Date values, precision must be one of Year, Month, Week, or Day.
+For Date values, precision must be one of Year, Month, or Day. Note specifically that since there is variability how weeks are counted, Week precision is not supported, and will result in an error.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
@@ -1837,7 +1839,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-For Date values, precision must be one of Year, Month, Week, or Day.
+For Date values, precision must be one of Year, Month, or Day. Note specifically that since there is variability how weeks are counted, Week precision is not supported, and will result in an error.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
@@ -1860,7 +1862,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-For Date values, precision must be one of Year, Month, Week, or Day.
+For Date values, precision must be one of Year, Month, or Day. Note specifically that since there is variability how weeks are counted, Week precision is not supported, and will result in an error.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
@@ -2986,7 +2988,21 @@ CanConvert : UnaryExpression
 
 The CanConvert operator returns true if the given value can be converted to a specific type, and false otherwise.
 
-This operator supports testing for conversion between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, DateTime, and Time, as well as conversion from Integer to Decimal, Integer or Decimal to Quantity, and from Code to Concept.
+This operator supports conversion:
+
+- Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, DateTime, and Time
+
+as well as:
+
+- From Integer to Decimal or Quantity
+
+- From Decimal to Quantity
+
+- Between Date and DateTime
+
+- From Code to Concept
+
+- Between Concept and List&lt;Code&gt;
 
 Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
 
@@ -3018,7 +3034,21 @@ The Convert operator converts a value to a specific type. The result of the oper
 
 If no valid conversion exists from the actual value to the target type, the result is null.
 
-This operator supports conversion between String and each of Boolean, Integer, Decimal, Quantity, Date, DateTime, and Time, as well as conversion from Integer to Decimal and from Code to Concept.
+This operator supports conversion:
+
+- Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, DateTime, and Time
+
+as well as:
+
+- From Integer to Decimal or Quantity
+
+- From Decimal to Quantity
+
+- Between Date and DateTime
+
+- From Code to Concept
+
+- Between Concept and List&lt;Code&gt;
 
 Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
 
@@ -3029,7 +3059,9 @@ Conversion between String and Date/DateTime/Time is performed using the ISO-8601
 ConvertsToBoolean : UnaryExpression
 ----
 
-The ConvertsToBoolean operator returns true if the value of its argument can be converted to a Boolean value. The operator accepts "true", "t", "yes", "y", and "1" as string representations of true, and "false", "f", "no", "n", and "0" as string representations of false, ignoring case.
+The ConvertsToBoolean operator returns true if the value of its argument can be converted to a Boolean value.
+
+The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
 
 If the input cannot be interpreted as a valid Boolean value, the result is false.
 
@@ -3042,7 +3074,9 @@ If the argument is null the result is null.
 ConvertsToDate : UnaryExpression
 ----
 
-The ConvertsToDate operator returns true if the value of its argument can be converted to a Date value. The operator expects the string to be formatted using the ISO-8601 date representation:
+The ConvertsToDate operator returns true if the value of its argument can be converted to a Date value.
+
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 
@@ -3063,7 +3097,7 @@ ConvertsToDateTime : UnaryExpression
 
 The ConvertsToDateTime operator returns true if the value of its argument can be converted to a DateTime value.
 
-For string values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
+For String values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
 
 YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 
@@ -3178,7 +3212,9 @@ If the argument is null, the result is null.
 ConvertsToTime : UnaryExpression
 ----
 
-The ConvertsToTime operator returns true if the value of its argument can be converted to a Time value. The operator expects the string to be formatted using ISO-8601 time representation:
+The ConvertsToTime operator returns true if the value of its argument can be converted to a Time value.
+
+For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
 Thh:mm:ss.fff(+|-)hh:mm
 
@@ -3223,7 +3259,9 @@ The Is operator allows the type of a result to be tested. The language must supp
 ToBoolean : UnaryExpression
 ----
 
-The ToBoolean operator converts the value of its argument to a Boolean value. The operator accepts "true", "t", "yes", "y", and "1" as string representations of true, and "false", "f", "no", "n", and "0" as string representations of false, ignoring case.
+The ToBoolean operator returns true if the value of its argument can be converted to a Boolean value.
+
+The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
 
 If the input cannot be interpreted as a valid Boolean value, the result is null.
 
@@ -3258,7 +3296,9 @@ If the argument is null, the result is null.
 ToDate : UnaryExpression
 ----
 
-The ToDate operator converts the value of its argument to a Date value. The operator expects the string to be formatted using the ISO-8601 date representation:
+The ToDate operator returns true if the value of its argument can be converted to a Date value.
+
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 
@@ -3279,7 +3319,7 @@ ToDateTime : UnaryExpression
 
 The ToDateTime operator converts the value of its argument to a DateTime value.
 
-For string values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
+For String values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
 
 YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 
@@ -3409,7 +3449,9 @@ If the argument is null, the result is null.
 ToTime : UnaryExpression
 ----
 
-The ToTime operator converts the value of its argument to a Time value. The operator expects the string to be formatted using ISO-8601 time representation:
+The ConvertsToTime operator returns true if the value of its argument can be converted to a Time value.
+
+For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
 Thh:mm:ss.fff(+|-)hh:mm
 
@@ -3418,6 +3460,8 @@ In addition, the string must be interpretable as a valid time-of-day value.
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is null.
 
 As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+
+For DateTime values, the result is the same as extracting the Time component from the DateTime value.
 
 If the argument is null, the result is null.
 
