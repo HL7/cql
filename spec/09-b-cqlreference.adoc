@@ -589,6 +589,178 @@ define IsTrue: 5 is Integer
 define IsFalse: '5' is Integer
 ----
 
+[[convertstoboolean]]
+=== ConvertsToBoolean
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToBoolean(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToBoolean# operator returns [.kw]#true# if its argument can be converted to a [.id]#Boolean# value. See the [.id]#<<ToBoolean>># operator for a description of the supported conversions.
+
+If the input cannot be interpreted as a valid [.id]#Boolean# value, the result is [.kw]#false#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstodate]]
+=== ConvertsToDate
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToDate(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToDate# operator returns [.kw]#true# if its argument can be converted to a [.id]#Date# value. See the [.id]#<<ToDate>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or does not represent a valid date value, the result is [.kw]#false#.
+
+As with date literals, date values may be specified to any precision.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstodatetime]]
+=== ConvertsToDateTime
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToDateTime(argument Date) Boolean
+ConvertsToDateTime(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToDateTime# operator returns [.kw]#true# if its argument can be converted to a [.id]#DateTime# value. See the [.id]#<<ToDateTime>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or does not represent a valid date/time value, the result is [.kw]#false#.
+
+As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstodecimal]]
+=== ConvertsToDecimal
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToDecimal(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ToDecimal# operator returns [.kw]#true# if its argument can be converted to a [.id]#Decimal# value. See the [.id]#<<ToDecimal>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#false#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstointeger]]
+=== ConvertsToInteger
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToInteger(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToInteger# operator returns [.kw]#true# if its argument can be converted to an [.id]#Integer# value. See the [.id]#<<ToInteger>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#false#.
+
+[[convertstoquantity]]
+=== ConvertsToQuantity
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToQuantity(argument Decimal) Boolean
+ConvertsToQuantity(argument Integer) Boolean
+ConvertsToQuantity(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToQuantity# operator returns [.kw]#true# if its argument can be converted to a [.id]#Quantity# value. See the [.id]#<<ToQuantity>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Quantity# value, the result is [.kw]#false#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstoratio]]
+==== ConvertsToRatio
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToRatio(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToRatio# operator returns [.kw]#true# if its argument can be converted to a [.id]#Ratio# value. See the [.id]#<<ToRatio>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Ratio# value, the result is [.kw]#false#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstostring]]
+=== ConvertsToString
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToString(argument Boolean) Boolean
+ConvertsToString(argument Integer) Boolean
+ConvertsToString(argument Decimal) Boolean
+ConvertsToString(argument Quantity) Boolean
+ConvertsToString(argument Ratio) Boolean
+ConvertsToString(argument Date) Boolean
+ConvertsToString(argument DateTime) Boolean
+ConvertsToString(argument Time) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToString# operator returns [.kw]#true# if its argument can be converted to a [.id]#String# value. See the [.id]#<<ToString>># operator for a description of the supported conversions.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+[[convertstotime]]
+=== ConvertsToTime
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToTime(argument String) Time
+----
+
+*Description:*
+
+The [.id]#ConvertsToTime# operator returns [.kw]#true# if its argument can be converted to a [.id]#Time# value. See the [.id]#<<ToTime>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is [.kw]#false#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
 [[toboolean]]
 === ToBoolean
 

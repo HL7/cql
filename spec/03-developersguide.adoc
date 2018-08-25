@@ -714,7 +714,7 @@ If the conversion cannot be performed, the result is null. For example:
 convert 'Foo' to Integer
 ----
 
-will result in null. The convert syntax is equivalent to invoking one of the defined explicit conversion operators:
+will result in null. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
 [[table-3-g]]
 [cols=",",options="header",]
@@ -729,6 +729,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToQuantity(String)* |Converts the string representation of a quantity value to a Quantity value using the format ([.sym]#+\|-#)d*.d*'units'
 |*ToRatio(String)* |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
 |*ToDate(String)* |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
+|*ToDate(DateTime)* |Converts a DateTime to a DateTime. This is equivalent to invoking date from on the DateTime value
 |*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
 |*ToDateTime(String)* |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
 |*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
@@ -751,7 +752,7 @@ For a complete description of these conversion operators, refer to the <<09-b-cq
 [[implicit-conversions]]
 ==== Implicit Conversions
 
-In addition to the explicit conversion operators discussed above, CQL supports the implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
+In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
 [[table-3-h]]
 [cols=",,,,,,,,,,,,",options="header",]
@@ -772,6 +773,8 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 |===============================================================================================
 
 Table 3‑H
+
+In addition to these conversions, note that specific data models may introduce conversions, including implicit conversions.
 
 Although implicit conversions can be performed using the explicit convert, the language will also automatically apply implicit conversions when appropriate to produce a correctly typed expression. For example, consider the following multiplication:
 
