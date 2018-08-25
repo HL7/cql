@@ -80,48 +80,6 @@
 [[logical-specification]]
 == Logical Specification
 
-1.  <<04-logicalspecification.adoc#table-4-a,Table 4-A>>
-
-2.  <<04-logicalspecification.adoc#table-4-b,Table 4-B>>
-
-3.  <<04-logicalspecification.adoc#table-4-c,Table 4-C>>
-
-4.  <<04-logicalspecification.adoc#table-4-d,Table 4-D>>
-
-5.  <<04-logicalspecification.adoc#table-4-e,Table 4-E>>
-
-6.  <<04-logicalspecification.adoc#table-4-f,Table 4-F>>
-
-7.  <<04-logicalspecification.adoc#table-4-g,Table 4-G>>
-
-8.  <<04-logicalspecification.adoc#table-4-h,Table 4-H>>
-
-9.  <<04-logicalspecification.adoc#table-4-i,Table 4-I>>
-
-10.  <<04-logicalspecification.adoc#table-4-j,Table 4-J>>
-
-11.  <<04-logicalspecification.adoc#table-4-k,Table 4-K>>
-
-12.  <<04-logicalspecification.adoc#table-4-l,Table 4-L>>
-
-13.  <<04-logicalspecification.adoc#table-4-m,Table 4-M>>
-
-14.  <<04-logicalspecification.adoc#table-4-n,Table 4-N>>
-
-15.  <<04-logicalspecification.adoc#table-4-o,Table 4-O>>
-
-16.  <<04-logicalspecification.adoc#table-4-p,Table 4-P>>
-
-17.  <<04-logicalspecification.adoc#table-4-q,Table 4-Q>>
-
-18.  <<04-logicalspecification.adoc#table-4-r,Table 4-R>>
-
-19.  <<04-logicalspecification.adoc#table-4-s,Table 4-S>>
-
-20.  <<04-logicalspecification.adoc#table-4-t,Table 4-T>>
-
-21.  <<04-logicalspecification.adoc#table-4-u,Table 4-U>>
-
 [[language-semantics]]
 == Language Semantics
 
