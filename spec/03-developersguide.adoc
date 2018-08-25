@@ -764,7 +764,7 @@ In addition to the explicit conversion operators discussed above, CQL supports t
 |*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
 |*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
 |*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
+|*DateTime* |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
 |*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
 |*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
