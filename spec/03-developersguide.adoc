@@ -853,11 +853,13 @@ To avoid the need for this explicit cast, CQL implicitly casts the [.id]#Any# to
 
 To simplify the expression of logic involving lists and intervals, CQL defines _promotion_ and _demotion_, which are a special class of implicit conversions.
 
-Promotion is used to implicitly convert a value to a list of values of that type. Whenever an operation that expects a list-valued argument is passed a single value, the single value is promoted to a list of the same type containing the single value as its only element.
+Promotion is used to implicitly convert a value to a list of values of that type. Whenever an operation that expects a list-valued argument is passed a single value, the single value may be promoted to a list of the same type containing the single value as its only element.
 
-Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenever an operation that expects a singleton is passed a list, the list is demoted to a singleton using [.kw]#singleton from#.
+Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenever an operation that expects a singleton is passed a list, the list may be demoted to a singleton using [.kw]#singleton from#.
 
 For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using [.kw]#point from#.
+
+Whether or not promotion and demotion are allowed depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, and interval promotion is used only to enable mixed-type signatures for the [.kw]#same or after# and [.kw]#same or before# operators and interval demotion is not used.
 
 [[conversion-precedence]]
 === Conversion Precedence
@@ -867,12 +869,15 @@ Because of the possibility that a given invocation signature may be resolved to 
 1.  Exact match – If the invocation type is an exact match to the declared type of the argument
 2.  Subtype – If the invocation type is a subtype of the declared type of the argument
 3.  Compatible – If the invocation type is compatible with the declared type of the argument (e.g., the invocation type is Any)
-4.  Implicit Conversion To Simple Type – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a simple type
-5.  Implicit Conversion To Class Type - An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a class type
-6.  Demotion – The invocation type of the argument can be demoted to the declared type
-7.  Promotion – The invocation type of the argument can be promoted to the declared type
+4.  Cast - If the invocation type can be cast to the declare type (e.g., the invocation type is a choice that includes the declared type)
+5.  Implicit Conversion To Simple Type – An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a simple type
+6.  Implicit Conversion To Class Type - An implicit conversion is defined from the invocation type of the argument to the declared type of the argument, and the declared type is a class type
+7.  Interval Promotion - The declared type is an interval and the invocation type can be promoted to an interval of that type
+8.  List Demotion – The invocation type of the argument is a list and can be demoted to the declared type
+9.  Interval Demotion - The invocation type of the argument is an interval and can be demoted to the declared type
+10.  List Promotion – The declared type is a list and the invocation type can be promoted to a list of that type
 
-These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path should be used.
+These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path is used.
 
 [[conditional-expressions]]
 == Conditional Expressions
@@ -1326,7 +1331,7 @@ Patient.name.given.single() + ' ' + Patient.name.family.single()
 
 This allows the compiler to help the author determine whether a singular value is expected and appropriate, or if the author mistakenly assumed the attribute was singular, when in fact the data model allows multiple values.
 
-The _disable-promotion_ option controls whether or not list promotion is allowed in the translator.
+See the <<Promotion and Demotion>> topic for more discussion on how CQL supports list promotion and demotion.
 
 [[missing-information-1]]
 === Missing Information
