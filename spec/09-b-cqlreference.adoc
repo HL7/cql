@@ -1298,13 +1298,13 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements by name are equal.
+For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
 
-For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using the same semantics.
+For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics.
 
 For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1343,13 +1343,13 @@ For list types, this means that two list values are equivalent if and only if th
 
 For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators are equivalent.
 
+For date/time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is [.kw]#false#, rather than [.kw]#null#.
+
 For [.id]#Code# values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
 For [.id]#Concept# values, equivalence is defined as a non-empty intersection of the codes in each [.id]#Concept#.
 
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
-
-This operator, and the corresponding notion of _equivalence_, are used throughout CQL to define the behavior of membership and containment operators such as [.kw]#in#, [.kw]#contains#, [.kw]#includes#, [.id]#IndexOf()#, etc. This provides consistent and intuitive behavior in the presence of missing information in list and membership contexts.
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
@@ -1388,7 +1388,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1431,7 +1431,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
@@ -1474,7 +1474,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1518,7 +1518,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
@@ -2655,7 +2655,7 @@ after _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument.
+The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -2667,9 +2667,9 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
-
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -2699,7 +2699,7 @@ before _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument.
+The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -2711,9 +2711,9 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
-
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -2980,7 +2980,7 @@ same _precision_ as(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is [.kw]#true#. If a compared component is specified in both dates, but the values are not the same, then the result is [.kw]#false#. Otherwise the result is [.kw]#null#, as there is not enough information to make a determination.
+The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -2992,13 +2992,11 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
-
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, [.kw]#millisecond# precision is used.
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 The following examples illustrate the behavior of the [.kw]#same#__-precision-__[.kw]#as# operator:
 
@@ -3026,7 +3024,7 @@ same _precision_ or after(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument.
+The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3038,13 +3036,11 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
-
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, the [.kw]#millisecond# precision is used.
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -3074,7 +3070,7 @@ same _precision_ or before(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument.
+The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3086,13 +3082,11 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
-
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is null.
 
-If no precision is specified, the [.kw]#millisecond# precision is used.
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -3892,7 +3886,7 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, [.kw]#millisecond# precision is used.
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 [[same-or-after-2]]
 === Same Or After
@@ -3908,7 +3902,7 @@ same _precision_ or after(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<Same or After>># operator for date/time values.
+The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-after-1,Same or After (Date/Time)>># operator for date/time values.
 
 For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3928,7 +3922,7 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, the [.kw]#millisecond# precision is used.
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -3946,7 +3940,7 @@ same _precision_ or before(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<Same or After>># operator for date/time values.
+The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-before-1,Same or Before (Date/Time)>># operator for date/time values.
 
 For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3966,7 +3960,7 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are [.kw]#null#, the result is null.
 
-If no precision is specified, the [.kw]#millisecond# precision is used.
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -4092,13 +4086,9 @@ contains(argument List<T>, element T) Boolean
 
 *Description:*
 
-The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list.
+The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list using equality semantics.
 
-This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a [.kw]#null#, and the element being searched for is [.kw]#null#, the result will be [.kw]#true#.
-
-If the list argument is [.kw]#null#, the result is [.kw]#null#.
-
-If the element argument is [.kw]#null#, the result is [.kw]#true# if the list contains at least one [.kw]#null# element, and [.kw]#false# otherwise.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
@@ -4121,9 +4111,7 @@ distinct(argument List<T>) List<T>
 
 *Description:*
 
-The [.kw]#distinct# operator returns the given list with duplicates eliminated.
-
-This operator uses the notion of _equivalence_ to determine whether two elements in the list are the same for the purposes of duplicate elimination. In particular this means that if the list contains multiple [.kw]#null# elements, the result will only contain one [.kw]#null# element.
+The [.kw]#distinct# operator returns the given list with duplicates eliminated using equality semantics.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4197,11 +4185,11 @@ except(left List<T>, right List<T>) List<T>
 
 The [.kw]#except# operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.
 
-This operator uses the notion of _equivalence_ to determine whether two elements are the same for the purposes of computing the difference.
+This operator uses equality semantics to determine whether two elements are the same for the purposes of computing the difference.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
-If the left argument is [.kw]#null#, the result is [.kw]#null#. If the right argument is [.kw]#null#, the result is the left argument.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#except# operator:
 
@@ -4298,22 +4286,18 @@ in(element T, argument List<T>) Boolean
 
 *Description:*
 
-The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list.
+The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list using equality semantics.
 
-This operator uses the notion of _equivalence_ to determine whether or not the element being searched for is equivalent to any element in the list. In particular this means that if the list contains a [.kw]#null#, and the element being searched for is [.kw]#null#, the result will be [.kw]#true#.
-
-If the list argument is [.kw]#null#, the result is [.kw]#null#.
-
-If the element argument is [.kw]#null#, the result is [.kw]#true# if the list contains at least one [.kw]#null# element, and [.kw]#false# otherwise.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
 [source,cql]
 ----
 define InIsTrue: 5 in { 1, 3, 5, 7 }
-define InIsAlsoTrue: null in { 1, 3, 5, null }
 define InIsFalse: 5 in { 1, 3 }
 define InIsNull: 5 in null
+define IsIsAlsoNull: null in { 1, 3, 5, null }
 ----
 
 [[includes-1]]
@@ -4329,13 +4313,11 @@ includes(left List<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list.
+The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list using equality semantics.
 
 For the singleton overload, this operator returns [.kw]#true# if the list includes (i.e. contains) the singleton.
 
-This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
-
-If the left argument is [.kw]#null#, the result is [.kw]#false#, else if the right argument is [.kw]#null#, the result is [.kw]#true#.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4344,9 +4326,9 @@ The following examples illustrate the behavior of the [.kw]#includes# operator:
 [source,cql]
 ----
 define IncludesIsTrue: { 1, 3, 5, 7 } includes 5
-define IncludesIsAlsoTrue: { 1, 3, 5, null } includes null
+define IncludesIsNull: { 1, 3, 5, null } includes null
 define IncludesIsFalse: { 1, 3 } includes { 1, 3, 5 }
-define IncludesIsAlsoFalse: null includes { 1, 3, 5 }
+define IncludesIsAlsoNull: null includes { 1, 3, 5 }
 ----
 
 [[included-in-1]]
@@ -4362,13 +4344,11 @@ included in(left T, right list<T>) Boolean
 
 *Description:*
 
-The [.kw]#included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list.
+The [.kw]#included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list using equality semantics.
 
 For the singleton overload, this operator returns [.kw]#true# if the singleton is included in (i.e. in) the list.
 
-This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
-
-If the left argument is [.kw]#null#, the result is [.kw]#true#, else if the right argument is [.kw]#null#, the result is [.kw]#false#.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4377,9 +4357,9 @@ The following examples illustrate the behavior of the [.kw]#included in# operato
 [source,cql]
 ----
 define IncludedInIsTrue: 5 included in { 1, 3, 5, 7 }
-define IncludedInIsAlsoTrue: null included in { 1, 3, 5 }
+define IncludedInIsNull: null included in { 1, 3, 5 }
 define IncludedInIsFalse: { 1, 3, 5 } included in { 1, 3 }
-define IncludedInIsAlsoFalse: { 1, 3, 5, null } included in null
+define IncludedInIsAlsoNull: { 1, 3, 5, null } included in null
 ----
 
 [[indexer-1]]
@@ -4423,13 +4403,11 @@ IndexOf(argument List<T>, element T) Integer
 
 *Description:*
 
-The [.id]#IndexOf# operator returns the 0-based index of the given element in the given source list.
-
-The operator uses the notion of _equivalence_ to determine the index. The search is linear, and returns the index of the first element that is equivalent to the element being searched for.
+The [.id]#IndexOf# operator returns the 0-based index of the given element in the given source list using equality semantics.
 
 If the list is empty, or no element is found, the result is -1.
 
-If the list argument is [.kw]#null#, the result is [.kw]#null#.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#IndexOf# operator:
 
@@ -4454,7 +4432,7 @@ intersect(left List<T>, right List<T>) List<T>
 
 The [.kw]#intersect# operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
 
-This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
@@ -4583,9 +4561,9 @@ The [.kw]#properly includes# operator for lists returns [.kw]#true# if the first
 
 For the element overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
-This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same.
 
-If the left argument is [.kw]#null#, the result is [.kw]#false#, else if the right argument is [.kw]#null#, the result is [.kw]#true# if the left argument is not empty.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4615,9 +4593,9 @@ The [.kw]#properly included in# operator for lists returns [.kw]#true# if every 
 
 For the element overload, this operator returns true if the element is in (i.e. included in) the list and it is not the only element in the list.
 
-This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same.
 
-If the left argument is [.kw]#null#, the result is [.kw]#true# if the right argument is not empty. Otherwise, if the right argument is [.kw]#null#, the result is [.kw]#false#.
+If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 

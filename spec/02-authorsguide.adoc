@@ -1156,8 +1156,8 @@ The most basic operation in CQL involves comparison of two values. This is accom
 |*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument. Returns null if either or both arguments are null
 |*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument. Returns null if either or both arguments are null
 |*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns null if any or all arguments are null.
-|*~* |Equivalent |Returns true if the arguments are equivalent in value, or are both unknown. Returns null if either or both arguments are null
-|*!~* |Inequivalent |Returns true if the arguments are not equivalent. Returns null if either or both arguments are null
+|*~* |Equivalent |Returns true if the arguments are equivalent in value, or are both null; otherwise false
+|*!~* |Inequivalent |Returns true if the arguments are not equivalent and false otherwise.
 |===========================================================================================================================================
 
 Table 2‑H
@@ -1228,7 +1228,7 @@ This expression is equivalent to:
 4 >= 2 and 4 <= 8
 ----
 
-This is true for all the comparison operators except for equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#.
+For all the comparison operators, the result type of the operation is Boolean. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null#. This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not.
 
 [[logical-operators]]
 === Logical Operators
@@ -1305,7 +1305,7 @@ Operations on date and time data are an essential component of expressing clinic
 [[constructing-datetime-values]]
 ==== Constructing Date/Time Values
 
-In addition to the literals described in the Date, DateTime, and Time section, the [.id]#Date/Time# operators allow for the construction of specific date/time values based on the values for their components. For example:
+In addition to the literals described in the Date, DateTime, and Time section, the Date/Time operators allow for the construction of specific date/time values based on the values for their components. For example:
 
 [source,cql]
 ----
@@ -1313,7 +1313,7 @@ Date(2014, 7, 5)
 DateTime(2014, 7, 5, 4, 0, 0, 0, -7)
 ----
 
-The first example constructs the Date July 5, 2014. The second example constructs a DateTime of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
+The first example constructs the [.id]#Date# July 5, 2014. The second example constructs a [.id]#DateTime# of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
 
 The [.id]#DateTime# operator takes the following arguments:
 
@@ -1332,6 +1332,8 @@ The [.id]#DateTime# operator takes the following arguments:
 |==================================================================================
 
 Table 2‑K
+
+The [.id]#Date# operator takes only the first three arguments: Year, Month, and Day.
 
 At least one component other than timezone offset must be provided, and for any particular component that is provided, all the components of broader precision must be provided. For example:
 
@@ -1362,7 +1364,7 @@ The [.id]#Time# operator takes the following arguments:
 
 Table 2‑L
 
-As with the DateTime operator, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
@@ -1462,7 +1464,7 @@ Note that due to variability in the way week numbers are calculated, the weeks a
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
-Note that when determining equality, these semantics imply that if either date/time has unspecified components, the result of the comparison will be unknown. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
+More precisely, date/time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input. This means that if one date/time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 [[table-2-n]]
 [cols=",",options="header",]
@@ -1477,19 +1479,13 @@ Note that when determining equality, these semantics imply that if either date/t
 
 Table 2‑N
 
-Comparison, like equality, when no precision is specified, is performed to the unit with the most precision of either input. For example:
-----
-Date@2015-01-03 = DateTime@2015-01-03
-----
-This expression returns true, since the DateTime value is only specified to the day.
-
-However, each operator also allows a precision specifier to be used. For example:
+If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for time values, down to the finest precision specified in either input). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
 
 [source,cql]
 ----
 Date(2014) same year as Date(2014, 7, 11)
 Date(2014, 7) same month as Date(2014, 7, 11)
-Date(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
+DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
 ----
 
 Each of these expressions returns [.kw]#true# because the date/time values are equal at the specified level of precision and above. For example, [.kw]#same month as# means the same year _and_ the same month.
@@ -1502,7 +1498,7 @@ For relative comparisons involving equality, the [.kw]#same as# operator is suff
 ----
 Date(2015) same year or after Date(2014, 7, 11)
 Date(2014, 4) same month or before Date(2014, 7, 11)
-Date(2014, 7, 15) same day or after DateTime(2014, 7, 11, 14, 0, 0)
+DateTime(2014, 7, 15) same day or after DateTime(2014, 7, 11, 14, 0, 0)
 ----
 
 Each of these expressions also returns [.kw]#true#. And finally, for the relative inequalities ([.sym]#<# and [.sym]#>#):
@@ -1511,7 +1507,7 @@ Each of these expressions also returns [.kw]#true#. And finally, for the relativ
 ----
 Date(2015) after year of Date(2014, 7, 11)
 Date(2014, 4) before month of Date(2014, 7, 11)
-Date(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
+DateTime(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
 ----
 
 Each of these expressions also returns [.kw]#true#.
@@ -1552,7 +1548,7 @@ Table 2‑O
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
-Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date/time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the default timezone offset, not null.
+Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date/time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not null.
 
 [[datetime-arithmetic]]
 ==== Date/Time Arithmetic
@@ -1564,7 +1560,7 @@ By using quantities of time durations, CQL supports the ability to perform calen
 Today() - 1 year
 ----
 
-The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any datetime value.
+The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any date/time value.
 
 Note that as with the numeric arithmetic operators, if either or both arguments are [.kw]#null#, the result of the operation is [.kw]#null#.
 
@@ -1625,7 +1621,7 @@ To illustrate the difference between the two calculations, consider the followin
 
 [source,cql]
 ----
-duration in months between @2014-01-31 and @2014-02-01 +
+duration in months between @2014-01-31 and @2014-02-01
 difference in months between @2014-01-31 and @2014-02-01
 ----
 
@@ -1647,7 +1643,7 @@ milliseconds
 
 If the first argument is after the second, the result will be negative.
 
-For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be 7 days.
+For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be seven (7) days.
 
 In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 
@@ -2011,7 +2007,7 @@ Last({})
 
 In the above examples, the first expression returns [.lit]#1#, and the second expression returns [.lit]#5#. The last two expressions both return [.kw]#null# since there is no first or last element of an empty list. Note that the [.id]#First# and [.id]#Last# operators refer to the position of an element in the list, not the temporal relationship between elements. In order to extract the _earliest_ or _latest_ elements of a list, the list would first need to be sorted appropriately.
 
-In addition, to provide consistent and intuitive semantics when dealing with lists, whenever an operation needs to determine whether or not a given list contains an element (including list operations discussed later such as [.kw]#intersect#, [.kw]#except#, and [.kw]#distinct#), CQL uses the notion of _equivalent_, rather than pure equality.
+In addition, to provide consistent and intuitive semantics when dealing with lists, whenever an operation needs to determine whether or not a given list contains an element (including list operations discussed later such as [.kw]#intersect#, [.kw]#except#, and [.kw]#distinct#), CQL uses equality semantics.
 
 [[comparing-lists]]
 ==== Comparing Lists
@@ -2022,9 +2018,9 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
-|*X [.kw]#includes# Y* |Returns true if every element in list Y is also in list X, using equivalence semantics
+|*X [.kw]#includes# Y* |Returns true if every element in list Y is also in list X, using equality semantics
 |*X [.kw]#properly includes# Y* |Returns true if every element in list Y is also in list X and list X has more elements than list Y
-|*X [.kw]#included in# Y* |Returns true if every element in list X is also in list Y, using equivalence semantics
+|*X [.kw]#included in# Y* |Returns true if every element in list X is also in list Y, using equality semantics
 |*X [.kw]#properly included in# Y* |Returns true if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
@@ -2075,7 +2071,7 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ----
 
-Note that the distinct operator uses the notion of equivalence ([.sym]#~#) to detect duplicates. Because equivalence is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equivalence (i.e. tuples are equal if they have the same type and an equivalent value (or no value) for each element of the same name).
+Note that the distinct operator uses equality semantics ([.sym]#~#) to detect duplicates. Because equality is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equality (i.e. tuples are equal if they have the same type and value (or no value) for each element of the same name).
 
 To combine all the elements from multiple lists, use the [.kw]#union# operator:
 
@@ -2128,7 +2124,7 @@ image:extracted-media/media/image7.png[image,width=626,height=176]
 
 Figure 2‑B
 
-As with the [.kw]#distinct# operator, the [.kw]#intersect3, and [.kw]#except# operators use the equivalent operator to determine when two elements are the same.
+As with the [.kw]#distinct# operator, the [.kw]#intersect3, and [.kw]#except# operators use the equality operator to determine when two elements are the same.
 
 Because lists may contain lists, CQL provides a [.kw]#flatten# operation that can flatten lists of lists:
 
@@ -2287,11 +2283,11 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
-These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have an equivalent value for the code, system, and version elements). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
+These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same value for the code and system elements, ignoring display and version). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
 
 Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is true if any Code in the Concept is a member of the given valueset.
 
-A common terminological operation involves determining whether a given concept is _implied_, or _subsumed_ by another. This operation is generally referred to as _subsumption_ and although useful, is deliberately omitted from this specification. The reason for this omission is that subsumption is generally a very complex operation, with different terminology systems providing different mechanisms for defining and interpreting such relationships. As a result, specifying how that occurs is beyond the scope of CQL at this time. This is not to say that a specific library of subsumption operators could not be provided and broadly adopted and used, only that the CQL specification does not attempt to dictate the semantics of that operation.
+A common terminological operation involves determining whether a given concept is _implied_, or _subsumed_ by another. This operation is generally referred to as _subsumption_ and although useful, is deliberately omitted from this specification. The reason for this omission different terminology systems generally provide different mechanisms for defining and interpreting subsumption relationships. As a result, specifying how that occurs is beyond the scope of CQL at this time. This is not to say that a specific library of subsumption operators could not be provided and broadly adopted and used, only that the CQL specification does not prescribe the semantics of that operation.
 
 [[patient-operators]]
 ==== Patient Operators
