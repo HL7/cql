@@ -2665,7 +2665,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -2682,6 +2682,8 @@ define AfterIsFalse: @2012-01-01 after month of @2012-01-01
 define AfterUncertainIsNull: @2012-01-01 after month of @2012
 define AfterIsNull: @2012-01-01 after month of null
 ----
+
+This operator is also defined for intervals, see the <<after-1,After (Intervals)>> operator for more information.
 
 [[before]]
 === Before
@@ -2707,7 +2709,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -2724,6 +2726,8 @@ define BeforeIsFalse: @2012-01-01 before month of @2012-01-01
 define BeforeUncertainIsNull: @2012 before month of @2012-02-01
 define BeforeIsNull: @2012-01-01 before month of null
 ----
+
+This operator is also defined for intervals, see the <<before-1,Before (Intervals)>> operator for more information.
 
 [[date-1]]
 === Date
@@ -2857,7 +2861,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2892,7 +2896,7 @@ For [.id]#DateTime# values, _duration_ must be one of: [.kw]#years#, [.kw]#month
 
 For [.id]#Time# values, _duration_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2922,6 +2926,46 @@ The [.id]#Now# operator returns the date and time of the start timestamp associa
 1.  The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
 2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
 
+[[on-or-after-1]]
+=== On Or After
+
+*Signature:*
+
+[source,cql]
+----
+on or after _precision_ (left Date, right Date) Boolean
+on or after _precision_ (left DateTime, right DateTime) Boolean
+on or after _precision_ (left Time, right Time) Boolean
+----
+
+*Description:*
+
+The [.kw]#on or after# operator for date/time values is a synonym for the [.kw]#same or after# operator and is supported to enable natural phrasing. See the description of the <<same-or-after-1,Same Or After (Date/Time)>> operator.
+
+Note that this operator can be invoked using either the [.kw]#on or after# or the [.kw]#after or on# syntax.
+
+In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
+
+[[on-or-before-1]]
+=== On Or Before
+
+*Signature:*
+
+[source,cql]
+----
+on or before _precision_ (left Date, right Date) Boolean
+on or before _precision_ (left DateTime, right DateTime) Boolean
+on or before _precision_ (left Time, right Time) Boolean
+----
+
+*Description:*
+
+The [.kw]#on or before# operator for date/time values is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-1,Same Or Before (Date/Time)>> operator.
+
+Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
+
+In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
+
 [[same-as-1]]
 === Same As
 
@@ -2946,7 +2990,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -2966,7 +3010,9 @@ define UncertainSameAsIsNull: @2012-01-01 same day as @2012-01
 define SameAsIsNull: @2012-01-01 same day as null
 ----
 
-[[same-or-after]]
+This operator is also defined for intervals, see the <<same-as-2,Same As (Intervals)>> operator for more information.
+
+[[same-or-after-1]]
 === Same Or After
 
 *Signature:*
@@ -2990,7 +3036,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -3012,7 +3058,9 @@ define UncertainSameOrAfterIsNull: @2012-01-02 same day or after @2012-01
 define SameOrAfterIsNull: @2012-01-01 same day or after null
 ----
 
-[[same-or-before]]
+This operator is also defined for intervals, see the <<same-or-after-2,Same Or After (Intervals)>> operator for more information.
+
+[[same-or-before-1]]
 === Same Or Before
 
 *Signature:*
@@ -3036,7 +3084,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values with [.kw]#null# time components.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
 
 For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -3057,6 +3105,8 @@ define SameOrBeforeFalse: @2012-01-02 same day or before @2012-01-01
 define UncertainSameOrBeforeIsNull: @2012-01-02 same day or before @2012-01
 define SameOrBeforeIsNull: @2012-01-01 same day or before null
 ----
+
+This operator is also defined for intervals, see the <<same-or-before-2,Same Or Before (Intervals)>> operator for more information.
 
 [[subtract-1]]
 === Subtract
@@ -3488,7 +3538,7 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The [.kw]#includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, the operator returns [.kw]#true# if the interval includes (i.e. contains) the point.
+For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>> operator.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
@@ -3520,7 +3570,7 @@ included in _precision_ (left T, right Interval<T>) Boolean
 
 The [.kw]#included in# operator for intervals returns [.kw]#true# if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, the operator returns [.kw]#true# if the point is included in (i.e. in) the interval.
+For the point overload, this operator is a synonym for the [.kw]#<<in,in>># operator.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
@@ -3647,7 +3697,7 @@ define NotEquivalentIsAlsoFalse: Interval[1, null] !~ Interval[1, null]
 define NotEquivalentIsTrue: Interval[-1, 7] !~ Interval[0, 7]
 ----
 
-[[on-or-after]]
+[[on-or-after-2]]
 === On Or After
 
 *Signature:*
@@ -3661,32 +3711,13 @@ on or after _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#on or after# operator for intervals returns [.kw]#true# if the first interval starts on or after the second one ends. In other words, if the starting point of the first interval is greater than or equal to the ending point of the second interval.
-
-For the point-interval overload, the operator returns [.kw]#true# if the given point is greater than or equal to the end of the interval.
-
-For the interval-point overload, the operator returns [.kw]#true# if the given interval starts on or after the given point.
-
-This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
-
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+The [.kw]#on or after# operator for intervals is a synonym for the [.kw]#same or after# operator and is supported to enable natural phrasing. See the description of the <<same-or-after-2,Same Or After (Intervals)>> operator.
 
 Note that this operator can be invoked using either the [.kw]#on or after# or the [.kw]#after or on# syntax.
 
 In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
-The following examples illustrate the behavior of the [.kw]#on or after# operator:
-
-[source,cql]
-----
-define OnOrAfterIsTrue: Interval[6, 10] on or after Interval[0, 5]
-define OnOrAfterIsFalse: 6 after or on Interval[0, 7]
-define OnOrAfterIsNull: Interval[6, 10] on or after (null as Integer)
-----
-
-[[on-or-before]]
+[[on-or-before-2]]
 === On Or Before
 
 *Signature:*
@@ -3695,35 +3726,16 @@ define OnOrAfterIsNull: Interval[6, 10] on or after (null as Integer)
 ----
 on or before _precision_ (left Interval<T>, right Interval<T>) Boolean
 on or before _precision_ (left T, right Interval<T>) Boolean
-on or before _precision_ (left interval<T>, right T) Boolean
+on or before _precision_ (left Interval<T>, right T) Boolean
 ----
 
 *Description:*
 
-The [.kw]#on or before# operator for intervals returns [.kw]#true# if the first interval ends on or before the second one starts. In other words, if the ending point of the first interval is less than or equal to the starting point of the second interval.
-
-For the point-interval overload, the operator returns [.kw]#true# if the given point is less than or equal to the start of the interval.
-
-For the interval-point overload, the operator returns [.kw]#true# if the given interval ends on or before the given point.
-
-This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
-
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+The [.kw]#on or before# operator for date/time-based intervals is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-2,Same Or Before (Intervals)>> operator.
 
 Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
 
 In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
-
-The following examples illustrate the behavior of the [.kw]#on or before# operator:
-
-[source,cql]
-----
-define OnOrBeforeIsTrue: Interval[0, 5] on or before Interval[5, 10]
-define OnOrBeforeIsFalse: 1 before or on Interval[0, 7]
-define OnOrBeforeIsNull: Interval[6, 10] on or before (null as Integer)
-----
 
 [[overlaps]]
 === Overlaps
@@ -3792,11 +3804,14 @@ define PointFromIsNull: point from (null as Interval<Integer>)
 [source,cql]
 ----
 properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
+properly includes _precision_ (left Interval<T>, right T) Boolean
 ----
 
 *Description:*
 
 The [.kw]#properly includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.
+
+For the point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
@@ -3821,11 +3836,14 @@ define ProperlyIncludesIsNull: Interval[-1, 5] properly includes null
 [source,cql]
 ----
 properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+properly included in _precision_ (left T, right Interval<T>) Boolean
 ----
 
 *Description:*
 
 The [.kw]#properly included in# operator for intervals returns [.kw]#true# if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
+
+For the point overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
@@ -3843,6 +3861,114 @@ define ProperlyIncludedInIsTrue: Interval[1, 5] properly included in Interval[0,
 define ProperlyIncludedInIsFalse: Interval[0, 7] properly during Interval[0, 7]
 define ProperlyIncludedInIsNull: Interval[1, 5] properly included in (null as Interval<Integer>)
 ----
+
+[[same-as-2]]
+=== Same As
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ as(left Interval<T>, right Interval<T>) Boolean
+----
+
+*Description:*
+
+The [.kw]#same#__-precision-__[.kw]#as# operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time value, performing the comparisons at the specified precision, as described in the [.id]#<<Same As>># operator for date/time values.
+
+For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
+
+For [.id]#DateTime#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+For [.id]#Time#-based intervals, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
+
+When this operator is called with a mixture of [.id]#Date#- and [.id]#DateTime#-based intervals, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
+
+If no precision is specified, [.kw]#millisecond# precision is used.
+
+[[same-or-after-2]]
+=== Same Or After
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ or after(left Interval<T>, right Interval<T>) Boolean
+same _precision_ or after(left T, right Interval<T>) Boolean
+same _precision_ or after(left Interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<Same or After>># operator for date/time values.
+
+For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
+
+For [.id]#DateTime#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+For [.id]#Time#-based intervals, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
+
+When this operator is called with a mixture of [.id]#Date#-based and [.id]#DateTime#-based intervals, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
+
+When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
+
+For comparisons involving date/time or time intervals with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
+
+If no precision is specified, the [.kw]#millisecond# precision is used.
+
+Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
+
+[[same-or-before-2]]
+=== Same Or Before
+
+*Signature:*
+
+[source,cql]
+----
+same _precision_ or before(left Interval<T>, right Interval<T>) Boolean
+same _precision_ or before(left T, right Interval<T>) Boolean
+same _precision_ or before(left Interval<T>, right T) Boolean
+----
+
+*Description:*
+
+The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<Same or After>># operator for date/time values.
+
+For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
+
+For [.id]#DateTime#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+For [.id]#Time#-based intervals, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
+
+Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
+
+When this operator is called with a mixture of [.id]#Date#- and [.id]#DateTime#-based intervals, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
+
+When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
+
+For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+
+As with all date/time calculations, comparisons are performed respecting the timezone offset.
+
+If either or both arguments are [.kw]#null#, the result is null.
+
+If no precision is specified, the [.kw]#millisecond# precision is used.
+
+Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
 [[start]]
 === Start
@@ -4448,11 +4574,14 @@ define NotEquivalentIsTrue: { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 [source,cql]
 ----
 properly includes(left List<T>, right List<T>) Boolean
+properly includes(left T, right List<T>) Boolean
 ----
 
 *Description:*
 
 The [.kw]#properly includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list, and the first list is strictly larger than the second list.
+
+For the element overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
@@ -4483,6 +4612,8 @@ properly included in(left List<T>, right list<T>) Boolean
 *Description:*
 
 The [.kw]#properly included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list and the first list is strictly smaller than the second list.
+
+For the element overload, this operator returns true if the element is in (i.e. included in) the list and it is not the only element in the list.
 
 This operator uses the notion of _equivalence_ to determine whether or not two elements are the same.
 
