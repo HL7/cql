@@ -18,7 +18,9 @@ At the highest level, CQL is organized around the concept of a _library_, which 
 
 In the sections that follow, the various constructs introduced above will be discussed in more detail, beginning with the kinds of declarations that can be made in a CQL library, and then moving through the various ways that clinical information is referenced and queried within CQL, an overview of the operators available in CQL, and ending with a detailed walkthrough of authoring specific quality artifacts using a running example.
 
-Note that throughout the discussion, readers may wish to refer to link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
+It is important to keep in mind throughout the discussion that follows that CQL is a _query language_, which means that the statements of the language are really _questions_, formulated in terms of a _data model_ that describes the available data. Depending on the use case, these questions will be evaluated in different ways to produce a response. For example, for decision  support, the questions will likely be evaluated in the context of a specific patient and at some specific point in a workflow. For quality measurement, the questions will likely be evaluated for each of a set of patients in an overall population. However the evaluation occurs, the discussions in this chapter refer generally to the notion of an _evaluation request_ that represents a request by some consumer to evaluate a CQL expression. This evaluation request generally includes the _context_ of the evaluation (i.e. the inputs to the evaluation such as the patient and any parameter values), as well as a _timestamp_ associated with when the evaluation request occurs.
+
+And as a final introductory note, throughout the discussion, readers may find it helpful to refer to  link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
 
 [[declarations]]
 == Declarations
@@ -41,7 +43,7 @@ Libraries can contain any or all of the following constructs:
 |*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
 |*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
 |*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context* |Patient/population context, specifying the overall context for the statements that follow.
+|*context* |Patient/Population context, specifying the overall context for the statements that follow.
 |*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
 |*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
@@ -198,7 +200,7 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the overall context for statements within the language. CQL supports two contexts:
+The context declaration defines the overall context for statements within the language. This specification defines two contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
@@ -209,6 +211,8 @@ The context declaration defines the overall context for statements within the la
 |========================================================================================================================================
 
 Table 2‑C
+
+Depending on different needs, environments may define any context appropriate to their use case.
 
 The following example illustrates the use of the Patient context:
 

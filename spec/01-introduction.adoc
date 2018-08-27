@@ -139,8 +139,8 @@ The Clinical Quality Language specification includes the following components:
 * CQL Grammar – An ANTLR4 grammar file formally defining the syntax for the high-level authoring language described by this specification
 * Expression Logical Model – A UML model that specifies a canonical representation for expression logic
 * ELM XML Schemas – XML schemata defining a physical representation for the serialization and sharing of expression logic specified in the ELM
-+
-Note that syntax highlighting is used throughout the specification to make the examples easier to read. However, the highlighting is for example use only and is not intended to be a normative aspect of the specification.
+
+Note that syntax highlighting is used throughout the specification to make the examples easier to read. However, the highlighting is for example use only and is not a normative aspect of the specification.
 
 [[alignment-to-cqf-artifact-sharing-use-case]]
 == Alignment to CQF Artifact Sharing Use Case
