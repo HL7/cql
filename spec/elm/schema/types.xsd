@@ -104,7 +104,7 @@
 			<xs:extension base="Interval">
 				<xs:sequence>
 					<xs:element name="low" type="Integer" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="high" type="Integer"  minOccurs="0" maxOccurs="1"/>
+					<xs:element name="high" type="Integer" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
