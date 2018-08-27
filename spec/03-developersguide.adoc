@@ -859,7 +859,9 @@ Demotion is the opposite, used to implicitly extract a single value from a list 
 
 For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using [.kw]#point from#.
 
-Whether or not promotion and demotion are allowed depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, and interval promotion is used only to enable mixed-type signatures for the [.kw]#same or after# and [.kw]#same or before# operators and interval demotion is not used.
+Note that the use of demotion has the potential to result in a run-time error if [.kw]#singleton from# is invoked on a list with multiple elements, or if [.kw]#point from# is invoked on an interval wider than a single point. In addition, promotion and demotion can sometimes result in unexpected behavior. As such, environments may choose whether or not to support these features of the language.
+
+Whether or not promotion and demotion should be used depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, interval promotion is used only to enable mixed-type signatures for the [.kw]#same or after# and [.kw]#same or before# operators, and interval demotion is not used.
 
 [[conversion-precedence]]
 === Conversion Precedence
