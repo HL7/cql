@@ -159,7 +159,7 @@ simple type Decimal
 
 The [.id]#Decimal# type represents real values within CQL.
 
-CQL supports decimal values in the range [.lit]#-10^28^-10^-8^# to [.lit]#10^28^-10^-8^# with a step size of [.lit]#10^-8^#.
+CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10^28^ + 1)/10^8^ to (10^28^-1)/10^-8^ with a step size of 10^-8^.
 
 [[integer-1]]
 === Integer
@@ -175,7 +175,7 @@ simple type Integer
 
 The [.id]#Integer# type represents whole number values within CQL.
 
-CQL supports integer values in the range [.lit]#-2^31^# to [.lit]#2^31^-1# with a step size of [.lit]#1#.
+CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1.
 
 [[quantity]]
 === Quantity
@@ -227,7 +227,7 @@ simple type String
 
 The [.id]#String# type represents string values within CQL.
 
-CQL supports string values up to [.lit]#2^31^-1# characters in length.
+CQL supports string values up to 2^31^-1 characters in length.
 
 For string literals, CQL uses standard escape sequences:
 
@@ -542,7 +542,7 @@ The following table lists the conversions supported in CQL:
 |*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
 |*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
 |*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |Explicit |- |N/A |- |- |- |-
+|*DateTime* |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
 |*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
 |*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
@@ -1013,7 +1013,7 @@ Note that the decimal value of the quantity returned by this operator must be a 
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Quantity# value, the result is [.kw]#null#.
 
-For the [.id]#Integer# and [.id]#Decimal# overloads, the operator returns a quantity with the value of the argument and a unit of '[.lit]#1#' (the default unit).
+For the [.id]#Integer# and [.id]#Decimal# overloads, the operator returns a quantity with the value of the argument and a unit of [.lit]#'1'# (the default unit).
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1314,7 +1314,7 @@ For string values, equality is strictly lexical based on the Unicode values for 
 
 For decimal values, trailing zeroes are ignored.
 
-For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
 
@@ -1404,7 +1404,7 @@ The _greater_ ([.sym]#>#) operator returns [.kw]#true# if the first argument is 
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
 
@@ -1447,7 +1447,7 @@ The _greater or equal_ ([.sym]#>=#) operator returns [.kw]#true# if the first ar
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
 
@@ -1490,7 +1490,7 @@ The _less_ ([.sym]#<#) operator returns [.kw]#true# if the first argument is les
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
 
@@ -1534,7 +1534,7 @@ The _less or equal_ ([.sym]#\<=#) operator returns [.kw]#true# if the first argu
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
 
@@ -1664,7 +1664,7 @@ The _add_ ([.sym]#+#) operator performs numeric addition of its arguments.
 
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be added, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be added, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1732,7 +1732,7 @@ For division operations involving quantities, the resulting quantity will have t
 12 'cm2' / 3 'cm'
 ----
 
-In this example, the result will have a unit of [.lit]#'cm'#. Note that when performing division of quantities with the same units, the result will have the default UCUM unit ('[.lit]#1#'). When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+In this example, the result will have a unit of [.lit]#'cm'#. Note that when performing division of quantities with the same units, the result will have the default UCUM unit ([.lit]#'1'#). When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1873,7 +1873,7 @@ The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [
 
 For [.id]#Integer#, [.kw]#maximum# returns the maximum signed 32-bit integer, 2^31^ - 1.
 
-For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal value, (10^37^ – 1) / 10^8^ (9999999999999999999999999999.99999999).
+For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal value, (10^28^ – 1) / 10^8^ (99999999999999999999.99999999).
 
 For [.id]#Date#, [.kw]#maximum# returns the maximum representable date value, [.id]#Date#([.lit]#9999#, [.lit]#12#, [.lit]#31#).
 
@@ -1910,7 +1910,7 @@ The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [
 
 For [.id]#Integer#, [.kw]#minimum# returns the minimum signed 32-bit integer, -2^31^.
 
-For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal value, (-10^37^ – 1) / 10^8^ (-9999999999999999999999999999.99999999).
+For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal value, (-10^28^ + 1) / 10^8^ (-99999999999999999999.99999999).
 
 For [.id]#Date#, [.kw]#minimum# returns the minimum representable date value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#).
 
@@ -1985,7 +1985,7 @@ For multiplication operations involving quantities, the resulting quantity will 
 3 'cm' * 12 'cm2'
 ----
 
-In this example, the first result will have a unit of [.lit]#'cm2'#, and the second result will have a unit of [.lit]#'cm3'#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+In this example, the first result will have a unit of [.lit]#'cm2'#, and the second result will have a unit of [.lit]#'cm3'#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2132,7 +2132,7 @@ The _subtract_ ([.sym]#-#) operator performs numeric subtraction of its argument
 
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be subtracted, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ('[.lit]#1#').
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be subtracted, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3507,7 +3507,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 The [.kw]#expand# operator returns the set of intervals of width per for all the intervals in the input.
 
-The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ('[.lit]#1#'). For date/time intervals, this means a temporal duration.
+The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For date/time intervals, this means a temporal duration.
 
 For example:
 
