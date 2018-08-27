@@ -1696,7 +1696,6 @@ define QuantityCeilingIsNull: Ceiling(null as Decimal)
 [source,cql]
 ----
 /(left Decimal, right Decimal) Decimal
-/(left Quantity, right Decimal) Quantity
 /(left Quantity, right Quantity) Quantity
 ----
 
@@ -1705,6 +1704,8 @@ define QuantityCeilingIsNull: Ceiling(null as Decimal)
 The _divide_ ([.sym]#/#) operator performs numeric division of its arguments. Note that this operator is [.id]#Decimal# division; for [.id]#Integer# division, use the _truncated divide_ ([.kw]#div#) operator.
 
 When invoked with [.id]#Integer# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
+
+When invoked with a mixture of [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Decimal# arguments will be implicitly converted to [.id]#Quantity#.
 
 For division operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
@@ -1947,8 +1948,6 @@ define ModuloIsNull: 2.5 mod null
 ----
 *(left Integer, right Integer) Integer
 *(left Decimal, right Decimal) Decimal
-*(left Decimal, right Quantity) Quantity
-*(left Quantity, right Decimal) Quantity
 *(left Quantity, right Quantity) Quantity
 ----
 
@@ -1957,6 +1956,8 @@ define ModuloIsNull: 2.5 mod null
 The _multiply_ ([.sym]#*#) operator performs numeric multiplication of its arguments.
 
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+
+When invoked with mixed [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Decimal# argument will be implicitly converted to [.id]#Quantity#.
 
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
