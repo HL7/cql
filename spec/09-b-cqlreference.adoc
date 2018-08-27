@@ -2537,6 +2537,26 @@ define SplitNotFound: Split('CQL is awesome', ',') // { 'CQL is awesome' }
 define SplitIsNull: Split(null, ' ')
 ----
 
+[[splitonmatches]]
+=== SplitOnMatches
+
+*Signature:*
+
+[source,cql]
+----
+Split(stringToSplit String, separatorPattern String) List<String>
+----
+
+*Description:*
+
+The [.id]#SplitOnMatches# operator splits a string into a list of strings using a separator that is defined by a regular expression pattern.
+
+If the [.id]#stringToSplit# argument is [.kw]#null#, the result is [.kw]#null#.
+
+The [.id]#separatorPattern# argument is interpreted with the same regular expression semantics as defined for the [.id]#Matches# operator.
+
+If the [.id]#stringToSplit# argument does not contain any matches for the [.id]#separatorPattern#, the result is a list of strings containing one element that is the value of the [.id]#stringToSplit# argument.
+
 [[startswith]]
 === StartsWith
 
