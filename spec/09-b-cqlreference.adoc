@@ -5529,7 +5529,7 @@ The following examples illustrate the behavior of the [.id]#Message# operator:
 
 [source,cql]
 ----
-parameter Numerator Integer
-parameter Denominator Integer
+parameter Numerator Integer default 1
+parameter Denominator Integer default 0
 define ErrorMessage: Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')
 ----
