@@ -111,7 +111,21 @@ This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#L
 
 The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, [.id]#Common#, and the identifier, [.id]#ConditionsIndicatingSexualActivity#, separated by a dot ([.sym]#.#).
 
-The [.kw]#called# clause of the [.kw]#include# declaration is optional, and if omitted, the library is referenced by the identifier.
+The [.kw]#called# clause of the [.kw]#include# declaration is optional; if omitted, the identifier of the library is used to refer to the library. For example, given the following include:
+
+[source,cql]
+----
+include CMS153_Common version '2'
+----
+
+The above expression would need to be:
+
+[source,cql]
+----
+define SexuallyActive:
+  exists (CMS153_Common.ConditionsIndicatingSexualActivity)
+    or exists (CMS153_Common.LaboratoryTestsIndicatingSexualActivity)
+----
 
 [[terminology]]
 === Terminology
