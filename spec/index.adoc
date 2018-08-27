@@ -4,8 +4,6 @@
 
 *HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)*
 
-*May 2018*
-
 *HL7 STU Specification*
 
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
@@ -16,15 +14,7 @@ link:title.html[Title Page]
 
 link:license.html[License]
 
-****
-NOTE To Reviewers:
-
-A summary of changes to this version can be found in the link:history.html[Version History], and a detailed listing of changes is available in the link:v1.3-changelog.html[1.3 Change Log].
-
-In addition, we are considering a breaking change to the query syntax and seeking feedback on the change. Please review and provide comments on this change:
-
-link:querychange.html[Query Change Proposal]
-****
+link:history.html[Version History]
 
 link:00-executivesummary.html[0. Executive Summary]
 

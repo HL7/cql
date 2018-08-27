@@ -1212,6 +1212,19 @@ The result will be a list of tuples containing the cartesian product of all Enco
 
 In addition, the default for return clauses is [.kw]#distinct#, as opposed to [.kw]#all#, so if no return clause is specified, duplicates will be eliminated from the result.
 
+[[query-syntax-options]]
+=== Query Syntax Options
+
+Note that the grammar for CQL queries allows for the [.kw]#from# keyword to be used for single- and multi-source queries. For example, the following is valid CQL:
+
+[source,cql]
+----
+from [Encounter] E
+  where E.effectiveTime starts after Today() - 1 year
+----
+
+Moreover, parsing the grammar can be simplified by requiring that all queries start with the [.kw]#from# keyword. To support a change to the language to enable this simplification, environments may require that all queries begin with the [.kw]#from# keyword.
+
 [[non-retrieve-queries]]
 == Non-Retrieve Queries
 

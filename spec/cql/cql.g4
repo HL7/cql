@@ -2,7 +2,7 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.3 - May 2018 STU3 Ballot
+ * Version 1.3 - STU3 Publication
  */
 
 import fhirpath;
@@ -15,14 +15,14 @@ library
     :
     libraryDefinition?
     usingDefinition*
-	includeDefinition*
-	codesystemDefinition*
-	valuesetDefinition*
-	codeDefinition*
-	conceptDefinition*
-	parameterDefinition*
-	statement*
-	;
+    includeDefinition*
+    codesystemDefinition*
+    valuesetDefinition*
+    codeDefinition*
+    conceptDefinition*
+    parameterDefinition*
+    statement*
+    ;
 
 /*
  * Definitions
@@ -295,7 +295,7 @@ dateTimeComponent
     | 'timezone'
     ;
 
-        pluralDateTimePrecision
+pluralDateTimePrecision
     : 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds' | 'milliseconds'
     ;
 
@@ -437,6 +437,7 @@ conceptSelector
 
 identifier
     : IDENTIFIER
+    | DELIMITEDIDENTIFIER
     | QUOTEDIDENTIFIER
     | 'all'
     | 'Code'
@@ -456,4 +457,12 @@ identifier
     | 'version'
     | 'where'
     ;
+
+QUOTEDIDENTIFIER
+        : '"' (ESC | .)*? '"'
+        ;
+
+fragment ESC
+        : '\\' ([`'"\\/fnrt] | UNICODE)    // allow \`, \', \", \\, \/, \f, etc. and \uXXX
+        ;
 
