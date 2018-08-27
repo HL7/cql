@@ -136,6 +136,7 @@ A _value_ within CQL represents some piece of data. All values are of some _type
 2.  Structured types – Types representing composite values consisting of sets of named properties, each of which has a declared type, that may or may not have a current value of that type.
 3.  Collection types – Types representing lists of values of some declared type
 4.  Interval types – Types representing an interval of some declared type, called the _point_ type
+5.  Choice types - Types representing values from a set of possible types
 
 [[simple-types]]
 ==== Simple Types
@@ -164,6 +165,11 @@ Collections may be empty, and are defined to be 0-based for indexing purposes.
 Interval types allow for the representation of ranges over some point type. For example, an interval of integers allows the expression of the interval 1 to 5. Intervals can be open or closed at the beginning and/or end of the interval, and the beginning or end of the interval can be unspecified.
 
 The core expression layer does not define any interval types, it only provides facilities for constructing values of interval types, and for operating on intervals.
+
+[[choice-types]]
+==== Choice Types
+
+Choice types allow for the representation of elements that may be any of a possible list of types. A given value at run-time will always be of a specific type, so a choice type is only a compile-time construct that allows for data models that contain elements with multiple possible types, or for the results of expressions where the result may be any of a possible set of types (e.g. a union of different types).
 
 [[language-elements]]
 === Language Elements
