@@ -1512,7 +1512,14 @@ DateTime(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
 
 Each of these expressions also returns [.kw]#true#.
 
-Note that these operators may still return [.kw]#null# if the date/time values involved have unspecified components at or above the specified comparison precision.
+Note that these operators may still return [.kw]#null# if the date/time values involved have unspecified components at or above the specified comparison precision. For example:
+
+[source,cql]
+----
+Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
+----
+
+The result in this example is null because the first date has no _hour_ component.
 
 [[extracting-date-and-time-components]]
 ==== Extracting Date and Time Components
