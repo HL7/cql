@@ -130,9 +130,11 @@ define SexuallyActive:
 [[terminology]]
 === Terminology
 
-A CQL library may contain zero or more named valuesets using the [.kw]#valueset# declaration. A valueset declaration specifies a local identifier that represents a valueset and can be used anywhere within the library that a valueset is expected.
+A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations. 
 
-The following example illustrates a valueset declaration:
+These declarations specify a local identifier that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
+
+Consider the following valueset declaration:
 
 [source,cql]
 ----
@@ -154,7 +156,16 @@ Note that the name of the valueset uses double quotes, in contrast to the string
 
 Note also that the local identifier for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. Good practice would dictate that the names should at least be conceptually similar, but CQL makes no prescription either way.
 
-In addition, CQL libraries may contain _code systems_, _codes_, and _concepts_. For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
+The following example illustrates a _code system_ and a _code_ declaration:
+
+[source,cql]
+----
+codesystem "SNOMED": 'http://snomed.info/sct'
+code "Screening for Chlamydia trachomatis (procedure)": 
+  '442487003' from "SNOMED" display 'Screening for Chlamydia trachomatis (procedure)'
+----
+
+For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
 
 [[parameters]]
 === Parameters
