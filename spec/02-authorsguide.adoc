@@ -840,7 +840,17 @@ In addition, CQL provides a Code literal that can be used to reference an existi
 Code '66071002' from "SNOMED-CT:2014" display 'Type B viral hepatitis'
 ----
 
-The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. This code can then be used as a _direct_ _reference_ _code_ in CQL expressions.
+The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
+
+Any of the code declarations above can then be used as in a CQL expression as a _direct reference code_:
+
+[source,cql]
+----
+code "Discharge to home for hospice care (procedure)": '428361000124107' from "SNOMEDCT"
+
+define "Encounters Discharged to Hospice": 
+  "Encounters" E where E.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
+----
 
 [[concept]]
 ==== Concept
