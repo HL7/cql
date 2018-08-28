@@ -331,22 +331,15 @@ Note that the terminology reference [.id]#"Acute Severity"# in the above example
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
 code "Acute Pharyngitis Code":
   '363746003' from "SNOMED:2014" display 'Acute pharyngitis (disorder)'
-code "Acute Viral Pharyngitis Code":
-  '195662009' from "SNOMED:2014" display 'Acute viral pharyngitis (disorder)'
-concept "Acute Pharyngitis Concepts":
-  { "Acute Pharyngitis Code", "Acute Viral Pharyngitis Code" } display 'Acute Pharyngitis Concepts'
 
 define "Get Condition from Code Declaration":
-  [Condition: severity in "Acute Pharyngitis Code"]
-
-define "Get Condition from Concept Declaration":
-  [Condition: severity in "Acute Pharyngitis Concepts"]
+  [Condition: "Acute Pharyngitis Code"]
 
 define "Get Condition from CodeSystem Declaration":
-  [Condition: severity in "SNOMED:2014"]
+  [Condition: "SNOMED:2014"]
 ----
 
-The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the severity is equal to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from Concept Declaration"# expression returns conditions for the patient where the severity is contained within the [.id]#"Acute Pharyngitis Concepts"# concept. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the severity is contained within the [.id]#"SNOMED:2014"# code system.
+The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED:2014"# code system.
 
 [[retrieve-context]]
 === Retrieve Context
