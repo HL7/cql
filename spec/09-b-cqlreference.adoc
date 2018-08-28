@@ -4113,6 +4113,8 @@ define WidthIsNull: width of (null as Interval<Integer>)
 [[list-operators-2]]
 == List Operators
 
+Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the <<03-developersguide.adoc#promotion-and-demotion,Promotion and Demotion>> section for more information.
+
 [[contains-1]]
 === Contains
 
