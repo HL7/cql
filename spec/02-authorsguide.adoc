@@ -961,6 +961,17 @@ See the <<Terminology Operators>> section for more information on the use of val
 
 In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<valuesets>> section for an example codesystems declaration.
 
+For example:
+
+[source,cql]
+----
+codesystem "LOINC": 'http://loinc.org'
+
+define "LOINC Observations": [Observation: "LOINC"]
+----
+
+The above example retrieves all observations coded using LOINC codes.
+
 See the <<Terminology Operators>> section for more information on the use of codesystems within CQL.
 
 [[structured-values-tuples]]
