@@ -1219,6 +1219,8 @@ However, the following equality comparison is invalid because numbers and string
 5 = 'completed'
 ----
 
+Attempting to compare numbers and strings as in this example will result in an error message indicating that there is no equality ([.sym]#=#) operator available to compare numbers and strings.
+
 For decimal values, equality is defined to ignore trailing zeroes.
 
 For date/time values, equality is defined to account for the possibility that the date/time values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
@@ -1271,7 +1273,15 @@ This expression is equivalent to:
 4 >= 2 and 4 <= 8
 ----
 
-For all the comparison operators, the result type of the operation is Boolean. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null#. This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not.
+For all the comparison operators, the result type of the operation is Boolean. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null# (meaning _unknown_). This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not:
+
+[source,cql]
+----
+define NullEqualityTest: 1 = null
+define NullEquivalenceTest: 1 ~ null
+----
+
+The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
 
 [[logical-operators]]
 === Logical Operators
