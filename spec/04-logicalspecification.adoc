@@ -1012,7 +1012,7 @@ Includes a library for use within the artifact.
 
 [source,elm]
 ----
-VersionedIdentifier : null
+VersionedIdentifier
 ----
 
 VersionedIdentifier is composed of two parts: (1) an identifier which
