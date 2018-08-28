@@ -3681,9 +3681,18 @@ The [.kw]#meets before# operator returns [.kw]#true# if the first interval ends 
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision. 
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+Note that date/time-based intervals with partially specified boundaries will "meet" at the precision of the boundaries, not the finest precision for the point type. For example:
+
+[source,cql]
+----
+define MeetsAtHours: Interval[@T03, @T04] meets Interval[@T05, @T06]
+----
+
+The [.id]#MeetsAtHours# expression returns true because the meets operation is performed at the hour precision.
 
 The following examples illustrate the behavior of the [.kw]#meets#, [.kw]#meets before#, and [.kw]#meets after# operators:
 
