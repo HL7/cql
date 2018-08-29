@@ -124,7 +124,7 @@ li.dropdown {
     color: #D9E6FC;
 }
 
-.sect1, #preamble { margin-left: 5px; }
+.sect1, #preamble { margin-left: 20px; }
 
 @media screen and (max-height: 450px) {
     .toc {padding-top: 15px;}
