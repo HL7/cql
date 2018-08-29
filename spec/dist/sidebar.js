@@ -10,12 +10,15 @@ $(window).scroll(function() {
 
 });
 
-// toc.on("scroll", function(e) {
-//
-//     if (this.scrollTop > 147) {
-//         toc.addClass("fix-toc");
-//     } else {
-//         toc.removeClass("fix-toc");
-//     }
-//
-// });
+var sec = $(".sect1");
+var preamble = $("#preamble");
+
+$(window).resize(function() {
+    sec.css({paddingLeft: toc.css("width")});
+    preamble.css({paddingLeft: toc.css("width")});
+});
+
+$(document).ready(function () {
+    sec.css({paddingLeft: toc.css("width")});
+    preamble.css({paddingLeft: toc.css("width")});
+});

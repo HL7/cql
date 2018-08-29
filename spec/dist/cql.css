@@ -93,7 +93,7 @@ li.dropdown {
 
 .toc {
     height: 100%;
-    width: 23%;
+    width: min-content;
     position: absolute;
     display: inline;
     background-color: #ffffff;
@@ -102,7 +102,7 @@ li.dropdown {
 
 .fix-toc {
     height: 100%;
-    width: 15%;
+    width: min-content;
     position: fixed;
     display: inline;
     top: 0;
@@ -124,7 +124,7 @@ li.dropdown {
     color: #D9E6FC;
 }
 
-.sect1, #preamble { padding-left: 25%; }
+.sect1, #preamble { margin-left: 5px; }
 
 @media screen and (max-height: 450px) {
     .toc {padding-top: 15px;}
