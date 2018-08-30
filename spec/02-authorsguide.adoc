@@ -2361,7 +2361,7 @@ To support determination of patient age consistently throughout quality logic, C
 |*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date/time X
 |*AgeInYears()* |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
 |*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date/time X
-|*AgeInMonths()* |Determines the age of the patient in months as of now. Equivalent to AgeInMonthsAt(Now())
+|*AgeInMonths()* |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
 |*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the date/time X
 |*AgeInWeeks()* |Determines the age of the patient in weeks as of now. Equivalent to AgeInWeeksAt(Now())
 |*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date/time X

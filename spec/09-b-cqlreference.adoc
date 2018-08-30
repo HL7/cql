@@ -5280,7 +5280,7 @@ If the patient’s birthdate is [.kw]#null#, the result is [.kw]#null#.
 
 The [.id]#Age# operators are defined in terms of a date/time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
-Note that for [.id]#AgeInYears#, the [.id]#birthDate# is specified as a [.id]#Date# and [.id]#Today()# is used to obtain the current date; whereas with the other precisions, [.id]#birthDate# is specified as a [.id]#DateTime#, and [.id]#Now()# is used to obtain the current date/time.
+Note that for [.id]#AgeInYears# and [.id]#AgeInMonths#, the [.id]#birthDate# is specified as a [.id]#Date# and [.id]#Today()# is used to obtain the current date; whereas with the other precisions, [.id]#birthDate# is specified as a [.id]#DateTime#, and [.id]#Now()# is used to obtain the current date/time.
 
 [[ageat]]
 === AgeAt
