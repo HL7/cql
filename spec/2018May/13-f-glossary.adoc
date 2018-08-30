@@ -1,6 +1,7 @@
 [[appendix-f-glossary]]
 = Appendix F – Glossary
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

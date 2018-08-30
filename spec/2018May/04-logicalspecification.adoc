@@ -1,6 +1,7 @@
 [[logical-specification]]
 = 4. Logical Specification
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

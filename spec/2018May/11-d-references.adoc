@@ -1,6 +1,7 @@
 [[appendix-d-references]]
 = Appendix D – References
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

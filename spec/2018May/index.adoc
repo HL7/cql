@@ -1,5 +1,6 @@
 = Clinical Quality Language (CQL)
 :page-layout: 2018May
+:backend: xhtml
 
 *HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)*
 

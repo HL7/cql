@@ -1,6 +1,7 @@
 [[appendix-h-time-interval-calculation-examples]]
 = Appendix H – Time Interval Calculation Examples
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

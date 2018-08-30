@@ -1,5 +1,6 @@
 = License
 :page-layout: 2018May
+:backend: xhtml
 
 Copyright © 2014-2018 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
 

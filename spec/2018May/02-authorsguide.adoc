@@ -1,6 +1,7 @@
 [[authors-guide]]
 = 2. Author’s Guide
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

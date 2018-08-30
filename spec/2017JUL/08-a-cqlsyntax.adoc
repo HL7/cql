@@ -1,6 +1,7 @@
 [[appendix-a-cql-syntax-formal-specification]]
 = Appendix A – CQL Syntax Formal Specification
 :page-layout: 2017JUL
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

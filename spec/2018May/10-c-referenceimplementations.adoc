@@ -1,6 +1,7 @@
 [[appendix-c-reference-implementations]]
 = Appendix C – Reference Implementations
 :page-layout: 2018May
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:

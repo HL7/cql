@@ -1,6 +1,7 @@
 [[introduction]]
 = 1. Introduction
 :page-layout: 2017JUL
+:backend: xhtml
 :sectnums:
 :sectanchors:
 :toc:
