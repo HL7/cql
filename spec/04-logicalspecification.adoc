@@ -415,36 +415,36 @@ Library : Element
   1..1 --> schemaIdentifier : VersionedIdentifier <2>
   ¦
   0..1 --> usings <3>
-  ¦
-  1..* --> def : UsingDef <4>
+  ¦        ¦
+  ¦        1..* --> def : UsingDef <4>
   ¦
   0..1 --> includes <5>
-  ¦
-  1..* --> def : IncludeDef <6>
+  ¦        ¦
+  ¦        1..* --> def : IncludeDef <6>
   ¦
   0..1 --> parameters <7>
-  ¦
-  0..* --> def : ParameterDef
+  ¦        ¦
+  ¦        0..* --> def : ParameterDef
   ¦
   0..1 --> codeSystems <8>
-  ¦
-  0..* --> def : CodeSystemDef
+  ¦        ¦
+  ¦        0..* --> def : CodeSystemDef
   ¦
   0..1 --> valueSets <9>
-  ¦
-  0..* --> def : ValueSetDef
+  ¦        ¦
+  ¦        0..* --> def : ValueSetDef
   ¦
   0..1 --> codes <10>
-  ¦
-  0..* --> def : CodeDef
+  ¦        ¦
+  ¦        0..* --> def : CodeDef
   ¦
   0..1 --> concepts <11>
-  ¦
-  0..* --> def : ConceptDef
+  ¦        ¦
+  ¦        0..* --> def : ConceptDef
   ¦
   0..1 --> statements <12>
-  ¦
-  0..* --> def : ExpressionDef
+           ¦
+           0..* --> def : ExpressionDef
 ----
 
 <1> The identifier element defines a unique identifier for this library,
