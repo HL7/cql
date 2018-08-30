@@ -1329,7 +1329,7 @@ For list types, this means that equality returns [.kw]#true# if and only if the 
 
 For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#.
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the last precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1413,7 +1413,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1456,7 +1456,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
@@ -1499,7 +1499,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#false#. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1543,7 +1543,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, the comparison stops and the result is [.kw]#true#. For example:
+For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
