@@ -2,6 +2,8 @@
 :page-layout: current
 :backend: xhtml
 
+STU 3 Ballot Changes
+
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1377[1377]: Corrected link to Type Operators section
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1378[1378]: Corrected link to Type Operators section
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1379[1379]: Improved formatting for table 9-E
@@ -45,6 +47,34 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1579[1579]: Added FHIRPath changes: Mappings for hasValue, conformsTo, memberOf, subsumes, subsumedBy, toChars, and aggregate; added $index and $total iterators
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
-STU3 Ballot Changes
+STU3 Reconciliation Changes
 
+This changelist describes the substantive changes, as well as a handful of more significant changes to the specification as a result of STU 3 comment reconciliation. For a complete list of changes, refer to the repository commit history and the ballot reconciliation spreadsheet.
 
+#30: Updated terminology identifiers to use URIs in examples throughout
+#36: Added discussion of code and concept declarations and literals
+#42: Specified duration of year as 365 days and month as 30 days when there is no anchor
+#43: Clarified that timezone offset normalization should only apply for time-based precisions
+#47: Added Date overloads for CalculateAge operators in ELM and CQL; AgeInYears and AgeInMonths use Date, AgeInWeeks and finer use DateTime
+#48: Added examples of Date-interval with open/closed boundaries
+#57: Added guidance on use of external functions
+#61: Added examples throughout
+#65: Added documentation of formatting strings
+#67: Clarified behavior of precision with between and other date/time functions
+#72: Added SplitOnMatches operator
+#73: Added discussion of potential pitfalls with uncertainty and date/time arithmetic
+#75: Added Concept overload for Equivalence
+#101: Updated ELM model
+#167: Clarified mixed-type signatures for interval and date/time operators and the semantics for interval promotion/demotion and when they are used
+#207: Added OperatorExpression type in ELM
+#214: Align with the FHIRPath normative ballot
+#215: Remove the ability to extract a week component
+#216: Remove the ability to say "same week as"
+#211: Symbolic date/time comparisons now occur at finest precision specified in either input
+#212: Remove unnecessary overloads of Divide and Multiply
+#217: Added choice-casting and interval promotion/demotion to conversion precedence
+#218: Added discussion of the option to require the from keyword for all queries
+#219: Changed date/time equality/comparison to return null only if the values have different levels of precision
+#220: Changed tuple equality to return null only if the values have different elements specified
+#221: Changed list membership and duplicate detection semantics throughout to use equality instead of equivalence
+#222: Add a per clause to the collapse operator
