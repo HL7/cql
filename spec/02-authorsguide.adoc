@@ -387,8 +387,6 @@ Beyond the retrieve expression, CQL provides a _query_ construct that allows the
 
 Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to <<05-languagesemantics.adoc#clinical-data-retrieval-in-quality-artifacts,Clinical Data Retrieval in Quality Artifacts>>.
 
-By default, queries always return a distinct list of results.  In other words, any duplicate values are suppressed from the results.
-
 The query construct has a _primary source_ and four main _clauses_ that each allow for different types of operations to be performed:
 
 [[table-2-d]]
@@ -464,6 +462,22 @@ For example:
 ----
 
 This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the [.id]#id# of the encounter as well as a [.id]#lengthOfStay# element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
+
+By default, queries return a distinct list of results.  In other words, any duplicate values are suppressed from the results. To include duplicates, use the [.kw]#all# keyword in the [.kw]#return# clause. For example, the following will return a list of the lengths of stay for each Encounter:
+
+[source,cql]
+----
+[Encounter: "Inpatient"] E
+  return E.lengthOfStay
+----
+
+If two encounters have the same value for [.id]#lengthOfStay#, that value will only appear once in the result unless the [.kw]#all# keyword is used:
+
+[source,cql]
+----
+[Encounter: "Inpatient"] E
+  return all E.lengthOfStay
+----
 
 [[sorting]]
 === Sorting
@@ -820,18 +834,18 @@ The [.id]#Code# type has the following elements:
 
 Table 2‑F
 
-The following example illustrates the code declaration:
+The following examples illustrate the code declaration:
 
 [source,cql]
 ----
-codesystem "LOINC": 'http://loinc.org'
+codesystem "SNOMED-CT": 'http://loinc.org'
 
 code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
 code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
 code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 ----
 
-The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
 In addition, CQL provides a Code literal that can be used to reference an existing code from a specific code system:
 
@@ -842,7 +856,7 @@ Code '66071002' from "SNOMED-CT:2014" display 'Type B viral hepatitis'
 
 The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
 
-Any of the code declarations above can then be used as in a CQL expression as a _direct reference code_:
+This use of code declarations to reference a single code in a CQL expression is referred to as a _direct reference code_:
 
 [source,cql]
 ----
@@ -875,13 +889,13 @@ The following example illustrates the concept declaration:
 
 [source,cql]
 ----
-codesystem "LOINC": 'http://loinc.org'
+codesystem "SNOMED-CT": 'urn:oid:2.16.840.1.113883.6.96'
+codesystem "ICD-10-CM": 'urn:oid:2.16.840.1.113883.6.90'
 
-code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
-code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
-code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
+code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT:2014" display 'Viral hepatitis type B (disorder)'
+code "Hepatitis Type B (ICD-10)": 'B18.1' from "ICD-10-CM" display 'Chronic viral hepatitis B without delta-agent'
 
-concept "Blood Pressure Concepts": { "Blood Pressure", "Systolic Blood Pressure", "Diastolic Blood Pressure" } display 'Blood Pressure Concepts'
+concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (ICD-10)" } display 'Type B Hepatitis'
 ----
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
@@ -891,8 +905,8 @@ The following example illustrates the use of a [.id]#Concept# literal:
 [source,cql]
 ----
 Concept {
-  Code '66071002' from "SNOMED-CT:2014",
-  Code 'B18.1' from "ICD-9-CM:2014"
+  Code '66071002' from "SNOMED-CT",
+  Code 'B18.1' from "ICD-10-CM"
 } display 'Type B viral hepatitis'
 ----
 

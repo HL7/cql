@@ -2701,7 +2701,9 @@ after _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -2714,8 +2716,6 @@ Note specifically that due to variability in the way week numbers are determined
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
-
-If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -2745,7 +2745,9 @@ before _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -2758,8 +2760,6 @@ Note specifically that due to variability in the way week numbers are determined
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
-
-If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3026,7 +3026,9 @@ same _precision_ as(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3041,8 +3043,6 @@ When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, t
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
-
-If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 The following examples illustrate the behavior of the [.kw]#same#__-precision-__[.kw]#as# operator:
 
@@ -3070,7 +3070,9 @@ same _precision_ or after(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3085,8 +3087,6 @@ When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, t
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
-
-If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -3116,7 +3116,9 @@ same _precision_ or before(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+
+If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3131,8 +3133,6 @@ When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, t
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is null.
-
-If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
@@ -3934,6 +3934,8 @@ same _precision_ as(left Interval<T>, right Interval<T>) Boolean
 
 The [.kw]#same#__-precision-__[.kw]#as# operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time value, performing the comparisons at the specified precision, as described in the [.id]#<<Same As>># operator for date/time values.
 
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
+
 For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
 For [.id]#DateTime#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
@@ -3950,8 +3952,6 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
-
 [[same-or-after-2]]
 === Same Or After
 
@@ -3967,6 +3967,8 @@ same _precision_ or after(left Interval<T>, right T) Boolean
 *Description:*
 
 The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-after-1,Same or After (Date/Time)>># operator for date/time values.
+
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
@@ -3986,8 +3988,6 @@ As with all date/time calculations, comparisons are performed respecting the tim
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
-
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
 [[same-or-before-2]]
@@ -4006,6 +4006,8 @@ same _precision_ or before(left Interval<T>, right T) Boolean
 
 The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-before-1,Same or Before (Date/Time)>># operator for date/time values.
 
+If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
+
 For [.id]#Date#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, or [.kw]#day#.
 
 For [.id]#DateTime#-based intervals, _precision_ must be one of: [.kw]#year#, [.kw]#month#, [.kw]#day#, [.kw]#hour#, [.kw]#minute#, [.kw]#second#, or [.kw]#millisecond#.
@@ -4023,8 +4025,6 @@ For comparisons involving date/time or time values with imprecision, note that t
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is null.
-
-If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 

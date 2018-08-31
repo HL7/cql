@@ -45,4 +45,6 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1579[1579]: Added FHIRPath changes: Mappings for hasValue, conformsTo, memberOf, subsumes, subsumedBy, toChars, and aggregate; added $index and $total iterators
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1580[1580]: Changed ELM serialization to avoid type clash with JSON serializers
 
+STU3 Ballot Changes
+
 
