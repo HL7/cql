@@ -1,5 +1,6 @@
 = Clinical Quality Language (CQL)
-:page-layout: 2017JUL
+:page-layout: STU2
+:backend: xhtml
 
 image:extracted-media/media/image1.png[image,width=144,height=148]
 

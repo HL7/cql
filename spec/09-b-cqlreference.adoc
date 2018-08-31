@@ -2713,7 +2713,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
@@ -2757,7 +2757,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
@@ -2907,7 +2907,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2942,7 +2942,7 @@ For [.id]#DateTime# values, _duration_ must be one of: [.kw]#years#, [.kw]#month
 
 For [.id]#Time# values, _duration_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3038,7 +3038,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
@@ -3082,7 +3082,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 
@@ -3128,7 +3128,7 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>> operator.
+When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
 As with all date/time calculations, comparisons are performed respecting the timezone offset.
 

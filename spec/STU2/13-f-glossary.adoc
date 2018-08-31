@@ -1,6 +1,6 @@
 [[appendix-f-glossary]]
 = Appendix F – Glossary
-:page-layout: 2017JUL
+:page-layout: STU2
 :backend: xhtml
 :sectnums:
 :sectanchors:

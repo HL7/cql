@@ -1,5 +1,9 @@
 grammar fhirpath;
 
+// NOTE: This content is informative in this specification, it is normative in the 
+// FHIRPath specification (http://hl7.org/fhirpath) and reproduced here for convenience
+// and tooling purposes only.
+
 // Grammar rules
 
 //prog: line (line)*;

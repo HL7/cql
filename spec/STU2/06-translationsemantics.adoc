@@ -1,6 +1,6 @@
 [[translation-semantics]]
 = 6. Translation Semantics
-:page-layout: 2017JUL
+:page-layout: STU2
 :backend: xhtml
 :sectnums:
 :sectanchors:

@@ -2,7 +2,7 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.2 - Jan 2017 STU Ballot
+ * Version 1.2 - STU Release 2 w/ errata
  */
 
 import fhirpath;
@@ -15,14 +15,14 @@ library
     :
     libraryDefinition?
     usingDefinition*
-	includeDefinition*
-	codesystemDefinition*
-	valuesetDefinition*
-	codeDefinition*
-	conceptDefinition*
-	parameterDefinition*
-	statement*
-	;
+    includeDefinition*
+    codesystemDefinition*
+    valuesetDefinition*
+    codeDefinition*
+    conceptDefinition*
+    parameterDefinition*
+    statement*
+    ;
 
 /*
  * Definitions
@@ -390,14 +390,14 @@ term
     ;
 
 literal
-        : ('true' | 'false')                                    #booleanLiteral
-        | 'null'                                                #nullLiteral
-        | STRING                                                #stringLiteral
-        | NUMBER                                                #numberLiteral
-        | DATETIME                                              #dateTimeLiteral
-        | TIME                                                  #timeLiteral
-        | quantity                                              #quantityLiteral
-        ;
+    : ('true' | 'false')                                    #booleanLiteral
+    | 'null'                                                #nullLiteral
+    | STRING                                                #stringLiteral
+    | NUMBER                                                #numberLiteral
+    | DATETIME                                              #dateTimeLiteral
+    | TIME                                                  #timeLiteral
+    | quantity                                              #quantityLiteral
+    ;
 
 intervalSelector
     : // TODO: Consider this as an alternative syntax for intervals... (would need to be moved up to expression to make it work)
