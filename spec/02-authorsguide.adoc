@@ -446,7 +446,7 @@ The condition of a [.kw]#where# clause is allowed to contain any arbitrary combi
     and C.indication in "Fever"
 ----
 
-Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ ([.kw]#null#). For example, if the list of inpatient encounters from the first example contains some elements whose [.id]#period# attribute is [.kw]#null#, the result of the condition for that element will not be [.kw]#false#, but [.kw]#null#, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to [.kw]#true# are included in the result, effectively treating the unknown results as [.kw]#false#.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#missing-information-1,Missing Information>> in the Developer's guide.
+Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ ([.kw]#null#). For example, if the list of inpatient encounters from the first example contains some elements whose [.id]#period# attribute is [.kw]#null#, the result of the condition for that element will not be [.kw]#false#, but [.kw]#null#, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to [.kw]#true# are included in the result, effectively treating the unknown results as [.kw]#false#.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
 
 [[shaping]]
 === Shaping
@@ -577,11 +577,14 @@ This example retrieves all the elements returned by the expression MeasurementPe
 
 The clauses described in the previous section must appear in the correct order to specify a valid CQL query. The general order of clauses is:
 
+[source,cql]
+----
 _primary-source alias_ +
   _with-or-without-clauses_ +
   _where-clause_ +
   _return-clause_ +
   _sort-clause_
+----
 
 A query must contain an aliased primary source, but this is the only required clause.
 
@@ -679,7 +682,7 @@ Table 2‑E
 [[boolean]]
 ==== Boolean
 
-The Boolean type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#missing-information-1,Missing Information>> in the Developer's guide for more information.
+The Boolean type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
 
 [[integer]]
 ==== Integer

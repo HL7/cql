@@ -4289,7 +4289,7 @@ The following examples illustrate the behavior of the [.kw]#exists# operator:
 define ExistsIsTrue: exists { 1, 3, 5, 7 }
 define ExistsIsFalse: exists { }
 define ExistsIsAlsoFalse: exists { null }
-define ExistsIsNull: exists null
+define ExistsIsAlsoAlsoFalse: exists null
 ----
 
 [[flatten]]
