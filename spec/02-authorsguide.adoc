@@ -2201,7 +2201,7 @@ image:extracted-media/media/image7.png[image,width=626,height=176]
 
 Figure 2‑B
 
-As with the [.kw]#distinct# operator, the [.kw]#intersect3, and [.kw]#except# operators use the equality operator to determine when two elements are the same.
+As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# operators use the equality operator to determine when two elements are the same.
 
 Because lists may contain lists, CQL provides a [.kw]#flatten# operation that can flatten lists of lists:
 
