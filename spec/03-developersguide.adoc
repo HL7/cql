@@ -1170,7 +1170,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
 
-Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate comutational result within a query:
+Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate computational result within a query:
 
 [source,cql]
 ----
