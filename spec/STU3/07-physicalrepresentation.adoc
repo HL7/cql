@@ -1,0 +1,99 @@
+[[physical-representation]]
+= 7. Physical Representation
+:page-layout: STU3
+:backend: xhtml
+:sectnums:
+:sectanchors:
+:toc:
+
+The physical representation for CQL is specifically concerned with communicating the logic involved in any given artifact. As discussed in the previous sections, the unit of distribution for CQL is the library, which corresponds to a single file of CQL at the author level, or a single ELM document at the physical level.
+
+[[schemata]]
+== Schemata
+
+The physical representation is simply a set of XML schemata which define XML types for each class defined in the ELM UML model. A CQL physical library is then an ELM document with a single _Library_ element as the root.
+
+The physical representation for ELM is defined by the following schemata:
+
+[[table-7-a]]
+[cols=",",options="header",]
+|=======================================================================================================
+|Schema |Description
+|*expression.xsd* |Defines expression logic components without reference to clinically relevant constructs
+|*clinicalexpression.xsd* |Introduces expression components that contain clinically-relevant constructs
+|*library.xsd* |Defines the overall library container for ELM
+|=======================================================================================================
+
+Table 7‑A
+
+As with the logical portion of the specification, this documentation is intended to provide an overview only, the schemata are the actual specification and should be considered the source of truth.
+
+[[media-types-and-namespaces]]
+=== Media Types and Namespaces
+
+The schema for ELM is described for XML using the above XSDs. To support multiple serialization formats, the following media types and namespaces are defined:
+
+[cols=",",options="header",]
+|======================================================================
+|Content Type |Description
+|*text/cql* |The content is a text document containing CQL
+|*application/elm+xml* |The content is an ELM document, rendered as XML
+|*application/elm+json* |The content is an ELM document, rendered as JSON
+|======================================================================
+
+[cols=",",options="header",]
+|===================================
+|Namespace |Description
+|*urn:hl7-org:elm:r1* |The URI for ELM
+|*urn:hl7-org:cql:r1* |The URI for CQL
+|===================================
+
+When serializing an ELM document using JSON, each XML element is serialized as a JSON object, according to the following rules:
+
+1.  XML elements and attributes are serialized as JSON attributes of the same name.
+2.  When necessary to distinguish the type of an object, an extra “type” attribute is added to the JSON representation which contains the name of the ELM class represented by the JSON data.
+3.  XML namespaces are serialized using curly braces. E.g. "t:Integer" in XML becomes "\{urn:hl7-org:elm-types:r1}Integer" in JSON.
+4.  Mixed content serialization is not supported, ELM XML documents should not contain mixed content.
+
+[[library-references]]
+== Library References
+
+The implementation environment must provide a mechanism for library references to be resolved based on their names and versions.
+
+[[data-model-references]]
+== Data Model References
+
+In addition, the implementation environment must provide a mechanism for data model references to be resolved. At a minimum, the data model definition must define the structure of all the types available within the data model, generally by providing an XSD or similar class structure definition. If the implementation environment is only concerned with translation or execution of ELM documents, then the type structures for each data model are sufficient. However, to fully enable the authoring features of CQL syntax, the data model reference must also define the following:
+
+[[table-7-b]]
+[cols=",",options="header",]
+|=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+|Component |Description
+|*URL* |The XML namespace associated with the model. This namespace is used by the CQL-to-ELM translator to establish the URL used to reference types from the model schema within an ELM document.
+|*Schema Location* |The physical location of the model xsd relative to the ELM document. This information can be provided, but is not required.
+|*Target Qualifier* |If specified, determines the namespace qualifier that should be used when referencing types of the data model within the ELM document.
+|*Patient Type* |The name of the type that is used to represent patient information within the model.
+|*Patient Birth Date* |The name of the birth date property on the patient type. This information is used by the CQL-to-ELM translator to render references to patient-age-related functions (AgeInYears, AgeInYearsAt, etc.) into the non-patient-aware age-related functions in ELM (CalculateAgeInYears, CalculateAgeInYearsAt, etc.). This information is not required, but if it is not present, references to patient-age-related functions will be passed directly through to ELM as FunctionRefs.
+|=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+Table 7‑B
+
+For each type available in the data model, the following information should be provided:
+
+[[table-7-c]]
+[cols=",",options="header",]
+|================================================================================================================================================================================================================================================================================================================================================================================================
+|Component |Description
+|*Name* |The name of the type within the data model. This corresponds to the name of the class within the class model, or the name of the type in the case of an xsd. In FHIR, for example, this corresponds to the name of the underlying resource.
+|*Identifier* |A unique identifier for the class that may be independent of the name. In FHIR, for example, this corresponds to the profile identifier.
+|*Label* |This information specifies the name of the type as it is referenced from CQL. Note that this need not be a language-valid identifier, as CQL allows quoted-identifiers to be used. However, the label must be unique. In the simplest case, the label corresponds directly with the class name. Whether or not a label is provided, a class can still be referenced from CQL by its name.
+|*Primary Code Filter* |If the type has the notion of a primary code filter (e.g., Encounter), the name of the attribute that is to be used if no code filter attribute is named within a retrieve
+|*Retrievable* |A boolean flag indicating whether the class can be referenced as a topic in a retrieve. If this flag is not set, values of this class cannot be retrieved directly, but may still be accessible as elements of other class values.
+|================================================================================================================================================================================================================================================================================================================================================================================================
+
+Table 7‑C
+
+The information defined here is formally described in the modelinfo.xsd document included in the specification. The QUICK module in the CQL-to-ELM translator contains an instance of this schema, quick-modelinfo.xml, which defines this metadata for the QUICK model.
+
+Note that the actual model info definition and associated artifacts are part of the reference implementation for CQL and not a normative aspect of the CQL specification. CQL only specifies the expected behavior at the conceptual level. How that behavior is achieved with respect to any particular data model is an implementation aspect and not prescribed by this specification.
+
