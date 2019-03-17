@@ -2,7 +2,7 @@
 :page-layout: dev
 :backend: xhtml
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)*
+*HL7 Standard: Clinical Quality Language Specification, Release 1 STU4 (CQL 1.4)*
 
 *HL7 STU Specification*
 
