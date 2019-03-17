@@ -223,7 +223,7 @@ successor
 such that
 then
 time
-timezone
+timezoneoffset
 to
 true
 Tuple
@@ -732,7 +732,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToDate(DateTime)* |Converts a DateTime to a DateTime. This is equivalent to invoking date from on the DateTime value
 |*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
 |*ToDateTime(String)* |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
-|*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff
 |*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
 |*ToString(Integer)* |Converts an Integer value to its string representation
 |*ToString(Decimal)* |Converts a Decimal value to its string representation

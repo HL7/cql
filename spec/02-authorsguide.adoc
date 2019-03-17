@@ -670,10 +670,12 @@ CQL supports several types of simple values:
 |*String* |[.lit]#'pending'#, [.lit]#'active'#, [.lit]#'complete'#
 |*Date* |[.lit]#@2014-01-25#
 |*DateTime* |[.lit]#@2014-01-25T14:30:14.559#
-|*Time* |
-[.lit]#@T12:00:00.0Z#
 
-[.lit]#@T14:30:14.559-07:00#
+[.lit]#@2014-01T#
+
+|*Time* |[.lit]#@T12:00#
+
+[.lit]#@T14:30:14.559#
 
 |=======================================
 
@@ -748,13 +750,13 @@ CQL supports the representation of [.id]#Date#, [.id]#DateTime#, and [.id]#Time#
 
 [source,cql]
 ----
-@T12:00:00.0Z
-@T14:30:14.559-07:00
+@T12:00
+@T14:30:14.559
 ----
 
 Note that the [.id]#Time# value literal format is identical to the time value portion of the [.id]#DateTime# literal format.
 
-For both [.id]#DateTime# and [.id]#Time# values, timezone may be specified as either UTC time ([.sym]#Z#), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
+Only [.id]#DateTime# values may specify a timezone offset, either as UTC ([.sym]#Z#), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
 For more information on the use of date/time values within CQL, refer to the <<Date/Time Operators>> section.
 
@@ -1429,12 +1431,11 @@ The [.id]#Time# operator takes the following arguments:
 |*Minute* |[.id]#Integer# |The minute component of the datetime
 |*Second* |[.id]#Integer# |The second component of the datetime
 |*Millisecond* |[.id]#Integer# |The millisecond component of the datetime
-|*Timezone Offset* |[.id]#Decimal# |The timezone offset component of the datetime
 |=======================================================================
 
 Table 2‑L
 
-As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
@@ -1462,8 +1463,8 @@ In addition to date and time values, CQL supports the construction of time durat
 
 [source,cql]
 ----
-3 months +
-1 year +
+3 months
+1 year
 5 minutes
 ----
 
@@ -1618,7 +1619,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 |*minute from X* |Extracts the minute component of its argument |[.id]#Integer#
 |*second from X* |Extracts the second component of its argument |[.id]#Integer#
 |*millisecond from X* |Extracts the millisecond component of its argument |[.id]#Integer#
-|*timezone from X* |Extracts the timezone offset component of its argument |[.id]#Decimal#
+|*timezoneoffset from X* |Extracts the timezone offset component of its argument |[.id]#Decimal#
 |==================================================================================
 
 Table 2‑O

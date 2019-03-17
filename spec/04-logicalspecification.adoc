@@ -2126,8 +2126,6 @@ Time : OperatorExpression
   0..1 --> second : Expression
   ¦
   0..1 --> millisecond : Expression
-  ¦
-  0..1 --> timezoneOffset : Expression
 ----
 
 The Time operator constructs a time value from the given components.
@@ -2147,14 +2145,14 @@ The TimeFrom operator returns the Time of the argument.
 
 If the argument is null, the result is null.
 
-=== TimezoneFrom
+=== TimezoneOffsetFrom
 
 [source,elm]
 ----
-TimezoneFrom : UnaryExpression
+TimezoneOffsetFrom : UnaryExpression
 ----
 
-The TimezoneFrom operator returns the timezone offset of the argument.
+The TimezoneOffsetFrom operator returns the timezone offset of the argument.
 
 If the argument is null, the result is null.
 
