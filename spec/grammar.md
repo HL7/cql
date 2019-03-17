@@ -1,5 +1,5 @@
 ---
-layout: current
+layout: dev
 title: Clinical Quality Language Grammar
 ---
 

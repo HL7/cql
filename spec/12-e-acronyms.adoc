@@ -1,6 +1,6 @@
 [[appendix-e-acronyms]]
 = Appendix E – Acronyms
-:page-layout: current
+:page-layout: dev
 :backend: xhtml
 :sectnums:
 :sectanchors:

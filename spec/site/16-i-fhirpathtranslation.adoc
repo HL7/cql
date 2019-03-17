@@ -1,0 +1,329 @@
+[[appendix-i-fhirpath-function-translation]]
+= Appendix I – FHIRPath Function Translation
+:page-layout: current
+:backend: xhtml
+:sectnums:
+:sectanchors:
+:toc:
+
+This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
+
+[[aggregate]]
+== .aggregate()
+
+X.aggregate(<iteration>, <init>) [.sym]#===# Aggregate(<iteration>, <init>)
+
+[[all]]
+== .all()
+
+X.all(<condition>) [.sym]#===# AllTrue(X $this let a: <condition> where a return a)
+
+[[allfalse]]
+== .allFalse()
+
+X.allFalse() [.sym]#===# AllTrue(X A return not A)
+
+[[alltrue-1]]
+== .allTrue()
+
+X.allTrue() [.sym]#===# AllTrue(X)
+
+[[anyfalse]]
+== .anyFalse()
+
+X.anyFalse() [.sym]#===# AnyTrue(X A return not A)
+
+[[anytrue-1]]
+== .anyTrue()
+
+X.anyTrue() [.sym]#===# AnyTrue(X)
+
+[[children-1]]
+== .children()
+
+.children(X) [.sym]#===# Children(X)
+
+[[combine-1]]
+== .combine()
+
+X.combine(Y) [.sym]#===# Flatten(\{ X, Y })
+
+[[conformsto]]
+== .conformsTo()
+
+X.conformsTo(Y) [.sym]#===# FHIRSupport.ConformsTo(Y)
+
+Note that this mapping relies on an external library, FHIRSupport to provide conformance validation checking.
+
+[[contains-2]]
+== .contains()
+
+X.contains(Y) [.sym]#===# PositionOf(Y, X) [.sym]#>=# 0
+
+[[count-1]]
+== .count()
+
+X.count() [.sym]#===# Count(X)
+
+[[descendents-1]]
+== .descendents()
+
+.descendents(X) [.sym]#===# Descendents(X)
+
+[[distinct-1]]
+== .distinct()
+
+X.distinct() [.sym]#===# distinct X
+
+[[empty]]
+== .empty()
+
+X.empty() [.sym]#===# not exists X
+
+[[endswith-1]]
+== .endsWith()
+
+X.endsWith(Y) [.sym]#===# EndsWith(X, Y)
+
+[[exists-1]]
+== .exists()
+
+X.exists() [.sym]#===# exists X
+
+X.exists(<condition>) [.sym]#===# exists (X $this where <condition>)
+
+[[first-1]]
+== .first()
+
+X.first() [.sym]#===# First(X)
+
+[[hasvalue]]
+== .hasValue()
+
+X.hasValue() [.sym]#===# X is not null
+
+[[iif]]
+== .iif()
+
+X.iif(Y) [.sym]#===# if X then Y else null
+
+X.iif(Y, Z) [.sym]#===# if X then Y else Z
+
+[[indexof-1]]
+== .indexOf()
+
+X.indexOf(Y) [.sym]#===# PositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of IndexOf
+
+[[isboolean]]
+== .isBoolean()
+
+X.isBoolean() [.sym]#===# IsBoolean(X)
+
+[[isdistinct]]
+== .isDistinct()
+
+X.isDistinct() [.sym]#===# Count(X) [.sym]#=# Count(distinct X)
+
+[[isdate]]
+== .isDate()
+
+X.isDate() [.sym]#===# IsDate(X)
+
+[[isdatetime]]
+== .isDateTime()
+
+X.isDateTime() [.sym]#===# IsDateTime(X)
+
+[[isdecimal]]
+== .isDecimal()
+
+X.isDecimal() [.sym]#===# IsDecimal(X)
+
+[[isinteger]]
+== .isInteger()
+
+X.isInteger() [.sym]#===# IsInteger(X)
+
+[[isquantity]]
+== .isQuantity()
+
+X.isQuantity() [.sym]#===# IsQuantity(X)
+
+[[istime]]
+== .isTime()
+
+X.isTime() [.sym]#===# IsTime(X)
+
+[[last-1]]
+== .last()
+
+X.last() [.sym]#===# Last(X)
+
+[[lastindexof]]
+== .lastIndexOf()
+
+X.lastIndexOf(Y) [.sym]#===# LastPositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
+
+[[length-2]]
+== .length()
+
+X.length() [.sym]#===# Length(X)
+
+[[matches-1]]
+== .matches()
+
+X.matches(Y) [.sym]#===# Matches(X, Y)
+
+[[memberof]]
+== .memberOf()
+
+X.memberOf(Y) [.sym]#===# InValueSet(X, Y) [.sym]#//# where Y is required to be a ValueSetRef
+
+[[oftype]]
+== .ofType()
+
+X.ofType(T) [.sym]#===# X $this where $this is T return $this as <type>
+
+Note that the argument T is required to be a literal string, and is interpreted as the name of a type. For non-named-types, type specifier syntax applies.
+
+[[not-1]]
+== .not()
+
+X.not() [.sym]#===# not X
+
+[[now-1]]
+== .now()
+
+now() [.sym]#===# Now()
+
+[[repeat]]
+== .repeat()
+
+X.repeat(<element>) [.sym]#===# Repeat(X, <element>)
+
+The type of X.repeat(<element>) is inferred as the type of:
+
+X.select(<element>).select(<element>)
+
+[[replace]]
+== .replace()
+
+X.replace(Y, Z) [.sym]#===# Replace(X, Y, Z)
+
+[[replacematches-1]]
+== .replaceMatches()
+
+X.replaceMatches(Y, Z) [.sym]#===# ReplaceMatches(X, Y, Z)
+
+[[select]]
+== .select()
+
+If the result type of <element> is not list-valued:
+
+X.select(<element>) [.sym]#===# X $this let a: <element> where a is not null return a
+
+If the result type of <element> is list-valued:
+
+X.select(<element>) === Flatten(X $this let a: <element> where a is not null return a)
+
+[[single]]
+== .single()
+
+X.single() [.sym]#===# singleton from X
+
+[[skip-1]]
+== .skip()
+
+X.skip(Y) [.sym]#===# Slice(X, Y, null)
+
+[[startswith-1]]
+== .startsWith()
+
+X.startsWith(Y) [.sym]#===# StartsWith(X, Y)
+
+[[subsetof]]
+== .subsetOf()
+
+X.subsetOf(Y) [.sym]#===# X included in Y
+
+[[substring-1]]
+== .substring()
+
+X.substring(Y) [.sym]#===# SubString(X, Y)
+
+X.substring(Y, Z) [.sym]#===# SubString(X, Y, Z)
+
+[[subsumes]]
+== .subsumes()
+
+X.subsumes(Y) [.sym]#===# Subsumes(X, Y)
+
+[[subsumedby]]
+== .subsumedBy()
+
+X.subsumedBy(Y) [.sym]#===# SubsumedBy(X, Y)
+
+[[supersetof]]
+== .supersetOf()
+
+X.supersetOf(Y) [.sym]#===# X includes Y
+
+[[tail-1]]
+== .tail()
+
+X.tail() [.sym]#===# Slice(X, 1, null)
+
+[[take-1]]
+== .take()
+
+X.take(Y) [.sym]#===# Slice(X, 0, Coalesce(Y, 0))
+
+[[toboolean-1]]
+== .toBoolean()
+
+X.toBoolean() [.sym]#===# ToBoolean(X)
+
+[[tochars]]
+== .toChars()
+
+X.toChars() [.sym]#===# ToChars(X)
+
+[[todatetime-1]]
+== .toDateTime()
+
+X.toDateTime() [.sym]#===# ToDateTime(X)
+
+[[today-1]]
+== .today()
+
+today() [.sym]#===# Today()
+
+[[todecimal-1]]
+== .toDecimal()
+
+X.toDecimal() [.sym]#===# ToDecimal(X)
+
+[[tointeger-1]]
+== .toInteger()
+
+X.toInteger() [.sym]#===# ToInteger(X)
+
+[[tostring-1]]
+== .toString()
+
+X.toString() [.sym]#===# ToString(X)
+
+[[totime-1]]
+== .toTime()
+
+X.toTime() [.sym]#===# ToTime(X)
+
+[[trace]]
+== .trace()
+
+X.output(Y) [.sym]#===# Trace(X, Y) [.sym]#//# Add to ELM
+
+[[where]]
+== .where()
+
+X.where(<condition>) [.sym]#===# X $this where <condition>

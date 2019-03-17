@@ -1,6 +1,6 @@
 [[appendix-a-cql-syntax-formal-specification]]
 = Appendix A – CQL Syntax Formal Specification
-:page-layout: current
+:page-layout: dev
 :backend: xhtml
 :sectnums:
 :sectanchors:

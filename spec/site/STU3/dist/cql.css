@@ -1,0 +1,132 @@
+.kw {
+    font-family: monospace;
+    color: blue;
+    background-color: inherit;
+}
+.sym {
+    font-family: monospace;
+    color: grey;
+    background-color: inherit;
+}
+.id {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.lit {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.com {
+    font-family: monospace;
+    color: green;
+    background-color: inherit;
+}
+
+table{
+margin-bottom: 10px;
+border: 1px black solid;
+margin-right: auto;
+}
+
+table th{
+    border:1px solid silver;
+    padding:3px 7px 2px 7px;
+    font-size: 12px;
+    line-height: 1.4em;
+    font-family: verdana, serif;
+    vertical-align: center;
+    background-color: #D9E6FC;
+    text-align: center;
+}
+
+table td{
+    border:1px solid silver;
+    padding:3px 7px 2px 7px;
+    font-size: 11px;
+    line-height: 1.2em;
+    font-family: verdana, serif;
+    vertical-align: top;
+}
+
+table p{
+    font-size: 11px;
+
+}
+
+tr:nth-child(odd) {background-color: #F0F5FA}
+
+
+h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, #toctitle > a.anchor, .sidebarblock > .content > .title > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor { position: absolute; width: 1em; margin-left: -1em; display: block; text-decoration: none; visibility: hidden; text-align: center; font-weight: normal; }
+
+h1 > a.anchor:before, h2 > a.anchor:before, h3 > a.anchor:before, #toctitle > a.anchor:before, .sidebarblock > .content > .title > a.anchor:before, h4 > a.anchor:before, h5 > a.anchor:before, h6 > a.anchor:before { content: '\00A7'; font-size: .85em; vertical-align: text-top; display: block; margin-top: 0.05em; }
+
+h1:hover > a.anchor, h1 > a.anchor:hover, h2:hover > a.anchor, h2 > a.anchor:hover, h3:hover > a.anchor, #toctitle:hover > a.anchor, .sidebarblock > .content > .title:hover > a.anchor, h3 > a.anchor:hover, #toctitle > a.anchor:hover, .sidebarblock > .content > .title > a.anchor:hover, h4:hover > a.anchor, h4 > a.anchor:hover, h5:hover > a.anchor, h5 > a.anchor:hover, h6:hover > a.anchor, h6 > a.anchor:hover { visibility: visible; }
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 3px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 11px
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.toc {
+    height: 100%;
+    width: min-content;
+    position: absolute;
+    display: inline;
+    background-color: #ffffff;
+    overflow:scroll;
+}
+
+.fix-toc {
+    height: 100%;
+    width: min-content;
+    position: fixed;
+    display: inline;
+    top: 0;
+    /*left: 0;*/
+    background-color: #ffffff;
+    overflow:scroll;
+}
+
+.toc a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 11px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.toc a:hover {
+    color: #D9E6FC;
+}
+
+.sect1, #preamble { margin-left: 20px; }
+
+@media screen and (max-height: 450px) {
+    .toc {padding-top: 15px;}
+    .toc a {font-size: 18px;}
+}

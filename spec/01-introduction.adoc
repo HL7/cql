@@ -1,6 +1,6 @@
 [[introduction]]
 = 1. Introduction
-:page-layout: current
+:page-layout: dev
 :backend: xhtml
 :sectnums:
 :sectanchors:

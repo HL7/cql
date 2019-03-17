@@ -1,5 +1,5 @@
 = Examples
-:page-layout: current
+:page-layout: dev
 :backend: xhtml
 :sectnums:
 :sectanchors:
