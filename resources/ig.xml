@@ -3,16 +3,29 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
-  <name value="Implementation Guide (stub, for building CQL)"/>
+  <version value="1.3"/>
+  <name value="CQL"/>
+  <title value="Clinical Quality Language Specification"/>
   <status value="draft"/>
   <experimental value="false"/>
   <publisher value="HL7"/>
-  <!--<package>-->
-    <!--<name value="base"/>-->
-  <!--</package>-->
-  <page>
-    <source value="index.html"/>
-    <title value="CQL Specification"/>
-    <kind value="page"/>
-  </page>
+  <packageId value="hl7.cql"/>
+  <fhirVersion value="4.0.0"/>
+  <definition>
+    <resource>
+      <reference>
+        <reference value="Binary/binary-fhirpath-grammar"/>
+      </reference>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Binary/binary-cql-grammar"/>
+      </reference>
+    </resource>
+    <page>
+      <nameUrl value="index.html"/>
+      <title value="CQL Specification"/>
+      <generation value="html"/>
+    </page>
+  </definition>
 </ImplementationGuide>

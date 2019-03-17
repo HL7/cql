@@ -1,7 +1,7 @@
 {
 	"paths": {
 		"resources": ["resources"],
-		"specification": "http://hl7.org/fhir",
+		"specification": "http://cql.hl7.org",
 		"pages": "spec",
 		"temp": "temp",
 		"output": "output",
@@ -11,8 +11,16 @@
 	"sct-edition": "http://snomed.info/sct/731000124108",
 	"tool": "jekyll",
 	"resources": {
+    "Binary/binary-fhirpath-grammar": {
+      "source": "binary-fhirpath-grammar.json"
+    },
+    "Binary/binary-cql-grammar": {
+      "source": "binary-cql-grammar.json"
+    }
 	},
 	"canonicalBase": "http://cql.hl7.org",
-	"version": "3.0.1",
-	"source": "ig.xml"
+	"version": "4.0.0",
+	"source": "ig.xml",
+  "license": "CC0-1.0",
+  "npm-name": "hl7.cql"
 }
