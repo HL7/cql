@@ -28,7 +28,7 @@ The spec folder contains:
 
 The spec directory content tracks a single timeline for changes to the specification over all versions, while the site directory content tracks ballot and publication snapshots, currently:
 
-- <currently published specification content> (STU3)
+- _currently published specification content_ (STU3)
 - 2018May - 2018 May Ballot snapshot
 - STU2 - STU2 Release snapshot
 - STU3 - STU3 Release snapshot (same content as current)
