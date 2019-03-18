@@ -749,6 +749,25 @@ Table 3‑G
 
 For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
+[[quantity-conversions]]
+==== Quantity Conversions
+
+In addition to type conversions, CQL supports _quantity conversion_, converting a quantity from one unit to another unit using the same [.kw]#convert# keyword:
+
+[source,cql]
+----
+convert 5000 'g' to 'kg'
+convert 28 days to weeks
+----
+
+If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is [.kw]#null#.
+
+____
+
+NOTE: Implementations are not required to support unit conversion, and may return null, even if the conversion is valid. Implementations that do support unit conversion must do so according to the conversion behavior specified by UCUM.
+
+____
+
 [[implicit-conversions]]
 ==== Implicit Conversions
 
