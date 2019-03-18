@@ -935,28 +935,72 @@ Retrieve : Expression
   ¦
   0..1 --> dateRange : Expression <2>
   ¦
-  1..1 --> dataType
+  1..1 --> dataType <3>
   ¦
-  0..1 --> templateId
+  0..1 --> templateId <4>
   ¦
-  0..1 --> idProperty
+  0..1 --> idProperty <5>
   ¦
-  0..1 --> codeProperty
+  0..1 --> codeProperty <6>
   ¦
-  0..1 --> dateProperty
+  0..1 --> dateProperty <7>
   ¦
-  0..1 --> dateLowProperty
+  0..1 --> dateLowProperty <8>
   ¦
-  0..1 --> dateHighProperty
+  0..1 --> dateHighProperty <9>
   ¦
   0..1 --> scope
 ----
 
+The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
+
+==== codes Element
 <1> The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
 
+==== dateRange Element
 <2> The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
 
-The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
+==== dataType Attribute
+<3> The dataType attribute specifies the type of data being requested.
+
+==== templateId Attribute
+<4> For data models that support templates (also called profiles), The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.
+
+==== idProperty Attribute
+<5> The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
+
+==== codeProperty Attribute
+<6> The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
+
+Note that this property could potentially be specified elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing them at the retrieve expression level gives the most flexibility.
+
+In addition, this property may be a path, including qualifiers and constant indexers.
+
+==== dateProperty Attribute
+<7> The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
+
+This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For date/time values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For date/time interval values, this means that the entire interval is included in the date range.
+
+Instances with no value for the dateProperty will not be included in the result set if a date range is specified.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
+
+==== dateLowProperty Attribute
+<8> The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
+
+If the dateLowProperty is present, the dateHighProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
+
+==== dateHighProperty Attribute
+<9> The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
+
+If the dateHighProperty is present, the dateLowProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
+
+==== scope Attribute
+<10> The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
 
 [[comparison-operators-1]]
 == Comparison Operators
