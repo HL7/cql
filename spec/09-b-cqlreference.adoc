@@ -1099,7 +1099,7 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |[.id]#Ratio# |<quantity>:<quantity>
 |[.id]#Date# |YYYY-MM-DD
 |[.id]#DateTime# |YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm
-|[.id]#Time# |Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|[.id]#Time# |hh:mm:ss.fff
 |===========================================
 
 Table 9‑G
@@ -1107,7 +1107,6 @@ Table 9‑G
 The result of any ToString must be round-trippable back to the source value.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
-
 
 The following examples illustrate the behavior of the [.id]#ToString# operator:
 
@@ -1120,7 +1119,7 @@ define QuantityOverload: ToString(-0.1 'mg')
 define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
 define DateOverload: ToString(@2012-01-01)
 define DateTimeOverload: ToString(@2012-01-01T12:30:00.000-05:00)
-define TimeOverload: ToString(@T12:30:00.000-05:00)
+define TimeOverload: ToString(@12:30:00.000)
 define IsNull: ToString(null as Integer)
 ----
 
@@ -1138,9 +1137,7 @@ ToTime(argument String) Time
 
 The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:
 
-Thh:mm:ss.fff([.sym]#+|-#)hh:mm
-or
-Thh:mm:ss.fffZ
+hh:mm:ss.fff
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -1148,13 +1145,12 @@ For example, the following are valid string representations for time-of-day valu
 
 [source,cql]
 ----
-'T14:30:00.0Z' // 2:30PM UTC
-'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
+'14:30:00.0' // 2:30PM
 ----
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is [.kw]#null#.
 
-As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with time-of-day literals, time-of-day values may be specified to any precision.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
