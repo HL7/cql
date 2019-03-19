@@ -1177,15 +1177,15 @@ It is valid to construct an interval with the same start and end boundary, so lo
 
 [source,cql]
 ----
-Interval[1, 1] // Unit interval containing only the point 1 +
+Interval[1, 1] // Unit interval containing only the point 1
 Interval[1, 1) // Invalid interval, conflicting to say it both includes and excludes 1
 ----
 
-Such an interval contains only a single point and can be called a _unit interval_. For unit intervals, the operator can be used to extract the single point from the interval.
+Such an interval contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval.
 
 [source,cql]
 ----
-point from Interval[1, 1] // Results in 1 +
+point from Interval[1, 1] // Results in 1
 point from Interval[1, 5] // Invalid extractor, this will result in an error
 ----
 
@@ -1778,7 +1778,7 @@ point from Interval[3, 3]
 point from Interval[3, 5)
 ----
 
-Note that the [.kw]#point from# operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a [.kw]#point from# an interval that is wider than one will result in a run-time error.
+The first expression above returns 3, while the second expression results in a run-time error, because the [.kw]#point from# operator may only be used on a _unit interval_, or an interval containing a single point.
 
 The starting and ending point of an interval may be [.kw]#null#, the meaning of which depends on whether the interval is closed (inclusive) or open (exclusive). If a boundary point is [.kw]#null# and the boundary is exclusive, the boundary is considered unknown and operations involving that point will return [.kw]#null#. For example:
 
