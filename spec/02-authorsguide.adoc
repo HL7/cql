@@ -2357,6 +2357,8 @@ define RatioEqualFalse: 1:100 = 10:1000
 define RatioEquivalentTrue: 1:100 ~ 10:1000
 ----
 
+Note that the relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended.
+
 [[terminology-operators]]
 ==== Terminology Operators
 
