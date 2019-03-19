@@ -895,12 +895,17 @@ define IsNull: ToConcept(null as Code)
 
 [source,cql]
 ----
-ToDate(argument String) DateTime
+ToDate(argument DateTime) Date
+ToDate(argument String) Date
 ----
 
 *Description:*
 
-The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# value. The operator expects the string to be formatted using the ISO-8601 date representation:
+The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# value. 
+
+For the DateTime overload, the operator is equivalent to invoking [.kw]#date from# on the DateTime value.
+
+For the String overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 

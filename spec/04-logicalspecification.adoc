@@ -3502,7 +3502,7 @@ ConvertsToDate : UnaryExpression
 
 The ConvertsToDate operator returns true if the value of its argument can be converted to a Date value.
 
-Fro String values, The operator expects the string to be formatted using the ISO-8601 date representation:
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 
@@ -3726,7 +3726,7 @@ ToDate : UnaryExpression
 
 The ToDate operator converts the value of its argument to a Date value.
 
-Fro String values, The operator expects the string to be formatted using the ISO-8601 date representation:
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
 YYYY-MM-DD
 
