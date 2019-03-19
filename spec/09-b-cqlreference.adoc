@@ -3372,7 +3372,7 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. the interval that has a width equal to the result of the successor function for the point type).
+If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
 
 The following examples illustrate the behavior of the [.kw]#collapse# operator:
 
@@ -3550,7 +3550,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 *Description:*
 
-The [.kw]#expand# operator returns the set of intervals of width per for all the intervals in the input.
+The [.kw]#expand# operator returns the set of intervals of size per for all the intervals in the input.
 
 The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For date/time intervals, this means a temporal duration.
 
@@ -3574,7 +3574,7 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. the interval that has a width equal to the result of the successor function for the point type).
+If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
 
 [[in]]
 === In
@@ -4059,6 +4059,32 @@ If either or both arguments are [.kw]#null#, the result is null.
 
 Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for [.kw]#same# for this operator.
 
+[[size]]
+=== Size
+
+*Signature:*
+
+[source,cql]
+----
+Size(argument Interval<T>) T
+----
+
+*Description:*
+
+The [.kw]#Size# operator returns the size of an interval. The result of this operator is equivalent to invoking: ([.kw]#end of# [.id]#argument# [.sym]#–# [.kw]#start of# [.id]#argument#) + _point-size_, where _point-size_ is determined by [.kw]#successor of minimum T# [.sym]#-# [.kw]#minimum T#.
+
+Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _size_ is not defined for intervals of these types.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#Size# operator:
+
+[source,cql]
+----
+define SizeTest: Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
+define SizeIsNull: Size(null as Interval<Integer>)
+----
+
 [[start]]
 === Start
 
@@ -4152,7 +4178,7 @@ width of(argument Interval<T>) T
 
 *Description:*
 
-The [.kw]#width# operator returns the width of an interval. The result of this operator is equivalent to invoking: ([.kw]#start of# [.id]#argument# [.sym]#–# [.kw]#end of# [.id]#argument#) [.sym]#+# [.id]#_point-size_#.
+The [.kw]#width# operator returns the width of an interval. The result of this operator is equivalent to invoking: ([.kw]#end of# [.id]#argument# [.sym]#–# [.kw]#start of# [.id]#argument#).
 
 Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _width_ is not defined for intervals of these types.
 

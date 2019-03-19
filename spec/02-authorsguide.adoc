@@ -1796,7 +1796,7 @@ Interval[3, null] contains 5
 
 This expression returns [.kw]#true# because the [.kw]#null# ending boundary is inclusive and is therefore interpreted as extending to the end of the range of possible values for the point type of the interval.
 
-For numeric intervals, CQL defines a [.kw]#width# operator, which returns the ending boundary minus the starting boundary, plus one:
+For numeric intervals, CQL defines a [.kw]#width# operator, which returns the ending boundary minus the starting boundary:
 
 [source,cql]
 ----
@@ -1804,7 +1804,7 @@ width of Interval[3, 5)
 width of Interval[3, 5]
 ----
 
-The first expression returns 2 (ending boundary of 4, minus the starting boundary of 3, plus 1), while the second expression returns 3 (ending boundary of 5, minus the starting boundary of 3, plus 1). In other words, the [.kw]#width# operator returns the number of points that are included in the interval.
+The first expression returns 1 (ending boundary of 4, minus the starting boundary of 3), while the second expression returns 2 (ending boundary of 5, minus the starting boundary of 3).
 
 For date/time intervals, CQL defines a [.kw]#duration of# operator as well as a [.kw]#difference of# operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
 
@@ -2245,14 +2245,14 @@ Figure 2‑D
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
-In addition, CQL supports an [.kw]#expand# operator that determines the list of _unit_ intervals from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
+In addition, CQL supports an [.kw]#expand# operator that determines the list of _unit_ intervals (intervals with the same starting and ending boundary) from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
 
 [source,cql]
 ----
 expand EffectivePeriods per day
 ----
 
-This expression would result in the list of unit intervals, one for each day in the intervals in the input.
+This expression would result in the list of _day_ intervals, one for each day in the intervals in the input.
 
 [[aggregate-operators]]
 === Aggregate Operators
