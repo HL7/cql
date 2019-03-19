@@ -5548,7 +5548,7 @@ The following examples illustrate the behavior of the [.kw]#in# (Codesystem) ope
 ----
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
 define StringInCodesystem: '12345678' in "SNOMED:2014"
-define CodeInCodesystem: Code { system: "SNOMED:2014", code: '12345678' } in "SNOMED:2014"
+define CodeInCodesystem: Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
 define NullStringInCodesystem: null as String in "SNOMED:2014" // false
 ----
 
