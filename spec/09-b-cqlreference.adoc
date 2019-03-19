@@ -2598,7 +2598,7 @@ define SplitIsNull: Split(null, ' ')
 
 [source,cql]
 ----
-Split(stringToSplit String, separatorPattern String) List<String>
+SplitOnMatches(stringToSplit String, separatorPattern String) List<String>
 ----
 
 *Description:*
