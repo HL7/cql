@@ -2310,7 +2310,9 @@ Combine(source List<String>, separator String) String
 
 The [.id]#Combine# operator combines a list of strings, optionally separating each string with the given separator.
 
-If either argument is [.kw]#null#, or any element in the source list of strings is [.kw]#null#, the result is [.kw]#null#.
+If either argument is [.kw]#null#, or the source list is empty, the result is [.kw]#null#.
+
+For consistency with aggregate operator behavior, null elements in the input list are ignored.
 
 The following examples illustrate the behavior of the [.id]#Combine# operator:
 
@@ -2318,7 +2320,7 @@ The following examples illustrate the behavior of the [.id]#Combine# operator:
 ----
 define CombineList: Combine({ 'super', 'califragilistic', 'expialidocious' }) // 'supercalifragilisticexpialidocious'
 define CombineWithSeparator: Combine({ 'CQL', 'is', 'awesome' }, ' ') // 'CQL is awesome'
-define CombineIsNull: Combine({ 'the', 'next', 'arg', 'is', null })
+define CombineWithNulls: Combine({ 'the', 'next', 'arg', 'is', null }) // 'thenextargis'
 ----
 
 [[concatenate]]
