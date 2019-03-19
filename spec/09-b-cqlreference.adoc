@@ -3840,7 +3840,7 @@ overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The [.kw]#overlaps# operator returns [.kw]#true# if the first interval overlaps the second. More precisely, if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
+The [.kw]#overlaps# operator returns [.kw]#true# if the first interval overlaps the second. More precisely, if the starting or ending point of either interval is in the other, or if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
 
 The operator [.kw]#overlaps before# returns [.kw]#true# if the first interval overlaps the second and starts before it, while the [.kw]#overlaps after# operator returns [.kw]#true# if the first interval overlaps the second and ends after it.
 
