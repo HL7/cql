@@ -1271,7 +1271,7 @@ For intervals, equality returns true if the intervals use the same point type an
 
 [source,cql]
 ----
-[1..5] = [1..6)
+Interval[1,5] = Interval[1,6)
 ----
 
 This returns true because the intervals cover the same set of points, 1 through 5.
