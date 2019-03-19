@@ -25,7 +25,7 @@ Even though [.kw]#and# is an infix operator and would be invoked as in the follo
 InDemographic and NeedsScreening
 ----
 
-In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a date/time value. The following symbols are used to describe format strings:
+In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a DateTime value. The following symbols are used to describe format strings:
 
 * 0 - Any digit must appear at this location in the format string
 * # - Any digit may appear at this location in the format string
@@ -33,7 +33,7 @@ In addition, formatting strings are used throughout the reference to describe po
 * ( ) - Used to group patterns
 * | - Used to combine choices of patterns (e.g. +|- means a + or - may appear at this location)
 
-Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date/time format strings:
+Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
 * YYYY - A full four digit year, padded with leading zeroes if necessary
 * MM - A full two digit month value, padded with leading zeroes if necessary
@@ -148,7 +148,7 @@ The [.id]#DateTime# type represents date and time values with potential uncertai
 
 CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to [.lit]#@9999-12-31T23:59:59.999# with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset.
 
-CQL also supports partial date/time values. For example, the datetime [.lit]#@2014-01-01T03# represents some instant during the hour of 3:00 on January 1st, 2014.
+CQL also supports partial datetime values. For example, the datetime [.lit]#@2014-01-01T03# represents some instant during the hour of 3:00 on January 1st, 2014.
 
 [[decimal-1]]
 === Decimal
@@ -558,11 +558,11 @@ The following table lists the conversions supported in CQL:
 
 Table 9‑E
 
-For conversions between date/time and string values, ISO-8601 standard format is used:
+For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
 yyyy-MM-ddThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)
 
-For example, the following are valid string representations for date/time values:
+For example, the following are valid string representations for date and time values:
 
 [source,cql]
 ----
@@ -706,9 +706,9 @@ ConvertsToDateTime(argument String) Boolean
 
 The [.id]#ConvertsToDateTime# operator returns [.kw]#true# if its argument can be converted to a [.id]#DateTime# value. See the [.id]#<<ToDateTime>># operator for a description of the supported conversions.
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, the result is [.kw]#false#.
+If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is [.kw]#false#.
 
-As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with date and time literals, DateTime values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -940,15 +940,15 @@ ToDateTime(argument String) DateTime
 
 The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#DateTime# value.
 
-For the string overload, the operator expects the string to be formatted using the ISO-8601 date/time representation:
+For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
 YYYY-MM-DDThh:mm:ss.fff([.sym]#+|-#)hh:mm
 or
 YYYY-MM-DDThh:mm:ss.fffZ
 
-In addition, the string must be interpretable as a valid date/time value.
+In addition, the string must be interpretable as a valid DateTime value.
 
-For example, the following are valid string representations for date/time values:
+For example, the following are valid string representations for DateTime values:
 
 [source,cql]
 ----
@@ -957,9 +957,9 @@ For example, the following are valid string representations for date/time values
 '2014-01-01T14:30:00.0-07:00' // January 1st, 2014, 2:30PM Mountain Standard (GMT-7:00)
 ----
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, the result is [.kw]#null#.
+If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is [.kw]#null#.
 
-As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with Date and Time literals, DateTime values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
 For the [.id]#Date# overload, the result will be a [.id]#DateTime# with the time components set to zero, except for the timezone offset, which will be set to the timezone offset of the evaluation request timestamp.
 
@@ -1321,7 +1321,7 @@ The between operator determines whether the first argument is within a given ran
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#.
 
-For comparisons involving date/time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
+For comparisons involving Date, DateTime, or Time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
 
 [source,cql]
 ----
@@ -1371,7 +1371,7 @@ For list types, this means that equality returns [.kw]#true# if and only if the 
 
 For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal equality semantics.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal equality semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1414,7 +1414,7 @@ For list types, this means that two list values are equivalent if and only if th
 
 For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators are equivalent.
 
-For date/time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is [.kw]#false#, rather than [.kw]#null#. As with equality, the second and millisecond precisions are considered a single precision using a decimal, with decimal equivalence semantics.
+For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is [.kw]#false#, rather than [.kw]#null#. As with equality, the second and millisecond precisions are considered a single precision using a decimal, with decimal equivalence semantics.
 
 For [.id]#Code# values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
@@ -1460,7 +1460,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1503,7 +1503,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
@@ -1546,7 +1546,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
 [source,cql]
 ----
@@ -1590,7 +1590,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
 [source,cql]
 ----
@@ -1931,7 +1931,7 @@ For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal val
 
 For [.id]#Date#, [.kw]#maximum# returns the maximum representable date value, [.id]#Date#([.lit]#9999#, [.lit]#12#, [.lit]#31#).
 
-For [.id]#DateTime#, [.kw]#maximum# returns the maximum representable date/time value, [.id]#DateTime#([.lit]#9999#, [.lit]#12#, [.lit]#31#, [.lit]#23#, [.lit]#59#, [.lit]#59#, [.lit]#999#).
+For [.id]#DateTime#, [.kw]#maximum# returns the maximum representable datetime value, [.id]#DateTime#([.lit]#9999#, [.lit]#12#, [.lit]#31#, [.lit]#23#, [.lit]#59#, [.lit]#59#, [.lit]#999#).
 
 For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.id]#Time#([.lit]#23#, [.lit]#59#, [.it]#59#, [.lit]#999#).
 
@@ -1968,7 +1968,7 @@ For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal val
 
 For [.id]#Date#, [.kw]#minimum# returns the minimum representable date value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#).
 
-For [.id]#DateTime#, [.kw]#minimum# returns the minimum representable date/time value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#, [.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
+For [.id]#DateTime#, [.kw]#minimum# returns the minimum representable datetime value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#, [.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
 
 For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.id]#Time#([.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
 
@@ -2694,7 +2694,7 @@ define UpperIsNull: Upper(null)
 ----
 
 [[datetime-operators-2]]
-== Date/Time Operators
+== Date and Time Operators
 
 [[add-1]]
 === Add
@@ -2710,7 +2710,7 @@ define UpperIsNull: Upper(null)
 
 *Description:*
 
-The _add_ ([.sym]#+#) operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+The _add_ ([.sym]#+#) operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
 For [.id]#Date# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
@@ -2720,11 +2720,11 @@ For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#mi
 
 Note that the quantity units may be specified in singular, plural, or UCUM form.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then adding it to the date/time value. For example, the following addition:
+The operation is performed by converting the time-based quantity to the most precise value specified in first argument (truncating any resulting decimal portion) and then adding it to the first argument. For example, the following addition:
 
 [.id]#DateTime(2014)# [.sym]#+# [.lit]#24# [.id]#months#
 
-This example results in the value [.id]#DateTime(2016)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
+This example results in the value [.id]#DateTime(2016)# even though the DateTime value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored. For example, the following addition:
 
@@ -2748,7 +2748,7 @@ after _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#after#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+The [.kw]#after#__-precision-__[.kw]#of# operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -2762,7 +2762,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -2792,7 +2792,7 @@ before _precision_ of(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#before#__-precision-__[.kw]#of# operator compares two date/time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
+The [.kw]#before#__-precision-__[.kw]#of# operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#false#.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -2806,7 +2806,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -2873,7 +2873,7 @@ DateTime(year Integer, month Integer, day Integer,
 
 *Description:*
 
-The [.id]#DateTime# operator constructs a date/time value from the given components.
+The [.id]#DateTime# operator constructs a DateTime value from the given components.
 
 At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#hour# may be [.kw]#null#, but if it is, [.id]#minute#, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
@@ -2888,7 +2888,7 @@ define DateInvalid: DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ----
 
 [[datetime-component-from]]
-=== Date/Time Component From
+=== Date and Time Component From
 
 *Signature:*
 
@@ -2944,7 +2944,7 @@ difference in _precision_ between(low Time, high Time) Integer
 
 The _difference-_[.kw]#between# operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
 
-As with all date/time calculations, difference calculations are performed respecting the timezone offset depending on the precision.
+As with all date and time calculations, difference calculations are performed respecting the timezone offset depending on the precision.
 
 For [.id]#Date# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
@@ -3033,7 +3033,7 @@ on or after _precision_ (left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#on or after# operator for date/time values is a synonym for the [.kw]#same or after# operator and is supported to enable natural phrasing. See the description of the <<same-or-after-1,Same Or After (Date/Time)>> operator.
+The [.kw]#on or after# operator for Date, DateTime, and Time values is a synonym for the [.kw]#same or after# operator and is supported to enable natural phrasing. See the description of the <<same-or-after-1,Same Or After (Date, DateTime, or Time)>> operator.
 
 Note that this operator can be invoked using either the [.kw]#on or after# or the [.kw]#after or on# syntax.
 
@@ -3053,7 +3053,7 @@ on or before _precision_ (left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#on or before# operator for date/time values is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-1,Same Or Before (Date/Time)>> operator.
+The [.kw]#on or before# operator for Date, DateTime, and Time values is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-1,Same Or Before (Date, DateTime, or Time)>> operator.
 
 Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
 
@@ -3073,7 +3073,7 @@ same _precision_ as(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#as# operator compares two date/time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#as# operator compares two Date, DateTime, or Time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3087,7 +3087,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3117,7 +3117,7 @@ same _precision_ or after(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or after# operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#or after# operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3131,7 +3131,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3163,7 +3163,7 @@ same _precision_ or before(left Time, right Time) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or before# operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
+The [.kw]#same#__-precision-__[.kw]#or before# operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if either input has no value for the precision, the comparison stops and the result is [.kw]#null#; if the specified precision has been reached, the comparison stops and the result is [.kw]#true#.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3177,7 +3177,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is null.
 
@@ -3209,7 +3209,7 @@ This operator is also defined for intervals, see the <<same-or-before-2,Same Or 
 
 *Description:*
 
-The _subtract_ ([.sym]#-#) operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+The _subtract_ ([.sym]#-#) operator returns the value of the given Date, DateTime, or Time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
 For [.id]#Date# values, the quantity unit must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
@@ -3219,11 +3219,11 @@ For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#mi
 
 Note that the quantity units may be specified in singular, plural or UCUM form.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then subtracting it from the date/time value. For example, the following subtraction:
+The operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then subtracting it from the first argument. For example, the following subtraction:
 
 [.id]#DateTime(2014)# [.sym]#-# [.lit]#24# [.id]#months#
 
-This example results in the value [.id]#DateTime(2012)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
+This example results in the value [.id]#DateTime(2012)# even though the DateTime value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored.  For example, the following subtraction:
 
@@ -3313,7 +3313,7 @@ For the interval-point overload, the operator returns [.kw]#true# if the given i
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3348,7 +3348,7 @@ For the interval-point overload, the operator returns [.kw]#true# if the given i
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3376,9 +3376,9 @@ collapse(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 The [.kw]#collapse# operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals. In other words, adjacent intervals within a sorted list are merged if they either overlap or meet.
 
-Note that because the semantics for overlaps and meets are themselves defined in terms of the interval successor and predecessor operators, sets of date/time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
+Note that because the semantics for overlaps and meets are themselves defined in terms of the interval successor and predecessor operators, sets of Date-, DateTime-, or Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
-The per argument determines the precision at which the collapse will be performed, and must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For date/time intervals, this means a temporal duration.
+The per argument determines the precision at which the collapse will be performed, and must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For Date, DateTime, or Time intervals, this means a temporal duration.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
@@ -3408,7 +3408,7 @@ contains _precision_ (argument Interval<T>, point T) Boolean
 
 The [.kw]#contains# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered [.kw]#true#.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3465,7 +3465,7 @@ The [.kw]#ends# operator returns [.kw]#true# if the first interval ends the seco
 
 This operator uses the semantics described in the [.kw]#<<start>># and [.kw]#<<end>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3564,7 +3564,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 The [.kw]#expand# operator returns the set of intervals of size per for all the intervals in the input.
 
-The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For date/time intervals, this means a temporal duration.
+The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For Date, DateTime, or Time intervals, this means a temporal duration.
 
 For example:
 
@@ -3602,7 +3602,7 @@ in _precision_ (point T, argument Interval<T>) Boolean
 
 The [.kw]#in# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered true.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3634,7 +3634,7 @@ For the point overload, this operator is a synonym for the [.kw]#<<contains,cont
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3666,7 +3666,7 @@ For the point overload, this operator is a synonym for the [.kw]#<<in,in>># oper
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3725,11 +3725,11 @@ The [.kw]#meets before# operator returns [.kw]#true# if the first interval ends 
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision. 
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. 
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-Note that date/time-based intervals with partially specified boundaries will "meet" at the precision of the boundaries, not the finest precision for the point type. For example:
+Note that Date-, DateTime-, or Time-based intervals with partially specified boundaries will "meet" at the precision of the boundaries, not the finest precision for the point type. For example:
 
 [source,cql]
 ----
@@ -3832,7 +3832,7 @@ on or before _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#on or before# operator for date/time-based intervals is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-2,Same Or Before (Intervals)>> operator.
+The [.kw]#on or before# operator for Date-, DateTime-, or Time-based intervals is a synonym for the [.kw]#same or before# operator and is supported to enable natural phrasing. See the description of the <<same-or-before-2,Same Or Before (Intervals)>> operator.
 
 Note that this operator can be invoked using either the [.kw]#on or before# or the [.kw]#before or on# syntax.
 
@@ -3858,7 +3858,7 @@ The operator [.kw]#overlaps before# returns [.kw]#true# if the first interval ov
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3916,7 +3916,7 @@ For the point overload, this operator returns true if the interval contains (i.e
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3948,7 +3948,7 @@ For the point overload, this operator returns true if the point is in (i.e. incl
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3975,7 +3975,7 @@ same _precision_ as(left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#as# operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time value, performing the comparisons at the specified precision, as described in the [.id]#<<Same As>># operator for date/time values.
+The [.kw]#same#__-precision-__[.kw]#as# operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the [.id]#<<Same As>># operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3989,9 +3989,9 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with a mixture of [.id]#Date#- and [.id]#DateTime#-based intervals, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -4009,7 +4009,7 @@ same _precision_ or after(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-after-1,Same or After (Date/Time)>># operator for date/time values.
+The [.kw]#same#__-precision-__[.kw]#or after# operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-after-1,Same or After (Date, DateTime, or Time)>># operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4025,9 +4025,9 @@ When this operator is called with a mixture of [.id]#Date#-based and [.id]#DateT
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
-For comparisons involving date/time or time intervals with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date or time intervals with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -4047,7 +4047,7 @@ same _precision_ or before(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for date/time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-before-1,Same or Before (Date/Time)>># operator for date/time values.
+The [.kw]#same#__-precision-__[.kw]#or before# operator returns true if the first interval ends on or before the second one starts, using the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the [.id]#<<same-or-before-1,Same or Before (Date, DateTime, or Time)>># operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4063,9 +4063,9 @@ When this operator is called with a mixture of [.id]#Date#- and [.id]#DateTime#-
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
-For comparisons involving date/time or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
+For comparisons involving date or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
 If either or both arguments are [.kw]#null#, the result is null.
 
@@ -4085,7 +4085,7 @@ Size(argument Interval<T>) T
 
 The [.kw]#Size# operator returns the size of an interval. The result of this operator is equivalent to invoking: ([.kw]#end of# [.id]#argument# [.sym]#–# [.kw]#start of# [.id]#argument#) + _point-size_, where _point-size_ is determined by [.kw]#successor of minimum T# [.sym]#-# [.kw]#minimum T#.
 
-Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _size_ is not defined for intervals of these types.
+Note that because CQL defines _duration_ and _difference_ operations for date and time valued intervals, _size_ is not defined for intervals of these types.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4141,7 +4141,7 @@ The [.kw]#starts# operator returns [.kw]#true# if the first interval starts the 
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4192,7 +4192,7 @@ width of(argument Interval<T>) T
 
 The [.kw]#width# operator returns the width of an interval. The result of this operator is equivalent to invoking: ([.kw]#end of# [.id]#argument# [.sym]#–# [.kw]#start of# [.id]#argument#).
 
-Note that because CQL defines _duration_ and _difference_ operations for date/time and time valued intervals, _width_ is not defined for intervals of these types.
+Note that because CQL defines _duration_ and _difference_ operations for date and time valued intervals, _width_ is not defined for intervals of these types.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -5343,13 +5343,15 @@ AgeInSeconds() Integer
 
 *Description:*
 
-The [.id]#Age# operators calculate the age of the patient as of the current date/time in the precision named in the operator.
+The [.id]#Age# operators calculate the age of the patient as of the current date in the precision named in the operator.
 
 If the patient’s birthdate is [.kw]#null#, the result is [.kw]#null#.
 
-The [.id]#Age# operators are defined in terms of a date/time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+The [.id]#Age# operators are defined in terms of a date or time duration calculation. This means that if the age of the patient is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
-Note that for [.id]#AgeInYears# and [.id]#AgeInMonths#, the [.id]#birthDate# is specified as a [.id]#Date# and [.id]#Today()# is used to obtain the current date; whereas with the other precisions, [.id]#birthDate# is specified as a [.id]#DateTime#, and [.id]#Now()# is used to obtain the current date/time.
+Note that for [.id]#AgeInYears# and [.id]#AgeInMonths#, the [.id]#birthDate# is specified as a [.id]#Date# and [.id]#Today()# is used to obtain the current date; whereas with the other precisions, [.id]#birthDate# is specified as a [.id]#DateTime#, and [.id]#Now()# is used to obtain the current DateTime.
+
+These operators are shorthand for the equivalent AgeInXXXAt operator, passing Today() or Now() for the asOf argument.
 
 [[ageat]]
 === AgeAt
@@ -5373,11 +5375,13 @@ AgeInSecondsAt(asOf DateTime) Integer
 
 *Description:*
 
-The [.id]#AgeAt# operators calculate the age of the patient as of the given date/time in the precision named in the operator.
+The [.id]#AgeAt# operators calculate the age of the patient as of a given date and in the precision named in the operator.
 
 If the patient’s birthdate is [.kw]#null#, or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 
-The [.id]#AgeAt# operators are defined in terms of a date/time duration calculation. This means that if the age of the patient or the given [.id]#asOf# value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+The [.id]#AgeAt# operators are defined in terms of a datetime duration calculation. This means that if the age of the patient or the given [.id]#asOf# value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+
+These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, passing the birth date from the patient context.
 
 [[calculateage]]
 === CalculateAge
@@ -5401,11 +5405,13 @@ CalculateAgeInSeconds(birthDate DateTime) Integer
 
 *Description:*
 
-The [.id]#CalculateAge# operators calculate the age of a person born on the given birth date/time as of today/now in the precision named in the operator.
+The [.id]#CalculateAge# operators calculate the age of a person born on the given birth date, as of the current date, and in the precision named in the operator.
 
 If the birthdate is [.kw]#null#, the result is [.kw]#null#.
 
-The [.id]#CalculateAge# operators are defined in terms of a date/time duration calculation. This means that if the given [.id]#birthDate# is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+The [.id]#CalculateAge# operators are defined in terms of a datetime duration calculation. This means that if the given [.id]#birthDate# is not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+
+These operators are shorthand for the equivalent CalculateAgeInXXXAt, passing the current date for the asOf argument.
 
 [[calculateageat]]
 === CalculateAgeAt
@@ -5429,11 +5435,11 @@ CalculateAgeInSecondsAt(birthDate DateTime, asOf DateTime) Integer
 
 *Description:*
 
-The [.id]#CalculateAgeAt# operators calculate the age of a person born on the given birth date/time as of the given date/time in the precision named in the operator.
+The [.id]#CalculateAgeAt# operators calculate the age of a person born on the given birth date as of the given date, and in the precision named in the operator.
 
 If the [.id]#birthDate# is [.kw]#null# or the [.id]#asOf# argument is [.kw]#null#, the result is [.kw]#null#.
 
-The [.id]#CalculateAgeAt# operators are defined in terms of a date/time duration calculation. This means that if the given [.id]#birthDate# or [.id]#asOf# are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
+The [.id]#CalculateAgeAt# operators are defined in terms of a datetime duration calculation. This means that if the given [.id]#birthDate# or [.id]#asOf# are not specified to the level of precision corresponding to the operator being invoked, the result will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#CalculateAgeAt# operator:
 

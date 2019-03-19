@@ -370,12 +370,12 @@ Using this sketch, the evaluation of a query can be performed by pipelining the 
 [[timing-calculations]]
 == Timing Calculations
 
-This section discusses the precise semantics for the representation of date/time values within CQL, as well as the calculation of date/time arithmetic. The discussion in this section assumes fully-specified date/time values. The next section will discuss the implications of partially-specified date/time values.
+This section discusses the precise semantics for the representation of date and time values within CQL, as well as the calculation of date and time arithmetic. The discussion in this section assumes fully-specified date time values. The next section will discuss the implications of partially-specified date and time values.
 
 [[definitions]]
 === Definitions
 
-This section provides precise definitions for the terms involved in dealing with date/time values. These definitions are based on the ISO 8601:2004 standard for the representation of date/time values.
+This section provides precise definitions for the terms involved in dealing with date and time values. These definitions are based on the ISO 8601:2004 standard for the representation of date and time values.
 
 [[table-5-g]]
 [cols=",,",options="header",]
@@ -413,7 +413,7 @@ Unless otherwise specified, the term designates a calendar year in the Gregorian
 
 Table 5‑G
 
-ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date/time values using the following components:
+ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date and time values using the following components:
 
 [[table-5-h]]
 [cols=",,,",options="header",]
@@ -432,18 +432,18 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 Table 5‑H
 
 [[datetime-arithmetic-1]]
-=== Date/Time Arithmetic
+=== Date and Time Arithmetic
 
-CQL allows time durations, represented as Quantities, to be added to or subtracted from date/time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
+CQL allows time durations, represented as Quantities, to be added to or subtracted from date or time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
 
 [[table-5-i]]
 [cols=",,,",options="header",]
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Precision |Type |Range |Semantics
-|*Year* |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date/time value. If the resulting year is out of range, an error is thrown. If the month and day of the date/time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29, 0, 0) + 1 year = DateTime(2013, 2, 28, 0, 0). The resulting date/time value will have the same time components.
-|*Month* |Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date/time value will have the same time components.
-|*Week* |Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
-|*Day* |Integer |[1, 31] |The days, positive or negative, are added to the day component, respecting calendar month and calendar year lengths. The resulting date/time value will have the same time components.
+|*Year* |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29, 0, 0) + 1 year = DateTime(2013, 2, 28, 0, 0). The resulting date or time value will have the same time components.
+|*Month* |Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date or time value will have the same time components.
+|*Week* |Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date or time value will have the same time components.
+|*Day* |Integer |[1, 31] |The days, positive or negative, are added to the day component, respecting calendar month and calendar year lengths. The resulting date or time value will have the same time components.
 |*Hour* |Integer |[0, 23] |The hours, positive or negative, are added to the hour component, with each 24 hour block counting as a calendar day, and respecting calendar month and calendar year lengths.
 |*Minute* |Integer |[0, 59] |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
 |*Second* |Integer |[0, 59] |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
@@ -455,13 +455,13 @@ Table 5‑I
 [[precision-based-timing]]
 == Precision-Based Timing
 
-One of the most complex aspects of quality expression logic is dealing with timing relationships in the presence of partially-specified date/time values. This section discusses the precise semantics used by CQL to help mitigate this complexity and allow measure and decision support authors to express temporal logic intuitively and accurately, even in the presence of uncertain date/time data.
+One of the most complex aspects of quality expression logic is dealing with timing relationships in the presence of partially-specified date and time values. This section discusses the precise semantics used by CQL to help mitigate this complexity and allow measure and decision support authors to express temporal logic intuitively and accurately, even in the presence of uncertain date and time data.
 
-The core issue being addressed is the proper handling of temporal comparisons in the presence of varying degrees of certainty about the time at which events occur. For example, a measure is looking for the occurrence of a particular procedure within two years of the measurement start date, but an EHR records that a qualifying procedure occurred in a given year, not the month or day of the occurrence. In this scenario, the EHR must be allowed to provide as much information as it accurately has, but must not be required to provide information that is not known. This requirement means that the record will contain a date/time value, but specified only to the year precision. If the semantics for timing comparison do not take this possibility into account, the resulting comparisons may yield incorrect results.
+The core issue being addressed is the proper handling of temporal comparisons in the presence of varying degrees of certainty about the time at which events occur. For example, a measure is looking for the occurrence of a particular procedure within two years of the measurement start date, but an EHR records that a qualifying procedure occurred in a given year, not the month or day of the occurrence. In this scenario, the EHR must be allowed to provide as much information as it accurately has, but must not be required to provide information that is not known. This requirement means that the record will contain a date and time value, but specified only to the year precision. If the semantics for timing comparison do not take this possibility into account, the resulting comparisons may yield incorrect results.
 
-In general, the approach taken by CQL formally defines the notion of _uncertainty_ to specify the semantics for date/time comparisons, and all the operations that rely on them. In particular, the approach described here applies to operators defined for the [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types, the only difference between them being the precisions that must be considered. Note that the concept of uncertainty is not exposed directly in CQL or in ELM, but is defined as an implementation detail. This approach is deliberate and is taken to achieve the intuitively correct semantics without exposing the complexity involved to CQL authors and developers.
+In general, the approach taken by CQL formally defines the notion of _uncertainty_ to specify the semantics for date and time comparisons, and all the operations that rely on them. In particular, the approach described here applies to operators defined for the [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types, the only difference between them being the precisions that must be considered. Note that the concept of uncertainty is not exposed directly in CQL or in ELM, but is defined as an implementation detail. This approach is deliberate and is taken to achieve the intuitively correct semantics without exposing the complexity involved to CQL authors and developers.
 
-The discussion here begins by formally defining uncertainty and the semantics of operations involving uncertainty. The calculation of duration between imprecise dates is then discussed in terms of uncertainty, and then the CQL timing phrases are all defined in terms of either date/time comparison, or duration calculation. The discussion concludes with some notes on implementation of these semantics within an engine or translated environment.
+The discussion here begins by formally defining uncertainty and the semantics of operations involving uncertainty. The calculation of duration between imprecise dates is then discussed in terms of uncertainty, and then the CQL timing phrases are all defined in terms of either date and time comparison, or duration calculation. The discussion concludes with some notes on implementation of these semantics within an engine or translated environment.
 
 [[uncertainty]]
 === Uncertainty
@@ -674,7 +674,7 @@ Even though determining the correct answer to this question involves the use of 
 [[determining-difference-and-duration]]
 === Determining Difference and Duration
 
-To determine the duration between two date/time values, CQL supports a _between_ operator for each date/time component. For example:
+To determine the duration between two date or time values, CQL supports a _between_ operator for each date and time component. For example:
 
 [source,cql]
 ----
@@ -721,7 +721,7 @@ days between Date(2014, 1, 15) and Date(2014, 2) > 20
 
 This comparison returns unknown (null), because the value being compared, 20, falls within the uncertainty, so no determination can be reliably made.
 
-CQL also supports a difference in operator which, rather than calculating the number of calendar periods between two dates, calculates the number of boundaries crossed between the two dates. As with the duration operator, difference is defined to take imprecision in date/time values into account by returning an uncertainty.
+CQL also supports a difference in operator which, rather than calculating the number of calendar periods between two dates, calculates the number of boundaries crossed between the two dates. As with the duration operator, difference is defined to take imprecision in date and time values into account by returning an uncertainty.
 
 [[timing-phrases]]
 === Timing Phrases
@@ -731,7 +731,7 @@ Using the foundational elements described in the previous sections, the semantic
 [[same-as]]
 ==== Same As
 
-The _same as_ timing phrase is simply defined to be equivalent to a _same as_ comparison of the date/time values involved:
+The _same as_ timing phrase is simply defined to be equivalent to a _same as_ comparison of the date and time values involved:
 
 [source,cql]
 ----
@@ -764,7 +764,7 @@ start of A same day or before start of B
 [[beforeafter]]
 ==== Before/After
 
-The basic _before_ and _after_ timing phrases are defined to be equivalent to a _before_ or _after_ comparison of the date/time values involved:
+The basic _before_ and _after_ timing phrases are defined to be equivalent to a _before_ or _after_ comparison of the date and time values involved:
 
 [source,cql]
 ----
@@ -780,7 +780,7 @@ start of A before start of B
 start of A after start of B
 ----
 
-If the phrase involves a duration offset, the duration offset is applied as a date/time arithmetic calculation:
+If the phrase involves a duration offset, the duration offset is applied as a date and time arithmetic calculation:
 
 [source,cql]
 ----
@@ -841,14 +841,14 @@ In general, interval comparisons are already defined in terms of the fundamental
 [[implementing-precision-based-timing-with-uncertainty]]
 === Implementing Precision-Based Timing with Uncertainty
 
-Implementation of these semantics can be simplified by recognizing that all the date/time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:
+Implementation of these semantics can be simplified by recognizing that all the date and time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:
 
 * Support for run-time operations on integer-based uncertainties, including:
 ** [.sym]#=#, [.sym]#<#, [.sym]#>#, [.sym]#\<=#, [.sym]#>=#, [.sym]#+#, [.sym]#-#, [.sym]#unary +/-#, [.sym]#*#, [.sym]#/#
 ** implicit conversion between integer point values and uncertainties
-* Precision-based duration and difference between date/times
+* Precision-based duration and difference between dates and times
 
-All the other operations and semantics can be achieved using only these primitives. For example, given _A_ and _B_, both date/time values, the comparison:
+All the other operations and semantics can be achieved using only these primitives. For example, given _A_ and _B_, both datetime values, the comparison:
 
 [source,cql]
 ----
@@ -876,7 +876,7 @@ Can be evaluated as:
 difference in days between A and B = 0
 ----
 
-Because the difference operation will return an uncertainty when imprecise date/time values are involved, the correct semantics will be applied to the comparison to the point value, 0 in this case. By structuring the evaluation engine such that all operations involving date/times are performed in terms of these primitives, correct semantics can be achieved with a comparatively straightforward implementation.
+Because the difference operation will return an uncertainty when imprecise date and time values are involved, the correct semantics will be applied to the comparison to the point value, 0 in this case. By structuring the evaluation engine such that all operations involving dates and times are performed in terms of these primitives, correct semantics can be achieved with a comparatively straightforward implementation.
 
 Note also that a compile-time implicit conversion to uncertainty may also simplify the implementation, avoiding the need for integer-valued primitives to determine at run-time whether they are operating on an uncertainty.
 

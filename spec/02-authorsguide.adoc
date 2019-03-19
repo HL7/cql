@@ -758,9 +758,9 @@ Note that the [.id]#Time# value literal format is identical to the time value po
 
 Only [.id]#DateTime# values may specify a timezone offset, either as UTC ([.sym]#Z#), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
-For more information on the use of date/time values within CQL, refer to the <<Date/Time Operators>> section.
+For more information on the use of date and time values within CQL, refer to the <<Date and Time Operators>> section.
 
-Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date/time operations, refer to the <<Comparing Dates and Times>> section.
+Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
 
 [[clinical-values]]
 === Clinical Values
@@ -1120,7 +1120,7 @@ For a description of the distinct operator, as well as other operations that can
 [[interval-values]]
 === Interval Values
 
-CQL supports the representation of intervals, or ranges, of values of various types. In particular, intervals of date/time and ranges of integers and reals.
+CQL supports the representation of intervals, or ranges, of values of various types. In particular, intervals of date and time values, and ranges of integers and reals.
 
 Intervals in CQL are represented by specifying the low and high points of the interval and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses. For example:
 
@@ -1242,7 +1242,7 @@ Attempting to compare numbers and strings as in this example will result in an e
 
 For decimal values, equality is defined to ignore trailing zeroes.
 
-For date/time values, equality is defined to account for the possibility that the date/time values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
+For date and time values, equality is defined to account for the possibility that the date and time values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
 
 For structured values, equality returns true if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns true:
 
@@ -1363,21 +1363,21 @@ The following table lists the arithmetic operations available in CQL:
 Table 2‑J
 
 [[datetime-operators]]
-=== Date/Time Operators
+=== Date and Time Operators
 
-Operations on date and time data are an essential component of expressing clinical knowledge, and CQL provides a complete set of date/time operators. These operators broadly fall into five categories:
+Operations on date and time data are an essential component of expressing clinical knowledge, and CQL provides a complete set of date and time operators. These operators broadly fall into five categories:
 
-* Construction – Building or selecting specific date/time values
-* Comparison – Comparing date/time values
-* Extraction – Extracting specific components from date/time values
-* Arithmetic – Performing date/time arithmetic
-* Duration – Computing durations between date/time values
-* Difference - Computing the difference between date/time values
+* Construction – Building or selecting specific date and time values
+* Comparison – Comparing date and time values
+* Extraction – Extracting specific components from date and time values
+* Arithmetic – Performing date and time arithmetic
+* Duration – Computing durations between date and time values
+* Difference - Computing the difference between date and time values
 
 [[constructing-datetime-values]]
-==== Constructing Date/Time Values
+==== Constructing Date and Time Values
 
-In addition to the literals described in the Date, DateTime, and Time section, the Date/Time operators allow for the construction of specific date/time values based on the values for their components. For example:
+In addition to the literals described in the Date, DateTime, and Time section, the Date, DateTime, and Time operators allow for the construction of specific date and time values based on the values for their components. For example:
 
 [source,cql]
 ----
@@ -1501,14 +1501,14 @@ For comparisons involving time durations (where no anchor to a calendar is avail
 [[comparing-dates-and-times]]
 ==== Comparing Dates and Times
 
-CQL supports comparison of date/time values using the expected comparison operators. Note however, that when date/time values are not specified completely, the result may be [.kw]#null#, depending on whether there is enough information to make an accurate determination. In general, CQL treats date/time values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
+CQL supports comparison of date and time values using the expected comparison operators. Note however, that when date and time values are not specified completely, the result may be [.kw]#null#, depending on whether there is enough information to make an accurate determination. In general, CQL treats date and time values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
 
 [source,cql]
 ----
 Date(2014)
 ----
 
-This value can be read as “some date within the year 2014”, because only the year component is known. Applying these semantics yields the intuitively correct result when comparing date/time values with varying levels of precision.
+This value can be read as “some date within the year 2014”, because only the year component is known. Applying these semantics yields the intuitively correct result when comparing date and time values with varying levels of precision.
 
 [source,cql]
 ----
@@ -1531,11 +1531,11 @@ Date(2014) < Date(2014, 2, 15)
 
 The result in this example is [.kw]#null# because the first date could be any date within the year 2014, so it could be less than the second date, but it could be greater.
 
-Note that due to variability in the way week numbers are calculated, the weeks are not valid for date/time comparisons and will result in an error.
+Note that due to variability in the way week numbers are calculated, the weeks are not valid for datetime comparisons and will result in an error.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
-More precisely, date/time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input. This means that if one date/time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
+More precisely, date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 [[table-2-n]]
 [cols=",",options="header",]
@@ -1559,7 +1559,7 @@ Date(2014, 7) same month as Date(2014, 7, 11)
 DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
 ----
 
-Each of these expressions returns [.kw]#true# because the date/time values are equal at the specified level of precision and above. For example, [.kw]#same month as# means the same year _and_ the same month.
+Each of these expressions returns [.kw]#true# because the date and time values are equal at the specified level of precision and above. For example, [.kw]#same month as# means the same year _and_ the same month.
 
 Note: To compare a specific component of two dates, use the extraction operators covered in the next section.
 
@@ -1583,7 +1583,7 @@ DateTime(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
 
 Each of these expressions also returns [.kw]#true#.
 
-Note that these operators may still return [.kw]#null# if the date/time values involved have unspecified components at or above the specified comparison precision. For example:
+Note that these operators may still return [.kw]#null# if the date and time values involved have unspecified components at or above the specified comparison precision. For example:
 
 [source,cql]
 ----
@@ -1595,7 +1595,7 @@ The result in this example is null because the first date has no _hour_ componen
 [[extracting-date-and-time-components]]
 ==== Extracting Date and Time Components
 
-Given a date/time value, CQL supports extraction of any of the components. For example:
+Given a date and time value, CQL supports extraction of any of the components. For example:
 
 [source,cql]
 ----
@@ -1626,10 +1626,10 @@ Table 2‑O
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
-Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date/time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date/time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not null.
+Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date and time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not null.
 
 [[datetime-arithmetic]]
-==== Date/Time Arithmetic
+==== Date and Time Arithmetic
 
 By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols ([.sym]#+# and [.sym]#-#) are used for this purpose. For example:
 
@@ -1638,18 +1638,18 @@ By using quantities of time durations, CQL supports the ability to perform calen
 Today() - 1 year
 ----
 
-The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any date/time value.
+The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any date and time value.
 
 Note that as with the numeric arithmetic operators, if either or both arguments are [.kw]#null#, the result of the operation is [.kw]#null#.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in the date/time (truncating any resulting decimal portion) and then adding it to the date/time value. For example, consider the following addition:
+The operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then adding it to the first argument. For example, consider the following addition:
 
 [source,cql]
 ----
 DateTime(2014) + 24 months
 ----
 
-This example results in the value [.id]#DateTime(2016)# even though the date/time value is not specified to the level of precision of the time-valued quantity.
+This example results in the value [.id]#DateTime(2016)# even though the datetime value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored. For example:
 
@@ -1723,9 +1723,9 @@ If the first argument is after the second, the result will be negative.
 
 For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be seven (7) days.
 
-In addition, if either date/time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
+In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 
-When computing duration or difference between date/time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When computing duration or difference between date and time values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -1734,7 +1734,7 @@ For a detailed set of examples of calculating time intervals, please refer to li
 [[timing-and-interval-operators]]
 === Timing and Interval Operators
 
-Clinical information often contains not only date/time information as timestamps (points in time), but intervals of time, such as the effective time for an encounter or condition. Moreover, clinical logic involving this information often requires the ability to relate this temporal information. For example, a clinical quality measure might look for “patients with an inpatient encounter during which a condition started”. CQL provides an exhaustive set of operators for describing these types of temporal relationships between clinical information.
+Clinical information often contains not only date and time information as timestamps (points in time), but intervals of time, such as the effective time for an encounter or condition. Moreover, clinical logic involving this information often requires the ability to relate this temporal information. For example, a clinical quality measure might look for “patients with an inpatient encounter during which a condition started”. CQL provides an exhaustive set of operators for describing these types of temporal relationships between clinical information.
 
 These interval operations can be broadly categorized as follows:
 
@@ -1806,7 +1806,7 @@ width of Interval[3, 5]
 
 The first expression returns 1 (ending boundary of 4, minus the starting boundary of 3), while the second expression returns 2 (ending boundary of 5, minus the starting boundary of 3).
 
-For date/time intervals, CQL defines a [.kw]#duration of# operator as well as a [.kw]#difference of# operator, both of which are defined in the same way as the date/time duration and difference operators, respectively. For example:
+For date and time intervals, CQL defines a [.kw]#duration of# operator as well as a [.kw]#difference of# operator, both of which are defined in the same way as the date and time duration and difference operators, respectively. For example:
 
 [source,cql]
 ----
@@ -1838,7 +1838,7 @@ Each of these operators returns [.kw]#true# if the intervals X and Y are in the 
 
 In addition, CQL allows [.kw]#meets# and [.kw]#overlaps# to be invoked without the [.kw]#before# or [.kw]#after# suffix, indicating that either relationship should return [.kw]#true#. In other words, X [.kw]#meets# Y is equivalent to X [.kw]#meets before# Y or X [.kw]#meets after# Y, and similarly for the [.kw]#overlaps# operator.
 
-Note that to use these operators, the intervals must be of the same point type. For example, it is invalid to compare an interval of date/times with an interval of numbers.
+Note that to use these operators, the intervals must be of the same point type. For example, it is invalid to compare an interval of dates or times with an interval of numbers.
 
 [[timing-relationships]]
 ==== Timing Relationships
@@ -1892,14 +1892,14 @@ X starts within 3 days of start Y
 
 This expression returns [.kw]#true# if the start of X is in the interval beginning three days before the start of Y and ending 3 days after the start of Y.
 
-In addition, if either comparand is a date/time, rather than an interval, it can be used in any of the timing phrases without the boundary access modifiers:
+In addition, if either comparand is a date or time value, rather than an interval, it can be used in any of the timing phrases without the boundary access modifiers:
 
 [source,cql]
 ----
 dateTimeX within 3 days of dateTimeY
 ----
 
-In other words, the timing phrases in general compare two quantities, either of which may be an date/time interval or date/time point value, and the boundary access modifiers can be added to a given timing phrase to access the boundary of an interval.
+In other words, the timing phrases in general compare two quantities, either of which may be an date- or time-valued interval or date or time point value, and the boundary access modifiers can be added to a given timing phrase to access the boundary of an interval.
 
 The following table describes the operators that can be used to construct timing phrases:
 
@@ -1979,9 +1979,9 @@ image:extracted-media/media/image6.png[image,width=626,height=128]
 Figure 2‑A
 
 [[datetime-intervals]]
-==== Date/Time Intervals
+==== Date and Time Intervals
 
-Because CQL supports date/time values with varying levels of precision, intervals of date/times can potentially involve imprecise date/time values. To ensure well-defined intervals and consistent semantics, date/time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1^st^, 2014, and ending at midnight on January 1^st^, 2015:
+Because CQL supports date and time values with varying levels of precision, intervals of dates and times can potentially involve imprecise date and time values. To ensure well-defined intervals and consistent semantics, date and time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1^st^, 2014, and ending at midnight on January 1^st^, 2015:
 
 [source,cql]
 ----
@@ -1995,7 +1995,7 @@ However, if the boundaries of the interval are specified to a lower precision, t
 Interval[Date(2014), Date(2015)]
 ----
 
-When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date/time values.
+When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date or time values.
 
 In addition, the boundaries may even be specified to different levels of precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime on January 1^st^, 2015:
 
@@ -2385,24 +2385,24 @@ To support determination of patient age consistently throughout quality logic, C
 [cols=",",options="header",]
 |================================================================================================================================================
 |Operator |Description
-|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date/time X
+|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date or datetime X
 |*AgeInYears()* |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
-|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date/time X
+|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date or datetime X
 |*AgeInMonths()* |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
-|*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the date/time X
+|*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the date or datetime X
 |*AgeInWeeks()* |Determines the age of the patient in weeks as of now. Equivalent to AgeInWeeksAt(Now())
-|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date/time X
+|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date or datetime X
 |*AgeInDays()* |Determines the age of the patient in days as of now. Equivalent to AgeInDaysAt(Now())
 |*AgeInHoursAt(X)* |Determines the age of the patient in hours as of the datetime X
 |*AgeInHours()* |Determines the age of the patient in hours as of now. Equivalent to AgeInHoursAt(Now())
-|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birth date/time D in years as of the date/time X
-|*CalculateAgeInYears(D)* |Determines the age of a person with birth date/time D in years as of today/now. Equivalent to CalculateAgeInYearsAt(D, Today()) or CalculateAgeInYearsAt(D, Now())
-|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birth date/time D in months as of the date/time X
-|*CalculateAgeInMonths(D)* |Determines the age of a person with birth date/time D in months as of today/now. Equivalent to CalculateAgeInMonthsAt(D, Today()) or CalculateAgeInMonthsAt(D, Now())
-|*CalculateAgeInWeeksAt(D, X)* |Determines the age of a person with birth date/time D in weeks as of the date/time X
-|*CalculateAgeInWeeks(D)* |Determines the age of a person with birth date/time D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Today()) or CalculateAgeInWeeksAt(D, Now())
-|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birth date/time D in days as of the date/time X
-|*CalculateAgeInDays(D)* |Determines the age of a person with birth date/time D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
+|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birth date or datetime D in years as of the date or datetime X
+|*CalculateAgeInYears(D)* |Determines the age of a person with birth date or datetime D in years as of today/now. Equivalent to CalculateAgeInYearsAt(D, Today()) or CalculateAgeInYearsAt(D, Now())
+|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birth date or datetime D in months as of the date or datetime X
+|*CalculateAgeInMonths(D)* |Determines the age of a person with birth date or datetime D in months as of today/now. Equivalent to CalculateAgeInMonthsAt(D, Today()) or CalculateAgeInMonthsAt(D, Now())
+|*CalculateAgeInWeeksAt(D, X)* |Determines the age of a person with birth date or datetime D in weeks as of the date or datetime X
+|*CalculateAgeInWeeks(D)* |Determines the age of a person with birth date or datetime D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Today()) or CalculateAgeInWeeksAt(D, Now())
+|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birth date or datetime D in days as of the date or datetime X
+|*CalculateAgeInDays(D)* |Determines the age of a person with birth date or datetime D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
 |*CalculateAgeInHoursAt(D, X)* |Determines the age of a person with birth datetime D in hours as of the datetime X
 |*CalculateAgeInHours(D)* |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
@@ -2501,7 +2501,7 @@ Looking at the Initial Patient Population, we have the demographic criteria:
 * Patient is at least 16 years old and less than 24 years old at the start of the measurement period.
 * Patient is female.
 
-For the age criteria, CQL defines an AgeInYearsAt operator that returns the age of the patient as of a given date/time. Using this operator, and assuming a measurement period of the year 2013, we can express the patient age criteria as:
+For the age criteria, CQL defines an AgeInYearsAt operator that returns the age of the patient as of a given date or datetime. Using this operator, and assuming a measurement period of the year 2013, we can express the patient age criteria as:
 
 [source,cql]
 ----

@@ -224,7 +224,7 @@ Table 6‑H
 Table 6‑I
 
 [[datetime-operators-1]]
-==== Date/Time Operators
+==== Date and Time Operators
 
 [[table-6-j]]
 [cols=",",options="header",]

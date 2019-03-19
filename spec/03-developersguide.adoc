@@ -75,7 +75,7 @@ Literals provide for the representation of basic values within CQL. The followin
 |*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
 |*String* |Strings of any character enclosed within single-ticks ([.lit]#'#)
 |*Date* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
-|*DateTime* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date/time
+|*DateTime* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a datetime
 |*Time* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a time
 |*Quantity* |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
 |*Ratio* |A ratio of two quantities, separated by a colon ([.sym]#:#)
@@ -724,7 +724,7 @@ Conversion is the operation of turning a value from one type into another. For e
 [[explicit-conversion]]
 ==== Explicit Conversion
 
-The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a date/time to a [.id]#DateTime# value:
+The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a datetime to a [.id]#DateTime# value:
 
 [source,cql]
 ----
@@ -755,7 +755,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToDate(String)* |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
 |*ToDate(DateTime)* |Converts a DateTime to a Date. This is equivalent to invoking [.kw]#date from# on the DateTime value
 |*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
-|*ToDateTime(String)* |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|*ToDateTime(String)* |Converts the string representation of a datetime value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
 |*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
 |*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
 |*ToString(Integer)* |Converts an Integer value to its string representation
