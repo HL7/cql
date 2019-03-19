@@ -1363,6 +1363,8 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
+For ratios, this means that the numerator and denominator must be the same, using quantity equality semantics.
+
 For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
 
 For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics.
@@ -1381,6 +1383,8 @@ define IntegerEqualIsTrue: 4 = (2 + 2)
 define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
 define StringEqualIsFalse: 'CQL is awesome!' = 'cql is awesome!'
 define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
+define RatioEqualIsTrue: 1:8 = 1:8
+define RatioEqualIsFalse: 1:8 = 2:16
 define ListEqualIsNull: { null, 1, 2, 3 } = { null, 1, 2, 3 }
 define DateTimeEqualIsNull: @2012-01-01 = @2012-01-01T12
 define NullEqualIsNull: null = null
@@ -1401,6 +1405,8 @@ define NullEqualIsNull: null = null
 The _equivalent_ ([.sym]#~#) operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
 For string values, equivalence is case- and locale-insensitive.
+
+For ratios, equivalent means that the numerator and denominator represent the same ratio (e.g. `1:100 ~ 10:1000`).
 
 For tuple types, this means that two tuple values are equivalent if and only if the tuples are of the same type, and the values for all elements by name are equivalent.
 
@@ -1424,6 +1430,7 @@ define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
 define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
 define StringEquivalentIsTrue: 'CQL is awesome!' ~ 'cql is awesome!'
 define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
+define RatioEquivalentIsTrue: 1:8 ~ 2:16
 define ListEquivalentIsTrue: { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
 define DateTimeEquivalentIsFalse: @2012-01-01 ~ @2012-01-01T12
 define NullEquivalentIsTrue: null ~ null
