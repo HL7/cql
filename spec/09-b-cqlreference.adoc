@@ -1404,7 +1404,7 @@ define NullEqualIsNull: null = null
 
 The _equivalent_ ([.sym]#~#) operator returns [.kw]#true# if the arguments are equivalent in value, or if they are both [.kw]#null#; and [.kw]#false# otherwise.
 
-For string values, equivalence is case- and locale-insensitive.
+For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category.
 
 For ratios, equivalent means that the numerator and denominator represent the same ratio (e.g. `1:100 ~ 10:1000`).
 
