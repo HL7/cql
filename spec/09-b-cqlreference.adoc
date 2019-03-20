@@ -4252,6 +4252,8 @@ The [.kw]#distinct# operator returns the given list with duplicates eliminated u
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+Note that because nulls compare unknown, this means that multiple nulls in the input list will be preserved in the output.
+
 The following examples illustrate the behavior of the [.kw]#distinct# operator:
 
 [source,cql]
