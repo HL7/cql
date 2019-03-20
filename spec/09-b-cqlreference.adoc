@@ -201,7 +201,7 @@ structured type Quantity
 The [.id]#Quantity# type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
 
 [[ratio]]
-==== Ratio
+=== Ratio
 
 *Definition:*
 
