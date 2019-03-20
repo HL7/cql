@@ -1319,6 +1319,29 @@ In addition, even if a given query is based on a list of tuples, the results are
   return duration in days of E.period
 ----
 
+[[related-context-retrieves]]
+== Related Context Retrieves
+
+To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
+
+[source,cql]
+----
+context Patient
+
+define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
+
+define "Esimtated Due Date":
+  Last(
+    ["Mother" -> "Observation": "Estimated Due Date"] Exam
+      sort by effective
+  )
+  
+define "Gestational Age in Days at Birth":
+  (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
+----
+
+Note the use of the `"Mother"` expression within the retrieve: `["Mother" -> "Observation": "Estimated Due Date"]`. This syntax (`->`) indicates that the retrieve should be performed in the context returned by the `"Mother"` expression. The `"Mother"` expression in this case will be evaluated in the `"Patient"` context, and result in a `RelatedPerson` from the infant's record with the relationship type of `"Mother Relationship"`. The `RelatedPerson` will then be used as the context for the retrieve.
+
 [[defining-functions]]
 == Defining Functions
 

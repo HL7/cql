@@ -693,7 +693,7 @@ The _ExpressionDef_ class is used to define a named expression that can then be 
 
 Note that circular expression references are not allowed, but that named expressions can be defined in any order, so long as the actual references do not result in a cycle.
 
-The _ExpressionDef_ class introduces the notion of _context_ which can be either Patient or Population. This context defines how the contained expression is evaluated, either with respect to a single patient, defined by the evaluation environment, or with respect to a population. For more information about patient context, please refer to the <<External Data>> section.
+The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unspecified. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the <<External Data>> section.
 
 === ExpressionDef
 
@@ -925,7 +925,7 @@ The type of the elements to be returned is specified with the _dataType_ attribu
 
 In addition, the _Retrieve_ introduces the ability to specify optional criteria for the request. The available criteria are intentionally restricted to the set of codes involved, and the date range involved. If these criteria are omitted, the request is interpreted to mean all data of that type.
 
-Note that because every expression is being evaluated within a context (either Patient or Population) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Population context, the data is returned for all patients.
+Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unspecified) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unspecified context, the data is returned for the entire source.
 
 === Retrieve
 
@@ -945,11 +945,13 @@ Retrieve : Expression
   ¦
   0..1 --> codeProperty <6>
   ¦
-  0..1 --> dateProperty <7>
+  0..1 --> valueSetProperty <7>
   ¦
-  0..1 --> dateLowProperty <8>
+  0..1 --> dateProperty <8>
   ¦
-  0..1 --> dateHighProperty <9>
+  0..1 --> dateLowProperty <9>
+  ¦
+  0..1 --> dateHighProperty <10>
   ¦
   0..1 --> scope
 ----
@@ -978,8 +980,15 @@ Note that this property could potentially be specified elsewhere as part of an i
 
 In addition, this property may be a path, including qualifiers and constant indexers.
 
+==== valueSetProperty Attribute
+<7> The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
+
+Note that this property could potentially be specified elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing them at the retrieve expression level gives the most flexibility.
+
+In addition, this property may be a path, including qualifiers and constant indexers.
+
 ==== dateProperty Attribute
-<7> The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
+<8> The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
 
 This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date, DateTime, and Time values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date-, DateTime-, and Time-based interval values, this means that the entire interval is included in the date range.
 
@@ -988,21 +997,21 @@ Instances with no value for the dateProperty will not be included in the result 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 ==== dateLowProperty Attribute
-<8> The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
+<9> The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 If the dateLowProperty is present, the dateHighProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
 
 ==== dateHighProperty Attribute
-<9> The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
+<10> The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 If the dateHighProperty is present, the dateLowProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
 
 ==== scope Attribute
-<10> The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
+<11> The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
 
 [[comparison-operators-1]]
 == Comparison Operators

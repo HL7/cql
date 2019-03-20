@@ -43,7 +43,7 @@ Libraries can contain any or all of the following constructs:
 |*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
 |*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
 |*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context* |Patient/Population context, specifying the overall context for the statements that follow.
+|*context* |Specifies the overall context, such as Patient or Practitioner, for the statements that follow.
 |*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
 |*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
@@ -225,19 +225,20 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the overall context for statements within the language. This specification defines two contexts:
+The context declaration defines the overall context for statements within the language. Models define the available contexts, including at least one context named "Unspecified" that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
 |========================================================================================================================================
 |Context |Description
 |*Patient* |The Patient context specifies that expressions should be interpreted with reference to a single patient.
-|*Population* |The Population context specifies that expressions should be interpreted with reference to the entire population of patients.
+|*Practitioner* |The Practitioner context specifies that expressions should be interpreted with reference to a single practitioner.
+|*Unspecified* |The Unspecified context indicates that expressions are not interpreted with reference to a particular context.
 |========================================================================================================================================
 
 Table 2‑C
 
-Depending on different needs, environments may define any context appropriate to their use case.
+Depending on different needs, models may define any context appropriate to their use case, but must define at least the unspecified context, and must identify a default context that is used when authors do not declare a specific context.
 
 The following example illustrates the use of the Patient context:
 
@@ -281,7 +282,7 @@ For more information on the use of define statements, refer to the <<Using Defin
 [[retrieve]]
 == Retrieve
 
-The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context ([.id]#Patient# or [.id]#Population#) in which the retrieve is evaluated.
+The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unspecified#) in which the retrieve is evaluated.
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
@@ -346,20 +347,20 @@ The [.id]#"Get Condition from Code Declaration"# expression returns conditions f
 
 Within the [.id]#Patient# context, the results of any given retrieve will always be scoped to a single patient, as determined by the environment. For example, in a quality measure evaluation environment, the [.id]#Patient# context may be the current patient being considered. In a clinical decision support environment, the [.id]#Patient# context would be the patient for which guidance is being sought.
 
-By contrast, within the [.id]#Population# context, the results of any given retrieve will not be limited to a single [.id]#Patient#. For example:
+By contrast, if the [.id]#Unspecified# context is used, the results of any given retrieve will not be limited to a particular context. For example:
 
 [source,cql]
 ----
 [Condition: "Acute Pharyngitis"] C where C.onsetDateTime during MeasurementPeriod
 ----
 
-When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Population# context, this example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for all patients.
+When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unspecified# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
 
-Because context is associated with each declaration, it is possible for expressions defined in the [.id]#Patient# context to reference expressions defined in the [.id]#Population# context and vice versa.
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unspecified# context and vice versa. Note that this only applies to the [.id]#Unspecified# context. It is not legal for an expression in one specified context to reference an expression in another specified context.
 
-In a [.id]#Population# context, a reference to a [.id]#Patient# context expression results in the execution of that expression for each patient in the population, and the implementation environment combines the results.
+In an [.id]#Unspecified# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the population, and the implementation environment combines the results.
 
-If the result type of the [.id]#Patient# context expression is not a list, the result of accessing it from a [.id]#Population# context will be a list with elements of the type of the Patient context expression. For example:
+If the result type of an expression in a specific context is not a list, the result of accessing it from an [.id]#Unspecified# context will be a list with elements of the type of the  expression. For example:
 
 [source,cql]
 ----
@@ -368,17 +369,17 @@ context Patient
 define InInitialPopulation:
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 
-context Population
+context Unspecified
 
-define PopulationCount:
+define InitialPopulationCount:
   Count(InInitialPopulation IP where IP is true)
 ----
 
-In the above example, the [.id]#PopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.
+In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.
 
-If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the population combined into a single list.
+If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the population flattened into a single list.
 
-In a [.id]#Patient# context, a reference to a [.id]#Population# context expression results in the evaluation of the [.id]#Population# context expression, and the result type is unaffected.
+In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unspecified# context expression results in the evaluation of the [.id]#Unspecified# context expression, and the result type is unaffected.
 
 [[queries]]
 == Queries
@@ -2415,7 +2416,7 @@ Table 2‑T
 
 These operators calculate age using calendar duration.
 
-Note that when Age operators are invoked in a Population context, the result is a list of patient ages, not a single age for the current patient.
+Note that when Age operators are invoked in an unspecified context, the result is a list of patient ages, not a single age for the current patient.
 
 [[authoring-artifact-logic]]
 == Authoring Artifact Logic
