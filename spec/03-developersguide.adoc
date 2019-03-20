@@ -411,7 +411,20 @@ It is an error to reference a specific version of a library if the library does 
 
 Note that the library declaration is optional in a CQL document, but if it is omitted, it is not possible to reference the library from any other CQL library.
 
-Libraries may reference other libraries to any degree of nesting, so long as no circular library references are introduced, but library references are not transitive. This means that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
+Libraries may reference other libraries to any degree of nesting, so long as no circular library references are introduced, and all references to the same library use the same version. For example, given:
+
+[source,cql]
+----
+library A version '1'
+library A version '2'
+
+library B includes library A version '1'
+library C includes library A version '2'
+----
+
+A library D may not reference both B and C, because it would result in two different versions of library A being referenced.
+
+In addition, library references are not transitive, meaning that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
 
 [[access-modifiers]]
 === Access Modifiers
