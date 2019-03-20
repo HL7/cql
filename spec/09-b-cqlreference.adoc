@@ -2501,7 +2501,7 @@ The [.id]#Matches# operator returns true if the given string matches the given r
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
 
 The following examples illustrate the behavior of the [.id]#Matches# operator:
 
