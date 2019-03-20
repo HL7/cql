@@ -5090,7 +5090,7 @@ The following examples illustrate the behavior of the [.id]#Max# operator:
 [source,cql]
 ----
 define IntegerMax: Max({ 2, 4, 8, 6 }) // 8
-define DateMax: Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-12-31
+define DateMax: Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
 define MaxIsNull: Max({ null as Quantity, null as Quantity, null as Quantity })
 define MaxIsAlsoNull: Max(null as List<Decimal>)
 ----
