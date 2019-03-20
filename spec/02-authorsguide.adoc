@@ -513,8 +513,10 @@ The sort clause may include multiple attributes, each with their own sort order:
 [Encounter: "Inpatient"] E sort by start of period desc, identifier asc
 ----
 
-Sorting is perfomed in the order in which the attributes are defined in the sort clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
+Sorting is performed in the order in which the attributes are defined in the sort clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
 
+When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
+			
 A query may only contain a single sort clause, and it must always appear last in the query.
 
 When the data being sorted includes nulls, they are sorted first, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
