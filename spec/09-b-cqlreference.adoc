@@ -5515,6 +5515,12 @@ define EquivalentIsAlsoTrue: Concept2 ~ Concept2
 define EquivalentIsFalse: Concept1 ~ Concept2
 ----
 
+____
+
+Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
+
+____
+
 [[in-codesystem]]
 === In (Codesystem)
 

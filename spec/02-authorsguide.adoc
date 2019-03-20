@@ -871,6 +871,8 @@ define "Encounters Discharged to Hospice":
   "Encounters" E where E.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
 ----
 
+Note the use of the _equivalent_ operator (`~`) rather than _equality_ (`=`). For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
+
 [[concept]]
 ==== Concept
 
