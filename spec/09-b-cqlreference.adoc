@@ -1672,6 +1672,8 @@ define NullNotEquivalentIsFalse: null !~ null
 [[arithmetic-operators-4]]
 == Arithmetic Operators
 
+The arithmetic operators provide a complete set of operations for performing arithmetic calculations in CQL. In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in empty ({ }), rather than a run-time error.
+
 [[abs]]
 === Abs
 
@@ -1691,6 +1693,8 @@ The [.id]#Abs# operator returns the absolute value of its argument.
 When taking the absolute value of a quantity, the unit is unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of taking the absolute value of the input cannot be represented (e.g. `Abs(minimum Integer)`), the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Abs# operator:
 
@@ -1723,6 +1727,8 @@ When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#I
 When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be added, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of the addition cannot be represented (i.e. arithmetic overflow), the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _add_ operator:
 
@@ -1792,6 +1798,8 @@ In this example, the result will have a unit of [.lit]#'cm'#. Note that when per
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the division cannot be represented, or the right argument is 0, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the _divide_ operator:
 
 [source,cql]
@@ -1848,6 +1856,8 @@ When invoked with an [.id]#Integer# argument, the argument will be implicitly co
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the [.id]#Exp# operator:
 
 [source,cql]
@@ -1875,6 +1885,8 @@ When invoked with [.id]#Integer# arguments, the arguments will be implicitly con
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the [.id]#Log# operator:
 
 [source,cql]
@@ -1901,6 +1913,8 @@ The [.id]#Ln# operator computes the natural logarithm of its argument.
 When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Ln# operator:
 
@@ -2004,6 +2018,8 @@ When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#I
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the modulo cannot be represented, or the right argument is 0, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the [.kw]#mod# operator:
 
 [source,cql]
@@ -2045,6 +2061,8 @@ In this example, the first result will have a unit of [.lit]#'cm2'#, and the sec
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
 [[negate]]
 === Negate
 
@@ -2064,6 +2082,8 @@ The _negate_ ([.sym]#-#) operator returns the negative of its argument.
 When negating quantities, the unit is unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of negating the argument cannot be represented (e.g. `-(minimum Integer)`), the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _negate_ operator:
 
@@ -2101,6 +2121,8 @@ For [.id]#Quantity# values, the [.kw]#predecessor# is equivalent to subtracting 
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the [.kw]#predecessor# operator:
 
 [source,cql]
@@ -2129,6 +2151,8 @@ The _power_ ([.sym]#^#) operator raises the first argument to the power given by
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _power_ operator:
 
@@ -2192,6 +2216,8 @@ When subtracting quantities, the dimensions of each quantity must be the same, b
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
 The following examples illustrate the behavior of the _subtract_ operator:
 
 [source,cql]
@@ -2228,6 +2254,8 @@ For [.id]#Date#, [.id]#DateTime# and [.id]#Time# values, [.kw]#successor# is equ
 For [.id]#Quantity# values, the [.kw]#successor# is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the [.id]#Decimal# type if the quantity is a decimal. The units are unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#successor# operator:
 
@@ -2284,6 +2312,8 @@ The [.kw]#div# operator performs truncated division of its arguments.
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
+
+If the result of the operation cannot be represented, or the right argument is 0, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#div# operator:
 

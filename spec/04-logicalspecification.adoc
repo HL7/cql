@@ -1340,6 +1340,8 @@ ELM provides a complete set of arithmetic operators to allow for manipulation of
 
 Note that if an operand evaluates to null, the result of the operation is defined to be null. This provides consistent semantics when dealing with missing information.
 
+In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
+
 For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators-4,Arithmetic Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
 === Abs
@@ -1354,6 +1356,8 @@ The Abs operator returns the absolute value of its argument.
 When taking the absolute value of a quantity, the unit is unchanged.
 
 If the argument is null, the result is null.
+
+If the result of taking the absolute value of the input cannot be represented (e.g. Abs(minimum Integer)), the result is null.
 
 The Abs operator is defined for the Integer, Decimal, and Quantity types.
 
@@ -1384,6 +1388,8 @@ Note that as with any date and time operations, temporal units may be specified 
 The operation is performed by converting the time-based quantity to the highest specified granularity in the first argument (truncating any resulting decimal portion) and then adding it to the first argument.
 
 If either argument is null, the result is null.
+
+If the result of the addition cannot be represented (i.e. arithmetic overflow), the result is null.
 
 The following example illustrates a simple _Add_ expression:
 
@@ -1416,6 +1422,8 @@ For division operations involving quantities, the resulting quantity will have t
 
 If either argument is null, the result is null.
 
+If the result of the division cannot be represented, or the right argument is 0, the result is null.
+
 The Divide operator is defined for the Decimal and Quantity types.
 
 === Exp
@@ -1428,6 +1436,8 @@ Exp : UnaryExpression
 The Exp operator returns e raised to the given power.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Floor
 
@@ -1451,6 +1461,8 @@ The Log operator computes the logarithm of its first argument, using the second 
 
 If either argument is null, the result is null.
 
+If the result of the operation cannot be represented, the result is null.
+
 === Ln
 
 [source,elm]
@@ -1461,6 +1473,8 @@ Ln : UnaryExpression
 The Ln operator computes the natural logarithm of its argument.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === MaxValue
 
@@ -1523,6 +1537,8 @@ The Modulo operator computes the remainder of the division of its arguments.
 
 If either argument is null, the result is null.
 
+If the result of the modulo cannot be represented, or the right argument is 0, the result is null.
+
 The Modulo operator is defined for the Integer and Decimal types.
 
 === Multiply
@@ -1537,6 +1553,8 @@ The Multiply operator performs numeric multiplication of its arguments.
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 The Multiply operator is defined for the Integer, Decimal and Quantity types.
 
@@ -1553,6 +1571,8 @@ When negating quantities, the unit is unchanged.
 
 If the argument is null, the result is null.
 
+If the result of negating the argument cannot be represented (e.g. -(minimum Integer)), the result is null.
+
 The Negate operator is defined for the Integer, Decimal, and Quantity types.
 
 === Power
@@ -1565,6 +1585,8 @@ Power : BinaryExpression
 The Power operator raises the first argument to the power given by the second argument.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Predecessor
 
@@ -1584,6 +1606,8 @@ For Decimal, Predecessor is equivalent to subtracting the minimum precision valu
 For Date, DateTime, and Time values, Predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, Predecessor is equivalent to subtracting one second, etc.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Round
 
@@ -1628,6 +1652,8 @@ The operation is performed by converting the time-based quantity to the highest 
 
 If either argument is null, the result is null.
 
+If the result of the operation cannot be represented, the result is null.
+
 === Successor
 
 [source,elm]
@@ -1646,6 +1672,8 @@ For Decimal, Successor is equivalent to adding the minimum precision value for t
 For Date, DateTime, and Time values, Successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, Successor is equivalent to adding one second, etc.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Truncate
 
@@ -1668,6 +1696,8 @@ TruncatedDivide : BinaryExpression
 The TruncatedDivide operator performs integer division of its arguments.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, or the right argument is 0, the result is null.
 
 The TruncatedDivide operator is defined for the Integer and Decimal types.
 
@@ -3141,6 +3171,8 @@ Refer to the <<union,Union section>> in the Interval Operators.
 For computing aggregate quantities, ELM defines several aggregate operators. These operators perform computations on lists of values, either on the elements of the list directly, or on a specific property of each element in the list.
 
 Unless noted in the documentation for each operator, aggregate operators deal with missing information by excluding elements which have no value before performing the aggregation. In addition, an aggregate operation performed over an empty list is defined to return null, except as noted in the documentation for each operator (e.g. Count).
+
+In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
 For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the link:09-b-cqlreference.html[CQL Reference].
 
