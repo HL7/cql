@@ -1953,6 +1953,8 @@ For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
+Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+
 The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
 [source,cql]
@@ -1989,6 +1991,8 @@ For [.id]#DateTime#, [.kw]#minimum# returns the minimum representable datetime v
 For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.id]#Time#([.lit]#0#, [.lit]#0#, [.lit]#0#, [.lit]#0#).
 
 For any other type, attempting to invoke [.kw]#minimum# results in an error.
+
+Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
 
 The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
