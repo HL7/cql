@@ -325,6 +325,8 @@ implies (left Boolean, right Boolean) Boolean
 
 The [.kw]#implies# operator returns the logical implication of its arguments. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
 
+Note that implies may use short-circuit evaluation in the case that the first operand evaluates to false.
+
 The following table defines the truth table for this operator:
 
 [[table-9-a1]]
