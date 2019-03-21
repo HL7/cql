@@ -3644,6 +3644,8 @@ The [.kw]#expand# operator returns the set of intervals of size per for all the 
 
 The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For Date, DateTime, or Time intervals, this means a temporal duration.
 
+More precisely, for each interval in the input, contribute all the intervals of size per that start on or after the lower boundary and end on or before the upper boundary, where the lower boundary for each interval contributed is obtained by successively adding the per to the lower boundary of the input interval.
+
 For example:
 
 [source,cql]
@@ -3658,13 +3660,52 @@ The following is the result of the example:
 { Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
 ----
 
-Note that if the values in the intervals are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity.
+If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may not completely cover the input range. For example:
+
+[source,cql]
+----
+expand { Interval[@T10:00, @T12:30] } per hour
+expand { Interval[10.0, 12.5] } per 1
+----
+
+The above examples would result in:
+
+[source,cql]
+----
+{ Interval[@T10, @T10], Interval[@T11, @T11], Interval[@T12, @T12] }
+{ Interval[10, 10], Interval[11, 11], Interval[12, 12] }
+----
+
+If the interval boundaries are less precise than the per quantity, for dates and times where the lack of precision indicates uncertainty, the interval will not contribute any results to the output, because adding the per to the lower boundary of the input interval results in null. For numeric intervals, adding the per to the lower boundary produces a more precise value for the output intervals. For example:
+
+[source,cql]
+----
+expand { Interval[@T10, @T10] } per minute
+expand { Interval[10, 10] } per 0.1
+----
+
+The above examples would result in:
+
+[source,cql]
+----
+{ }
+{ Interval[10.0, 10.0], Interval[10.1, 10.1], ..., Interval[10.9, 10.9] }
+----
+
+For intervals of quantities, the semantics of quantity arithmetic and comparison apply, including unit conversion and compatible unit conversion. As with all unit operations, implementations are required to respect units, but are not required to support unit conversion.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains [.kw]#nulls#, they will be excluded from the resulting list.
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
+If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary). In this case, the per argument is determined by looking at the lower boundary of the first interval, sorted by interval start.
+
+[.note-warning]
+____
+
+For intervals with null boundaries, if the boundary is open, the interval will not contribute any results to the output. If the boundary is closed, in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
+
+____
 
 [[in]]
 === In
