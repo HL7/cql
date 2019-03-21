@@ -20,6 +20,11 @@
 					<xs:documentation>Specifies the key elements, in order, of the context type that form the reference key for the context. The elements taken together must form a unique identifier for instances of the context.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="birthDateElement" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the name of the birthDateElement of the context type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required">
 			<xs:annotation>
@@ -81,17 +86,17 @@
 		</xs:attribute>
 		<xs:attribute name="patientClassName" type="xs:string" use="optional">
 			<xs:annotation>
-				<xs:documentation>The patientClassName attribute specifies the name of the Patient class within the model.</xs:documentation>
+				<xs:documentation>DEPRECATED: The patientClassName attribute specifies the name of the Patient class within the model.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="patientClassIdentifier" type="xs:string" use="optional">
 			<xs:annotation>
-				<xs:documentation>The patientClassIdentifier attribute specifies a unique name for the Patient class that may be independent of the name. In FHIR, this corresponds to the Patient profile identifier.</xs:documentation>
+				<xs:documentation>DEPRECATED: The patientClassIdentifier attribute specifies a unique name for the Patient class that may be independent of the name. In FHIR, this corresponds to the Patient profile identifier.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="patientBirthDatePropertyName" type="xs:string" use="optional">
 			<xs:annotation>
-				<xs:documentation>The patientBirthDatePropertyName attribute specifies the name of the birthdate property on the Patient model.</xs:documentation>
+				<xs:documentation>DEPRECATED: The patientBirthDatePropertyName attribute specifies the name of the birthdate property on the Patient model.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="caseSensitive" type="xs:boolean" use="optional">

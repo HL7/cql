@@ -6,6 +6,21 @@
 
 *HL7 STU Specification*
 
+[.note-to-balloters]
+____
+
+Welcome to the STU4 Ballot of Clinical Quality Language!
+
+For a complete list of changes, refer to the link:history.html[History] page.
+
+In addition to the changes, we are seeking feedback on the following ballot questions:
+
+1. Enabling "valueset-based criteria matching" to support negation rationale patterns (See <<04-logicalspecification.adoc#retrieve,Retrieve>>)
+
+2. The addition of "related context retrieves" to support cross-context access (such as that required for mother-infant measures) (See <<03-developersguide.adoc#related-context-retrieves,Related-Context Retrieves>>)
+
+____
+
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
 
 In addition, this specification describes a machine-readable canonical representation called Expression Logical Model (ELM) targeted at implementations and designed to enable sharing of clinical knowledge.

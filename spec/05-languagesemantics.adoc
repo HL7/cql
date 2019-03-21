@@ -308,6 +308,8 @@ The first step in evaluation of a given query is to establish the query sources.
 
 How this actually occurs is up to the specific implementation, but note that the evaluation must still be able to reference components originating from each individual source using the alias for the source defined in the query. A simple solution to allowing this is to define the query source internally as a list of tuples, each with an element for each source whose value is the tuple from that source. This list is then simply populated with the cartesian product of all sources, and alias access within the rest of the query can be implemented as tuple-element access.
 
+Note that although this discussion generally treats sources as lists, query sources in general may be singleton values as well.
+
 [[iteration]]
 === Iteration
 

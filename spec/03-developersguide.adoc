@@ -383,7 +383,7 @@ Library identifiers may be qualified to any degree to allow libraries to be orga
 
 When including a library, use the fully qualified identifier for the library. If the [.kw]#called# clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
 
-Because the library identifier and its qualifiers are CQL identifiers, they may be either a simple identifier, or a delimited-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library. For example, assume a library identified as [.id]#Global#[.sym]#.#[.id]#Common#:
+Because the library identifier and its qualifiers are CQL identifiers, they may be either a simple identifier, or a delimited-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library. For example, assume a library identified as [.id]#Global.Common#:
 
 [source,cql]
 ----
@@ -799,9 +799,10 @@ convert 28 days to weeks
 
 If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is [.kw]#null#.
 
+[.note-warning]
 ____
 
-NOTE: Implementations are not required to support unit conversion, and may return null, even if the conversion is valid. Implementations that do support unit conversion must do so according to the conversion behavior specified by UCUM.
+Note that implementations are not required to support unit conversion, and may return null, even if the conversion is valid. Implementations that do support unit conversion must do so according to the conversion behavior specified by UCUM.
 
 ____
 

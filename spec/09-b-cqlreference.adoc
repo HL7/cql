@@ -627,8 +627,13 @@ CanConvertQuantity(argument Quantity, unit String)
 ----
 
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
+
+[.note-warning]
+____
   
 Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+
+____
 
 If either argument is null, the result is null.
 
@@ -644,8 +649,13 @@ ConvertQuantity(argument Quantity, unit String)
 ----
 
 The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
+
+[.note-warning]
+____
   
 Note that implementations are not required to support quantity conversion, and so may return null, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+
+____
 
 If either argument is null, the result is null.
 
@@ -1953,7 +1963,12 @@ For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
+[.note-warning]
+____
+
 Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+
+____
 
 The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
@@ -1992,7 +2007,12 @@ For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
+[.note-warning]
+____
+
 Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+
+____
 
 The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
@@ -2509,7 +2529,12 @@ Lower(argument String) String
 
 The [.id]#Lower# operator returns the given string with all characters converted to their lower case equivalents.
 
+[.note-warning]
+____
+
 Note that the definition of _lowercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+
+____
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2537,7 +2562,12 @@ The [.id]#Matches# operator returns true if the given string matches the given r
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
+[.note-warning]
+____
+
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
+
+____
 
 The following examples illustrate the behavior of the [.id]#Matches# operator:
 
@@ -2591,7 +2621,12 @@ The [.id]#ReplaceMatches# operator matches the given string using the given regu
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
 
+[.note-warning]
+____
+
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the dialect defined as part of XML Schema 1.1 as the dialect most likely to be broadly supported and understood.
+
+____
 
 The following examples illustrate the behavior of the [.id]#ReplaceMatches# operator:
 
@@ -2719,7 +2754,12 @@ Upper(argument String) String
 
 The [.id]#Upper# operator returns the given string with all characters converted to their upper case equivalents.
 
+[.note-info]
+____
+
 Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+
+____
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -5553,6 +5593,7 @@ define EquivalentIsAlsoTrue: Concept2 ~ Concept2
 define EquivalentIsFalse: Concept1 ~ Concept2
 ----
 
+[.note-warning]
 ____
 
 Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
@@ -5671,7 +5712,12 @@ If no severity is supplied, a default severity of Message is assumed.
 
 The message is the content of the actual message that is sent to the calling environment.
 
+[.note-danger]
+____
+
 Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
+
+____
 
 The following examples illustrate the behavior of the [.id]#Message# operator:
 

@@ -27,7 +27,7 @@
 						<xs:annotation>
 							<xs:documentation>If specified, references an expression that, when evaluated, provides the context for the retrieve.</xs:documentation>
 						</xs:annotation>
-					<xs:element>
+					</xs:element>
 				</xs:sequence>
 				<xs:attribute name="dataType" type="xs:QName" use="required">
 					<xs:annotation>
@@ -59,7 +59,7 @@ In addition, this property may be a path, including qualifiers and constant inde
 
 Note that this property could potentially be specified elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing them at the retrieve expression level gives the most flexibility.
 
-In addition, this property may be a path, including qualifiers and constant indexers.<xs:documentation>
+In addition, this property may be a path, including qualifiers and constant indexers.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="dateProperty" type="xs:string" use="optional">

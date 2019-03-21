@@ -156,7 +156,7 @@ expressionDefinition
     ;
 
 contextDefinition
-    : 'context' qualifiedIdentifier
+    : 'context' (modelIdentifier '.')? identifier
     ;
 
 functionDefinition
