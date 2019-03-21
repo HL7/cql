@@ -5736,7 +5736,7 @@ Message(source T, condition Boolean, code String, severity String, message Strin
 
 The [.id]#Message# operator provides a run-time mechanism for returning messages, warnings, traces, and errors to the calling environment.
 
-The source operator is any type and the result of the operation is the input source; the operation performs no modifications to input. This allows the message operation to appear at any point in any expression of CQL.
+The source operand can be of any type and the result of the operation is the input source; the operation performs no modifications to input. This allows the message operation to appear at any point in any expression of CQL.
 
 The condition is used to determine whether the message is generated and returned to the calling environment. If condition is true, the message is generated. Otherwise, the operation only returns the results and performs no processing at all.
 

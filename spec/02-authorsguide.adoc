@@ -1550,7 +1550,7 @@ Note that due to variability in the way week numbers are calculated, the weeks a
 
 As with all date and time calculations, comparisons are performed respecting the timezone offset.
 
-More precisely, date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
+More precisely, date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 [[table-2-n]]
 [cols=",",options="header",]
@@ -1565,7 +1565,7 @@ More precisely, date and time comparisons are performed by comparing the values 
 
 Table 2‑N
 
-If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for time values, down to the finest precision specified in either input). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
+If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for time values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
 
 [source,cql]
 ----
