@@ -1,0 +1,46 @@
+= 1.4 Change Log
+:page-layout: current
+:backend: xhtml
+:toc:
+
+== STU 4 Ballot Changes
+
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1648[#1648]: ToDate signatures (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1679[#1679]: Ratio clarifications (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1680[#1680]: Ratio comparison (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1683[#1683]: Inconsistent interval notation in examples (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1684[#1684]: Clarify interval operator result examples (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1688[#1688]: ToDate signatures (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1689[#1689]: Clarify Age calculation signatures, behaviors, and descriptions (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1701[#1701]: Correct In(CodeSystem) example (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1702[#1702]: SplitOnMatches signature (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1703[#1703]: Clarify expand semantics (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1705[#1705]: Combine in the presence of nulls (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1706[#1706]: Consistent Width semantics (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1707[#1707]: Size for intervals (Compatible-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1708[#1708]: Expand uses width, not count (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1709[#1709]: Collapse uses width, not count (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1710[#1710]: Code equivalence for post-coordinated expressions (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1711[#1711]: Fix operator precedence of expand (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1712[#1712]: Align string equivalence with FHIRPath (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1713[#1713]: Clarify distinct in the presence of nulls (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1714[#1714]: Clarify type inference for singleton queries (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1715[#1715]: Fix Ratio as a child rather than its own section (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1716[#1716]: Non-patient context (Compatible, substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1717[#1717]: CQL test suite (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1719[#1719]: Namespaces for libraries (Compatible, substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1720[#1720]: Qualifiers in retrieve code paths (Compatible, substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1721[#1721]: Consistent referenced library versions (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1722[#1722]: Update FHIRPath usage and translation sections (Compatible, substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1723[#1723]: Define seconds as a Decimal (Non-compatible)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1724[#1724]: Remove timezone offset from Time (Non-compatible)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1725[#1725]: Update recommended regex flavor to PCRE (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1726[#1726]: Note that implies allows short-circuit evaluation (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1727[#1727]: Add unit conversion for quantities (Compatible, substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1728[#1728]: Divide-by-zero and arithmetic overflow/underflow semantics (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1731[#1731]: Overlaps with open null boundaries (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1732[#1732]: Maximum/Minimum insufficiently specified (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1734[#1734]: Overlaps logical descriptions (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1751[#1751]: Clarify semantics for partial ordering (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1761[#1761]: DateMax example is incorrect (Non-substantive)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1766[#1766]: Add valuesetProperty element to Retrieve
