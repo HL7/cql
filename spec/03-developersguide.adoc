@@ -1341,7 +1341,7 @@ define "Gestational Age in Days at Birth":
   (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
 ----
 
-Note the use of the `"Mother"` expression within the retrieve: `["Mother" -> "Observation": "Estimated Due Date"]`. This syntax (`->`) indicates that the retrieve should be performed in the context returned by the `"Mother"` expression. The `"Mother"` expression in this case will be evaluated in the `"Patient"` context, and result in a `RelatedPerson` from the infant's record with the relationship type of `"Mother Relationship"`. The `RelatedPerson` will then be used as the context for the retrieve.
+Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
 
 [[defining-functions]]
 == Defining Functions

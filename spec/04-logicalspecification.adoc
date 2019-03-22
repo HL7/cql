@@ -447,23 +447,17 @@ Library : Element
            0..* --> def : ExpressionDef
 ----
 
-<1> The identifier element defines a unique identifier for this library,
-                and optionally, a version.
+<1> The identifier element defines a unique identifier for this library, and optionally, a version.
 
-<2> This is the identifier of the XML schema (and its version) which
-                governs the structure of this Library.
+<2> This is the identifier of the XML schema (and its version) which governs the structure of this Library.
 
-<3> Set of data models referenced in the Expression objects in this
-                knowledge artifact.
+<3> Set of data models referenced in the Expression objects in this knowledge artifact.
 
-<4> A reference to a data model that is used in the artifact,
-                      e..g., the Virtual Medical Record.
+<4> A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
 
-<5> Set of libraries referenced by this artifact. Components of
-                referenced libraries may be used within this artifact.
+<5> Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
 
-<6> A reference to a library whose components can be used within
-                      the artifact.
+<6> A reference to a library whose components can be used within the artifact.
 
 <7> The parameters defined within this library.
 
@@ -475,8 +469,7 @@ Library : Element
 
 <11> The concepts defined within this library.
 
-<12> The statements section contains the expression and function
-                definitions for the library.
+<12> The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -516,7 +509,6 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
   (3) the actual version of the instance of interest in this set. The VersionedIdentifier 
   therefore points to an individual 'versioned' instance of a resource such as the third
   version of a library.
-
 
 [[data-model]]
 == Data Model
@@ -933,55 +925,55 @@ Note that because every expression is being evaluated within a context (such as 
 ----
 Retrieve : Expression
   ¦
-  0..1 --> codes : Expression <1>
+  0..1 --> codes : Expression
   ¦
-  0..1 --> dateRange : Expression <2>
+  0..1 --> dateRange : Expression
   ¦
-  1..1 --> dataType <3>
+  1..1 --> dataType
   ¦
-  0..1 --> templateId <4>
+  0..1 --> templateId
   ¦
-  0..1 --> idProperty <5>
+  0..1 --> idProperty
   ¦
-  0..1 --> codeProperty <6>
+  0..1 --> codeProperty
   ¦
-  0..1 --> valueSetProperty <7>
+  0..1 --> valueSetProperty
   ¦
-  0..1 --> dateProperty <8>
+  0..1 --> dateProperty
   ¦
-  0..1 --> dateLowProperty <9>
+  0..1 --> dateLowProperty
   ¦
-  0..1 --> dateHighProperty <10>
+  0..1 --> dateHighProperty
   ¦
   0..1 --> scope
 ----
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
-==== codes Element
-<1> The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
+==== codes
+The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
 
-==== dateRange Element
-<2> The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
+==== dateRange
+The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
 
-==== dataType Attribute
-<3> The dataType attribute specifies the type of data being requested.
+==== dataType
+The dataType attribute specifies the type of data being requested.
 
-==== templateId Attribute
-<4> For data models that support templates (also called profiles), The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.
+==== templateId
+For data models that support templates (also called profiles), The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.
 
-==== idProperty Attribute
-<5> The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
+==== idProperty
+The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
 
-==== codeProperty Attribute
-<6> The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
+==== codeProperty
+The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
 
 Note that this property could potentially be specified elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing them at the retrieve expression level gives the most flexibility.
 
 In addition, this property may be a path, including qualifiers and constant indexers.
 
-==== valueSetProperty Attribute
-<7> The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
+==== valueSetProperty
+The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
 
 Note that this property could potentially be specified elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing them at the retrieve expression level gives the most flexibility.
 
@@ -994,8 +986,8 @@ Note to balloters: The addition of the `valueSetProperty` attribute here is inte
 
 ____
 
-==== dateProperty Attribute
-<8> The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
+==== dateProperty
+The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
 
 This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date, DateTime, and Time values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date-, DateTime-, and Time-based interval values, this means that the entire interval is included in the date range.
 
@@ -1003,22 +995,22 @@ Instances with no value for the dateProperty will not be included in the result 
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
-==== dateLowProperty Attribute
-<9> The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
+==== dateLowProperty
+The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 If the dateLowProperty is present, the dateHighProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
 
-==== dateHighProperty Attribute
-<10> The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
+==== dateHighProperty
+The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 If the dateHighProperty is present, the dateLowProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
 
-==== scope Attribute
-<11> The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
+==== scope
+The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
 
 [[comparison-operators-1]]
 == Comparison Operators
@@ -2422,8 +2414,8 @@ Contains : BinaryExpression
 The Contains operator returns true if the first operand contains the second.
 
 There are two overloads of this operator:
-	List, T : The type of T must be the same as the element type of the list.
-	Interval, T : The type of T must be the same as the point type of the interval.
+1. List, T : The type of T must be the same as the element type of the list.
+2. Interval, T : The type of T must be the same as the point type of the interval.
 
 For the List, T overload, this operator returns true if the given element is in the list, using equality semantics.
 
@@ -2482,8 +2474,8 @@ Except : NaryExpression
 The Except operator returns the set difference of the two arguments.
 
 This operator has two overloads:
-	List, List
-	Interval, Interval
+1. List, List
+2. Interval, Interval
 
 For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
@@ -2523,8 +2515,8 @@ In : BinaryExpression
 The In operator tests for membership in an interval or list.
 
 There are two overloads of this operator:
-	T, List : The type of T must be the same as the element type of the list.
-	T, Interval : The type of T must be the same as the point type of the interval.
+1. T, List : The type of T must be the same as the element type of the list.
+2. T, Interval : The type of T must be the same as the point type of the interval.
 
 For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics.
 
@@ -2545,8 +2537,8 @@ Includes : BinaryExpression
 The Includes operator returns true if the first operand completely includes the second.
 
 There are two overloads of this operator:
-	List, List : The element type of both lists must be the same.
-	Interval, Interval : The point type of both intervals must be the same.
+1. List, List : The element type of both lists must be the same.
+2. Interval, Interval : The point type of both intervals must be the same.
 
 For the List, List overload, this operator returns true if the first operand includes every element of the second operand, using equality semantics.
 
@@ -2569,8 +2561,8 @@ IncludedIn : BinaryExpression
 The IncludedIn operator returns true if the first operand is completely included in the second.
 
 There are two overloads of this operator:
-	List, List : The element type of both lists must be the same.
-	Interval, Interval : The point type of both intervals must be the same.
+1. List, List : The element type of both lists must be the same.
+2. Interval, Interval : The point type of both intervals must be the same.
 
 For the List, List overload, this operator returns true if every element in the first list is included in the second list, using equality semantics.
 
@@ -3462,10 +3454,10 @@ Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, Dat
 
 as well as:
 
-From Integer to Decimal or Quantity
-From Decimal to Quantity
-Between Date and DateTime
-From Code to Concept
+From Integer to Decimal or Quantity +
+From Decimal to Quantity +
+Between Date and DateTime +
+From Code to Concept +
 Between Concept and List<Code>
 
 Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
@@ -3519,10 +3511,10 @@ Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, Dat
 
 as well as:
 
-From Integer to Decimal or Quantity
-From Decimal to Quantity
-Between Date and DateTime
-From Code to Concept
+From Integer to Decimal or Quantity +
+From Decimal to Quantity +
+Between Date and DateTime +
+From Code to Concept +
 Between Concept and List<Code>
 
 Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
@@ -3606,7 +3598,7 @@ ConvertsToDecimal : UnaryExpression
 
 The ConvertsToDecimal operator returns true if the value of its argument can be converted to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?
+(+|-)?\#0(.0#)?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3644,7 +3636,7 @@ ConvertsToQuantity : UnaryExpression
 
 The ConvertsToQuantity operator returns true if the value of its argument can be converted to a Quantity value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?('<unit>')?
+(+|-)?\#0(.0#)?('<unit>')?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
@@ -3682,13 +3674,13 @@ The ConvertsToString operator returns true if the value of its argument can be c
 
 The operator returns true if the argument is any of the following types:
 
-Boolean
-Integer
-Decimal
-DateTime
-Date
-Time
-Quantity
+Boolean +
+Integer +
+Decimal +
+DateTime +
+Date +
+Time +
+Quantity +
 Ratio
 
 If the argument is null, the result is null.
@@ -3834,7 +3826,7 @@ ToDecimal : UnaryExpression
 
 The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?
+(+|-)?\#0(.0#)?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3887,7 +3879,7 @@ ToQuantity : UnaryExpression
 
 The ToQuantity operator converts the value of its argument to a Quantity value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?('<unit>')?
+(+|-)?\#0(.0#)?('<unit>')?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
@@ -3923,14 +3915,17 @@ ToString : UnaryExpression
 
 The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:
 
-Boolean true|false
-Integer (-)?#0
-Decimal (-)?#0.0#
-Quantity (-)?#0.0# '<unit>'
-Date YYYY-MM-DD
-DateTime YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
-Time	hh:mm:ss.fff
-Ratio <quantity>:<quantity>
+[width="50%"]
+|====
+|Boolean |true\|false
+|Integer |(-)?#0
+|Decimal |(-)?\#0.0#
+|Quantity |(-)?\#0.0# '<unit>'
+|Date |YYYY-MM-DD
+|DateTime |YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|Time	|hh:mm:ss.fff
+|Ratio |<quantity>:<quantity>
+|====
 
 If the argument is null, the result is null.
 
