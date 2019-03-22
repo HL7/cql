@@ -19,6 +19,8 @@ In addition to the changes, we are seeking feedback on the following ballot ques
 
 2. The addition of "related context retrieves" to support cross-context access (such as that required for mother-infant measures) (See <<03-developersguide.adoc#related-context-retrieves,Related-Context Retrieves>>)
 
+3. Simple test suite (link:tests.html[Tests])
+
 ____
 
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
