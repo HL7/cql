@@ -1,0 +1,574 @@
+[[translation-semantics]]
+= 6. Translation Semantics
+:page-layout: 2019May
+:backend: xhtml
+:sectnums:
+:sectanchors:
+:toc:
+
+As discussed in the introductory section, this specification covers three levels of definition, the Conceptual or Author level, the Logical level, and the Physical level. The Conceptual level is concerned with the representation of logic in a format suitable for authoring and consumption by clinical experts; the Physical level is concerned with the representation of logic in a format suitable for processing and transferring by machines; and the Logical level is concerned with providing a mapping between the Conceptual and Physical levels in a way that preserves the semantics of the logic represented while also enabling integration and execution functionality.
+
+To achieve these goals, the Logical level establishes a semantically complete bi-directional mapping between the Conceptual and Physical levels. This chapter describes this mapping in more detail, and sketches a process for translation from the Conceptual to the Logical, and from the Logical to the Conceptual. The Physical level is an isomorphic concrete realization of the Logical level; translation between the Logical and Physical levels is therefore a matter of serialization and realization of the data model, and is covered in detail in the link:07-physicalrepresentation.html[Physical Representation] chapter.
+
+[[cql-to-elm]]
+== CQL-to-ELM
+
+Every statement of CQL has a semantically equivalent representation in ELM. As such, it is possible to programmatically translate any statement of CQL into its equivalent ELM representation. The following sections define the mappings between the language elements of CQL and their equivalent ELM representations, as well as providing a sketch for how these mappings could be used to translate from CQL to ELM.
+
+[[declarations-1]]
+=== Declarations
+
+In both CQL and ELM, the basic container for all declarations is the _Library_. In CQL, a library corresponds to a single source document, usually represented as a text file. In ELM, a library is represented as a single instance of the _Library_ class which contains all the declarations for the library.
+
+The identifier and version of the library are set as part of the library metadata.
+
+The following table specifies the ELM equivalent for each CQL declaration:
+
+[[table-6-a]]
+[cols=",",options="header",]
+|===============================
+|CQL Declaration |ELM Equivalent
+|[.kw]#library# |Library
+|[.kw]#using# |UsingDef
+|[.kw]#include# |IncludeDef
+|[.kw]#codesystem# |CodeSystemDef
+|[.kw]#valueset# |ValueSetDef
+|[.kw]#parameter# |ParameterDef
+|[.kw]#define# |ExpressionDef
+|[.kw]#function# |FunctionDef
+|===============================
+
+Table 6‑A
+
+[[types-1]]
+=== Types
+
+To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivalent TypeSpecifier abstract class is defined, with appropriate subclasses to represent the various types of specifiers, as detailed in the following table:
+
+[[table-6-b]]
+[cols=",",options="header",]
+|================================================
+|CQL Specifier |ELM Equivalent
+|*_named-type-specifier_* |NamedTypeSpecifier
+|*_interval-type-specifier_* |IntervalTypeSpecifier
+|*_list-type-specifier_* |ListTypeSpecifier
+|*_tuple-type-specifier_* |TupleTypeSpecifier
+|*_choice-type-specifier_* |ChoiceTypeSpecifier
+|================================================
+
+Table 6‑B
+
+Note that for named type specifiers, the name of the type is a qualified identifier, with the qualifier representing the name of the data model that defines the type. For example, the system-defined integer type in CQL is named System.Integer, with System as the name of the data model, and Integer as the name of the type.
+
+[[literals-and-selectors-1]]
+=== Literals and Selectors
+
+The following table defines the mapping between the various CQL literals and their equivalent representation in ELM:
+
+[[table-6-c]]
+[cols=",",options="header",]
+|================================================
+|CQL Literal |ELM Equivalent
+|[.kw]#null# |Null
+|*_boolean-literal_* |Boolean
+|*_integer-literal_* |Literal (valueType="Integer")
+|*_decimal-literal_* |Literal (valueType="Decimal")
+|*_quantity-literal_* |Quantity
+|*_ratio-literal_* |Ratio
+|*_string-literal_* |Literal (valueType="String")
+|*_date-literal_* |Date
+|*_date-time-literal_* |DateTime
+|*_time-literal_* |Time
+|*_interval-selector_* |Interval
+|*_list-selector_* |List
+|*_tuple-selector_* |Tuple
+|*_instance-selector_* |Instance
+|================================================
+
+Table 6‑C
+
+[[functions]]
+=== Functions
+
+Most of the functions and operations available in CQL have a direct counterpart in ELM. For ease of reference, the operations and functions are grouped the same way they are in the CQL Reference.
+
+[[logical-operators-2]]
+==== Logical Operators
+
+[[table-6-d]]
+[cols=",",options="header",]
+|============================
+|CQL Operator |ELM Equivalent
+|[.kw]#and# |And
+|[.kw]#not# |Not
+|[.kw]#or# |Or
+|[.kw]#xor# |Xor
+|[.kw]#*implies*# |Implies
+|============================
+
+Table 6‑D
+
+[[type-operators]]
+==== Type Operators
+
+[[table-6-e]]
+[cols=",",options="header",]
+|============================
+|CQL Operator |ELM Equivalent
+|[.kw]#as# |As
+|[.kw]#convert# |Convert
+|[.kw]#is# |Is
+|[.id]#Children# |Children
+|[.id]#Descendents# |Descendents
+|============================
+
+Table 6‑E
+
+Note that for supported conversions, a more efficient implementation would be to emit a specific operator to perform the conversion, rather than a generic Convert as specified here. For example, consider the following CQL conversion expression:
+
+convert B to String
+
+Rather than emitting a _Convert_, an implementation could emit a _ToString_ which took an integer parameter. This would prevent the run-time type check required for implementation of a general purpose _Convert_ operator.
+
+Note also that when translating to ELM, an implementation could emit all implicit conversions directly, avoiding the need for an ELM translator or execution engine to deal with implicit conversion.
+
+[[nullological-operators-2]]
+==== Nullological Operators
+
+[[table-6-f]]
+[cols=",",options="header",]
+|============================
+|CQL Operator |ELM Equivalent
+|[.id]#Coalesce# |Coalesce
+|[.kw]#is null# |IsNull
+|[.kw]#is false# |IsFalse
+|[.kw]#is true# |IsTrue
+|============================
+
+Table 6‑F
+
+[[comparison-operators-3]]
+==== Comparison Operators
+
+[[table-6-g]]
+[cols=",",options="header",]
+|================================================================================
+|CQL Operator |ELM Equivalent
+|[.kw]#between# |And of comparisons (for point types) or IncludedIn (for Interval types)
+|[.sym]#=# |Equal
+|[.sym]#># |Greater
+|[.sym]#>=# |GreaterOrEqual
+|[.sym]#<# |Less
+|[.sym]#\<=# |LessOrEqual
+|[.sym]#~# |Equivalent
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
+|================================================================================
+
+Table 6‑G
+
+[[arithmetic-operators-3]]
+==== Arithmetic Operators
+
+[[table-6-h]]
+[cols=",",options="header",]
+|============================
+|CQL Operator |ELM Equivalent
+|[.id]#Abs# |Abs
+|[.sym]#+# |Add
+|[.id]#Ceiling# |Ceiling
+|[.sym]#/# |Divide
+|[.id]#Floor# |Floor
+|[.id]#Exp# |Exp
+|[.id]#Log# |Log
+|[.id]#Ln# |Ln
+|[.kw]#maximum# |MaxValue
+|[.kw]#minimum# |MinValue
+|[.kw]#mod# |Modulo
+|[.sym]#*# |Multiply
+|[.sym]#-# *(unary minus)* |Negate
+|[.kw]#predecessor# |Predecessor
+|[.sym]#^# |Power
+|[.id]#Round# |Round
+|[.sym]#-# |Subtract
+|[.kw]#successor# |Successor
+|[.id]#Truncate# |Truncate
+|[.kw]#div# |TruncatedDivide
+|============================
+
+Table 6‑H
+
+[[string-operators-2]]
+==== String Operators
+
+[[table-6-i]]
+[cols=",",options="header",]
+|===============================================================================
+|CQL Operator |ELM Equivalent
+|[.id]#Combine# |Combine
+|[.sym]#+#, [.sym]#&# |Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
+|[.id]#EndsWith# |EndsWith
+|[.sym]#[]# |Indexer
+|[.id]#*LastPositionOf*# |LastPositionOf
+|[.id]#Length# |Length
+|[.id]#Lower# |Lower
+|[.id]#Matches# |Matches
+|[.id]#PositionOf# |PositionOf
+|[.id]#ReplaceMatches# |ReplaceMatches
+|[.id]#Split# |Split
+|[.id]#StartsWith# |StartsWith
+|[.id]#Substring# |Substring
+|[.id]#Upper# |Upper
+|===============================================================================
+
+Table 6‑I
+
+[[datetime-operators-1]]
+==== Date and Time Operators
+
+[[table-6-j]]
+[cols=",",options="header",]
+|=======================================
+|CQL Operator |ELM Equivalent
+|[.sym]#+# |Add
+|[.kw]#after# |After
+|[.kw]#before# |Before
+|[.id]#Date# |Date
+|[.id]#DateTime# |DateTime
+|*_component_* [.kw]#from# |DateTimeComponentFrom
+|[.kw]#difference#..[.kw]#between# |DifferenceBetween
+|[.kw]#duration#..[.kw]#between# |DurationBetween
+|[.id]#Now# |Now
+|[.kw]#same as# |SameAs
+|[.kw]#same or after# |SameOrAfter
+|[.kw]#same or before# |SameOrBefore
+|[.sym]#-# |Subtract
+|[.id]#Time# |Time
+|[.id]#TimeOfDay# |TimeOfDay
+|[.id]#Today# |Today
+|=======================================
+
+Table 6‑J
+
+[[interval-operators-2]]
+==== Interval Operators
+
+[[table-6-k]]
+[cols=",",options="header",]
+|========================================
+|CQL Operator |ELM Equivalent
+|[.kw]#after# |After
+|[.kw]#before# |Before
+|[.kw]#collapse# |Collapse
+|[.kw]#contains# |Contains
+|[.kw]#end of# |End
+|[.kw]#ends# |Ends
+|[.sym]#=# |Equal
+|[.kw]#except# |Except
+|[.kw]#in# |In
+|[.kw]#includes# |Includes
+|[.kw]#during# |IncludedIn
+|[.kw]#included in# |IncludedIn
+|[.kw]#intersect# |Intersect
+|[.sym]#~# |Equivalent
+|[.kw]#meets# |Meets
+|[.kw]#meets after# |MeetsAfter
+|[.kw]#meets before# |MeetsBefore
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
+|[.kw]#overlaps# |Overlaps
+|[.kw]#on or after# |SameOrAfter
+|[.kw]#on or before# |SameOrBefore
+|[.kw]#overlaps after# |OverlapsAfter
+|[.kw]#overlaps before# |OverlapsBefore
+|[.kw]#point from# |PointFrom
+|[.kw]#properly includes# |ProperlyIncludes
+|[.kw]#properly included in# |ProperlyIncludedIn
+|[.kw]#properly during# |ProperlyIncludedIn
+|[.kw]#start of# |Start
+|[.kw]#starts# |Starts
+|[.kw]#union# |Union
+|[.kw]#width of# |Width
+|========================================
+
+Table 6‑K
+
+[[list-operators-1]]
+==== List Operators
+
+[[table-6-l]]
+[cols=",",options="header",]
+|========================================
+|CQL Operator |ELM Equivalent
+|[.kw]#contains# |Contains
+|[.kw]#distinct# |Distinct
+|[.sym]#=# |Equal
+|[.kw]#except# |Except
+|[.kw]#exists# |Exists
+|[.kw]#flatten# |Flatten
+|[.id]#First# |First
+|[.kw]#in# |In
+|[.kw]#includes# |Includes
+|[.kw]#included in# |IncludedIn
+|[.sym]#[]# |Indexer
+|[.id]#IndexOf# |IndexOf
+|[.kw]#intersect# |Intersect
+|[.id]#Last# |Last
+|[.id]#Length# |Length
+|[.sym]#~# |Equivalent
+|[.sym]#!=# |NotEqual
+|[.sym]#!~# |Not of Equivalent
+|[.kw]#properly includes# |ProperlyIncludes
+|[.kw]#properly included in# |ProperlyIncludedIn
+|[.kw]#singleton from# |SingletonFrom
+|[.id]#Skip(n)# |Slice(n, null)
+|[.id]#Tail# |Slice(1, null)
+|[.id]#Take(n)# |Slice(0, n)
+|[.kw]#union# |Union
+|========================================
+
+Table 6‑L
+
+[[aggregate-operators-2]]
+==== Aggregate Operators
+
+[[table-6-m]]
+[cols=",",options="header",]
+|======================================
+|CQL Operator |ELM Equivalent
+|[.id]#AllTrue# |AllTrue
+|[.id]#AnyTrue# |AnyTrue
+|[.id]#Avg# |Avg
+|[.id]#Count# |Count
+|[.id]#GeometricMean# |GeometricMean
+|[.id]#Max# |Max
+|[.id]#Min# |Min
+|[.id]#Median# |Median
+|[.id]#Mode# |Mode
+|[.id]#PopulationStdDev# |PopulationStdDev
+|[.id]#PopulationVariance# |PopulationVariance
+|[.id]#Product# |Product
+|[.id]#StdDev# |StdDev
+|[.id]#Sum# |Sum
+|[.id]#Variance# |Variance
+|======================================
+
+Table 6‑M
+
+[[clinical-operators-2]]
+==== Clinical Operators
+
+[[table-6-n]]
+[cols=",",options="header",]
+|==================================================================================
+|CQL Operator |ELM Equivalent
+|[.id]#AgeIn#*__-precision__* |CalculateAge (with patient birthdate reference supplied)
+|[.id]#AgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt (with patient birthdate reference supplied)
+|[.id]#CalculateAgeIn#*__-precision__* |CalculateAge
+|[.id]#CalculateAgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt
+|[.sym]#=# |Equal
+|[.sym]#~# |Equivalent
+|[.kw]#in# *(Codesystem)* |InCodeSystem
+|[.kw]#in# *(Valueset)* |InValueSet
+|==================================================================================
+
+Table 6‑N
+
+[[phrases]]
+=== Phrases
+
+In general, the various phrases of CQL do not have a direct representation in ELM, but rather result in operator and function invocations which then do have representations. For more information, see the <<05-languagesemantics.adoc#timing-phrases,Timing Phrases>> section.
+
+[[queries-3]]
+=== Queries
+
+The CQL query construct has a direct representation in ELM, as shown by the following table:
+
+[[table-6-o]]
+[cols=",",options="header",]
+|==========================================
+|CQL Construct |ELM Equivalent
+|*_query_* |Query
+|*_aliased-query-source_* |AliasedQuerySource
+|*_let-clause_* |LetClause
+|*_with-clause_* |With
+|*_without-clause_* |Without
+|*_where-clause_* |Query (where element)
+|*_return-clause_* |ReturnClause
+|*_sort-clause_* |SortClause
+|==========================================
+
+Table 6‑O
+
+Althought these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
+
+[[elm-to-cql]]
+== ELM-to-CQL
+
+In addition to being able to translate CQL to ELM, any given expression of ELM can be represented in CQL. Support for this direction of translation would be useful for applications that produce ELM from another source, and need to display a human-readable representation of the logic.
+
+This bi-directionality means that a given expression of CQL could be translated to ELM, and then back again. However, because ELM is typically a more primitive representation, this process is not necessarily a “round-trip”. For example, consider the following CQL:
+
+[source,cql]
+----
+A starts within 3 days of start B
+----
+
+This will actually result in the following ELM output:
+
+[source,xml]
+----
+<expression xsi:type="In">
+  <operand xsi:type="DurationBetween" precision="Day">
+    <operand xsi:type="Start">
+      <operand xsi:type="ExpressionRef" name="A"/>
+    </operand>
+    <operand xsi:type="Start">
+      <operand xsi:type="ExpressionRef" name="B"/>
+    </operand>
+  </operand>
+  <operand xsi:type="Interval">
+    <low xsi:type="Literal" valueType="xs:int" value="-3"/>
+    <high xsi:type="Literal" valueType="xs:int" value="3"/>
+  </operand>
+</expression>
+----
+
+The above expression, rendered directly back to CQL would be:
+
+[source,cql]
+----
+days between start of A and start of B in [-3, 3]
+----
+
+These expressions are semantically equivalent, but not syntactically the same, as the first is targeted at understandability, while the second is targeted at implementation. To preserve “round-trip” capability, an implementation could emit annotations with the ELM using the extension mechanism of the base _Element_ class to provide the original source CQL.
+
+In general, the mapping from ELM to CQL is simply the opposite of the mapping described in the previous section. However, there are several special-purpose operators that are only defined in ELM which are used to simplify query implementation. For completeness, the mappings from those operators to CQL are described here to ensure that any given ELM document could be translated to CQL.
+
+The examples in the following section will make use of the following expression definitions:
+
+[source,xml]
+----
+<def name="List1">
+  <expression xsi:type="List">
+    <element xsi:type="Tuple">
+      <element name="X">
+        <value xsi:type="Literal" valueType="xs:int" value="1"/>
+      </element>
+    </element>
+    <element xsi:type="Tuple">
+      <element name="X">
+        <value xsi:type="Literal" valueType="xs:int" value="2"/>
+      </element>
+    </element>
+    <element xsi:type="Tuple">
+      <element name="X">
+        <value xsi:type="Literal" valueType="xs:int" value="3"/>
+      </element>
+    </element>
+  </expression>
+</def>
+<def name="List2">
+  <expression xsi:type="List">
+    <element xsi:type="Tuple">
+      <element name="Y">
+        <value xsi:type="Literal" valueType="xs:int" value="1"/>
+      </element>
+    </element>
+    <element xsi:type="Tuple">
+      <element name="Y">
+        <value xsi:type="Literal" valueType="xs:int" value="2"/>
+      </element>
+    </element>
+    <element xsi:type="Tuple">
+      <element name="Y">
+        <value xsi:type="Literal" valueType="xs:int" value="3"/>
+      </element>
+    </element>
+  </expression>
+</def>
+----
+
+[[foreach]]
+=== ForEach
+
+The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
+
+[source,xml]
+----
+<expression xsi:type="ForEach">
+  <source xsi:type="ExpressionRef" name="List1"/>
+  <element xsi:type="Property" path="X"/>
+</expression>
+----
+
+This expression returns the list of integers from the List1 expression. Although there is no direct counterpart in CQL, this expression can be represented using the _query_ construct. The source for the _ForEach_ is used as the primary query source, and the _element_ expression is represented using the _return-clause_:
+
+[source,cql]
+----
+List1 A return A.X
+----
+
+[[times]]
+=== Times
+
+The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
+
+[source,xml]
+----
+<expression xsi:type="Times">
+  <source xsi:type="ExpressionRef" name="List1"/>
+  <source xsi:type="ExpressionRef" name="List2"/>
+</expression>
+----
+
+Assuming List1 and List2 are defined as specified above, the equivalent CQL is a multi-source query with a source for each operand in the _Times_, and a return clause that builds the resulting tuples:
+
+[source,cql]
+----
+from List1 A, List2 B
+  return { X: A.X, Y: B.Y }
+----
+
+[[filter]]
+=== Filter
+
+The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:
+
+[source,xml]
+----
+<expression xsi:type="Filter">
+  <source xsi:type="ExpressionRef" name="List1"/>
+  <condition xsi:type="Equal">
+    <operand xsi:type="Property" path="X">
+    <operand xsi:type="Literal" valueType="xs:int" value="1"/>
+  </condition>
+</expression>
+----
+
+Again, although no direct counterpart in CQL exists, the _where_ clause of the _query_ construct provides the equivalent functionality:
+
+[source,cql]
+----
+List1 A where A.X = 1
+----
+
+[[sort-1]]
+=== Sort
+
+The _Sort_ operator in ELM sorts the contents of a list. For example:
+
+[source,xml]
+----
+<expression xsi:type="Sort">
+  <source xsi:type="ExpressionRef" name="List1"/>
+  <by xsi:type="ByColumn" path="X" direction="desc"/>
+</expression>
+----
+
+Again, the CQL query construct provides the equivalent functionality:
+
+[source,cql]
+----
+List1 A sort by X desc
+----

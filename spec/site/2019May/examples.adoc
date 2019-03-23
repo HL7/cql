@@ -1,0 +1,120 @@
+= Examples
+:page-layout: 2019May
+:backend: xhtml
+:sectnums:
+:sectanchors:
+  
+The examples provided here illustrate the use of Clinical Quality Language to express the logic involved in decision support and quality measurement artifacts. The examples are intended for educational and demonstration purposes only and should not be considered endorsed or production ready.
+
+== Chlamydia Screening Examples
+
+These examples illustrate the logic for coordinated decision support and quality measurement artifacts expressed in CQL, as developed in the Author's Guide. The first set illustrates independent logic, and the second set illustrates the same artifacts using a common library to share logic.
+
+=== Independent Artifacts
+
+==== Chlamydia Screening Quality Measure
+
+* link:examples\ChlamydiaScreening_CQM.cql[CQL]
+* link:examples\ChlamydiaScreening_CQM.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CQM.json[ELM (JSON)]
+
+==== Chlamydia Screening Decision Support
+
+* link:examples\ChlamydiaScreening_CDS.cql[CQL]
+* link:examples\ChlamydiaScreening_CDS.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CDS.json[ELM (JSON)]
+
+ELM Artifacts with Annotations Included:
+  
+* link:examples\ChlamydiaScreening_CDS_Annotated.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CDS_Annotated.json[ELM (JSON)]
+
+ELM Artifacts with Debug Information Included:
+
+* link:examples\ChlamydiaScreening_CDS_Debug.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CDS_Debug.json[ELM (JSON)]
+
+=== Shared Logic
+
+==== Common Library
+
+* link:examples\ChlamydiaScreening_Common.cql[CQL]
+* link:examples\ChlamydiaScreening_Common.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_Common.json[ELM (JSON)]
+
+==== Chlamydia Screening Quality Measure Using Common Library
+
+* link:examples\ChlamydiaScreening_CQM_UsingCommon.cql[CQL]
+* link:examples\ChlamydiaScreening_CQM_UsingCommon.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CQM_UsingCommon.json[ELM (JSON)]
+
+==== Chlamydia Screening Decision Support Using Common Library
+
+* link:examples\ChlamydiaScreening_CDS_UsingCommon.cql[CQL]
+* link:examples\ChlamydiaScreening_CDS_UsingCommon.xml[ELM (XML)]
+* link:examples\ChlamydiaScreening_CDS_UsingCommon.json[ELM (JSON)]
+
+== Example Quality Measures
+
+These examples illustrate various quality measures expressed in CQL.
+
+=== CMS26v2
+
+* link:examples\CMS26v2_CQM.cql[CQL]
+* link:examples\CMS26v2_CQM.xml[ELM (XML)]
+* link:examples\CMS26v2_CQM.json[ELM (JSON)]
+
+=== CMS55v1
+
+Using QUICK:
+  
+* link:examples\CMS55v1_NQF0495.cql[CQL]
+* link:examples\CMS55v1_NQF0495.xml[ELM (XML)]
+* link:examples\CMS55v1_NQF0495.json[ELM (JSON)]
+
+Using QDM:
+  
+* link:examples\CMS55v1_QDM.cql[CQL]
+* link:examples\CMS55v1_QDM.xml[ELM (XML)]
+//* link:examples\CMS55v1_QDM.json[ELM (JSON)]
+
+=== CMS135
+
+* link:examples\CMS135_QDM.cql[CQL]
+* link:examples\CMS135_QDM.xml[ELM (XML)]
+* link:examples\CMS135_QDM.json[ELM (JSON)]
+
+=== CMS146v2
+
+Using QUICK:
+  
+* link:examples\CMS146v2_CQM.cql[CQL]
+* link:examples\CMS146v2_CQM.xml[ELM (XML)]
+* link:examples\CMS146v2_CQM.json[ELM (JSON)]
+
+Using QDM:
+  
+* link:examples\CMS146v2_QDM.cql[CQL]
+* link:examples\CMS146v2_QDM.xml[ELM (XML)]
+* link:examples\CMS146v2_QDM.json[ELM (JSON)]
+
+=== CMS154v1
+
+* link:examples\CMS154v1_NQF0069.cql[CQL]
+* link:examples\CMS154v1_NQF0069.xml[ELM (XML)]
+* link:examples\CMS154v1_NQF0069.json[ELM (JSON)]
+
+=== CMS179v2
+
+Using QUICK:
+
+* link:examples\CMS179v2_CQM.cql[CQL]
+* link:examples\CMS179v2_CQM.xml[ELM (XML)]
+* link:examples\CMS179v2_CQM.json[ELM (JSON)]
+  
+Using QDM:
+  
+* link:examples\CMS179v2_QDM.cql[CQL]
+* link:examples\CMS179v2_QDM.xml[ELM (XML)]
+* link:examples\CMS179v2_QDM.json[ELM (JSON)]
+  

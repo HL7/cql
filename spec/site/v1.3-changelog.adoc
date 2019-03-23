@@ -1,5 +1,5 @@
 = 1.3 Change Log
-:page-layout: current
+:page-layout: unversioned
 :backend: xhtml
 :toc:
 
