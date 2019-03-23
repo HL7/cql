@@ -238,7 +238,7 @@ The context declaration defines the overall context for statements within the la
 
 Table 2‑C
 
-Depending on different needs, models may define any context appropriate to their use case, but must define at least the unspecified context, and must identify a default context that is used when authors do not declare a specific context.
+Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
 The following example illustrates the use of the Patient context:
 
@@ -380,6 +380,12 @@ In the above example, the [.id]#InitialPopulationCount# expression returns the n
 If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the population flattened into a single list.
 
 In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unspecified# context expression results in the evaluation of the [.id]#Unspecified# context expression, and the result type is unaffected.
+
+[.note-info]
+____
+In some cases, measures or decision support artifacts may need to access data for a related patient, such as the mother's record from an infant's context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
+
+____
 
 [[queries]]
 == Queries

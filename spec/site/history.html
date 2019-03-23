@@ -36,14 +36,14 @@
 <body>
 	<div id="segment-header" class="segment">  <!-- segment-header -->	
 		<div class="container">  <!-- container -->
-			<a id="logo" href="http://cql.hl7.org"><img alt="logo hl7" src="dist/hl7-logo.png"/> </a>
+			<a id="logo" href="index.html"><img alt="logo hl7" src="dist/cql-logo.png" width="100" height="75"/> </a>
 			<div id="hl7-status">
 				<b>Clinical Quality Language Publication Directory</b>
 			</div>       	
 			
 			<div id="hl7-nav">
 				 <a id="hl7-logo" href="http://www.hl7.org">
-					<img height="50" alt="visit the hl7 website" width="42" src="dist/hl7-logo.png"/>
+					<img height="100" alt="visit the hl7 website" width="75" src="dist/hl7-logo.png"/>
 				</a> 
 			</div>       	
 			  <!-- hl7-search -->
@@ -118,6 +118,7 @@ The following versions of Clinical Quality Language are available:
       <ul>
         <li><b>Breaking Changes:</b>
           <ul>
+            <li>#1716: Added support for non-patient, model-defined contexts</li>
             <li>#1723: Define seconds as a Decimal for the purposes of comparison</li>
             <li>#1724: Removed timezone offset from Time</li>
           </ul>
@@ -125,15 +126,16 @@ The following versions of Clinical Quality Language are available:
         <li><b>Substantive Changes:</b>
           <ul>
             <li>#1707: Added a Size operator for intervals</li>
-            <li>#1716: Added support for non-patient, model-defined contexts</li>
             <li>#1719: Added support for namespaces for library names</li>
             <li>#1720: Added support for qualifiers in retrieve code paths</li>
             <li>#1722: Updated FHIRPath usage and translation mappings for FHIRPath Normative 3 ballot</li>
             <li>#1727: Added unit conversion support for quantities</li>
+            <li>#1766: Added valuesetProperty to ELM Retrieve</li>
+            <li>Added support for related-context queries</li>
           </ul>
         </li>
       </ul>
-      <p><a href="v1.4-changelog.html">Detailed change log</a></p>
+      <p><a href="v1.4-changelog.html">Detailed Change Log</a></p>
     </td>
   </tr>
   <tr> 
