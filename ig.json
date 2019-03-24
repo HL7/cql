@@ -6,7 +6,8 @@
 		"temp": "temp",
 		"output": "output",
 		"txCache": "txCache",
-		"qa": "qa"
+		"qa": "qa",
+		"history": "http://cql.hl7.org/history.html"
 	},
 	"sct-edition": "http://snomed.info/sct/731000124108",
 	"tool": "jekyll",
