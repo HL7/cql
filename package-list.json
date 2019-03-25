@@ -1,0 +1,70 @@
+{
+   "package-id": "hl7.cql",
+   "title": "Clinical Quality Language Specification",
+   "canonical": "http://hl7.org/fhirpath",
+   "introduction": "The Clinical Quality Language Specification defines a representation for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains. Although several standards exist for the expression of clinical quality logic, these standards are not widely adopted and present various barriers to point-to-point sharing of clinical knowledge artifacts such as lack of tooling, complexity of implementation, or insufficient expressivity.",
+   "list": [
+      {
+         "version": "current",
+         "desc": "Continuous Integration Build (latest in version control)",
+         "path": "http://build.fhir.org/ig/HL7/cql",
+         "status": "ci-build",
+         "current": true
+      },
+      {
+         "version": "1.4.0",
+         "date": "2019-03-24",
+         "desc": "4th STU Ballot",
+         "changes": "history.html",
+         "path": "http://cql.hl7.org/2019May/index.html",
+         "status": "ballot",
+         "sequence": "STU4"
+      },
+      {
+         "version": "1.3.1",
+         "date": "2018-09-05",
+         "desc": "STU3 Release",
+         "changes": "history.html",
+         "path": "http://cql.hl7.org/STU3/index.html",
+         "status": "trial-use",
+         "sequence": "STU3",
+         "current": "true"
+      },
+      {
+         "version": "1.3.0",
+         "date": "2018-04-01",
+         "desc": "STU3 Ballot",
+         "changes": "history.html",
+         "path": "http://cql.hl7.org/2018May/index.html",
+         "status": "ballot",
+         "sequence": "STU3"
+      },
+      {
+         "version": "1.2.1",
+         "date": "2016-12-06",
+         "desc": "STU2 Release (w/ Errata)",
+         "changes": "history.html",
+         "path": "http://cql.hl7.org/STU2/index.html",
+         "status": "trial-use",
+         "sequence": "STU2"
+      },
+      {
+         "version": "1.1.0",
+         "date": "2016-07-01",
+         "desc": "STU1 Update",
+         "changes": "history.html",
+         "path": "http://www.hl7.org/documentcenter/public/standards/dstu/HL7_CQL_SPEC_R1_DSTUR1dot1_2016JUL.zip",
+         "status": "trial-use",
+         "sequence": "STU1"
+      },
+      {
+         "version": "1.0.0",
+         "date": "2015-05-01",
+         "desc": "STU1 Release",
+         "changes": "history.html",
+         "path": "http://www.hl7.org/documentcenter/public/standards/dstu/HL7_CQLANG_R1_DSTU_2015MAY.zip",
+         "status": "trial-use",
+         "sequence": "STU1"
+      }
+   ]
+}
