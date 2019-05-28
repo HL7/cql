@@ -266,7 +266,7 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
-A delimited identifier is any sequence of charaters enclosed in backticks ([.sym]#`#):
+A delimited identifier is any sequence of characters enclosed in backticks ([.sym]#`#):
 
 [source, cql]
 ----
