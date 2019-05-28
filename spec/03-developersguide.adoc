@@ -375,7 +375,7 @@ The declaration is illegal because the parser will not recognize [.kw]#Define# a
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
-* The local identifier for a library must be unqualified and unique within the artifact.
+* The local identifier for a referenced library must be unqualified and unique within the artifact.
 * Circular library references are not allowed.
 * Library references are not transitive.
 
