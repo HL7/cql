@@ -1505,11 +1505,12 @@ For Date, MaxValue returns the maximum representable Date value, Date(9999, 12, 
 
 For DateTime, MaxValue returns the maximum representable DateTime value, DateTime(9999, 12, 31, 23, 59, 59, 999).
 
+Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+
 For Time, MaxValue returns the maximum representable Time value, Time(23, 59, 59, 999).
 
 For any other type, attempting to invoke MaxValue results in an error.
 
-Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
 
 === MinValue
 
