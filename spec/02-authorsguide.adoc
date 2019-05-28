@@ -1456,7 +1456,7 @@ The [.id]#Time# operator takes the following arguments:
 
 Table 2‑L
 
-As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, if timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
