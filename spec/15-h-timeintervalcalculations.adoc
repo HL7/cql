@@ -147,7 +147,7 @@ In CQL, a week is defined as a duration of any time interval which starts at a c
 [[examples-2]]
 === Examples
 
-1.  Duration [.sym]#=# [date 2 [.sym]#-# date 1 (days)] [.sym]#/# 7
+1.  Duration [.sym]#=# +++[+++date 2 [.sym]#-# date 1 (days)+++]+++ [.sym]#/# 7
 
 *Example 1:* +
 Date 1: 2012-03-10 22:05:09 +
