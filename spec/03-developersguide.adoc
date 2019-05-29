@@ -1131,7 +1131,7 @@ Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or 
 [[introducing-context-in-queries]]
 == Introducing Scoped Definitions in Queries
 
-The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available context of the query scope, as well as the overall library scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
+The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
 
 [source,cql]
 ----
