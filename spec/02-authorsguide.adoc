@@ -383,7 +383,7 @@ In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unspecif
 
 [.note-info]
 ____
-In some cases, measures or decision support artifacts may need to access data for a related patient, such as the mother's record from an infant's context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
+In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
 
 ____
 
