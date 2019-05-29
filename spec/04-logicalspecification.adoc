@@ -1533,11 +1533,11 @@ For Date, MinValue returns the minimum representable Date value, Date(1, 1, 1).
 
 For DateTime, MinValue returns the minimum representable DateTime value, DateTime(1, 1, 1, 0, 0, 0, 0).
 
+Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+
 For Time, MinValue returns the minimum representable Time value, Time(0, 0, 0, 0).
 
 For any other type, attempting to invoke MinValue results in an error.
-
-Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
 
 === Modulo
 
