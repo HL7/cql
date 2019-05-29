@@ -417,7 +417,7 @@ A query construct begins by introducing an _alias_ for the primary source:
 [Encounter: "Inpatient"] E
 ----
 
-The primary source for this query is the retrieve expression [[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
+The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
 
 Note that although the alias in this example is a single-letter abbreviation, [.id]#E#, it could also be a longer abbreviation:
 
