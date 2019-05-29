@@ -169,7 +169,7 @@ The duration in days between two dates will generally be given by subtracting th
 === Examples
 
 1.  Time (date 2) [.sym]#<# time (date 1) +
-Duration [.sym]#=# [date 2 [.sym]#-# date 1 (days)] [.sym]#-# 1
+Duration [.sym]#=# +++[+++date 2 [.sym]#-# date 1 (days)+++]+++ [.sym]#-# 1
 
 *Example 1:* +
 Date 1: 2012-01-31 12:30:00 +
