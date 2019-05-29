@@ -1331,7 +1331,7 @@ context Patient
 
 define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
 
-define "Esimtated Due Date":
+define "Estimated Due Date":
   Last(
     ["Mother" -> "Observation": "Estimated Due Date"] Exam
       sort by effective
