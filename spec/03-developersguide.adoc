@@ -266,7 +266,7 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
-A delimited identifier is any sequence of charaters enclosed in backticks ([.sym]#`#):
+A delimited identifier is any sequence of characters enclosed in backticks ([.sym]#`#):
 
 [source, cql]
 ----
@@ -375,7 +375,7 @@ The declaration is illegal because the parser will not recognize [.kw]#Define# a
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
-* The local identifier for a library must be unqualified and unique within the artifact.
+* The local identifier for a referenced library must be unqualified and unique within the artifact.
 * Circular library references are not allowed.
 * Library references are not transitive.
 
@@ -1129,9 +1129,9 @@ The result of this expression is:
 Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or lowercase letters for all characters in the argument.
 
 [[introducing-context-in-queries]]
-== Introducing Context in Queries
+== Introducing Scoped Definitions in Queries
 
-The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available context of the query scope, as well as the overall library scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
+The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
 
 [source,cql]
 ----
@@ -1331,7 +1331,7 @@ context Patient
 
 define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
 
-define "Esimtated Due Date":
+define "Estimated Due Date":
   Last(
     ["Mother" -> "Observation": "Estimated Due Date"] Exam
       sort by effective

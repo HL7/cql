@@ -383,7 +383,7 @@ In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unspecif
 
 [.note-info]
 ____
-In some cases, measures or decision support artifacts may need to access data for a related patient, such as the mother's record from an infant's context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
+In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
 
 ____
 
@@ -417,7 +417,7 @@ A query construct begins by introducing an _alias_ for the primary source:
 [Encounter: "Inpatient"] E
 ----
 
-The primary source for this query is the retrieve expression [[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
+The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
 
 Note that although the alias in this example is a single-letter abbreviation, [.id]#E#, it could also be a longer abbreviation:
 
@@ -798,7 +798,7 @@ month
 months
 week
 weeks
-dat
+day
 days
 hour
 hours
@@ -1456,7 +1456,7 @@ The [.id]#Time# operator takes the following arguments:
 
 Table 2‑L
 
-As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, If timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, if timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 

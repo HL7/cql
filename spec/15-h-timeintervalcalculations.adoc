@@ -147,12 +147,12 @@ In CQL, a week is defined as a duration of any time interval which starts at a c
 [[examples-2]]
 === Examples
 
-1.  Duration [.sym]#=# [date 2 [.sym]#-# date 1 (days)] [.sym]#/# 7
+1.  Duration [.sym]#=# +++[+++date 2 [.sym]#-# date 1 (days)+++]+++ [.sym]#/# 7
 
 *Example 1:* +
 Date 1: 2012-03-10 22:05:09 +
 Date 2: 2012-03-20 07:19:33 +
-Duration [.sym]#=# [[.sym]### days (month (date 1)) [.sym]#-# day (date 1) [.sym]#+# # days (month (date 1) + 1) + # days (month (date 1) + 2) + [.sym]#...# + # days (month (date 2) [.sym]#-# 1) + day (date 2)] [.sym]#/# 7 +
+Duration [.sym]#=# +++[+++[.sym]### days (month (date 1)) [.sym]#-# day (date 1) [.sym]#+# # days (month (date 1) + 1) + # days (month (date 1) + 2) + [.sym]#...# + # days (month (date 2) [.sym]#-# 1) + day (date 2)+++]+++ [.sym]#/# 7 +
 = (20 - 10) / 7 = 10 / 7 = *1 week*
 
 [[calculating-duration-in-days]]
@@ -169,7 +169,7 @@ The duration in days between two dates will generally be given by subtracting th
 === Examples
 
 1.  Time (date 2) [.sym]#<# time (date 1) +
-Duration [.sym]#=# [date 2 [.sym]#-# date 1 (days)] [.sym]#-# 1
+Duration [.sym]#=# +++[+++date 2 [.sym]#-# date 1 (days)+++]+++ [.sym]#-# 1
 
 *Example 1:* +
 Date 1: 2012-01-31 12:30:00 +

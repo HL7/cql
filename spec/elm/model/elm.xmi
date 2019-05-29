@@ -3399,7 +3399,7 @@
 						<ownedAttribute xmi:type="uml:Property" xmi:id="U920022c6-bce3-4863-b9b1-64656ab5c768" name="libraryName" visibility="public" type="U00022104-7510-11d9-86f2-000476a22f44"/>
 					</nestedClassifier>
 					<nestedClassifier xmi:type="uml:Class" xmi:id="Ufbb7df8c-d716-4b60-b70f-b05d4c817cf5" name="CalculateAgeAt">
-						<ownedComment xmi:type="uml:Comment" xmi:id="U6875778b-f29e-4e7f-897b-71f1f34f334e" body="Calculates the age in the specified precision of a person born on the first Date or DateTime as of the second Date or DateTime.&#13;The CalculateAgeAt operator has two signatures:&#13;Date, Date&#13;DateTime, DateTime&#13;For the Date overload, precision must be one of year, month, week, or day.&#13;The result of the calculation is the number of whole calendar periods that have elapsed between the first date/time and the second.">
+						<ownedComment xmi:type="uml:Comment" xmi:id="U6875778b-f29e-4e7f-897b-71f1f34f334e" body="Calculates the age in the specified precision of a person born on the first Date or DateTime as of the second Date or DateTime.&#13;The CalculateAgeAt operator has two signatures:&#13;(Date, Date)&#13;(DateTime, DateTime)&#13;For the Date overload, precision must be one of year, month, week, or day.&#13;The result of the calculation is the number of whole calendar periods that have elapsed between the first date/time and the second.">
 							<annotatedElement xmi:idref="Ufbb7df8c-d716-4b60-b70f-b05d4c817cf5"/>
 						</ownedComment>
 						<generalization xmi:type="uml:Generalization" xmi:id="Udf8e4a7c-5f41-46e4-8328-e4f744b43ad2" general="U6449e906-58ec-4db1-ad24-15b14b399030"/>

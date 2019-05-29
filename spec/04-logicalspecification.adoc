@@ -1505,11 +1505,12 @@ For Date, MaxValue returns the maximum representable Date value, Date(9999, 12, 
 
 For DateTime, MaxValue returns the maximum representable DateTime value, DateTime(9999, 12, 31, 23, 59, 59, 999).
 
+Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+
 For Time, MaxValue returns the maximum representable Time value, Time(23, 59, 59, 999).
 
 For any other type, attempting to invoke MaxValue results in an error.
 
-Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
 
 === MinValue
 
@@ -1532,11 +1533,11 @@ For Date, MinValue returns the minimum representable Date value, Date(1, 1, 1).
 
 For DateTime, MinValue returns the minimum representable DateTime value, DateTime(1, 1, 1, 0, 0, 0, 0).
 
+Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+
 For Time, MinValue returns the minimum representable Time value, Time(0, 0, 0, 0).
 
 For any other type, attempting to invoke MinValue results in an error.
-
-Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
 
 === Modulo
 
@@ -4016,8 +4017,8 @@ CalculateAgeAt : BinaryExpression
 Calculates the age in the specified precision of a person born on a given date, as of another given date.
 
 The CalculateAgeAt operator has two signatures:
-  Date, Date
-  DateTime, DateTime
+  (Date, Date)
+  (DateTime, DateTime)
 
 For the Date overload, precision must be one of year, month, week, or day, and the result is the number of whole calendar periods that have elapsed between the first date and the second date.
 

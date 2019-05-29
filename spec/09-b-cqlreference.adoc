@@ -1682,7 +1682,7 @@ define NullNotEquivalentIsFalse: null !~ null
 [[arithmetic-operators-4]]
 == Arithmetic Operators
 
-The arithmetic operators provide a complete set of operations for performing arithmetic calculations in CQL. In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in empty ({ }), rather than a run-time error.
+The arithmetic operators provide a complete set of operations for performing arithmetic calculations in CQL. In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
 [[abs]]
 === Abs
