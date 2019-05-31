@@ -1329,16 +1329,16 @@ To allow queries to cross contexts, CQL supports the notion of a _related contex
 ----
 context Patient
 
-define ""Mother"": singleton from ([RelatedPerson: ""Mother Relationship""])
+define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
 
-define ""Estimated Due Date"":
+define "Estimated Due Date":
   Last(
-    [""Mother"" -> ""Observation"": ""Delivery date Estimated""] Exam
+    ["Mother" -> "Observation": "Delivery date Estimated"] Exam
       sort by effective
   )
 
-define ""Gestational Age in Days at Birth"":
-  (280 - (duration in days between ""Estimated Due Date"" and ""Birth Date"")) div 7
+define "Gestational Age in Days at Birth":
+  (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
 ----
 
 Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
