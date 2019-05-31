@@ -4376,7 +4376,7 @@ The following examples illustrate the behavior of the [.kw]#distinct# operator:
 [source,cql]
 ----
 define Distinct: distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5, 7 }
-define DistinctIsNull: distinct null
+define DistinctIsNull: distinct null // null
 ----
 
 [[equal-2]]
