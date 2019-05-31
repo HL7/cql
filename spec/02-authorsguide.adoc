@@ -268,7 +268,7 @@ The following example illustrates a simple define statement:
 [source,cql]
 ----
 define InpatientEncounters:
-  [Encounter: ""Inpatient""] Encounter
+  [Encounter: "Inpatient"] Encounter
     where Encounter.length <= 120 days
       and Encounter.period ends during MeasurementPeriod
 ----
