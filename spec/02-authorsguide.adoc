@@ -268,9 +268,9 @@ The following example illustrates a simple define statement:
 [source,cql]
 ----
 define InpatientEncounters:
-  [Encounter: "Inpatient"] E
-    where E.length <= 120 days
-      and E.period ends during MeasurementPeriod
+  [Encounter: ""Inpatient""] Encounter
+    where Encounter.length <= 120 days
+      and Encounter.period ends during MeasurementPeriod
 ----
 
 This example defines the [.id]#InpatientEncounters# expression as [.id]#Encounter# events whose code is in the [.id]#"Inpatient"# valueset, whose length is less than or equal to 120 days, and whose period ended (i.e. patient was discharged) during MeasurementPeriod.
