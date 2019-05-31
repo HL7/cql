@@ -954,7 +954,7 @@ The retrieve expression defines clinical data that will be used by the artifact.
 The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
 
 ==== dateRange
-The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
+The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
 
 ==== dataType
 The dataType attribute specifies the type of data being requested.
