@@ -5652,6 +5652,8 @@ in(code String, codesystem CodeSystemRef) Boolean
 in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
 in(codes List<Code>, codeSystem CodeSystemRef) Boolean
+in(List<string>, CodeSystem)
+in(List<Concept>, CodeSystem)
 ----
 
 *Description:*
@@ -5691,6 +5693,8 @@ in(code String, valueset ValueSetRef) Boolean
 in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
 in(codes List<Code>, valueset ValueSetRef) Boolean
+in(List<string>, ValueSet)
+in(List<Concept>, ValueSet)
 ----
 
 *Description:*
