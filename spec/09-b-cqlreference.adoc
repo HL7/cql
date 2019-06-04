@@ -3703,7 +3703,7 @@ If the per argument is null, the default unit interval for the point type of the
 [.note-warning]
 ____
 
-For intervals with null boundaries, if the boundary is open, the interval will not contribute any results to the output. If the boundary is closed, in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
+For intervals with null boundaries (intervals with an undefined start or end date), if the boundary is open (e.g., Interval[0, null)), the interval will not contribute any results to the output. If the boundary is closed (e.g., Interval[0, null]), in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
 
 ____
 
@@ -4213,7 +4213,7 @@ The following examples illustrate the behavior of the [.id]#Size# operator:
 [source,cql]
 ----
 define SizeTest: Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
-define SizeIsNull: Size(null as Interval<Integer>)
+define SizeIsNull: Size(null as Interval<Integer>) // null
 ----
 
 [[start]]
@@ -4320,7 +4320,7 @@ The following examples illustrate the behavior of the [.kw]#width# operator:
 [source,cql]
 ----
 define Width: width of Interval[3, 7] // 4
-define WidthIsNull: width of (null as Interval<Integer>)
+define WidthIsNull: width of (null as Interval<Integer>) // null
 ----
 
 [[list-operators-2]]
@@ -4375,7 +4375,7 @@ The following examples illustrate the behavior of the [.kw]#distinct# operator:
 
 [source,cql]
 ----
-define Distinct: distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5, 7 }
+define Distinct: distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
 define DistinctIsNull: distinct null // null
 ----
 

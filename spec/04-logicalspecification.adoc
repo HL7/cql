@@ -951,10 +951,10 @@ Retrieve : Expression
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
 ==== codes
-The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
+The codes element optionally specifies an expression that results in a List<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
 
 ==== dateRange
-The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
+The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
 
 ==== dataType
 The dataType attribute specifies the type of data being requested.
@@ -2394,7 +2394,7 @@ The Collapse operator returns the unique set of intervals that completely covers
 
 The operation is performed by combining successive intervals in the input that either overlap or meet, using the semantics defined for the Overlaps and Meets operators. Note that because those operators are themselves defined in terms of interval successor and predecessor operators, sets of Date-, DateTime-, and Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
-The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a default unit ('1'), for Date-, DateTime-, and Time-valued intervals, this means a temporal duration.
+The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quanity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
 If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
 
@@ -2493,7 +2493,7 @@ Expand : BinaryExpression
 
 The Expand operator returns the set of intervals of size per for all the ranges present in the given list of intervals.
 
-The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a default unit ('1'), for Date-, DateTime-, or Time-valued intervals, this means a temporal duration.
+The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quanity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
 If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
 
@@ -2674,7 +2674,7 @@ OverlapsBefore : BinaryExpression
   0..1 --> precision
 ----
 
-The OverlapsBefore operator returns true if the first interval starts before and overlaps the second. In other words, if the first interval properly contains the starting point of the second interval.
+The OverlapsBefore operator returns true if the first interval starts before and overlaps the second. In other words, if the first interval contains the starting point of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
@@ -2691,7 +2691,7 @@ OverlapsAfter : BinaryExpression
   0..1 --> precision
 ----
 
-The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval properly contains the ending point of the second interval.
+The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval contains the ending point of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
