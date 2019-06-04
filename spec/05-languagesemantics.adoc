@@ -700,7 +700,16 @@ days between Date(2014, 1, 15) and Date(2014, 2, 1) // 17 days
 days between Date(2014, 1, 15) and Date(2014, 2, 28) // 44 days
 ----
 
-Intuitively, what this means is that the number of days between January 15^th^, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
+Intuitively, what this means is that the number of days between January 15^th^, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. And so, when a duration calculation results in an _uncertainty_, a duration interval is returned:
+
+[source,cql]
+----
+define DurationInDays: days between @2017-08-07T17:00 and @2017-08-14 // [6, 7]
+----
+
+This duration results in an uncertainty because the starting datetime value is specified to the minute, `17:00`, while the second value is only specified to the day. The resulting uncertainty interval is between 6 and 7 days, and so `[6,7]` is returned.
+
+By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
 
 [source,cql]
 ----
@@ -722,6 +731,15 @@ days between Date(2014, 1, 15) and Date(2014, 2) > 20
 ----
 
 This comparison returns unknown (null), because the value being compared, 20, falls within the uncertainty, so no determination can be reliably made.
+
+Uncertainties may also result in an interval consisting of durations between datetime values. For example:
+
+[source,cql]
+----
+define UncertainDurationInDays: days between @2012-01 and @2012-02 // [days between @2012-01-31 and @2012-02-01, days between @2012-01-01 and @2012-02-29]
+----
+
+Because the datetime values are both only specified to the month (from January of 2012 to February of 2012), it is unclear what duration is desired. And so, the result is an uncertainty interval beginning with the duration of the 31st of January, 2012 to the 1st of February, 2012 (the shortest possible duration), and ending with the duration of the 1st of January, 2012 to the 29th of February, 2012 (the longest possible duration).
 
 CQL also supports a difference in operator which, rather than calculating the number of calendar periods between two dates, calculates the number of boundaries crossed between the two dates. As with the duration operator, difference is defined to take imprecision in date and time values into account by returning an uncertainty.
 
