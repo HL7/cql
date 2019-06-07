@@ -10,19 +10,9 @@
 			<xs:documentation>Defines an available context type for the model.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="contextType" type="NamedTypeSpecifier" minOccurs="0" maxOccurs="0">
+			<xs:element name="contextType" type="NamedTypeSpecifier" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Specifies the type for the context.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="keyElement" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Specifies the key elements, in order, of the context type that form the reference key for the context. The elements taken together must form a unique identifier for instances of the context.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="birthDateElement" type="xs:string" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Specifies the name of the birthDateElement of the context type.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -31,21 +21,29 @@
 				<xs:documentation>Specifies the name of the context. This is the name that will be referenced by context statements within CQL.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="keyElement" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Specifies the key elements, in order and semi-colon delimited, of the context type that form the reference key for the context. The elements taken together must form a unique identifier for instances of the context.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="birthDateElement" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Specifies the name of the birthDateElement of the context type.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="RelationshipInfo">
 		<xs:annotation>
 			<xs:documentation>Defines the relationship of a class to the context.</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="relatedKeyElement" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Specifies the related key elements, in order, of the type that contain the reference to the context. There must be the same number of elements, and in the same order, as the target context.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
 		<xs:attribute name="context" type="xs:string" use="required">
 			<xs:annotation>
 				<xs:documentation>Specifies the target context of the relationship.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="relatedKeyElement" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Specifies the related key elements, in order and semi-colon delimited, of the type that contain the reference to the context. There must be the same number of elements, and in the same order, as the target context.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
@@ -137,6 +135,11 @@
 				<xs:documentation>Indicates that the starting index for a list-valued element is one. By default, lists are zero-based.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="target" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Specifies a path that can be used instead of the name of the element to access the value for this element in the underlying representation.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="ClassInfo">
 		<xs:annotation>
@@ -145,6 +148,14 @@
 		<xs:complexContent>
 			<xs:extension base="TypeInfo">
 				<xs:sequence>
+					<xs:element name="parameter" type="TypeParameterInfo" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The generic parameters defined by a generic class. In generic class
+                              SomeClass&lt;S extends Type1, T&gt;, 'S extends Type1' and 'T' are both generic
+                              parameters.
+                          </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="element" type="ClassInfoElement" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="contextRelationship" type="RelationshipInfo" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -332,6 +343,87 @@
 			<xs:extension base="TypeSpecifier">
 				<xs:sequence>
 					<xs:element name="choice" type="TypeSpecifier" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ParameterTypeSpecifier">
+		<xs:annotation>
+			<xs:documentation>A type which is generic class parameter such as T in MyGeneric&lt;T extends
+            SomeType&gt;.
+        </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypeSpecifier">
+				<xs:attribute name="parameterName" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BoundParameterTypeSpecifier">
+		<xs:annotation>
+			<xs:documentation>A type which is replacing a class parameter such as T in MyClass extends MyGeneric&lt;AValidType&gt;.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypeSpecifier">
+				<xs:sequence>
+					<xs:element name="elementTypeSpecifier" type="TypeSpecifier" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="parameterName" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The name of the parameter that is bound to a valid type based on the parameter
+                        definition, such as 'T'.
+                    </xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="boundType" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The type bound to the parameter (e.g., 'T').</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TypeParameterInfo">
+		<xs:annotation>
+			<xs:documentation>A generic class parameter such as T in MyGeneric&lt;T extends SomeType&gt;.
+        </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="typeSpecifier" type="TypeSpecifier" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The name of the parameter such as T,K, etc...</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="constraint" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>One of NONE, CLASS, VALUE, TUPLE, INTERVAL, CHOICE, TYPE</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="constraintType" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The type this parameter should be assignable from (i.e., extend).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TupleTypeSpecifierElement">
+		<xs:annotation>
+			<xs:documentation>TupleTypeSpecifierElement defines the name and type of a single element within a TupleTypeSpecifier.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="elementType" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TupleTypeSpecifier">
+		<xs:annotation>
+			<xs:documentation>TupleTypeSpecifier defines the possible elements of a tuple.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypeSpecifier">
+				<xs:sequence>
+					<xs:element name="element" type="TupleTypeSpecifierElement" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
