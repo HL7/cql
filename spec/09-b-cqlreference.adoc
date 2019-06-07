@@ -5723,10 +5723,10 @@ The following examples illustrate the behavior of the [.kw]#in# (Valueset) opera
 
 [source,cql]
 ----
-valueset "A Super Awesome ValueSet": 'http://super.awesome/valueset'
-define StringInValueset: '12345678' in "A Super Awesome ValueSet"
-define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678' } in "A Super Awesome ValueSet"
-define NullStringInValueset: null as String in "A Super Awesome ValueSet" // false
+valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
+define StringInValueset: '12345678' in "Acute Pharyngitis"
+define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
+define NullStringInValueset: null as String in "Acute Pharyngitis" // false
 ----
 
 ____
