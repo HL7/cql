@@ -958,7 +958,7 @@ The codes element optionally specifies an expression that results in a List<Code
 The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
 
 ==== context
-If specified, the context element references an expression that, when evaluated, provides the context for the retrieve.
+If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.
 
 ==== dataType
 The dataType attribute specifies the type of data being requested.
