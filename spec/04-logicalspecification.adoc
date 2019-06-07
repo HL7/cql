@@ -59,7 +59,7 @@ Structured values in ELM are values with sets of named elements (tuples), each o
 
 The _Tuple_ class represents construction of a new structured value, with the values for each element supplied by _TupleElement_ instances.
 
-To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some contexts, such as within a _Filter_ expression, the source is implicit. If used outside such a context, a source must be provided.
+To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some usages, such as within a _Filter_ expression, the source is implicit. If used outside such a usage, a source must be provided.
 
 The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers ([.sym]#.#) as well as indexers ([.sym]#[x]#) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
 
@@ -679,13 +679,13 @@ An aggregate operation performed over an empty list is defined to return null, e
 
 ELM provides a mechanism for reusing expressions by declaring a named expression. This construct is similar to a function call with no parameters in a traditional imperative language, with the exception that since ELM is a pure-functional system, the result of the evaluation could be cached by an implementation to avoid performing the same computation multiple times.
 
-In addition, ELM provides a more traditional function call with named parameters that can then be accessed by the expression in the function body, and passed as part of the call from the invoking context.
+In addition, ELM provides a more traditional function call with named parameters that can then be accessed by the expression in the function body, and passed as part of the call from the invoking environment.
 
 The _ExpressionDef_ class is used to define a named expression that can then be referenced by other expressions. The _FunctionDef_ class is used to define a function and its parameters.
 
 Note that circular expression references are not allowed, but that named expressions can be defined in any order, so long as the actual references do not result in a cycle.
 
-The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unspecified. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the <<External Data>> section.
+The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unfiltered. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the <<External Data>> section.
 
 === ExpressionDef
 
@@ -703,7 +703,8 @@ ExpressionDef : Element
 ----
 
 The ExpressionDef type defines an expression and an associated name that can be referenced by any expression in the artifact. The name must be unique within the artifact.
-			The context attribute specifies the scope of the execution and is used by the environment to determine when and how to evaluate the expression.
+
+The context attribute specifies the context of the execution and is used by the environment to determine whether or not to filter the data returned from retrieves based on the current context.
 
 === ExpressionRef
 
@@ -785,7 +786,7 @@ AliasedQuerySource : Element
   1..1 --> alias
 ----
 
-The AliasedQuerySource element defines a single source for inclusion in a query context. The type of the source is determined by the expression element, and the source can be accessed within the query context by the given alias.
+The AliasedQuerySource element defines a single source for inclusion in a query scope. The type of the source is determined by the expression element, and the source can be accessed within the query scope by the given alias.
 
 === AliasRef
 
@@ -796,7 +797,7 @@ AliasRef : Expression
   0..1 --> name
 ----
 
-The AliasRef expression allows for the reference of a specific source within the context of a query.
+The AliasRef expression allows for the reference of a specific source within the scope of a query.
 
 === ByColumn
 
@@ -840,7 +841,7 @@ LetClause : Element
   1..1 --> identifier
 ----
 
-The LetClause element allows any number of expression definitions to be introduced within a query context. Defined expressions can be referenced by name within the query context.
+The LetClause element allows any number of expression definitions to be introduced within a query scope. Defined expressions can be referenced by name within the query scope.
 
 === QueryLetRef
 
@@ -851,7 +852,7 @@ QueryLetRef : Expression
   0..1 --> name
 ----
 
-The QueryLetRef expression allows for the reference of a specific let definition within the context of a query.
+The QueryLetRef expression allows for the reference of a specific let definition within the scope of a query.
 
 === RelationshipClause
 
@@ -862,7 +863,7 @@ RelationshipClause : AliasedQuerySource
   1..1 --> suchThat : Expression
 ----
 
-The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query context. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query context.
+The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query scope. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query scope.
 
 === ReturnClause
 
@@ -917,7 +918,7 @@ The type of the elements to be returned is specified with the _dataType_ attribu
 
 In addition, the _Retrieve_ introduces the ability to specify optional criteria for the request. The available criteria are intentionally restricted to the set of codes involved, and the date range involved. If these criteria are omitted, the request is interpreted to mean all data of that type.
 
-Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unspecified) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unspecified context, the data is returned for the entire source.
+Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unfiltered) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unfiltered context, the data is returned for the entire source.
 
 === Retrieve
 
@@ -928,6 +929,8 @@ Retrieve : Expression
   0..1 --> codes : Expression
   ¦
   0..1 --> dateRange : Expression
+  ¦
+  0..1 --> context : Expression
   ¦
   1..1 --> dataType
   ¦
@@ -944,8 +947,6 @@ Retrieve : Expression
   0..1 --> dateLowProperty
   ¦
   0..1 --> dateHighProperty
-  ¦
-  0..1 --> scope
 ----
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
@@ -955,6 +956,9 @@ The codes element optionally specifies an expression that results in a List<Code
 
 ==== dateRange
 The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
+
+==== context
+If specified, the context element references an expression that, when evaluated, provides the context for the retrieve.
 
 ==== dataType
 The dataType attribute specifies the type of data being requested.
@@ -1008,9 +1012,6 @@ The dateHighProperty attribute optionally specifies which property of the model 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 If the dateHighProperty is present, the dateLowProperty must also be present, and will be used to determine the date range value of instances. Filtering using the specified date range occurs as described in the dateProperty.
-
-==== scope
-The scope attribute optionally specifies a name for the scope for this operator that can be used within expressions to reference the current iteration element.
 
 [[comparison-operators-1]]
 == Comparison Operators

@@ -297,9 +297,9 @@ year
 years
 ----
 
-Note that most reserved words may still be used as identifiers if the context is unambiguous. For example, `exists` is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
+Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, `exists` is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
 
-In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several contexts in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
+In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
 [[identifiers]]
 === Identifiers
@@ -1186,7 +1186,7 @@ Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or 
 [[introducing-context-in-queries]]
 == Introducing Scoped Definitions in Queries
 
-The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
+The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the scope of a single query. For example:
 
 [source,cql]
 ----
@@ -1265,7 +1265,7 @@ define "Encounters with Warfarin and Parenteral Therapies":
     and P.effectiveTime starts during E.period
 ----
 
-We now have both the encounter and the warfarin and parenteral therapies in context and can perform calculations involving all three:
+We now have both the encounter and the warfarin and parenteral therapies in scope and can perform calculations involving all three:
 
 [source,cql]
 ----
@@ -1513,7 +1513,7 @@ This approach enables the flexibility of FHIRPath expressions but still maintain
 [[method-invocation]]
 === Method Invocation
 
-The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare context variables such as [.id]#$this# that can be addressed in the body of the method.
+The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as [.id]#$this# that can be addressed in the body of the method.
 
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the link:16-i-fhirpathtranslation.html[FHIRPath Function Translation Appendix].
 

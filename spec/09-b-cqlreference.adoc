@@ -5502,7 +5502,7 @@ If the patient’s birthdate is [.kw]#null#, or the [.id]#asOf# argument is [.kw
 
 The [.id]#AgeAt# operators are defined in terms of a datetime duration calculation. This means that if the age of the patient or the given [.id]#asOf# value are not specified to the level of precision corresponding to the operator being invoked, the will be an _uncertainty_ over the range of possible values, potentially causing some comparisons to return [.kw]#null#.
 
-These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, passing the birth date from the patient context.
+These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, passing the birth date from the Patient context.
 
 [[calculateage]]
 === CalculateAge
@@ -5620,7 +5620,7 @@ For [.id]#Concept# values, equivalence is defined as a non-empty intersection of
 
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
-Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information in membership contexts.
+Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information when determining terminological membership.
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 

@@ -209,12 +209,12 @@ Operator* |Generally, the type of the node is determined by resolving the type o
 |*ValueSetRef* |The type of the node is a list of codes.
 |*Query* |If the query has a return clause, the result is a list of the type of the return expression. Otherwise, the result type is determined by the source of the query.
 |*AliasRef* |The type of the node is the element type of the type of the query source referenced by the alias.
-|*QueryLetRef* |The type of the node is the type of the referenced expression defined within the query context.
+|*QueryLetRef* |The type of the node is the type of the referenced expression defined within the query scope.
 |============================================================================================================================================================================
 
 Table 5‑C
 
-During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of context-sensitive operators such as Current and Property to be determined. Refer to the <<Execution Model>> (5.2.4) section for a description of the evaluation-time stack.
+During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of scope-sensitive operators such as Current and Property to be determined. Refer to the <<Execution Model>> (5.2.4) section for a description of the evaluation-time stack.
 
 Details for the specifics of type determination for each operator are provided with the documentation for those operators.
 
@@ -267,7 +267,7 @@ The graph of the expression being evaluated is traversed and the result of each 
 
 Table 5‑E
 
-During evaluation, the implementation must maintain a stack that is used to represent the value that is currently in context. Certain operations within the expression language are defined with a scope, and these operations use the stack to represent this scope. The following table details these operations:
+During evaluation, the implementation must maintain a stack that is used to represent the value that is currently in scope. Certain operations within the expression language are defined with a scope, and these operations use the stack to represent this scope. The following table details these operations:
 
 [[table-5-f]]
 [cols=",",options="header",]
@@ -318,12 +318,12 @@ Once the source for the query has been established, the iterative clauses must b
 [[let-clause]]
 ==== Let Clause
 
-The let clause, if present, allows a CQL author to introduce expression definitions scoped to the query context. For each definition specified in the let clause, the result of the expression is evaluated and made available within the query context such that subsequent clauses can access the value. Note that an implementation may opt for lazy evaluation, saving the cost of evaluating an expression that is never actually referenced.
+The let clause, if present, allows a CQL author to introduce expression definitions scoped to the query scope. For each definition specified in the let clause, the result of the expression is evaluated and made available within the query scope such that subsequent clauses can access the value. Note that an implementation may opt for lazy evaluation, saving the cost of evaluating an expression that is never actually referenced.
 
 [[with-clause]]
 ==== With Clause
 
-Each with clause present in the query acts as a filter to remove items from the result if they do not satisfy the conditions of the with clause. Evaluation proceeds by introducing the related source into the query context and evaluating the “such that” condition of the with clause for each element of the introduced source. If no element of the introduced source satisfies the such that condition, the current row of the query source is filtered out of the result.
+Each with clause present in the query acts as a filter to remove items from the result if they do not satisfy the conditions of the with clause. Evaluation proceeds by introducing the related source into the query scope and evaluating the “such that” condition of the with clause for each element of the introduced source. If no element of the introduced source satisfies the such that condition, the current row of the query source is filtered out of the result.
 
 Note that because this is a positive existence condition, the test can stop after the first positive result. Only in the case of a negative result would all the elements of the introduced source need to be processed.
 

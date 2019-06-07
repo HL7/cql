@@ -225,7 +225,7 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the overall context for statements within the language. Models define the available contexts, including at least one context named "Unspecified" that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
+The context declaration defines the overall context for statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
@@ -233,14 +233,14 @@ The context declaration defines the overall context for statements within the la
 |Context |Description
 |*Patient* |The Patient context specifies that expressions should be interpreted with reference to a single patient.
 |*Practitioner* |The Practitioner context specifies that expressions should be interpreted with reference to a single practitioner.
-|*Unspecified* |The Unspecified context indicates that expressions are not interpreted with reference to a particular context.
+|*Unfiltered* |The Unfiltered context indicates that expressions are not interpreted with reference to a particular context.
 |========================================================================================================================================
 
 Table 2‑C
 
 Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
-When no context is specified in the library, and the model has not declared a default context, the default context shall be Patient.
+When no context is specified in the library, and the model has not declared a default context, the default context is [.id]#Unfiltered#.
 
 [source,cql]
 ----
@@ -282,7 +282,7 @@ For more information on the use of define statements, refer to the <<Using Defin
 [[retrieve]]
 == Retrieve
 
-The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unspecified#) in which the retrieve is evaluated.
+The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
@@ -347,7 +347,7 @@ The [.id]#"Get Condition from Code Declaration"# expression returns conditions f
 
 Within the [.id]#Patient# context, the results of any given retrieve will always be scoped to a single patient, as determined by the environment. For example, in a quality measure evaluation environment, the [.id]#Patient# context may be the current patient being considered. In a clinical decision support environment, the [.id]#Patient# context would be the patient for which guidance is being sought.
 
-By contrast, if the [.id]#Unspecified# context is used, the results of any given retrieve will not be limited to a particular context. For example:
+By contrast, if the [.id]#Unfiltered# context is used, the results of any given retrieve will not be limited to a particular context. For example:
 
 [source,cql]
 ----
@@ -356,11 +356,22 @@ By contrast, if the [.id]#Unspecified# context is used, the results of any given
 
 When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unspecified# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
 
-Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unspecified# context and vice versa. Note that this only applies to the [.id]#Unspecified# context. It is not legal for an expression in one specified context to reference an expression in another specified context.
+As another example, consider the set of encounters:
 
-In an [.id]#Unspecified# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the population, and the implementation environment combines the results.
+[source,cql]
+----
+[Encounter: "Inpatient"]
+----
 
-If the result type of an expression in a specific context is not a list, the result of accessing it from an [.id]#Unspecified# context will be a list with elements of the type of the  expression. For example:
+As the following diagram illustrates, in the [.id]#Unfiltered# context, this retrieve will return all the encounters in the underlying system, whereas in the [.id]#Patient# context, this retrieve will return only encounters for the _current_ patient, where _current_ is determined by the evaluation:
+
+image:extracted-media/media/context-diagram.png
+
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context.
+
+In an [.id]#Unfiltered# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the unfiltered context, and the implementation environment combines the results.
+
+If the result type of an expression in a specific context is not a list, the result of accessing it from an [.id]#Unfiltered# context will be a list with elements of the type of the  expression. For example:
 
 [source,cql]
 ----
@@ -369,7 +380,7 @@ context Patient
 define InInitialPopulation:
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 
-context Unspecified
+context Unfiltered
 
 define InitialPopulationCount:
   Count(InInitialPopulation IP where IP is true)
@@ -377,9 +388,9 @@ define InitialPopulationCount:
 
 In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.
 
-If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the population flattened into a single list.
+If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the unfiltered context flattened into a single list.
 
-In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unspecified# context expression results in the evaluation of the [.id]#Unspecified# context expression, and the result type is unaffected.
+In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unfiltered# context expression results in the evaluation of the [.id]#Unfiltered# context expression, and the result type is unaffected.
 
 [.note-info]
 ____
@@ -1206,7 +1217,7 @@ Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-
 [[operations]]
 == Operations
 
-In addition to retrieving clinical information about a patient or population, the expression of clinical knowledge artifacts often involves the use of various operations such as comparison, logical operations such as [.kw]#and# and [.kw]#or#, computation, and so on. To ensure that the language can effectively express a broad range of knowledge artifacts, CQL includes a comprehensive set of operations. In general, these operations are all _expressions_ in that they can be evaluated to return a value of some type, and the type of that return value can be determined by examining the types of values and operations involved in the expression.
+In addition to retrieving clinical information about a patient or set of patients, the expression of clinical knowledge artifacts often involves the use of various operations such as comparison, logical operations such as [.kw]#and# and [.kw]#or#, computation, and so on. To ensure that the language can effectively express a broad range of knowledge artifacts, CQL includes a comprehensive set of operations. In general, these operations are all _expressions_ in that they can be evaluated to return a value of some type, and the type of that return value can be determined by examining the types of values and operations involved in the expression.
 
 This means that for each operation, CQL defines the number and type of each input (_argument_) to the operation and the type of the result, given the types of each argument.
 
@@ -2452,7 +2463,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<15-h-timeintervalcalculations.adoc#examples,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.html,Examples>> included with this specification.
 
 [[running-example]]
 === Running Example
