@@ -1388,7 +1388,7 @@ define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
 
 define "Estimated Due Date":
   Last(
-    ["Mother" -> "Observation": "Delivery date Estimated"] Exam
+    ["Mother" -> "Observation": "Estimated Due Date Exam"] Exam
       sort by effective
   )
 
@@ -1396,11 +1396,13 @@ define "Gestational Age in Days at Birth":
   (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
 ----
 
-Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
+Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
 
 [.note-danger]
 ____
 As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
+
+See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
 
 ____
 

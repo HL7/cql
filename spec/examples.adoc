@@ -6,6 +6,7 @@
   
 The examples provided here illustrate the use of Clinical Quality Language to express the logic involved in decision support and quality measurement artifacts. The examples are intended for educational and demonstration purposes only and should not be considered endorsed or production ready.
 
+[[chlamydia-screening-examples]]
 == Chlamydia Screening Examples
 
 These examples illustrate the logic for coordinated decision support and quality measurement artifacts expressed in CQL, as developed in the Author's Guide. The first set illustrates independent logic, and the second set illustrates the same artifacts using a common library to share logic.
@@ -58,12 +59,14 @@ ELM Artifacts with Debug Information Included:
 
 These examples illustrate various quality measures expressed in CQL.
 
+[[cms26v2]]
 === CMS26v2
 
 * link:examples\CMS26v2_CQM.cql[CQL]
 * link:examples\CMS26v2_CQM.xml[ELM (XML)]
 * link:examples\CMS26v2_CQM.json[ELM (JSON)]
 
+[[cms55v1]]
 === CMS55v1
 
 Using QUICK:
@@ -78,12 +81,14 @@ Using QDM:
 * link:examples\CMS55v1_QDM.xml[ELM (XML)]
 //* link:examples\CMS55v1_QDM.json[ELM (JSON)]
 
+[[cms135]]
 === CMS135
 
 * link:examples\CMS135_QDM.cql[CQL]
 * link:examples\CMS135_QDM.xml[ELM (XML)]
 * link:examples\CMS135_QDM.json[ELM (JSON)]
 
+[[cms146v2]]
 === CMS146v2
 
 Using QUICK:
@@ -98,12 +103,14 @@ Using QDM:
 * link:examples\CMS146v2_QDM.xml[ELM (XML)]
 * link:examples\CMS146v2_QDM.json[ELM (JSON)]
 
+[[cms154v1]]
 === CMS154v1
 
 * link:examples\CMS154v1_NQF0069.cql[CQL]
 * link:examples\CMS154v1_NQF0069.xml[ELM (XML)]
 * link:examples\CMS154v1_NQF0069.json[ELM (JSON)]
 
+[[cms179v2]]
 === CMS179v2
 
 Using QUICK:
@@ -118,3 +125,12 @@ Using QDM:
 * link:examples\CMS179v2_QDM.xml[ELM (XML)]
 * link:examples\CMS179v2_QDM.json[ELM (JSON)]
   
+[[mother-infant-measure]]
+=== Mother Infant Measure
+
+This example illustrates the use of related-context retrieves to access the
+mother's record from a measure focused on an infant.
+
+* link:examples\Example.RelatedContextRetrieve-0.1.0.cql[CQL]
+* link:examples\Example.RelatedContextRetrieve-0.1.0.xml[ELM (XML)]
+* link:examples\Example.RelatedContextRetrieve-0.1.0.json[ELM (JSON)]
