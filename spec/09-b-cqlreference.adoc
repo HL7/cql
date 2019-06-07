@@ -1340,6 +1340,8 @@ For comparisons involving Date, DateTime, or Time values with imprecision, note 
 define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ----
 
+Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
@@ -1479,6 +1481,8 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
 ----
 
+Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _greater_ operator:
@@ -1521,6 +1525,8 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 ----
 define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
 ----
+
+Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1565,6 +1571,8 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
 ----
 
+Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _less_ operator:
@@ -1608,6 +1616,8 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 ----
 define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
 ----
+
+Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
