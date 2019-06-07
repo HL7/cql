@@ -356,7 +356,7 @@ By contrast, if the [.id]#Unspecified# context is used, the results of any given
 
 When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unspecified# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
 
-Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unspecified# context and vice versa. Note that this only applies to the [.id]#Unspecified# context. It is not legal for an expression in one specified context to reference an expression in another specified context.
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unspecified# context and vice versa. Note that this only applies to the [.id]#Unspecified# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the Unspecified context.
 
 In an [.id]#Unspecified# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the population, and the implementation environment combines the results.
 
