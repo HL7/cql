@@ -140,10 +140,12 @@ by
 called
 case
 cast
+code
 Code
 codesystem
 codesystems
 collapse
+concept
 Concept
 contains
 context
@@ -244,7 +246,60 @@ year
 years
 ----
 
-In general, keywords within CQL are also considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
+[[reserved-words]]
+=== Reserved Words
+
+When there is no possibility for ambiguity, keywords may also be used as identifiers. However, many keywords are considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
+
+The following keywords are defined as reserved words:
+
+[source,cql]
+----
+all
+case
+cast
+Code
+collapse
+Concept
+convert
+day
+days
+difference
+distinct
+duration
+exists
+expand
+false
+flatten
+from
+if
+hour
+hours
+Interval
+List
+maximum
+millisecond
+milliseconds
+minimum
+minute
+minutes
+month
+months
+not
+null
+second
+seconds
+true
+Tuple
+week
+weeks
+year
+years
+----
+
+Note that most reserved words may still be used as identifiers if the context is unambiguous. For example, `exists` is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
+
+In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several contexts in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
 [[identifiers]]
 === Identifiers
