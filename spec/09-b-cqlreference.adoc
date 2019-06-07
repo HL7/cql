@@ -5652,6 +5652,8 @@ in(code String, codesystem CodeSystemRef) Boolean
 in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
 in(codes List<Code>, codeSystem CodeSystemRef) Boolean
+in(List<string>, CodeSystem)
+in(List<Concept>, CodeSystem)
 ----
 
 *Description:*
@@ -5680,6 +5682,12 @@ define CodeInCodesystem: Code { system: "http://snomed.info/sct", code: '1234567
 define NullStringInCodesystem: null as String in "SNOMED:2014" // false
 ----
 
+____
+
+Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+
+____
+
 [[in-valueset]]
 === In (Valueset)
 
@@ -5691,6 +5699,8 @@ in(code String, valueset ValueSetRef) Boolean
 in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
 in(codes List<Code>, valueset ValueSetRef) Boolean
+in(List<string>, ValueSet)
+in(List<Concept>, ValueSet)
 ----
 
 *Description:*
@@ -5718,6 +5728,12 @@ define StringInValueset: '12345678' in "A Super Awesome ValueSet"
 define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678' } in "A Super Awesome ValueSet"
 define NullStringInValueset: null as String in "A Super Awesome ValueSet" // false
 ----
+
+____
+
+Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+
+____
 
 [[errors-and-messaging]]
 == Errors and Messaging
