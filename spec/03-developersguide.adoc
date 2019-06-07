@@ -322,15 +322,15 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |*Primary* |[.sym]#.# [.sym]#[]# [.sym]#()#
 |*Conversion Phrase* |[.kw]#convert#..[.kw]#to#
 |*Unary Arithmetic* |unary [.sym]#+/-#
-|*Extractor* |[.kw]#start#/[.kw]#end#/[.kw]#difference#/[.kw]#duration#/[.kw]#width#/[.kw]#successor#/[.kw]#predecessor of# +
-_component_/[.kw]#singleton from#
+|*Extractor* |[.kw]#start# [.kw]#end# [.kw]#difference# [.kw]#duration# [.kw]#width# [.kw]#successor# [.kw]#predecessor of# +
+_component_ [.kw]#singleton from#
 |*Exponentiation* |[.sym]#^#
 |*Multiplicative* |[.sym]#*# [.sym]#/# [.kw]#div mod#
 |*Additive* |[.sym]#+# [.sym]#-# [.sym]#&#
 |*Conditional* |[.kw]#if#..[.kw]#then#..[.kw]#else# +
 [.kw]#case#..[.kw]#else#..[.kw]#end#
 |*Unary List* |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten# [.kw]#expand#
-|*Unary Test* |[.kw]#is null#/[.kw]#true#/[.kw]#false#
+|*Unary Test* |[.kw]#is null# [.kw]#true# [.kw]#false#
 |*Type Operators* |[.kw]#is as cast#..[.kw]#as#
 |*Unary Logical* |[.kw]#not exists#
 |*Between* |[.kw]#between# +
