@@ -243,6 +243,8 @@ Evaluation takes place within an execution model that provides access to the dat
 |*Date* |A date time defining the clinically relevant date and/or time of the item
 |=======================================================================================
 
+Note that the "must have" here is referring to the fact that structures to be tracked in this way must have these elements, not that the instances of those structures must have values for them.
+
 Table 5‑D
 
 Note that the _context_ associated with each ExpressionDef is important here, as it provides a filter on the set of data returned as described by the model. For example, in the `Patient` context, only data for a specific patient should be returned, and the unique id of that patient must be provided by the evaluation environment. This means in particular that the relationship of data elements in the model to the context must be understood and managed by the implementation so that only data related to the current context is provided through the data access layer.
