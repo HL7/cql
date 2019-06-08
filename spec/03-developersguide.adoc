@@ -377,15 +377,15 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |*Primary* |[.sym]#.# [.sym]#[]# [.sym]#()#
 |*Conversion Phrase* |[.kw]#convert#..[.kw]#to#
 |*Unary Arithmetic* |unary [.sym]#+/-#
-|*Extractor* |[.kw]#start#/[.kw]#end#/[.kw]#difference#/[.kw]#duration#/[.kw]#width#/[.kw]#successor#/[.kw]#predecessor of# +
-_component_/[.kw]#singleton from#
+|*Extractor* |[.kw]#start# [.kw]#end# [.kw]#difference# [.kw]#duration# [.kw]#width# [.kw]#successor# [.kw]#predecessor of# +
+_component_ [.kw]#singleton from#
 |*Exponentiation* |[.sym]#^#
 |*Multiplicative* |[.sym]#*# [.sym]#/# [.kw]#div mod#
 |*Additive* |[.sym]#+# [.sym]#-# [.sym]#&#
 |*Conditional* |[.kw]#if#..[.kw]#then#..[.kw]#else# +
 [.kw]#case#..[.kw]#else#..[.kw]#end#
 |*Unary List* |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten# [.kw]#expand#
-|*Unary Test* |[.kw]#is null#/[.kw]#true#/[.kw]#false#
+|*Unary Test* |[.kw]#is null# [.kw]#true# [.kw]#false#
 |*Type Operators* |[.kw]#is as cast#..[.kw]#as#
 |*Unary Logical* |[.kw]#not exists#
 |*Between* |[.kw]#between# +
@@ -1397,6 +1397,8 @@ define "Gestational Age in Days at Birth":
 ----
 
 Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
+
+If the expression being defined (such as "Mother" in the previous example) is null, the related context retrieve would be evaluated with id = null, which would result in unknown and an empty list would be the result.
 
 [.note-danger]
 ____
