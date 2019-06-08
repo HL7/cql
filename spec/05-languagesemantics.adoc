@@ -834,9 +834,11 @@ These expressions are equivalent to:
 ----
 start of A same or before start of B - 3 days
 start of A before start of B - 3 days
-start of A in (start of B, start of B + 3 days]
-start of A in (start of B, start of B + 3 days)
+start of A in (start of B, start of B + 3 days] and B is not null
+start of A in (start of B, start of B + 3 days) and B is not null
 ----
+
+Note the addition of the null test in the case that an interval is constructed from the point B. This is necessary because if B is null and the constructed interval has inclusive boundaries, the null boundary of the resulting interval will be interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
 [[within]]
 ==== Within
@@ -852,8 +854,10 @@ This expression is equivalent to:
 
 [source,cql]
 ----
-start of A in [start of B - 3 days, start of B + 3 days]
+start of A in [start of B - 3 days, start of B + 3 days] and B is not null
 ----
+
+Note that as with the before and after transformations, a null test is required here because if B is null, then the constructed interval would be incorrectly interpreted as continuing to the beggining or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
 [[interval-operators-1]]
 ==== Interval Operators
