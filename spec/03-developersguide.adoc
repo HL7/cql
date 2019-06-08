@@ -857,7 +857,7 @@ If the unit conversion is valid, the expression results in a quantity with the t
 [.note-warning]
 ____
 
-Note that implementations are not required to support unit conversion, and may return null, even if the conversion is valid. Implementations that do support unit conversion must do so according to the conversion behavior specified by UCUM.
+Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 
 ____
 

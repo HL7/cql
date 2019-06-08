@@ -653,7 +653,7 @@ The ConvertQuantity operator converts a Quantity to an equivalent Quantity with 
 [.note-warning]
 ____
   
-Note that implementations are not required to support quantity conversion, and so may return null, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 
 ____
 
