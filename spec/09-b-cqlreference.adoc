@@ -1891,6 +1891,34 @@ define DecimalExp: Exp(-0.0) // 1.0
 define QuantityExpIsNull: Exp(null as Decimal)
 ----
 
+=== HighBoundary
+
+*Signature:*
+
+[source,cql]
+----
+HighBoundary(input Decimal, precision Integer) Decimal
+HighBoundary(input Date, precision Integer) Date
+HighBoundary(input DateTime, precision Integer) DateTime
+HighBoundary(input Time, precision Integer) Time
+----
+
+The [.id]#HighBoundary# function returns the greatest possible value of the input to the specified precision.
+			
+If no precision is specified, the precision of the input value is used.
+
+The function can be used with Decimal, Date, DateTime, and Time values.
+
+[source,cql]
+----
+HighBoundary(1.587, 8) // 1.58799999
+HighBoundary(@2014, 6) // @2014-12
+HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
+HighBoundary(@T10:30, 9) // @T10:30:59.999
+----
+
+If the input value is null, the result is null.
+
 [[log]]
 === Log
 
@@ -1919,6 +1947,33 @@ define IntegerLog: Log(16, 2) // 4.0
 define DecimalLog: Log(100.0, 10.0) // 2.0
 define QuantityLogIsNull: Log(null, 10.0)
 ----
+
+=== LowBoundary
+
+*Signature:*
+
+[source,cql]
+----
+LowBoundary : BinaryExpression
+----
+
+*Description:*
+
+The [.id]#LowBoundary# function returns the least possible value of the input to the specified precision.
+			
+If no precision is specified, the precision of the input value is used.
+
+The function can be used with Decimal, Date, DateTime, and Time values.
+
+[source,cql]
+----
+LowBoundary(1.587, 8) // 1.58700000
+LowBoundary(@2014, 6) // @2014-01
+LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
+LowBoundary(@T10:30, 9) // @T10:30:00.000
+----
+
+If the input value is null, the result is null.
 
 [[ln]]
 === Ln
@@ -2132,6 +2187,43 @@ define DecimalNegate: -(-3.3) // 3.3
 define QuantityNegate: -3.3 'mg' // -3.3 'mg'
 define NegateIsNull: -(null as Integer)
 ----
+
+=== Precision
+
+*Signature:*
+
+[source,cql]
+----
+Precision(argument Decimal) Integer
+Precision(argument Date) Integer
+Precision(argument DateTime) Integer
+Precision(argument Time) Integer
+----
+
+*Description:*
+
+The Precision function returns the number of digits of precision in the input value.
+
+The function can be used with Decimal, Date, DateTime, and Time values.
+
+For Decimal values, the function returns the number of digits of precision after the decimal place in the input value.
+
+[source,cql]
+----
+Precision(1.58700) // 5
+----
+
+For Date and DateTime values, the function returns the number of digits of precision in the input value.
+
+[source,cql]
+----
+Precision(@2014) // 4
+Precision(@2014-01-05T10:30:00.000) // 17
+Precision(@T10:30) // 4
+Precision(@T10:30:00.000) // 9
+----
+
+If the argument is null, the result is null.
 
 [[predecessor]]
 === Predecessor
