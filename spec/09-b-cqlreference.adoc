@@ -1381,7 +1381,7 @@ For ratios, this means that the numerator and denominator must be the same, usin
 
 For tuple types, this means that equality returns [.kw]#true# if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
 
-For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics.
+For list types, this means that equality returns [.kw]#true# if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics, with the exception that null elements are considered equal.
 
 For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
@@ -1399,7 +1399,7 @@ define StringEqualIsFalse: 'CQL is awesome!' = 'cql is awesome!'
 define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
 define RatioEqualIsTrue: 1:8 = 1:8
 define RatioEqualIsFalse: 1:8 = 2:16
-define ListEqualIsNull: { null, 1, 2, 3 } = { null, 1, 2, 3 }
+define ListEqualIsTrue: { null, 1, 2, 3 } = { null, 1, 2, 3 }
 define DateTimeEqualIsNull: @2012-01-01 = @2012-01-01T12
 define NullEqualIsNull: null = null
 ----
@@ -3498,7 +3498,7 @@ The [.kw]#contains# operator for intervals returns [.kw]#true# if the given poin
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
@@ -3733,7 +3733,7 @@ The [.kw]#in# operator for intervals returns [.kw]#true# if the given point is g
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the result is [.kw]#false#.
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
@@ -3741,7 +3741,7 @@ The following examples illustrate the behavior of the [.kw]#in# operator:
 ----
 define InIsTrue: 3 in Interval[0, 5]
 define InIsFalse: -1 in Interval[0, 7]
-define InIsNull: 3 in (null as Interval<Integer>)
+define InIsAlsoFalse: 3 in (null as Interval<Integer>)
 ----
 
 [[includes]]
@@ -4353,7 +4353,7 @@ contains(argument List<T>, element T) Boolean
 
 The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list using equality semantics.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
@@ -4361,7 +4361,8 @@ The following examples illustrate the behavior of the [.kw]#contains# operator:
 ----
 define ContainsIsTrue: { 1, 3, 5, 7 } contains 5
 define ContainsIsFalse: { 1, 3, 5, 7 } contains 4
-define ContainsIsNull: null contains 4
+define ContainsIsAlsoFalse: null contains 4
+define ContainsIsNull: { 1, 3, 5, 7 } contains null
 ----
 
 [[distinct]]
@@ -4380,7 +4381,7 @@ The [.kw]#distinct# operator returns the given list with duplicates eliminated u
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
-Note that because nulls compare unknown, this means that multiple nulls in the input list will be preserved in the output.
+The operator uses equality comparison semantics as defined in the Equal operator, with the exception that nulls are considered equal for the purposes of distinct determination. This means that multiple nulls in the input will result in a single null in the output.
 
 The following examples illustrate the behavior of the [.kw]#distinct# operator:
 
@@ -4452,11 +4453,11 @@ except(left List<T>, right List<T>) List<T>
 
 The [.kw]#except# operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.
 
-This operator uses equality semantics to determine whether two elements are the same for the purposes of computing the difference.
+This operator uses equality semantics to determine whether two elements are the same for the purposes of computing the difference, with the exception that [.kw]#null# elements are considered equal.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the operation is performed as though the second argument was an empty list.
 
 The following examples illustrate the behavior of the [.kw]#except# operator:
 
@@ -4464,6 +4465,7 @@ The following examples illustrate the behavior of the [.kw]#except# operator:
 ----
 define Except: { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
 define ExceptLeft: { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
+define ExceptWithNull: { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
 define ExceptIsNull: null except { 1, 3, 5 }
 ----
 
@@ -4555,7 +4557,7 @@ in(element T, argument List<T>) Boolean
 
 The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list using equality semantics.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the result is [.kw]#false#.
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
@@ -4563,8 +4565,8 @@ The following examples illustrate the behavior of the [.kw]#in# operator:
 ----
 define InIsTrue: 5 in { 1, 3, 5, 7 }
 define InIsFalse: 5 in { 1, 3 }
-define InIsNull: 5 in null
-define IsIsAlsoNull: null in { 1, 3, 5, null }
+define InIsAlsoFalse: 5 in null
+define InIsNull: null in { 1, 3, 5, null }
 ----
 
 [[includes-1]]
@@ -4699,7 +4701,7 @@ intersect(left List<T>, right List<T>) List<T>
 
 The [.kw]#intersect# operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.
 
-This operator uses equality semantics to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal for the purposes of the intersection.
 
 The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
 
@@ -4710,6 +4712,7 @@ The following examples illustrate the behavior of the [.kw]#intersect# operator:
 [source,cql]
 ----
 define Intersect: { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
+define IntersectWithNull: { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
 define IntersectIsNull: { 1, 3, 5 } intersect null
 ----
 
@@ -4996,9 +4999,13 @@ union(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The [.kw]#union# operator for lists returns a list with all elements from both arguments. Note that duplicates are eliminated during this process; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
+The [.kw]#union# operator for lists returns a list with all unique elements from both arguments. 
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+The union operator is defined as a set operation, meaning that duplicates are eliminated; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
+
+This operator uses equality semantics with the exception that null elements are considered equal.
+
+If either argument is [.kw]#null#, it is considered an empty list for the purposes of evaluating the union.
 
 Note that the union operator can also be invoked with the symbolic operator ([.sym]#|#).
 
@@ -5008,7 +5015,7 @@ The following examples illustrate the behavior of the [.kw]#union# operator:
 ----
 define Union: { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
 define UnionAlternateSyntax: { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
-define UnionIsNull: null union { 4, 5 }
+define UnionWithNull: null union { 4, 5 } // { 4, 5 }
 ----
 
 [[aggregate-functions]]
