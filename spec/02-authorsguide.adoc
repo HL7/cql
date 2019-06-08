@@ -354,7 +354,7 @@ By contrast, if the [.id]#Unfiltered# context is used, the results of any given 
 [Condition: "Acute Pharyngitis"] C where C.onsetDateTime during MeasurementPeriod
 ----
 
-When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unspecified# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
+When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unfiltered# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
 
 As another example, consider the set of encounters:
 
@@ -367,7 +367,7 @@ As the following diagram illustrates, in the [.id]#Unfiltered# context, this ret
 
 image:extracted-media/media/context-diagram.png
 
-Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the Unspecified context.
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the [.id]#Unfiltered# context.
 
 In an [.id]#Unfiltered# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the unfiltered context, and the implementation environment combines the results.
 
