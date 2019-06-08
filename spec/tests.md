@@ -13,5 +13,4 @@ This is the same test format used by the FHIRPath specification.
 
 <a href="tests.zip">Test Source</a>.
 
-These tests have not been fully updated to the 1.4 specification. Ballot feedback is being sought to improve and expand this test suite.
-{:.note-to-balloters}
+Note that these tests have not been fully updated to the 1.4 specification.

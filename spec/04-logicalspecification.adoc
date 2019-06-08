@@ -983,13 +983,6 @@ Note that this property could potentially be specified elsewhere as part of an i
 
 In addition, this property may be a path, including qualifiers and constant indexers.
 
-[.note-to-balloters]
-____
-
-Note to balloters: The addition of the `valueSetProperty` attribute here is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. The feature proposed here, of using a valueSetProperty attribute to allow the retrieve to specify where to look for this valueset identifier can be used to address this situation without needing to change the conceptual data model or the CQL logic describing the negated activity. We are actively seeking feedback on whether this approach is reasonable, or if there are other, better alternatives that have not been considered.
-
-____
-
 ==== dateProperty
 The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
 
