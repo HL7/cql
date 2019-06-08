@@ -767,6 +767,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ----
 ConvertsToQuantity(argument Decimal) Boolean
 ConvertsToQuantity(argument Integer) Boolean
+ConvertsToQuantity(argument Ratio) Boolean
 ConvertsToQuantity(argument String) Boolean
 ----
 
@@ -1056,6 +1057,7 @@ define IsNull: ToInteger('one')
 ----
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
+ToQuantity(argument Ratio) Quantity
 ToQuantity(argument String) Quantity
 ----
 
@@ -1077,6 +1079,8 @@ Note that the decimal value of the quantity returned by this operator must be a 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Quantity# value, the result is [.kw]#null#.
 
 For the [.id]#Integer# and [.id]#Decimal# overloads, the operator returns a quantity with the value of the argument and a unit of [.lit]#'1'# (the default unit).
+
+For the [.id]#Ratio# overload, the operator is equivalent to dividing the numerator of the ratio by the denominator.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
