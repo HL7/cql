@@ -3802,7 +3802,7 @@ The following are the results of these examples:
 { Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }
 ----
 
-If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may not completely cover the input range. For example:
+If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may be more broad than the input range due to this truncation. For example:
 
 [source,cql]
 ----
