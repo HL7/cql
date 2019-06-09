@@ -3594,13 +3594,13 @@ The [.kw]#collapse# operator returns the unique set of intervals that completely
 
 Note that because the semantics for overlaps and meets are themselves defined in terms of the interval successor and predecessor operators, sets of Date-, DateTime-, or Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
-The per argument determines the precision at which the collapse will be performed, and must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For Date, DateTime, or Time intervals, this means a temporal duration.
+The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit [.lit]#'1'# (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
+
+If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
-
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary).
 
 The following examples illustrate the behavior of the [.kw]#collapse# operator:
 
@@ -3780,7 +3780,9 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 
 The [.kw]#expand# operator returns the set of intervals of size per for all the intervals in the input.
 
-The per argument must be a quantity value that is compatible with the point type of the input intervals. For numeric intervals, this means a default unit ([.lit]#'1'#). For Date, DateTime, or Time intervals, this means a temporal duration.
+The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
+
+If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 
 More precisely, for each interval in the input, contribute all the intervals of size per that start on or after the lower boundary and end on or before the upper boundary, where the lower boundary for each interval contributed is obtained by successively adding the per to the lower boundary of the input interval.
 
@@ -3835,8 +3837,6 @@ For intervals of quantities, the semantics of quantity arithmetic and comparison
 If the list of intervals is empty, the result is empty. If the list of intervals contains [.kw]#nulls#, they will be excluded from the resulting list.
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
-
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. an interval with the same starting and ending boundary). In this case, the per argument is determined by looking at the lower boundary of the first interval, sorted by interval start.
 
 [.note-warning]
 ____
