@@ -2779,7 +2779,7 @@ OverlapsAfter : BinaryExpression
   0..1 --> precision
 ----
 
-The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval contains the ending point of the second interval.
+The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval ends after and starts on or before the end of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
