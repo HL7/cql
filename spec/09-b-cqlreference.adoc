@@ -2971,7 +2971,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3015,7 +3015,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# values as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3124,6 +3124,8 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hour#, [.kw]#minute#, 
 
 Note specifically that due to variability in the way week numbers are determined, extraction of a week component is not supported.
 
+When extracting the Time from a DateTime value, implementations should normalize to the timezone offset of the evaluation request timestamp.
+
 If the argument is [.kw]#null#, or is not specified to the level of precision being extracted, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _component_-[.kw]#from# operator:
@@ -3153,8 +3155,6 @@ difference in _precision_ between(low Time, high Time) Integer
 
 The _difference-_[.kw]#between# operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.
 
-As with all date and time calculations, difference calculations are performed respecting the timezone offset depending on the precision.
-
 For [.id]#Date# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, or [.kw]#days#.
 
 For [.id]#DateTime# values, _precision_ must be one of: [.kw]#years#, [.kw]#months#, [.kw]#weeks#, [.kw]#days#, [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
@@ -3164,6 +3164,8 @@ For [.id]#Time# values, _precision_ must be one of: [.kw]#hours#, [.kw]#minutes#
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
+
+When computing the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3199,6 +3201,8 @@ For [.id]#DateTime# values, _duration_ must be one of: [.kw]#years#, [.kw]#month
 For [.id]#Time# values, _duration_ must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
+
+When computing the duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3296,7 +3300,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3340,7 +3344,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -3386,7 +3390,7 @@ Note specifically that due to variability in the way week numbers are determined
 
 When this operator is called with both [.id]#Date# and [.id]#DateTime# inputs, the [.id]#Date# values will be implicitly converted to [.id]#DateTime# as defined by the [.id]#<<ToDateTime>># operator.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is null.
 
@@ -4244,7 +4248,7 @@ When this operator is called with a mixture of [.id]#Date#- and [.id]#DateTime#-
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -4280,7 +4284,7 @@ When this operator is called with a mixture of point values and intervals, the p
 
 For comparisons involving date or time intervals with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
@@ -4318,7 +4322,7 @@ When this operator is called with a mixture of point values and intervals, the p
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are [.kw]#null#, the result is null.
 

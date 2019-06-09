@@ -2160,6 +2160,8 @@ For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining boundaries.
 
+When calculating the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
 If either argument is null, the result is null.
 
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
@@ -2180,6 +2182,8 @@ For Date values, precision must be one of Year, Month, Week, or Day.
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
 For calculations involving weeks, the duration of a week is equivalent to 7 days.
+
+When calculating duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2226,7 +2230,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2255,7 +2259,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2284,7 +2288,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2321,6 +2325,8 @@ TimeFrom : UnaryExpression
 ----
 
 The TimeFrom operator returns the Time of the argument.
+
+When extracting the Time from a DateTime value, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
 If the argument is null, the result is null.
 
@@ -2431,7 +2437,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2461,7 +2467,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date and time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
