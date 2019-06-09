@@ -821,6 +821,8 @@ start of A same as start of B – 3 days
 start of A same as start of B + 3 days
 ----
 
+Note that these calculations use date/time arithmetic, applying _duration_, not _difference_ semantics for the comparison.
+
 For timing phrases involving relative comparison, the prefixes _less than_ and _more than_, as well as the suffixes _or more_ and _or less_ can be used:
 
 [source,cql]
