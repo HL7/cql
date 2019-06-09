@@ -1399,7 +1399,7 @@ The following examples illustrate the behavior of the _equal_ operator:
 ----
 define IntegerEqualIsTrue: 4 = (2 + 2)
 define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
-define StringEqualIsFalse: 'CQL is awesome!' = 'cql is awesome!'
+define StringEqualIsFalse: 'John Doe' = 'john doe'
 define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
 define RatioEqualIsTrue: 1:8 = 1:8
 define RatioEqualIsFalse: 1:8 = 2:16
@@ -1446,7 +1446,7 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 ----
 define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
 define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
-define StringEquivalentIsTrue: 'CQL is awesome!' ~ 'cql is awesome!'
+define StringEquivalentIsTrue: 'John Doe' ~ 'john doe'
 define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
 define RatioEquivalentIsTrue: 1:8 ~ 2:16
 define ListEquivalentIsTrue: { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
@@ -1682,7 +1682,7 @@ The following examples illustrate the behavior of the _not equal_ operator:
 ----
 define IntegerNotEqualIsFalse: 4 != (2 + 2)
 define DecimalNotEqualIsTrue: 3.5 != (3.5 - 0.1)
-define StringNotEqualIsTrue: 'CQL is awesome!' != 'cql is awesome!'
+define StringNotEqualIsTrue: 'John Doe' != 'john doe'
 define QuantityNotEqualIsNull: 3.5 'cm2' != 3.5 'cm'
 define ListNotEqualIsNull: { null, 1, 2, 3 } != { null, 1, 2, 3 }
 define DateTimeNotEqualIsNull: @2012-01-01 != @2012-01-01T12
@@ -1711,7 +1711,7 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 ----
 define IntegerNotEquivalentIsFalse: 4 !~ (2 + 2)
 define DecimalNotEquivalentIsTrue: 3.5 !~ (3.5 - 0.1)
-define StringNotEquivalentIsFalse: 'CQL is awesome!' !~ 'cql is awesome!'
+define StringNotEquivalentIsFalse: 'John Doe' !~ 'john doe'
 define QuantityNotEquivalentIsTrue: 3.5 'cm2' !~ 3.5 'cm'
 define ListNotEquivalentIsFalse: { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
 define DateTimeNotEquivalentIsTrue: @2012-01-01 !~ @2012-01-01T12
@@ -2505,9 +2505,9 @@ The following examples illustrate the behavior of the [.id]#Combine# operator:
 
 [source,cql]
 ----
-define CombineList: Combine({ 'super', 'califragilistic', 'expialidocious' }) // 'supercalifragilisticexpialidocious'
-define CombineWithSeparator: Combine({ 'CQL', 'is', 'awesome' }, ' ') // 'CQL is awesome'
-define CombineWithNulls: Combine({ 'the', 'next', 'arg', 'is', null }) // 'thenextargis'
+define CombineList: Combine({ 'A', 'B', 'C' }) // 'ABC'
+define CombineWithSeparator: Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
+define CombineWithNulls: Combine({ 'A', 'B', 'C', null }) // 'ABC'
 ----
 
 [[concatenate]]
@@ -2533,10 +2533,10 @@ The following examples illustrate the behavior of the _concatenate_ operator:
 
 [source,cql]
 ----
-define ConcatenatePlus: 'CQL is' + ' awesome' // 'CQL is awesome'
-define ConcatenateAnd: 'CQL is' & ' awesome' // 'CQL is awesome'
-define ConcatenateFun: Concatenate('CQL is', ' awesome') // 'CQL is awesome'
-define ConcatenateIsNull: 'CQL is' + null
+define ConcatenatePlus: 'John' + ' Doe' // 'John Doe'
+define ConcatenateAnd: 'John' & null & ' Doe' // 'John Doe'
+define ConcatenateFunction: Concatenate('John', ' Doe') // 'John Doe'
+define ConcatenateIsNull: 'John' + null + 'Doe' // null
 ----
 
 [[endswith]]
@@ -2561,9 +2561,9 @@ The following examples illustrate the behavior of the [.id]#EndsWith# operator:
 
 [source,cql]
 ----
-define EndsWithIsTrue: EndsWith('CQL is awesome', 'some')
-define EndsWithIsFalse: EndsWith('CQL is awesome', 'Some')
-define EndsWithIsNull: EndsWith('CQL is awesome', null)
+define EndsWithIsTrue: EndsWith('ABC', 'C') // true
+define EndsWithIsFalse: EndsWith('ABC', 'Z') // false
+define EndsWithIsNull: EndsWith('ABC', null) // null
 ----
 
 [[indexer]]
@@ -2590,9 +2590,9 @@ The following examples illustrate the behavior of the _indexer_ operator:
 
 [source,cql]
 ----
-define Indexer2: 'CQL is awesome'[2] // 'L'
-define IndexerIsNull: 'CQL is awesome'[14]
-define IndexerIsAlsoNull: 'CQL is awesome'[null]
+define Indexer2: 'ABCDE'[2] // 'C'
+define IndexerIsNull: 'ABCDE'[14] // null
+define IndexerIsAlsoNull: 'ABCDE'[null] // null
 ----
 
 [[lastpositionof]]
@@ -2617,9 +2617,9 @@ The following examples illustrate the behavior of the [.id]#LastPositionOf# oper
 
 [source,cql]
 ----
-define LastPositionOfFound: LastPositionOf('awesome', 'CQL is awesome') // 7
-define LastPositionOfNotFound: LastPositionOf('Some', 'CQL is awesome') // -1
-define LastPositionOfIsNull: LastPositionOf(null, 'CQL is awesome')
+define LastPositionOfFound: LastPositionOf('B', 'ABCDEDCBA') // 7
+define LastPositionOfNotFound: LastPositionOf('XYZ', 'ABCDE') // -1
+define LastPositionOfIsNull: LastPositionOf(null, 'ABCDE') // null
 ----
 
 [[length]]
@@ -2642,8 +2642,8 @@ The following examples illustrate the behavior of the [.id]#Length# operator:
 
 [source,cql]
 ----
-define Length14: Length('CQL is awesome') // 14
-define LengthIsNull: Length(null as String)
+define Length14: Length('ABCDE') // 5
+define LengthIsNull: Length(null as String) // null
 ----
 
 [[lower]]
@@ -2673,8 +2673,8 @@ The following examples illustrate the behavior of the [.id]#Lower# operator:
 
 [source,cql]
 ----
-define LowerCQL: Lower('CQL is awesome') // 'cql is awesome'
-define LowerIsNull: Lower(null)
+define LowerCQL: Lower('ABCDE') // 'abcde'
+define LowerIsNull: Lower(null) // null
 ----
 
 [[matches]]
@@ -2731,9 +2731,9 @@ The following examples illustrate the behavior of the [.id]#PositionOf# operator
 
 [source,cql]
 ----
-define PositionOfFound: PositionOf('s', 'CQL is awesome') // 5
-define PositionOfNotFound: PositionOf('\\d', 'CQL is awesome') // -1
-define PositionOfIsNull: PositionOf(null, 'CQL is awesome')
+define PositionOfFound: PositionOf('B', 'ABCDEDCBA') // 1
+define PositionOfNotFound: PositionOf('Z', 'ABCDE') // -1
+define PositionOfIsNull: PositionOf(null, 'ABCDE') // null
 ----
 
 [[replacematches]]
@@ -2763,9 +2763,9 @@ The following examples illustrate the behavior of the [.id]#ReplaceMatches# oper
 
 [source,cql]
 ----
-define ReplaceMatchesFound: ReplaceMatches('CQL is awesome', 'awesome', 'amazing') // 'CQL is amazing'
-define ReplaceMatchesNotFound: ReplaceMatches('CQL is awesome', 'awesome!', 'amazing') // 'CQL is awesome'
-define ReplaceMatchesIsNull: ReplaceMatches('CQL is awesome', 'awesome', null)
+define ReplaceMatchesFound: ReplaceMatches('ABCDE', 'C', 'XYZ') // 'ABXYZDE'
+define ReplaceMatchesNotFound: ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE'
+define ReplaceMatchesIsNull: ReplaceMatches('ABCDE', 'C', null) // null
 ----
 
 [[split]]
@@ -2790,9 +2790,9 @@ The following examples illustrate the behavior of the [.id]#Split# operator:
 
 [source,cql]
 ----
-define SplitFound: Split('CQL is awesome', ' ') // { 'CQL', 'is', 'awesome' }
-define SplitNotFound: Split('CQL is awesome', ',') // { 'CQL is awesome' }
-define SplitIsNull: Split(null, ' ')
+define SplitFound: Split('A B C', ' ') // { 'A', 'B', 'C' }
+define SplitNotFound: Split('A B C', ',') // { 'A B C' }
+define SplitIsNull: Split(null, ' ') // null
 ----
 
 [[splitonmatches]]
@@ -2837,9 +2837,9 @@ The following examples illustrate the behavior of the [.id]#StartsWith# operator
 
 [source,cql]
 ----
-define StartsWithIsTrue: StartsWith('CQL is awesome', 'CQL')
-define StartsWithIsFalse: StartsWith('CQL is awesome', 'CQl')
-define StartsWithIsNull: StartsWith('CQL is awesome', null)
+define StartsWithIsTrue: StartsWith('ABCDE', 'ABC') // true
+define StartsWithIsFalse: StartsWith('ABCDE', 'XYZ') // false
+define StartsWithIsNull: StartsWith('ABCDE', null) // null
 ----
 
 [[substring]]
@@ -2865,10 +2865,10 @@ The following examples illustrate the behavior of the [.id]#Substring# operator:
 
 [source,cql]
 ----
-define SubstringWithoutLength: Substring('CQL is awesome', 7) // 'awesome'
-define SubstringWithLength: Substring('CQL is awesome', 7, 3) // 'awe'
-define SubstringIsNull: Substring('CQL is awesome', null)
-define SubstringIsAlsoNull: Substring('CQL is awesome', 14)
+define SubstringWithoutLength: Substring('ABCDE', 2) // 'CDE'
+define SubstringWithLength: Substring('ABCDE', 2, 1) // 'C'
+define SubstringIsNull: Substring('ABCDE', null) // null
+define SubstringIsAlsoNull: Substring('ABCDE', 14) // null
 ----
 
 [[upper]]
@@ -2898,8 +2898,8 @@ The following examples illustrate the behavior of the [.id]#Upper# operator:
 
 [source,cql]
 ----
-define UpperCQL: Upper('cql IS AWESOME') // 'CQL IS AWESOME'
-define UpperIsNull: Upper(null)
+define UpperCQL: Upper('abcde') // 'ABCDE'
+define UpperIsNull: Upper(null) // null
 ----
 
 [[datetime-operators-2]]
