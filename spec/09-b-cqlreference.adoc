@@ -3791,13 +3791,15 @@ For example:
 [source,cql]
 ----
 expand { Interval[@2018-01-01, @2018-01-04] } per day
+expand { Interval[@2018-01-01, @2018-01-04] } per 2 days
 ----
 
-The following is the result of the example:
+The following are the results of these examples:
 
 [source,cql]
 ----
 { Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
+{ Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }
 ----
 
 If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may not completely cover the input range. For example:
