@@ -4043,6 +4043,8 @@ AnyInCodeSystem : OperatorExpression
 
 The AnyInCodeSystem operator returns true if any of the given codes are in the given code system.
 
+The first argument is expected to be a list of String, Code, or Concept.
+
 Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === AnyInValueSet
@@ -4057,6 +4059,8 @@ AnyInValueSet : OperatorExpression
 ----
 
 The AnyInValueSet operator returns true if any of the given codes are in the given value set.
+
+The first argument is expected to be a list of String, Code, or Concept.
 
 Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
@@ -4117,6 +4121,8 @@ InCodeSystem : OperatorExpression
 
 The InCodeSystem operator returns true if the given code is in the given code system.
 
+The first argument is expected to be a String, Code, or Concept.
+
 Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === InValueSet
@@ -4131,6 +4137,8 @@ InValueSet : OperatorExpression
 ----
 
 The InValueSet operator returns true if the given code is in the given value set.
+
+The first argument is expected to be a String, Code, or Concept.
 
 Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
