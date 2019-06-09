@@ -1347,7 +1347,7 @@ For comparisons involving Date, DateTime, or Time values with imprecision, note 
 define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ----
 
-Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
@@ -1392,7 +1392,7 @@ For list types, this means that equality returns [.kw]#true# if and only if the 
 
 For interval types, equality returns [.kw]#true# if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the [.id]#Start# and [.id]#End# operators.
 
-For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal equality semantics.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is [.kw]#false#. If one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision, or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal equality semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1435,7 +1435,7 @@ For list types, this means that two list values are equivalent if and only if th
 
 For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the [.id]#Start# and [.id]#End# operators are equivalent.
 
-For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is [.kw]#false#, rather than [.kw]#null#. As with equality, the second and millisecond precisions are considered a single precision using a decimal, with decimal equivalence semantics.
+For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is [.kw]#false#, rather than [.kw]#null#. As with equality, the second and millisecond precisions are combined as a single precision using a decimal, with decimal equivalence semantics.
 
 For [.id]#Code# values, equivalence is defined based on the code and system elements only. The version and display elements are ignored for the purposes of determining [.id]#Code# equivalence.
 
@@ -1488,7 +1488,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
 ----
 
-Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1540,7 +1540,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
 ----
 
-Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1591,7 +1591,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
 ----
 
-Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1643,7 +1643,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
 ----
 
-Note that for the purposes of comparison, seconds and milliseconds are considered a single precision using a decimal, with decimal comparison semantics.
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
