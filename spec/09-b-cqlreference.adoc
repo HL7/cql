@@ -4143,9 +4143,12 @@ The following examples illustrate the behavior of the [.kw]#point from# operator
 [source,cql]
 ----
 define PointFrom: point from Interval[4, 4] // 4
-define PointFromError: point from Interval[1, 4]
+define PointFromExclusive: point from Interval[4, 5) // 4
+define PointFromError: point from Interval[1, 4] // Error
 define PointFromIsNull: point from (null as Interval<Integer>)
 ----
+
+Note that the [.kw]#point from# operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a point from an interval with a size greater than one, as in the [.id]#PointFromError# example above, will result in a run-time error.
 
 [[properly-includes]]
 === Properly Includes
