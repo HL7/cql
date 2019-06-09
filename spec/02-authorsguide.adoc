@@ -254,9 +254,21 @@ define InDemographic:
 
 Because the context has been established as Patient, the expression has access to patient-specific concepts such as the [.id]#AgeInYearsAt()# operator and the [.id]#Patient.gender# attribute. Note that the attributes available in the Patient context are defined by the data model in use.
 
-A library may contain zero or more context statements, with each context statement establishing the context for subsequent statements in the library. When no context is specified, the default context is [.id]#Patient#.
+A library may contain zero or more context statements, with each context statement establishing the context for subsequent statements in the library.
 
-Effectively, the statement [.kw]#context# [.id]#Patient# defines an expression named [.id]#Patient# that returns the patient data for the current patient, as well as restricts the information that will be returned from a retrieve to a single patient, as opposed to all patients. For more information on context, refer to the <<Retrieve Context>> discussion below.
+Effectively, the statement [.kw]#context# [.id]#Patient# defines an expression named [.id]#Patient# that returns the patient data for the current patient, as well as restricts the information that will be returned from a retrieve to a single patient, as opposed to all patients.
+
+As another example, consider a [.id]#Practitioner# context:
+
+[source,cql]
+----
+context Practitioner
+
+define Encounters:
+  ["Encounter, Performed": "Inpatient Encounter"]
+----
+
+The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the <<Retrieve Context>> discussion below.
 
 [[statements]]
 === Statements
