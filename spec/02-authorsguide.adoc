@@ -265,7 +265,7 @@ As another example, consider a [.id]#Practitioner# context:
 context Practitioner
 
 define Encounters:
-  ["Encounter, Performed": "Inpatient Encounter"]
+  ["Encounter": "Inpatient Encounter"]
 ----
 
 The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the <<Retrieve Context>> discussion below.
@@ -280,9 +280,9 @@ The following example illustrates a simple define statement:
 [source,cql]
 ----
 define InpatientEncounters:
-  [Encounter: "Inpatient"] Encounter
-    where Encounter.length <= 120 days
-      and Encounter.period ends during MeasurementPeriod
+  [Encounter: "Inpatient"] E
+    where E.length <= 120 days
+      and E.period ends during MeasurementPeriod
 ----
 
 This example defines the [.id]#InpatientEncounters# expression as [.id]#Encounter# events whose code is in the [.id]#"Inpatient"# valueset, whose length is less than or equal to 120 days, and whose period ended (i.e. patient was discharged) during MeasurementPeriod.
@@ -377,7 +377,7 @@ As another example, consider the set of encounters:
 
 As the following diagram illustrates, in the [.id]#Unfiltered# context, this retrieve will return all the encounters in the underlying system, whereas in the [.id]#Patient# context, this retrieve will return only encounters for the _current_ patient, where _current_ is determined by the evaluation:
 
-image:extracted-media/media/context-diagram.png
+image:extracted-media/media/context-diagram.png[image]
 
 Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the [.id]#Unfiltered# context.
 
@@ -437,15 +437,20 @@ A query construct begins by introducing an _alias_ for the primary source:
 
 [source,cql]
 ----
-[Encounter: "Inpatient"] Encounter
+[Encounter: "Inpatient"] E
 ----
 
-The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is Encounter. Subsequent clauses in the query must reference elements of this source by using this alias.
+The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
+
+Although the alias in this example is a single-letter abbreviation, [.id]#E#, it could also be a longer abbreviation:
 
 [source,cql]
 ----
+[Encounter: "Inpatient"] Enc
+----
 
-Note that alias names, as with all language constructs, may be the subject of language conventions. See the link:14-g-formattingconventions.html[Formatting Conventions] section for more information.
+Note that alias names, as with all language constructs, may be the subject of language conventions. The link:14-g-formattingconventions.html[Formatting Conventions] section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
+
 [[filtering]]
 === Filtering
 
@@ -607,11 +612,11 @@ The clauses described in the previous section must appear in the correct order t
 
 [source,cql]
 ----
-_primary-source alias_ +
-  _with-or-without-clauses_ +
-  _where-clause_ +
-  _return-clause_ +
-  _sort-clause_
+<primary-source> <alias>
+  <with-or-without-clauses>
+  <where-clause>
+  <return-clause>
+  <sort-clause>
 ----
 
 A query must contain an aliased primary source, but this is the only required clause.
@@ -639,7 +644,7 @@ For example:
 
 This query returns all [.id]#"Inpatient"# encounter events that have an overlapping condition of [.id]#"Acute Pharyngitis"# and a duration of at least 120 days. For each such event, the result will include the id of the event and the duration in days, and the results will be ordered by that duration descending.
 
-Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>> and <<03-developersguide.adoc#non-retrieve-queries,Non-Retrieve Queries>>.
+Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
 
 [[values]]
 == Values
