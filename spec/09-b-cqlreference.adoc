@@ -918,11 +918,13 @@ The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# v
 
 For the DateTime overload, the operator is equivalent to invoking [.kw]#date from# on the DateTime value.
 
-For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
+For the string overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm or YYYY-MM-DDThh:mm:ss.fffZ
+YYYY-MM-DD
 
 In addition, the string must be interpretable as a valid date value.
+
+Note that the operator can take datetime formatted strings and will ignore the time portions.
 
 For example, the following are valid string representations for date values:
 
@@ -930,6 +932,7 @@ For example, the following are valid string representations for date values:
 ----
 '2014-01' // January, 2014
 '2014-01-01' // January 1st, 2014
+'2014-01-01T12:30:00' // Still January 1st, 2014, time portion will be ignored
 ----
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is [.kw]#null#.
@@ -955,7 +958,7 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff([.sym]#+|-#)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 or
 YYYY-MM-DDThh:mm:ss.fffZ
 
