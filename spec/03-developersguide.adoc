@@ -297,7 +297,7 @@ year
 years
 ----
 
-Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, `exists` is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
+Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, [.kw]#exists# is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
 
 In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
@@ -365,6 +365,11 @@ CQL escape sequences for strings also work for identifiers:
 |*\uXXXX* |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
+[[qualified-identifiers]]
+==== Qualified Identifiers
+
+Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common#[.sym]#.#[.id]#ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
+
 [[operator-precedence]]
 === Operator Precedence
 
@@ -409,7 +414,7 @@ _precision_ [.kw]#between# +
 
 Table 3‑D
 
-As with any typical computer language, parentheses can always be used to force order-of-operations if the defined operator precedence results in the incorrect evaluation of a given expression.
+As with most expression languages, parentheses can always be used to force order-of-operations if the defined operator precedence does not produce the intended evaluation of a given expression.
 
 When multiple operators appear in a single category, precedence is determined by the order of appearance in the expression, left to right.
 
@@ -430,7 +435,7 @@ The declaration is illegal because the parser will not recognize [.kw]#Define# a
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
-* The local identifier for a referenced library must be unqualified and unique within the artifact.
+* The local <<identifiers,identifier>> for a referenced library must be <<qualified-identifiers,unqualified>> and unique within the artifact.
 * Circular library references are not allowed.
 * Library references are not transitive.
 
