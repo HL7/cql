@@ -3560,7 +3560,7 @@ Between Date and DateTime +
 From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
 
 === CanConvertQuantity
 
@@ -3617,7 +3617,7 @@ Between Date and DateTime +
 From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[]
 
 === ConvertQuantity
 
@@ -3658,7 +3658,7 @@ The ConvertsToDate operator returns true if the value of its argument can be con
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD
+YYYY-MM-DD footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3681,7 +3681,7 @@ The ConvertsToDateTime operator returns true if the value of its argument can be
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3700,7 +3700,7 @@ ConvertsToDecimal : UnaryExpression
 
 The ConvertsToDecimal operator returns true if the value of its argument can be converted to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?
+(+|-)?\#0(.0#)?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3719,7 +3719,7 @@ ConvertsToInteger : UnaryExpression
 
 The ConvertsToInteger operator returns true if the value of its argument can be converted to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0
+(+|-)?#0footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3740,7 +3740,7 @@ The ConvertsToQuantity operator returns true if the value of its argument can be
 
 For String values, the operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?('<unit>')?
+(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
@@ -3802,7 +3802,7 @@ The ConvertsToTime operator returns true if the value of its argument can be con
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-hh:mm:ss.fff
+hh:mm:ss.fff footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -3888,7 +3888,7 @@ The ToDate operator converts the value of its argument to a Date value.
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD
+YYYY-MM-DD footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3913,7 +3913,7 @@ The ToDateTime operator converts the value of its argument to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3934,7 +3934,7 @@ ToDecimal : UnaryExpression
 
 The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?
+(+|-)?\#0(.0#)?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3953,7 +3953,7 @@ ToInteger : UnaryExpression
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0
+(+|-)?#0footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3989,7 +3989,7 @@ The ToQuantity operator converts the value of its argument to a Quantity value. 
 
 For String values, the operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?('<unit>')?
+(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
@@ -4027,7 +4027,7 @@ If the argument is null, the result is null.
 ToString : UnaryExpression
 ----
 
-The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:
+The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:footnote:formatting-strings[]
 
 [width="50%"]
 |====
@@ -4054,7 +4054,7 @@ The ToTime operator converts the value of its argument to a Time value.
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-hh:mm:ss.fff
+hh:mm:ss.fff footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
