@@ -20,7 +20,9 @@ In the sections that follow, the various constructs introduced above will be dis
 
 It is important to keep in mind throughout the discussion that follows that CQL is a _query language_, which means that the statements of the language are really _questions_, formulated in terms of a _data model_ that describes the available data. Depending on the use case, these questions will be evaluated in different ways to produce a response. For example, for decision  support, the questions will likely be evaluated in the context of a specific patient and at some specific point in a workflow. For quality measurement, the questions will likely be evaluated for each of a set of patients in an overall population. However the evaluation occurs, the discussions in this chapter refer generally to the notion of an _evaluation request_ that represents a request by some consumer to evaluate a CQL expression. This evaluation request generally includes the _context_ of the evaluation (i.e. the inputs to the evaluation such as the patient and any parameter values), as well as a _timestamp_ associated with when the evaluation request occurs.
 
-And as a final introductory note, throughout the discussion, readers may find it helpful to refer to  link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
+Throughout the discussion, readers may find it helpful to refer to link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
+
+And as a final introductory note, CQL is designed to support two levels of usage. The first level focuses on the simplest possible expression of the most common use cases encountered in quality measurement and decision support, while the second level focuses on more advanced capabilities such as multi-source queries and user-defined functions. The first level is covered in this chapter, the Author's Guide, while the second level is covered in the next chapter, the Developer's Guide.
 
 [[declarations]]
 == Declarations
