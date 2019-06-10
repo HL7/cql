@@ -1038,6 +1038,15 @@ end
 
 Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
 
+Both of these conditional expression construct enable run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
+
+[source,cql]
+----
+if Count(X) > 0 then X[1] else 0
+----
+
+Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to true. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
+
 [[nullological-operators]]
 == Nullological Operators
 
