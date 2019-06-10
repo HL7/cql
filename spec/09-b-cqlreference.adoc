@@ -4361,6 +4361,7 @@ The following examples illustrate the behavior of the [.id]#Size# operator:
 [source,cql]
 ----
 define SizeTest: Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
+define SizeTestEquivalent: Size(Interval[3, 8)) // 5, i.e. the interval contains 5 points
 define SizeIsNull: Size(null as Interval<Integer>) // null
 ----
 
