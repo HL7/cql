@@ -439,7 +439,7 @@ Libraries provide the basic unit of code organization for CQL. Each CQL file con
 * Circular library references are not allowed.
 * Library references are not transitive.
 
-Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a library contains a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source.
+Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a <<04-logicalspecification.adoc#library,library>> contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> for an example of how namespaces are specified in ELM.
 
 When including a library, use the fully qualified identifier for the library. If the [.kw]#called# clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
 
