@@ -368,7 +368,7 @@ CQL escape sequences for strings also work for identifiers:
 [[qualified-identifiers]]
 ==== Qualified Identifiers
 
-Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common#[.sym]#.#[.id]#ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
+Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common.ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
 
 [[operator-precedence]]
 === Operator Precedence

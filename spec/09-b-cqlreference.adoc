@@ -5742,7 +5742,7 @@ define CalculateAgeAtIsNull: CalculateAgeInYearsAt(@2000-01-01, null)
 
 The _equal_ ([.sym]#=#) operator for Codes and Concepts uses tuple equality semantics. This means that the operator will return [.kw]#true# if and only if the values for each element by name are equal.
 
-If either argument is [.kw]#null#, or contains any [.kw]#null# components, the result is [.kw]#null#.
+If either argument is [.kw]#null#, or has different components specified, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
@@ -5777,7 +5777,12 @@ For [.id]#Concept# values, equivalence is defined as a non-empty intersection of
 
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
+[.note-warning]
+____
+
 Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information when determining terminological membership.
+
+____
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
@@ -5839,6 +5844,7 @@ define CodeInCodesystem: Code { system: "http://snomed.info/sct", code: '1234567
 define NullStringInCodesystem: null as String in "SNOMED:2014" // false
 ----
 
+[.note-warning]
 ____
 
 Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
@@ -5886,6 +5892,7 @@ define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678'
 define NullStringInValueset: null as String in "Acute Pharyngitis" // false
 ----
 
+[.note-warning]
 ____
 
 Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
