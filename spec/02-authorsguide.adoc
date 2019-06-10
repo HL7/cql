@@ -147,10 +147,10 @@ This valueset definition can then be used within the library wherever a valueset
 
 [source,cql]
 ----
-define InDemographic: Patient.gender in "Female Administrative Sex"
+define PatientIsFemale: Patient.gender in "Female Administrative Sex"
 ----
 
-The above examples define the [.id]#InDemographic# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
+The above examples define the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
 
 Note that the name of the valueset uses double quotes, in contrast to the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
 
@@ -196,12 +196,12 @@ This parameter definition can now be referenced anywhere within the CQL library:
 
 [source,cql]
 ----
-define InDemographic:
+define Patient16To23:
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ----
 
-The above example defines the [.id]#InDemographic# expression as patients whose age at the start of the MeasurementPeriod was at least 16 and less than 24.
+The above example defines the [.id]#Patient16To23# expression as patients whose age at the start of the MeasurementPeriod was at least 16 and less than 24.
 
 The default value for a parameter is optional, but if no default is provided, the parameter must include a type specifier:
 
@@ -246,7 +246,7 @@ When no context is specified in the library, and the model has not declared a de
 ----
 context Patient
 
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2765,7 +2765,7 @@ With this in mind, rather than expressing the entire initial patient population 
 
 [source,cql]
 ----
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2784,7 +2784,7 @@ define SexuallyActive:
   ...
 
 define InInitialPopulation:
-  InDemographic and SexuallyActive
+  Patient16To23AndFemale and SexuallyActive
 ----
 
 Restructuring the logic in this way not only simplifies the expressions involved and makes them more understandable, but it clearly communicates the intent of each group of criteria.
@@ -2839,7 +2839,7 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2858,7 +2858,7 @@ define SexuallyActive:
   ...
 
 define InInitialPopulation:
-  InDemographic and SexuallyActive
+  Patient16To23AndFemale and SexuallyActive
 
 define InDenominator: true
 
@@ -2906,11 +2906,11 @@ context Patient
 
 Note that we are not using the [.id]#MeasurementPeriod# parameter. There are other potential uses for parameters within the point-of-care intervention (for example, to specify a threshold for how far back to look for a Chlamydia screening), but we are ignoring those aspects for the purposes of this walkthrough.
 
-For the [.id]#InDemographic# criteria, we are then simply concerned with female patients between the ages of 16 and 24, so we change the criteria to use the [.id]#AgeInYears#, rather than the [.id]#AgeInYearsAt# operator, to determine the patient’s age as of today:
+For the [.id]#Patient16To23AndFemale# criteria, we are then simply concerned with female patients between the ages of 16 and 24, so we change the criteria to use the [.id]#AgeInYears#, rather than the [.id]#AgeInYearsAt# operator, to determine the patient’s age as of today:
 
 [source,cql]
 ----
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in "Female Administrative Sex"
 ----
@@ -2969,7 +2969,7 @@ And finally, we provide an overall condition that indicates whether or not this 
 
 [source,cql]
 ----
-define NeedScreening: InDemographic and SexuallyActive and NoScreening
+define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the [.id]#NeedScreening# expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
@@ -3042,7 +3042,7 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in Common."Female Administrative Sex"
@@ -3054,7 +3054,7 @@ define SexuallyActive:
     where R.issued during MeasurementPeriod)
 
 define InInitialPopulation:
-  InDemographic and SexuallyActive
+  Patient16To23AndFemale and SexuallyActive
 
 define InDenominator:
   true
@@ -3078,7 +3078,7 @@ valueset "Reason for not performing Chlamydia Screening": 'TBD'
 
 context Patient
 
-define InDemographic:
+define Patient16To23AndFemale:
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in Common."Female Administrative Sex"
 
@@ -3092,7 +3092,7 @@ define NoScreening:
   and not exists ([ProcedureRequest: Common."Chlamydia Screening"] R
     where R.orderedOn same day or after Today()
 
-define NeedScreening: InDemographic and SexuallyActive and NoScreening
+define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 In addition to sharing between quality measures and clinical decision support artifacts, the use of common libraries will allow the same logic to be shared by multiple quality measures or decision support artifacts. For example, a set of artifacts for measurement and improvement of the treatment of diabetes could all use a common library that provides base definitions for determining when a patient is part of the population of interest.
