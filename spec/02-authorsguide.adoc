@@ -644,6 +644,22 @@ For example:
 
 This query returns all [.id]#"Inpatient"# encounter events that have an overlapping condition of [.id]#"Acute Pharyngitis"# and a duration of at least 120 days. For each such event, the result will include the id of the event and the duration in days, and the results will be ordered by that duration descending.
 
+As another example, consider a query with multiple without clauses:
+
+[source,cql]
+----
+SingleLiveBirthEncounter E
+  without [Condition: "Galactosemia"] G
+    such that G.onsetDatetime during E.period
+  without [Procedure: "Parenteral Nutrition"] P
+    such that P.performed starts during E.period
+  where not exists ( E.diagnosis ED
+    where ED.code in "Galactosemia"
+  )
+----
+
+Even though this example has multiple _without_ clauses, there is still only a single _where_ clause for the query.
+
 Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
 
 [[values]]
