@@ -2,7 +2,8 @@
    "library" : {
       "identifier" : {
          "id" : "Example.RelatedContextRetrieve_CQL",
-         "system": "http://example.org/measures"
+         "system": "http://example.org/measures",
+				 "version": "0.1.0"
       },
       "schemaIdentifier" : {
          "id" : "urn:hl7-org:elm",

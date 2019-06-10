@@ -1,4 +1,4 @@
-library Example.RelatedContextRetrieve_CQL
+library Example.RelatedContextRetrieve version '0.1.0'
 
 using QDM version '5.5'
 

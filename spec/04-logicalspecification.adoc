@@ -404,6 +404,7 @@ ELM defines the notion of a library as the basic container for logic constructs.
 
 Once defined, libraries can then be referenced by other libraries with the _IncludeDef_ class, which defines properties for the name and version of the library being referenced, as well as a local name that is used to access components of the library.
 
+[[library]]
 === Library
 
 [source,elm]
@@ -447,7 +448,7 @@ Library : Element
            0..* --> def : ExpressionDef
 ----
 
-<1> The identifier element defines a unique identifier for this library, and optionally, a version.
+<1> The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
 
 <2> This is the identifier of the XML schema (and its version) which governs the structure of this Library.
 
