@@ -2262,7 +2262,7 @@ Figure 2‑D
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
-In addition, CQL supports an [.kw]#expand# operator that determines the list of _unit_ intervals (intervals with the same starting and ending boundary) from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
+In addition, CQL supports an [.kw]#expand# operator that determines the list of intervals of size 'per' (intervals with the same starting and ending boundary) from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
 
 [source,cql]
 ----
