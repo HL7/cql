@@ -1494,6 +1494,8 @@ The Floor operator returns the first integer less than or equal to the argument.
 If the argument is null, the result is null.
 
 === HighBoundary
+
+[source,elm]
 ----
 HighBoundary : BinaryExpression
 ----
@@ -1506,10 +1508,13 @@ If the precision is greater than the maximum possible precision of the implement
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
+[source,cql]
+----
 HighBoundary(1.587, 8) // 1.58799999
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
 HighBoundary(@T10:30, 9) // @T10:30:59.999
+----
 
 If the input value is null, the result is null.
 
@@ -1527,6 +1532,8 @@ If either argument is null, the result is null.
 If the result of the operation cannot be represented, the result is null.
 
 === LowBoundary
+
+[source,elm]
 ----
 LowBoundary : BinaryExpression
 ----
@@ -1539,10 +1546,13 @@ If the precision is greater than the maximum possible precision of the implement
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
+[source,cql]
+----
 LowBoundary(1.587, 8) // 1.58700000
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
 LowBoundary(@T10:30, 9) // @T10:30:00.000
+----
 
 If the input value is null, the result is null.
 
@@ -1677,6 +1687,8 @@ If either argument is null, the result is null.
 If the result of the operation cannot be represented, the result is null.
 
 === Precision
+
+[source,elm]
 ----
 Precision : UnaryExpression
 ----
@@ -1687,14 +1699,20 @@ The operator can be used with Decimal, Date, DateTime, and Time values.
 
 For Decimal values, the operator returns the number of digits of precision after the decimal place in the input value.
 
+[source,cql]
+----
 Precision(1.58700) // 5
+----
 
 For Date and DateTime values, the operator returns the number of digits of precision in the input value.
 
+[source,cql]
+----
 Precision(@2014) // 4
 Precision(@2014-01-05T10:30:00.000) // 17
 Precision(@T10:30) // 4
 Precision(@T10:30:00.000) // 9
+----
 
 If the argument is null, the result is null.
 
