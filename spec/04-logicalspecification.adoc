@@ -1500,7 +1500,9 @@ HighBoundary : BinaryExpression
 
 The HighBoundary operator returns the greatest possible value of the input to the specified precision.
 			
-If no precision is specified, the precision of the input value is used.
+If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
+
+If the precision is greater than the maximum possible precision of the implementation, the result is null.
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
@@ -1531,7 +1533,9 @@ LowBoundary : BinaryExpression
 
 The LowBoundary operator returns the least possible value of the input to the specified precision.
 			
-If no precision is specified, the precision of the input value is used.
+If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
+
+If the precision is greater than the maximum possible precision of the implementation, the result is null.
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
