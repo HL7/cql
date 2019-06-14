@@ -101,6 +101,55 @@ Duration = year (date 2) - year (date 1) = 2014 - 2012 = *2 years*
 
 *Note:* Because there is no February 29 in 2014, the number of years can only change when the date reaches March 1, the first date in 2014 that surpasses the month and day of date 1 (Feburary 29).
 
+[[negative-examples]]
+=== Negative Examples
+
+==== Scenario 5
+When month (date 1) < month (date 2) +
+Duration (years) = year (date 2) - year (date 1) + 1
+
+*Example 5:* +
+Date 1: 2012-*02*-20 10:20:56 +
+Date 2: 2011-*03*-19 19:16:02 +
+Duration = year (date 2) - year (date 1) + 1 = 2011 - 2012 + 1 = *0 years*
+
+==== Scenario 6
+When month (date 2) = month (date 1) and day (date 2) +<=+ day (date 1) +
+Duration (years) = year (date 2) - year (date 1)
+
+*Example 6.a:* day (date 1) = day (date 2) +
+Date 1: 2013-05-*11* 20:06:10 +
+Date 2: 2012-05-*11* 20:06:10 +
+Duration = year (date 2) - year (date 1) = 2012 - 2013 = *-1 year*
+
+*Example 6.b:* day (date 1) > day (date 2) +
+Date 1: 2013-05-*15* 10:19:55 +
+Date 2: 2012-05-*10* 12:20:25 +
+Duration = year (date 2) - year (date 1) = 2012 - 2013 = *-1 year*
+
+==== Scenario 7
+When month (date 2) = month (date 1) and day (date 2) > day (date 1) +
+Duration (years) = year (date 2) - year (date 1) + 1
+
+*Example 7:* +
+Date 1: 2013-03-*20* 05:01:30 +
+Date 2: 2011-03-*30* 06:45:50 +
+Duration = year (date 2) - year (date 1) + 1 = 2011 - 2013 + 1 = *-1 year*
+
+==== Scenario 8
+When month (date 2) < month (date 1) +
+Duration (years) = year (date 2) - year (date 1)
+
+*Example 8.a:* +
+Date 1: 2014-*08*-12 09:10:15 +
+Date 2: 2013-*05*-14 01:17:10 +
+Duration = year (date 2) - year (date 1) = 2013 - 2014 = *-1 year*
+
+*Example 8.b:* +
+Date 1: 2015-*11*-05 05:50:45 +
+Date 2: 2013-*03*-29 11:01:05 +
+Duration = year (date 2) - year (date 1) = 2013 - 2015 = *-2 years*
+
 [[calculating-duration-in-months]]
 == Calculating Duration in Months
 
@@ -143,6 +192,35 @@ Date 2: 2013-01-*09* 07:19:33 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) - 1 +
 = (2013 - 2012) * 12 + (1 - 3) - 1 = 12 - 2 - 1 = *9 months*
 
+[[negative-exapmles-1]]
+=== Negative Examples
+
+==== Scenario 3
+When day (date 2) +<=+ day (date 1) +
+Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1))
+
+*Example 3.a:* +
+Date 1: 2013-10-*15* 13:07:40 +
+Date 2: 2013-10-*02* 10:13:59 +
+Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) +
+= (2013 - 2013) * 12 - (10 - 10) = *0 months*
+
+*Example 3.b:* +
+Date 1: 2014-05-*10* 21:02:45 +
+Date 2: 2013-01-*08* 11:13:06 +
+Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) +
+= (2013 - 2014) * 12 + (1 - 5) = (-12) + (-4) = *-16 months*
+
+==== Scenario 4
+When day (day 2) > day (date 1) +
+Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) + 1
+
+*Example 4:* +
+Date 1: 2012-06-*11* 12:16:17 +
+Date 2: 2011-08-*21* 05:48:02 +
+Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) + 1 +
+= (2011 - 2012) * 12 + (8 - 6) + 1 = (-12) + (2) + 1 = *-9 months*
+
 [[calculating-duration-in-weeks]]
 == Calculating Duration in Weeks
 
@@ -161,6 +239,12 @@ Date 1: 2012-03-10 22:05:09 +
 Date 2: 2012-03-20 07:19:33 +
 Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1) + 1) + # days (month (date 1) + 2) + ... + # days (month (date 2) - 1) + day (date 2)+++]+++ / 7 +
 = (20 - 10) / 7 = 10 / 7 = *1 week*
+
+*Example 2:* +
+Date 1: 2013-05-26 23:06:11 +
+Date 2: 2013-05-12 20:25:30 +
+Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1) + 1) + # days (month (date 1) + 2) + ... + # days (month (date 2) - 1) + day (date 2)+++]+++ / 7 +
+= (12 - 26) / 7 = -14/7 = *-2 weeks*
 
 [[calculating-duration-in-days]]
 == Calculating Duration in Days
@@ -193,6 +277,29 @@ Date 1: 2012-01-31 *12:30:00* +
 Date 2: 2012-02-01 *14:00:00* +
 Duration = 02-01 - 01-31 = *1 day*
 
+[[negative-examples-2]]
+=== Negative Examples
+
+==== Scenario 3
+When time (date 2) > time (date 1) +
+Duration = +++[+++date 2 - date 1 (days)+++]+++ + 1
+
+*Example 3:* +
+Date 1: 2011-12-05 *05:00:00* +
+Date 2: 2011-12-04 *08:45:00* +
+Duration = 12-04 - 12-05 + 1 = *0 days*
+
+==== Scenario 4
+When time (date 2) +<=+ time (date 1) +
+Duration = date 2 - date 1 (days)
+
+*Example 4:* +
+Date 1: 2011-12-05 *05:00:00* +
+Date 2: 2011-12-04 *01:30:00* +
+Duration = 12-04 - 12-05 = *-1 day*
+
+
+
 [[calculating-duration-in-hours]]
 == Calculating Duration in Hours
 
@@ -219,6 +326,24 @@ Date 1: 2012-03-01 03:10 +
 Date 2: 2012-03-01 04:00 +
 Duration = *0 hours*
 
+[[negative-examples-3]]
+=== Negative Examples
+
+*Example 4:* +
+Date 1: 2013-10-10 12:30:00 +
+Date 2: 2013-10-10 08:40:00 +
+Duration = *-3 hours*
+
+*Example 5:* +
+Date 1: 2013-10-10 01:45:00 +
+Date 2: 2013-10-09 23:45:00 +
+Duration = *-2 hours*
+
+*Example 6:* +
+Date 1: 2013-10-10 12:00:00 +
+Date 2: 2013-10-10 11:30:00 +
+Duration = *0 hours*
+
 [[calculating-duration-in-minutes]]
 == Calculating Duration in Minutes
 
@@ -239,6 +364,19 @@ Duration = *130 minutes*
 Date 1: 2012-02-29 23:10:00 +
 Date 2: 2012-03-01 00:20:00 +
 Duration = *70 minutes*
+
+[[negative-examples-4]]
+=== Negative Examples
+
+*Example 3:* +
+Date 1: 2012-12-30 08:40:00 +
+Date 2: 2012-12-30 06:50:00 +
+Duration = *-110 minutes*
+
+*Example 4:* +
+Date 1: 2012-12-30 00:20:00 +
+Date 2: 2012-12-29 22:00:00 +
+Duration = *-140 minutes*
 
 [[difference-calculations]]
 == Difference Calculations
@@ -309,3 +447,44 @@ Difference (days) = Duration (days) between 2017-03-12 00:00:00.0 and 2017-03-13
 In some cases, normalization prior to truncation may give unexpected results. Consider the "difference in days" between midnight (EST) on the day that DST goes into effect and midnight (EDT) the next day. One would expect that since the second date is the "next day" on the calendar, difference in days should be 1. +
 With normalization prior to truncation, the second date would become 11:00pm EST on the same day as the first date. +
 The difference in days would be 0, which is not the expected result.
+
+[[negative-examples-5]]
+=== Negative Examples
+
+*Example 8:* +
+Date 1: 2015-05-30 12:30:14 +
+Date 2: 2015-01-05 01:14:45 +
+Difference (years) = Duration (years) between 2015-01-01 00:00:00 and 2015-01-01 00:00:00 +
+Difference (years) = *0 years*
+
+*Example 9:* +
+Date 1: 2019-01-01 14:40:30 +
+Date 2: 2018-12-31 13:30:45 +
+Difference (years) = Duration (years) between 2019-01-01 00:00:00 and 2018:01:01 00:00:00 +
+Difference (years) = *-1 year*
+
+*Example 10:* +
+Date 1: 2013-05-30 12:15:15 +
+Date 2: 2013-01-15 13:01:45 +
+Difference (months) = Duration (months) between 2013-05-01 00:00:00 and 2013-01-01 00:00:00 +
+Difference (months) = *-4 months*
+
+*Example 11:* +
+Date 1: 2017-11-14 11:30:00 +
+Date 2: 2017-11-12 13:00:00 +
+Difference (days) = Duration (days) between 2017-11-14 00:00:00 and 2017-11-12 00:00:00 +
+Difference (days) = *-2 days*
+
+*Example 12:* +
+Date 1: 2011-06-29 15:45:59 (-5:00) +
+Date 2: 2011-06-29 13:30:12 (-4:00) +
+Date 2 (normalized): 2011-06-29 12:30:12 (-5:00) +
+Difference (hours) = Duration (hours) between 2011-06-29 15:00:00.0 and 2011-06-29 12:00:00.0 +
+Difference (hours) = *-3 hours*
+
+*Example 13:* +
+Date 1: 2016-10-31 04:30:17 (-4:00) +
+Date 2: 2016-10-31 02:45:55 (-5:00) +
+Date 2 (normalized): 2016-10-31 03:45:55 +
+Difference (minutes) = Duration (minutes) between 2016-10-31 04:30:00.0 and 2016-10-31 03:45:00.0 +
+Difference (minutes) = *-45 minutes*
