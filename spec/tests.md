@@ -32,10 +32,7 @@ At this point, the tests cover the following sections of the specification:
 * Types
 * Value Literals and Selectors
 
-[.note-info]
-____
 The tests defined here are informative, not normative aspects of the specification. If there is a discrepancy between the behavior of a test and the specification, the specification should be considered the source of truth.
-
-____
+{:.note-info}
 
 
