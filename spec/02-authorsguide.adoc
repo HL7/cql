@@ -2515,7 +2515,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.html,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.adoc#examples,Examples>> included with this specification.
 
 [[running-example]]
 === Running Example

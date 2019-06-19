@@ -1,3 +1,4 @@
+[[examples]]
 = Examples
 :page-layout: dev
 :backend: xhtml

@@ -1,6 +1,7 @@
 ---
 layout: current
 title: Clinical Quality Language Grammar
+standards-status: trial-use
 ---
 
 This page contains the [Antlr 4.0](http://www.antlr.org/) grammar for Clinical Quality Language.

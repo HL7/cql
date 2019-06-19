@@ -1,12 +1,13 @@
 = Clinical Quality Language (CQL)
 :page-layout: current
 :backend: xhtml
+:page-standards-status: trial-use
 
 image:extracted-media/media/image1.png[image,width=144,height=148]
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)*
+*HL7 Standard: Clinical Quality Language Specification, Release 1 STU4 (CQL 1.4)*
 
-*May 2018*
+*June 2019 Publication*
 
 *HL7 STU Specification*
 
@@ -18,21 +19,21 @@ ________________________________________________________________________________
 *in collaboration with the Health and Human Services Standards and Interoperability Framework Clinical Quality Framework Initiative*
 ____________________________________________________________________________________________________________________________________
 
-Copyright © 2014-2018 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
+Copyright © 2014-2019 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
 
 Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?ref=nav[*IP Compliance Policy*].
 
 *Identifying Information for Specification:*
 
-*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 1 STU3 (CQL 1.3)
+*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 1 STU4 (CQL 1.4)
 
 *Realm:* Universal
 
 *Ballot Level:* Standard for Trial Use (STU)
 
-*Ballot Cycle:* May 2018
+*Ballot Cycle:* May 2019
 
-*Specification Date:* May 2018
+*Specification Date:* June 2019
 
 [cols=",",]
 |==================================================================
