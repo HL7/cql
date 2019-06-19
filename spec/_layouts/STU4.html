@@ -39,7 +39,7 @@
 		<div class="container">  <!-- container -->
 			<a id="logo" no-external="true" href="index.html"><img alt="Clinical Quality Language" src="dist/cql-logo.png" width="100" height="75"/> </a>
 			<div id="hl7-status">
-				<b>Clinical Quality Language Release 1 (Development Build)</b>
+				<b>Clinical Quality Language Release 1 STU 4 (1.4)</b>
 			</div>       	
 			
 			<div id="hl7-nav">
@@ -96,7 +96,7 @@
 			  <li><a href="examples.html">Examples</a></li>
               <li><a href="tests.html">Tests</a></li>
 							<li><a href="downloads.html">Downloads</a></li>
-              <li><a href="site/history.html">Version History</a><!--current--></li>
+              <li><a href="../history.html">Version History</a><!--current--></li>
 
 						</ul>
 					</div>  <!-- /.nav-collapse -->
@@ -118,10 +118,10 @@
 
 <div class="col-9">
     
-<p style="background-color: #ffdddd; border:1px solid maroon; padding: 5px;">
-This is the development build of Clinical Quality Language
+<p style="background-color: #ffefef; border:1px solid maroon; padding: 5px;">
+This is the current officially released version of Clinical Quality Language, 1.4. 
 <br/>
-For a full list of available versions, see the <a href="site/history.html">Directory of published versions <img style="text-align: baseline" src="dist/external.png"/></a>.
+For a full list of available versions, see the <a href="../history.html">Directory of published versions <img style="text-align: baseline" src="dist/external.png"/></a>.
 </p>
 
 {% if page.standards-status == "informative" %}
@@ -129,6 +129,7 @@ For a full list of available versions, see the <a href="site/history.html">Direc
 {% else %}
 <table class="std-status-stu"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 4</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is normative track (currently trial use).">Trial Use</a></td></tr></tbody></table>
 {% endif %}
+
 
 	<h1>{{page.title}}</h1>
 
@@ -151,11 +152,11 @@ For a full list of available versions, see the <a href="site/history.html">Direc
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2014+. CQL (Development Build) (<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher}}</a>). {{site.data.fhir.packageId}}#{{site.data.fhir.igVer}} generated on {{ site.time }}
+        &copy; HL7.org 2014+. CQL STU3 (1.4 Release) (<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher}}</a>). {{site.data.fhir.packageId}}#{{site.data.fhir.igVer}} generated on {{ site.time }}
         <span style="color: #FFFF77">| 
-<!--               <a style="color: #81BEF7" href="http://services.w3.org/htmldiff?doc1=http%3A%2F%2Fcql.hl7.org%2FSTU2%2F<%rellink%>&amp;doc2=<%baseURL%><%rellink%>">Compare to STU2</a> | -->
+<!--               <a style="color: #81BEF7" href="http://services.w3.org/htmldiff?doc1=http%3A%2F%2Fcql.hl7.org%2FSTU2%2F<%rellink%>&amp;doc2=<%baseURL%><%rellink%>">Compare to STU2</a> |                -->
                <a style="color: #81BEF7" rel="license" href="license.html">License</a> |
-               <a style="color: #81BEF7" rel="history" href="site/history.html">Version History</a> |
+               <a style="color: #81BEF7" rel="history" href="../history.html">Version History</a> |
                <a style="color: #81BEF7" target="_blank" href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=400">Propose a change</a>
         </span>
         </p>
