@@ -11,6 +11,16 @@
          "status": "ci-build",
          "current": true
       },
+			{
+				 "version": "1.4.1",
+				 "date": "2019-06-30",
+				 "desc": "STU4 Release",
+				 "changes": "history.html",
+				 "path": "http://cql.hl7.org/STU4/index.html",
+				 "status": "trial-use",
+				 "sequence": "STU4",
+				 "current": "true"
+			},
       {
          "version": "1.4.0",
          "date": "2019-03-24",
@@ -27,8 +37,7 @@
          "changes": "history.html",
          "path": "http://cql.hl7.org/STU3/index.html",
          "status": "trial-use",
-         "sequence": "STU3",
-         "current": "true"
+         "sequence": "STU3"
       },
       {
          "version": "1.3.0",

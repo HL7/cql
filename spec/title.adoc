@@ -1,6 +1,7 @@
 = Clinical Quality Language (CQL)
 :page-layout: dev
 :backend: xhtml
+:page-standards-status: trial-use
 
 image:extracted-media/media/image1.png[image,width=144,height=148]
 

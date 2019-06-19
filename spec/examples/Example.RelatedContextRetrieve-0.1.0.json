@@ -148,9 +148,13 @@
                                  "type" : "ValueSetRef"
                               },
                               "context" : {
-                                 "name" : "Mother",
-                                 "type" : "ExpressionRef"
-                              }
+															  "path": "linkedPatientId",
+																"type": "Property",
+																"source": {
+                                  "name" : "Mother",
+                                  "type" : "ExpressionRef"
+                              	}
+															}
                            }
                         } ],
                         "relationship" : [ ],

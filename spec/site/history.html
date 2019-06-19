@@ -101,16 +101,50 @@ The following versions of Clinical Quality Language are available:
     <td colspan="3" style="background: #EFEFEF"><b>Current Versions</b></td>
   </tr>
   <tr>
-    <td><a href="index.html">September 5, 2018</a></td><td>1.3</td><td>Current Official Published Version (Release 1 STU3)</td>
+    <td><a href="index.html">~June 2019</a></td><td>1.4</td><td>Current Official Published Version (Release 1 STU4)</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/hl7/cql/blob/master/spec/index.adoc">(draft)</a></td>
+    <td><a href="http://build.fhir.org/ig/HL7/cql">(draft)</a></td>
     <td>(last commit)</td>
     <td>Current Development build (may be incoherent and change rapidly)</td>
   </tr>
   <tr>
     <td colspan="3" style="background: #EFEFEF"><b>STU4 sequence</b></td>
   </tr>
+	<tr>
+		<td><a href="STU4/index.html">~June 2019</a></td>
+		<td>1.4</td>
+		<td>STU4 Release. Changes (since the 2019 May Ballot):<br/>
+			<ul>
+				<li><b>Breaking Changes:</b>
+					<ul>
+						<li>STU4B#22: Added definitional and referential identifier categories to the grammar to resolve ambiguity</li>
+						<li>STU4B#23: Updated semantics of list operators to treat null elements as equal for the purposes of membership determination</li>
+						<li>STU4B#27: Changed ToDateTime(Date) to leave time components unspecified</li>
+						<li>STU4B#70: Changed "Unspecified" context name to "Unfiltered"</li>
+						<li>STU4B#94: Removed the scope attribute from the Retrieve in ELM</li>
+					</ul>
+				</li>
+				<li><b>Breaking Changes (from 2019 May Ballot only):<br/>
+					<ul>
+						<li>STU4B#79: Required related context retrieve expression to return a singleton</li>
+						<li>STU4B#114: ConvertQuantity operator now throws an error if the implementation does not support the conversion</li>
+					</ul>
+				</li>
+				<li><b>Substantive Changes:</b>
+					<ul>
+						<li>STU4B#29: Added contextTargetRelationship to model information to support identifying target context elements</li>
+						<li>STU4B#32: Added target element to model information</li>
+						<li>STU4B#35: Changed timing phrase translations to add null check when the translation constructs an interval from a nullable element</li>
+						<li>STU4B#36: Added Precision, LowBoundary, and HighBoundary operators for Decimal, DateTime, Date, and Time types</li>
+						<li>STU4B#87: Added Ratio overload of ToQuantity operator</li>
+						<li>STU4B#109: Code paths specified in retrieves can now use literal indexers</li>
+					</ul>
+				</li>
+			</ul>
+			<p><a href="v1.4-changelog.html">Detailed Change Log</a></p>
+		</td>
+	</tr>
   <tr>
     <td><a href="2019May/index.html">March 24th, 2019</a></td>
     <td>1.4</td>
@@ -121,6 +155,7 @@ The following versions of Clinical Quality Language are available:
             <li>#1716: Added support for non-patient, model-defined contexts</li>
             <li>#1723: Define seconds as a Decimal for the purposes of comparison</li>
             <li>#1724: Removed timezone offset from Time</li>
+						<li>#1722: Removed the 'T' prefix from time formatting strings</li>
           </ul>
         </li>
         <li><b>Substantive Changes:</b>

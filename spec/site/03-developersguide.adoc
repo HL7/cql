@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
 This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the link:02-authorsguide.html[Author’s Guide] in the discussions that follow.
 
@@ -75,7 +76,7 @@ Literals provide for the representation of basic values within CQL. The followin
 |*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
 |*String* |Strings of any character enclosed within single-ticks ([.lit]#'#)
 |*Date* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
-|*DateTime* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date/time
+|*DateTime* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a datetime
 |*Time* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a time
 |*Quantity* |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
 |*Ratio* |A ratio of two quantities, separated by a colon ([.sym]#:#)
@@ -140,10 +141,12 @@ by
 called
 case
 cast
+code
 Code
 codesystem
 codesystems
 collapse
+concept
 Concept
 contains
 context
@@ -223,7 +226,7 @@ successor
 such that
 then
 time
-timezone
+timezoneoffset
 to
 true
 Tuple
@@ -244,7 +247,60 @@ year
 years
 ----
 
-In general, keywords within CQL are also considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
+[[reserved-words]]
+=== Reserved Words
+
+When there is no possibility for ambiguity, keywords may also be used as identifiers. However, many keywords are considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
+
+The following keywords are defined as reserved words:
+
+[source,cql]
+----
+all
+case
+cast
+Code
+collapse
+Concept
+convert
+day
+days
+difference
+distinct
+duration
+exists
+expand
+false
+flatten
+from
+if
+hour
+hours
+Interval
+List
+maximum
+millisecond
+milliseconds
+minimum
+minute
+minutes
+month
+months
+not
+null
+second
+seconds
+true
+Tuple
+week
+weeks
+year
+years
+----
+
+Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, [.kw]#exists# is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
+
+In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
 [[identifiers]]
 === Identifiers
@@ -266,12 +322,12 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
-A delimited identifier is any sequence of charaters enclosed in backticks ([.sym]#`#):
+A delimited identifier is any sequence of characters enclosed in backticks ([.sym]#`#):
 
 [source, cql]
 ----
 `Encounter, Performed`
-`Diagnosis, Active`
+`Diagnosis`
 ----
 
 A quoted identifier is any sequence of characters enclosed in double-quotes ([.sym]#"#):
@@ -279,7 +335,7 @@ A quoted identifier is any sequence of characters enclosed in double-quotes ([.s
 [source,cql]
 ----
 "Encounter, Performed"
-"Diagnosis, Active"
+"Diagnosis"
 ----
 
 The use of double-quotes and backticks allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
@@ -310,10 +366,15 @@ CQL escape sequences for strings also work for identifiers:
 |*\uXXXX* |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
+[[qualified-identifiers]]
+==== Qualified Identifiers
+
+Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common.ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
+
 [[operator-precedence]]
 === Operator Precedence
 
-CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precendence in CQL from highest to lowest:
+CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precedence in CQL from highest to lowest:
 
 [[table-3-d]]
 [cols=",",options="header",]
@@ -322,15 +383,15 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |*Primary* |[.sym]#.# [.sym]#[]# [.sym]#()#
 |*Conversion Phrase* |[.kw]#convert#..[.kw]#to#
 |*Unary Arithmetic* |unary [.sym]#+/-#
-|*Extractor* |[.kw]#start#/[.kw]#end#/[.kw]#difference#/[.kw]#duration#/[.kw]#width#/[.kw]#successor#/[.kw]#predecessor of# +
-_component_/[.kw]#singleton from#
+|*Extractor* |[.kw]#start# [.kw]#end# [.kw]#difference# [.kw]#duration# [.kw]#width# [.kw]#successor# [.kw]#predecessor of# +
+_component_ [.kw]#singleton from#
 |*Exponentiation* |[.sym]#^#
 |*Multiplicative* |[.sym]#*# [.sym]#/# [.kw]#div mod#
 |*Additive* |[.sym]#+# [.sym]#-# [.sym]#&#
 |*Conditional* |[.kw]#if#..[.kw]#then#..[.kw]#else# +
 [.kw]#case#..[.kw]#else#..[.kw]#end#
-|*Unary List* |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten#
-|*Unary Test* |[.kw]#is null#/[.kw]#true#/[.kw]#false#
+|*Unary List* |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten# [.kw]#expand#
+|*Unary Test* |[.kw]#is null# [.kw]#true# [.kw]#false#
 |*Type Operators* |[.kw]#is as cast#..[.kw]#as#
 |*Unary Logical* |[.kw]#not exists#
 |*Between* |[.kw]#between# +
@@ -349,12 +410,12 @@ _precision_ [.kw]#between# +
 |*Conjunction* |[.kw]#and#
 |*Disjunction* |[.kw]#or xor#
 |*Implication* |[.kw]#implies#
-|*Binary List* |[.kw]#union intersect except expand#
+|*Binary List* |[.kw]#union intersect except#
 |==============================================================
 
 Table 3‑D
 
-As with any typical computer language, parentheses can always be used to force order-of-operations if the defined operator precedence results in the incorrect evaluation of a given expression.
+As with most expression languages, parentheses can always be used to force order-of-operations if the defined operator precedence does not produce the intended evaluation of a given expression.
 
 When multiple operators appear in a single category, precedence is determined by the order of appearance in the expression, left to right.
 
@@ -375,11 +436,35 @@ The declaration is illegal because the parser will not recognize [.kw]#Define# a
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
-* The local identifier for a library must be unique within the artifact.
+* The local <<identifiers,identifier>> for a referenced library must be <<qualified-identifiers,unqualified>> and unique within the artifact.
 * Circular library references are not allowed.
 * Library references are not transitive.
 
-Because the identifier for a library is just an identifier, it may be either a simple identifier, or a quoted-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library.
+Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a <<04-logicalspecification.adoc#library,library>> contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> for an example of how namespaces are specified in ELM.
+
+When including a library, use the fully qualified identifier for the library. If the [.kw]#called# clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
+
+Because the library identifier and its qualifiers are CQL identifiers, they may be either a simple identifier, or a delimited-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library. For example, assume a library identified as [.id]#Global.Common#:
+
+[source,cql]
+----
+library Global.Common
+
+define function Foo(A Integer, B Integer):
+  A + B
+----
+
+When including this library, the [.kw]#called# clause may be omitted:
+
+[source,cql]
+----
+library UsingCommon
+
+include Global.Common
+
+define function Bar(A Integer, B Integer):
+  Common.Foo(A, B)
+----
 
 Libraries may also be declared with a specific version. When referencing a library, the reference may include a version specifier. If the reference includes a version specifier, the library with that version specifier must be used. If the reference does not include a version specifier, it is up to the implementation environment to provide the most appropriate version of the referenced library.
 
@@ -387,7 +472,20 @@ It is an error to reference a specific version of a library if the library does 
 
 Note that the library declaration is optional in a CQL document, but if it is omitted, it is not possible to reference the library from any other CQL library.
 
-Libraries may reference other libraries to any degree of nesting, so long as no circular library references are introduced, but library references are not transitive. This means that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
+Libraries may reference other libraries to any degree of nesting, so long as no circular library references are introduced, and all references to the same library use the same version. For example, given:
+
+[source,cql]
+----
+library A version '1'
+library A version '2'
+
+library B includes library A version '1'
+library C includes library A version '2'
+----
+
+A library D may not reference both B and C, because it would result in two different versions of library A being referenced.
+
+In addition, library references are not transitive, meaning that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
 
 [[access-modifiers]]
 === Access Modifiers
@@ -700,7 +798,7 @@ Conversion is the operation of turning a value from one type into another. For e
 [[explicit-conversion]]
 ==== Explicit Conversion
 
-The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a date/time to a [.id]#DateTime# value:
+The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a datetime to a [.id]#DateTime# value:
 
 [source,cql]
 ----
@@ -729,10 +827,10 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToQuantity(String)* |Converts the string representation of a quantity value to a Quantity value using the format ([.sym]#+\|-#)d*.d*'units'
 |*ToRatio(String)* |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
 |*ToDate(String)* |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
-|*ToDate(DateTime)* |Converts a DateTime to a DateTime. This is equivalent to invoking date from on the DateTime value
+|*ToDate(DateTime)* |Converts a DateTime to a Date. This is equivalent to invoking [.kw]#date from# on the DateTime value
 |*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components set to 0 and the timezone offset of the request
-|*ToDateTime(String)* |Converts the string representation of a date/time value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
-|*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: Thh:mm:ss.fff([.sym]#+\|-#)hh:mm
+|*ToDateTime(String)* |Converts the string representation of a datetime value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
 |*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
 |*ToString(Integer)* |Converts an Integer value to its string representation
 |*ToString(Decimal)* |Converts a Decimal value to its string representation
@@ -748,6 +846,26 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 Table 3‑G
 
 For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+
+[[quantity-conversions]]
+==== Quantity Conversions
+
+In addition to type conversions, CQL supports _quantity conversion_, converting a quantity from one unit to another unit using the same [.kw]#convert# keyword:
+
+[source,cql]
+----
+convert 5000 'g' to 'kg'
+convert 28 days to weeks
+----
+
+If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is [.kw]#null#.
+
+[.note-warning]
+____
+
+Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
+
+____
 
 [[implicit-conversions]]
 ==== Implicit Conversions
@@ -921,6 +1039,15 @@ end
 
 Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
 
+Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
+
+[source,cql]
+----
+if Count(X) > 0 then X[1] else 0
+----
+
+Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to true. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
+
 [[nullological-operators]]
 == Nullological Operators
 
@@ -1072,9 +1199,9 @@ The result of this expression is:
 Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or lowercase letters for all characters in the argument.
 
 [[introducing-context-in-queries]]
-== Introducing Context in Queries
+== Introducing Scoped Definitions in Queries
 
-The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available context of the query scope, as well as the overall library scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the context of a single query. For example:
+The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the scope of a single query. For example:
 
 [source,cql]
 ----
@@ -1153,7 +1280,7 @@ define "Encounters with Warfarin and Parenteral Therapies":
     and P.effectiveTime starts during E.period
 ----
 
-We now have both the encounter and the warfarin and parenteral therapies in context and can perform calculations involving all three:
+We now have both the encounter and the warfarin and parenteral therapies in scope and can perform calculations involving all three:
 
 [source,cql]
 ----
@@ -1170,7 +1297,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
 
-Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate comutational result within a query:
+Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate computational result within a query:
 
 [source,cql]
 ----
@@ -1262,6 +1389,39 @@ In addition, even if a given query is based on a list of tuples, the results are
 [Encounter: "Inpatient"] E
   return duration in days of E.period
 ----
+
+[[related-context-retrieves]]
+== Related Context Retrieves
+
+To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
+
+[source,cql]
+----
+context Patient
+
+define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
+
+define "Estimated Due Date":
+  Last(
+    ["Mother" -> "Observation": "Estimated Due Date Exam"] Exam
+      sort by effective
+  )
+
+define "Gestational Age in Days at Birth":
+  (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
+----
+
+Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
+
+If the expression being defined (such as "Mother" in the previous example) is null, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
+
+[.note-danger]
+____
+As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
+
+See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
+
+____
 
 [[defining-functions]]
 == Defining Functions
@@ -1372,7 +1532,7 @@ This approach enables the flexibility of FHIRPath expressions but still maintain
 [[method-invocation]]
 === Method Invocation
 
-The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare context variables such as [.id]#$this# that can be addressed in the body of the method.
+The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as [.id]#$this# that can be addressed in the body of the method.
 
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the link:16-i-fhirpathtranslation.html[FHIRPath Function Translation Appendix].
 

@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
 This chapter describes the Expression Logical Model (ELM) and how it is used to represent clinical knowledge within a quality artifact.
 
@@ -59,7 +60,7 @@ Structured values in ELM are values with sets of named elements (tuples), each o
 
 The _Tuple_ class represents construction of a new structured value, with the values for each element supplied by _TupleElement_ instances.
 
-To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some contexts, such as within a _Filter_ expression, the source is implicit. If used outside such a context, a source must be provided.
+To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some usages, such as within a _Filter_ expression, the source is implicit. If used outside such a usage, a source must be provided.
 
 The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers ([.sym]#.#) as well as indexers ([.sym]#[x]#) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
 
@@ -404,6 +405,7 @@ ELM defines the notion of a library as the basic container for logic constructs.
 
 Once defined, libraries can then be referenced by other libraries with the _IncludeDef_ class, which defines properties for the name and version of the library being referenced, as well as a local name that is used to access components of the library.
 
+[[library]]
 === Library
 
 [source,elm]
@@ -447,23 +449,17 @@ Library : Element
            0..* --> def : ExpressionDef
 ----
 
-<1> The identifier element defines a unique identifier for this library,
-                and optionally, a version.
+<1> The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
 
-<2> This is the identifier of the XML schema (and its version) which
-                governs the structure of this Library.
+<2> This is the identifier of the XML schema (and its version) which governs the structure of this Library.
 
-<3> Set of data models referenced in the Expression objects in this
-                knowledge artifact.
+<3> Set of data models referenced in the Expression objects in this knowledge artifact.
 
-<4> A reference to a data model that is used in the artifact,
-                      e..g., the Virtual Medical Record.
+<4> A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
 
-<5> Set of libraries referenced by this artifact. Components of
-                referenced libraries may be used within this artifact.
+<5> Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
 
-<6> A reference to a library whose components can be used within
-                      the artifact.
+<6> A reference to a library whose components can be used within the artifact.
 
 <7> The parameters defined within this library.
 
@@ -475,8 +471,7 @@ Library : Element
 
 <11> The concepts defined within this library.
 
-<12> The statements section contains the expression and function
-                definitions for the library.
+<12> The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -510,11 +505,12 @@ VersionedIdentifier
   0..1 --> version
 ----
 
-VersionedIdentifier is composed of two parts: (1) an identifier which
-        identifies the set of all versions of a given resource. (2) the actual version of the
-        instance of interest in this set. The VersionedIdentifier therefore points to an individual
-        'versioned' instance of a resource such as the third version of a library.
-
+VersionedIdentifier is composed of three parts: (1) an optional system, or
+  namespace, which provides a globally unique, stable scope for the identifier, 
+  (2) an identifier which identifies the set of all versions of a given resource, and 
+  (3) the actual version of the instance of interest in this set. The VersionedIdentifier 
+  therefore points to an individual 'versioned' instance of a resource such as the third
+  version of a library.
 
 [[data-model]]
 == Data Model
@@ -685,13 +681,13 @@ An aggregate operation performed over an empty list is defined to return null, e
 
 ELM provides a mechanism for reusing expressions by declaring a named expression. This construct is similar to a function call with no parameters in a traditional imperative language, with the exception that since ELM is a pure-functional system, the result of the evaluation could be cached by an implementation to avoid performing the same computation multiple times.
 
-In addition, ELM provides a more traditional function call with named parameters that can then be accessed by the expression in the function body, and passed as part of the call from the invoking context.
+In addition, ELM provides a more traditional function call with named parameters that can then be accessed by the expression in the function body, and passed as part of the call from the invoking environment.
 
 The _ExpressionDef_ class is used to define a named expression that can then be referenced by other expressions. The _FunctionDef_ class is used to define a function and its parameters.
 
 Note that circular expression references are not allowed, but that named expressions can be defined in any order, so long as the actual references do not result in a cycle.
 
-The _ExpressionDef_ class introduces the notion of _context_ which can be either Patient or Population. This context defines how the contained expression is evaluated, either with respect to a single patient, defined by the evaluation environment, or with respect to a population. For more information about patient context, please refer to the <<External Data>> section.
+The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unfiltered. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the <<External Data>> section.
 
 === ExpressionDef
 
@@ -709,7 +705,8 @@ ExpressionDef : Element
 ----
 
 The ExpressionDef type defines an expression and an associated name that can be referenced by any expression in the artifact. The name must be unique within the artifact.
-			The context attribute specifies the scope of the execution and is used by the environment to determine when and how to evaluate the expression.
+
+The context attribute specifies the context of the execution and is used by the environment to determine whether or not to filter the data returned from retrieves based on the current context.
 
 === ExpressionRef
 
@@ -791,7 +788,7 @@ AliasedQuerySource : Element
   1..1 --> alias
 ----
 
-The AliasedQuerySource element defines a single source for inclusion in a query context. The type of the source is determined by the expression element, and the source can be accessed within the query context by the given alias.
+The AliasedQuerySource element defines a single source for inclusion in a query scope. The type of the source is determined by the expression element, and the source can be accessed within the query scope by the given alias.
 
 === AliasRef
 
@@ -802,7 +799,7 @@ AliasRef : Expression
   0..1 --> name
 ----
 
-The AliasRef expression allows for the reference of a specific source within the context of a query.
+The AliasRef expression allows for the reference of a specific source within the scope of a query.
 
 === ByColumn
 
@@ -846,7 +843,7 @@ LetClause : Element
   1..1 --> identifier
 ----
 
-The LetClause element allows any number of expression definitions to be introduced within a query context. Defined expressions can be referenced by name within the query context.
+The LetClause element allows any number of expression definitions to be introduced within a query scope. Defined expressions can be referenced by name within the query scope.
 
 === QueryLetRef
 
@@ -857,7 +854,7 @@ QueryLetRef : Expression
   0..1 --> name
 ----
 
-The QueryLetRef expression allows for the reference of a specific let definition within the context of a query.
+The QueryLetRef expression allows for the reference of a specific let definition within the scope of a query.
 
 === RelationshipClause
 
@@ -868,7 +865,7 @@ RelationshipClause : AliasedQuerySource
   1..1 --> suchThat : Expression
 ----
 
-The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query context. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query context.
+The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query scope. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query scope.
 
 === ReturnClause
 
@@ -923,7 +920,7 @@ The type of the elements to be returned is specified with the _dataType_ attribu
 
 In addition, the _Retrieve_ introduces the ability to specify optional criteria for the request. The available criteria are intentionally restricted to the set of codes involved, and the date range involved. If these criteria are omitted, the request is interpreted to mean all data of that type.
 
-Note that because every expression is being evaluated within a context (either Patient or Population) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Population context, the data is returned for all patients.
+Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unfiltered) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unfiltered context, the data is returned for the entire source.
 
 === Retrieve
 
@@ -931,9 +928,11 @@ Note that because every expression is being evaluated within a context (either P
 ----
 Retrieve : Expression
   ¦
-  0..1 --> codes : Expression <1>
+  0..1 --> codes : Expression
   ¦
-  0..1 --> dateRange : Expression <2>
+  0..1 --> dateRange : Expression
+  ¦
+  0..1 --> context : Expression
   ¦
   1..1 --> dataType
   ¦
@@ -943,20 +942,77 @@ Retrieve : Expression
   ¦
   0..1 --> codeProperty
   ¦
+  0..1 --> valueSetProperty
+  ¦
   0..1 --> dateProperty
   ¦
   0..1 --> dateLowProperty
   ¦
   0..1 --> dateHighProperty
-  ¦
-  0..1 --> scope
 ----
 
-<1> The codes element optionally allows a set of codes to be provided. The codes list restricts the set of clinical statements returned to only those clinical statements that matched some code in the set.
-
-<2> The dateRange element optionally allows a date range to be provided. The clinical statements returned would be only those clinical statements whose date fell within the range specified.
-
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
+
+==== codes
+The codes element optionally specifies an expression that results in a List<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
+
+==== dateRange
+The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
+
+==== context
+If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.
+
+==== dataType
+The dataType attribute specifies the type of data being requested.
+
+==== templateId
+For data models that support templates (also called profiles), The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.
+
+==== idProperty
+The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== codeProperty
+The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
+
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== valueSetProperty
+The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
+
+This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity.
+
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== dateProperty
+The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
+
+This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range.
+
+Instances with no value for the dateProperty will not be included in the result set if a date range is specified.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. If specified, the dateLowProperty and dateHighProperty values will be used to construct an interval with inclusive boundaries for the date range.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== dateLowProperty
+The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== dateHighProperty
+The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
+
+Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
+
+This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 [[comparison-operators-1]]
 == Comparison Operators
@@ -977,15 +1033,21 @@ The Equal operator returns true if the arguments are equal; false if the argumen
 
 For simple types, this means that equality returns true if and only if the result of each argument evaluates to the same value.
 
+For string values, equality is strictly lexical based on the Unicode values for the individual characters in the strings.
+
+For decimal values, trailing zeroes are ignored.
+
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
+
+For ratios, this means that the numerator and denominator must be the same, using quantity equality semantics.
 
 For tuple types, this means that equality returns true if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
 
-For list types, this means that equality returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics.
+For list types, this means that equality returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics, with the exception that null elements are considered equal.
 
 For interval types, equality returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the interval as determined by the Start and End operators.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is false. If one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is false. If one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal equality semantics.
 
 If either argument is null, the result is null.
 
@@ -1006,13 +1068,23 @@ Equivalent : BinaryExpression
 
 The Equivalent operator returns true if the arguments are the same value, or if they are both null; and false otherwise.
 
+With the exception of null behavior and the semantics for specific types defined below, equivalence is the same as equality.
+
+For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category.
+
+For decimals, equivalent means the values are the same with the comparison done on values rounded to the precision of the least precise operand; trailing zeroes after the decimal are ignored in determining precision for equivalent comparison.
+
+For quantities, equivalent means the values are the same quantity when considering unit conversion (e.g. 100 'cm' ~ 1 'm') and using decimal equivalent semantics for the value. Note that implementations are not required to support unit conversion and so are allowed to return null for equivalence of quantities with different units.
+
+For ratios, equivalent means that the numerator and denominator represent the same ratio (e.g. 1:100 ~ 10:1000).
+
 For tuple types, this means that two tuple values are equivalent if and only if the tuples are of the same type, and the values for all elements by name are equivalent.
 
 For list types, this means that two lists are equivalent if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.
 
 For interval types, this means that two intervals are equivalent if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.
 
-For date/time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is false, rather than null.
+For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is false, rather than null. As with equality, the second and millisecond precisions are combined and combined as a single precision using a decimal, with decimal equivalence semantics.
 
 For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purposes of determining Code equivalence.
 
@@ -1031,11 +1103,17 @@ The Greater operator returns true if the first argument is greater than the seco
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is null, the result is null.
 
 The Greater operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+
+[.note-info]
+____
+
+Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+____
 
 === GreaterOrEqual
 
@@ -1048,11 +1126,17 @@ The GreaterOrEqual operator returns true if the first argument is greater than o
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is null, the result is null.
 
 The GreaterOrEqual operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+
+[.note-info]
+____
+
+Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+____
 
 === Less
 
@@ -1065,11 +1149,17 @@ The Less operator returns true if the first argument is less than the second arg
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is null, the result is null.
 
 The Less operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+
+[.note-info]
+____
+
+Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+____
 
 === LessOrEqual
 
@@ -1082,11 +1172,17 @@ The LessOrEqual operator returns true if the first argument is less than or equa
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-For date/time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true.
+For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either argument is null, the result is null.
 
 The LessOrEqual operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+
+[.note-info]
+____
+
+Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+____
 
 [[not-equal]]
 === NotEqual
@@ -1133,6 +1229,8 @@ Implies : BinaryExpression
 ----
 
 The Implies operator returns the logical implication of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
+
+Note that implies may use short-circuit evaluation in the case that the first operand evaluates to false.
 
 === Not
 
@@ -1286,6 +1384,8 @@ ELM provides a complete set of arithmetic operators to allow for manipulation of
 
 Note that if an operand evaluates to null, the result of the operation is defined to be null. This provides consistent semantics when dealing with missing information.
 
+In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
+
 For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators-4,Arithmetic Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
 === Abs
@@ -1300,6 +1400,8 @@ The Abs operator returns the absolute value of its argument.
 When taking the absolute value of a quantity, the unit is unchanged.
 
 If the argument is null, the result is null.
+
+If the result of taking the absolute value of the input cannot be represented (e.g. Abs(minimum Integer)), the result is null.
 
 The Abs operator is defined for the Integer, Decimal, and Quantity types.
 
@@ -1317,7 +1419,7 @@ When adding quantities, the dimensions of each quantity must be the same, but no
 
 The Add operator is defined for the Integer, Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
 
-For Date, DateTime, and Time values, the operator returns the value of the given date/time, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+For Date, DateTime, and Time values, the operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
 For Date values, the quantity unit must be one of years, months, weeks, or days.
 
@@ -1325,11 +1427,13 @@ For DateTime values, the quantity unit must be one of years, months, weeks, days
 
 For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
 
-Note that as with any date/time operations, temporal units may be specified with either singular, plural, or UCUM units.
+Note that as with any date and time operations, temporal units may be specified with either singular, plural, or UCUM units.
 
-The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value.
+The operation is performed by converting the time-based quantity to the highest specified granularity in the first argument (truncating any resulting decimal portion) and then adding it to the first argument.
 
 If either argument is null, the result is null.
+
+If the result of the addition cannot be represented (i.e. arithmetic overflow), the result is null.
 
 The following example illustrates a simple _Add_ expression:
 
@@ -1362,6 +1466,8 @@ For division operations involving quantities, the resulting quantity will have t
 
 If either argument is null, the result is null.
 
+If the result of the division cannot be represented, or the right argument is 0, the result is null.
+
 The Divide operator is defined for the Decimal and Quantity types.
 
 === Exp
@@ -1375,6 +1481,8 @@ The Exp operator returns e raised to the given power.
 
 If the argument is null, the result is null.
 
+If the result of the operation cannot be represented, the result is null.
+
 === Floor
 
 [source,elm]
@@ -1385,6 +1493,31 @@ Floor : UnaryExpression
 The Floor operator returns the first integer less than or equal to the argument.
 
 If the argument is null, the result is null.
+
+=== HighBoundary
+
+[source,elm]
+----
+HighBoundary : BinaryExpression
+----
+
+The HighBoundary operator returns the greatest possible value of the input to the specified precision.
+			
+If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
+
+If the precision is greater than the maximum possible precision of the implementation, the result is null.
+
+The operator can be used with Decimal, Date, DateTime, and Time values.
+
+[source,cql]
+----
+HighBoundary(1.587, 8) // 1.58799999
+HighBoundary(@2014, 6) // @2014-12
+HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
+HighBoundary(@T10:30, 9) // @T10:30:59.999
+----
+
+If the input value is null, the result is null.
 
 === Log
 
@@ -1397,6 +1530,33 @@ The Log operator computes the logarithm of its first argument, using the second 
 
 If either argument is null, the result is null.
 
+If the result of the operation cannot be represented, the result is null.
+
+=== LowBoundary
+
+[source,elm]
+----
+LowBoundary : BinaryExpression
+----
+
+The LowBoundary operator returns the least possible value of the input to the specified precision.
+			
+If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
+
+If the precision is greater than the maximum possible precision of the implementation, the result is null.
+
+The operator can be used with Decimal, Date, DateTime, and Time values.
+
+[source,cql]
+----
+LowBoundary(1.587, 8) // 1.58700000
+LowBoundary(@2014, 6) // @2014-01
+LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
+LowBoundary(@T10:30, 9) // @T10:30:00.000
+----
+
+If the input value is null, the result is null.
+
 === Ln
 
 [source,elm]
@@ -1407,6 +1567,8 @@ Ln : UnaryExpression
 The Ln operator computes the natural logarithm of its argument.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === MaxValue
 
@@ -1429,9 +1591,12 @@ For Date, MaxValue returns the maximum representable Date value, Date(9999, 12, 
 
 For DateTime, MaxValue returns the maximum representable DateTime value, DateTime(9999, 12, 31, 23, 59, 59, 999).
 
+Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+
 For Time, MaxValue returns the maximum representable Time value, Time(23, 59, 59, 999).
 
 For any other type, attempting to invoke MaxValue results in an error.
+
 
 === MinValue
 
@@ -1454,6 +1619,8 @@ For Date, MinValue returns the minimum representable Date value, Date(1, 1, 1).
 
 For DateTime, MinValue returns the minimum representable DateTime value, DateTime(1, 1, 1, 0, 0, 0, 0).
 
+Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+
 For Time, MinValue returns the minimum representable Time value, Time(0, 0, 0, 0).
 
 For any other type, attempting to invoke MinValue results in an error.
@@ -1468,6 +1635,8 @@ Modulo : BinaryExpression
 The Modulo operator computes the remainder of the division of its arguments.
 
 If either argument is null, the result is null.
+
+If the result of the modulo cannot be represented, or the right argument is 0, the result is null.
 
 The Modulo operator is defined for the Integer and Decimal types.
 
@@ -1484,6 +1653,8 @@ For multiplication operations involving quantities, the resulting quantity will 
 
 If either argument is null, the result is null.
 
+If the result of the operation cannot be represented, the result is null.
+
 The Multiply operator is defined for the Integer, Decimal and Quantity types.
 
 === Negate
@@ -1499,6 +1670,8 @@ When negating quantities, the unit is unchanged.
 
 If the argument is null, the result is null.
 
+If the result of negating the argument cannot be represented (e.g. -(minimum Integer)), the result is null.
+
 The Negate operator is defined for the Integer, Decimal, and Quantity types.
 
 === Power
@@ -1511,6 +1684,38 @@ Power : BinaryExpression
 The Power operator raises the first argument to the power given by the second argument.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
+
+=== Precision
+
+[source,elm]
+----
+Precision : UnaryExpression
+----
+
+The Precision operator returns the number of digits of precision in the input value.
+
+The operator can be used with Decimal, Date, DateTime, and Time values.
+
+For Decimal values, the operator returns the number of digits of precision after the decimal place in the input value.
+
+[source,cql]
+----
+Precision(1.58700) // 5
+----
+
+For Date and DateTime values, the operator returns the number of digits of precision in the input value.
+
+[source,cql]
+----
+Precision(@2014) // 4
+Precision(@2014-01-05T10:30:00.000) // 17
+Precision(@T10:30) // 4
+Precision(@T10:30:00.000) // 9
+----
+
+If the argument is null, the result is null.
 
 === Predecessor
 
@@ -1530,6 +1735,8 @@ For Decimal, Predecessor is equivalent to subtracting the minimum precision valu
 For Date, DateTime, and Time values, Predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, Predecessor is equivalent to subtracting one second, etc.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Round
 
@@ -1562,7 +1769,7 @@ When subtracting quantities, the dimensions of each quantity must be the same, b
 
 The Subtract operator is defined for the Integer, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
 
-For Date, DateTime, Time values, the operator returns the value of the given date/time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
+For Date, DateTime, Time values, the operator returns the value of the first argument, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
 For Date values, the quantity unit must be one of years, months, weeks, or days.
 
@@ -1570,9 +1777,11 @@ For DateTime values, the quantity unit must be one of years, months, weeks, days
 
 For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
 
-The operation is performed by converting the time-based quantity to the highest specified granularity in the date/time value (truncating any resulting decimal portion) and then adding it to the date/time value.
+The operation is performed by converting the time-based quantity to the highest specified granularity in the first argument (truncating any resulting decimal portion) and then adding it to the first arugment.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Successor
 
@@ -1592,6 +1801,8 @@ For Decimal, Successor is equivalent to adding the minimum precision value for t
 For Date, DateTime, and Time values, Successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, Successor is equivalent to adding one second, etc.
 
 If the argument is null, the result is null.
+
+If the result of the operation cannot be represented, the result is null.
 
 === Truncate
 
@@ -1614,6 +1825,8 @@ TruncatedDivide : BinaryExpression
 The TruncatedDivide operator performs integer division of its arguments.
 
 If either argument is null, the result is null.
+
+If the result of the operation cannot be represented, or the right argument is 0, the result is null.
 
 The TruncatedDivide operator is defined for the Integer and Decimal types.
 
@@ -1746,7 +1959,7 @@ The Matches operator returns true if the given string matches the given regular 
 
 If either argument is null, the result is null.
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the PCRE dialect.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
 
 === Not Equal
 
@@ -1780,7 +1993,7 @@ The ReplaceMatches operator matches the given string using the regular expressio
 
 If any argument is null, the result is null.
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the PCRE dialect.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
 
 === Split
 
@@ -1870,7 +2083,7 @@ ELM defines several operators for representing the manipulation of date and time
 
 Except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators-2,Date/Time Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators-2,Date, DateTime, and Time Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
 === Add
 
@@ -1943,7 +2156,7 @@ DateTime : OperatorExpression
   0..1 --> timezoneOffset : Expression
 ----
 
-The DateTime operator constructs a date/time value from the given components.
+The DateTime operator constructs a DateTime value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
 
@@ -1981,6 +2194,8 @@ For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining boundaries.
 
+When calculating the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
 If either argument is null, the result is null.
 
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
@@ -2001,6 +2216,8 @@ For Date values, precision must be one of Year, Month, Week, or Day.
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
 For calculations involving weeks, the duration of a week is equivalent to 7 days.
+
+When calculating duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2035,7 +2252,7 @@ The SameAs operator is defined for Date, DateTime, and Time values, as well as i
 
 For the Interval overloads, the SameAs operator returns true if the intervals start and end at the same value, using the semantics described in the Start and End operator to determine interval boundaries.
 
-The SameAs operator compares two date/time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is true. If a compared component is specified in both dates, but the values are not the same, then the result is false. Otherwise the result is null, as there is not enough information to make a determination.
+The SameAs operator compares two Date, DateTime, or Time values to the specified precision for equality. Individual component values are compared starting from the year component down to the specified precision. If all values are specified and have the same value for each component, then the result is true. If a compared component is specified in both dates, but the values are not the same, then the result is false. Otherwise the result is null, as there is not enough information to make a determination.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -2047,7 +2264,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2064,7 +2281,7 @@ The SameOrBefore operator is defined for Date, DateTime, and Time values, as wel
 
 For the Interval overload, the SameOrBefore operator returns true if the first interval ends on or before the second one starts. In other words, if the ending point of the first interval is less than or equal to the starting point of the second interval, using the semantics described in the Start and End operators to determine interval boundaries.
 
-The SameOrBefore operator compares two date/time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.
+The SameOrBefore operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -2076,7 +2293,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2093,7 +2310,7 @@ The SameOrAfter operator is defined for Date, DateTime, and Time values, as well
 
 For the Interval overload, the SameOrAfter operator returns true if the first interval starts on or after the second one ends. In other words, if the starting point of the first interval is greater than or equal to the ending point of the second interval, using the semantics described in the Start and End operators to determine interval boundaries.
 
-For the Date, DateTime, and Time overloads, this operator compares two date/time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.
+For the Date, DateTime, and Time overloads, this operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -2105,7 +2322,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2126,8 +2343,6 @@ Time : OperatorExpression
   0..1 --> second : Expression
   ¦
   0..1 --> millisecond : Expression
-  ¦
-  0..1 --> timezoneOffset : Expression
 ----
 
 The Time operator constructs a time value from the given components.
@@ -2145,16 +2360,18 @@ TimeFrom : UnaryExpression
 
 The TimeFrom operator returns the Time of the argument.
 
+When extracting the Time from a DateTime value, implementations should normalize to the timezone offset of the evaluation request timestamp.
+
 If the argument is null, the result is null.
 
-=== TimezoneFrom
+=== TimezoneOffsetFrom
 
 [source,elm]
 ----
-TimezoneFrom : UnaryExpression
+TimezoneOffsetFrom : UnaryExpression
 ----
 
-The TimezoneFrom operator returns the timezone offset of the argument.
+The TimezoneOffsetFrom operator returns the timezone offset of the argument.
 
 If the argument is null, the result is null.
 
@@ -2254,7 +2471,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2284,7 +2501,7 @@ For Time values, precision must be one of hour, minute, second, or millisecond.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-As with all date/time calculations, comparisons are performed respecting the timezone offset.
+When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
 
@@ -2295,17 +2512,17 @@ If either argument is null, the result is null.
 Collapse : BinaryExpression
 ----
 
-The Collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals.
+The Collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals. In other words, adjacent intervals within a sorted list are merged if they either overlap or meet.
 
-The operation is performed by combining successive intervals in the input that either overlap or meet, using the semantics defined for the Overlaps and Meets operators. Note that because those operators are themselves defined in terms of interval successor and predecessor operators, sets of date/time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
+The operation is performed by combining successive intervals in the input that either overlap or meet, using the semantics defined for the Overlaps and Meets operators. Note that because those operators are themselves defined in terms of interval successor and predecessor operators, sets of Date-, DateTime-, and Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
-The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a default unit ('1'), for date/time-valued intervals, this means a temporal duration.
+The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. the interval that has a width equal to the result of the successor function for the point type).
+If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
-If the argument is null, the result is null.
+If the source argument is null, the result is null.
 
 [[contains]]
 === Contains
@@ -2320,14 +2537,14 @@ Contains : BinaryExpression
 The Contains operator returns true if the first operand contains the second.
 
 There are two overloads of this operator:
-	List, T : The type of T must be the same as the element type of the list.
-	Interval, T : The type of T must be the same as the point type of the interval.
+1. List, T : The type of T must be the same as the element type of the list.
+2. Interval, T : The type of T must be the same as the point type of the interval.
 
 For the List, T overload, this operator returns true if the given element is in the list, using equality semantics.
 
-For the Interval, T overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, T overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is false. If the second argument is null, the result is null.
 
 === End
 
@@ -2357,7 +2574,7 @@ The Ends operator returns true if the first interval ends the second. In other w
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2380,14 +2597,14 @@ Except : NaryExpression
 The Except operator returns the set difference of the two arguments.
 
 This operator has two overloads:
-	List, List
-	Interval, Interval
+1. List, List
+2. Interval, Interval
 
-For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
+For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics, with the exception that null elements are considered equal for the purposes of determining the result. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 For the interval overload, this operator returns the portion of the first interval that does not overlap with the second. If the second argument is properly contained within the first and does not start or end it, this operator returns null.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is null. If the second argument is null, the operation is performed as though the second argument was an empty list.
 
 === Expand
 
@@ -2396,17 +2613,17 @@ If either argument is null, the result is null.
 Expand : BinaryExpression
 ----
 
-The Expand operator returns the set of intervals of width per for all the ranges present in the given list of intervals.
+The Expand operator returns the set of intervals of size per for all the ranges present in the given list of intervals.
 
-The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a default unit ('1'), for date/time-valued intervals, this means a temporal duration.
+The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
-If the per argument is null, the default unit interval for the point type of the intervals involved will be used (i.e. the interval that has a width equal to the result of the successor function for the point type).
+If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 
-Note that if the values in the intervals have a higher precision than the per expression, the higher precision values will be truncated to the granularity specified by the per expression.
+Note that if the values in the intervals are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
-If the argument is null, the result is null.
+If the source argument is null, the result is null.
 
 [[in]]
 === In
@@ -2421,14 +2638,14 @@ In : BinaryExpression
 The In operator tests for membership in an interval or list.
 
 There are two overloads of this operator:
-	T, List : The type of T must be the same as the element type of the list.
-	T, Interval : The type of T must be the same as the point type of the interval.
+1. T, List : The type of T must be the same as the element type of the list.
+2. T, Interval : The type of T must be the same as the point type of the interval.
 
 For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics.
 
-For the T, Interval overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the T, Interval overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is null. If the second argument is null the result is false.
 
 [[includes]]
 === Includes
@@ -2443,12 +2660,12 @@ Includes : BinaryExpression
 The Includes operator returns true if the first operand completely includes the second.
 
 There are two overloads of this operator:
-	List, List : The element type of both lists must be the same.
-	Interval, Interval : The point type of both intervals must be the same.
+1. List, List : The element type of both lists must be the same.
+2. Interval, Interval : The point type of both intervals must be the same.
 
 For the List, List overload, this operator returns true if the first operand includes every element of the second operand, using equality semantics.
 
-For the Interval, Interval overload, this operator returns true if starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, Interval overload, this operator returns true if starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
@@ -2467,12 +2684,12 @@ IncludedIn : BinaryExpression
 The IncludedIn operator returns true if the first operand is completely included in the second.
 
 There are two overloads of this operator:
-	List, List : The element type of both lists must be the same.
-	Interval, Interval : The point type of both intervals must be the same.
+1. List, List : The element type of both lists must be the same.
+2. Interval, Interval : The point type of both intervals must be the same.
 
 For the List, List overload, this operator returns true if every element in the first list is included in the second list, using equality semantics.
 
-For the Interval, Interval overload, this operator returns true if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, Interval overload, this operator returns true if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
@@ -2492,7 +2709,7 @@ This operator has two overloads:
 	List
 	Interval
 
-For the list overload, this operator returns a list with the elements that appear in both lists, using equality semantics. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
+For the list overload, this operator returns a list with the elements that appear in both lists, using equality semantics, with the exception that null elements are considered equal for the purposes of the intersection. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 For the interval overload, this operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns null.
 
@@ -2511,7 +2728,7 @@ The Meets operator returns true if the first interval ends immediately before th
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2528,7 +2745,7 @@ The MeetsBefore operator returns true if the first interval ends immediately bef
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2545,7 +2762,7 @@ The MeetsAfter operator returns true if the first interval starts immediately af
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2562,11 +2779,11 @@ Overlaps : BinaryExpression
   0..1 --> precision
 ----
 
-The Overlaps operator returns true if the first interval overlaps the second. In other words, if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
+The Overlaps operator returns true if the first interval overlaps the second. In other words, if the starting or ending point of either interval is in the other, or if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2579,11 +2796,11 @@ OverlapsBefore : BinaryExpression
   0..1 --> precision
 ----
 
-The OverlapsBefore operator returns true if the first interval starts before and overlaps the second. In other words, if the first interval contains the starting point of the second interval.
+The OverlapsBefore operator returns true if the first interval starts before and overlaps the second. In other words, if the first interval starts before and ends on or after the start of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2596,11 +2813,11 @@ OverlapsAfter : BinaryExpression
   0..1 --> precision
 ----
 
-The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the starting point of the first interval contains the ending point of the second interval.
+The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval ends after and starts on or before the end of the second interval.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2611,7 +2828,7 @@ If either argument is null, the result is null.
 PointFrom : UnaryExpression
 ----
 
-The PointFrom expression extracts the single point from the source interval. The source interval must be a unit interval (meaning an interval of width one (1)), otherwise, a run-time error is thrown. If the source interval is null, the result is null.
+The PointFrom expression extracts the single point from the source interval. The source interval must be a unit interval (meaning an interval with the same starting and ending boundary), otherwise, a run-time error is thrown. If the source interval is null, the result is null.
 
 [[proper-contains]]
 === ProperContains
@@ -2631,7 +2848,7 @@ There are two overloads of this operator:
 
 For the List, T overload, this operator returns true if the given element is in the list, and it is not the only element in the list, using equality semantics.
 
-For the Interval, T overload, this operator returns true if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the Start and End operators.  If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, T overload, this operator returns true if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the Start and End operators.  If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2653,7 +2870,7 @@ There are two overloads of this operator:
 
 For the T, List overload, this operator returns if the given element is in the given list, and it is not the only element in the list, using equality semantics.
 
-For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2675,7 +2892,7 @@ There are two overloads of this operator:
 
 For the List, List overload, this operator returns true if the first list includes every element of the second list, using equality semantics, and the first list is strictly larger.
 
-For the Interval, Interval overload, this operator returns true if the first interval includes the second interval, and the intervals are not equal. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, Interval overload, this operator returns true if the first interval includes the second interval, and the intervals are not equal. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
@@ -2699,11 +2916,26 @@ There are two overloads of this operator:
 
 For the List, List overload, this operator returns true if every element of the first list is included in the second list, using equality semantics, and the first list is strictly smaller.
 
-For the Interval, Interval overload, this operator returns true if the first interval is included in the second interval, and the intervals are not equal. If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, Interval overload, this operator returns true if the first interval is included in the second interval, and the intervals are not equal. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If either argument is null, the result is null.
+
+=== Size
+
+[source,elm]
+----
+Size : UnaryExpression
+----
+
+The Size operator returns the size of an interval. 
+
+The result of this operator is equivalent to invoking: End(i) - Start(i) + point-size, where the point-size for the point type of the interval is determined by: Successor(Minimum_T) - Minimum_T.
+
+Note that this operator is not defined for intervals of type Date, DateTime, and Time.
+
+If the argument is null, the result is null.
 
 === Start
 
@@ -2733,7 +2965,7 @@ The Starts operator returns true if the first interval starts the second. In oth
 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
-If precision is specified and the point type is a date/time type, comparisons used in the operation are performed at the specified precision.
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is null, the result is null.
 
@@ -2751,11 +2983,11 @@ This operator has two overloads:
 	List
 	Interval
 
-For the list overload, this operator returns a list with all unique elements from both arguments.
+For the list overload, this operator returns a list with all unique elements from both arguments, using equality semantics, with the exception that null elements are considered equal.
 
 For the interval overload, this operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns null.
 
-If either argument is null, the result is null.
+If either argument is null, the operation is performed as though the argument was an empty list.
 
 === Width
 
@@ -2764,7 +2996,7 @@ If either argument is null, the result is null.
 Width : UnaryExpression
 ----
 
-The Width operator returns the width of an interval. The result of this operator is equivalent to invoking: End(i) - Start(i) + point-size.
+The Width operator returns the width of an interval. The result of this operator is equivalent to invoking: End(i) - Start(i).
 
 Note that this operator is not defined for intervals of type Date, DateTime, and Time.
 
@@ -2826,7 +3058,7 @@ Distinct : UnaryExpression
 
 The Distinct operator takes a list of elements and returns a list containing only the unique elements within the input. For example, given the list of integers { 1, 1, 1, 2, 2, 3, 4, 4 }, the result of Distinct would be { 1, 2, 3, 4 }.
 
-The operator uses equality comparison semantics as defined in the Equal operator.
+The operator uses equality comparison semantics as defined in the Equal operator, with the exception that nulls are considered equal for the purposes of distinct determination. This means that multiple nulls in the input will result in a single null in the output.
 
 If the source argument is null, the result is null.
 
@@ -3051,6 +3283,8 @@ Sort : Expression
 
 The Sort operator returns a list with all the elements in source, sorted as described by the by element.
 
+When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
+			
 If the argument is null, the result is null.
 
 === Times
@@ -3074,6 +3308,8 @@ Refer to the <<union,Union section>> in the Interval Operators.
 For computing aggregate quantities, ELM defines several aggregate operators. These operators perform computations on lists of values, either on the elements of the list directly, or on a specific property of each element in the list.
 
 Unless noted in the documentation for each operator, aggregate operators deal with missing information by excluding elements which have no value before performing the aggregation. In addition, an aggregate operation performed over an empty list is defined to return null, except as noted in the documentation for each operator (e.g. Count).
+
+In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
 For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the link:09-b-cqlreference.html[CQL Reference].
 
@@ -3341,13 +3577,26 @@ Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, Dat
 
 as well as:
 
-From Integer to Decimal or Quantity
-From Decimal to Quantity
-Between Date and DateTime
-From Code to Concept
+From Integer to Decimal or Quantity +
+From Decimal to Quantity +
+Between Date and DateTime +
+From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
+
+=== CanConvertQuantity
+
+[source,elm]
+----
+CanConvertQuantity : BinaryExpression
+----
+
+The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
+  
+Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+
+If either argument is null, the result is null.
 
 === Children
 
@@ -3385,13 +3634,26 @@ Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, Dat
 
 as well as:
 
-From Integer to Decimal or Quantity
-From Decimal to Quantity
-Between Date and DateTime
-From Code to Concept
+From Integer to Decimal or Quantity +
+From Decimal to Quantity +
+Between Date and DateTime +
+From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[]
+
+=== ConvertQuantity
+
+[source,elm]
+----
+ConvertQuantity : BinaryExpression
+----
+
+The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
+  
+Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
+
+If either argument is null, the result is null.
 
 === ConvertsToBoolean
 
@@ -3417,11 +3679,13 @@ ConvertsToDate : UnaryExpression
 
 The ConvertsToDate operator returns true if the value of its argument can be converted to a Date value.
 
-Fro String values, The operator expects the string to be formatted using the ISO-8601 date representation:
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD
+YYYY-MM-DD footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid date value.
+
+Note that the operator can take time formatted strings and will ignore the time portions.
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is false.
 
@@ -3438,15 +3702,15 @@ ConvertsToDateTime : UnaryExpression
 
 The ConvertsToDateTime operator returns true if the value of its argument can be converted to a DateTime value.
 
-For String values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
+For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
 
-In addition, the string must be interpretable as a valid date/time value.
+In addition, the string must be interpretable as a valid DateTime value.
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, the result is false.
+If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is false.
 
-As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with Date and Time literals, DateTime values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
 If the argument is null, the result is null.
 
@@ -3459,7 +3723,7 @@ ConvertsToDecimal : UnaryExpression
 
 The ConvertsToDecimal operator returns true if the value of its argument can be converted to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?
+(+|-)?\#0(.0#)?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3478,7 +3742,7 @@ ConvertsToInteger : UnaryExpression
 
 The ConvertsToInteger operator returns true if the value of its argument can be converted to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0
+(+|-)?#0footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3495,15 +3759,19 @@ If the argument is null, the result is null.
 ConvertsToQuantity : UnaryExpression
 ----
 
-The ConvertsToQuantity operator returns true if the value of its argument can be converted to a Quantity value. The operator accepts strings using the following format:
+The ConvertsToQuantity operator returns true if the value of its argument can be converted to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
 
-(+|-)?#0(.0#)?('<unit>')?
+For String values, the operator accepts strings using the following format:
+
+(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is false.
+
+For Integer, Decimal, and Ratio values, the operator simply returns true.
 
 If the argument is null, the result is null.
 
@@ -3535,13 +3803,13 @@ The ConvertsToString operator returns true if the value of its argument can be c
 
 The operator returns true if the argument is any of the following types:
 
-Boolean
-Integer
-Decimal
-DateTime
-Date
-Time
-Quantity
+Boolean +
+Integer +
+Decimal +
+DateTime +
+Date +
+Time +
+Quantity +
 Ratio
 
 If the argument is null, the result is null.
@@ -3557,7 +3825,7 @@ The ConvertsToTime operator returns true if the value of its argument can be con
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-Thh:mm:ss.fff(+|-)hh:mm
+hh:mm:ss.fff footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -3641,11 +3909,13 @@ ToDate : UnaryExpression
 
 The ToDate operator converts the value of its argument to a Date value.
 
-Fro String values, The operator expects the string to be formatted using the ISO-8601 date representation:
+For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD
+YYYY-MM-DD footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid date value.
+
+Note that the operator can take datetime formatted strings and will ignore the time portions.
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is null.
 
@@ -3664,17 +3934,17 @@ ToDateTime : UnaryExpression
 
 The ToDateTime operator converts the value of its argument to a DateTime value.
 
-For String values, the operator expects the string to be formatted using the ISO-8601 date/time representation:
+For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
 
-In addition, the string must be interpretable as a valid date/time value.
+In addition, the string must be interpretable as a valid DateTime value.
 
-If the input string is not formatted correctly, or does not represent a valid date/time value, the result is null.
+If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is null.
 
-As with date/time literals, date/time values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with Date and Time literals, DateTime values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
 
-For Date values, the result is a DateTime with all time components set to 0, except the timezone offset, which is set to the timezone offset of the evaluation request timestamp.
+For Date values, the result is a DateTime with the time components unspecified, except the timezone offset, which is set to the timezone offset of the evaluation request timestamp.
 
 If the argument is null, the result is null.
 
@@ -3687,7 +3957,7 @@ ToDecimal : UnaryExpression
 
 The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?#0(.0#)?
+(+|-)?\#0(.0#)?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3706,7 +3976,7 @@ ToInteger : UnaryExpression
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0
+(+|-)?#0footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3738,15 +4008,21 @@ The operator is used to implement list promotion efficiently.
 ToQuantity : UnaryExpression
 ----
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator accepts strings using the following format:
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
 
-(+|-)?#0(.0#)?('<unit>')?
+For String values, the operator accepts strings using the following format:
+
+(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is null.
+
+For Integer and Decimal values, the result is a Quantity with the value of the integer or decimal input, and the default unit ('1').
+
+For Ratio values, the operation is equivalent to the result of dividing the numerator of the ratio by the denominator.
 
 If the argument is null, the result is null.
 
@@ -3774,16 +4050,19 @@ If the argument is null, the result is null.
 ToString : UnaryExpression
 ----
 
-The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:
+The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:footnote:formatting-strings[]
 
-Boolean true|false
-Integer (-)?#0
-Decimal (-)?#0.0#
-Quantity (-)?#0.0# '<unit>'
-Date YYYY-MM-DD
-DateTime YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
-Time	Thh:mm:ss.fff(+|-)hh:mm
-Ratio <quantity>:<quantity>
+[width="50%"]
+|====
+|Boolean |true\|false
+|Integer |(-)?#0
+|Decimal |(-)?\#0.0#
+|Quantity |(-)?\#0.0# '<unit>'
+|Date |YYYY-MM-DD
+|DateTime |YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|Time	|hh:mm:ss.fff
+|Ratio |<quantity>:<quantity>
+|====
 
 If the argument is null, the result is null.
 
@@ -3798,13 +4077,13 @@ The ToTime operator converts the value of its argument to a Time value.
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-Thh:mm:ss.fff(+|-)hh:mm
+hh:mm:ss.fff footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is null.
 
-As with time-of-day literals, time-of-day values may be specified to any precision. If no timezone offset is supplied, the timezone offset of the evaluation request timestamp is assumed.
+As with time-of-day literals, time-of-day values may be specified to any precision.
 
 For DateTime values, the result is the same as extracting the Time component from the DateTime value.
 
@@ -3828,6 +4107,8 @@ AnyInCodeSystem : OperatorExpression
 
 The AnyInCodeSystem operator returns true if any of the given codes are in the given code system.
 
+The first argument is expected to be a list of String, Code, or Concept.
+
 Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === AnyInValueSet
@@ -3843,6 +4124,8 @@ AnyInValueSet : OperatorExpression
 
 The AnyInValueSet operator returns true if any of the given codes are in the given value set.
 
+The first argument is expected to be a list of String, Code, or Concept.
+
 Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
 === CalculateAge
@@ -3854,15 +4137,13 @@ CalculateAge : UnaryExpression
   0..1 --> precision
 ----
 
-Calculates the age in the specified precision of a person born on the given Date or DateTime as of Today or Now.
+Calculates the age in the specified precision of a person born on the given date.
 
 The CalculateAge operator is defined for Date and DateTime.
 
-For the Date overload, the calculation is performed using Today(), and the precision must be one of year, month, week, or day.
+For the Date overload, the calculation is performed using Today(), the precision must be one of year, month, week, or day, and the result is the number of whole calendar periods that have elapsed between the given date and today.
 
-For the DateTime overload, the calculation is performed using Now().
-
-The result of the calculation is always the number of whole calendar periods that have elapsed between the given date/time and today/now.
+For the DateTime overload, the calculation is performed using Now(), and the result is the number of whole calendar periods that have elapsed between the given datetime and now.
 
 === CalculateAgeAt
 
@@ -3873,15 +4154,15 @@ CalculateAgeAt : BinaryExpression
   0..1 --> precision
 ----
 
-Calculates the age in the specified precision of a person born on the first Date or DateTime as of the second Date or DateTime.
+Calculates the age in the specified precision of a person born on a given date, as of another given date.
 
 The CalculateAgeAt operator has two signatures:
-  Date, Date
-  DateTime, DateTime
+  (Date, Date)
+  (DateTime, DateTime)
 
-For the Date overload, precision must be one of year, month, week, or day.
+For the Date overload, precision must be one of year, month, week, or day, and the result is the number of whole calendar periods that have elapsed between the first date and the second date.
 
-The result of the calculation is the number of whole calendar periods that have elapsed between the first date/time and the second.
+For the DateTime overload, the result is the number of whole calendar periods that have elapsed between the first datetime and the second datetime.
 
 === Equal
 
@@ -3904,6 +4185,8 @@ InCodeSystem : OperatorExpression
 
 The InCodeSystem operator returns true if the given code is in the given code system.
 
+The first argument is expected to be a String, Code, or Concept.
+
 Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === InValueSet
@@ -3918,6 +4201,8 @@ InValueSet : OperatorExpression
 ----
 
 The InValueSet operator returns true if the given code is in the given value set.
+
+The first argument is expected to be a String, Code, or Concept.
 
 Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 

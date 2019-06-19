@@ -5,8 +5,9 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
-The Clinical Quality Language Specification footnote:[Note that CQL is unrelated to the Cassandra Query Language (see: http://cassandra.apache.org/doc/latest/cql/)] defines a representation for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains. Although several standards exist for the expression of clinical quality logic, these standards are not widely adopted and present various barriers to point-to-point sharing of clinical knowledge artifacts such as lack of tooling, complexity of implementation, or insufficient expressivity.
+The Clinical Quality Language Specification footnote:[Note that CQL is unrelated to the Cassandra Query Language (see: http://cassandra.apache.org/doc/latest/cql/)] defines a representation for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains. Although several standards exist for the expression of clinical quality logic, these standards are not widely adopted and present various barriers to point-to-point sharing of clinical knowledge artifacts such as lack of tooling, complexity of implementation, or insufficient expressivity.footnote:[As of the time of this publication, Clinical Quality Language has been adopted by the Centers for Medicare and Medicaid Services (CMS) for use in distributing electronic Clinical Quality Measure (eCQM) specifications, and is being investigated by multiple organizations for use in the representation and sharing of decision support. In addition, the language has been implemented in multiple commercial products and open source projects. See the <<10-c-referenceimplementations.adoc#appendix-c-reference-implementations,Reference Implementations>> topic for more information on the adoption of Clinical Quality Language.]
 
 Rather than attempt to address these shortcomings in one of the existing standards, this specification provides a solution to enable shared understanding of clinical knowledge by defining a syntax-independent, canonical representation of logic that can be used to express the knowledge in any given artifact, and point-to-point sharing by defining a serialization for that representation.
 
@@ -48,20 +49,14 @@ image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,wid
 [[figure-1-a]]
 Figure 1‑A
 
-Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. Note, however, that the QUICK specification, and the Quality Improvement Core (QICore) Profiles are being developed concurrently with this specification to ensure that the two specifications interoperate effectively. There is work underway to provide QDM to QICore profile mapping for the use of FHIR-based data models for quality improvement use cases. The skeletal maps are available in the link:http://build.fhir.org/ig/cqframework/qi-core/qdm-to-qicore.html[QICore Implementation Guide].
+Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. Note, however, that the QUICK specification and the Quality Improvement Core (QI-Core) Profiles are being developed concurrently with this specification to ensure that the two specifications interoperate effectively. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at link:http://hl7.org/fhir/us/qicore/qdm-to-qicore.html[QI-Core Implementation Guide - QDM -> QI-Core Mapping].
 
 In addition, this specification is designed to be data model independent, meaning that CQL and ELM have no explicit dependencies on any aspect of any particular data model. Rather, the specification allows for any data model to be used, so long as a suitable description of that data model is supplied. Chapter 7 of this specification discusses how that description is supplied, and what facilities an implementation must support in order to enable complete data model independence of CQL and ELM.
 
 [[clinical-quality-framework-initiative]]
 == Clinical Quality Framework Initiative
 
-The S&I Framework is an approach adopted by ONC's Office of Standards & Interoperability to fulfill its charge of enabling harmonized interoperability specifications to support national health outcomes and healthcare priorities. The S&I Framework is a collaborative community of participants from the public and private sectors who are focused on providing the tools, services, and guidance to facilitate the functional exchange of health information. More information about the S&I Framework can be found here: http://siframework.org/
-
-The S&I Framework uses a set of integrated functions, processes, and tools that enable execution of specific value-creating initiatives. Each S&I initiative focuses on a single, narrowly scoped, broadly applicable challenge.
-
-The Clinical Quality Framework (CQF) is an S&I initiative focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). Additional information about the CQF initiative, including a project charter, can be found here: http://wiki.siframework.org/Clinical+Quality+Framework+Charter+and+Members
-
-Stakeholder input and subject matter expert (SME) guidance has led to the development of several CQF use cases defining the functional aspects of clinical quality measurement and improvement. These use cases are described in detail here: http://wiki.siframework.org/Clinical+Quality+Framework+Use+Cases
+The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The link:https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework[Clinical Quality Framework] effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Group sin 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
 
 [[approach]]
 == Approach
@@ -127,7 +122,7 @@ The specification is written with the following major roles in mind:
 
 Table 1‑B
 
-Note that even the material in Chapter 2 is somewhat technical in nature, and that Authors will benefit from some familiarity with and/or training in basic computer language and database language topics.
+Note that although Chapter 2 is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
 
 In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in Chapter 2, the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapters 2 & 3; the Integrator role will be primarily interested in Chapter 4, the formal description of the logical model; and the Implementer role will be primarily interested in Chapters 5, 6, and 7, which discuss the intended execution semantics, translation semantics, and physical representation, respectively, as well as Chapter 9 - Appendix B, and ELM UML model artifacts.
 

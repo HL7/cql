@@ -5,325 +5,669 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 
 [[aggregate]]
 == .aggregate()
 
-X.aggregate(<iteration>, <init>) [.sym]#===# Aggregate(<iteration>, <init>)
+[source,cql]
+----
+X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
+----
+
+[[abs]]
+== .abs()
+
+[source,cql]
+----
+X.abs() === Abs(X)
+----
 
 [[all]]
 == .all()
 
-X.all(<condition>) [.sym]#===# AllTrue(X $this let a: <condition> where a return a)
+[source,cql]
+----
+X.all(<condition>) === AllTrue(X $this let a: <condition> where a return a)
+----
 
 [[allfalse]]
 == .allFalse()
 
-X.allFalse() [.sym]#===# AllTrue(X A return not A)
+[source,cql]
+----
+X.allFalse() === AllTrue(X A return not A)
+----
 
 [[alltrue-1]]
 == .allTrue()
 
-X.allTrue() [.sym]#===# AllTrue(X)
+[source,cql]
+----
+X.allTrue() === AllTrue(X)
+----
 
 [[anyfalse]]
 == .anyFalse()
 
-X.anyFalse() [.sym]#===# AnyTrue(X A return not A)
+[source,cql]
+----
+X.anyFalse() === AnyTrue(X A return not A)
+----
 
 [[anytrue-1]]
 == .anyTrue()
 
-X.anyTrue() [.sym]#===# AnyTrue(X)
+[source,cql]
+----
+X.anyTrue() === AnyTrue(X)
+----
+
+[[as]]
+== .as()
+
+[source,cql]
+----
+X.as(T) === X as T
+----
+
+Note that the type argument T is expected to be a literal string and must resolve to the name of a type.
+
+[[ceiling]]
+== .ceiling()
+
+[source,cql]
+----
+X.ceiling() === Ceiling(X)
+----
 
 [[children-1]]
 == .children()
 
-.children(X) [.sym]#===# Children(X)
+[source,cql]
+----
+.children(X) === Children(X)
+----
 
 [[combine-1]]
 == .combine()
 
-X.combine(Y) [.sym]#===# Flatten(\{ X, Y })
+[source,cql]
+----
+X.combine(Y) === Flatten(\{ X, Y })
+----
 
 [[conformsto]]
 == .conformsTo()
 
-X.conformsTo(Y) [.sym]#===# FHIRSupport.ConformsTo(Y)
+[source,cql]
+----
+X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
+----
 
 Note that this mapping relies on an external library, FHIRSupport to provide conformance validation checking.
 
 [[contains-2]]
 == .contains()
 
-X.contains(Y) [.sym]#===# PositionOf(Y, X) [.sym]#>=# 0
+[source,cql]
+----
+X.contains(Y) === PositionOf(Y, X) >= 0
+----
+
+[[convertstoboolean]]
+== .convertsToBoolean()
+
+[source,cql]
+----
+X.convertsToBoolean() === ConvertsToBoolean(X)
+----
+
+[[convertstodate]]
+== .convertsToDate()
+
+[source,cql]
+----
+X.convertsToDate() === ConvertsToDate(X)
+----
+
+[[convertstodatetime]]
+== .convertsToDateTime()
+
+[source,cql]
+----
+X.convertsToDateTime() === ConvertsToDateTime(X)
+----
+
+[[convertstodecimal]]
+== .convertsToDecimal()
+
+[source,cql]
+----
+X.convertsToDecimal() === ConvertsToDecimal(X)
+----
+
+[[convertstointeger]]
+== .convertsToInteger()
+
+[source,cql]
+----
+X.convertsToInteger() === ConvertsToInteger(X)
+----
+
+[[convertstoquantity]]
+== .convertsToQuantity()
+
+[source,cql]
+----
+X.convertsToQuantity() === ConvertsToQuantity(X)
+----
+
+[[convertstotime]]
+== .convertsToTime()
+
+[source,cql]
+----
+X.convertsToTime() === ConvertsToTime(X)
+----
 
 [[count-1]]
 == .count()
 
-X.count() [.sym]#===# Count(X)
+[source,cql]
+----
+X.count() === Count(X)
+----
 
 [[descendents-1]]
 == .descendents()
 
-.descendents(X) [.sym]#===# Descendents(X)
+[source,cql]
+----
+.descendents(X) === Descendents(X)
+----
 
 [[distinct-1]]
 == .distinct()
 
-X.distinct() [.sym]#===# distinct X
+[source,cql]
+----
+X.distinct() === distinct X
+----
 
 [[empty]]
 == .empty()
 
-X.empty() [.sym]#===# not exists X
+[source,cql]
+----
+X.empty() === not exists X
+----
 
 [[endswith-1]]
 == .endsWith()
 
-X.endsWith(Y) [.sym]#===# EndsWith(X, Y)
+[source,cql]
+----
+X.endsWith(Y) === EndsWith(X, Y)
+----
+
+[[exclude]]
+== .exclude()
+
+[source,cql]
+----
+X.exclude(Y) === X except Y
+----
 
 [[exists-1]]
 == .exists()
 
-X.exists() [.sym]#===# exists X
+[source,cql]
+----
+X.exists() === exists X
 
-X.exists(<condition>) [.sym]#===# exists (X $this where <condition>)
+X.exists(<condition>) === exists (X $this where <condition>)
+----
+
+[[exp]]
+== .exp()
+
+[source,cql]
+----
+X.exp() === Exp(X)
+----
 
 [[first-1]]
 == .first()
 
-X.first() [.sym]#===# First(X)
+[source,cql]
+----
+X.first() === First(X)
+----
+
+[[floor]]
+== .floor()
+
+[source,cql]
+----
+X.floor() === Floor(X)
+----
 
 [[hasvalue]]
 == .hasValue()
 
-X.hasValue() [.sym]#===# X is not null
+[source,cql]
+----
+X.hasValue() === X is not null
+----
 
 [[iif]]
 == .iif()
 
-X.iif(Y) [.sym]#===# if X then Y else null
+[source,cql]
+----
+iif(X, Y) === if X then Y else null
 
-X.iif(Y, Z) [.sym]#===# if X then Y else Z
+iif(X, Y, Z) === if X then Y else Z
+----
 
 [[indexof-1]]
 == .indexOf()
 
-X.indexOf(Y) [.sym]#===# PositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of IndexOf
+[source,cql]
+----
+X.indexOf(Y) === PositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of IndexOf
+----
 
-[[isboolean]]
-== .isBoolean()
+[[intersect]]
+== .intersect()
 
-X.isBoolean() [.sym]#===# IsBoolean(X)
+[source,cql]
+----
+X.intersect(Y) === X intersect Y
+----
+
+[[is]]
+== .is()
+
+[source,cql]
+----
+X.is(T) === X is T
+----
+
+Note that the argument T is expected to be a literal string and must resolve to the name of a type.
 
 [[isdistinct]]
 == .isDistinct()
 
-X.isDistinct() [.sym]#===# Count(X) [.sym]#=# Count(distinct X)
-
-[[isdate]]
-== .isDate()
-
-X.isDate() [.sym]#===# IsDate(X)
-
-[[isdatetime]]
-== .isDateTime()
-
-X.isDateTime() [.sym]#===# IsDateTime(X)
-
-[[isdecimal]]
-== .isDecimal()
-
-X.isDecimal() [.sym]#===# IsDecimal(X)
-
-[[isinteger]]
-== .isInteger()
-
-X.isInteger() [.sym]#===# IsInteger(X)
-
-[[isquantity]]
-== .isQuantity()
-
-X.isQuantity() [.sym]#===# IsQuantity(X)
-
-[[istime]]
-== .isTime()
-
-X.isTime() [.sym]#===# IsTime(X)
+[source,cql]
+----
+X.isDistinct() === Count(X) = Count(distinct X)
+----
 
 [[last-1]]
 == .last()
 
-X.last() [.sym]#===# Last(X)
+[source,cql]
+----
+X.last() === Last(X)
+----
 
 [[lastindexof]]
 == .lastIndexOf()
 
-X.lastIndexOf(Y) [.sym]#===# LastPositionOf(Y, X) [.sym]#//# Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
+[source,cql]
+----
+X.lastIndexOf(Y) === LastPositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
+----
 
 [[length-2]]
 == .length()
 
-X.length() [.sym]#===# Length(X)
+[source,cql]
+----
+X.length() === Length(X)
+----
+
+[[ln]]
+== .ln()
+
+[source,cql]
+----
+X.ln() === Ln(X)
+----
+
+[[log]]
+== .log()
+
+[source,cql]
+----
+X.log(B) === Log(X, B)
+----
+
+[[lower]]
+== .lower()
+
+[source,cql]
+----
+X.lower() === Lower(X)
+----
 
 [[matches-1]]
 == .matches()
 
-X.matches(Y) [.sym]#===# Matches(X, Y)
+[source,cql]
+----
+X.matches(Y) === Matches(X, Y)
+----
 
 [[memberof]]
 == .memberOf()
 
-X.memberOf(Y) [.sym]#===# InValueSet(X, Y) [.sym]#//# where Y is required to be a ValueSetRef
+[source,cql]
+----
+X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
+----
 
 [[oftype]]
 == .ofType()
 
-X.ofType(T) [.sym]#===# X $this where $this is T return $this as <type>
+[source,cql]
+----
+X.ofType(T) === X $this where $this is T return $this as T
+----
 
 Note that the argument T is required to be a literal string, and is interpreted as the name of a type. For non-named-types, type specifier syntax applies.
 
 [[not-1]]
 == .not()
 
-X.not() [.sym]#===# not X
+[source,cql]
+----
+X.not() === not X
+----
 
 [[now-1]]
 == .now()
 
-now() [.sym]#===# Now()
+[source,cql]
+----
+now() === Now()
+----
+
+[[power]]
+== .power()
+
+[source,cql]
+----
+X.power(Y) === Power(X, Y)
+----
 
 [[repeat]]
 == .repeat()
 
-X.repeat(<element>) [.sym]#===# Repeat(X, <element>)
+[source,cql]
+----
+X.repeat(<element>) === Repeat(X, <element>)
+----
 
 The type of X.repeat(<element>) is inferred as the type of:
 
+[source,cql]
+----
 X.select(<element>).select(<element>)
+----
 
 [[replace]]
 == .replace()
 
-X.replace(Y, Z) [.sym]#===# Replace(X, Y, Z)
+[source,cql]
+----
+X.replace(Y, Z) === Replace(X, Y, Z)
+----
 
 [[replacematches-1]]
 == .replaceMatches()
 
-X.replaceMatches(Y, Z) [.sym]#===# ReplaceMatches(X, Y, Z)
+[source,cql]
+----
+X.replaceMatches(Y, Z) === ReplaceMatches(X, Y, Z)
+----
+
+[[round]]
+== .round()
+
+[source,cql]
+----
+X.round() === Round(X)
+X.round(Y) === Round(X, Y)
+----
 
 [[select]]
 == .select()
 
 If the result type of <element> is not list-valued:
 
-X.select(<element>) [.sym]#===# X $this let a: <element> where a is not null return a
+[source,cql]
+----
+X.select(<element>) === X $this let a: <element> where a is not null return a
+----
 
 If the result type of <element> is list-valued:
 
+[source,cql]
+----
 X.select(<element>) === Flatten(X $this let a: <element> where a is not null return a)
+----
 
 [[single]]
 == .single()
 
-X.single() [.sym]#===# singleton from X
+[source,cql]
+----
+X.single() === singleton from X
+----
 
 [[skip-1]]
 == .skip()
 
-X.skip(Y) [.sym]#===# Slice(X, Y, null)
+[source,cql]
+----
+X.skip(Y) === Slice(X, Y, null)
+----
+
+[[sqrt]]
+== .sqrt()
+
+[source,cql]
+----
+X.sqrt() === Power(X, 0.5)
+----
 
 [[startswith-1]]
 == .startsWith()
 
-X.startsWith(Y) [.sym]#===# StartsWith(X, Y)
+[source,cql]
+----
+X.startsWith(Y) === StartsWith(X, Y)
+----
 
 [[subsetof]]
 == .subsetOf()
 
-X.subsetOf(Y) [.sym]#===# X included in Y
+[source,cql]
+----
+X.subsetOf(Y) === X included in Y
+----
 
 [[substring-1]]
 == .substring()
 
-X.substring(Y) [.sym]#===# SubString(X, Y)
+[source,cql]
+----
+X.substring(Y) === SubString(X, Y)
 
-X.substring(Y, Z) [.sym]#===# SubString(X, Y, Z)
+X.substring(Y, Z) === SubString(X, Y, Z)
+----
 
 [[subsumes]]
 == .subsumes()
 
-X.subsumes(Y) [.sym]#===# Subsumes(X, Y)
+[source,cql]
+----
+X.subsumes(Y) === Subsumes(X, Y)
+----
 
 [[subsumedby]]
 == .subsumedBy()
 
-X.subsumedBy(Y) [.sym]#===# SubsumedBy(X, Y)
+[source,cql]
+----
+X.subsumedBy(Y) === SubsumedBy(X, Y)
+----
 
 [[supersetof]]
 == .supersetOf()
 
-X.supersetOf(Y) [.sym]#===# X includes Y
+[source,cql]
+----
+X.supersetOf(Y) === X includes Y
+----
 
 [[tail-1]]
 == .tail()
 
-X.tail() [.sym]#===# Slice(X, 1, null)
+[source,cql]
+----
+X.tail() === Slice(X, 1, null)
+----
 
 [[take-1]]
 == .take()
 
-X.take(Y) [.sym]#===# Slice(X, 0, Coalesce(Y, 0))
+[source,cql]
+----
+X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
+----
+
+[[timeofday]]
+== .timeOfDay()
+
+[source,cql]
+----
+timeOfDay() === TimeOfDay()
+----
 
 [[toboolean-1]]
 == .toBoolean()
 
-X.toBoolean() [.sym]#===# ToBoolean(X)
+[source,cql]
+----
+X.toBoolean() === ToBoolean(X)
+----
 
 [[tochars]]
 == .toChars()
 
-X.toChars() [.sym]#===# ToChars(X)
+[source,cql]
+----
+X.toChars() === ToChars(X)
+----
+
+[[todate-1]]
+== .toDate()
+
+[source,cql]
+----
+X.toDate() === ToDate(X)
+----
 
 [[todatetime-1]]
 == .toDateTime()
 
-X.toDateTime() [.sym]#===# ToDateTime(X)
+[source,cql]
+----
+X.toDateTime() === ToDateTime(X)
+----
 
 [[today-1]]
 == .today()
 
-today() [.sym]#===# Today()
+[source,cql]
+----
+today() === Today()
+----
 
 [[todecimal-1]]
 == .toDecimal()
 
-X.toDecimal() [.sym]#===# ToDecimal(X)
+[source,cql]
+----
+X.toDecimal() === ToDecimal(X)
+----
 
 [[tointeger-1]]
 == .toInteger()
 
-X.toInteger() [.sym]#===# ToInteger(X)
+[source,cql]
+----
+X.toInteger() === ToInteger(X)
+----
+
+[[toquantity]]
+== .toQuantity()
+
+[source,cql]
+----
+X.toQuantity() === ToQuantity(X)
+----
 
 [[tostring-1]]
 == .toString()
 
-X.toString() [.sym]#===# ToString(X)
+[source,cql]
+----
+X.toString() === ToString(X)
+----
 
 [[totime-1]]
 == .toTime()
 
-X.toTime() [.sym]#===# ToTime(X)
+[source,cql]
+----
+X.toTime() === ToTime(X)
+----
 
 [[trace]]
 == .trace()
 
-X.output(Y) [.sym]#===# Trace(X, Y) [.sym]#//# Add to ELM
+[source,cql]
+----
+X.trace(Y) === Message(X, true, Y, 'Trace', ToString(X)))
+----
+
+[[truncate]]
+== .truncate()
+
+[source,cql]
+----
+X.truncate() === Truncate(X)
+----
+
+[[upper]]
+== .upper()
+
+[source,cql]
+----
+X.upper() === Upper(X)
+----
 
 [[where]]
 == .where()
 
-X.where(<condition>) [.sym]#===# X $this where <condition>
+[source,cql]
+----
+X.where(<condition>) === X $this where <condition>
+----

@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
 This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the link:02-authorsguide.html[Author’s Guide] in the discussions that follow.
 
@@ -1038,7 +1039,7 @@ end
 
 Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
 
-Both of these conditional expression construct enable run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
+Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
 
 [source,cql]
 ----

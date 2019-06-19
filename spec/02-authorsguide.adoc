@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: trial-use
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
@@ -1350,7 +1351,7 @@ This expression is equivalent to:
 4 >= 2 and 4 <= 8
 ----
 
-For all the comparison operators, the result type of the operation is Boolean. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null# (meaning _unknown_). This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not:
+For all the comparison operators, the result type of the operation is Boolean. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null# (meaning _unknown_). This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is generally the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not:
 
 [source,cql]
 ----
@@ -1359,6 +1360,18 @@ define NullEquivalenceTest: 1 ~ null
 ----
 
 The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
+
+In addition, equivalence is defined more loosely than equality for some types:
+
+* For strings, equivalence ignores case, locale, and whitespace.
+* For decimals, equivalence means the values are the same to the precision of the least precise value being compared.
+* For quantities, equivalence means the values are the same, allowing for unit conversion.
+* For ratios, equivalence means the values represent the same ratio.
+* For datetimes, dates, and times, equivalence is the same as equality except it will return false instead of null if the values being compared have differing precisions.
+* For codes, equivalence means the values have the same system and code.
+* For concepts, equivalence means the values have at least one equivalent code.
+
+For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> and <<09-b-cqlreference.adoc#equivalent,Equivalent>> in the CQL reference.
 
 [[logical-operators]]
 === Logical Operators
@@ -2502,7 +2515,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.html,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.adoc#examples,Examples>> included with this specification.
 
 [[running-example]]
 === Running Example
