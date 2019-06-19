@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: informative
 
 [[table-12-a]]
 [cols=",",options="header",]

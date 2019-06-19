@@ -5,6 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
+:page-standards-status: informative
 
 [[introduction]]
 == Introduction

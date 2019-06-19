@@ -393,6 +393,30 @@ img#publish-box {
   text-align: baseline;
 }
 
+table.std-status-inf {
+	width: 100%;
+}
+
+table.std-status-inf td {
+  border: 1px grey solid;
+	border-spacing: 0;
+	padding: 5px;
+	border-collapse: collapse;
+	background-color: #ffffe6;
+}
+
+table.std-status-stu {
+	width: 100%;
+}
+
+table.std-status-stu td {
+  border: 1px grey solid;
+	border-spacing: 0;
+	padding: 5px;
+	border-collapse: collapse;
+	background-color: #fff5e6;
+}
+
 /* ----------note-to-balloters styling------*/
 
 .note-to-balloters {

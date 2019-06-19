@@ -24,7 +24,7 @@ define "Conditions Indicating Sexual Activity":
 	union ["Condition": "Genital Herpes"]
     union ["Condition": "Genococcal Infections and Venereal Diseases"]
     union ["Condition": "Inflammatory Diseases of Female Reproductive Organs"]
-    union ["Condition": "Chlamydia"]
+    union ["Condition": "Chlamydia"] 
     union ["Condition": "HIV"]
     union ["Condition": "Syphilis"]
     union ["Condition": "Complications of Pregnancy, Childbirth and the Puerperium"]

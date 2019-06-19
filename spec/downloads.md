@@ -1,6 +1,7 @@
 ---
 layout: dev
 title: Downloads
+standards-status: informative
 ---
 
 The following downloads are available for this specification:
