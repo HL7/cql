@@ -113,7 +113,7 @@
 * STU4B#140: Added note about conventions being enforced by downstream implementation guides (Non-Substantive)
 * STU4B#141: Corrected typo (Non-Substantive)
 * STU4B#142: Add clarifying example for relationship clauses versus the where clause (Non-Substantive)
-* STU4B#143: Added examples of negative difference and duration calculations (Unapplied) (Non-Substantive)
+* STU4B#143: Added examples of negative difference and duration calculations (Non-Substantive)
 * STU4B#144: Corrected typo (Non-Substantive)
 * STU4B#145: Corrected typo (Non-Substantive)
 * STU4B#146: Clarified that timing relationships use duration semantics rather than difference (Non-Substantive)
