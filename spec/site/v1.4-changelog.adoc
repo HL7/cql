@@ -149,7 +149,7 @@
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1721[#1721]: Consistent referenced library versions (Non-substantive)
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1722[#1722]: Update FHIRPath usage and translation sections (Non-compatible)
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1723[#1723]: Define seconds as a Decimal (Non-compatible)
-* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1724[#1724]: Remove timezone offset from Time (Non-compatible)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1724[#1724]: Removed timezone offset from Time; Changed timezone keyword to timezoneoffset (Non-compatible)
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1725[#1725]: Update recommended regex flavor to PCRE (Non-Substantive)
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1726[#1726]: Note that implies allows short-circuit evaluation (Non-substantive)
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1727[#1727]: Add unit conversion for quantities (Compatible, substantive)
