@@ -1161,7 +1161,7 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |[.id]#Ratio# |<quantity>:<quantity>
 |[.id]#Date# |YYYY-MM-DD
 |[.id]#DateTime# |YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm
-|[.id]#Time# |hh:mm:ss.fff
+|[.id]#Time# |@Thh:mm:ss.fff
 |===========================================
 
 Table 9‑G
@@ -1181,7 +1181,7 @@ define QuantityOverload: ToString(-0.1 'mg')
 define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
 define DateOverload: ToString(@2012-01-01)
 define DateTimeOverload: ToString(@2012-01-01T12:30:00.000-05:00)
-define TimeOverload: ToString(@12:30:00.000)
+define TimeOverload: ToString(@T12:30:00.000)
 define IsNull: ToString(null as Integer)
 ----
 
