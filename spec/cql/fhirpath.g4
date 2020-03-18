@@ -6,6 +6,8 @@ grammar fhirpath;
 //prog: line (line)*;
 //line: ID ( '(' expr ')') ':' expr '\r'? '\n';
 
+//The goal of the rule in the ANTLR grammar is to provide a date token to the parser. As such it does not need to validate the date, that's for the parser to perform.
+
 expression
         : term                                                      #termExpression
         | expression '.' invocation                                 #invocationExpression
