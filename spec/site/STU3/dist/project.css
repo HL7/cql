@@ -375,6 +375,23 @@ a.to-top {
   text-indent: -9999px;
   margin-top: -28px;
 }
+/* ----------Publish box styling------*/
+
+#publish-box {
+  list-style: none;
+  padding: 0;
+}
+
+p#publish-box {
+  background-color: yellow;
+  border:1px solid maroon;
+  padding: 5px;
+}
+
+img#publish-box {
+  text-align: baseline;
+}
+
 /* EXCEPTIONS FOR SPECIFIC SITUATIONS
 ----------------------------------------------------------------------------------------*/
 /* D-I-D AREA

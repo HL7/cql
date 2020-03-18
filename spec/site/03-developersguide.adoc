@@ -202,11 +202,13 @@ not
 null
 occurs
 of
+on
 or
 or after
 or before
 or less
 or more
+or on
 overlaps
 parameter
 per
@@ -257,6 +259,11 @@ The following keywords are defined as reserved words:
 [source,cql]
 ----
 all
+and
+as
+after
+before
+between
 case
 cast
 Code
@@ -268,15 +275,21 @@ days
 difference
 distinct
 duration
+during
+else
 exists
 expand
 false
 flatten
 from
 if
+in
+included in
+is
 hour
 hours
 Interval
+let
 List
 maximum
 millisecond
@@ -288,12 +301,30 @@ month
 months
 not
 null
+occurs
+of
+on or
+or
+or on
+per
+properly
+return
+same
 second
 seconds
+singelton
+sort
+such that
+then
+to
 true
 Tuple
 week
 weeks
+when
+with
+within
+without
 year
 years
 ----
