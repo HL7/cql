@@ -3081,7 +3081,7 @@ Refer to the <<except,Except section>> in the Interval Operators.
 Exists : UnaryExpression
 ----
 
-The Exists operator returns true if the list contains any elements.
+The Exists operator returns true if the list contains any non-null elements.
 
 If the argument is null, the result is false.
 
