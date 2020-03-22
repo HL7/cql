@@ -2250,8 +2250,9 @@ define ErrorMinimum: minimum Quantity
 [source,cql]
 ----
 mod(left Integer, right Integer) Integer
-mod(left Long, right Long) Integer
+mod(left Long, right Long) Long
 mod(left Decimal, right Decimal) Decimal
+mod(left Quantity, right Quantity) Quantity
 ----
 
 *Description:*
@@ -2259,6 +2260,12 @@ mod(left Decimal, right Decimal) Decimal
 The [.kw]#mod# operator computes the remainder of the division of its arguments.
 
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will be implicitly convert to [.id]#Decimal#.
+
+When invoked with mixed [.id]#Integer# or [.id]#Decimal#, and [.id]#Quantity# arguments, the [.id]#Integer# or [.id]#Decimal# argument will be implicitly converted to [.id]#Quantity#.
+
+For modulo operations involving quantities, the resulting quantity will have the appropriate unit.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2605,6 +2612,7 @@ define TruncateIsNull: Truncate(null)
 div(left Integer, right Integer) Integer
 div(left Long, right Long) Long
 div(left Decimal, right Decimal) Decimal
+div(left Quantity, right Quantity) Quantity
 ----
 
 *Description:*
@@ -2614,6 +2622,10 @@ The [.kw]#div# operator performs truncated division of its arguments.
 When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
 
 When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#
+
+When invoked with mixed [.id]#Integer# or [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Integer# or [.id]#Decimal# argument will be implicitly converted to [.id]#Quantity#.
+
+For division operations involving quantities, the resulting quantity will have the appropriate unit.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
