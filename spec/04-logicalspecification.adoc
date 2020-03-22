@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This chapter describes the Expression Logical Model (ELM) and how it is used to represent clinical knowledge within a quality artifact.
 
@@ -506,9 +506,9 @@ VersionedIdentifier
 ----
 
 VersionedIdentifier is composed of three parts: (1) an optional system, or
-  namespace, which provides a globally unique, stable scope for the identifier, 
-  (2) an identifier which identifies the set of all versions of a given resource, and 
-  (3) the actual version of the instance of interest in this set. The VersionedIdentifier 
+  namespace, which provides a globally unique, stable scope for the identifier,
+  (2) an identifier which identifies the set of all versions of a given resource, and
+  (3) the actual version of the instance of interest in this set. The VersionedIdentifier
   therefore points to an individual 'versioned' instance of a resource such as the third
   version of a library.
 
@@ -1502,7 +1502,7 @@ HighBoundary : BinaryExpression
 ----
 
 The HighBoundary operator returns the greatest possible value of the input to the specified precision.
-			
+
 If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
 
 If the precision is greater than the maximum possible precision of the implementation, the result is null.
@@ -1540,7 +1540,7 @@ LowBoundary : BinaryExpression
 ----
 
 The LowBoundary operator returns the least possible value of the input to the specified precision.
-			
+
 If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
 
 If the precision is greater than the maximum possible precision of the implementation, the result is null.
@@ -2456,7 +2456,7 @@ After : BinaryExpression
 ----
 
 The After operator is defined for Intervals, as well as Date, DateTime, and Time values.
-			
+
 For the Interval overload, the After operator returns true if the first interval starts after the second one ends. In other words, if the starting point of the first interval is greater than the ending point of the second interval using the semantics described in the Start and End operators to determine interval boundaries.
 
 For the Date, DateTime, and Time overloads, the After operator returns true if the first datetime is after the second datetime at the specified level of precision. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is false.
@@ -2486,7 +2486,7 @@ Before : BinaryExpression
 ----
 
 The Before operator is defined for Intervals, as well as Date, DateTime, and Time values.
-			
+
 For the Interval overload, the Before operator returns true if the first interval ends before the second one starts. In other words, if the ending point of the first interval is less than the starting point of the second interval, using the semantics described in the Start and End operators to determine interval boundaries.
 
 For the Date, DateTime, and Time overloads, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is false.
@@ -2929,7 +2929,7 @@ If either argument is null, the result is null.
 Size : UnaryExpression
 ----
 
-The Size operator returns the size of an interval. 
+The Size operator returns the size of an interval.
 
 The result of this operator is equivalent to invoking: End(i) - Start(i) + point-size, where the point-size for the point type of the interval is determined by: Successor(Minimum_T) - Minimum_T.
 
@@ -3284,7 +3284,7 @@ Sort : Expression
 The Sort operator returns a list with all the elements in source, sorted as described by the by element.
 
 When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
-			
+
 If the argument is null, the result is null.
 
 === Times
@@ -3593,7 +3593,7 @@ CanConvertQuantity : BinaryExpression
 ----
 
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
-  
+
 Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
 
 If either argument is null, the result is null.
@@ -3650,7 +3650,7 @@ ConvertQuantity : BinaryExpression
 ----
 
 The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
-  
+
 Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 
 If either argument is null, the result is null.

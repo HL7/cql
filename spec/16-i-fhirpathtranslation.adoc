@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 

@@ -1,12 +1,10 @@
 grammar fhirpath;
 
 // Grammar rules
-// [FHIRPath](http://hl7.org/fhirpath/2019May) Normative Ballot 3
+// [FHIRPath](http://hl7.org/fhirpath/N1) Normative Release
 
 //prog: line (line)*;
 //line: ID ( '(' expr ')') ':' expr '\r'? '\n';
-
-//The goal of the rule in the ANTLR grammar is to provide a date token to the parser. As such it does not need to validate the date, that's for the parser to perform.
 
 expression
         : term                                                      #termExpression
@@ -38,6 +36,7 @@ literal
         | ('true' | 'false')                                    #booleanLiteral
         | STRING                                                #stringLiteral
         | NUMBER                                                #numberLiteral
+        | DATE                                                  #dateLiteral
         | DATETIME                                              #dateTimeLiteral
         | TIME                                                  #timeLiteral
         | quantity                                              #quantityLiteral
@@ -103,42 +102,34 @@ identifier
     Lexical rules
 *****************************************************************/
 
-// Not sure why, but with these as lexical rules, when the grammar is imported into CQL, they are not correctly recognized
-// Moving the same rules into the literal production rule above corrects the issue
-//EMPTY
-//        : '{' '}'
-//        ;                      // To create an empty array (and avoid a NULL literal)
+/*
+NOTE: The goal of these rules in the grammar is to provide a date
+token to the parser. As such it is not attempting to validate that
+the date is a correct date, that task is for the parser or interpreter.
+*/
 
-//BOOL
-//        : 'true'
-//        | 'false'
-//        ;
+DATE
+        : '@' DATEFORMAT
+        ;
 
 DATETIME
-        : '@'
-            [0-9][0-9][0-9][0-9] // year
-            (
-                (
-                    '-'[0-9][0-9] // month
-                    (
-                        (
-                            '-'[0-9][0-9] // day
-                            ('T' TIMEFORMAT?)?
-                        )
-                        | 'T'
-                    )?
-                )
-                | 'T'
-            )?
-            ('Z' | ('+' | '-') [0-9][0-9]':'[0-9][0-9])? // timezoneOffset
+        : '@' DATEFORMAT 'T' (TIMEFORMAT TIMEZONEOFFSETFORMAT?)?
         ;
 
 TIME
         : '@' 'T' TIMEFORMAT
         ;
 
+fragment DATEFORMAT
+        : [0-9][0-9][0-9][0-9] ('-'[0-9][0-9] ('-'[0-9][0-9])?)?
+        ;
+
 fragment TIMEFORMAT
         : [0-9][0-9] (':'[0-9][0-9] (':'[0-9][0-9] ('.'[0-9]+)?)?)?
+        ;
+
+fragment TIMEZONEOFFSETFORMAT
+        : ('Z' | ('+' | '-') [0-9][0-9]':'[0-9][0-9])
         ;
 
 IDENTIFIER

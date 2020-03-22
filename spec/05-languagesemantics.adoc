@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This section contains more detailed information relating to the intended semantics of the Clinical Quality Language. These topics are specifically relevant for readers interested in building translation, semantic validation, or evaluation applications for CQL.
 
@@ -739,7 +739,7 @@ Uncertainties may also result when calculating duration for a finer precision th
 
 [source,cql]
 ----
-days between @2012-01 and @2012-02 
+days between @2012-01 and @2012-02
 
 // Results in an uncertainty from the shortest possible duration, to the longest possible duration
 // [days between @2012-01-31 and @2012-02-01, days between @2012-01-01 and @2012-02-29]

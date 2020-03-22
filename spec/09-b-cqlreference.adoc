@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This appendix provides a reference for all the system-defined types, operators, and functions that can be used within CQL. It is intended to provide complete semantics for each available type and operator as a companion to the Author’s and Developer’s Guides. The reference is organized by operator category.
 
@@ -127,7 +127,7 @@ simple type Date
 
 *Description:*
 
-The [.id]#Date# type represents date values with potential uncertainty within CQL. 
+The [.id]#Date# type represents date values with potential uncertainty within CQL.
 
 CQL supports date values in the range @0001-01-01 to @9999-12-31 with a 1 day step size.
 
@@ -631,7 +631,7 @@ The CanConvertQuantity operator returns true if the Quantity can be converted to
 
 [.note-warning]
 ____
-  
+
 Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
 
 ____
@@ -653,7 +653,7 @@ The ConvertQuantity operator converts a Quantity to an equivalent Quantity with 
 
 [.note-warning]
 ____
-  
+
 Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 
 ____
@@ -915,7 +915,7 @@ ToDate(argument String) Date
 
 *Description:*
 
-The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# value. 
+The [.id]#ToDate# operator converts the value of its argument to a [.id]#Date# value.
 
 For the DateTime overload, the operator is equivalent to invoking [.kw]#date from# on the DateTime value.
 
@@ -1937,7 +1937,7 @@ HighBoundary(input Time, precision Integer) Time
 ----
 
 The [.id]#HighBoundary# function returns the greatest possible value of the input to the specified precision.
-			
+
 If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
 
 If the precision is greater than the maximum possible precision of the implementation, the result is null.
@@ -1998,7 +1998,7 @@ LowBoundary(input Time, precision Integer) Time
 *Description:*
 
 The [.id]#LowBoundary# function returns the least possible value of the input to the specified precision.
-			
+
 If no precision is specified, the greatest precision of the type of the input value is used (i.e. at least 8 for Decimal, 4 for Date, at least 17 for DateTime, and at least 9 for Time).
 
 If the precision is greater than the maximum possible precision of the implementation, the result is null.
@@ -3995,7 +3995,7 @@ The [.kw]#meets before# operator returns [.kw]#true# if the first interval ends 
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
-If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. 
+If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4600,7 +4600,7 @@ The [.kw]#except# operator returns the set difference of two lists. More precise
 
 This operator uses equality semantics to determine whether two elements are the same for the purposes of computing the difference, with the exception that [.kw]#null# elements are considered equal.
 
-The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
+The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the operation is performed as though the second argument was an empty list.
 
@@ -4848,7 +4848,7 @@ The [.kw]#intersect# operator for lists returns the intersection of two lists. M
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal for the purposes of the intersection.
 
-The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results. 
+The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -5144,7 +5144,7 @@ union(left List<T>, right List<T>) List<T>
 
 *Description:*
 
-The [.kw]#union# operator for lists returns a list with all unique elements from both arguments. 
+The [.kw]#union# operator for lists returns a list with all unique elements from both arguments.
 
 The union operator is defined as a set operation, meaning that duplicates are eliminated; if an element appears in both sources, that element will only appear once in the resulting list. In addition, there is no expectation that the order of elements in the inputs will be preserved in the results.
 

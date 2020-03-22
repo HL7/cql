@@ -1,7 +1,7 @@
 ---
 layout: dev
 title: Expression Logical Model (ELM)
-standards-status: trial-use
+standards-status: normative
 ---
 
 Expression Logical Model Schema Files are available here:
@@ -24,4 +24,3 @@ Model Info schema is available here:
 
 NOTE: Model info is an implementation detail included here for convenience, it is not a normative part of the CQL specification.
 {:.note-info}
-

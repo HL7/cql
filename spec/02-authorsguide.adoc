@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
@@ -133,7 +133,7 @@ define SexuallyActive:
 [[terminology]]
 === Terminology
 
-A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations. 
+A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
 
 These declarations specify a local identifier that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
 
@@ -164,7 +164,7 @@ The following example illustrates a _code system_ and a _code_ declaration:
 [source,cql]
 ----
 codesystem "SNOMED": 'http://snomed.info/sct'
-code "Screening for Chlamydia trachomatis (procedure)": 
+code "Screening for Chlamydia trachomatis (procedure)":
   '442487003' from "SNOMED" display 'Screening for Chlamydia trachomatis (procedure)'
 ----
 
@@ -550,7 +550,7 @@ The sort clause may include multiple attributes, each with their own sort order:
 Sorting is performed in the order in which the attributes are defined in the sort clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
 
 When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
-			
+
 A query may only contain a single sort clause, and it must always appear last in the query.
 
 When the data being sorted includes nulls, they are sorted first, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
@@ -919,7 +919,7 @@ This use of code declarations to reference a single code in a CQL expression is 
 ----
 code "Discharge to home for hospice care (procedure)": '428361000124107' from "SNOMEDCT"
 
-define "Encounters Discharged to Hospice": 
+define "Encounters Discharged to Hospice":
   "Encounters" E where E.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
 ----
 
@@ -2460,7 +2460,7 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
-These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset. 
+These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
 
 [.note-info]
 ____
@@ -3127,4 +3127,3 @@ define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 In addition to sharing between quality measures and clinical decision support artifacts, the use of common libraries will allow the same logic to be shared by multiple quality measures or decision support artifacts. For example, a set of artifacts for measurement and improvement of the treatment of diabetes could all use a common library that provides base definitions for determining when a patient is part of the population of interest.
-

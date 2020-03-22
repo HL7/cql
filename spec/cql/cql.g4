@@ -2,7 +2,7 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.4 - STU4
+ * Version 1.5 - Normative
  */
 
 import fhirpath;
@@ -208,7 +208,7 @@ withoutClause
 retrieve
     : '[' (contextIdentifier '->')? namedTypeSpecifier (':' (codePath 'in')? terminology)? ']'
     ;
-    
+
 contextIdentifier
     : qualifiedIdentifierExpression
     ;
@@ -910,4 +910,3 @@ QUOTEDIDENTIFIER
 fragment ESC
     : '\\' ([`'"\\/fnrt] | UNICODE)    // allow \`, \', \", \\, \/, \f, etc. and \uXXX
     ;
-
