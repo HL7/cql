@@ -772,6 +772,8 @@ Query : Expression
   ¦
   0..1 --> return : ReturnClause
   ¦
+  0..1 --> aggregate : AggregateClause
+  ¦
   0..1 --> sort : SortClause
 ----
 
@@ -879,6 +881,23 @@ ReturnClause : Element
 ----
 
 The ReturnClause element defines the shape of the result set of the query.
+
+=== AggregateClause
+
+[source,elm]
+----
+AggregateClause : Element
+  ¦
+  1..1 --> expression : Expression
+  ¦
+  0..1 --> starting : Expression
+  ¦
+  1..1 --> identifier
+  ¦
+  0..1 --> distinct
+----
+
+The AggregateClause element defines the result of the query in terms of an aggregation expression performed for each item in the query.
 
 === SortClause
 

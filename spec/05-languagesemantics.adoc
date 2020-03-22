@@ -208,7 +208,7 @@ The graph of the expression being validated is traversed to determine the result
 |*FunctionRef/ +
 Operator* |Generally, the type of the node is determined by resolving the type of each operand, and then using that signature to determine the resulting type of the operator.
 |*ValueSetRef* |The type of the node is a list of codes.
-|*Query* |If the query has a return clause, the result is a list of the type of the return expression. Otherwise, the result type is determined by the source of the query.
+|*Query* |If the query has a return clause, the result is a list of the type of the return expression. If the query has an aggregate clause, the result is the type of the aggregate expression. Otherwise, the result type is determined by the source of the query.
 |*AliasRef* |The type of the node is the element type of the type of the query source referenced by the alias.
 |*QueryLetRef* |The type of the node is the type of the referenced expression defined within the query scope.
 |============================================================================================================================================================================
@@ -279,6 +279,7 @@ During evaluation, the implementation must maintain a stack that is used to repr
 |*Query* |Query evaluation is discussed in detail below.
 |*Filter* |For each item in the _source_ operand, the item is pushed on to the stack, the _condition_ expression is evaluated, and the item is popped off of the stack.
 |*ForEach* |For each item in the _source_ operand, the item is pushed on to the stack, the _element_ expression is evaluated, and the item is popped off of the stack.
+|*Aggregate* |For each item in the _source_ operand, the item is pushed on to the stack, the _expression_ is evaluated, and the item is popped off of the stack.
 |====================================================================================================================================================================
 
 Table 5‑F
@@ -299,7 +300,8 @@ The outline of the process is:
 ** evaluate any let clauses within the query
 ** evaluate each with or without clause in the query
 ** evaluate the where clause, if present
-** evaluate the return clause
+** evaluate the return clause, if present
+** evaluate the aggregate clause, if present, storing the result as an accumulator available for reference in the next iteration
 * Sort the results if a sort clause is present
 
 The following sections discuss each of these steps in more detail.
@@ -345,6 +347,10 @@ The where clause, if present simply determines whether each element should be in
 
 The return clause, if present, defines the final shape of each element produced by the query, as well as whether or not to eliminate duplicates from the result. If distinct is specified as part of the return clause, any duplicates must not appear in the result set. The expression defined in the return clause is evaluated and the result is added to the output. If neither all or distinct is specified, distinct is the default behavior.
 
+[[aggregate-clause]]
+==== Aggregate Clause
+The aggregate clause, if present, defines the final result of the query in terms of an expression that is evaluated for each item. If distinct is specified, it is applied to the items in the query prior to aggregation. For aggregation, an accumulator tracking the result of the aggregation is created, and named according to the identifier element of the aggregate clause. If a starting expression is specified, the accumulator is initialized to the result of evaluating the starting expression. For each item in the query, the aggregation expression is evaluated, and the result replaces the current value of the accumulator. Once the iteration is complete, the accumulator is returned as the result of the query.
+
 [[sort]]
 === Sort
 
@@ -356,6 +362,7 @@ After the iterative clauses are executed for each element of the query source, t
 It is worth noting that the implementation of query evaluation can be simplified by decomposing the query into a set of more primitive operations. For example, the following operations are sufficient to evaluate any query of CQL:
 
 * ForEach
+* Aggregate
 * Times
 * Filter
 * Distinct
@@ -368,7 +375,8 @@ The following sketch details an implementation plan for any query using these pr
 3.  For each with clause, use a Filter and express the with in terms of an Exists in the condition of the Filter.
 4.  For each without clause, use a Filter and express the without in terms of a Not Exists in the condition of the Filter.
 5.  If the return clause is specified, use a ForEach to produce the result of the return. If the return clause specifies Distinct, also attach a Distinct operation to the result.
-6.  If the sort clause is specified, use a Sort operation to produce the final sorted output.
+6.  If the aggregate clause is specified, use an Aggregate to produce the result of the aggregation.
+7.  If the sort clause is specified, use a Sort operation to produce the final sorted output.
 
 Using this sketch, the evaluation of a query can be performed by pipelining the query into a series of more primitive operations that can be implemented more easily. This approach also lends itself to translation and/or optimization if necessary.
 

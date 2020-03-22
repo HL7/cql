@@ -397,6 +397,7 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 |*_without-clause_* |Without
 |*_where-clause_* |Query (where element)
 |*_return-clause_* |ReturnClause
+|*_aggregtate-clause_* |AggregateClause
 |*_sort-clause_* |SortClause
 |==========================================
 

@@ -131,6 +131,7 @@ Keywords are words that are recognized by the parser and used to build the vario
 [source,cql]
 ----
 after
+aggregate
 all
 and
 as
@@ -223,6 +224,7 @@ singleton
 second
 seconds
 start
+starting
 starts
 sort
 successor
@@ -259,6 +261,7 @@ The following keywords are defined as reserved words:
 
 [source,cql]
 ----
+aggregate
 all
 and
 as
@@ -313,7 +316,7 @@ return
 same
 second
 seconds
-singelton
+singleton
 sort
 such that
 then
@@ -822,6 +825,7 @@ For queries, the type inference rules are based on the clauses used, beginning w
 4.  With and without clauses only limit the set of results returned by a query, they do not impact the type of the result.
 5.  A where clause only limits the set of results returned by the query, it does not impact the type of the result.
 6.  The return clause determines the overall shape of the query result. If there is no return clause, the result type of the query is the same as the initial type of the query as determined based on the sources. If a return clause is used, the result type of the query is inferred based on the return expression. If the query is singular, the result type is the type of the return clause expression. If the query is plural, the result type is a list whose element types are the type of the return expression.
+7.  Similar to the return clause, an aggregate clause, if present, determines the overall result of the query. If an aggregate clause is used, the result type of the query is the result type of the aggregate expression, regardless of whether the query is singular or plural.
 
 [[conversion]]
 === Conversion
@@ -1459,6 +1463,42 @@ As with all healthcare-related data, there are privacy and security concerns ass
 
 See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
 
+____
+
+[[aggregate-queries]]
+== Aggregate Queries
+
+CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate a factorial:
+
+[source,cql]
+----
+define function Factorial(X Integer):
+  (expand Interval[1, X]) R
+    aggregate T: Coalesce(T, 1) * R
+----
+
+In this example, the `expand` operator is used to construct a list of integers from `1` to `X`, and then the `aggregate` clause is used to calculate the factorial, repeatedly multiplying the current result by the next integer in the list.
+
+The `aggregate` clause may be used in any query instead of a `return` clause, and causes the query to return the result of the last iteration of the aggregate expression. As in the case above, this can result in the query returning a single value, rather than a list of values, but note that since the aggregate expression may return a list, the result of an `aggregate` query may still be a list:
+
+[source, cql]
+----
+define RolledOutIntervals:
+  MedicationRequestIntervals M
+    aggregate R: R union all {
+      M X
+        let S: Max({ end of Last(R) + 1 day, start of X }),
+          E: S + duration in days of X
+        return Interval[S, E]
+    }
+----
+
+In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
+
+[.note-info]
+____
+
+Note that the aggregate clause is a new as of CQL 1.5, and is being balloted trial-use.
 ____
 
 [[defining-functions]]

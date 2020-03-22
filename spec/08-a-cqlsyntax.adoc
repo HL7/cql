@@ -248,7 +248,7 @@ qualifier
     ;
 
 query
-    : sourceClause letClause? queryInclusionClause* whereClause? returnClause? sortClause?
+    : sourceClause letClause? queryInclusionClause* whereClause? (returnClause | aggregateClause)? sortClause?
     ;
 
 sourceClause
@@ -269,6 +269,14 @@ whereClause
 
 returnClause
     : 'return' ('all' | 'distinct')? expression
+    ;
+
+aggregateClause
+    : 'aggregate' ('all' | 'distinct')? identifier startingClause? ':' expression
+    ;
+
+startingClause
+    : 'starting' (simpleLiteral | quantity | ('(' expression ')'))
     ;
 
 sortClause
@@ -537,6 +545,7 @@ conceptSelector
 
 keyword
     : 'after'
+    | 'aggregate'
     | 'all'
     | 'and'
     | 'as'
@@ -630,6 +639,7 @@ keyword
     | 'singleton'
     | 'start'
     | 'starts'
+    | 'starting'
     | 'sort'
     | 'successor'
     | 'such that'
@@ -657,7 +667,8 @@ keyword
     ;
 
 reservedWord
-    : 'all'
+    : 'aggregate'
+    | 'all'
     | 'and'
     | 'as'
     | 'after'
@@ -769,6 +780,7 @@ keywordIdentifier
     | 'private'
     | 'public'
     | 'start'
+    | 'starting'
     | 'starts'
     | 'successor'
     | 'time'
@@ -807,6 +819,7 @@ obsoleteIdentifier
 // Function identifiers are keywords that may be used as identifiers for functions
 functionIdentifier
     : 'after'
+    | 'aggregate'
     | 'all'
     | 'and'
     | 'as'
@@ -897,6 +910,7 @@ functionIdentifier
     | 'second'
     | 'seconds'
     | 'start'
+    | 'starting'
     | 'starts'
     | 'sort'
     | 'successor'
