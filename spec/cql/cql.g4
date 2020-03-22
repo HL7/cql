@@ -436,6 +436,7 @@ literal
     | 'null'                                                #nullLiteral
     | STRING                                                #stringLiteral
     | NUMBER                                                #numberLiteral
+    | LONGNUMBER                                            #longNumberLiteral
     | DATETIME                                              #dateTimeLiteral
     | TIME                                                  #timeLiteral
     | quantity                                              #quantityLiteral
@@ -905,6 +906,14 @@ identifier
 
 QUOTEDIDENTIFIER
     : '"' (ESC | .)*? '"'
+    ;
+
+DATETIME
+    : '@' DATEFORMAT 'T' TIMEFORMAT? TIMEZONEOFFSETFORMAT?
+    ;
+
+LONGNUMBER
+    : [0-9]+'L'
     ;
 
 fragment ESC

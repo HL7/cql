@@ -72,7 +72,8 @@ Literals provide for the representation of basic values within CQL. The followin
 |Literal |Description
 |*Null* |The null literal ([.kw]#null#)
 |*Boolean* |The boolean literals ([.kw]#true# and [.kw]#false#)
-|*Integer* |Sequences of digits in the range 0..2^32^-1
+|*Integer* |Sequences of digits in the range 0..2^31^-1
+|*Long* |Sequences of digits in the range 0..2^63^-1
 |*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
 |*String* |Strings of any character enclosed within single-ticks ([.lit]#'#)
 |*Date* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
@@ -603,7 +604,8 @@ All the system-defined types derive directly from System.Any. The primitive type
 |=========================================================================
 |Type |Range |Step Size
 |*Boolean* |false..true |N/A
-|*Integer* |-2^31^..2^31^ – 1 |1
+|*Integer* |-2^31^..2^31^–1 |1
+|*Long* |-2^63^..2^63^-1 |1
 |*Date* |@0001-01-01..@9999-12-31 |1 day
 |*DateTime* |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
 |*Decimal* |(-10^28^+1)/10^8^..(10^28^-1)/10^8^ |10^-8^
@@ -767,7 +769,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Long, Decimal, Date, DateTime, Time, Quantity, and Ratio.
 
 The type of the null selector is Any.
 
@@ -851,7 +853,10 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |Operator |Description
 |*ToBoolean(String)* |Converts the string representation of a boolean value to a Boolean value
 |*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format ([.sym]#+\|-#)d*
+|*ToLong(Integer)* |Converts an Integer value to an equivalent Long value
+|*ToLong(String)* |Converts the string representation of a long value to a Long value using the format ([.sym]#+\|-#)d*
 |*ToDecimal(Integer)* |Converts an Integer value to an equivalent Decimal value
+|*ToDecimal(Long)* |Converts a Long value to an equivalent Decimal value
 |*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format ([.sym]#+\|-#)d*.d*
 |*ToQuantity(Decimal)* |Converts a Decimal value to a Quantity with a default unit ('1')
 |*ToQuantity(Integer)* |Converts an Integer value to a Quantity with a default unit ('1')
@@ -864,6 +869,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
 |*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
 |*ToString(Integer)* |Converts an Integer value to its string representation
+|*ToString(Long)* |Converts a Long value to its string representation
 |*ToString(Decimal)* |Converts a Decimal value to its string representation
 |*ToString(Quantity)* |Converts a Quantity value to its string representation
 |*ToString(Ratio)* |Converts a Ratio value to its string representation
@@ -906,19 +912,20 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 [[table-3-h]]
 [cols=",,,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Decimal* |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|*Quantity* |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
-|*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|*List<Code>* | | | | | | | | | | |Explicit |N/A
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
+|*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |- |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Long* |- |- |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|*Decimal* |- |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
+|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
 Table 3‑H

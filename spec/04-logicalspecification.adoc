@@ -1107,7 +1107,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 If either argument is null, the result is null.
 
-The Greater operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+The Greater operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
 [.note-info]
 ____
@@ -1130,7 +1130,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 If either argument is null, the result is null.
 
-The GreaterOrEqual operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
 [.note-info]
 ____
@@ -1153,7 +1153,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 If either argument is null, the result is null.
 
-The Less operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+The Less operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
 [.note-info]
 ____
@@ -1176,7 +1176,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 If either argument is null, the result is null.
 
-The LessOrEqual operator is defined for the Integer, Decimal, String, Date, DateTime, Time, and Quantity types.
+The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
 [.note-info]
 ____
@@ -1403,7 +1403,7 @@ If the argument is null, the result is null.
 
 If the result of taking the absolute value of the input cannot be represented (e.g. Abs(minimum Integer)), the result is null.
 
-The Abs operator is defined for the Integer, Decimal, and Quantity types.
+The Abs operator is defined for the Integer, Long, Decimal, and Quantity types.
 
 [[add]]
 === Add
@@ -1417,7 +1417,7 @@ The Add operator performs numeric addition of its arguments.
 
 When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-The Add operator is defined for the Integer, Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
+The Add operator is defined for the Integer, Long Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
 
 For Date, DateTime, and Time values, the operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
@@ -1460,7 +1460,7 @@ If the argument is null, the result is null.
 Divide : BinaryExpression
 ----
 
-The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer. For integer division, use the truncated divide operator.
+The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer or Long. For integer division, use the truncated divide operator.
 
 For division operations involving quantities, the resulting quantity will have the appropriate unit.
 
@@ -1581,9 +1581,11 @@ MaxValue : Expression
 
 The MaxValue operator returns the maximum representable value for the given type.
 
-The MaxValue operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The MaxValue operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
 
 For Integer, MaxValue returns the maximum signed 32-bit integer, 2^31 - 1.
+
+For Long, MaxValue returns the maximum signed 64-bit integer, 2^63 - 1.
 
 For Decimal, MaxValue returns the maximum representable Decimal value, (10^28 - 1) / 10^8 (99999999999999999999.99999999).
 
@@ -1609,9 +1611,11 @@ MinValue : Expression
 
 The MinValue operator returns the minimum representable value for the given type.
 
-The MinValue operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The MinValue operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
 
 For Integer, MinValue returns the minimum signed 32-bit integer, -(2^31).
+
+For Long, MinValue returns the minimum signed 64-bit integer, -(2^63).
 
 For Decimal, MinValue returns the minimum representable Decimal value, (-10^28 + 1) / 10^8 (-99999999999999999999.99999999).
 
@@ -1638,7 +1642,7 @@ If either argument is null, the result is null.
 
 If the result of the modulo cannot be represented, or the right argument is 0, the result is null.
 
-The Modulo operator is defined for the Integer and Decimal types.
+The Modulo operator is defined for the Integer, Long, and Decimal types.
 
 === Multiply
 
@@ -1655,7 +1659,7 @@ If either argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-The Multiply operator is defined for the Integer, Decimal and Quantity types.
+The Multiply operator is defined for the Integer, Long, Decimal and Quantity types.
 
 === Negate
 
@@ -1672,7 +1676,7 @@ If the argument is null, the result is null.
 
 If the result of negating the argument cannot be represented (e.g. -(minimum Integer)), the result is null.
 
-The Negate operator is defined for the Integer, Decimal, and Quantity types.
+The Negate operator is defined for the Integer, Long, Decimal, and Quantity types.
 
 === Power
 
@@ -1726,9 +1730,11 @@ Predecessor : UnaryExpression
 
 The Predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
-The Predecessor operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The Predecessor operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
 
 For Integer, Predecessor is equivalent to subtracting 1.
+
+For Long, Predecessor is equivalent to subtracting 1L.
 
 For Decimal, Predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08.
 
@@ -1767,7 +1773,7 @@ The Subtract operator performs numeric subtraction of its arguments.
 
 When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
 
-The Subtract operator is defined for the Integer, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
+The Subtract operator is defined for the Integer, Long, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
 
 For Date, DateTime, Time values, the operator returns the value of the first argument, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
@@ -1792,9 +1798,11 @@ Successor : UnaryExpression
 
 The Successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The Successor operator is defined for the Integer, Decimal, Date, DateTime, and Time types.
+The Successor operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
 
 For Integer, Successor is equivalent to adding 1.
+
+For Long, Successor is equivalent to adding 1L.
 
 For Decimal, Successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08.
 
@@ -1828,7 +1836,7 @@ If either argument is null, the result is null.
 
 If the result of the operation cannot be represented, or the right argument is 0, the result is null.
 
-The TruncatedDivide operator is defined for the Integer and Decimal types.
+The TruncatedDivide operator is defined for the Integer, Long, and Decimal types.
 
 [[string-operators]]
 == String Operators
@@ -3573,11 +3581,11 @@ The CanConvert operator returns true if the given value can be converted to a sp
 
 This operator returns true for conversion:
 
-Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, DateTime, and Time,
+Between String and each of Boolean, Integer, Long, Decimal, Quantity, Ratio, Date, DateTime, and Time,
 
 as well as:
 
-From Integer to Decimal or Quantity +
+From Integer to Long, Decimal, or Quantity +
 From Decimal to Quantity +
 Between Date and DateTime +
 From Code to Concept +
@@ -3630,11 +3638,11 @@ If no valid conversion exists from the actual value to the target type, the resu
 
 This operator supports conversion:
 
-Between String and each of Boolean, Integer, Decimal, Quantity, Ratio, Date, DateTime, and Time
+Between String and each of Boolean, Integer, Long, Decimal, Quantity, Ratio, Date, DateTime, and Time
 
 as well as:
 
-From Integer to Decimal or Quantity +
+From Integer to Long, Decimal, or Quantity +
 From Decimal to Quantity +
 Between Date and DateTime +
 From Code to Concept +
@@ -3733,6 +3741,25 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is null, the result is null.
 
+=== ConvertsToLong
+
+[source,elm]
+----
+ConvertsToLong : UnaryExpression
+----
+
+The ConvertsToLong operator returns true if the value of its argument can be converted to a Long value. The operator accepts strings using the following format:
+
+(+|-)?#0footnote:formatting-strings[]
+
+Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+Note that the integer value returned by this operator must be a valid value in the range representable for Long values in CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is false.
+
+If the argument is null, the result is null.
+
 === ConvertsToInteger
 
 [source,elm]
@@ -3805,6 +3832,7 @@ The operator returns true if the argument is any of the following types:
 
 Boolean +
 Integer +
+Long +
 Decimal +
 DateTime +
 Date +
@@ -4001,6 +4029,25 @@ The operator is effectively shorthand for "if operand is null then { } else { op
 
 The operator is used to implement list promotion efficiently.
 
+=== ToLong
+
+[source,elm]
+----
+ToLong : UnaryExpression
+----
+
+The ToLong operator converts the value of its argument to a Long value. The operator accepts strings using the following format:
+
+(+|-)?#0footnote:formatting-strings[]
+
+Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is null.
+
+If the argument is null, the result is null.
+
 === ToQuantity
 
 [source,elm]
@@ -4056,6 +4103,7 @@ The ToString operator converts the value of its argument to a String value. The 
 |====
 |Boolean |true\|false
 |Integer |(-)?#0
+|Long |(-)?#0
 |Decimal |(-)?\#0.0#
 |Quantity |(-)?\#0.0# '<unit>'
 |Date |YYYY-MM-DD

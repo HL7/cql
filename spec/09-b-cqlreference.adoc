@@ -167,6 +167,22 @@ The [.id]#Decimal# type represents real values within CQL.
 
 CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10^28^ + 1)/10^8^ to (10^28^-1)/10^-8^ with a step size of 10^-8^.
 
+[[long-1]]
+=== Long
+
+*Definition:*
+
+[source,cql]
+----
+simple type Long
+----
+
+*Description:*
+
+The [.id]#Long# type represents large whole number values within CQL.
+
+CQL supports long values in the range -2^63^ to 2^63^-1 with a step size of 1.
+
 [[integer-1]]
 === Integer
 
@@ -544,19 +560,20 @@ The following table lists the conversions supported in CQL:
 [[table-9-e]]
 [cols=",,,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Decimal* |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|*Quantity* |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
-|*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|*List<Code>* | | | | | | | | | | |Explicit |N/A
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
+|*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |- |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Long* |- |- |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|*Decimal* |- |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
+|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
 Table 9‑E
@@ -743,6 +760,22 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
+[[convertstolong]]
+=== ConvertsToLong
+
+*Signature:*
+
+[source,cql]
+----
+ConvertsToLong(argument String) Boolean
+----
+
+*Description:*
+
+The [.id]#ConvertsToLong# operator returns [.kw]#true# if its argument can be converted to a [.id]#Long# value. See the [.id]#<<ToLong>># operator for a description of the supported conversions.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Long# value, the result is [.kw]#false#.
+
 [[convertstointeger]]
 === ConvertsToInteger
 
@@ -751,6 +784,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [source,cql]
 ----
 ConvertsToInteger(argument String) Boolean
+ConvertsToInteger(argument Long) Boolean
 ----
 
 *Description:*
@@ -758,6 +792,8 @@ ConvertsToInteger(argument String) Boolean
 The [.id]#ConvertsToInteger# operator returns [.kw]#true# if its argument can be converted to an [.id]#Integer# value. See the [.id]#<<ToInteger>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#false#.
+
+If the input is a [.id]#Long# value, the result is [.kw]#true# if the value is within the range of an [.id]#Integer#, otherwise, the result is [.kw]#false#.
 
 [[convertstoquantity]]
 === ConvertsToQuantity
@@ -807,6 +843,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 ----
 ConvertsToString(argument Boolean) Boolean
 ConvertsToString(argument Integer) Boolean
+ConvertsToString(argument Long) Boolean
 ConvertsToString(argument Decimal) Boolean
 ConvertsToString(argument Quantity) Boolean
 ConvertsToString(argument Ratio) Boolean
@@ -1015,6 +1052,41 @@ define IsValid: ToDecimal('-0.1')
 define IsNull: ToDecimal('+-0.1')
 ----
 
+[[tolong]]
+=== ToLong
+
+*Signature:*
+
+[source,cql]
+----
+ToLong(argument String) Long
+----
+
+*Description:*
+
+The [.id]#ToLong# operator converts the value of its argument to a [.id]#Long# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+
+[source,cql]
+----
+(+|-)?#0
+----
+
+Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Long# values in CQL.
+
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Long# value, the result is [.kw]#null#.
+
+If the argument is [.kw]#null#, the result is [.kw]#null#.
+
+The following examples illustrate the behavior of the [.id]#ToLong# operator:
+
+[source,cql]
+----
+define IsValid: ToLong('-1')
+define IsNull: ToLong('one')
+----
+
 [[tointeger]]
 === ToInteger
 
@@ -1023,6 +1095,7 @@ define IsNull: ToDecimal('+-0.1')
 [source,cql]
 ----
 ToInteger(argument String) Integer
+ToInteger(argument Long) Integer
 ----
 
 *Description:*
@@ -1039,6 +1112,8 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Integer# values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#null#.
+
+If the input is a [.id]#Long# value that can be represented within the range of [.id]#Integer# values, the result is the [.id]#Integer# value; otherwise, the result is [.kw]#null#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1138,6 +1213,7 @@ define IsNull: ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ----
 ToString(argument Boolean) String
 ToString(argument Integer) String
+ToString(argument Long) String
 ToString(argument Decimal) String
 ToString(argument Quantity) String
 ToString(argument Ratio) String
@@ -1156,6 +1232,7 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |Type |String Representation
 |[.id]#Boolean# |[.kw]#true\|false#
 |[.id]#Integer# |([.sym]#-#)?#0
+|[.id]#Long# |([.sym]#-#)?#0
 |[.id]#Decimal# |([.sym]#-#)?\#0.0#
 |[.id]#Quantity# |([.sym]#-#)?\#0.0# '<unit>'
 |[.id]#Ratio# |<quantity>:<quantity>
@@ -1176,6 +1253,7 @@ The following examples illustrate the behavior of the [.id]#ToString# operator:
 ----
 define BooleanOverload: ToString(true)
 define IntegerOverload: ToString(13)
+define LongOverload: ToString(10000L)
 define DecimalOverload: ToString(0.1)
 define QuantityOverload: ToString(-0.1 'mg')
 define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
@@ -1325,6 +1403,7 @@ define IsTrueIsFalse: false is true
 [source,cql]
 ----
 between(argument Integer, low Integer, high Integer) Boolean
+between(argument Long, low Long, high Long) Boolean
 between(argument Decimal, low Decimal, high Decimal) Boolean
 between(argument Quantity, low Quantity, high Quantity) Boolean
 between(argument Date, low Date, high Date) Boolean
@@ -1357,6 +1436,7 @@ The following examples illustrate the behavior of the [.kw]#between# operator:
 [source,cql]
 ----
 define IntegerBetweenIsTrue: 4 between 2 and 6
+define LongBetweenIsTrue: 4L between 2L and 6L
 define DecimalBetweenIsFalse: 3.5 between 3.6 and 4.8
 define QuantityBetweenIsNull: 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 ----
@@ -1400,6 +1480,7 @@ The following examples illustrate the behavior of the _equal_ operator:
 [source,cql]
 ----
 define IntegerEqualIsTrue: 4 = (2 + 2)
+define LongEqualIsTrue: 4L = (2L + 2L)
 define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
 define StringEqualIsFalse: 'John Doe' = 'john doe'
 define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
@@ -1453,6 +1534,7 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 [source,cql]
 ----
 define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
+define LongEquivalentIsTrue: 4L ~ (2L + 2L)
 define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
 define StringEquivalentIsTrue: 'John Doe' ~ 'john doe'
 define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
@@ -1470,6 +1552,7 @@ define NullEquivalentIsTrue: null ~ null
 [source,cql]
 ----
 >(left Integer, right Integer) Boolean
+>(left Long, right Long) Boolean
 >(left Decimal, right Decimal) Boolean
 >(left Quantity, right Quantity) Boolean
 >(left Date, right Date) Boolean
@@ -1502,6 +1585,7 @@ The following examples illustrate the behavior of the _greater_ operator:
 [source,cql]
 ----
 define IntegerGreaterIsTrue: 4 > 3
+define LongGreaterIsTrue: 4L > 3L
 define DecimalGreaterIsFalse: 3.5 > 3.5
 define QuantityGreaterIsNull: 3.6 'cm2' > 3.5 'cm'
 define NullGreaterIsNull: null > 5
@@ -1522,6 +1606,7 @@ ____
 [source,cql]
 ----
 >=(left Integer, right Integer) Boolean
+>=(left Long, right Long) Boolean
 >=(left Decimal, right Decimal) Boolean
 >=(left Quantity, right Quantity) Boolean
 >=(left Date, right Date) Boolean
@@ -1554,6 +1639,7 @@ The following examples illustrate the behavior of the _greater or equal_ operato
 [source,cql]
 ----
 define IntegerGreaterOrEqualIsTrue: 4 >= (2 + 2)
+define LongGreaterOrEqualIsTrue: 4L >= (2L + 2L)
 define DecimalGreaterOrEqualIsFalse: 3.5 >= (3.5 + 0.1)
 define QuantityGreaterOrEqualIsNull: 3.6 'cm2' >= 3.5 'cm'
 define NullGreaterOrEqualIsNull: null >= 5
@@ -1573,6 +1659,7 @@ ____
 [source,cql]
 ----
 <(left Integer, right Integer) Boolean
+<(left Long, right Long) Boolean
 <(left Decimal, right Decimal) Boolean
 <(left Quantity, right Quantity) Boolean
 <(left Date, right Date) Boolean
@@ -1605,6 +1692,7 @@ The following examples illustrate the behavior of the _less_ operator:
 [source,cql]
 ----
 define IntegerLessIsTrue: 4 < (2 + 2 + 2)
+define LongLessIsTrue: 4L < (2L + 2L + 2L)
 define DecimalLessIsFalse: 3.5 < 3.5
 define QuantityLessIsNull: 3.6 'cm2' < 3.5 'cm'
 define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
@@ -1625,6 +1713,7 @@ ____
 [source,cql]
 ----
 <=(left Integer, right Integer) Boolean
+<=(left Long, right Long) Boolean
 <=(left Decimal, right Decimal) Boolean
 <=(left Quantity, right Quantity) Boolean
 <=(left Date, right Date) Boolean
@@ -1657,6 +1746,7 @@ The following examples illustrate the behavior of the _less or equal_ operator:
 [source,cql]
 ----
 define IntegerLessOrEqualIsTrue: 4 <= (2 + 2)
+define LongLessOrEqualIsTrue: 4L <= (2L + 2L)
 define DecimalLessOrEqualIsFalse: 3.5 <= (3.5 - 0.1)
 define QuantityLessOrEqualIsNull: 3.6 'cm2' <= 3.6 'cm'
 define NullLessOrEqualIsNull: null <= 5
@@ -1689,6 +1779,7 @@ The following examples illustrate the behavior of the _not equal_ operator:
 [source,cql]
 ----
 define IntegerNotEqualIsFalse: 4 != (2 + 2)
+define LongNotEqualIsFalse: 4L != (2L + 2L)
 define DecimalNotEqualIsTrue: 3.5 != (3.5 - 0.1)
 define StringNotEqualIsTrue: 'John Doe' != 'john doe'
 define QuantityNotEqualIsNull: 3.5 'cm2' != 3.5 'cm'
@@ -1718,6 +1809,7 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 [source,cql]
 ----
 define IntegerNotEquivalentIsFalse: 4 !~ (2 + 2)
+define LongNotEquivalentIsFalse: 4L !~ (2L + 2L)
 define DecimalNotEquivalentIsTrue: 3.5 !~ (3.5 - 0.1)
 define StringNotEquivalentIsFalse: 'John Doe' !~ 'john doe'
 define QuantityNotEquivalentIsTrue: 3.5 'cm2' !~ 3.5 'cm'
@@ -1739,6 +1831,7 @@ The arithmetic operators provide a complete set of operations for performing ari
 [source,cql]
 ----
 Abs(argument Integer) Integer
+Abs(argument Long) Long
 Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ----
@@ -1759,6 +1852,7 @@ The following examples illustrate the behavior of the [.id]#Abs# operator:
 ----
 define IntegerAbs: Abs(-5) // 5
 define IntegerAbsIsNull: Abs(null as Integer)
+define LongAbs: Abs(-5000000L) // 5000000L
 define DecimalAbs: Abs(-5.5) // 5.5
 define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
 ----
@@ -1771,6 +1865,7 @@ define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
 [source,cql]
 ----
 +(left Integer, right Integer) Integer
++(left Long, right Long) Long
 +(left Decimal, right Decimal) Decimal
 +(left Quantity, right Quantity) Quantity
 ----
@@ -1779,7 +1874,11 @@ define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
 
 The _add_ ([.sym]#+#) operator performs numeric addition of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or[.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal#, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#.
+
+When invoked with mixed [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Decimal# argument will be implicitly converted to [.id]#Quantity#.
 
 When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be added, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
@@ -1793,6 +1892,7 @@ The following examples illustrate the behavior of the _add_ operator:
 ----
 define IntegerAdd: 2 + 2 // 4
 define IntegerAddIsNull: 2 + null
+define LongAdd: 25L + 5 // 30L
 define DecimalAdd: 2.5 + 5 // 7.5
 define QuantityAdd: -5.5 'mg' + 2 'mg' // -3.5 'mg'
 define QuantityAddIsNull: -5.5 'cm' + 2 'cm2'
@@ -1840,7 +1940,7 @@ define QuantityCeilingIsNull: Ceiling(null as Decimal)
 
 The _divide_ ([.sym]#/#) operator performs numeric division of its arguments. Note that this operator is [.id]#Decimal# division; for [.id]#Integer# division, use the _truncated divide_ ([.kw]#div#) operator.
 
-When invoked with [.id]#Integer# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
+When invoked with [.id]#Integer# or [.id]#Long# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
 
 When invoked with a mixture of [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Decimal# arguments will be implicitly converted to [.id]#Quantity#.
 
@@ -1862,6 +1962,7 @@ The following examples illustrate the behavior of the _divide_ operator:
 [source,cql]
 ----
 define IntegerDivide: 4.0 / 2 // 2.0
+define LongDivide: 4.0 / 2L // 2.0
 define DecimalDivide: 9.9 / 3.0 // 3.3
 define DecimalDivideIsNull: 2.2 / null
 define DecimalDivideIsError: 2.2 / 0
@@ -1909,7 +2010,7 @@ Exp(argument Decimal) Decimal
 
 The [.id]#Exp# operator raises _e_ to the power of its argument.
 
-When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
+When invoked with an [.id]#Integer# or [.id]#Long# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1920,6 +2021,7 @@ The following examples illustrate the behavior of the [.id]#Exp# operator:
 [source,cql]
 ----
 define IntegerExp: Exp(0) // 1.0
+define LongExp: Exp(0L) // 1.0
 define DecimalExp: Exp(-0.0) // 1.0
 define QuantityExpIsNull: Exp(null as Decimal)
 ----
@@ -1968,7 +2070,7 @@ Log(argument Decimal, base Decimal) Decimal
 
 The [.id]#Log# operator computes the logarithm of its first argument, using the second argument as the base.
 
-When invoked with [.id]#Integer# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
+When invoked with [.id]#Integer# or [.id]#Long# arguments, the arguments will be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1979,6 +2081,7 @@ The following examples illustrate the behavior of the [.id]#Log# operator:
 [source,cql]
 ----
 define IntegerLog: Log(16, 2) // 4.0
+define LongLog: Log(16L, 2L) // 4.0
 define DecimalLog: Log(100.0, 10.0) // 2.0
 define QuantityLogIsNull: Log(null, 10.0)
 ----
@@ -2029,7 +2132,7 @@ Ln(argument Decimal) Decimal
 
 The [.id]#Ln# operator computes the natural logarithm of its argument.
 
-When invoked with an [.id]#Integer# argument, the argument will be implicitly converted to [.id]#Decimal#.
+When invoked with an [.id]#Integer# or [.id]#Long# argument, the argument will be implicitly converted to [.id]#Decimal#.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2040,6 +2143,7 @@ The following examples illustrate the behavior of the [.id]#Ln# operator:
 [source,cql]
 ----
 define IntegerLn: Ln(1) // 0.0
+define LongLn: Ln(1L) // 0.0
 define DecimalLn: Ln(1.0) // 0.0
 define QuantityLnIsNull: Ln(null as Decimal)
 ----
@@ -2058,9 +2162,11 @@ maximum<T>() T
 
 The [.kw]#maximum# operator returns the maximum representable value for the given type.
 
-The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#maximum# returns the maximum signed 32-bit integer, 2^31^ - 1.
+
+For [.id]#Long#, [.kw]#maximum# returns the maximum signed 64-bit long, 2^63^ - 1.
 
 For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal value, (10^28^ – 1) / 10^8^ (99999999999999999999.99999999).
 
@@ -2084,6 +2190,7 @@ The following examples illustrate the behavior of the [.kw]#maximum# operator:
 [source,cql]
 ----
 define IntegerMaximum: maximum Integer // 2147483647
+define LongMaximum: maximum Long // 9223372036854775807
 define DateTimeMaximum: maximum DateTime // @9999-12-31T23:59:59.999
 define ErrorMaximum: maximum Quantity
 ----
@@ -2102,9 +2209,11 @@ minimum<T>() T
 
 The [.kw]#minimum# operator returns the minimum representable value for the given type.
 
-The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#minimum# returns the minimum signed 32-bit integer, -2^31^.
+
+For [.id]#Long#, [.kw]#minimum# returns the minimum signed 64-bit long, -2^63^.
 
 For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal value, (-10^28^ + 1) / 10^8^ (-99999999999999999999.99999999).
 
@@ -2128,6 +2237,7 @@ The following examples illustrate the behavior of the [.kw]#minimum# operator:
 [source,cql]
 ----
 define IntegerMinimum: minimum Integer // -2147483648
+define LongMinimum: minimum Integer // -9223372036854775808
 define DateTimeMinimum: minimum DateTime // @0001-01-01T00:00:00.000
 define ErrorMinimum: minimum Quantity
 ----
@@ -2140,6 +2250,7 @@ define ErrorMinimum: minimum Quantity
 [source,cql]
 ----
 mod(left Integer, right Integer) Integer
+mod(left Long, right Long) Integer
 mod(left Decimal, right Decimal) Decimal
 ----
 
@@ -2147,7 +2258,7 @@ mod(left Decimal, right Decimal) Decimal
 
 The [.kw]#mod# operator computes the remainder of the division of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2158,6 +2269,7 @@ The following examples illustrate the behavior of the [.kw]#mod# operator:
 [source,cql]
 ----
 define IntegerModulo: 3 mod 2 // 1
+define LongModulo: 3L mod 2 // 1L
 define DecimalModulo: 2.5 mod 2 // 0.5
 define ModuloIsNull: 2.5 mod null
 ----
@@ -2170,6 +2282,7 @@ define ModuloIsNull: 2.5 mod null
 [source,cql]
 ----
 *(left Integer, right Integer) Integer
+*(left Long, right Long) Long
 *(left Decimal, right Decimal) Decimal
 *(left Quantity, right Quantity) Quantity
 ----
@@ -2178,7 +2291,9 @@ define ModuloIsNull: 2.5 mod null
 
 The _multiply_ ([.sym]#*#) operator performs numeric multiplication of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#.
 
 When invoked with mixed [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#Decimal# argument will be implicitly converted to [.id]#Quantity#.
 
@@ -2204,6 +2319,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 [source,cql]
 ----
 -(argument Integer) Integer
+-(argument Long) Long
 -(argument Decimal) Decimal
 -(argument Quantity) Quantity
 ----
@@ -2223,6 +2339,7 @@ The following examples illustrate the behavior of the _negate_ operator:
 [source,cql]
 ----
 define IntegerNegate: -3 // -3
+define LongNegate: -3L // -3L
 define DecimalNegate: -(-3.3) // 3.3
 define QuantityNegate: -3.3 'mg' // -3.3 'mg'
 define NegateIsNull: -(null as Integer)
@@ -2279,9 +2396,11 @@ predecessor of<T>(argument T) T
 
 The [.kw]#predecessor# operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
-The [.kw]#predecessor# operator is defined for the [.id]#Integer#, [.id]#Decimal#, [.id]#Quantity#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#predecessor# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Quantity#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#predecessor# is equivalent to subtracting 1.
+
+For [.id]#Long#, [.kw]#predecessor# is equivalent to subtracting 1L.
 
 For [.id]#Decimal#, [.kw]#predecessor# is equivalent to subtracting the minimum precision value for the [.id]#Decimal# type, or 10^-08^.
 
@@ -2298,6 +2417,7 @@ The following examples illustrate the behavior of the [.kw]#predecessor# operato
 [source,cql]
 ----
 define IntegerPredecessor: predecessor of 100 // 99
+define LongPredecessor: predecessor of 100L // 99L
 define DecimalPredecessor: predecessor of 1.0 // 0.99999999
 define DatePredecessor: predecessor of @2014-01-01 // @2013-12-31
 define PredecessorIsNull: predecessor of (null as Quantity)
@@ -2311,6 +2431,7 @@ define PredecessorIsNull: predecessor of (null as Quantity)
 [source,cql]
 ----
 ^(argument Integer, exponent Integer) Integer
+^(argument Long, exponent Long) Long
 ^(argument Decimal, exponent Decimal) Decimal
 ----
 
@@ -2318,7 +2439,9 @@ define PredecessorIsNull: predecessor of (null as Quantity)
 
 The _power_ ([.sym]#^#) operator raises the first argument to the power given by the second argument.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will. be implicitly converted to [.id]#Decimal#.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2330,6 +2453,7 @@ The following examples illustrate the behavior of the _power_ operator:
 ----
 define IntegerPower: 2^3 // 8
 define IntegerPowerFun: Power(2, 3) // 8
+define LongPower: 2L^3L // 8L
 define DecimalPower: 2.5^2.0 // 6.25
 define NegateIsNull: 2.5^null
 ----
@@ -2372,6 +2496,7 @@ define RoundIsNull: Round(null)
 [source,cql]
 ----
 -(left Integer, right Integer) Integer
+-(left Long, right Long) Long
 -(left Decimal, right Decimal) Decimal
 -(left Quantity, right Quantity) Quantity
 ----
@@ -2380,7 +2505,9 @@ define RoundIsNull: Round(null)
 
 The _subtract_ ([.sym]#-#) operator performs numeric subtraction of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#.
 
 When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# can be subtracted, but units of [.lit]#'cm2'# and [.lit]#'cm'# cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
@@ -2393,6 +2520,7 @@ The following examples illustrate the behavior of the _subtract_ operator:
 [source,cql]
 ----
 define IntegerSubtract: 2 - 1 // 1
+define LongSubtract: 2L - 1L // 1L
 define DecimalSubtract: 3.14 - 3.12 // 0.02
 define QuantitySubtract: 3.14 'mg' - 3.12 'mg' // 0.02 'mg'
 define QuantitySubtractError: 3.14 'cm' - 3.12 'cm2'
@@ -2413,9 +2541,11 @@ successor of<T>(argument T) T
 
 The [.kw]#successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The [.kw]#successor# operator is defined for the [.id]#Integer#, [.id]#Quantity#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#successor# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Quantity#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#successor# is equivalent to adding 1.
+
+For [.id]#Long#, [.kw]#successor# is equivalent to adding 1L.
 
 For [.id]#Decimal#, [.kw]#successor# is equivalent to adding the minimum precision value for the [.id]#Decimal# type, or 10^-08^.
 
@@ -2432,6 +2562,7 @@ The following examples illustrate the behavior of the [.kw]#successor# operator:
 [source,cql]
 ----
 define IntegerSuccessor: successor of 100 // 101
+define LongSuccessor: successor of 100L // 101L
 define DecimalSuccessor: successor of 1.0 // 1.00000001
 define DateSuccessor: successor of @2014-01-01 // @2014-01-02
 define SuccessorIsNull: successor of (null as Quantity)
@@ -2472,6 +2603,7 @@ define TruncateIsNull: Truncate(null)
 [source,cql]
 ----
 div(left Integer, right Integer) Integer
+div(left Long, right Long) Long
 div(left Decimal, right Decimal) Decimal
 ----
 
@@ -2479,7 +2611,9 @@ div(left Decimal, right Decimal) Decimal
 
 The [.kw]#div# operator performs truncated division of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
+
+When invoked with mixed [.id]#Long# and [.id]#Decimal# arguments, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2490,6 +2624,7 @@ The following examples illustrate the behavior of the [.kw]#div# operator:
 [source,cql]
 ----
 define IntegerTruncatedDivide: 4 div 2 // 2
+define LongTruncatedDivide: 4L div 2L // 2L
 define DecimalTruncatedDivide: 4.14 div 2.06 // 2
 define TruncatedDivideIsNull: 3 div null
 ----
@@ -5313,6 +5448,7 @@ define GeometricMeanIsAlsoNull: GeometricMean(null as List<Decimal>)
 [source,cql]
 ----
 Max(argument List<Integer>) Integer
+Max(argument List<Long>) Long
 Max(argument List<Decimal>) Decimal
 Max(argument List<Quantity>) Quantity
 Max(argument List<Date>) Date
@@ -5334,6 +5470,7 @@ The following examples illustrate the behavior of the [.id]#Max# operator:
 [source,cql]
 ----
 define IntegerMax: Max({ 2, 4, 8, 6 }) // 8
+define LongMax: Max({ 2L, 4L, 8L, 6L }) // 8L
 define DateMax: Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
 define MaxIsNull: Max({ null as Quantity, null as Quantity, null as Quantity })
 define MaxIsAlsoNull: Max(null as List<Decimal>)
@@ -5347,6 +5484,7 @@ define MaxIsAlsoNull: Max(null as List<Decimal>)
 [source,cql]
 ----
 Min(argument List<Integer>) Integer
+Min(argument List<Long>) Long
 Min(argument List<Decimal>) Decimal
 Min(argument List<Quantity>) Quantity
 Min(argument List<Date>) Date
@@ -5368,6 +5506,7 @@ The following examples illustrate the behavior of the [.id]#Min# operator:
 [source,cql]
 ----
 define IntegerMin: Min({ 2, 4, 8, 6 }) // 2
+define LongMin: Min({ 2L, 4L, 8L, 6L }) // 2L
 define DateMin: Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
 define MinIsNull: Min({ null as Quantity, null as Quantity, null as Quantity })
 define MinIsAlsoNull: Min(null as List<Decimal>)
@@ -5496,6 +5635,7 @@ define PopulationVarianceIsAlsoNull: PopulationVariance(null as List<Decimal>)
 [source,cql]
 ----
 Product(argument List<Integer>) Integer
+Product(argument List<Long>) Long
 Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ----
@@ -5555,6 +5695,7 @@ define StdDevIsAlsoNull: StdDev(null as List<Decimal>)
 [source,cql]
 ----
 Sum(argument List<Integer>) Integer
+Sum(argument List<Long>) Long
 Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ----

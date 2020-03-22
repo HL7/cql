@@ -73,6 +73,7 @@ The following table defines the mapping between the various CQL literals and the
 |[.kw]#null# |Null
 |*_boolean-literal_* |Boolean
 |*_integer-literal_* |Literal (valueType="Integer")
+|*_long-literal_* |Literal (valueType="Long")
 |*_decimal-literal_* |Literal (valueType="Decimal")
 |*_quantity-literal_* |Quantity
 |*_ratio-literal_* |Ratio
