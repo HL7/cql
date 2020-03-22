@@ -1149,7 +1149,7 @@ For the [.id]#String# overload, the operator accepts strings using the following
 (+|-)?#0(.0#)?('<unit>')?
 ----
 
-Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure. Spaces are allowed between the quantity value and the unit designator.
+Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for [.id]#Decimal# values in CQL.
 
@@ -3077,9 +3077,11 @@ For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw
 
 For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-Note that the quantity units may be specified in singular, plural, or UCUM form.
+Note that the quantity units may be specified in singular, plural, or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to add a definite-duration time-valued unit above seconds, a calendar duration must be used.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in first argument (truncating any resulting decimal portion) and then adding it to the first argument. For example, the following addition:
+For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
+
+For partial date/time values where the time-valued quantity is more precise than the partial date/time, the operation is performed by converting the time-based quantity to the most precise value specified in first argument (truncating any resulting decimal portion) and then adding it to the first argument. For example, the following addition:
 
 [.id]#DateTime(2014)# [.sym]#+# [.lit]#24# [.id]#months#
 
@@ -3579,9 +3581,11 @@ For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw
 
 For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-Note that the quantity units may be specified in singular, plural or UCUM form.
+Note that the quantity units may be specified in singular, plural or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to subtract a definite-duration time-valued unit above seconds, a calendar duration must be used.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then subtracting it from the first argument. For example, the following subtraction:
+For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
+
+For partial date/time values where the time-valued quantity is more precise than the partial date/time, the operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then subtracting it from the first argument. For example, the following subtraction:
 
 [.id]#DateTime(2014)# [.sym]#-# [.lit]#24# [.id]#months#
 

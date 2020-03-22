@@ -831,31 +831,40 @@ A quantity is a number with an associated unit. For example:
 3 months
 ----
 
-CQL supports the following built-in units for time granularities:
+The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid Unified Code for Units of Measure <<UCUM>> unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+
+For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
+
+|===
+|Calendar Duration |Unit Representation |Relationship to Definite Duration UCUM Unit
+
+|`year`/`years` |`'year'` |`~ 1 'a'`
+|`month`/`months` |`'month'` |`~ 1 'mo'`
+|`week`/`weeks` |`'week'` |`~ 1 'wk'`
+|`day`/`days` |`'day'` |`~ 1 'd'`
+|`hour`/`hours` |`'hour'` |`~ 1 'h'`
+|`minute`/`minutes` |`'minute'` |`~ 1 'min'`
+|`second`/`seconds` |`'second'` |`= 1 's'`
+|`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
+|===
+
+For example, the following quantities are _calendar duration_ quantities:
 
 [source,cql]
 ----
-year
-years
-month
-months
-week
-weeks
-day
-days
-hour
-hours
-minute
-minutes
-second
-seconds
-millisecond
-milliseconds
+1 year
+4 days
 ----
 
-In addition, CQL supports any valid Unified Code for Units of Measure (UCUM) unit code using the string representation of the UCUM code immediately following the numeric value, as shown in the first example in this section. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+Whereas the following quantities are _definite duration_ quantities:
 
-For quantities, number can be an integer or decimal. Note however that most operations involving time-based quantities ignore the decimal portion of a time-based quantity.
+[source,cql]
+----
+1 'a'
+4 'd'
+----
+
+The table above defines the equality/equivalence relationship between calendar and definite duration quantities. For example, `1 year` is not _equal_ (`=`) to `1 'a'` (defined in UCUM as 365.25 'd'), but it is _equivalent_ (`~`) to `1 'a'`.
 
 For a discussion of the operations available for quantities, see the <<Quantity Operators>> section.
 
@@ -1535,7 +1544,7 @@ By defining the DateTime construction operators in this way, most clinical logic
 
 In addition, all operations on DateTime values are defined to take timezone offset information into account, ensuring that DateTime operations perform correctly and consistently.
 
-In addition to date and time values, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
+As discussed in the <<Quantities>> section above, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
 [source,cql]
 ----
@@ -1568,7 +1577,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression but that no attempt is made to enforce singular or plural usage.
 
-Note also that the UCUM time-period units can be used when expressing duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, calculations involving durations shall round using calendar semantics as specified in ISO8601.
+As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, date and time arithmetic involving durations shall round using calendar semantics as specified in ISO8601.
 
 For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
 
@@ -1720,7 +1729,7 @@ The above expression computes the date one year before today, taking into accoun
 
 Note that as with the numeric arithmetic operators, if either or both arguments are [.kw]#null#, the result of the operation is [.kw]#null#.
 
-The operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then adding it to the first argument. For example, consider the following addition:
+For partial date/time values where the time-valued quantity is more precise than the partial date/time, the operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then adding it to (or subtracting it from) the first argument. For example, consider the following addition:
 
 [source,cql]
 ----
@@ -1736,7 +1745,22 @@ Note also that this means that if decimals appear in the time-valued quantities,
 @2016-01-01 – 1.1 years
 ----
 
-Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning will be issued by the translator.
+Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning should be issued by the translator.
+
+To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above seconds in a date/time arithmetic calculation will result in a run-time error.
+
+Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in <<ISO8601>>. Specifically:
+
+|===
+|year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
+|month |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used.
+|week |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths.
+|day |The day, positive or negative, is added to the day component, respecting calendar month and calendar year lengths.
+|hour |The hours, positive or negative, are added to the hour component, with each 24 hour block counting as a calendar day, and respecting calendar month and calendar year lengths.
+|minute |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
+|second |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
+|millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
+|===
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
