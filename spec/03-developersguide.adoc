@@ -174,6 +174,7 @@ exists
 expand
 false
 flatten
+fluent
 from
 function
 hour
@@ -1535,6 +1536,47 @@ define CD: Core.CumulativeDuration(Encounters E return E.period)
 In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
+
+[[fluent-functions]]
+=== Fluent Functions
+
+Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:
+
+[source,cql]
+----
+define fluent function confirmed(Conditions List<Condition>):
+  Conditions C where C.verificationStatus ~ "Condition Confirmed"
+
+define fluent function active(Conditions List<Condition>):
+  Conditions C where C.clinicalStatus ~ "Condition Active"
+    and C.abatement is null
+
+define fluent function activeOrRecurring(Conditions List<Condition>):
+  Conditions C
+    where C.clinicalStatus ~ "Condition Active"
+      or C.clinicalStatus ~ "Condition Recurrence"
+      or C.clinicalStatus ~ "Condition Relapse"
+----
+
+A _fluent_ function means that it can be invoked using dot-notation (`.`), and the first argument to the function will be provided by the value of the left-side of the dot-invocation at that point. For example:
+
+[source,cql]
+----
+define "Diabetes Conditions":
+  [Condition: "Diabetes Mellitus"]
+
+define "Confirmed and Active or Recurring Diabetes Conditions":
+  Conditions.confirmed().activeOrRecurring()
+----
+
+[.note-info]
+____
+
+Note that the examples in this section are adapted from the link:https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178[CDS Connect FHIR Commons] library.
+____
+
+[[external-functions]]
+=== External Functions
 
 Functions can also be defined as _external_ to support the ability to import functionality defined in external libraries. If a function is defined external, the return type must be provided:
 
