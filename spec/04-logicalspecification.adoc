@@ -730,6 +730,8 @@ FunctionDef : ExpressionDef
   0..* --> operand : OperandDef
   ¦
   0..1 --> external
+  ¦
+  0..1 --> fluent
 ----
 
 The FunctionDef type defines a named function that can be invoked by any expression in the artifact. Function names must be unique within the artifact. Functions may take any number of operands.
