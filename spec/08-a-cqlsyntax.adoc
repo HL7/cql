@@ -311,9 +311,10 @@ simplePath
     ;
 
 simpleLiteral
-    : STRING
-    | NUMBER
+    : STRING                                           #simpleStringLiteral
+    | NUMBER                                           #simpleNumberLiteral
     ;
+
 ----
 
 [[expressions-1]]

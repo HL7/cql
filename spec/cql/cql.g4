@@ -290,8 +290,8 @@ simplePath
     ;
 
 simpleLiteral
-    : STRING
-    | NUMBER
+    : STRING                                           #simpleStringLiteral
+    | NUMBER                                           #simpleNumberLiteral
     ;
 
 expression
@@ -446,6 +446,7 @@ literal
     | NUMBER                                                #numberLiteral
     | LONGNUMBER                                            #longNumberLiteral
     | DATETIME                                              #dateTimeLiteral
+    | DATE                                                  #dateLiteral
     | TIME                                                  #timeLiteral
     | quantity                                              #quantityLiteral
     | ratio                                                 #ratioLiteral

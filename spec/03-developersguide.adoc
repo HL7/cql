@@ -1485,15 +1485,17 @@ The `aggregate` clause may be used in any query instead of a `return` clause, an
 ----
 define RolledOutIntervals:
   MedicationRequestIntervals M
-    aggregate R: R union all {
+    aggregate R starting (null as List<Interval<DateTime>>): R union ({
       M X
         let S: Max({ end of Last(R) + 1 day, start of X }),
           E: S + duration in days of X
         return Interval[S, E]
-    }
+    })
 ----
 
 In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
+
+Note that in general, the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. This is not necessary in all cases, however, as the factorial example above demonstrates, since the type of the expression is inferred through the coercion that takes place during the Coalesce.
 
 [.note-info]
 ____
