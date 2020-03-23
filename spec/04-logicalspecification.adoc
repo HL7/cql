@@ -947,6 +947,8 @@ Note that because every expression is being evaluated within a context (such as 
 ----
 Retrieve : Expression
   ¦
+  0..1 --> id : Expression
+  ¦
   0..1 --> codes : Expression
   ¦
   0..1 --> dateRange : Expression
@@ -959,7 +961,11 @@ Retrieve : Expression
   ¦
   0..1 --> idProperty
   ¦
+  0..1 --> idSearch
+  ¦
   0..1 --> codeProperty
+  ¦
+  0..1 --> codeSearch
   ¦
   0..1 --> valueSetProperty
   ¦
@@ -968,9 +974,14 @@ Retrieve : Expression
   0..1 --> dateLowProperty
   ¦
   0..1 --> dateHighProperty
+  ¦
+  0..1 --> dateSearch
 ----
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
+
+==== id
+The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
 
 ==== codes
 The codes element optionally specifies an expression that results in a List<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
@@ -992,12 +1003,18 @@ The idProperty attribute specifies which property of the model contains the Id f
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
+==== idSearch
+The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.
+
 ==== codeProperty
 The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
 
 Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== codeSearch
+The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
 
 ==== valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
@@ -1032,6 +1049,9 @@ The dateHighProperty attribute optionally specifies which property of the model 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+
+==== dateSearch
+The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
 
 [[comparison-operators-1]]
 == Comparison Operators
