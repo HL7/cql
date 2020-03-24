@@ -985,6 +985,8 @@ Retrieve : Expression
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
+The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
+
 ==== id
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
 
