@@ -2649,6 +2649,8 @@ For the Interval, T overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is false. If the second argument is null, the result is null.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 === End
 
 [source,elm]
@@ -2752,6 +2754,8 @@ For the T, Interval overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is null. If the second argument is null the result is false.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 [[includes]]
 === Includes
 
@@ -2776,6 +2780,8 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 [[included-in]]
 === IncludedIn
 
@@ -2799,6 +2805,8 @@ For the Interval, Interval overload, this operator returns true if the starting 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If either argument is null, the result is null.
+
+For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 [[intersect]]
 === Intersect
