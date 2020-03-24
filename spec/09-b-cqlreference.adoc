@@ -3786,7 +3786,7 @@ contains _precision_ (argument Interval<T>, point T) Boolean
 
 *Description:*
 
-The [.kw]#contains# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered [.kw]#true#.
+The [.kw]#contains# operator for intervals returns [.kw]#true# if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered [.kw]#true#.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4042,7 +4042,7 @@ in _precision_ (point T, argument Interval<T>) Boolean
 
 *Description:*
 
-The [.kw]#in# operator for intervals returns [.kw]#true# if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered true.
+The [.kw]#in# operator for intervals returns [.kw]#true# if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is [.kw]#null#, the result of the boundary comparison is considered true.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
