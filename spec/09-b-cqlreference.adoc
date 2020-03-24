@@ -36,13 +36,15 @@ In addition, formatting strings are used throughout the reference to describe po
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
-* YYYY - A full four digit year (0001..9999), padded with leading zeroes if necessary
-* MM - A full two digit month value (01..12), padded with leading zeroes if necessary
-* DD - A full two digit day value (00..31), padded with leading zeroes if necessary
-* hh - A full two digit hour value (00..24), padded with leading zeroes if necessary
-* mm - A full two digit minute value (00..59), padded with leading zeroes if necessary
-* ss - A full two digit second value (00..59), padded with leading zeroes if necessary
-* fff - A fractional millisecond value (0..999)
+* *YYYY* - A full four digit year (0001..9999), padded with leading zeroes if necessary
+* *MM* - A full two digit month value (01..12), padded with leading zeroes if necessary
+* *DD* - A full two digit day value (00..31), padded with leading zeroes if necessary
+* *hh* - A full two digit hour value (00..24), padded with leading zeroes if necessary
+* *mm* - A full two digit minute value (00..59), padded with leading zeroes if necessary
+* *ss* - A full two digit second value (00..59), padded with leading zeroes if necessary
+* *fff* - A fractional millisecond value (0..999)
+
+These formatting patterns are set in bold to distinguish them typographically from literals or code and to make clear that they are not intended to be formally interpreted as regex patterns.
 
 [[types-2]]
 == Types
@@ -580,7 +582,7 @@ Table 9‑E
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
-YYYY-MM-DDThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)
+*YYYY-MM-DDThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)*
 
 For example, the following are valid string representations for date and time values:
 
@@ -958,7 +960,7 @@ For the DateTime overload, the operator is equivalent to invoking [.kw]#date fro
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD footnote:formatting-strings[See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
+*YYYY-MM-DD* footnote:formatting-strings[See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -996,7 +998,7 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)footnote:formatting-strings[]
+*YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)* footnote:formatting-strings[]
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -1236,9 +1238,9 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |[.id]#Decimal# |([.sym]#-#)?\#0.0#
 |[.id]#Quantity# |([.sym]#-#)?\#0.0# '<unit>'
 |[.id]#Ratio# |<quantity>:<quantity>
-|[.id]#Date# |YYYY-MM-DD
-|[.id]#DateTime# |YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm
-|[.id]#Time# |@Thh:mm:ss.fff
+|[.id]#Date# |*YYYY-MM-DD*
+|[.id]#DateTime# |*YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm*
+|[.id]#Time# |*@Thh:mm:ss.fff*
 |===========================================
 
 Table 9‑G
@@ -1277,7 +1279,7 @@ ToTime(argument String) Time
 
 The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:footnote:formatting-strings[]
 
-hh:mm:ss.fff
+*hh:mm:ss.fff*
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
