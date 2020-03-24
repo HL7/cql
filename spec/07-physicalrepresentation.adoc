@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 The physical representation for CQL is specifically concerned with communicating the logic involved in any given artifact. As discussed in the previous sections, the unit of distribution for CQL is the library, which corresponds to a single file of CQL at the author level, or a single ELM document at the physical level.
 
@@ -104,4 +104,3 @@ ____
 
 Note that the actual model info definition and associated artifacts are part of the reference implementation for CQL and not a normative aspect of the CQL specification. CQL only specifies the expected behavior at the conceptual level. How that behavior is achieved with respect to any particular data model is an implementation aspect and not prescribed by this specification.
 ____
-

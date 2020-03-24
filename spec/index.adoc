@@ -1,15 +1,22 @@
 = Clinical Quality Language (CQL)
 :page-layout: dev
 :backend: xhtml
-:page-standards-status: trial-use
+:page-standards-status: normative
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 STU4 (CQL 1.4)*
+*HL7 Standard: Clinical Quality Language Specification, Release 1 Normative Ballot 1 (CQL 1.5)*
 
-*HL7 STU Specification*
+*HL7 Mixed Normative/STU Specification*
 
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
 
 In addition, this specification describes a machine-readable canonical representation called Expression Logical Model (ELM) targeted at implementations and designed to enable sharing of clinical knowledge.
+
+[.note-info]
+____
+
+This specification is being balloted normative, except where identified as informative or trial-use content.
+____
+
 
 link:title.html[Title Page]
 
@@ -59,4 +66,3 @@ link:16-i-fhirpathtranslation.html[Appendix I] – FHIRPath Function Translation
 link:17-j-listoftables.html[Appendix J] – List Of Tables
 
 link:18-k-listoffigures.html[Appendix K] – List Of Figures
-

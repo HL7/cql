@@ -5,7 +5,7 @@
 :sectnums:
 :sectanchors:
 :toc:
-:page-standards-status: trial-use
+:page-standards-status: normative
 
 This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the link:02-authorsguide.html[Author’s Guide] in the discussions that follow.
 
@@ -72,7 +72,8 @@ Literals provide for the representation of basic values within CQL. The followin
 |Literal |Description
 |*Null* |The null literal ([.kw]#null#)
 |*Boolean* |The boolean literals ([.kw]#true# and [.kw]#false#)
-|*Integer* |Sequences of digits in the range 0..2^32^-1
+|*Integer* |Sequences of digits in the range 0..2^31^-1
+|*Long* |Sequences of digits in the range 0..2^63^-1
 |*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
 |*String* |Strings of any character enclosed within single-ticks ([.lit]#'#)
 |*Date* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
@@ -130,6 +131,7 @@ Keywords are words that are recognized by the parser and used to build the vario
 [source,cql]
 ----
 after
+aggregate
 all
 and
 as
@@ -172,6 +174,7 @@ exists
 expand
 false
 flatten
+fluent
 from
 function
 hour
@@ -222,6 +225,7 @@ singleton
 second
 seconds
 start
+starting
 starts
 sort
 successor
@@ -258,6 +262,7 @@ The following keywords are defined as reserved words:
 
 [source,cql]
 ----
+aggregate
 all
 and
 as
@@ -312,7 +317,7 @@ return
 same
 second
 seconds
-singelton
+singleton
 sort
 such that
 then
@@ -603,7 +608,8 @@ All the system-defined types derive directly from System.Any. The primitive type
 |=========================================================================
 |Type |Range |Step Size
 |*Boolean* |false..true |N/A
-|*Integer* |-2^31^..2^31^ – 1 |1
+|*Integer* |-2^31^..2^31^–1 |1
+|*Long* |-2^63^..2^63^-1 |1
 |*Date* |@0001-01-01..@9999-12-31 |1 day
 |*DateTime* |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
 |*Decimal* |(-10^28^+1)/10^8^..(10^28^-1)/10^8^ |10^-8^
@@ -767,7 +773,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Long, Decimal, Date, DateTime, Time, Quantity, and Ratio.
 
 The type of the null selector is Any.
 
@@ -820,6 +826,7 @@ For queries, the type inference rules are based on the clauses used, beginning w
 4.  With and without clauses only limit the set of results returned by a query, they do not impact the type of the result.
 5.  A where clause only limits the set of results returned by the query, it does not impact the type of the result.
 6.  The return clause determines the overall shape of the query result. If there is no return clause, the result type of the query is the same as the initial type of the query as determined based on the sources. If a return clause is used, the result type of the query is inferred based on the return expression. If the query is singular, the result type is the type of the return clause expression. If the query is plural, the result type is a list whose element types are the type of the return expression.
+7.  Similar to the return clause, an aggregate clause, if present, determines the overall result of the query. If an aggregate clause is used, the result type of the query is the result type of the aggregate expression, regardless of whether the query is singular or plural.
 
 [[conversion]]
 === Conversion
@@ -851,7 +858,10 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |Operator |Description
 |*ToBoolean(String)* |Converts the string representation of a boolean value to a Boolean value
 |*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format ([.sym]#+\|-#)d*
+|*ToLong(Integer)* |Converts an Integer value to an equivalent Long value
+|*ToLong(String)* |Converts the string representation of a long value to a Long value using the format ([.sym]#+\|-#)d*
 |*ToDecimal(Integer)* |Converts an Integer value to an equivalent Decimal value
+|*ToDecimal(Long)* |Converts a Long value to an equivalent Decimal value
 |*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format ([.sym]#+\|-#)d*.d*
 |*ToQuantity(Decimal)* |Converts a Decimal value to a Quantity with a default unit ('1')
 |*ToQuantity(Integer)* |Converts an Integer value to a Quantity with a default unit ('1')
@@ -864,6 +874,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
 |*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
 |*ToString(Integer)* |Converts an Integer value to its string representation
+|*ToString(Long)* |Converts a Long value to its string representation
 |*ToString(Decimal)* |Converts a Decimal value to its string representation
 |*ToString(Quantity)* |Converts a Quantity value to its string representation
 |*ToString(Ratio)* |Converts a Ratio value to its string representation
@@ -906,19 +917,20 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 [[table-3-h]]
 [cols=",,,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To |Boolean |Integer |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |- |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Decimal* |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|*Quantity* |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|*Ratio* |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|*Date* |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
-|*Time* |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|*Code* |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|*Concept* |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|*List<Code>* | | | | | | | | | | |Explicit |N/A
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
+|*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |- |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Long* |- |- |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|*Decimal* |- |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
+|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
+|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
+|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
+|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
+|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
+|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
+|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
+|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
 Table 3‑H
@@ -1454,6 +1466,44 @@ See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example fo
 
 ____
 
+[[aggregate-queries]]
+== Aggregate Queries
+
+CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate a factorial:
+
+[source,cql]
+----
+define function Factorial(X Integer):
+  (expand Interval[1, X]) R
+    aggregate T: Coalesce(T, 1) * R
+----
+
+In this example, the `expand` operator is used to construct a list of integers from `1` to `X`, and then the `aggregate` clause is used to calculate the factorial, repeatedly multiplying the current result by the next integer in the list.
+
+The `aggregate` clause may be used in any query instead of a `return` clause, and causes the query to return the result of the last iteration of the aggregate expression. As in the case above, this can result in the query returning a single value, rather than a list of values, but note that since the aggregate expression may return a list, the result of an `aggregate` query may still be a list:
+
+[source, cql]
+----
+define RolledOutIntervals:
+  MedicationRequestIntervals M
+    aggregate R starting (null as List<Interval<DateTime>>): R union ({
+      M X
+        let S: Max({ end of Last(R) + 1 day, start of X }),
+          E: S + duration in days of X
+        return Interval[S, E]
+    })
+----
+
+In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
+
+Note that in general, the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. This is not necessary in all cases, however, as the factorial example above demonstrates, since the type of the expression is inferred through the coercion that takes place during the Coalesce.
+
+[.note-info]
+____
+
+Note that the aggregate clause is a new as of CQL 1.5, and is being balloted trial-use.
+____
+
 [[defining-functions]]
 == Defining Functions
 
@@ -1486,6 +1536,47 @@ define CD: Core.CumulativeDuration(Encounters E return E.period)
 In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
+
+[[fluent-functions]]
+=== Fluent Functions
+
+Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:
+
+[source,cql]
+----
+define fluent function confirmed(Conditions List<Condition>):
+  Conditions C where C.verificationStatus ~ "Condition Confirmed"
+
+define fluent function active(Conditions List<Condition>):
+  Conditions C where C.clinicalStatus ~ "Condition Active"
+    and C.abatement is null
+
+define fluent function activeOrRecurring(Conditions List<Condition>):
+  Conditions C
+    where C.clinicalStatus ~ "Condition Active"
+      or C.clinicalStatus ~ "Condition Recurrence"
+      or C.clinicalStatus ~ "Condition Relapse"
+----
+
+A _fluent_ function means that it can be invoked using dot-notation (`.`), and the first argument to the function will be provided by the value of the left-side of the dot-invocation at that point. For example:
+
+[source,cql]
+----
+define "Diabetes Conditions":
+  [Condition: "Diabetes Mellitus"]
+
+define "Confirmed and Active or Recurring Diabetes Conditions":
+  Conditions.confirmed().activeOrRecurring()
+----
+
+[.note-info]
+____
+
+Note that the examples in this section are adapted from the link:https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178[CDS Connect FHIR Commons] library.
+____
+
+[[external-functions]]
+=== External Functions
 
 Functions can also be defined as _external_ to support the ability to import functionality defined in external libraries. If a function is defined external, the return type must be provided:
 
@@ -1568,4 +1659,3 @@ The FHIRPath syntax is designed as a fluent API, meaning that operations are inv
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the link:16-i-fhirpathtranslation.html[FHIRPath Function Translation Appendix].
 
 The _disable-method-invocation_ option controls whether or not method-style invocation is allowed in the translator.
-
