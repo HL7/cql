@@ -2472,7 +2472,7 @@ define TitreRatio: 1:128
 define TitreNumerator: TitreRatio.numerator // 1
 ----
 
-CQL supports the equality operators (= != ~ !~) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
+CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 [source,cql]
 ----

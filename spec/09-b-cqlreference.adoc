@@ -28,11 +28,11 @@ InDemographic and NeedsScreening
 [[formatting-strings]]
 In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a DateTime value. The following symbols are used to describe format strings:
 
-* 0 - Any digit must appear at this location in the format string
-* # - Any digit may appear at this location in the format string
-* ? - The immediately preceding pattern is optional
-* ( ) - Used to group patterns
-* | - Used to combine choices of patterns (e.g. +|- means a + or - may appear at this location)
+* *0* - Any digit must appear at this location in the format string
+* *#* - Any digit may appear at this location in the format string
+* *?* - The immediately preceding pattern is optional
+* *( )* - Used to group patterns
+* *|* - Used to combine choices of patterns (e.g. *+|-* means a *+* or *-* may appear at this location)
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
@@ -890,7 +890,7 @@ ToBoolean(argument String) Boolean
 
 *Description:*
 
-The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations:
+The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations, ignoring case:
 
 [[table-9-f]]
 [cols=",",options="header",]
@@ -960,7 +960,9 @@ For the DateTime overload, the operator is equivalent to invoking [.kw]#date fro
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
-*YYYY-MM-DD* footnote:formatting-strings[See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
+*YYYY-MM-DD*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -998,7 +1000,9 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)* footnote:formatting-strings[]
+*YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -1031,14 +1035,13 @@ ToDecimal(argument String) Decimal
 
 *Description:*
 
-The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0(.0#)?
-----
+*(+|-)?#0(.0#)?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for [.id]#Decimal# values within CQL.
 
@@ -1066,14 +1069,13 @@ ToLong(argument String) Long
 
 *Description:*
 
-The [.id]#ToLong# operator converts the value of its argument to a [.id]#Long# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToLong# operator converts the value of its argument to a [.id]#Long# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0
-----
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Long# values in CQL.
 
@@ -1102,14 +1104,13 @@ ToInteger(argument Long) Integer
 
 *Description:*
 
-The [.id]#ToInteger# operator converts the value of its argument to an [.id]#Integer# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToInteger# operator converts the value of its argument to an [.id]#Integer# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0
-----
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Integer# values in CQL.
 
@@ -1144,14 +1145,13 @@ ToQuantity(argument String) Quantity
 
 The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value.
 
-For the [.id]#String# overload, the operator accepts strings using the following format:footnote:formatting-strings[]
+For the [.id]#String# overload, the operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0(.0#)?('<unit>')?
-----
+*(+|-)?#0(.0#)?('<unit>')?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for [.id]#Decimal# values in CQL.
 
@@ -1187,10 +1187,7 @@ ToRatio(argument String) Ratio
 
 The [.id]#ToRatio# operator converts the value of its argument to a [.id]#Ratio# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-<quantity>:<quantity>
-----
+*<quantity>:<quantity>*
 
 where <quantity> is the format used to by the [.id]#ToQuantity# operator.
 
@@ -1226,24 +1223,26 @@ ToString(argument Time) String
 
 *Description:*
 
-The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type:footnote:formatting-strings[]
+The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type
 
 [[table-9-g]]
 [cols=",",options="header",]
 |===========================================
 |Type |String Representation
-|[.id]#Boolean# |[.kw]#true\|false#
-|[.id]#Integer# |([.sym]#-#)?#0
-|[.id]#Long# |([.sym]#-#)?#0
-|[.id]#Decimal# |([.sym]#-#)?\#0.0#
-|[.id]#Quantity# |([.sym]#-#)?\#0.0# '<unit>'
-|[.id]#Ratio# |<quantity>:<quantity>
+|[.id]#Boolean# |*true\|false*
+|[.id]#Integer# |*(-)?#0*
+|[.id]#Long# |*(-)?#0*
+|[.id]#Decimal# |*(-)?\#0.0#*
+|[.id]#Quantity# |*(-)?\#0.0# '<unit>'*
+|[.id]#Ratio# |*<quantity>:<quantity>*
 |[.id]#Date# |*YYYY-MM-DD*
-|[.id]#DateTime# |*YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm*
-|[.id]#Time# |*@Thh:mm:ss.fff*
+|[.id]#DateTime# |*YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm*
+|[.id]#Time# |*hh:mm:ss.fff*
 |===========================================
 
 Table 9‑G
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 The result of any ToString must be round-trippable back to the source value.
 
@@ -1277,9 +1276,11 @@ ToTime(argument String) Time
 
 *Description:*
 
-The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:footnote:formatting-strings[]
+The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation
 
 *hh:mm:ss.fff*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
