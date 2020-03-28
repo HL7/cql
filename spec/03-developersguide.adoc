@@ -916,7 +916,7 @@ ____
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
 [[table-3-h]]
-[cols=",,,,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-

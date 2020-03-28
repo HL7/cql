@@ -32,7 +32,7 @@ In addition, formatting strings are used throughout the reference to describe po
 * *#* - Any digit may appear at this location in the format string
 * *?* - The immediately preceding pattern is optional
 * *( )* - Used to group patterns
-* *|* - Used to combine choices of patterns (e.g. *+|-* means a *+* or *-* may appear at this location)
+* *|* - Used to combine choices of patterns (e.g. *\+|-* means a *+* or *-* may appear at this location)
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
@@ -560,7 +560,7 @@ The [.kw]#convert# operator converts a value to a specific type. The result of t
 The following table lists the conversions supported in CQL:
 
 [[table-9-e]]
-[cols=",,,,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
@@ -582,7 +582,7 @@ Table 9‑E
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
-*YYYY-MM-DDThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)*
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
 For example, the following are valid string representations for date and time values:
 
@@ -1000,7 +1000,7 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)*
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
 See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
@@ -1037,7 +1037,7 @@ ToDecimal(argument String) Decimal
 
 The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
-*(+|-)?#0(.0#)?*
+*(+|-)?\#0(.0#)?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -1147,7 +1147,7 @@ The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Qua
 
 For the [.id]#String# overload, the operator accepts strings using the following format:
 
-*(+|-)?#0(.0#)?('<unit>')?*
+*(+|-)?\#0(.0#)?('<unit>')?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 

@@ -3816,7 +3816,7 @@ The ConvertsToDateTime operator returns true if the value of its argument can be
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm*
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
@@ -4082,7 +4082,7 @@ The ToDateTime operator converts the value of its argument to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm*
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
@@ -4223,7 +4223,7 @@ If the argument is null, the result is null.
 ToString : UnaryExpression
 ----
 
-The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:footnote:formatting-strings[]
+The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type
 
 [width="50%"]
 |====
