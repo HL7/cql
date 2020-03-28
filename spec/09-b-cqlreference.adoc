@@ -3793,8 +3793,6 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
 [source,cql]
@@ -4049,8 +4047,6 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the result is [.kw]#false#.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
 [source,cql]
@@ -4075,13 +4071,13 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The [.kw]#includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator, apart from the null semantics, which are the same as the corresponding point/interval operators.
+For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator, and will return [.kw]#false# is the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
+
+For the interval overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#includes# operator:
 
@@ -4107,13 +4103,13 @@ included in _precision_ (left T, right Interval<T>) Boolean
 
 The [.kw]#included in# operator for intervals returns [.kw]#true# if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the [.kw]#<<in,in>># operator, apart from the null semantics, which are the same as the corresponding point/interval operators.
+For the point overload, this operator is a synonym for the [.kw]#<<in,in>># operator, and will return [.kw]#null# if the first argument is [.kw]#null#, and [.kw]#false# if the second argument is [.kw]#null#.
+
+For the interval overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that [.kw]#during# is a synonym for included in and may be used to invoke the same operation wherever [.kw]#included in# may appear.
 
@@ -4904,9 +4900,9 @@ includes(left List<T>, right T) Boolean
 
 The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list using equality semantics.
 
-For the singleton overload, this operator returns [.kw]#true# if the list includes (i.e. contains) the singleton.
+For the singleton overload, this operator is a synonym for the [.kw]#<<contains-1,contains>># operator, and will return [.kw]#false# if the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+For the list overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4935,9 +4931,9 @@ included in(left T, right list<T>) Boolean
 
 The [.kw]#included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list using equality semantics.
 
-For the singleton overload, this operator returns [.kw]#true# if the singleton is included in (i.e. in) the list.
+For the singleton overload, this operator is a synonym for the [.kw]#<<in-1,in>># operator, and will return [.kw]#null# if the first argument is [.kw]#null#, and [.kw]#false# if the second argument is [.kw]#null#.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+For the list overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 

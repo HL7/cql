@@ -1027,7 +1027,7 @@ This property may be specified as a path, including qualifiers and constant inde
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
 
 ==== codeComparator
-The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', 'contains', '=', or '~'. Note that 'in' and 'contains' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
 ==== valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
@@ -2652,8 +2652,6 @@ For the Interval, T overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is false. If the second argument is null, the result is null.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 === End
 
 [source,elm]
@@ -2757,8 +2755,6 @@ For the T, Interval overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is null. If the second argument is null the result is false.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 [[includes]]
 === Includes
 
@@ -2783,8 +2779,6 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 [[included-in]]
 === IncludedIn
 
@@ -2808,8 +2802,6 @@ For the Interval, Interval overload, this operator returns true if the starting 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If either argument is null, the result is null.
-
-For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 [[intersect]]
 === Intersect
@@ -2966,7 +2958,7 @@ For the List, T overload, this operator returns true if the given element is in 
 
 For the Interval, T overload, this operator returns true if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the Start and End operators.  If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is false. If the second argument is null, the result is null.
 
 [[proper-in]]
 === ProperIn
@@ -2988,7 +2980,7 @@ For the T, List overload, this operator returns if the given element is in the g
 
 For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is null. If the second argument is null the result is false.
 
 [[proper-includes]]
 === ProperIncludes
