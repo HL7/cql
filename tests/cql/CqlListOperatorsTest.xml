@@ -185,7 +185,7 @@
 		</test>
 		<test name="ExistsListNull">
 			<expression>Exists({ null })</expression>
-			<output>true</output>
+			<output>false</output>
 		</test>
 		<test name="Exists1">
 			<expression>Exists({ 1 })</expression>

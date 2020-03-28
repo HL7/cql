@@ -303,6 +303,8 @@ The retrieve in CQL has two main parts: first, the _type_ part, which identifies
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
+The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
+
 [[clinical-statement-structure]]
 === Clinical Statement Structure
 

@@ -985,6 +985,8 @@ Retrieve : Expression
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
+The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
+
 ==== id
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
 
@@ -2647,6 +2649,8 @@ For the Interval, T overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is false. If the second argument is null, the result is null.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 === End
 
 [source,elm]
@@ -2750,6 +2754,8 @@ For the T, Interval overload, this operator returns true if the given point is g
 
 If the first argument is null, the result is null. If the second argument is null the result is false.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 [[includes]]
 === Includes
 
@@ -2774,6 +2780,8 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
+For point overloads, null semantics are the same as the corresponding point/interval operators.
+
 [[included-in]]
 === IncludedIn
 
@@ -2797,6 +2805,8 @@ For the Interval, Interval overload, this operator returns true if the starting 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If either argument is null, the result is null.
+
+For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 [[intersect]]
 === Intersect
