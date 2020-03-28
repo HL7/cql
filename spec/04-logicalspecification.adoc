@@ -972,6 +972,8 @@ Retrieve : Expression
   ¦
   0..1 --> codeSearch
   ¦
+  0..1 --> codeComparator
+  ¦
   0..1 --> valueSetProperty
   ¦
   0..1 --> dateProperty
@@ -984,8 +986,6 @@ Retrieve : Expression
 ----
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
-
-The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
 
 ==== id
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
@@ -1025,6 +1025,9 @@ This property may be specified as a path, including qualifiers and constant inde
 
 ==== codeSearch
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
+
+==== codeComparator
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', 'contains', '=', or '~'. Note that 'in' and 'contains' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
 ==== valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.

@@ -303,8 +303,6 @@ The retrieve in CQL has two main parts: first, the _type_ part, which identifies
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
-The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
-
 [[clinical-statement-structure]]
 === Clinical Statement Structure
 
@@ -346,18 +344,33 @@ Note that the terminology reference [.id]#"Acute Severity"# in the above example
 
 [source,cql]
 ----
-codesystem "SNOMED:2014": 'http://snomed.info/sct'
+codesystem "SNOMED": 'http://snomed.info/sct'
 code "Acute Pharyngitis Code":
-  '363746003' from "SNOMED:2014" display 'Acute pharyngitis (disorder)'
+  '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
 
 define "Get Condition from Code Declaration":
   [Condition: "Acute Pharyngitis Code"]
 
 define "Get Condition from CodeSystem Declaration":
-  [Condition: "SNOMED:2014"]
+  [Condition: "SNOMED"]
 ----
 
-The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED:2014"# code system.
+The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
+
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. When the code path is specified, the code comparison operation can be specified as well:
+
+[source,cql]
+----
+codesystem "SNOMED": 'http://snomed.info/sct'
+code "Acute Pharyngitis Code":
+  '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
+
+define "Get Condition from Code Declaration":
+  [Condition: code ~ "Acute Pharyngitis Code"]
+
+define "Get Condition from CodeSystem Declaration":
+  [Condition: code in "SNOMED"]
+----
 
 [[retrieve-context]]
 === Retrieve Context
