@@ -925,11 +925,14 @@ define IsNull: ToBoolean('falsetto')
 [source,cql]
 ----
 ToConcept(argument Code) Concept
+ToConcept(argument List<Code>) Concept
 ----
 
 *Description:*
 
 The [.id]#ToConcept# operator converts a value of type [.id]#Code# to a [.id]#Concept# value with the given [.id]#Code# as its primary and only [.id]#Code#. If the [.id]#Code# has a [.id]#display# value, the resulting [.id]#Concept# will have the same [.id]#display# value.
+
+If the input is a list of [.id]#Code# values, the resulting [.id]#Concept# will have all the input [.id]#Code# values, and will not have a [.id]#display# value.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 

@@ -4046,6 +4046,8 @@ ToConcept : UnaryExpression
 
 The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
 
+If the input is a list of Codes, the resulting Concept will have all the input Codes, and will not have a display value.
+
 If the argument is null, the result is null.
 
 === ToDate
