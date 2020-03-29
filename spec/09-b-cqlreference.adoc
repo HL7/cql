@@ -3759,6 +3759,8 @@ The [.kw]#collapse# operator returns the unique set of intervals that completely
 
 Note that because the semantics for overlaps and meets are themselves defined in terms of the interval successor and predecessor operators, sets of Date-, DateTime-, or Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
+Conceptually, the per argument to the collapse operator partitions the value-space for the operation into units of size 'per', and the intervals will be collapsed aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
+
 The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit [.lit]#'1'# (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
 If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
@@ -3773,6 +3775,32 @@ The following examples illustrate the behavior of the [.kw]#collapse# operator:
 ----
 define Collapse1To9: collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
 define CollapseIsNull: collapse null
+----
+
+Informatively, the following pseudo-code illustrates a potential approach to implementation of the collapse operator with a per argument aligned to the starting boundary of the first input interval:
+
+[source,java]
+----
+anchor = start of i[0]
+for (n = 0; n < i.size; n++) {
+  if (start of i[n] < anchor) {
+    s1 = anchor;
+  }
+  else {
+    w1 = ((start of i[n] - anchor) div per); // Use duration of precision
+    if (w1 < start of i[n]) {
+      w1 += 1;
+    }
+    s1 = anchor + w1 * per;
+  }
+
+  w1 = ((end of i[n] - s1) div per);
+  e1 = s1 + w1 * per;
+
+  overlap and meets on computed boundaries [s1, e1]
+
+  anchor = e1
+}
 ----
 
 [[contains]]
@@ -3947,6 +3975,8 @@ expand(argument Interval<T>, per Quantity) List<T>
 The [.kw]#expand# operator returns the set of intervals of size per for all the intervals in the input, or the list of points covering the range of the given interval, if invoked on a single interval.
 
 The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
+
+Conceptually, the per argument to the expand operator partitions the value-space for the operation into units of size 'per', and the intervals will be expanded aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
 
 If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 
