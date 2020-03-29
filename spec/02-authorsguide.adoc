@@ -135,7 +135,7 @@ define SexuallyActive:
 
 A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
 
-These declarations specify a local identifier that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
+These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
 
 Consider the following valueset declaration:
 
@@ -144,7 +144,7 @@ Consider the following valueset declaration:
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
-This definition establishes the local identifier [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
@@ -157,7 +157,7 @@ The above examples define the [.id]#PatientIsFemale# expression as [.kw]#true# f
 
 Note that the name of the valueset uses double quotes, in contrast to the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
 
-Note also that the local identifier for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. Good practice would dictate that the names should at least be conceptually similar, but CQL makes no prescription either way.
+Note also that the local name for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. However, when using external terminologies, authors should use the name of the terminology as defined externally to avoid introducing any potential confusion of meaning.
 
 The following example illustrates a _code system_ and a _code_ declaration:
 
@@ -909,7 +909,7 @@ The [.id]#Code# type has the following elements:
 [cols=",,",options="header",]
 |==================================================
 |Name |Type |Description
-|*code* |[.id]#String# |The identifier for the code.
+|*code* |[.id]#String# |The actual code within the code system.
 |*display* |[.id]#String# |A description of the code.
 |*system* |[.id]#String# |The identifier of the code system.
 |*version* |[.id]#String# |The version of the code system.
@@ -921,7 +921,7 @@ The following examples illustrate the code declaration:
 
 [source,cql]
 ----
-codesystem "SNOMED-CT": 'http://loinc.org'
+codesystem "LOINC": 'http://loinc.org'
 
 code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
 code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
@@ -934,10 +934,10 @@ In addition, CQL provides a Code literal that can be used to reference an existi
 
 [source,cql]
 ----
-Code '66071002' from "SNOMED-CT:2014" display 'Type B viral hepatitis'
+Code '66071002' from "SNOMED-CT" display 'Type B viral hepatitis'
 ----
 
-The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
+The example specifies the code [.lit]#'66071002'# from a previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
 
 This use of code declarations to reference a single code in a CQL expression is referred to as a _direct reference code_:
 
@@ -950,6 +950,8 @@ define "Encounters Discharged to Hospice":
 ----
 
 Note the use of the _equivalent_ operator (`~`) rather than _equality_ (`=`). For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
+
+When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning.
 
 [[concept]]
 ==== Concept
@@ -971,7 +973,7 @@ Table 2‑G
 [.note-warning]
 ____
 
-Note that the semantics of [.id]#Concept# are such that the codes within a given concept should all be semantically equivalent at the code level, but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
+Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
 
 ____
 
@@ -982,13 +984,15 @@ The following example illustrates the concept declaration:
 codesystem "SNOMED-CT": 'urn:oid:2.16.840.1.113883.6.96'
 codesystem "ICD-10-CM": 'urn:oid:2.16.840.1.113883.6.90'
 
-code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT:2014" display 'Viral hepatitis type B (disorder)'
+code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT" display 'Viral hepatitis type B (disorder)'
 code "Hepatitis Type B (ICD-10)": 'B18.1' from "ICD-10-CM" display 'Chronic viral hepatitis B without delta-agent'
 
 concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (ICD-10)" } display 'Type B Hepatitis'
 ----
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+
+As with codes, local names for concept declarations should be consistent with external declarations to avoid introducing any confusion of meaning.
 
 The following example illustrates the use of a [.id]#Concept# literal:
 
@@ -1019,7 +1023,6 @@ valueset "Ambulatory/ED Visit": 'urn:oid:2.16.840.1.113883.3.464.1003.101.12.106
 Each valueset declaration defines a local identifier that can be used to reference the valueset within the library, as well as the global identifier for the valueset, typically an object identifier (OID) or uniform resource identifier (URI).
 
 These valueset identifiers can then be used throughout the library. For example:
-
 
 [source,cql]
 ----
@@ -1057,6 +1060,8 @@ codesystem "ICD-10-CM:2014": 'urn:oid:2.16.840.1.113883.6.90' version '2014'
 valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
   codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
 ----
+
+When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, then some additional aspect is required to ensure uniqueness of the names within the CQL library.
 
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
 
