@@ -951,7 +951,14 @@ define "Encounters Discharged to Hospice":
 
 Note the use of the _equivalent_ operator (`~`) rather than _equality_ (`=`). For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
 
+Although CQL supports both version-specific and version-independent specification of and comparison to direct reference codes, artifact authors should use version-independent direct reference codes and comparisons unless there is a specific reason not to (such as the code is retired in the current version). Even when using version-specific direct reference codes, authors should use equivalence for the comparison (again, unless there is a specific reason to use version-specific comparison with equality).
+
 When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning.
+
+[.note-warning]
+____
+Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may required modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
+____
 
 [[concept]]
 ==== Concept
@@ -972,9 +979,7 @@ Table 2‑G
 
 [.note-warning]
 ____
-
 Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
-
 ____
 
 The following example illustrates the concept declaration:
