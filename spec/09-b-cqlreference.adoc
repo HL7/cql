@@ -153,6 +153,8 @@ CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to
 
 CQL also supports partial datetime values. For example, the datetime [.lit]#@2014-01-01T03# represents some instant during the hour of 3:00 on January 1st, 2014.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 [[decimal-1]]
 === Decimal
 
@@ -285,6 +287,8 @@ The [.id]#Time# type represents time-of-day values within CQL.
 CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.999# with a step size of 1 millisecond.
 
 CQL also supports partial time values. For example, the time [.lit]#@T03# represents some instant during the hour of 3:00.
+
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
 
 [[logical-operators-3]]
 == Logical Operators
@@ -3260,6 +3264,8 @@ The [.id]#DateTime# operator constructs a DateTime value from the given componen
 
 At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#hour# may be [.kw]#null#, but if it is, [.id]#minute#, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offset of the evaluation request.
 
 The following examples illustrate the behavior of the [.id]#DateTime# operator:
@@ -3639,6 +3645,8 @@ Time(hour Integer, minute Integer, second Integer, millisecond Integer) Time
 The [.id]#Time# operator constructs a time value from the given components.
 
 At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#minute# may be [.kw]#null#, but if it is, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
+
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
 
 The following examples illustrate the behavior of the [.id]#Time# operator:
 
