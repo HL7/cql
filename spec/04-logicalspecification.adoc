@@ -4191,7 +4191,7 @@ If the argument is null, the result is null.
 ToQuantity : UnaryExpression
 ----
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
 
 For String values, the operator accepts strings using the following format:
 

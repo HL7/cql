@@ -1152,7 +1152,7 @@ ToQuantity(argument String) Quantity
 
 *Description:*
 
-The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value.
+The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
 
 For the [.id]#String# overload, the operator accepts strings using the following format:
 
