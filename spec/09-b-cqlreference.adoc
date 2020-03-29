@@ -646,6 +646,8 @@ define IsFalse: '5' is Integer
 CanConvertQuantity(argument Quantity, unit String)
 ----
 
+*Description:*
+
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
 
 [.note-warning]
@@ -2043,6 +2045,8 @@ HighBoundary(input Date, precision Integer) Date
 HighBoundary(input DateTime, precision Integer) DateTime
 HighBoundary(input Time, precision Integer) Time
 ----
+
+*Description:*
 
 The [.id]#HighBoundary# function returns the greatest possible value of the input to the specified precision.
 
