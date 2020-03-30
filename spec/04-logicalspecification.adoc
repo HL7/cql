@@ -444,7 +444,11 @@ Library : Element
   ¦        ¦
   ¦        0..* --> def : ConceptDef
   ¦
-  0..1 --> statements <12>
+  0..1 --> contexts <12>
+  ¦        ¦
+  ¦        0..* --> def : ContextDef
+  ¦
+  0..1 --> statements <13>
            ¦
            0..* --> def : ExpressionDef
 ----
@@ -471,7 +475,9 @@ Library : Element
 
 <11> The concepts defined within this library.
 
-<12> The statements section contains the expression and function definitions for the library.
+<12> The contexts used within this library.
+
+<13> The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -512,6 +518,19 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
   therefore points to an individual 'versioned' instance of a resource such as the third
   version of a library.
 
+=== ContextDef
+
+[source,elm]
+----
+ContextDef : Element
+  ¦
+  1..1 --> name <1>
+----
+
+<1> The name of the context
+
+The ContextDef type defines a context used within the library.
+
 [[data-model]]
 == Data Model
 
@@ -533,7 +552,6 @@ UsingDef : Element
 ----
 
 Defines a data model that is available within the artifact.
-
 
 [[parameters]]
 == Parameters

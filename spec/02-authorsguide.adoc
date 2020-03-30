@@ -923,9 +923,9 @@ The following examples illustrate the code declaration:
 ----
 codesystem "LOINC": 'http://loinc.org'
 
-code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
-code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
-code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
+code "Blood pressure": '55284-4' from "LOINC" display 'Blood pressure'
+code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
+code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 ----
 
 The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
