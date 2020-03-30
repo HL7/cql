@@ -99,6 +99,29 @@ structured type Code
 
 The [.id]#Code# type represents single terminology codes within CQL.
 
+[[codesystem]]
+=== CodeSystem
+
+[.note-info]
+____
+The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type CodeSystem
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#CodeSystem# type represents code system references within CQL. The CodeSystem type in CQL is _not_ the definition of a code system, it is a reference to an externally defined code system via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the code system).
+
 [[concept-1]]
 === Concept
 
@@ -289,6 +312,54 @@ CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.
 CQL also supports partial time values. For example, the time [.lit]#@T03# represents some instant during the hour of 3:00.
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
+[[valueset]]
+=== ValueSet
+
+[.note-info]
+____
+The ValueSet type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type ValueSet
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#ValueSet# type represents value set references within CQL. The ValueSet type is _not_ the definition of a value set, it is a reference to an externally defined value set via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
+
+[[vocabulary]]
+=== Vocabulary
+
+[.note-info]
+____
+The Vocabulary type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type Vocabulary
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#Vocabulary# type is the abstract base type for the CodeSystem and ValueSet types. It is intended to support the definition of operations that could be performed against a ValueSet or a CodeSystem.
+
+The Vocabulary type is _not_ a definitional type, it is a reference type that supports references to externally defined code systems and value sets through a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
 
 [[logical-operators-3]]
 == Logical Operators
