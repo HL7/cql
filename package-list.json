@@ -15,7 +15,7 @@
       {
          "version": "1.5.0",
          "date": "2020-04-01",
-         "desc" "Normative Ballot 1",
+         "desc": "Normative Ballot 1",
          "changes": "history.html",
          "path": "http://cql.hl7.org/2020May/index.html",
          "status": "ballot",
