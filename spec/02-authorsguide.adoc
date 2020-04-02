@@ -848,7 +848,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ----
 
-The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid Unified Code for Units of Measure <<UCUM>> unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -1776,7 +1776,7 @@ Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated
 
 To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above seconds in a date/time arithmetic calculation will result in a run-time error.
 
-Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in <<ISO8601>>. Specifically:
+Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
 |===
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
@@ -2566,7 +2566,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.adoc#examples,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.adoc,Examples>> included with this specification.
 
 [[running-example]]
 === Running Example
