@@ -14,8 +14,9 @@ In addition, this specification describes a machine-readable canonical represent
 [.note-info]
 ____
 This specification is being balloted normative, except where identified as informative or trial-use content.
-____
 
+For a complete description of the changes to this version, please review the version history linked below.
+____
 
 link:title.html[Title Page]
 
