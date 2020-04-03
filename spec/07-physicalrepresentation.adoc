@@ -43,6 +43,11 @@ The schema for ELM is described for XML using the above XSDs. To support multipl
 |*application/elm+json* |The content is an ELM document, rendered as JSON
 |======================================================================
 
+[.note-info]
+____
+The text/cql.identifier media type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 [cols=",",options="header",]
 |===================================
 |Namespace |Description

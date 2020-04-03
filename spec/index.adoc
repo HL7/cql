@@ -13,7 +13,6 @@ In addition, this specification describes a machine-readable canonical represent
 
 [.note-info]
 ____
-
 This specification is being balloted normative, except where identified as informative or trial-use content.
 ____
 

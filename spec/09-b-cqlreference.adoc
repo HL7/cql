@@ -197,6 +197,11 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 [[long-1]]
 === Long
 
+[.note-info]
+____
+The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Definition:*
 
 [source,cql]
@@ -842,6 +847,11 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [[convertstolong]]
 === ConvertsToLong
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Signature:*
 
 [source,cql]
@@ -865,6 +875,11 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument String) Boolean
 ConvertsToInteger(argument Long) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -930,6 +945,11 @@ ConvertsToString(argument Date) Boolean
 ConvertsToString(argument DateTime) Boolean
 ConvertsToString(argument Time) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1140,6 +1160,11 @@ define IsNull: ToDecimal('+-0.1')
 [[tolong]]
 === ToLong
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Signature:*
 
 [source,cql]
@@ -1181,6 +1206,11 @@ define IsNull: ToLong('one')
 ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1300,6 +1330,11 @@ ToString(argument Date) String
 ToString(argument DateTime) String
 ToString(argument Time) String
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1495,6 +1530,11 @@ between(argument Time, low Time, high Time) Boolean
 between(argument String, low String, high String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The between operator determines whether the first argument is within a given range, inclusive. If the first argument is greater than or equal to the low argument, and less than or equal to the high argument, the result is [.kw]#true#, otherwise, the result is [.kw]#false#.
@@ -1644,6 +1684,11 @@ define NullEquivalentIsTrue: null ~ null
 >(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _greater_ ([.sym]#>#) operator returns [.kw]#true# if the first argument is greater than the second argument.
@@ -1698,6 +1743,11 @@ ____
 >=(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _greater or equal_ ([.sym]#>=#) operator returns [.kw]#true# if the first argument is greater than or equal to the second argument.
@@ -1751,6 +1801,11 @@ ____
 <(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _less_ ([.sym]#<#) operator returns [.kw]#true# if the first argument is less than the second argument.
@@ -1784,7 +1839,6 @@ define NullLessIsNull: null < 5
 
 [.note-info]
 ____
-
 Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
 ____
 
@@ -1804,6 +1858,11 @@ ____
 <=(left Time, right Time) Boolean
 <=(left String, right String) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1919,6 +1978,11 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Abs# operator returns the absolute value of its argument.
@@ -1953,11 +2017,16 @@ define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _add_ ([.sym]#+#) operator performs numeric addition of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or[.id]#Long#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
 
 When invoked with mixed [.id]#Long# and [.id]#Decimal#, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#.
 
@@ -2340,6 +2409,12 @@ mod(left Decimal, right Decimal) Decimal
 mod(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.kw]#mod# operator computes the remainder of the division of its arguments.
@@ -2379,6 +2454,11 @@ define ModuloIsNull: 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _multiply_ ([.sym]#*#) operator performs numeric multiplication of its arguments.
@@ -2415,6 +2495,11 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 -(argument Decimal) Decimal
 -(argument Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -2527,6 +2612,11 @@ define PredecessorIsNull: predecessor of (null as Quantity)
 ^(argument Decimal, exponent Decimal) Decimal
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _power_ ([.sym]#^#) operator raises the first argument to the power given by the second argument.
@@ -2592,6 +2682,11 @@ define RoundIsNull: Round(null)
 -(left Decimal, right Decimal) Decimal
 -(left Quantity, right Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -2695,10 +2790,16 @@ define TruncateIsNull: Truncate(null)
 [source,cql]
 ----
 div(left Integer, right Integer) Integer
-div(left Long, right Long) Long
 div(left Decimal, right Decimal) Decimal
+div(left Long, right Long) Long
 div(left Quantity, right Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -4055,6 +4156,11 @@ define ExceptIsNull: null except Interval[-1, 7]
 expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ----
+
+[.note-info]
+____
+The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -5609,6 +5715,11 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Max# operator returns the maximum element in the source. Comparison semantics are defined by the <<Comparison Operators>> for the type of value being aggregated.
@@ -5792,6 +5903,11 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Product# operator returns the geometric product of the elements in source.
@@ -5851,6 +5967,11 @@ Sum(argument List<Long>) Long
 Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
