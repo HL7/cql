@@ -18,7 +18,7 @@
   <packageId value="hl7.cql"/>
   <fhirVersion value="4.0.1"/>
   <definition>
-<resource>
+    <resource>
       <reference>
         <reference value="Binary/binary-cql-grammar"/>
       </reference>
