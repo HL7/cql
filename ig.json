@@ -1,7 +1,7 @@
 {
 	"paths": {
 		"resources": ["resources"],
-		"specification": "http://cql.hl7.org",
+		"specification": "http://hl7.org/fhir/R4",
 		"pages": "spec",
 		"temp": "temp",
 		"output": "output",
@@ -12,11 +12,13 @@
 	"sct-edition": "http://snomed.info/sct/731000124108",
 	"tool": "jekyll",
 	"resources": {
-			"Binary/binary-cql-grammar": {
-      "source": "binary-cql-grammar.json"
+		"Binary/binary-cql-grammar": {
+      "source": "binary-cql-grammar.json",
+			"base": "Binary-binary-cql-grammar.html"
     },
     "Binary/binary-example-chlamydiascreening-cds-annotated-json": {
-      "source": "binary-example-chlamydiascreening-cds-annotated-json.json"
+      "source": "binary-example-chlamydiascreening-cds-annotated-json.json",
+			"base": "Binary-binary-example-chlamydiascreening-cds-annotated-json.html"
     },
     "Binary/binary-example-chlamydiascreening-cds-annotated-xml": {
       "source": "binary-example-chlamydiascreening-cds-annotated-xml.json"
@@ -231,5 +233,15 @@
 	"fixed-business-version": "1.5.0",
 	"source": "ig.xml",
   "license": "CC0-1.0",
-  "npm-name": "hl7.cql"
+	"logging": ["init", "progress", "context", "html", "tx"],
+  "npm-name": "hl7.cql",
+	"defaults": {
+		"Any": {
+			"template-format": "instance-template-format.html",
+			"template-base": "instance-template-base.html"
+		},
+		"Binary": {
+			"template-format": "instance-template-example.html"
+		}
+	}
 }

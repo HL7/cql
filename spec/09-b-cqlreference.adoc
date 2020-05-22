@@ -28,11 +28,11 @@ InDemographic and NeedsScreening
 [[formatting-strings]]
 In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a DateTime value. The following symbols are used to describe format strings:
 
-* 0 - Any digit must appear at this location in the format string
-* # - Any digit may appear at this location in the format string
-* ? - The immediately preceding pattern is optional
-* ( ) - Used to group patterns
-* | - Used to combine choices of patterns (e.g. +|- means a + or - may appear at this location)
+* *0* - Any digit must appear at this location in the format string
+* *#* - Any digit may appear at this location in the format string
+* *?* - The immediately preceding pattern is optional
+* *( )* - Used to group patterns
+* *|* - Used to combine choices of patterns (e.g. *\+|-* means a *+* or *-* may appear at this location)
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
@@ -99,6 +99,29 @@ structured type Code
 
 The [.id]#Code# type represents single terminology codes within CQL.
 
+[[codesystem]]
+=== CodeSystem
+
+[.note-info]
+____
+The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type CodeSystem
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#CodeSystem# type represents code system references within CQL. The CodeSystem type in CQL is _not_ the definition of a code system, it is a reference to an externally defined code system via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the code system).
+
 [[concept-1]]
 === Concept
 
@@ -153,6 +176,8 @@ CQL supports date and time values in the range [.lit]#@0001-01-01T00:00:00.0# to
 
 CQL also supports partial datetime values. For example, the datetime [.lit]#@2014-01-01T03# represents some instant during the hour of 3:00 on January 1st, 2014.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 [[decimal-1]]
 === Decimal
 
@@ -171,6 +196,11 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 [[long-1]]
 === Long
+
+[.note-info]
+____
+The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Definition:*
 
@@ -285,6 +315,56 @@ The [.id]#Time# type represents time-of-day values within CQL.
 CQL supports time values in the range [.lit]#@T00:00:00.0# to [.lit]#@T23:59:59.999# with a step size of 1 millisecond.
 
 CQL also supports partial time values. For example, the time [.lit]#@T03# represents some instant during the hour of 3:00.
+
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
+[[valueset]]
+=== ValueSet
+
+[.note-info]
+____
+The ValueSet type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type ValueSet
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#ValueSet# type represents value set references within CQL. The ValueSet type is _not_ the definition of a value set, it is a reference to an externally defined value set via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
+
+[[vocabulary]]
+=== Vocabulary
+
+[.note-info]
+____
+The Vocabulary type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
+*Definition:*
+
+[source,cql]
+----
+structured type Vocabulary
+{
+  id String,
+  version String
+}
+----
+
+*Description:*
+
+The [.id]#Vocabulary# type is the abstract base type for the CodeSystem and ValueSet types. It is intended to support the definition of operations that could be performed against a ValueSet or a CodeSystem.
+
+The Vocabulary type is _not_ a definitional type, it is a reference type that supports references to externally defined code systems and value sets through a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
 
 [[logical-operators-3]]
 == Logical Operators
@@ -560,7 +640,7 @@ The [.kw]#convert# operator converts a value to a specific type. The result of t
 The following table lists the conversions supported in CQL:
 
 [[table-9-e]]
-[cols=",,,,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
@@ -582,7 +662,7 @@ Table 9‑E
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
-*YYYY-MM-DDThh:mm:ss.fff(Z [.sym]#|# [.sym]#+/-# hh:mm)*
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
 For example, the following are valid string representations for date and time values:
 
@@ -645,6 +725,8 @@ define IsFalse: '5' is Integer
 ----
 CanConvertQuantity(argument Quantity, unit String)
 ----
+
+*Description:*
 
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
 
@@ -765,6 +847,11 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [[convertstolong]]
 === ConvertsToLong
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Signature:*
 
 [source,cql]
@@ -788,6 +875,11 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument String) Boolean
 ConvertsToInteger(argument Long) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -854,6 +946,11 @@ ConvertsToString(argument DateTime) Boolean
 ConvertsToString(argument Time) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#ConvertsToString# operator returns [.kw]#true# if its argument can be converted to a [.id]#String# value. See the [.id]#<<ToString>># operator for a description of the supported conversions.
@@ -890,7 +987,7 @@ ToBoolean(argument String) Boolean
 
 *Description:*
 
-The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations:
+The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations, ignoring case:
 
 [[table-9-f]]
 [cols=",",options="header",]
@@ -925,11 +1022,14 @@ define IsNull: ToBoolean('falsetto')
 [source,cql]
 ----
 ToConcept(argument Code) Concept
+ToConcept(argument List<Code>) Concept
 ----
 
 *Description:*
 
 The [.id]#ToConcept# operator converts a value of type [.id]#Code# to a [.id]#Concept# value with the given [.id]#Code# as its primary and only [.id]#Code#. If the [.id]#Code# has a [.id]#display# value, the resulting [.id]#Concept# will have the same [.id]#display# value.
+
+If the input is a list of [.id]#Code# values, the resulting [.id]#Concept# will have all the input [.id]#Code# values, and will not have a [.id]#display# value.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -960,7 +1060,9 @@ For the DateTime overload, the operator is equivalent to invoking [.kw]#date fro
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
-*YYYY-MM-DD* footnote:formatting-strings[See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
+*YYYY-MM-DD*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -998,7 +1100,9 @@ The [.id]#ToDateTime# operator converts the value of its argument to a [.id]#Dat
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(((+|-)hh:mm)|Z)* footnote:formatting-strings[]
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -1031,14 +1135,13 @@ ToDecimal(argument String) Decimal
 
 *Description:*
 
-The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0(.0#)?
-----
+*(+|-)?\#0(.0#)?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for [.id]#Decimal# values within CQL.
 
@@ -1057,6 +1160,11 @@ define IsNull: ToDecimal('+-0.1')
 [[tolong]]
 === ToLong
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Signature:*
 
 [source,cql]
@@ -1066,14 +1174,13 @@ ToLong(argument String) Long
 
 *Description:*
 
-The [.id]#ToLong# operator converts the value of its argument to a [.id]#Long# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToLong# operator converts the value of its argument to a [.id]#Long# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0
-----
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Long# values in CQL.
 
@@ -1100,16 +1207,20 @@ ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
-The [.id]#ToInteger# operator converts the value of its argument to an [.id]#Integer# value. The operator accepts strings using the following format:footnote:formatting-strings[]
+The [.id]#ToInteger# operator converts the value of its argument to an [.id]#Integer# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0
-----
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Integer# values in CQL.
 
@@ -1142,16 +1253,15 @@ ToQuantity(argument String) Quantity
 
 *Description:*
 
-The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value.
+The [.id]#ToQuantity# operator converts the value of its argument to a [.id]#Quantity# value. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
 
-For the [.id]#String# overload, the operator accepts strings using the following format:footnote:formatting-strings[]
+For the [.id]#String# overload, the operator accepts strings using the following format:
 
-[source,cql]
-----
-(+|-)?#0(.0#)?('<unit>')?
-----
+*(+|-)?\#0(.0#)?('<unit>')?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for [.id]#Decimal# values in CQL.
 
@@ -1187,10 +1297,7 @@ ToRatio(argument String) Ratio
 
 The [.id]#ToRatio# operator converts the value of its argument to a [.id]#Ratio# value. The operator accepts strings using the following format:
 
-[source,cql]
-----
-<quantity>:<quantity>
-----
+*<quantity>:<quantity>*
 
 where <quantity> is the format used to by the [.id]#ToQuantity# operator.
 
@@ -1224,26 +1331,33 @@ ToString(argument DateTime) String
 ToString(argument Time) String
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
-The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type:footnote:formatting-strings[]
+The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type
 
 [[table-9-g]]
 [cols=",",options="header",]
 |===========================================
 |Type |String Representation
-|[.id]#Boolean# |[.kw]#true\|false#
-|[.id]#Integer# |([.sym]#-#)?#0
-|[.id]#Long# |([.sym]#-#)?#0
-|[.id]#Decimal# |([.sym]#-#)?\#0.0#
-|[.id]#Quantity# |([.sym]#-#)?\#0.0# '<unit>'
-|[.id]#Ratio# |<quantity>:<quantity>
+|[.id]#Boolean# |*true\|false*
+|[.id]#Integer# |*(-)?#0*
+|[.id]#Long# |*(-)?#0*
+|[.id]#Decimal# |*(-)?\#0.0#*
+|[.id]#Quantity# |*(-)?\#0.0# '<unit>'*
+|[.id]#Ratio# |*<quantity>:<quantity>*
 |[.id]#Date# |*YYYY-MM-DD*
-|[.id]#DateTime# |*YYYY-MM-DDThh:mm:ss.fff([.sym]#+\|-#)hh:mm*
-|[.id]#Time# |*@Thh:mm:ss.fff*
+|[.id]#DateTime# |*YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm*
+|[.id]#Time# |*hh:mm:ss.fff*
 |===========================================
 
 Table 9‑G
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 The result of any ToString must be round-trippable back to the source value.
 
@@ -1277,9 +1391,11 @@ ToTime(argument String) Time
 
 *Description:*
 
-The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation:footnote:formatting-strings[]
+The [.id]#ToTime# operator converts the value of its argument to a [.id]#Time# value. The operator expects the string to be formatted using ISO-8601 time representation
 
 *hh:mm:ss.fff*
+
+See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -1413,6 +1529,11 @@ between(argument DateTime, low DateTime, high DateTime) Boolean
 between(argument Time, low Time, high Time) Boolean
 between(argument String, low String, high String) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1563,6 +1684,11 @@ define NullEquivalentIsTrue: null ~ null
 >(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _greater_ ([.sym]#>#) operator returns [.kw]#true# if the first argument is greater than the second argument.
@@ -1617,6 +1743,11 @@ ____
 >=(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _greater or equal_ ([.sym]#>=#) operator returns [.kw]#true# if the first argument is greater than or equal to the second argument.
@@ -1670,6 +1801,11 @@ ____
 <(left String, right String) Boolean
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _less_ ([.sym]#<#) operator returns [.kw]#true# if the first argument is less than the second argument.
@@ -1703,7 +1839,6 @@ define NullLessIsNull: null < 5
 
 [.note-info]
 ____
-
 Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
 ____
 
@@ -1723,6 +1858,11 @@ ____
 <=(left Time, right Time) Boolean
 <=(left String, right String) Boolean
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -1838,6 +1978,11 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Abs# operator returns the absolute value of its argument.
@@ -1872,11 +2017,16 @@ define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _add_ ([.sym]#+#) operator performs numeric addition of its arguments.
 
-When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or[.id]#Long#.
+When invoked with mixed [.id]#Integer# and [.id]#Decimal# or [.id]#Long# arguments, the [.id]#Integer# argument will be implicitly converted to [.id]#Decimal# or [.id]#Long#.
 
 When invoked with mixed [.id]#Long# and [.id]#Decimal#, the [.id]#Long# argument will be implicitly converted to [.id]#Decimal#.
 
@@ -2039,6 +2189,8 @@ HighBoundary(input Date, precision Integer) Date
 HighBoundary(input DateTime, precision Integer) DateTime
 HighBoundary(input Time, precision Integer) Time
 ----
+
+*Description:*
 
 The [.id]#HighBoundary# function returns the greatest possible value of the input to the specified precision.
 
@@ -2257,6 +2409,12 @@ mod(left Decimal, right Decimal) Decimal
 mod(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.kw]#mod# operator computes the remainder of the division of its arguments.
@@ -2296,6 +2454,11 @@ define ModuloIsNull: 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _multiply_ ([.sym]#*#) operator performs numeric multiplication of its arguments.
@@ -2332,6 +2495,11 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 -(argument Decimal) Decimal
 -(argument Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -2444,6 +2612,11 @@ define PredecessorIsNull: predecessor of (null as Quantity)
 ^(argument Decimal, exponent Decimal) Decimal
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The _power_ ([.sym]#^#) operator raises the first argument to the power given by the second argument.
@@ -2509,6 +2682,11 @@ define RoundIsNull: Round(null)
 -(left Decimal, right Decimal) Decimal
 -(left Quantity, right Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -2612,10 +2790,16 @@ define TruncateIsNull: Truncate(null)
 [source,cql]
 ----
 div(left Integer, right Integer) Integer
-div(left Long, right Long) Long
 div(left Decimal, right Decimal) Decimal
+div(left Long, right Long) Long
 div(left Quantity, right Quantity) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 
@@ -3252,6 +3436,8 @@ The [.id]#DateTime# operator constructs a DateTime value from the given componen
 
 At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#hour# may be [.kw]#null#, but if it is, [.id]#minute#, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offset of the evaluation request.
 
 The following examples illustrate the behavior of the [.id]#DateTime# operator:
@@ -3632,6 +3818,8 @@ The [.id]#Time# operator constructs a time value from the given components.
 
 At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#minute# may be [.kw]#null#, but if it is, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 The following examples illustrate the behavior of the [.id]#Time# operator:
 
 [source,cql]
@@ -3758,6 +3946,8 @@ The [.kw]#collapse# operator returns the unique set of intervals that completely
 
 Note that because the semantics for overlaps and meets are themselves defined in terms of the interval successor and predecessor operators, sets of Date-, DateTime-, or Time-based intervals that are only defined to a particular precision will calculate meets and overlaps at that precision. For example, a list of DateTime-based intervals where the boundaries are all specified to the hour will collapse at the hour precision, unless the collapse precision is overridden with the per argument.
 
+Conceptually, the per argument to the collapse operator partitions the value-space for the operation into units of size 'per', and the intervals will be collapsed aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
+
 The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit [.lit]#'1'# (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
 If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
@@ -3772,6 +3962,32 @@ The following examples illustrate the behavior of the [.kw]#collapse# operator:
 ----
 define Collapse1To9: collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
 define CollapseIsNull: collapse null
+----
+
+Informatively, the following pseudo-code illustrates a potential approach to implementation of the collapse operator with a per argument aligned to the starting boundary of the first input interval:
+
+[source,java]
+----
+anchor = start of i[0]
+for (n = 0; n < i.size; n++) {
+  if (start of i[n] < anchor) {
+    s1 = anchor;
+  }
+  else {
+    w1 = ((start of i[n] - anchor) div per); // Use duration of precision
+    if (w1 < start of i[n]) {
+      w1 += 1;
+    }
+    s1 = anchor + w1 * per;
+  }
+
+  w1 = ((end of i[n] - s1) div per);
+  e1 = s1 + w1 * per;
+
+  overlap and meets on computed boundaries [s1, e1]
+
+  anchor = e1
+}
 ----
 
 [[contains]]
@@ -3791,8 +4007,6 @@ The [.kw]#contains# operator for intervals returns [.kw]#true# if the given poin
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
-
-For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
@@ -3943,11 +4157,18 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ----
 
+[.note-info]
+____
+The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.kw]#expand# operator returns the set of intervals of size per for all the intervals in the input, or the list of points covering the range of the given interval, if invoked on a single interval.
 
 The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
+
+Conceptually, the per argument to the expand operator partitions the value-space for the operation into units of size 'per', and the intervals will be expanded aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
 
 If the per argument is [.kw]#null#, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 
@@ -4048,8 +4269,6 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the result is [.kw]#false#.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
 [source,cql]
@@ -4074,13 +4293,13 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The [.kw]#includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator, apart from the null semantics, which are the same as the corresponding point/interval operators.
+For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator, and will return [.kw]#false# is the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
+
+For the interval overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#includes# operator:
 
@@ -4106,13 +4325,13 @@ included in _precision_ (left T, right Interval<T>) Boolean
 
 The [.kw]#included in# operator for intervals returns [.kw]#true# if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the [.kw]#<<in,in>># operator, apart from the null semantics, which are the same as the corresponding point/interval operators.
+For the point overload, this operator is a synonym for the [.kw]#<<in,in>># operator, and will return [.kw]#null# if the first argument is [.kw]#null#, and [.kw]#false# if the second argument is [.kw]#null#.
+
+For the interval overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 This operator uses the semantics described in the [.id]#<<Start>># and [.id]#<<End>># operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
-
-If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that [.kw]#during# is a synonym for included in and may be used to invoke the same operation wherever [.kw]#included in# may appear.
 
@@ -4903,9 +5122,9 @@ includes(left List<T>, right T) Boolean
 
 The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list using equality semantics.
 
-For the singleton overload, this operator returns [.kw]#true# if the list includes (i.e. contains) the singleton.
+For the singleton overload, this operator is a synonym for the [.kw]#<<contains-1,contains>># operator, and will return [.kw]#false# if the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+For the list overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4934,9 +5153,9 @@ included in(left T, right list<T>) Boolean
 
 The [.kw]#included in# operator for lists returns [.kw]#true# if every element of the first list is in the second list using equality semantics.
 
-For the singleton overload, this operator returns [.kw]#true# if the singleton is included in (i.e. in) the list.
+For the singleton overload, this operator is a synonym for the [.kw]#<<in-1,in>># operator, and will return [.kw]#null# if the first argument is [.kw]#null#, and [.kw]#false# if the second argument is [.kw]#null#.
 
-If either argument is [.kw]#null#, the result is [.kw]#null#.
+For the list overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -5496,6 +5715,11 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Max# operator returns the maximum element in the source. Comparison semantics are defined by the <<Comparison Operators>> for the type of value being aggregated.
@@ -5679,6 +5903,11 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ----
 
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
+
 *Description:*
 
 The [.id]#Product# operator returns the geometric product of the elements in source.
@@ -5738,6 +5967,11 @@ Sum(argument List<Long>) Long
 Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ----
+
+[.note-info]
+____
+The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+____
 
 *Description:*
 

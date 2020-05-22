@@ -96,7 +96,7 @@
 			  <li><a href="examples.html">Examples</a></li>
               <li><a href="tests.html">Tests</a></li>
 							<li><a href="downloads.html">Downloads</a></li>
-              <li><a href="history.html">Version History</a><!--current--></li>
+              <li><a href="http://cql.hl7.org/history.html">Version History</a><!--current--></li>
 
 						</ul>
 					</div>  <!-- /.nav-collapse -->
@@ -121,9 +121,11 @@
 <!--ReleaseHeader--><p id="publish-box">Publish Box goes here</p><!--EndReleaseHeader-->
 
 {% if page.standards-status == "informative" %}
-<table class="std-status-inf"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 4</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is informative.">Informative</a></td></tr></tbody></table>
+<table class="colsi"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is informative.">Informative</a></td></tr></tbody></table>
+{% elsif page.standards-status == "normative" %}
+<table class="colsn"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is being balloted normative.">Normative Ballot</a></td></tr></tbody></table>
 {% else %}
-<table class="std-status-stu"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 4</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is normative track (currently trial use).">Trial Use</a></td></tr></tbody></table>
+<table class="colstu"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 5</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is being balloted normative track (currently trial use).">Trial Use Ballot</a></td></tr></tbody></table>
 {% endif %}
 
 	<h1>{{page.title}}</h1>
@@ -151,7 +153,7 @@
         <span style="color: #FFFF77">|
 <!--               <a style="color: #81BEF7" href="http://services.w3.org/htmldiff?doc1=http%3A%2F%2Fcql.hl7.org%2FSTU2%2F<%rellink%>&amp;doc2=<%baseURL%><%rellink%>">Compare to STU2</a> | -->
                <a style="color: #81BEF7" rel="license" href="license.html">License</a> |
-               <a style="color: #81BEF7" rel="history" href="history.html">Version History</a> |
+               <a style="color: #81BEF7" rel="history" href="http://cql.hl7.org/history.html">Version History</a> |
                <a style="color: #81BEF7" target="_blank" href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=400">Propose a change</a>
         </span>
         </p>

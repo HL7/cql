@@ -61,6 +61,44 @@ Any text enclosed within is ignored
 
 Note that nested multi-line comments are not supported.
 
+[[tags]]
+==== Tags
+
+[.note-info]
+____
+Comment tags are a new feature of CQL 1.5, and are being ballot trial-use
+____
+
+Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, following by a valid, unquoted identifier, followed by a colon (`:`). For example:
+
+[source,cql]
+----
+/*
+@author: Frederic Chopin
+@description: Defines whether the patient is included in the initial population
+*/
+define InInitialPopulation:
+  AgeInYearsAt(start of MeasurementPeriod) >= 16
+    and AgeInYearsAt(start of MeasurementPeriod) < 24
+    and Patient.gender in "Female Administrative Sex"
+----
+
+The contents of the resulting tag will be whatever comes after the tag definition until the end of the line, or the comment-block, whatever comes first. To support tag values that span lines, enclose the content of the tag with `@@`:
+
+[source,cql]
+----
+/*
+@author: Ludwig van Beethoven
+@description: Determines the cumulative duration of a list of intervals
+@comment: @@This function collapses the input intervals prior to determining the cumulative duration
+to ensure overlapping intervals do not contribute multiple times to the result@@
+ */
+define function CumulativeDuration(Intervals List<Interval<DateTime>>):
+  Sum((collapse Intervals) X return all duration in days of X)
+----
+
+The enclosing `@@` symbols will not be included in the value of the resulting tag.
+
 [[literals]]
 === Literals
 
@@ -916,7 +954,7 @@ ____
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
 [[table-3-h]]
-[cols=",,,,,,,,,,,,",options="header",]
+[cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
 |*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
@@ -1464,11 +1502,15 @@ ____
 As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
 
 See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
-
 ____
 
 [[aggregate-queries]]
 == Aggregate Queries
+
+[.note-info]
+____
+The aggregate clause is a new feature of CQL 1.5, and is being balloted trial-use.
+____
 
 CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate a factorial:
 
@@ -1498,12 +1540,6 @@ define RolledOutIntervals:
 In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
 
 Note that in general, the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. This is not necessary in all cases, however, as the factorial example above demonstrates, since the type of the expression is inferred through the coercion that takes place during the Coalesce.
-
-[.note-info]
-____
-
-Note that the aggregate clause is a new as of CQL 1.5, and is being balloted trial-use.
-____
 
 [[defining-functions]]
 == Defining Functions
@@ -1541,6 +1577,12 @@ Functions can be defined that reference other functions anywhere within any libr
 [[fluent-functions]]
 === Fluent Functions
 
+[.note-info]
+____
+
+Fluent functions are a new feature of CQL 1.5, and are being balloted trial-use.
+____
+
 Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:
 
 [source,cql]
@@ -1572,7 +1614,6 @@ define "Confirmed and Active or Recurring Diabetes Conditions":
 
 [.note-info]
 ____
-
 Note that the examples in this section are adapted from the link:https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178[CDS Connect FHIR Commons] library.
 ____
 

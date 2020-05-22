@@ -206,7 +206,7 @@ withoutClause
     ;
 
 retrieve
-    : '[' (contextIdentifier '->')? namedTypeSpecifier (':' (codePath 'in')? terminology)? ']'
+    : '[' (contextIdentifier '->')? namedTypeSpecifier (':' (codePath codeComparator)? terminology)? ']'
     ;
 
 contextIdentifier
@@ -215,6 +215,12 @@ contextIdentifier
 
 codePath
     : simplePath
+    ;
+
+codeComparator
+    : 'in'
+    | '='
+    | '~'
     ;
 
 terminology
@@ -576,6 +582,7 @@ keyword
     | 'overlaps'
     | 'parameter'
     | 'per'
+    | 'point'
     | 'predecessor'
     | 'private'
     | 'properly'
@@ -666,6 +673,7 @@ reservedWord
     | 'or'
     | 'or on'
     | 'per'
+    | 'point'
     | 'properly'
     | 'return'
     | 'same'
@@ -855,6 +863,7 @@ functionIdentifier
     | 'overlaps'
     | 'parameter'
     | 'per'
+    | 'point'
     | 'predecessor'
     | 'private'
     | 'properly'

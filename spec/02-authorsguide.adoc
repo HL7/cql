@@ -135,7 +135,7 @@ define SexuallyActive:
 
 A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
 
-These declarations specify a local identifier that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
+These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
 
 Consider the following valueset declaration:
 
@@ -144,7 +144,7 @@ Consider the following valueset declaration:
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
-This definition establishes the local identifier [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
@@ -157,7 +157,7 @@ The above examples define the [.id]#PatientIsFemale# expression as [.kw]#true# f
 
 Note that the name of the valueset uses double quotes, in contrast to the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
 
-Note also that the local identifier for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. Good practice would dictate that the names should at least be conceptually similar, but CQL makes no prescription either way.
+Note also that the local name for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. However, when using external terminologies, authors should use the name of the terminology as defined externally to avoid introducing any potential confusion of meaning.
 
 The following example illustrates a _code system_ and a _code_ declaration:
 
@@ -303,8 +303,6 @@ The retrieve in CQL has two main parts: first, the _type_ part, which identifies
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
-The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
-
 [[clinical-statement-structure]]
 === Clinical Statement Structure
 
@@ -346,18 +344,33 @@ Note that the terminology reference [.id]#"Acute Severity"# in the above example
 
 [source,cql]
 ----
-codesystem "SNOMED:2014": 'http://snomed.info/sct'
+codesystem "SNOMED": 'http://snomed.info/sct'
 code "Acute Pharyngitis Code":
-  '363746003' from "SNOMED:2014" display 'Acute pharyngitis (disorder)'
+  '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
 
 define "Get Condition from Code Declaration":
   [Condition: "Acute Pharyngitis Code"]
 
 define "Get Condition from CodeSystem Declaration":
-  [Condition: "SNOMED:2014"]
+  [Condition: "SNOMED"]
 ----
 
-The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED:2014"# code system.
+The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
+
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. When the code path is specified, the code comparison operation can be specified as well:
+
+[source,cql]
+----
+codesystem "SNOMED": 'http://snomed.info/sct'
+code "Acute Pharyngitis Code":
+  '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
+
+define "Get Condition from Code Declaration":
+  [Condition: code ~ "Acute Pharyngitis Code"]
+
+define "Get Condition from CodeSystem Declaration":
+  [Condition: code in "SNOMED"]
+----
 
 [[retrieve-context]]
 === Retrieve Context
@@ -812,6 +825,8 @@ Note that the [.id]#Time# value literal format is identical to the time value po
 
 Only [.id]#DateTime# values may specify a timezone offset, either as UTC ([.sym]#Z#), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
+For both [.id]#DateTime# and [.id]#Time# values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 For more information on the use of date and time values within CQL, refer to the <<Date and Time Operators>> section.
 
 Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
@@ -833,7 +848,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ----
 
-The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid Unified Code for Units of Measure <<UCUM>> unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -894,7 +909,7 @@ The [.id]#Code# type has the following elements:
 [cols=",,",options="header",]
 |==================================================
 |Name |Type |Description
-|*code* |[.id]#String# |The identifier for the code.
+|*code* |[.id]#String# |The actual code within the code system.
 |*display* |[.id]#String# |A description of the code.
 |*system* |[.id]#String# |The identifier of the code system.
 |*version* |[.id]#String# |The version of the code system.
@@ -906,11 +921,11 @@ The following examples illustrate the code declaration:
 
 [source,cql]
 ----
-codesystem "SNOMED-CT": 'http://loinc.org'
+codesystem "LOINC": 'http://loinc.org'
 
-code "Blood Pressure": '55284-4' from "LOINC" display 'Blood pressure'
-code "Systolic Blood Pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
-code "Diastolic Blood Pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
+code "Blood pressure": '55284-4' from "LOINC" display 'Blood pressure'
+code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
+code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 ----
 
 The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
@@ -919,10 +934,10 @@ In addition, CQL provides a Code literal that can be used to reference an existi
 
 [source,cql]
 ----
-Code '66071002' from "SNOMED-CT:2014" display 'Type B viral hepatitis'
+Code '66071002' from "SNOMED-CT" display 'Type B viral hepatitis'
 ----
 
-The example specifies the code [.lit]#'66071002'# from the previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
+The example specifies the code [.lit]#'66071002'# from a previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
 
 This use of code declarations to reference a single code in a CQL expression is referred to as a _direct reference code_:
 
@@ -935,6 +950,15 @@ define "Encounters Discharged to Hospice":
 ----
 
 Note the use of the _equivalent_ operator (`~`) rather than _equality_ (`=`). For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
+
+Although CQL supports both version-specific and version-independent specification of and comparison to direct reference codes, artifact authors should use version-independent direct reference codes and comparisons unless there is a specific reason not to (such as the code is retired in the current version). Even when using version-specific direct reference codes, authors should use equivalence for the comparison (again, unless there is a specific reason to use version-specific comparison with equality).
+
+When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning.
+
+[.note-warning]
+____
+Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may required modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
+____
 
 [[concept]]
 ==== Concept
@@ -955,9 +979,7 @@ Table 2‑G
 
 [.note-warning]
 ____
-
-Note that the semantics of [.id]#Concept# are such that the codes within a given concept should all be semantically equivalent at the code level, but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
-
+Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
 ____
 
 The following example illustrates the concept declaration:
@@ -967,13 +989,15 @@ The following example illustrates the concept declaration:
 codesystem "SNOMED-CT": 'urn:oid:2.16.840.1.113883.6.96'
 codesystem "ICD-10-CM": 'urn:oid:2.16.840.1.113883.6.90'
 
-code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT:2014" display 'Viral hepatitis type B (disorder)'
+code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT" display 'Viral hepatitis type B (disorder)'
 code "Hepatitis Type B (ICD-10)": 'B18.1' from "ICD-10-CM" display 'Chronic viral hepatitis B without delta-agent'
 
 concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (ICD-10)" } display 'Type B Hepatitis'
 ----
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+
+As with codes, local names for concept declarations should be consistent with external declarations to avoid introducing any confusion of meaning.
 
 The following example illustrates the use of a [.id]#Concept# literal:
 
@@ -1004,7 +1028,6 @@ valueset "Ambulatory/ED Visit": 'urn:oid:2.16.840.1.113883.3.464.1003.101.12.106
 Each valueset declaration defines a local identifier that can be used to reference the valueset within the library, as well as the global identifier for the valueset, typically an object identifier (OID) or uniform resource identifier (URI).
 
 These valueset identifiers can then be used throughout the library. For example:
-
 
 [source,cql]
 ----
@@ -1042,6 +1065,8 @@ codesystem "ICD-10-CM:2014": 'urn:oid:2.16.840.1.113883.6.90' version '2014'
 valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
   codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
 ----
+
+When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, then some additional aspect is required to ensure uniqueness of the names within the CQL library.
 
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
 
@@ -1751,7 +1776,7 @@ Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated
 
 To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above seconds in a date/time arithmetic calculation will result in a run-time error.
 
-Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in <<ISO8601>>. Specifically:
+Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
 |===
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
@@ -2459,7 +2484,7 @@ define TitreRatio: 1:128
 define TitreNumerator: TitreRatio.numerator // 1
 ----
 
-CQL supports the equality operators (= != ~ !~) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
+CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 [source,cql]
 ----
@@ -2541,7 +2566,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the <<examples.adoc#examples,Examples>> included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the link:examples.html[Examples] included with this specification.
 
 [[running-example]]
 === Running Example

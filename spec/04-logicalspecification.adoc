@@ -444,7 +444,11 @@ Library : Element
   ¦        ¦
   ¦        0..* --> def : ConceptDef
   ¦
-  0..1 --> statements <12>
+  0..1 --> contexts <12>
+  ¦        ¦
+  ¦        0..* --> def : ContextDef
+  ¦
+  0..1 --> statements <13>
            ¦
            0..* --> def : ExpressionDef
 ----
@@ -471,7 +475,9 @@ Library : Element
 
 <11> The concepts defined within this library.
 
-<12> The statements section contains the expression and function definitions for the library.
+<12> The contexts used within this library.
+
+<13> The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -512,6 +518,19 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
   therefore points to an individual 'versioned' instance of a resource such as the third
   version of a library.
 
+=== ContextDef
+
+[source,elm]
+----
+ContextDef : Element
+  ¦
+  1..1 --> name <1>
+----
+
+<1> The name of the context
+
+The ContextDef type defines a context used within the library.
+
 [[data-model]]
 == Data Model
 
@@ -533,7 +552,6 @@ UsingDef : Element
 ----
 
 Defines a data model that is available within the artifact.
-
 
 [[parameters]]
 == Parameters
@@ -968,9 +986,15 @@ Retrieve : Expression
   ¦
   0..1 --> idSearch
   ¦
+  0..1 --> contextProperty
+  ¦
+  0..1 --> contextSearch
+  ¦
   0..1 --> codeProperty
   ¦
   0..1 --> codeSearch
+  ¦
+  0..1 --> codeComparator
   ¦
   0..1 --> valueSetProperty
   ¦
@@ -984,8 +1008,6 @@ Retrieve : Expression
 ----
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
-
-The retrieve operation uses equivalence semantics when determining whether a data element matches the code filter.
 
 ==== id
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
@@ -1016,6 +1038,16 @@ This property may be specified as a path, including qualifiers and constant inde
 ==== idSearch
 The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.
 
+==== contextProperty
+The contextProperty attribute optionally specifies which property of the model contains the context value.
+
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still ned to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+==== contextSearch
+The contextSearch attribute specifies the name of the search path to use for searching for the context values.
+
 ==== codeProperty
 The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
 
@@ -1025,6 +1057,9 @@ This property may be specified as a path, including qualifiers and constant inde
 
 ==== codeSearch
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
+
+==== codeComparator
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
 ==== valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
@@ -2263,6 +2298,8 @@ The DateTime operator constructs a DateTime value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+
 If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
 
 === DateTimeComponentFrom
@@ -2452,7 +2489,7 @@ The Time operator constructs a time value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.
 
-If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
 
 === TimeFrom
 
@@ -2621,6 +2658,8 @@ The operation is performed by combining successive intervals in the input that e
 
 The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
+Conceptually, the per argument to the collapse operator partitions the value-space for the operation into units of size 'per', and the intervals will be collapsed aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
+
 If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
@@ -2645,11 +2684,9 @@ There are two overloads of this operator:
 
 For the List, T overload, this operator returns true if the given element is in the list, using equality semantics.
 
-For the Interval, T overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, T overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If the first argument is null, the result is false. If the second argument is null, the result is null.
-
-For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 === End
 
@@ -2722,6 +2759,8 @@ The Expand operator returns the set of intervals of size per for all the ranges 
 
 The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal).  For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
+Conceptually, the per argument to the expand operator partitions the value-space for the operation into units of size 'per', and the intervals will be expanded aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
+
 If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 
 Note that if the values in the intervals are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity.
@@ -2750,11 +2789,9 @@ There are two overloads of this operator:
 
 For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics.
 
-For the T, Interval overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+For the T, Interval overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If the first argument is null, the result is null. If the second argument is null the result is false.
-
-For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 [[includes]]
 === Includes
@@ -2780,8 +2817,6 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-For point overloads, null semantics are the same as the corresponding point/interval operators.
-
 [[included-in]]
 === IncludedIn
 
@@ -2805,8 +2840,6 @@ For the Interval, Interval overload, this operator returns true if the starting 
 This operator uses the semantics described in the Start and End operators to determine interval boundaries.
 
 If either argument is null, the result is null.
-
-For point overloads, null semantics are the same as the corresponding point/interval operators.
 
 [[intersect]]
 === Intersect
@@ -2963,7 +2996,7 @@ For the List, T overload, this operator returns true if the given element is in 
 
 For the Interval, T overload, this operator returns true if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the Start and End operators.  If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is false. If the second argument is null, the result is null.
 
 [[proper-in]]
 === ProperIn
@@ -2985,7 +3018,7 @@ For the T, List overload, this operator returns if the given element is in the g
 
 For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.
+If the first argument is null, the result is null. If the second argument is null the result is false.
 
 [[proper-includes]]
 === ProperIncludes
@@ -3696,7 +3729,9 @@ Between Date and DateTime +
 From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.]
+Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: *YYYY-MM-DDThh:mm:ss(+|-)hh:mm*.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 === CanConvertQuantity
 
@@ -3753,7 +3788,9 @@ Between Date and DateTime +
 From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.footnote:formatting-strings[]
+Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 === ConvertQuantity
 
@@ -3794,7 +3831,9 @@ The ConvertsToDate operator returns true if the value of its argument can be con
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD footnote:formatting-strings[]
+*YYYY-MM-DD*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3817,7 +3856,9 @@ The ConvertsToDateTime operator returns true if the value of its argument can be
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3836,9 +3877,11 @@ ConvertsToDecimal : UnaryExpression
 
 The ConvertsToDecimal operator returns true if the value of its argument can be converted to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?footnote:formatting-strings[]
+*(+|-)?\#0(.0#)?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
@@ -3855,9 +3898,11 @@ ConvertsToLong : UnaryExpression
 
 The ConvertsToLong operator returns true if the value of its argument can be converted to a Long value. The operator accepts strings using the following format:
 
-(+|-)?#0footnote:formatting-strings[]
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
@@ -3874,9 +3919,11 @@ ConvertsToInteger : UnaryExpression
 
 The ConvertsToInteger operator returns true if the value of its argument can be converted to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0footnote:formatting-strings[]
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
@@ -3895,9 +3942,11 @@ The ConvertsToQuantity operator returns true if the value of its argument can be
 
 For String values, the operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
+*(+|-)?\#0(.0#)?('<unit>')?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
@@ -3916,7 +3965,7 @@ ConvertsToRatio : UnaryExpression
 
 The ConvertsToRatio operator returns true if the value of its argument can be converted to a Ratio value. The operator accepts strings using the following format:
 
-<quantity>:<quantity>
+*<quantity>:<quantity>*
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -3958,7 +4007,9 @@ The ConvertsToTime operator returns true if the value of its argument can be con
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-hh:mm:ss.fff footnote:formatting-strings[]
+*hh:mm:ss.fff*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -4031,6 +4082,8 @@ ToConcept : UnaryExpression
 
 The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
 
+If the input is a list of Codes, the resulting Concept will have all the input Codes, and will not have a display value.
+
 If the argument is null, the result is null.
 
 === ToDate
@@ -4044,7 +4097,9 @@ The ToDate operator converts the value of its argument to a Date value.
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-YYYY-MM-DD footnote:formatting-strings[]
+*YYYY-MM-DD*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -4069,7 +4124,9 @@ The ToDateTime operator converts the value of its argument to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm footnote:formatting-strings[]
+*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -4090,9 +4147,11 @@ ToDecimal : UnaryExpression
 
 The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?footnote:formatting-strings[]
+*(+|-)?\#0(.0#)?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
@@ -4109,9 +4168,11 @@ ToInteger : UnaryExpression
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
-(+|-)?#0footnote:formatting-strings[]
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
@@ -4143,9 +4204,11 @@ ToLong : UnaryExpression
 
 The ToLong operator converts the value of its argument to a Long value. The operator accepts strings using the following format:
 
-(+|-)?#0footnote:formatting-strings[]
+*(+|-)?#0*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
@@ -4160,11 +4223,11 @@ If the argument is null, the result is null.
 ToQuantity : UnaryExpression
 ----
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
 
 For String values, the operator accepts strings using the following format:
 
-(+|-)?\#0(.0#)?('<unit>')?footnote:formatting-strings[]
+*(+|-)?\#0(.0#)?('<unit>')?*
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -4187,7 +4250,7 @@ ToRatio : UnaryExpression
 
 The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
 
-<quantity>:<quantity>
+*<quantity>:<quantity>*
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -4202,20 +4265,22 @@ If the argument is null, the result is null.
 ToString : UnaryExpression
 ----
 
-The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type:footnote:formatting-strings[]
+The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type
 
 [width="50%"]
 |====
 |Boolean |true\|false
-|Integer |(-)?#0
-|Long |(-)?#0
-|Decimal |(-)?\#0.0#
-|Quantity |(-)?\#0.0# '<unit>'
-|Date |YYYY-MM-DD
-|DateTime |YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
-|Time	|hh:mm:ss.fff
-|Ratio |<quantity>:<quantity>
+|Integer |*(-)?#0*
+|Long |*(-)?#0*
+|Decimal |*(-)?\#0.0#*
+|Quantity |*(-)?\#0.0# '<unit>'*
+|Date |*YYYY-MM-DD*
+|DateTime |*YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm*
+|Time	|*hh:mm:ss.fff*
+|Ratio |*<quantity>:<quantity>*
 |====
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 If the argument is null, the result is null.
 
@@ -4230,7 +4295,9 @@ The ToTime operator converts the value of its argument to a Time value.
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-hh:mm:ss.fff footnote:formatting-strings[]
+*hh:mm:ss.fff*
+
+See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -4255,14 +4322,14 @@ AnyInCodeSystem : OperatorExpression
   ¦
   1..1 --> codes : Expression
   ¦
-  1..1 --> codesystem : CodeSystemRef
+  1..1 --> codesystem : Expression
 ----
 
 The AnyInCodeSystem operator returns true if any of the given codes are in the given code system.
 
 The first argument is expected to be a list of String, Code, or Concept.
 
-Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is expected to be of type CodeSystem. When this argument is statically a CodeSystemRef, this allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === AnyInValueSet
 
@@ -4272,14 +4339,14 @@ AnyInValueSet : OperatorExpression
   ¦
   1..1 --> codes : Expression
   ¦
-  1..1 --> valueset : ValueSetRef
+  1..1 --> valueset : Expression
 ----
 
 The AnyInValueSet operator returns true if any of the given codes are in the given value set.
 
 The first argument is expected to be a list of String, Code, or Concept.
 
-Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+The second argument is expected to be of type ValueSet. When this argument is statically a ValueSetRef, this allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
 === CalculateAge
 
@@ -4333,14 +4400,14 @@ InCodeSystem : OperatorExpression
   ¦
   1..1 --> code : Expression
   ¦
-  1..1 --> codesystem : CodeSystemRef
+  1..1 --> codesystem : Expression
 ----
 
 The InCodeSystem operator returns true if the given code is in the given code system.
 
 The first argument is expected to be a String, Code, or Concept.
 
-Note that this operator explicitly requires a CodeSystemRef as its codesystem argument. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is expected to be of type CodeSystem. When this argument is statically a CodeSystemRef, this allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 === InValueSet
 
@@ -4350,14 +4417,14 @@ InValueSet : OperatorExpression
   ¦
   1..1 --> code : Expression
   ¦
-  1..1 --> valueset : ValueSetRef
+  1..1 --> valueset : Expression
 ----
 
 The InValueSet operator returns true if the given code is in the given value set.
 
 The first argument is expected to be a String, Code, or Concept.
 
-Note that this operator explicitly requires a ValueSetRef as its valueset argument. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+The second argument is expected to be of type ValueSet. When this argument is statically a ValueSetRef, this allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
 === Not Equal
 

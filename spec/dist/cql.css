@@ -24,6 +24,15 @@
     background-color: inherit;
 }
 
+.stu {
+  padding-left: 3px;
+  padding-right; 3px;
+  border: 1px grey solid;
+  font-weight: bold;
+  color: black;
+  background-color: #fff5e6
+}
+
 table{
 margin-bottom: 10px;
 border: 1px black solid;
