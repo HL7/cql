@@ -2033,7 +2033,7 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 Indexer : BinaryExpression
 ----
 
-The Indexer operator returns the indexth element in a string or list.
+The Indexer operator returns the index^th^ element in a string or list.
 
 Indexes in strings and lists are defined to be 0-based.
 
