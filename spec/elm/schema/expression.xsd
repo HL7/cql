@@ -683,6 +683,8 @@ If the argument is null the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
 
+If the input is a list of Codes, the resulting Concept will have all the input Codes, and will not have a display value.
+
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -719,6 +721,8 @@ For String values, The operator expects the string to be formatted using the ISO
 
 YYYY-MM-DD
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 In addition, the string must be interpretable as a valid date value.
 
 Note that the operator can take datetime formatted strings and will ignore the time portions.
@@ -741,7 +745,9 @@ If the argument is null, the result is null.</xs:documentation>
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -761,7 +767,9 @@ If the argument is null, the result is null.</xs:documentation>
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -785,6 +793,8 @@ If the argument is null, the result is null.</xs:documentation>
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is false.
@@ -802,6 +812,8 @@ If the argument is null, the result is null.</xs:documentation>
 (+|-)?#0(.0#)?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
@@ -821,6 +833,8 @@ If the argument is null, the result is null.</xs:documentation>
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is false.
@@ -838,6 +852,8 @@ If the argument is null, the result is null.</xs:documentation>
 (+|-)?#0
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
@@ -857,6 +873,8 @@ If the argument is null, the result is null.</xs:documentation>
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 Note that for this operator to return true, the input must be a valid value in the range representable for Long values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is false.
@@ -874,6 +892,8 @@ If the argument is null, the result is null.</xs:documentation>
 (+|-)?#0
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
@@ -895,6 +915,8 @@ For String values, the operator accepts strings using the following format:
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is false.
@@ -909,13 +931,15 @@ If the argument is null, the result is null.</xs:documentation>
 	</xs:complexType>
 	<xs:complexType name="ToQuantity">
 		<xs:annotation>
-			<xs:documentation>The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
+			<xs:documentation>The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the ConvertQuantity operator.
 
 For String values, the operator accepts strings using the following format:
 
 (+|-)?#0(.0#)?('&lt;unit&gt;')?
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
@@ -1023,6 +1047,8 @@ DateTime YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 Time	hh:mm:ss.fff
 Ratio &lt;quantity&gt;:&lt;quantity&gt;
 
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
+
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -1036,6 +1062,8 @@ If the argument is null, the result is null.</xs:documentation>
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
 hh:mm:ss.fff
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -1056,6 +1084,8 @@ If the argument is null, the result is null.</xs:documentation>
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
 hh:mm:ss.fff
+
+See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -2035,6 +2065,8 @@ At least one component must be specified, and no component may be specified at a
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
 
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a Decimal for the purposes of comparison.
+
 If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -2056,7 +2088,9 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 		<xs:annotation>
 			<xs:documentation>The Time operator constructs a time value from the given components.
 
-At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.</xs:documentation>
+At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.
+
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OperatorExpression">
@@ -2232,7 +2266,7 @@ There are two overloads of this operator:
 
 For the List, T overload, this operator returns true if the given element is in the list, using equality semantics.
 
-For the Interval, T overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+For the Interval, T overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If the first argument is null, the result is false. If the second argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
@@ -2255,7 +2289,7 @@ For the List, T overload, this operator returns true if the given element is in 
 
 For the Interval, T overload, this operator returns true if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the Start and End operators.  If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.</xs:documentation>
+If the first argument is null, the result is false. If the second argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="BinaryExpression">
@@ -2274,7 +2308,7 @@ There are two overloads of this operator:
 
 For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics.
 
-For the T, Interval overload, this operator returns true if the given point is greater than or equal to the starting point of the interval, and less than or equal to the ending point of the interval. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+For the T, Interval overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 If the first argument is null, the result is null. If the second argument is null the result is false.</xs:documentation>
 		</xs:annotation>
@@ -2297,7 +2331,7 @@ For the T, List overload, this operator returns if the given element is in the g
 
 For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is null, the result is null.</xs:documentation>
+If the first argument is null, the result is null. If the second argument is null the result is false.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="BinaryExpression">
@@ -2600,6 +2634,8 @@ The operation is performed by combining successive intervals in the input that e
 
 The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
+Conceptually, the per argument to the collapse operator partitions the value-space for the operation into units of size 'per', and the intervals will be collapsed aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
+
 If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
@@ -2615,6 +2651,8 @@ If the source argument is null, the result is null.</xs:documentation>
 			<xs:documentation>The Expand operator returns the set of intervals of size per for all the ranges present in the given list of intervals, or the list of points covering the range of the given interval, if invoked on a single interval.
 
 The per argument determines the size of the resulting intervals and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit '1' (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
+
+Conceptually, the per argument to the expand operator partitions the value-space for the operation into units of size 'per', and the intervals will be expanded aligning with those partitions. Note that the 'per' partitions start from the starting boundary of the first input interval, ordered.
 
 If the per argument is null, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will expand at the hour precision.
 

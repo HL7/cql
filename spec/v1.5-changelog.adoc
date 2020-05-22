@@ -1,0 +1,50 @@
+= 1.5 Change Log
+:page-layout: unversioned
+:backend: xhtml
+:toc:
+
+== Normative Ballot Changes
+
+=== Compatible, Substantive
+
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1877[STU4#1877]: Added support for modular arithmetic for quantities
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1896[STU4#1896]: Added an overload of expand to take a single interval
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1907[STU4#1907]: Added an aggregate clause to the query construct
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1910[STU4#1910]: Added support for specifying search paths in the Retrieve
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1918[STU4#1918]: Added support for comment annotations that result in tags in the ELM output
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1920[STU4#1920]: Added a fluent keyword to support fluent-style function invocation
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1921[STU4#1921]: Added support for specifying include and reverseInclude elements in the Retrieve
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1923[STU4#1923]: Added System.Long to support 64-bit integers
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1908[STU4#1908]: Added the ability to pass value sets and code systems as reference-type arguments
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1917[STU4#1917]: Added a text/cql.identifier media type to support referencing the name of a defined CQL expression
+
+=== Non-Substantive
+
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1909[STU4#1909]: Added guidance on local terminology identifiers
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1911[STU4#1911]: Clarified that unit conversion is supported with ConvertQuantity
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1912[STU4#1912]: Clarified representation of seconds and milliseconds as a Decimal for the purposes of comparison
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1916[STU4#1916]: Added guidance on direct-reference code usage
+
+=== Errata
+
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1875[STU3#1875]: Corrected error in Exists documentation
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1857[STU4#1857]: Corrected error in ToString documentation
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1858[STU4#1858]: Clarified relationship between CQL calendar duration units and UCUM definite-duration units
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1862[STU4#1862]: Corrected rendering of formatting strings footnote throughout
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1863[STU4#1863]: Clarified role of date and time token definitions in the grammar
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1864[STU4#1864]: Updated typographical conventions for formatting strings throughout
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1865[STU4#1865]: Clarified ranges for date/time formatting strings
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1866[STU4#1866]: Clarified date/time arithmetic conversion semantics between UCUM and calendar duration units
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1867[STU4#1867]: Clarified date/time arithmetic semantics for precisions above seconds
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1869[STU4#1869]: Clarified date/time literal rules for timezoneoffset
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1876[STU4#1876]: Fixed test for exists
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1878[STU4#1878]: Clarified collapse and expand semantics with respect to per argument and interval boundary alignment
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1881[STU4#1881]: Added point keyword to appropriate keyword lists
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1882[STU4#1882]: Clarified semantics and behavior of terminology comparisons in retrieves
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1883[STU4#1883]: Clarified inconsistent null semantics for point and singleton overloads of includes and included in as synonyms for in and contains
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1884[STU4#1884]: Documented ToConcept(List<Code>) overload
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1897[STU4#1897]: Clarified semantics and behavior of interval in and contains in the presence of interval boundaries that are both open and null
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1913[STU4#1913]: Removed note about timezoneoffset in Time ELM operator
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1914[STU4#1914]: Fixed rendering of footnote to formatting strings throughout
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1915[STU4#1915]: Added guidance on local identifiers for code system, value set, and code declarations (duplicate of STU4#1909)
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1919[STU4#1919]: Added missing Descripition header in documentation of ConvertQuantity and HighBoundary operators

@@ -13,16 +13,16 @@ In addition, this specification describes a machine-readable canonical represent
 
 [.note-info]
 ____
-
 This specification is being balloted normative, except where identified as informative or trial-use content.
-____
 
+For a complete description of the changes to this version, please review the version history linked below.
+____
 
 link:title.html[Title Page]
 
 link:license.html[License]
 
-link:site/history.html[Version History]
+http://cql.hl7.org/history.html[Version History]
 
 link:00-executivesummary.html[0. Executive Summary]
 
