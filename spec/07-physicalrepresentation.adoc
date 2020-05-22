@@ -72,7 +72,7 @@ In addition, the implementation environment must provide a mechanism for data mo
 |Component |Description
 |*Name* |The name of the model.
 |*Version* |The version of the model.
-|*URL* |The XML namespace assocated with the model. This namespace is used by the CQL-to-ELM translator to establish the URL used to reference types from the model schema within an ELM document.
+|*URL* |The XML namespace associated with the model. This namespace is used by the CQL-to-ELM translator to establish the URL used to reference types from the model schema within an ELM document.
 |*Schema Location* |The physical location of the model xsd relative to the ELM document. This information can be provided, but is not required.
 |*Target Qualifier* |If specified, determines the namespace qualifier that should be used when referencing types of the data model within the ELM document.
 |*Context Information* |The set of available contexts that may be used with the model. For patient contexts, Patient Birth Date information must be supplied as well to allow the CQL-to-ELM translator to render references to patient-age-related functions (AgeInYears, AgeInYearsAt, etc.) into the non-patient-aware age-related functions in ELM (CalculateAgeInYears, CalculateAgeInYearsAt, etc.). This information is not required, but if it is not present, references to patient-age-related functions will be passed directly through to ELM as FunctionRefs.
