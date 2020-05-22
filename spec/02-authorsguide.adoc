@@ -957,7 +957,7 @@ When using direct reference codes, authors should use the name of the code as de
 
 [.note-warning]
 ____
-Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may required modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
+Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may require modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
 ____
 
 [[concept]]
