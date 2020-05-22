@@ -871,7 +871,7 @@ This expression is equivalent to:
 start of A in [start of B - 3 days, start of B + 3 days] and B is not null
 ----
 
-Note that as with the before and after transformations, a null test is required here because if B is null, then the constructed interval would be incorrectly interpreted as continuing to the beggining or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
+Note that as with the before and after transformations, a null test is required here because if B is null, then the constructed interval would be incorrectly interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
 [[interval-operators-1]]
 ==== Interval Operators
