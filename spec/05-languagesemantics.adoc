@@ -924,7 +924,7 @@ Note that with an increased burden on implementation, uncertainty resolution cou
 
 DateTime(2014) + 364 days
 
-In the above example, it is almost certainly the case that the result of the addition would result in some date in DateTime(2015). However, CQL currently would return a DateTime(2014) because the addition does not result in a whole calendar period for the specified precision. An argument could be made that uncertainty resolution could be more robust as DateTime(2014) is an undefined DateTime ocurring sometime during 2014, which can be represented as the following interval:
+In the above example, it is almost certainly the case that the result of the addition would result in some date in DateTime(2015). However, CQL currently would return a DateTime(2014) because the addition does not result in a whole calendar period for the specified precision. An argument could be made that uncertainty resolution could be more robust as DateTime(2014) is an undefined DateTime occurring sometime during 2014, which can be represented as the following interval:
 
 [@2014-01-01T00:00:00.000, @2014-12-31T23:59:59.999]
 
