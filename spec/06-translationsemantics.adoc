@@ -403,7 +403,7 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 
 Table 6‑O
 
-Althought these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
+Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
 
 [[elm-to-cql]]
 == ELM-to-CQL
