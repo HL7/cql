@@ -308,7 +308,7 @@ Note that the retrieve only introduces data into an expression; operations for f
 
 The retrieve expression is a reflection of the idea that clinical data in general can be viewed as clinical statements of some type as defined by the model. The type of the clinical statement determines the structure of the data that is returned by the retrieve, as well as the semantics of the data involved.
 
-The type may be a general category, such as a Condition, Procedure, or Encounter, or a more specific instance such as an ImagingProcedure, or a LaboratoryTest. The data model defines the available types that may be referenced by a retrieve.
+The type may be a general category, such as a Condition, Procedure, or Encounter, or a more specific instance such as an ImagingProcedure or a LaboratoryTest. The data model defines the available types that may be referenced by a retrieve.
 
 In the simplest case, a retrieve specifies only the type of data to be retrieved. For example:
 
