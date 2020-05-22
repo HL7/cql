@@ -59,6 +59,8 @@
 
 21.  <<02-authorsguide.adoc#table-2-u,Table 2-U>>
 
+22.  <<02-authorsguide.adoc#table-2-v,Table 2-V>>
+
 [[developers-guide]]
 == Developer's Guide
 

@@ -1778,6 +1778,7 @@ To avoid the potential confusion of calendar-based date/time arithmetic with def
 
 Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
+[[table-2-p]]
 |===
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
 |month |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used.
@@ -1788,6 +1789,8 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |second |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
 |millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |===
+
+Table 2-P
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
@@ -1960,10 +1963,10 @@ The first expression returns the number of whole days between the starting and e
 
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
 
-[[table-2-p]]
+[[table-2-q]]
 image:extracted-media/media/image5.png[image,width=626,height=394]
 
-Table 2‑P
+Table 2‑Q
 
 Each of these operators returns [.kw]#true# if the intervals X and Y are in the given relationship to each other. If either or both arguments are [.kw]#null#, the result is [.kw]#null#. Otherwise, the result is [.kw]#false#.
 
@@ -2034,7 +2037,7 @@ In other words, the timing phrases in general compare two quantities, either of 
 
 The following table describes the operators that can be used to construct timing phrases:
 
-[[table-2-q]]
+[[table-2-r]]
 [cols=",,,,,,,",options="header",]
 |====================================================================================================
 |Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/ +
@@ -2047,7 +2050,7 @@ Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
 |*includes* |no |yes |no |no |no |no |no
 |====================================================================================================
 
-Table 2‑Q
+Table 2‑R
 
 A yes in the Beginning Boundary column indicates that the operator can be preceded by [.kw]#starts# or [.kw]#ends# if the left comparand is an interval.
 
@@ -2223,7 +2226,7 @@ In addition, to provide consistent and intuitive semantics when dealing with lis
 
 In addition to list equality, already discussed in <<Comparison Operators>>, lists can be compared using the following operators:
 
-[[table-2-r]]
+[[table-2-s]]
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
@@ -2233,7 +2236,7 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 |*X [.kw]#properly included in# Y* |Returns true if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
-Table 2‑R
+Table 2‑S
 
 [source,cql]
 ----
@@ -2417,7 +2420,7 @@ In general, [.kw]#nulls# encountered during aggregation are ignored, and with th
 
 The following table lists the aggregate operators available in CQL:
 
-[[table-2-s]]
+[[table-2-t]]
 [cols=",",options="header",]
 |=========================================================================================================================================================================================================================
 |Operator |Description
@@ -2438,7 +2441,7 @@ The following table lists the aggregate operators available in CQL:
 |*Product*| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
 
-Table 2‑S
+Table 2‑T
 
 [[clinical-operators]]
 === Clinical Operators
@@ -2529,7 +2532,7 @@ A common terminological operation involves determining whether a given concept i
 
 To support determination of patient age consistently throughout quality logic, CQL defines several age-related operators:
 
-[[table-2-t]]
+[[table-2-u]]
 [cols=",",options="header",]
 |================================================================================================================================================
 |Operator |Description
@@ -2555,7 +2558,7 @@ To support determination of patient age consistently throughout quality logic, C
 |*CalculateAgeInHours(D)* |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
 
-Table 2‑T
+Table 2‑U
 
 These operators calculate age using calendar duration.
 
@@ -2615,7 +2618,7 @@ As an aside, one of the simplifications made to the QDM presented above is the r
 
 The following table lists the QDM data elements involved and their mappings to the QUICK data structures:
 
-[[table-2-u]]
+[[table-2-v]]
 [cols=",",options="header",]
 |===================================================
 |QDM Data Element |QUICK Equivalent
@@ -2626,7 +2629,7 @@ The following table lists the QDM data elements involved and their mappings to t
 |*Laboratory Test, Result* |DiagnosticReport
 |===================================================
 
-Table 2‑U
+Table 2‑V
 
 Note that the specific mapping to the QUICK data structures is beyond the scope of this walkthrough; it is only provided here to demonstrate the link back to the original QDM.
 
