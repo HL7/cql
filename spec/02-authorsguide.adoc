@@ -135,7 +135,7 @@ define SexuallyActive:
 
 A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
 
-These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library that a terminology is expected.
+These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library where the terminology is expected.
 
 Consider the following valueset declaration:
 
