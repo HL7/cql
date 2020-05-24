@@ -213,7 +213,7 @@ The default value for a parameter is optional, but if no default is provided, th
 parameter MeasurementPeriod Interval<DateTime>
 ----
 
-If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be null.
+If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be [.kw]#null#.
 
 In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
 
@@ -416,7 +416,7 @@ define InitialPopulationCount:
   Count(InInitialPopulation IP where IP is true)
 ----
 
-In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to true.
+In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to [.kw]#true#.
 
 If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the unfiltered context flattened into a single list.
 
@@ -472,7 +472,7 @@ Note that alias names, as with all language constructs, may be the subject of la
 [[filtering]]
 === Filtering
 
-The [.kw]#where# clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to true for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
+The [.kw]#where# clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to [.kw]#true# for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
 
 For example:
 
@@ -500,7 +500,7 @@ Note that because CQL uses three-valued logic, the result of evaluating any give
 [[shaping]]
 === Shaping
 
-The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios involve the need to extract only specific elements or to perform computations on the data involved in each element. The return clause enables this type of query.
+The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios involve the need to extract only specific elements or to perform computations on the data involved in each element. The [.kw]#return# clause enables this type of query.
 
 For example:
 
@@ -549,26 +549,26 @@ Calculated values can also be used to determine the sort, ascending ([.kw]#asc#)
     sort by lengthOfStay desc
 ----
 
-Note that the properties that can be specified within the sort clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the return clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
+Note that the properties that can be specified within the [.kw]#sort# clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the [.kw]#return# clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
 
 If no ascending or descending specifier is provided, the order is ascending.
 
-If no sort clause is provided, the order of the result is undefined and may vary by implementation.
+If no [.kw]#sort# clause is provided, the order of the result is undefined and may vary by implementation.
 
-The sort clause may include multiple attributes, each with their own sort order:
+The [.kw]#sort# clause may include multiple attributes, each with their own sort order:
 
 [source,cql]
 ----
 [Encounter: "Inpatient"] E sort by start of period desc, identifier asc
 ----
 
-Sorting is performed in the order in which the attributes are defined in the sort clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
+Sorting is performed in the order in which the attributes are defined in the [.kw]#sort# clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
 
 When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
 
-A query may only contain a single sort clause, and it must always appear last in the query.
+A query may only contain a single [.kw]#sort# clause, and it must always appear last in the query.
 
-When the data being sorted includes nulls, they are sorted first, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
+When the data being sorted includes [.kw]#nulls#, they are sorted first, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
 
 [[relationships]]
 === Relationships
@@ -595,9 +595,9 @@ The [.kw]#without# clause returns only those elements from the primary source th
       and P.abatementDate after end of E.period
 ----
 
-This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to true (if the Encounter has an overlapping Condition of Acute Pharyngitis in this case), then that Encounter is not included in the result.
+This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the [.kw]#such that# condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of Acute Pharyngitis in this case), then that Encounter is not included in the result.
 
-A given query may include any number of with and without clauses in any order, but they must all come before any where, return, or sort clauses.
+A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
 Note that the [.kw]#such that# condition of [.kw]#with# and [.kw]#without# clauses need not be based on timing relationships, it may contain any arbitrary expression, so long as the overall result is boolean-valued. For example:
 
@@ -610,7 +610,7 @@ Note that the [.kw]#such that# condition of [.kw]#with# and [.kw]#without# claus
 ----
 This example retrieves all dispense records for active prescriptions of Warfarin.
 
-When multiple with or without clauses appear in a single query, the result will only include elements that meet the [.kw]#such that# conditions for all the relationship clauses. For example:
+When multiple [.kw]#with# or [.kw]#without# clauses appear in a single query, the result will only include elements that meet the [.kw]#such that# conditions for all the relationship clauses. For example:
 
 [source,cql]
 ----
@@ -639,13 +639,13 @@ The clauses described in the previous section must appear in the correct order t
 
 A query must contain an aliased primary source, but this is the only required clause.
 
-A query may contain zero or more with or without clauses, but they must all appear before any where, return, or sort clauses.
+A query may contain zero or more [.kw]#with# or [.kw]#without# clauses, but they must all appear before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
-A query may contain at most one where clause, and it must appear after any with or without clauses, and before any return or sort clauses.
+A query may contain at most one [.kw]#where# clause, and it must appear after any [.kw]#with# or [.kw]#without# clauses, and before any [.kw]#return# or [.kw]#sort# clauses.
 
-A query may contain at most one return clause, and it must appear after any with or without or where clauses, and before any sort clause.
+A query may contain at most one [.kw]#return# clause, and it must appear after any [.kw]#with# or [.kw]#without# or [.kw]#where# clauses, and before any [.kw]#sort# clause.
 
-A query may contain at most one sort clause, and it must be the last clause in the query.
+A query may contain at most one [.kw]#sort# clause, and it must be the last clause in the query.
 
 For example:
 
@@ -662,7 +662,7 @@ For example:
 
 This query returns all [.id]#"Inpatient"# encounter events that have an overlapping condition of [.id]#"Acute Pharyngitis"# and a duration of at least 120 days. For each such event, the result will include the id of the event and the duration in days, and the results will be ordered by that duration descending.
 
-As another example, consider a query with multiple without clauses:
+As another example, consider a query with multiple [.kw]#without# clauses:
 
 [source,cql]
 ----
@@ -676,7 +676,7 @@ SingleLiveBirthEncounter E
   )
 ----
 
-Even though this example has multiple _without_ clauses, there is still only a single _where_ clause for the query.
+Even though this example has multiple [.kw]#without# clauses, there is still only a single [.kw]#where# clause for the query.
 
 Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
 
@@ -829,7 +829,7 @@ For both [.id]#DateTime# and [.id]#Time# values, although the milliseconds are s
 
 For more information on the use of date and time values within CQL, refer to the <<Date and Time Operators>> section.
 
-Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in null, rather than the true or false that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
+Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in [.kw]#null#, rather than the [.kw]#true# or [.kw]#false# that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
 
 [[clinical-values]]
 === Clinical Values
@@ -1174,7 +1174,7 @@ In order to provide consistent behavior in the presence of missing information, 
 define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
 ----
 
-If the onsetDateTime is not present, the result of this expression is null. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
+If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
 
 For more information on missing information, see the <<03-developersguide.adoc#nullological-operators,Nullological Operators>> section.
 
@@ -1306,15 +1306,15 @@ The most basic operation in CQL involves comparison of two values. This is accom
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
-|*=* |Equality |Returns true if the arguments are the same value. Returns null if either or both arguments are null
-|*!=* |Inequality |Returns true if the arguments are not the same value. Returns null if either or both arguments are null
-|*>* |Greater than |Returns true if the left argument is greater than the right argument. Returns null if either or both arguments are null
-|*<* |Less than |Returns true if the left argument is less than the right argument. Returns null if either or both arguments are null
-|*>=* |Greater than or equal |Returns true if the left argument is greater than or equal to the right argument. Returns null if either or both arguments are null
-|*\<=* |Less than or equal |Returns true if the left argument is less than or equal to the right argument. Returns null if either or both arguments are null
-|*between* | |Returns true if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns null if any or all arguments are null.
-|*~* |Equivalent |Returns true if the arguments are equivalent in value, or are both null; otherwise false
-|*!~* |Inequivalent |Returns true if the arguments are not equivalent and false otherwise.
+|*=* |Equality |Returns [.kw]#true# if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*!=* |Inequality |Returns [.kw]#true# if the arguments are not the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*>* |Greater than |Returns [.kw]#true# if the left argument is greater than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*<* |Less than |Returns [.kw]#true# if the left argument is less than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*>=* |Greater than or equal |Returns [.kw]#true# if the left argument is greater than or equal to the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*\<=* |Less than or equal |Returns [.kw]#true# if the left argument is less than or equal to the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*between* | |Returns [.kw]#true# if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns [.kw]#null# if any or all arguments are [.kw]#null#.
+|*~* |Equivalent |Returns [.kw]#true# if the arguments are equivalent in value, or are both [.kw]#null#; otherwise [.kw]#false#
+|*!~* |Inequivalent |Returns [.kw]#true# if the arguments are not equivalent and [.kw]#false# otherwise.
 |===========================================================================================================================================
 
 Table 2‑H
@@ -1403,7 +1403,7 @@ In addition, equivalence is defined more loosely than equality for some types:
 * For decimals, equivalence means the values are the same to the precision of the least precise value being compared.
 * For quantities, equivalence means the values are the same, allowing for unit conversion.
 * For ratios, equivalence means the values represent the same ratio.
-* For datetimes, dates, and times, equivalence is the same as equality except it will return false instead of null if the values being compared have differing precisions.
+* For datetimes, dates, and times, equivalence is the same as equality except it will return [.kw]#false# instead of [.kw]#null# if the values being compared have differing precisions.
 * For codes, equivalence means the values have the same system and code.
 * For concepts, equivalence means the values have at least one equivalent code.
 
@@ -1702,7 +1702,7 @@ Note that these operators may still return [.kw]#null# if the date and time valu
 Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
 ----
 
-The result in this example is null because the first date has no _hour_ component.
+The result in this example is [.kw]#null# because the first date has no _hour_ component.
 
 [[extracting-date-and-time-components]]
 ==== Extracting Date and Time Components
@@ -1738,7 +1738,7 @@ Table 2‑O
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
-Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date and time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not null.
+Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date and time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not [.kw]#null#.
 
 When extracting the Time from a DateTime value, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
