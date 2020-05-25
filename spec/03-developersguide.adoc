@@ -817,7 +817,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Long, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: [.id]#Boolean#, [.id]#String#, [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, [.id]#Time#, [.id]#Quantity#, and [.id]#Ratio#.
 
 The type of the null selector is Any.
 
@@ -1188,7 +1188,7 @@ X is true
 X is not false
 ----
 
-The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
+The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of [.id]#Boolean# results using equality or inequality.
 
 [[string-operators]]
 == String Operators
