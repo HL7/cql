@@ -83,21 +83,18 @@ define InInitialPopulation:
     and Patient.gender in "Female Administrative Sex"
 ----
 
-The contents of the resulting tag will be whatever comes after the tag definition until the end of the line, or the comment-block, whatever comes first. To support tag values that span lines, enclose the content of the tag with `@@`:
-
+The contents of the resulting tag will be whatever comes after the tag definition until the next tag or the end of the comment-block, whatever comes first.
 [source,cql]
 ----
 /*
 @author: Ludwig van Beethoven
 @description: Determines the cumulative duration of a list of intervals
-@comment: @@This function collapses the input intervals prior to determining the cumulative duration
-to ensure overlapping intervals do not contribute multiple times to the result@@
+@comment: This function collapses the input intervals prior to determining the cumulative duration
+to ensure overlapping intervals do not contribute multiple times to the result
  */
 define function CumulativeDuration(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ----
-
-The enclosing `@@` symbols will not be included in the value of the resulting tag.
 
 [[literals]]
 === Literals
