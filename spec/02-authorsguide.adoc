@@ -2584,7 +2584,7 @@ The running example for this walkthrough is a simplification of CMS153, version 
 
 This results in the following QDM:
 
-* *Initial Patient Population =*
+* *Initial Population =*
 ** AND: "Patient Characteristic Birthdate: birth date" >= 16 year(s) starts before start of "Measurement Period"
 ** AND: "Patient Characteristic Birthdate: birth date" < 24 year(s) starts before start of "Measurement Period"
 ** AND: "Patient Characteristic Sex: Female"
@@ -2604,7 +2604,7 @@ This results in the following QDM:
 **** OR: "Laboratory Test, Order: Lab Tests for Sexually Transmitted Infections"
 **** during "Measurement Period"
 * *Denominator =*
-** AND: "Initial Patient Population"
+** AND: "Initial Population"
 * *Denominator Exclusions =*
 ** None
 * *Numerator =*
@@ -2642,12 +2642,12 @@ For clinical quality measures, the CQL library simply provides a repository for 
 
 With that in mind, a CQL library intended to represent the logic for a CQM must expose at least the population definitions needed for the measure. In this case, we have criteria definitions for:
 
-* Initial Patient Population
+* Initial Population
 * Denominator
 
 * Numerator
 
-Looking at the Initial Patient Population, we have the demographic criteria:
+Looking at the Initial Population, we have the demographic criteria:
 
 * Patient is at least 16 years old and less than 24 years old at the start of the measurement period.
 * Patient is female.
@@ -2766,7 +2766,7 @@ Using the mapping to QUICK, the equivalent retrieve in CQL is:
 
 This query retrieves all [.id]#Condition# events for the patient with a code in the [.id]#"Other Female Reproductive Conditions"# valueset that overlap the measurement period. Note that in order to use the [.kw]#overlaps# operator, we had to construct an interval from the [.id]#onsetDateTime# and [.id]#abatementDate# elements. If the model had an interval-valued “effective time” element, we could have used that directly, rather than having to construct an interval.
 
-The result of the query is a list of conditions. However, this isn’t quite what the QDM statement is actually saying. In QDM, the statement can be read loosely as “include patients in the initial patient population that have at least one active diagnosis from the Other Female Reproductive Conditions valueset.” To express this in CQL, what we really need to ask is whether the equivalent retrieve above returns any results, which is accomplished with the [.kw]#exists# operator:
+The result of the query is a list of conditions. However, this isn’t quite what the QDM statement is actually saying. In QDM, the statement can be read loosely as “include patients in the initial population that have at least one active diagnosis from the Other Female Reproductive Conditions valueset.” To express this in CQL, what we really need to ask is whether the equivalent retrieve above returns any results, which is accomplished with the [.kw]#exists# operator:
 
 [source,cql]
 ----
@@ -2846,7 +2846,7 @@ ________________________________________________________________________________
 
 it becomes clear that the intent of the Diagnosis, Active and Laboratory Test, Order QDM criteria is to attempt to determine whether or not the patient is sexually active. Of course, we’re dealing with a simplified measure and so much of the nuance of the original measure is lost; the intent here is not to determine whether this is in fact a good way in practice to determine whether or not a patient is sexually active, but rather to show how CQL can be used to help communicate aspects of the meaning of quality logic that would otherwise be lost or obscured.
 
-With this in mind, rather than expressing the entire initial patient population as a single [.kw]#define#, we can break it up into several more understandable and more meaningful expressions:
+With this in mind, rather than expressing the entire initial population as a single [.kw]#define#, we can break it up into several more understandable and more meaningful expressions:
 
 [source,cql]
 ----
@@ -2878,7 +2878,7 @@ Note that the [.id]#InInitialPopulation# expression is returning a boolean value
 
 The next population to define is the denominator, which in our simplified expression of the measure is the same as the initial population. Because the intent of the CQL library for a quality measure is only to define the logic involved in defining the populations, it is assumed that the larger context (such as an HQMF artifact definition) is providing the overall structure, including the meaning of the various populations involved. As such, each population definition with the CQL library should include only those aspects that are unique to that population.
 
-For example, the actual criteria for the denominator is that the patient is in the initial patient population. But because that notion is already implied by the definition of a population measure (that the denominator is a subset of the initial population), the CQL for the denominator should simply be:
+For example, the actual criteria for the denominator is that the patient is in the initial population. But because that notion is already implied by the definition of a population measure (that the denominator is a subset of the initial population), the CQL for the denominator should simply be:
 
 [source,cql]
 ----
