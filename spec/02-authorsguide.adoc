@@ -848,7 +848,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ----
 
-The number portion of a quantity can be an integer or decimal, and unit portion is a (single-quoted) string representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an Integer or Decimal, and the unit portion is a (single-quoted) String representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
