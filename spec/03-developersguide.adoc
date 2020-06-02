@@ -1096,7 +1096,7 @@ The if expression allows a single condition to select between two expressions:
 if Count(X) > 0 then X[1] else 0
 ----
 
-This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to [.kw]#null#, it is interpreted as false.
+This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#.
 
 The [.kw]#case# expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
 
@@ -1122,7 +1122,7 @@ case X
 end
 ----
 
-Note that if the source expression in a selected case is [.kw]#null#, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
+Note that if the source expression in a selected case is [.kw]#null#, no condition will compare equal and the result will be the else expression. If any case item is [.kw]#null#, it will not compare equal to the comparand.
 
 Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
 
@@ -1186,7 +1186,7 @@ X is true
 X is not false
 ----
 
-The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
+The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of [.id]#Boolean# results using equality or inequality.
 
 [[string-operators]]
 == String Operators

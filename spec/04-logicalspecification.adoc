@@ -1041,7 +1041,7 @@ The idSearch attribute specifies the name of the search path to use for searchin
 ==== contextProperty
 The contextProperty attribute optionally specifies which property of the model contains the context value.
 
-Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still ned to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
 
@@ -2033,7 +2033,7 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 Indexer : BinaryExpression
 ----
 
-The Indexer operator returns the indexth element in a string or list.
+The Indexer operator returns the index^th^ element in a string or list.
 
 Indexes in strings and lists are defined to be 0-based.
 
@@ -2197,7 +2197,7 @@ Substring : OperatorExpression
 
 The Substring operator returns the string within stringToSub, starting at the 0-based index startIndex, and consisting of length characters.
 
-If length is ommitted, the substring returned starts at startIndex and continues to the end of stringToSub.
+If length is omitted, the substring returned starts at startIndex and continues to the end of stringToSub.
 
 If stringToSub or startIndex is null, or startIndex is out of range, the result is null.
 
@@ -4095,7 +4095,7 @@ ToDate : UnaryExpression
 
 The ToDate operator converts the value of its argument to a Date value.
 
-For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
+For String values, the operator expects the string to be formatted using the ISO-8601 date representation:
 
 *YYYY-MM-DD*
 

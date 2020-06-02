@@ -56,7 +56,7 @@ In addition, this specification is designed to be data model independent, meanin
 [[clinical-quality-framework-initiative]]
 == Clinical Quality Framework Initiative
 
-The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The link:https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework[Clinical Quality Framework] effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Group sin 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
+The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The link:https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework[Clinical Quality Framework] effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Groups in 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
 
 [[approach]]
 == Approach
@@ -159,7 +159,7 @@ It is important for implementers to clearly understand the underlying environmen
 [[relationship-to-other-hl7-specifications]]
 == Relationship to Other HL7 Specifications
 
-The Clinical Quality Language specification is designed as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow.
+The Clinical Quality Language specification is designed as a domain-specific language suitable for querying as well as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow.
 
 [[health-quality-measure-format-hqmf]]
 === Health Quality Measure Format (HQMF)
