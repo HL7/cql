@@ -885,14 +885,14 @@ The explicit [.kw]#convert# can be used to convert a value from one type to anot
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
 ----
 
-If the conversion cannot be performed, the result is null. For example:
+If the conversion cannot be performed, the result is [.kw]#null#. For example:
 
 [source,cql]
 ----
 convert 'Foo' to Integer
 ----
 
-will result in null. The convert syntax is equivalent to invoking one of the defined conversion operators:
+will result in [.kw]#null#. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
 [[table-3-i]]
 [cols=",",options="header",]
@@ -1096,11 +1096,11 @@ The if expression allows a single condition to select between two expressions:
 if Count(X) > 0 then X[1] else 0
 ----
 
-This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to null, it is interpreted as false.
+This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to [.kw]#null#, it is interpreted as false.
 
 The [.kw]#case# expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
 
-A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to null, it is interpreted as false. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
+A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
 
 [source,cql]
 ----
@@ -1122,7 +1122,7 @@ case X
 end
 ----
 
-Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
+Note that if the source expression in a selected case is [.kw]#null#, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
 
 Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
 
@@ -1131,7 +1131,7 @@ Both of these conditional expression constructs require run-time conditional eva
 if Count(X) > 0 then X[1] else 0
 ----
 
-Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to true. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
+Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to [.kw]#true#. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
 
 [[nullological-operators]]
 == Nullological Operators
@@ -1223,7 +1223,7 @@ To return a substring from a given string, use the [.id]#Substring# operator:
 Substring('abcdefg', 0, 3)
 ----
 
-This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.id]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
+This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.kw]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
 To concatenate strings, use the [.sym]#+# operator:
 
@@ -1498,7 +1498,7 @@ define "Gestational Age in Days at Birth":
 
 Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
 
-If the expression being defined (such as "Mother" in the previous example) is null, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
+If the expression being defined (such as "Mother" in the previous example) is [.kw]#null#, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
 
 [.note-danger]
 ____
