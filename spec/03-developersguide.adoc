@@ -815,7 +815,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Long, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: [.id]#Boolean#, [.id]#String#, [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, [.id]#Time#, [.id]#Quantity#, and [.id]#Ratio#.
 
 The type of the null selector is Any.
 
