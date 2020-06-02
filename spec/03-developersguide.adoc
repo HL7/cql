@@ -84,6 +84,7 @@ define InInitialPopulation:
 ----
 
 The contents of the resulting tag will be whatever comes after the tag definition until the next tag or the end of the comment-block, whatever comes first.
+
 [source,cql]
 ----
 /*
@@ -137,7 +138,7 @@ CQL uses standard escape sequences for string literals:
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
-Table 3-C
+Table 3‑C
 
 [[symbols]]
 === Symbols
@@ -441,7 +442,7 @@ CQL escape sequences for strings also work for identifiers:
 |*\uXXXX* |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
-Table 3-E
+Table 3‑E
 
 [[qualified-identifiers]]
 ==== Qualified Identifiers

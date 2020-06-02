@@ -82,7 +82,8 @@
 
 9.  <<03-developersguide.adoc#table-3-i,Table 3-I>>
 
-10.  <<03-developersguide.adoc#table-3-j,Table 3-J>>
+10. <<03-developersguide.adoc#table-3-j,Table 3-J>>
+
 [[logical-specification]]
 == Logical Specification
 
