@@ -1223,7 +1223,7 @@ To return a substring from a given string, use the [.id]#Substring# operator:
 Substring('abcdefg', 0, 3)
 ----
 
-This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.id]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
+This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.id]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
 To concatenate strings, use the [.sym]#+# operator:
 
