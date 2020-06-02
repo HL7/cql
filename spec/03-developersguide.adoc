@@ -83,21 +83,18 @@ define InInitialPopulation:
     and Patient.gender in "Female Administrative Sex"
 ----
 
-The contents of the resulting tag will be whatever comes after the tag definition until the end of the line, or the comment-block, whatever comes first. To support tag values that span lines, enclose the content of the tag with `@@`:
-
+The contents of the resulting tag will be whatever comes after the tag definition until the next tag or the end of the comment-block, whatever comes first.
 [source,cql]
 ----
 /*
 @author: Ludwig van Beethoven
 @description: Determines the cumulative duration of a list of intervals
-@comment: @@This function collapses the input intervals prior to determining the cumulative duration
-to ensure overlapping intervals do not contribute multiple times to the result@@
+@comment: This function collapses the input intervals prior to determining the cumulative duration
+to ensure overlapping intervals do not contribute multiple times to the result
  */
 define function CumulativeDuration(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ----
-
-The enclosing `@@` symbols will not be included in the value of the resulting tag.
 
 [[literals]]
 === Literals
@@ -125,6 +122,7 @@ Table 3‑B
 
 CQL uses standard escape sequences for string literals:
 
+[[table-3-c]]
 [cols=",",options="header",]
 |========================================================================================
 |Escape |Character
@@ -139,12 +137,14 @@ CQL uses standard escape sequences for string literals:
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
+Table 3-C
+
 [[symbols]]
 === Symbols
 
 Symbols provide structure to the grammar and allow symbolic invocation of common operators such as addition. CQL defines the following symbols:
 
-[[table-3-c]]
+[[table-3-d]]
 [cols=",",options="header",]
 |===============================================================================================
 |Symbol |Description
@@ -159,7 +159,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 |*+ - * / ^* |Arithmetic operators for performing calculations
 |===============================================================================================
 
-Table 3‑C
+Table 3‑D
 
 [[keywords]]
 === Keywords
@@ -426,7 +426,7 @@ Note that double-quoted and delimited identifiers are still case-sensitive, and 
 
 CQL escape sequences for strings also work for identifiers:
 
-
+[[table-3-e]]
 [cols=",",options="header",]
 |========================================================================================
 |Escape |Character
@@ -441,6 +441,8 @@ CQL escape sequences for strings also work for identifiers:
 |*\uXXXX* |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
+Table 3-E
+
 [[qualified-identifiers]]
 ==== Qualified Identifiers
 
@@ -451,7 +453,7 @@ Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resultin
 
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precedence in CQL from highest to lowest:
 
-[[table-3-d]]
+[[table-3-f]]
 [cols=",",options="header",]
 |==============================================================
 |Category |Operators
@@ -488,7 +490,7 @@ _precision_ [.kw]#between# +
 |*Binary List* |[.kw]#union intersect except#
 |==============================================================
 
-Table 3‑D
+Table 3‑F
 
 As with most expression languages, parentheses can always be used to force order-of-operations if the defined operator precedence does not produce the intended evaluation of a given expression.
 
@@ -642,7 +644,7 @@ The maximal supertype is System.Any. All other types derive from System.Any, mea
 
 All the system-defined types derive directly from System.Any. The primitive types and their ranges are summarized here:
 
-[[table-3-e]]
+[[table-3-g]]
 [cols=",,",options="header",]
 |=========================================================================
 |Type |Range |Step Size
@@ -656,13 +658,13 @@ All the system-defined types derive directly from System.Any. The primitive type
 |*Time* |@T00:00:00.0..@T23:59:59.999 |1 millisecond
 |=========================================================================
 
-Table 3‑E
+Table 3‑G
 
 Note that CQL supports three-valued logic, see the section on <<02-authorsguide.adoc#missing-information,Missing Information>> in the Author's Guide, as well as the section on <<Missing Information>> in the Developer's guide for more.
 
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
-[[table-3-f]]
+[[table-3-h]]
 [cols=",",options="header",]
 |==========================================================================================================
 |Type |Description
@@ -672,7 +674,7 @@ In addition, CQL defines several structured types to facilitate representation a
 |*Ratio* |Represents a ratio between two quantities
 |==========================================================================================================
 
-Table 3‑F
+Table 3‑H
 
 For more information about these types, refer to the link:09-b-cqlreference.html[CQL Reference] section on <<09-b-cqlreference.adoc#types-2,Types>>.
 
@@ -812,7 +814,7 @@ The type inference rules for the various categories of language constructs are g
 [[literals-and-selectors]]
 ==== Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: Boolean, String, Integer, Long, Decimal, Date, DateTime, Time, Quantity, and Ratio.
+The type of a literal is trivial for the primitive types and selectors: [.id]#Boolean#, [.id]#String#, [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, [.id]#Time#, [.id]#Quantity#, and [.id]#Ratio#.
 
 The type of the null selector is Any.
 
@@ -882,16 +884,16 @@ The explicit [.kw]#convert# can be used to convert a value from one type to anot
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
 ----
 
-If the conversion cannot be performed, the result is null. For example:
+If the conversion cannot be performed, the result is [.kw]#null#. For example:
 
 [source,cql]
 ----
 convert 'Foo' to Integer
 ----
 
-will result in null. The convert syntax is equivalent to invoking one of the defined conversion operators:
+will result in [.kw]#null#. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
-[[table-3-g]]
+[[table-3-i]]
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
 |Operator |Description
@@ -924,7 +926,7 @@ will result in null. The convert syntax is equivalent to invoking one of the def
 |*ToConcept(List<Code>)* |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
 |==============================================================================================================================================================================================================
 
-Table 3‑G
+Table 3‑I
 
 For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
 
@@ -953,7 +955,7 @@ ____
 
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
-[[table-3-h]]
+[[table-3-j]]
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
@@ -972,7 +974,7 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 |*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
-Table 3‑H
+Table 3‑J
 
 In addition to these conversions, note that specific data models may introduce conversions, including implicit conversions.
 
@@ -1093,11 +1095,11 @@ The if expression allows a single condition to select between two expressions:
 if Count(X) > 0 then X[1] else 0
 ----
 
-This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to null, it is interpreted as false.
+This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#.
 
 The [.kw]#case# expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
 
-A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to null, it is interpreted as false. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
+A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
 
 [source,cql]
 ----
@@ -1119,7 +1121,7 @@ case X
 end
 ----
 
-Note that if the source expression in a selected case is null, no condition will compare equal and the result will be the else expression. If any case item is null, it will not compare equal to the comparand.
+Note that if the source expression in a selected case is [.kw]#null#, no condition will compare equal and the result will be the else expression. If any case item is [.kw]#null#, it will not compare equal to the comparand.
 
 Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
 
@@ -1128,7 +1130,7 @@ Both of these conditional expression constructs require run-time conditional eva
 if Count(X) > 0 then X[1] else 0
 ----
 
-Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to true. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
+Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to [.kw]#true#. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
 
 [[nullological-operators]]
 == Nullological Operators
@@ -1183,7 +1185,7 @@ X is true
 X is not false
 ----
 
-The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of Boolean results using equality or inequality.
+The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of [.id]#Boolean# results using equality or inequality.
 
 [[string-operators]]
 == String Operators
@@ -1220,7 +1222,7 @@ To return a substring from a given string, use the [.id]#Substring# operator:
 Substring('abcdefg', 0, 3)
 ----
 
-This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.id]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
+This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.kw]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
 To concatenate strings, use the [.sym]#+# operator:
 
@@ -1495,7 +1497,7 @@ define "Gestational Age in Days at Birth":
 
 Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
 
-If the expression being defined (such as "Mother" in the previous example) is null, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
+If the expression being defined (such as "Mother" in the previous example) is [.kw]#null#, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
 
 [.note-danger]
 ____
