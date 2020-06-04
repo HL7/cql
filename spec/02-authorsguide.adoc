@@ -595,7 +595,7 @@ The [.kw]#without# clause returns only those elements from the primary source th
       and P.abatementDate after end of E.period
 ----
 
-This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the [.kw]#such that# condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of Acute Pharyngitis in this case), then that Encounter is not included in the result.
+This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of [.id]#Acute Pharyngitis# in this case), then that Encounter is not included in the result.
 
 A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
@@ -608,7 +608,7 @@ Note that the [.kw]#such that# condition of [.kw]#with# and [.kw]#without# claus
     such that P.status = 'active'
       and P.identifier = D.authorizingPrescription.identifier
 ----
-This example retrieves all dispense records for active prescriptions of Warfarin.
+This example retrieves all dispense records for active prescriptions of [.id]#Warfarin#.
 
 When multiple [.kw]#with# or [.kw]#without# clauses appear in a single query, the result will only include elements that meet the [.kw]#such that# conditions for all the relationship clauses. For example:
 
@@ -758,7 +758,7 @@ The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#fa
 
 The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of Arithmetic Operators for performing computations involving whole numbers.
 
-In addition, any operation involving [.id]#Decimals# can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
+In addition, any operation involving [.id]#Decimal# values can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
 
 [[decimal]]
 ==== Decimal
@@ -1167,14 +1167,14 @@ The result of this invocation is a list containing the [.id]#Number# elements of
 
 Because clinical information is often incomplete, CQL provides a special construct, [.kw]#null#, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the [.id]#admissionDate# element of the Encounter tuple is [.kw]#null#.
 
-In order to provide consistent behavior in the presence of missing information, CQL defines null behavior for all operations. For example, consider the following expression:
+In order to provide consistent behavior in the presence of missing information, CQL defines [.kw]#null# behavior for all operations. For example, consider the following expression:
 
 [source,cql]
 ----
 define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
 ----
 
-If the [.id]#onsetDateTime# is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
+If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
 
 For more information on missing information, see the <<03-developersguide.adoc#nullological-operators,Nullological Operators>> section.
 
@@ -1217,21 +1217,21 @@ For a description of the distinct operator, as well as other operations that can
 
 CQL supports the representation of intervals, or ranges, of values of various types. In particular, intervals of date and time values, and ranges of integers and reals.
 
-Intervals in CQL are represented by specifying the low and high points of the interval and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses. For example:
+Intervals in CQL are represented by specifying the low and high points of the [.id]#Interval# and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses. For example:
 
 [source,cql]
 ----
 Interval[3, 5)
 ----
 
-This expression results in an interval that contains the [.id]#Integers# 3 and 4, but not 5.
+This expression results in an [.id]#Interval# that contains the integers 3 and 4, but not 5.
 
 [source,cql]
 ----
 Interval[3.0, 5.0)
 ----
 
-This expression results in an interval that contains all the real numbers [.sym]#>=# 3.0 and [.sym]#<# 5.0.
+This expression results in an [.id]#Interval# that contains all the real numbers [.sym]#>=# 3.0 and [.sym]#<# 5.0.
 
 Intervals can be constructed based on any type that supports unique and ordered comparison. For example:
 
@@ -1240,7 +1240,7 @@ Intervals can be constructed based on any type that supports unique and ordered 
 Interval[@2014-01-01T00:00:00.0, @2015-01-01T00:00:00.0)
 ----
 
-This expression results in an interval that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
+This expression results in an [.id]#Interval# that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
 
 [source,cql]
 ----
@@ -1254,21 +1254,21 @@ Furthermore, take the following example:
 Interval[@2014-01-01, @2015-01-01)
 ----
 
-This expression results in an interval that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
+This expression results in an [.id]#Interval# that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
 
 [source,cql]
 ----
 Interval[@2014-01-01, @2014-12-31]
 ----
 
-Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid interval will result in a run-time error. For example:
+Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid [.id]#Interval# will result in a run-time error. For example:
 
 [source,cql]
 ----
 Interval[1, -1] // Invalid interval, this will result in an error
 ----
 
-It is valid to construct an interval with the same start and end boundary, so long as the boundaries are inclusive:
+It is valid to construct an [.id]#Interval# with the same start and end boundary, so long as the boundaries are inclusive:
 
 [source,cql]
 ----
@@ -1276,7 +1276,7 @@ Interval[1, 1] // Unit interval containing only the point 1
 Interval[1, 1) // Invalid interval, conflicting to say it both includes and excludes 1
 ----
 
-Such an interval contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval.
+Such an [.id]#Interval# contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval.
 
 [source,cql]
 ----
@@ -1319,7 +1319,7 @@ The most basic operation in CQL involves comparison of two values. This is accom
 
 Table 2‑H
 
-In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns true:
+In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns [.kw]#true#:
 
 [source,cql]
 ----
@@ -1339,14 +1339,14 @@ For [.id]#Decimal# values, equality is defined to ignore trailing zeroes.
 
 For [.id]#Date# and [.id]#Time# values, equality is defined to account for the possibility that the [.id]#Date# and [.id]#Time# values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
 
-For structured values, equality returns true if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns true:
+For structured values, equality returns [.kw]#true# if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns [.kw]#true#:
 
 [source,cql]
 ----
 Tuple { id: 'ABC-001', name: 'John Smith' } = Tuple { id: 'ABC-001', name: 'John Smith' }
 ----
 
-For lists, equality returns true if the lists contain the same elements in the same order. For example, the following lists are equal:
+For lists, equality returns [.kw]#true# if the lists contain the same elements in the same order. For example, the following lists are equal:
 
 [source,cql]
 ----
@@ -1360,16 +1360,16 @@ And the following lists are not equal:
 { 1, 2, 3, 4, 5 } != { 5, 4, 3, 2, 1 }
 ----
 
-Note that in the above example, if the second list was sorted ascending prior to the comparison, the result would be true.
+Note that in the above example, if the second list was sorted ascending prior to the comparison, the result would be [.kw]#true#.
 
-For intervals, equality returns true if the intervals use the same point type and cover the same range. For example:
+For intervals, equality returns [.kw]#true# if the intervals use the same point type and cover the same range. For example:
 
 [source,cql]
 ----
 Interval[1,5] = Interval[1,6)
 ----
 
-This returns true because the intervals cover the same set of points, 1 through 5.
+This returns [.kw]#true# because the intervals cover the same set of points, 1 through 5.
 
 The relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) can be used on types of values that have a natural ordering such as numbers, strings, and dates.
 
@@ -1399,13 +1399,13 @@ The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expre
 
 In addition, equivalence is defined more loosely than equality for some types:
 
-* For [.id]#Strings#, equivalence ignores case, locale, and whitespace.
-* For [.id]#Decimals#, equivalence means the values are the same to the precision of the least precise value being compared.
-* For quantities, equivalence means the values are the same, allowing for unit conversion.
-* For ratios, equivalence means the values represent the same ratio.
-* For [.id]#Datetimes#, [.id]#Dates#, and [.id]#Times#, equivalence is the same as equality except it will return [.kw]#false# instead of [.kw]#null# if the values being compared have differing precisions.
-* For codes, equivalence means the values have the same system and code.
-* For concepts, equivalence means the values have at least one equivalent code.
+* For [.id]#String# values, equivalence ignores case, locale, and whitespace.
+* For [.id]#Decimal# values, equivalence means the values are the same to the precision of the least precise value being compared.
+* For [.id]#Quantity# values, equivalence means the values are the same, allowing for unit conversion.
+* For [.id]#Ratio# values, equivalence means the values represent the same ratio.
+* For [.id]#DateTime#, [.id]#Date#, and [.id]#Time# values, equivalence is the same as equality except it will return [.kw]#false# instead of [.kw]#null# if the values being compared have differing precisions.
+* For [.id]#Code# values, equivalence means the values have the same system and code.
+* For [.id]#Concept# values, equivalence means the values have at least one equivalent code.
 
 For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> and <<09-b-cqlreference.adoc#equivalent,Equivalent>> in the CQL reference.
 
@@ -1647,7 +1647,7 @@ Note that due to variability in the way week numbers are calculated, weeks are n
 
 When comparing [.id]#DateTime# values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
-Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
+Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a [.id]#Decimal#. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 [[table-2-n]]
 [cols=",",options="header",]
@@ -1738,7 +1738,7 @@ Table 2‑O
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
-Note that if X is [.kw]#null#, the result is [.kw]#null#. If a [.id]#Date# and [.id]#Time# value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not [.kw]#null#.
+Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date and time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not [.kw]#null#.
 
 When extracting the [.id]#Time# from a [.id]#DateTime# value, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
@@ -1779,7 +1779,9 @@ To avoid the potential confusion of calendar-based date/time arithmetic with def
 Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
 [[table-2-p]]
+[cols=",",options="header",]
 |===
+|Unit |Description
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
 |month |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used.
 |week |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths.
@@ -1790,7 +1792,7 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |===
 
-Table 2-P
+Table 2‑P
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
@@ -2013,7 +2015,7 @@ X starts 3 days or less before or on start Y
 X starts less than 3 days on or after end Y
 ----
 
-The first expression returns true if the start of X is within the interval beginning three days before the start of Y and ending exactly on the start of Y. The second expression returns true if the start of X is within the interval beginning exactly on the end of Y and ending less than 3 days after the end of Y.
+The first expression returns [.kw]#true# if the start of X is within the interval beginning three days before the start of Y and ending exactly on the start of Y. The second expression returns [.kw]#true# if the start of X is within the interval beginning exactly on the end of Y and ending less than 3 days after the end of Y.
 
 Note that [.kw]#on or# and [.kw]#or on# can be used with both [.kw]#before# and [.kw]#after#. This flexibility is to allow for natural phrasing.
 
@@ -2230,10 +2232,10 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
-|*X [.kw]#includes# Y* |Returns true if every element in list Y is also in list X, using equality semantics
-|*X [.kw]#properly includes# Y* |Returns true if every element in list Y is also in list X and list X has more elements than list Y
-|*X [.kw]#included in# Y* |Returns true if every element in list X is also in list Y, using equality semantics
-|*X [.kw]#properly included in# Y* |Returns true if every element in list X is also in list Y, and list Y has more elements than list X
+|*X [.kw]#includes# Y* |Returns [.kw]#true# if every element in list Y is also in list X, using equality semantics
+|*X [.kw]#properly includes# Y* |Returns [.kw]#true# if every element in list Y is also in list X and list X has more elements than list Y
+|*X [.kw]#included in# Y* |Returns [.kw]#true# if every element in list X is also in list Y, using equality semantics
+|*X [.kw]#properly included in# Y* |Returns [.kw]#true# if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
 Table 2‑S
@@ -2435,8 +2437,8 @@ The following table lists the aggregate operators available in CQL:
 |*PopStdDev* |Returns the population standard deviation (square root of the population variance) of the elements in the list
 |*Variance* |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
 |*PopVariance* |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
-|*AllTrue* |Returns true if all the elements in the list are true, false otherwise
-|*AnyTrue* |Returns true if any of the elements in the list are true, false otherwise
+|*AllTrue* |Returns [.kw]#true# if all the elements in the list are [.kw]#true#, [.kw]#false# otherwise
+|*AnyTrue* |Returns [.kw]#true# if any of the elements in the list are [.kw]#true#, [.kw]#false# otherwise
 |*GeometricMean*| Return the geometric mean of the non-null elements in the list
 |*Product*| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
@@ -2472,7 +2474,7 @@ CQL supports the standard comparison operators ([.sym]#=# [.sym]#!=# [.sym]#~# [
 [.note-warning]
 ____
 
-Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return null if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
+Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return [.kw]#null# if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
 
 ____
 
@@ -2514,7 +2516,7 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
 ----
 
-These statements define the [.id]#InPharyngitis# expression as true if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
+These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
 
 [.note-info]
 ____
@@ -2523,7 +2525,7 @@ Note that valueset membership is based strictly on the definition of equivalence
 
 ____
 
-Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is true if any Code in the Concept is a member of the given valueset.
+Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is [.kw]#true# if any Code in the Concept is a member of the given valueset.
 
 A common terminological operation involves determining whether a given concept is _implied_, or _subsumed_ by another. This operation is generally referred to as _subsumption_ and although useful, is deliberately omitted from this specification. The reason for this omission different terminology systems generally provide different mechanisms for defining and interpreting subsumption relationships. As a result, specifying how that occurs is beyond the scope of CQL at this time. This is not to say that a specific library of subsumption operators could not be provided and broadly adopted and used, only that the CQL specification does not prescribe the semantics of that operation.
 
@@ -2905,7 +2907,7 @@ Note that the [.id]#R.result# [.kw]#is not null# condition is required because t
 "Laboratory Test, Result: Chlamydia Screening (result)" during "Measurement Period"
 ----
 
-The [.id]#(result)# syntax indicates that the item should only be included if there is some value present for the result attribute. The equivalent expression in CQL is the null test.
+The [.id]#(result)# syntax indicates that the item should only be included if there is some value present for the result attribute. The equivalent expression in CQL is the [.kw]#null# test.
 
 Finally, putting it all together, we have a complete, albeit simplified, definition of the logic involved in defining the population criteria for a measure:
 
