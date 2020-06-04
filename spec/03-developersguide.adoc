@@ -69,7 +69,7 @@ ____
 Comment tags are a new feature of CQL 1.5, and are being ballot trial-use
 ____
 
-Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, following by a valid, unquoted identifier, followed by a colon (`:`). For example:
+Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, followed by a colon (`:`). For example:
 
 [source,cql]
 ----
