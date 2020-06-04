@@ -46,7 +46,7 @@ Libraries can contain any or all of the following constructs:
 |*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
 |*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
 |*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context* |Specifies the overall context, such as Patient or Practitioner, for the statements that follow.
+|*context* |Specifies the overall context, such as Patient or Practitioner, to be used in the statements that are declared in the library. Note that a library may have multiple context declarations, and that each context declaration establishes the context for the statements that follow, until the next context declaration is encountered. However, best practice is that each library should only contain a single context declaration as the first statement in the library.
 |*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
 |*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
