@@ -1066,8 +1066,7 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version 
   codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
 ----
 
-When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, then some additional aspect is required to ensure uniqueness of the names within the CQL library.
-
+When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, in which case some additional aspect is required to ensure uniqueness of the names within the CQL library.
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
 
 [[codesystems]]
