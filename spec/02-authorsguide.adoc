@@ -763,7 +763,7 @@ In addition, any operation involving [.id]#Decimal# values can be used with valu
 [[decimal]]
 ==== Decimal
 
-The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of Arithmetic Operators for performing computations involving real numbers.
+The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
 
 [[string]]
 ==== String
