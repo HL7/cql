@@ -599,7 +599,7 @@ This query is the same as the previous example, except that only encounters that
 
 A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
-Note that the [.kw]#such that# condition of [.kw]#with# and [.kw]#without# clauses need not be based on timing relationships, it may contain any arbitrary expression, so long as the overall result is boolean-valued. For example:
+The [.kw]#such that# conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 [source,cql]
 ----
