@@ -500,7 +500,7 @@ Note that because CQL uses three-valued logic, the result of evaluating any give
 [[shaping]]
 === Shaping
 
-The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios involve the need to extract only specific elements or to perform computations on the data involved in each element. The [.kw]#return# clause enables this type of query.
+The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The [.kw]#return# clause enables this type of query.
 
 For example:
 
