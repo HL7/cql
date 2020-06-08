@@ -1072,7 +1072,7 @@ See the <<Terminology Operators>> section for more information on the use of val
 [[codesystems]]
 ==== Codesystems
 
-In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<valuesets>> section for an example codesystems declaration.
+In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<Valuesets>> section for an example of a codesystems declaration.
 
 For example:
 
