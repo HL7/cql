@@ -1615,6 +1615,18 @@ define "Confirmed and Active or Recurring Diabetes Conditions":
   Conditions.confirmed().activeOrRecurring()
 ----
 
+A _fluent_ function may also take multiple arguments where the first argument to the function will be provided by the value of the left-side of the dot-invocation at that point and the second argument can still be passed in. For example:
+
+[source,cql]
+----
+define fluent function byClinicalStatus(Conditions List<Condition>, Concept status):
+  Conditions C where C.clinicalStatus ~ status
+
+// usage
+define "Active Diabetes Conditions":
+  DiabetesConditions.byClinicalStatus("Condition Active")
+----
+
 [.note-info]
 ____
 Note that the examples in this section are adapted from the link:https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178[CDS Connect FHIR Commons] library.
