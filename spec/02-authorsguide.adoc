@@ -626,7 +626,7 @@ This example retrieves all the elements returned by the expression [.id]#Measure
 [[full-query]]
 === Full Query
 
-The clauses described in the previous section must appear in the correct order to specify a valid CQL query. The general order of clauses is:
+The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
 
 [source,cql]
 ----
@@ -693,7 +693,7 @@ CQL supports several categories of values:
 
 The result of evaluating any expression in CQL is a value of some type. For example, the expression [.lit]#5# results in the value [.lit]#5# of type [.id]#Integer#. CQL is a _strongly-typed_ language, meaning that every value is of some type, and that every operation expects arguments of a particular type.
 
-As a result, any given expression of CQL can be verified as meaningful, at least in terms of the operations performed. For example, consider the following expression:
+As a result, any given expression of CQL can be verified as meaningful or be determined meaningless, at least in terms of the operations performed. For example, consider the following expression:
 
 [source,cql]
 ----
