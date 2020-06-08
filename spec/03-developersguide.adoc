@@ -1520,8 +1520,8 @@ CQL provides support for a limited class of recursive problems using the _aggreg
 [source,cql]
 ----
 define function Factorial(X Integer):
-  (expand Interval[1, X]) R
-    aggregate T: Coalesce(T, 1) * R
+  (expand Interval[1, X]) Num
+    aggregate Result starting 1: Result * Num 
 ----
 
 In this example, the `expand` operator is used to construct a list of integers from `1` to `X`, and then the `aggregate` clause is used to calculate the factorial, repeatedly multiplying the current result by the next integer in the list.
