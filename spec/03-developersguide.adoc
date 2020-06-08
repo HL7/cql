@@ -46,7 +46,7 @@ CQL defines two styles of comments, _single-line_, and _multi-line_. A single-li
 
 [source,cql]
 ----
-define Foo: 1 + 1 // This is a single-line comment
+define "Foo": 1 + 1 // This is a single-line comment
 ----
 
 To begin a multi-line comment, the typical forward slash-asterisk token is used. The comment is closed with an asterisk-forward slash, and everything enclosed is ignored:
@@ -77,7 +77,7 @@ Within multi-line comments, CQL supports the ability to define _tags_ that will 
 @author: Frederic Chopin
 @description: Defines whether the patient is included in the initial population
 */
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -93,7 +93,7 @@ The contents of the resulting tag will be whatever comes after the tag definitio
 @comment: This function collapses the input intervals prior to determining the cumulative duration
 to ensure overlapping intervals do not contribute multiple times to the result
  */
-define function CumulativeDuration(Intervals List<Interval<DateTime>>):
+define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ----
 
@@ -504,7 +504,7 @@ To encourage consistency and reduce potential confusion, CQL is a case-sensitive
 
 [source,cql]
 ----
-Define Foo: 1 + 1
+Define "Foo": 1 + 1
 ----
 
 The declaration is illegal because the parser will not recognize [.kw]#Define# as a keyword.
@@ -528,7 +528,7 @@ Because the library identifier and its qualifiers are CQL identifiers, they may 
 ----
 library Global.Common
 
-define function Foo(A Integer, B Integer):
+define function "Foo"(A Integer, B Integer):
   A + B
 ----
 
@@ -540,7 +540,7 @@ library UsingCommon
 
 include Global.Common
 
-define function Bar(A Integer, B Integer):
+define function "Bar"(A Integer, B Integer):
   Common.Foo(A, B)
 ----
 
@@ -983,7 +983,7 @@ Although implicit conversions can be performed using the explicit convert, the l
 
 [source,cql]
 ----
-define MixedMultiply: 1 * 1.0
+define "MixedMultiply": 1 * 1.0
 ----
 
 The type of the literal [.lit]#1# is [.id]#Integer#, and the type of the literal [.lit]#1.0# is [.id]#Decimal#. To infer the type of the expression correctly, the language will implicitly convert the type of the [.lit]#1# to [.id]#Decimal# by inserting a [.id]#ToDecimal# invocation. The multiplication is then performed on two [.id]#Decimals#, and the result type is [.id]#Decimal#.
@@ -992,7 +992,7 @@ In addition, CQL defines implicit conversion of a named structured type to its e
 
 [source,cql]
 ----
-define TupleComparison: Person { Name: 'Joe', DOB: @1970-01-01 } = Tuple { Name: 'Joe', DOB: @1970-01-01 }
+define "TupleComparison": Person { Name: 'Joe', DOB: @1970-01-01 } = Tuple { Name: 'Joe', DOB: @1970-01-01 }
 ----
 
 In this case, the structured value will be implicitly converted to the equivalent tuple type, and the comparison will evaluate to true.
@@ -1001,8 +1001,8 @@ Note that the opposite implicit conversion, from a tuple to a named structured t
 
 [source,cql]
 ----
-define TupleExpression: Tuple { Name: 'Joe', DOB: @1970-01-01 }
-define TupleConvert: convert TupleExpression to Person
+define "TupleExpression": Tuple { Name: 'Joe', DOB: @1970-01-01 }
+define "TupleConvert": convert TupleExpression to Person
 ----
 
 The conversion from a tuple to a structured type requires that the set of elements in the tuple type be the same set or a subset of the elements in the structured type.
@@ -1014,8 +1014,8 @@ Casting is the operation of treating a value of some base type as a more specifi
 
 [source,cql]
 ----
-define AllProcedures: [Procedure]
-define ImagingProcedures:
+define "AllProcedures": [Procedure]
+define "ImagingProcedures":
   AllProcedures P
     where P is ImagingProcedure
     return P as ImagingProcedure
@@ -1029,7 +1029,7 @@ In addition, CQL supports a _strict_ cast, which has the same semantics as casti
 
 [source,cql]
 ----
-define StrictCast: cast First(Procedures) as ImagingProcedure
+define "StrictCast": cast First(Procedures) as ImagingProcedure
 ----
 
 [[implicit-casting]]
@@ -1039,14 +1039,14 @@ CQL also supports the notion of _implicit casting_ to prevent the need to cast a
 
 [source,cql]
 ----
-define ImplicitCast: 5 * null
+define "ImplicitCast": 5 * null
 ----
 
 The type of the first argument to the multiplication is [.id]#Integer#, and the type of the second argument is [.id]#Any#, an untyped [.kw]#null# literal. But multipication of [.id]#Integer# and [.id]#Any# is not defined and [.id]#Any# is a supertype of [.id]#Integer#, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
 [source,cql]
 ----
-define ImplicitCast: 5 * (null as Integer)
+define "ImplicitCast": 5 * (null as Integer)
 ----
 
 To avoid the need for this explicit cast, CQL implicitly casts the [.id]#Any# to [.id]#Integer#.
@@ -1455,10 +1455,10 @@ The above example also illustrates that queries need not be based on lists of tu
 
 [source,cql]
 ----
-define FirstInpatientEncounter:
+define "FirstInpatientEncounter":
   First([Encounter] E where E.class = 'inpatient' sort by period.start desc)
 
-define RedefinedEncounter:
+define "RedefinedEncounter":
   FirstInpatientEncounter E
     return Tuple {
       type: E.type,
@@ -1519,7 +1519,7 @@ CQL provides support for a limited class of recursive problems using the _aggreg
 
 [source,cql]
 ----
-define function Factorial(X Integer):
+define function "Factorial"(X Integer):
   (expand Interval[1, X]) R
     aggregate T: Coalesce(T, 1) * R
 ----
@@ -1530,7 +1530,7 @@ The `aggregate` clause may be used in any query instead of a `return` clause, an
 
 [source, cql]
 ----
-define RolledOutIntervals:
+define "RolledOutIntervals":
   MedicationRequestIntervals M
     aggregate R starting (null as List<Interval<DateTime>>): R union ({
       M X
@@ -1551,7 +1551,7 @@ CQL provides for the definition of functions. A function in CQL is a named expre
 
 [source,cql]
 ----
-define function CumulativeDuration(Intervals List<Interval<DateTime>>):
+define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ----
 
@@ -1559,8 +1559,8 @@ This statement defines a function named [.id]#CumulativeDuration# that takes a s
 
 [source,cql]
 ----
-define Encounters: [Encounter: "Inpatient Visit"]
-define CD: CumulativeDuration(Encounters E return E.period)
+define "Encounters": [Encounter: "Inpatient Visit"]
+define "CD": CumulativeDuration(Encounters E return E.period)
 ----
 
 These statements establish an expression named CD that computes the cumulative duration of inpatient encounters for a patient.
@@ -1569,8 +1569,8 @@ Within the library in which it is defined, a function can be invoked directly by
 
 [source,cql]
 ----
-define Encounters: [Encounter: "Inpatient Visit"]
-define CD: Core.CumulativeDuration(Encounters E return E.period)
+define "Encounters": [Encounter: "Inpatient Visit"]
+define "CD": Core.CumulativeDuration(Encounters E return E.period)
 ----
 
 In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
@@ -1590,14 +1590,14 @@ Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as p
 
 [source,cql]
 ----
-define fluent function confirmed(Conditions List<Condition>):
+define fluent function "confirmed"(Conditions List<Condition>):
   Conditions C where C.verificationStatus ~ "Condition Confirmed"
 
-define fluent function active(Conditions List<Condition>):
+define fluent function "active"(Conditions List<Condition>):
   Conditions C where C.clinicalStatus ~ "Condition Active"
     and C.abatement is null
 
-define fluent function activeOrRecurring(Conditions List<Condition>):
+define fluent function "activeOrRecurring"(Conditions List<Condition>):
   Conditions C
     where C.clinicalStatus ~ "Condition Active"
       or C.clinicalStatus ~ "Condition Recurrence"
@@ -1627,7 +1627,7 @@ Functions can also be defined as _external_ to support the ability to import fun
 
 [source,cql]
 ----
-define function IsSubsumedBy(code Code, subsumingCode Code) returns Boolean : external
+define function "IsSubsumedBy"(code Code, subsumingCode Code) returns Boolean : external
 ----
 
 CQL does not prescribe the details for how external functions are resolved or implemented, only that an implementation must accept the arguments as specified by the signature, and is expected to return a value of the declared return type.

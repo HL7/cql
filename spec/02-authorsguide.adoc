@@ -105,9 +105,9 @@ Components defined in the CMS153_Common library, version 2, can now be reference
 
 [source,cql]
 ----
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity)
-    or exists (Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity")
+    or exists (Common"LaboratoryTestsIndicatingSexualActivity")
 ----
 
 This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library using the local alias [.id]#Common#.
@@ -125,9 +125,9 @@ The above expression would need to be:
 
 [source,cql]
 ----
-define SexuallyActive:
-  exists (CMS153_Common.ConditionsIndicatingSexualActivity)
-    or exists (CMS153_Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (CMS153_Common"ConditionsIndicatingSexualActivity")
+    or exists (CMS153_Common"LaboratoryTestsIndicatingSexualActivity")
 ----
 
 [[terminology]]
@@ -150,7 +150,7 @@ This valueset definition can then be used within the library wherever a valueset
 
 [source,cql]
 ----
-define PatientIsFemale: Patient.gender in "Female Administrative Sex"
+define "PatientIsFemale": Patient.gender in "Female Administrative Sex"
 ----
 
 The above example defines the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
@@ -199,7 +199,7 @@ This parameter definition can now be referenced anywhere within the CQL library:
 
 [source,cql]
 ----
-define Patient16To23:
+define "Patient16To23":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ----
@@ -249,7 +249,7 @@ When no context is specified in the library, and the model has not declared a de
 ----
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -267,7 +267,7 @@ As another example, consider a [.id]#Practitioner# context:
 ----
 context Practitioner
 
-define Encounters:
+define "Encounters":
   ["Encounter": "Inpatient Encounter"]
 ----
 
@@ -282,7 +282,7 @@ The following example illustrates a simple define statement:
 
 [source,cql]
 ----
-define InpatientEncounters:
+define "InpatientEncounters":
   [Encounter: "Inpatient"] E
     where E.length <= 120 days
       and E.period ends during MeasurementPeriod
@@ -407,12 +407,12 @@ If the result type of an expression in a specific context is not a list, the res
 ----
 context Patient
 
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 
 context Unfiltered
 
-define InitialPopulationCount:
+define "InitialPopulationCount":
   Count(InInitialPopulation IP where IP is true)
 ----
 
@@ -1031,7 +1031,7 @@ These valueset identifiers can then be used throughout the library. For example:
 
 [source,cql]
 ----
-define Pharyngitis: [Condition: "Acute Pharyngitis"]
+define "Pharyngitis": [Condition: "Acute Pharyngitis"]
 ----
 
 This example defines [.id]#Pharyngitis# as any Condition where the code is in the [.id]#"Acute Pharyngitis"# valueset.
@@ -1096,7 +1096,7 @@ For example, the following expression retrieves the first Condition with a code 
 
 [source,cql]
 ----
-define FirstPharyngitis:
+define "FirstPharyngitis":
   First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
 ----
 
@@ -1104,21 +1104,21 @@ The values of the elements of a tuple can be accessed using a dot qualifier ([.s
 
 [source,cql]
 ----
-define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
+define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 ----
 
 Tuples can also be constructed directly using a tuple selector:
 
 [source,cql]
 ----
-define Info: Tuple { Name: 'Patrick', DOB: @2014-01-01 }
+define "Info": Tuple { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
 If the tuple is of a specific type, the name of the type can be used instead of the Tuple keyword:
 
 [source,cql]
 ----
-define PatientExpression: Patient { Name: 'Patrick', DOB: @2014-01-01 }
+define "PatientExpression": Patient { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
 If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be [.kw]#null#.
@@ -1127,7 +1127,7 @@ Note that tuples can contain other tuples, as well as lists:
 
 [source,cql]
 ----
-define Info:
+define "Info":
   Tuple {
     Name: 'Patrick',
     DOB: @2014-01-01,
@@ -1170,7 +1170,7 @@ In order to provide consistent behavior in the presence of missing information, 
 
 [source,cql]
 ----
-define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
+define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 ----
 
 If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
@@ -1390,8 +1390,8 @@ For all the comparison operators, the result type of the operation is [.id]#Bool
 
 [source,cql]
 ----
-define NullEqualityTest: 1 = null
-define NullEquivalenceTest: 1 ~ null
+define "NullEqualityTest": 1 = null
+define "NullEquivalenceTest": 1 ~ null
 ----
 
 The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
@@ -2456,14 +2456,14 @@ All quantities in CQL have _unit_ and _value_ components, which can be accessed 
 
 [source,cql]
 ----
-define IsTall: height.units = 'm' and height.value > 2
+define "IsTall": height.units = 'm' and height.value > 2
 ----
 
 However, because CQL supports operations on quantities directly, this expression could be simplified to:
 
 [source,cql]
 ----
-define IsTall: height > 2 'm'
+define "IsTall": height > 2 'm'
 ----
 
 This formulation also has the advantage of allowing for the case that the actual value of [.id]#height# is expressed in inches.
@@ -2484,17 +2484,17 @@ All ratios in CQL have _numerator_ and _denominator_ components, which can be ac
 
 [source,cql]
 ----
-define TitreRatio: 1:128
-define TitreNumerator: TitreRatio.numerator // 1
+define "TitreRatio": 1:128
+define "TitreNumerator": TitreRatio.numerator // 1
 ----
 
 CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 [source,cql]
 ----
-define RatioEqualTrue: 1:100 = 1:100
-define RatioEqualFalse: 1:100 = 10:1000
-define RatioEquivalentTrue: 1:100 ~ 10:1000
+define "RatioEqualTrue": 1:100 = 1:100
+define "RatioEqualFalse": 1:100 = 10:1000
+define "RatioEquivalentTrue": 1:100 ~ 10:1000
 ----
 
 [.note-warning]
@@ -2512,7 +2512,7 @@ In addition to providing first-class _valueset_ and _codesystem_ constructs, CQL
 [source,cql]
 ----
 valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
-define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
+define "InPharyngitis": SomeCodeValue in "Acute Pharyngitis"
 ----
 
 These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
@@ -2671,7 +2671,7 @@ In addition, to allow this criteria to be referenced both within the CQL library
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 ----
 
@@ -2679,7 +2679,7 @@ Because the quality measure is defined over a measurement period, and many, if n
 
 [source,cql]
 ----
-define MeasurementPeriod: Interval[
+define "MeasurementPeriod": Interval[
   @2013-01-01T00:00:00.0,
   @2014-01-01T00:00:00.0
 )
@@ -2689,7 +2689,7 @@ This establishes [.id]#MeasurementPeriod# as the interval beginning precisely at
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ----
@@ -2737,7 +2737,7 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 
 context Patient
 
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2816,7 +2816,7 @@ And finally, translating the rest of the statements allows us to express the ent
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2851,12 +2851,12 @@ With this in mind, rather than expressing the entire initial population as a sin
 
 [source,cql]
 ----
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
 
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"] C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   or exists ([Condition: "Genital Herpes"] C
@@ -2869,7 +2869,7 @@ define SexuallyActive:
       during MeasurementPeriod)
   ...
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 ----
 
@@ -2883,7 +2883,7 @@ For example, the actual criteria for the denominator is that the patient is in t
 
 [source,cql]
 ----
-define InDenominator: true
+define "InDenominator": true
 ----
 
 This approach to defining the criteria is more flexible from the perspective of actually evaluating a quality measure, but it may be somewhat confusing when looking at the CQL in isolation.
@@ -2894,7 +2894,7 @@ Following this approach then, we express the numerator as:
 
 [source,cql]
 ----
-define InNumerator:
+define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
   where R.issued during MeasurementPeriod and R.result is not null)
 ----
@@ -2925,12 +2925,12 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
 
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"] C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   or exists ([Condition: "Genital Herpes"] C
@@ -2943,12 +2943,12 @@ define SexuallyActive:
       during MeasurementPeriod)
   ...
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 
-define InDenominator: true
+define "InDenominator": true
 
-define InNumerator:
+define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during MeasurementPeriod and R.result is not null)
 ----
@@ -2996,7 +2996,7 @@ For the [.id]#Patient16To23AndFemale# criteria, we are then simply concerned wit
 
 [source,cql]
 ----
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in "Female Administrative Sex"
 ----
@@ -3005,7 +3005,7 @@ Similarly for the [.id]#SexuallyActive# criteria, we remove the relationship to 
 
 [source,cql]
 ----
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"])
     or exists ([Condition: "Genital Herpes"])
     or exists ([Condition: "Genococcal Infections and Venereal Diseases"])
@@ -3042,7 +3042,7 @@ We combine those into a [.id]#NoScreening# criteria:
 
 [source,cql]
 ----
-define NoScreening:
+define "NoScreening":
   not exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during Interval[Today() - 1 years, Today()]
       and R.result is not null)
@@ -3055,7 +3055,7 @@ And finally, we provide an overall condition that indicates whether or not this 
 
 [source,cql]
 ----
-define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
+define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the [.id]#NeedScreening# expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
@@ -3064,7 +3064,7 @@ In addition, this library should include the proposal aspect of the intervention
 
 [source,cql]
 ----
-define ChlamydiaScreeningRequest: ProcedureRequest {
+define "ChlamydiaScreeningRequest": ProcedureRequest {
   type: Code '442487003' from "SNOMED-CT"
   display 'Screening for Chlamydia trachomatis (procedure)',
   status: 'proposed'
@@ -3097,17 +3097,17 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 
 context Patient
 
-define ConditionsIndicatingSexualActivity:
+define "ConditionsIndicatingSexualActivity":
   [Condition: "Other Female Reproductive Conditions"]
     union [Condition: "Genital Herpes"]
     union ...
 
-define LaboratoryTestsIndicatingSexualActivity:
+define "LaboratoryTestsIndicatingSexualActivity":
   [DiagnosticOrder: "Pregnancy Test"]
     union [DiagnosticOrder: "Pap"]
     union ...
 
-define ResultsPresentForChlamydiaScreening:
+define "ResultsPresentForChlamydiaScreening":
   [DiagnosticReport: "Chlamydia Screening"] R where R.result is not null
 ----
 
@@ -3128,25 +3128,25 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in Common."Female Administrative Sex"
 
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity C
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity" C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
-  or exists (Common.LaboratoryTestsIndicatingSexualActivity R
+  or exists (Common"LaboratoryTestsIndicatingSexualActivity" R
     where R.issued during MeasurementPeriod)
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 
-define InDenominator:
+define "InDenominator":
   true
 
-define InNumerator:
-  exists (Common.ResultsPresentForChlamydiaScreening S
+define "InNumerator":
+  exists (Common"ResultsPresentForChlamydiaScreening" S
     where S.issued during MeasurementPeriod)
 ----
 
@@ -3164,21 +3164,21 @@ valueset "Reason for not performing Chlamydia Screening": 'TBD'
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in Common."Female Administrative Sex"
 
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity)
-  or exists (Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity")
+  or exists (Common"LaboratoryTestsIndicatingSexualActivity")
 
-define NoScreening:
-  not exists (Common.ResultsPresentForChlamydiaScreening S
+define "NoScreening":
+  not exists (Common"ResultsPresentForChlamydiaScreening" S
     where S.issued during Interval[Today() - 1 years, Today()])
-  and not exists ([ProcedureRequest: Common."Chlamydia Screening"] R
+  and not exists ([ProcedureRequest: Common"Chlamydia Screening"] R
     where R.orderedOn same day or after Today()
 
-define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
+define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 In addition to sharing between quality measures and clinical decision support artifacts, the use of common libraries will allow the same logic to be shared by multiple quality measures or decision support artifacts. For example, a set of artifacts for measurement and improvement of the treatment of diabetes could all use a common library that provides base definitions for determining when a patient is part of the population of interest.

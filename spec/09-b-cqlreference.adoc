@@ -402,10 +402,10 @@ The following examples illustrate the behavior of the [.kw]#and# operator:
 
 [source,cql]
 ----
-define IsTrue: true and true
-define IsFalse: true and false
-define IsAlsoFalse: false and null
-define IsNull: true and null
+define "IsTrue": true and true
+define "IsFalse": true and false
+define "IsAlsoFalse": false and null
+define "IsNull": true and null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -445,10 +445,10 @@ The following examples illustrate the behavior of the [.kw]#implies# operator:
 
 [source,cql]
 ----
-define IsTrue: false implies false
-define IsAlsoTrue: false implies null
-define IsFalse: true implies false
-define IsNull: true implies null
+define "IsTrue": false implies false
+define "IsAlsoTrue": false implies null
+define "IsFalse": true implies false
+define "IsNull": true implies null
 ----
 
 [[not]]
@@ -482,9 +482,9 @@ The following examples illustrate the behavior of the [.kw]#not# operator:
 
 [source,cql]
 ----
-define IsTrue: not false
-define IsFalse: not true
-define IsNull: not null
+define "IsTrue": not false
+define "IsFalse": not true
+define "IsNull": not null
 ----
 
 [[or]]
@@ -520,10 +520,10 @@ The following examples illustrate the behavior of the [.kw]#or# operator:
 
 [source,cql]
 ----
-define IsTrue: true or false
-define IsAlsoTrue: true or null
-define IsFalse: false or false
-define IsNull: false or null
+define "IsTrue": true or false
+define "IsAlsoTrue": true or null
+define "IsFalse": false or false
+define "IsNull": false or null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -559,10 +559,10 @@ The following examples illustrate the behavior of the [.kw]#xor# operator:
 
 [source,cql]
 ----
-define IsTrue: true xor false
-define IsAlsoTrue: false xor true
-define IsFalse: true xor true
-define IsNull: true xor null
+define "IsTrue": true xor false
+define "IsAlsoTrue": false xor true
+define "IsFalse": true xor true
+define "IsNull": true xor null
 ----
 
 [[type-operators-1]]
@@ -593,14 +593,14 @@ The following examples illustrate the use of the [.kw]#as# operator.
 
 [source,cql]
 ----
-define AllProcedures: [Procedure]
+define "AllProcedures": [Procedure]
 
-define ImagingProcedures:
+define "ImagingProcedures":
   AllProcedures P
     where P is ImagingProcedure
     return P as ImagingProcedure
 
-define RuntimeError:
+define "RuntimeError":
   ImagingProcedures P
     return cast P as Observation
 ----
@@ -712,8 +712,8 @@ The following examples illustrate the behavior of the [.kw]#is# operator:
 
 [source,cql]
 ----
-define IsTrue: 5 is Integer
-define IsFalse: '5' is Integer
+define "IsTrue": 5 is Integer
+define "IsFalse": '5' is Integer
 ----
 
 [[canconvertquantity]]
@@ -763,8 +763,8 @@ If either argument is null, the result is null.
 
 [source,cql]
 ----
-define ConvertQuantity: ConvertQuantity(5 'mg', 'g')
-define ConvertSyntax: convert 5 'mg' to 'g'
+define "ConvertQuantity": ConvertQuantity(5 'mg', 'g')
+define "ConvertSyntax": convert 5 'mg' to 'g'
 ----
 
 [[convertstoboolean]]
@@ -1009,9 +1009,9 @@ The following examples illustrate the behavior of the [.id]#ToBoolean# operator:
 
 [source,cql]
 ----
-define IsTrue: ToBoolean('y')
-define IsFalse: ToBoolean('0')
-define IsNull: ToBoolean('falsetto')
+define "IsTrue": ToBoolean('y')
+define "IsFalse": ToBoolean('0')
+define "IsNull": ToBoolean('falsetto')
 ----
 
 [[toconcept]]
@@ -1037,8 +1037,8 @@ The following examples illustrate the behavior of the [.id]#ToConcept# operator:
 
 [source,cql]
 ----
-define IsValid: ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
-define IsNull: ToConcept(null as Code)
+define "IsValid": ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
+define "IsNull": ToConcept(null as Code)
 ----
 
 [[todate]]
@@ -1153,8 +1153,8 @@ The following examples illustrate the behavior of the [.id]#ToDecimal# operator:
 
 [source,cql]
 ----
-define IsValid: ToDecimal('-0.1')
-define IsNull: ToDecimal('+-0.1')
+define "IsValid": ToDecimal('-0.1')
+define "IsNull": ToDecimal('+-0.1')
 ----
 
 [[tolong]]
@@ -1192,8 +1192,8 @@ The following examples illustrate the behavior of the [.id]#ToLong# operator:
 
 [source,cql]
 ----
-define IsValid: ToLong('-1')
-define IsNull: ToLong('one')
+define "IsValid": ToLong('-1')
+define "IsNull": ToLong('one')
 ----
 
 [[tointeger]]
@@ -1234,8 +1234,8 @@ The following examples illustrate the behavior of the [.id]#ToInteger# operator:
 
 [source,cql]
 ----
-define IsValid: ToInteger('-1')
-define IsNull: ToInteger('one')
+define "IsValid": ToInteger('-1')
+define "IsNull": ToInteger('one')
 ----
 
 [[toquantity]]
@@ -1277,10 +1277,10 @@ The following examples illustrate the behavior of the [.id]#ToQuantity# operator
 
 [source,cql]
 ----
-define DecimalOverload: ToQuantity(0.1) // 0.1 '1'
-define IntegerOverload: ToQuantity(13) // 13 '1'
-define StringOverload: ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
-define IsNull: ToQuantity('444 \'cm')
+define "DecimalOverload": ToQuantity(0.1) // 0.1 '1'
+define "IntegerOverload": ToQuantity(13) // 13 '1'
+define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
+define "IsNull": ToQuantity('444 \'cm')
 ----
 
 [[toratio]]
@@ -1309,8 +1309,8 @@ The following examples illustrate the behavior of the [.id]#ToRatio# operator:
 
 [source,cql]
 ----
-define IsValid: ToRatio('1.0 \'mg\':2.0 \'mg\'')
-define IsNull: ToRatio('1.0 \'mg\';2.0 \'mg\'')
+define "IsValid": ToRatio('1.0 \'mg\':2.0 \'mg\'')
+define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ----
 
 [[tostring]]
@@ -1367,16 +1367,16 @@ The following examples illustrate the behavior of the [.id]#ToString# operator:
 
 [source,cql]
 ----
-define BooleanOverload: ToString(true)
-define IntegerOverload: ToString(13)
-define LongOverload: ToString(10000L)
-define DecimalOverload: ToString(0.1)
-define QuantityOverload: ToString(-0.1 'mg')
-define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
-define DateOverload: ToString(@2012-01-01)
-define DateTimeOverload: ToString(@2012-01-01T12:30:00.000-05:00)
-define TimeOverload: ToString(@T12:30:00.000)
-define IsNull: ToString(null as Integer)
+define "BooleanOverload": ToString(true)
+define "IntegerOverload": ToString(13)
+define "LongOverload": ToString(10000L)
+define "DecimalOverload": ToString(0.1)
+define "QuantityOverload": ToString(-0.1 'mg')
+define "RatioOverload": ToString(-0.1 'mg':0.1 'mg')
+define "DateOverload": ToString(@2012-01-01)
+define "DateTimeOverload": ToString(@2012-01-01T12:30:00.000-05:00)
+define "TimeOverload": ToString(@T12:30:00.000)
+define "IsNull": ToString(null as Integer)
 ----
 
 [[totime]]
@@ -1439,9 +1439,9 @@ The following examples illustrate the behavior of the [.id]#Coalesce# operator:
 
 [source,cql]
 ----
-define Coalesce15: Coalesce(null, 15, null)
-define IsNull: Coalesce({ null, null, null })
-define CoalesceError: Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
+define "Coalesce15": Coalesce(null, 15, null)
+define "IsNull": Coalesce({ null, null, null })
+define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
 ----
 
 [[isnull]]
@@ -1462,8 +1462,8 @@ The following examples illustrate the behavior of the [.kw]#is null# operator:
 
 [source,cql]
 ----
-define IsTrue: null is null
-define IsFalse: true is null
+define "IsTrue": null is null
+define "IsFalse": true is null
 ----
 
 [[isfalse]]
@@ -1484,8 +1484,8 @@ The following examples illustrate the behavior of the [.kw]#is false# operator:
 
 [source,cql]
 ----
-define IsFalseIsTrue: false is false
-define IsFalseIsFalse: null is false
+define "IsFalseIsTrue": false is false
+define "IsFalseIsFalse": null is false
 ----
 
 [[istrue]]
@@ -1506,8 +1506,8 @@ The following examples illustrate the behavior of the [.kw]#is true# operator:
 
 [source,cql]
 ----
-define IsTrueIsTrue: true is true
-define IsTrueIsFalse: false is true
+define "IsTrueIsTrue": true is true
+define "IsTrueIsFalse": false is true
 ----
 
 [[comparison-operators-4]]
@@ -1545,7 +1545,7 @@ For comparisons involving Date, DateTime, or Time values with imprecision, note 
 
 [source,cql]
 ----
-define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
+define "DateTimeBetweenIsNull": @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1558,10 +1558,10 @@ The following examples illustrate the behavior of the [.kw]#between# operator:
 
 [source,cql]
 ----
-define IntegerBetweenIsTrue: 4 between 2 and 6
-define LongBetweenIsTrue: 4L between 2L and 6L
-define DecimalBetweenIsFalse: 3.5 between 3.6 and 4.8
-define QuantityBetweenIsNull: 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
+define "IntegerBetweenIsTrue": 4 between 2 and 6
+define "LongBetweenIsTrue": 4L between 2L and 6L
+define "DecimalBetweenIsFalse": 3.5 between 3.6 and 4.8
+define "QuantityBetweenIsNull": 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 ----
 
 [[equal]]
@@ -1602,16 +1602,16 @@ The following examples illustrate the behavior of the _equal_ operator:
 
 [source,cql]
 ----
-define IntegerEqualIsTrue: 4 = (2 + 2)
-define LongEqualIsTrue: 4L = (2L + 2L)
-define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
-define StringEqualIsFalse: 'John Doe' = 'john doe'
-define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
-define RatioEqualIsTrue: 1:8 = 1:8
-define RatioEqualIsFalse: 1:8 = 2:16
-define ListEqualIsTrue: { null, 1, 2, 3 } = { null, 1, 2, 3 }
-define DateTimeEqualIsNull: @2012-01-01 = @2012-01-01T12
-define NullEqualIsNull: null = null
+define "IntegerEqualIsTrue": 4 = (2 + 2)
+define "LongEqualIsTrue": 4L = (2L + 2L)
+define "DecimalEqualIsFalse": 3.5 = (3.5 - 0.1)
+define "StringEqualIsFalse": 'John Doe' = 'john doe'
+define "QuantityEqualIsNull": 3.5 'cm2' = 3.5 'cm'
+define "RatioEqualIsTrue": 1:8 = 1:8
+define "RatioEqualIsFalse": 1:8 = 2:16
+define "ListEqualIsTrue": { null, 1, 2, 3 } = { null, 1, 2, 3 }
+define "DateTimeEqualIsNull": @2012-01-01 = @2012-01-01T12
+define "NullEqualIsNull": null = null
 ----
 
 [[equivalent]]
@@ -1656,15 +1656,15 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
-define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
-define LongEquivalentIsTrue: 4L ~ (2L + 2L)
-define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
-define StringEquivalentIsTrue: 'John Doe' ~ 'john doe'
-define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
-define RatioEquivalentIsTrue: 1:8 ~ 2:16
-define ListEquivalentIsTrue: { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
-define DateTimeEquivalentIsFalse: @2012-01-01 ~ @2012-01-01T12
-define NullEquivalentIsTrue: null ~ null
+define "IntegerEquivalentIsTrue": 4 ~ (2 + 2)
+define "LongEquivalentIsTrue": 4L ~ (2L + 2L)
+define "DecimalEquivalentIsFalse": 3.5 ~ (3.5 - 0.1)
+define "StringEquivalentIsTrue": 'John Doe' ~ 'john doe'
+define "QuantityEquivalentIsFalse": 3.5 'cm2' ~ 3.5 'cm'
+define "RatioEquivalentIsTrue": 1:8 ~ 2:16
+define "ListEquivalentIsTrue": { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
+define "DateTimeEquivalentIsFalse": @2012-01-01 ~ @2012-01-01T12
+define "NullEquivalentIsTrue": null ~ null
 ----
 
 [[greater]]
@@ -1701,7 +1701,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
+define "DateTimeGreaterIsNull": @2012-01-01 > @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1712,11 +1712,11 @@ The following examples illustrate the behavior of the _greater_ operator:
 
 [source,cql]
 ----
-define IntegerGreaterIsTrue: 4 > 3
-define LongGreaterIsTrue: 4L > 3L
-define DecimalGreaterIsFalse: 3.5 > 3.5
-define QuantityGreaterIsNull: 3.6 'cm2' > 3.5 'cm'
-define NullGreaterIsNull: null > 5
+define "IntegerGreaterIsTrue": 4 > 3
+define "LongGreaterIsTrue": 4L > 3L
+define "DecimalGreaterIsFalse": 3.5 > 3.5
+define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
+define "NullGreaterIsNull": null > 5
 ----
 
 [.note-info]
@@ -1760,7 +1760,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
+define "DateTimeGreaterOrEqualIsNull": @2012-01-01 >= @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1771,11 +1771,11 @@ The following examples illustrate the behavior of the _greater or equal_ operato
 
 [source,cql]
 ----
-define IntegerGreaterOrEqualIsTrue: 4 >= (2 + 2)
-define LongGreaterOrEqualIsTrue: 4L >= (2L + 2L)
-define DecimalGreaterOrEqualIsFalse: 3.5 >= (3.5 + 0.1)
-define QuantityGreaterOrEqualIsNull: 3.6 'cm2' >= 3.5 'cm'
-define NullGreaterOrEqualIsNull: null >= 5
+define "IntegerGreaterOrEqualIsTrue": 4 >= (2 + 2)
+define "LongGreaterOrEqualIsTrue": 4L >= (2L + 2L)
+define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)
+define "QuantityGreaterOrEqualIsNull": 3.6 'cm2' >= 3.5 'cm'
+define "NullGreaterOrEqualIsNull": null >= 5
 ----
 
 [.note-info]
@@ -1818,7 +1818,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
+define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1829,12 +1829,12 @@ The following examples illustrate the behavior of the _less_ operator:
 
 [source,cql]
 ----
-define IntegerLessIsTrue: 4 < (2 + 2 + 2)
-define LongLessIsTrue: 4L < (2L + 2L + 2L)
-define DecimalLessIsFalse: 3.5 < 3.5
-define QuantityLessIsNull: 3.6 'cm2' < 3.5 'cm'
-define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
-define NullLessIsNull: null < 5
+define "IntegerLessIsTrue": 4 < (2 + 2 + 2)
+define "LongLessIsTrue": 4L < (2L + 2L + 2L)
+define "DecimalLessIsFalse": 3.5 < 3.5
+define "QuantityLessIsNull": 3.6 'cm2' < 3.5 'cm'
+define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
+define "NullLessIsNull": null < 5
 ----
 
 [.note-info]
@@ -1876,7 +1876,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
+define "DateTimeLessOrEqualIsNull": @2012-01-01 <= @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1887,11 +1887,11 @@ The following examples illustrate the behavior of the _less or equal_ operator:
 
 [source,cql]
 ----
-define IntegerLessOrEqualIsTrue: 4 <= (2 + 2)
-define LongLessOrEqualIsTrue: 4L <= (2L + 2L)
-define DecimalLessOrEqualIsFalse: 3.5 <= (3.5 - 0.1)
-define QuantityLessOrEqualIsNull: 3.6 'cm2' <= 3.6 'cm'
-define NullLessOrEqualIsNull: null <= 5
+define "IntegerLessOrEqualIsTrue": 4 <= (2 + 2)
+define "LongLessOrEqualIsTrue": 4L <= (2L + 2L)
+define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)
+define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'
+define "NullLessOrEqualIsNull": null <= 5
 ----
 
 [.note-info]
@@ -1920,14 +1920,14 @@ The following examples illustrate the behavior of the _not equal_ operator:
 
 [source,cql]
 ----
-define IntegerNotEqualIsFalse: 4 != (2 + 2)
-define LongNotEqualIsFalse: 4L != (2L + 2L)
-define DecimalNotEqualIsTrue: 3.5 != (3.5 - 0.1)
-define StringNotEqualIsTrue: 'John Doe' != 'john doe'
-define QuantityNotEqualIsNull: 3.5 'cm2' != 3.5 'cm'
-define ListNotEqualIsNull: { null, 1, 2, 3 } != { null, 1, 2, 3 }
-define DateTimeNotEqualIsNull: @2012-01-01 != @2012-01-01T12
-define NullNotEqualIsNull: null != null
+define "IntegerNotEqualIsFalse": 4 != (2 + 2)
+define "LongNotEqualIsFalse": 4L != (2L + 2L)
+define "DecimalNotEqualIsTrue": 3.5 != (3.5 - 0.1)
+define "StringNotEqualIsTrue": 'John Doe' != 'john doe'
+define "QuantityNotEqualIsNull": 3.5 'cm2' != 3.5 'cm'
+define "ListNotEqualIsNull": { null, 1, 2, 3 } != { null, 1, 2, 3 }
+define "DateTimeNotEqualIsNull": @2012-01-01 != @2012-01-01T12
+define "NullNotEqualIsNull": null != null
 ----
 
 [[not-equivalent]]
@@ -1950,14 +1950,14 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 
 [source,cql]
 ----
-define IntegerNotEquivalentIsFalse: 4 !~ (2 + 2)
-define LongNotEquivalentIsFalse: 4L !~ (2L + 2L)
-define DecimalNotEquivalentIsTrue: 3.5 !~ (3.5 - 0.1)
-define StringNotEquivalentIsFalse: 'John Doe' !~ 'john doe'
-define QuantityNotEquivalentIsTrue: 3.5 'cm2' !~ 3.5 'cm'
-define ListNotEquivalentIsFalse: { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
-define DateTimeNotEquivalentIsTrue: @2012-01-01 !~ @2012-01-01T12
-define NullNotEquivalentIsFalse: null !~ null
+define "IntegerNotEquivalentIsFalse": 4 !~ (2 + 2)
+define "LongNotEquivalentIsFalse": 4L !~ (2L + 2L)
+define "DecimalNotEquivalentIsTrue": 3.5 !~ (3.5 - 0.1)
+define "StringNotEquivalentIsFalse": 'John Doe' !~ 'john doe'
+define "QuantityNotEquivalentIsTrue": 3.5 'cm2' !~ 3.5 'cm'
+define "ListNotEquivalentIsFalse": { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
+define "DateTimeNotEquivalentIsTrue": @2012-01-01 !~ @2012-01-01T12
+define "NullNotEquivalentIsFalse": null !~ null
 ----
 
 [[arithmetic-operators-4]]
@@ -1997,11 +1997,11 @@ The following examples illustrate the behavior of the [.id]#Abs# operator:
 
 [source,cql]
 ----
-define IntegerAbs: Abs(-5) // 5
-define IntegerAbsIsNull: Abs(null as Integer)
-define LongAbs: Abs(-5000000L) // 5000000L
-define DecimalAbs: Abs(-5.5) // 5.5
-define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
+define "IntegerAbs": Abs(-5) // 5
+define "IntegerAbsIsNull": Abs(null as Integer)
+define "LongAbs": Abs(-5000000L) // 5000000L
+define "DecimalAbs": Abs(-5.5) // 5.5
+define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 ----
 
 [[add]]
@@ -2042,12 +2042,12 @@ The following examples illustrate the behavior of the _add_ operator:
 
 [source,cql]
 ----
-define IntegerAdd: 2 + 2 // 4
-define IntegerAddIsNull: 2 + null
-define LongAdd: 25L + 5 // 30L
-define DecimalAdd: 2.5 + 5 // 7.5
-define QuantityAdd: -5.5 'mg' + 2 'mg' // -3.5 'mg'
-define QuantityAddIsNull: -5.5 'cm' + 2 'cm2'
+define "IntegerAdd": 2 + 2 // 4
+define "IntegerAddIsNull": 2 + null
+define "LongAdd": 25L + 5 // 30L
+define "DecimalAdd": 2.5 + 5 // 7.5
+define "QuantityAdd": -5.5 'mg' + 2 'mg' // -3.5 'mg'
+define "QuantityAddIsNull": -5.5 'cm' + 2 'cm2'
 ----
 
 [[ceiling]]
@@ -2072,9 +2072,9 @@ The following examples illustrate the behavior of the [.id]#Ceiling# operator:
 
 [source,cql]
 ----
-define IntegerCeiling: Ceiling(1) // 1
-define DecimalCeiling: Ceiling(1.1) // 2
-define QuantityCeilingIsNull: Ceiling(null as Decimal)
+define "IntegerCeiling": Ceiling(1) // 1
+define "DecimalCeiling": Ceiling(1.1) // 2
+define "QuantityCeilingIsNull": Ceiling(null as Decimal)
 ----
 
 [[divide]]
@@ -2113,12 +2113,12 @@ The following examples illustrate the behavior of the _divide_ operator:
 
 [source,cql]
 ----
-define IntegerDivide: 4.0 / 2 // 2.0
-define LongDivide: 4.0 / 2L // 2.0
-define DecimalDivide: 9.9 / 3.0 // 3.3
-define DecimalDivideIsNull: 2.2 / null
-define DecimalDivideIsError: 2.2 / 0
-define QuantityDivide: -5.5 'mg' / 2.0 'mg' // -2.75
+define "IntegerDivide": 4.0 / 2 // 2.0
+define "LongDivide": 4.0 / 2L // 2.0
+define "DecimalDivide": 9.9 / 3.0 // 3.3
+define "DecimalDivideIsNull": 2.2 / null
+define "DecimalDivideIsError": 2.2 / 0
+define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 ----
 
 [[floor]]
@@ -2143,9 +2143,9 @@ The following examples illustrate the behavior of the [.id]#Floor# operator:
 
 [source,cql]
 ----
-define IntegerFloor: Floor(1) // 1
-define DecimalFloor: Floor(2.1) // 2
-define QuantityFloorIsNull: Floor(null as Decimal)
+define "IntegerFloor": Floor(1) // 1
+define "DecimalFloor": Floor(2.1) // 2
+define "QuantityFloorIsNull": Floor(null as Decimal)
 ----
 
 [[exp]]
@@ -2172,10 +2172,10 @@ The following examples illustrate the behavior of the [.id]#Exp# operator:
 
 [source,cql]
 ----
-define IntegerExp: Exp(0) // 1.0
-define LongExp: Exp(0L) // 1.0
-define DecimalExp: Exp(-0.0) // 1.0
-define QuantityExpIsNull: Exp(null as Decimal)
+define "IntegerExp": Exp(0) // 1.0
+define "LongExp": Exp(0L) // 1.0
+define "DecimalExp": Exp(-0.0) // 1.0
+define "QuantityExpIsNull": Exp(null as Decimal)
 ----
 
 === HighBoundary
@@ -2234,10 +2234,10 @@ The following examples illustrate the behavior of the [.id]#Log# operator:
 
 [source,cql]
 ----
-define IntegerLog: Log(16, 2) // 4.0
-define LongLog: Log(16L, 2L) // 4.0
-define DecimalLog: Log(100.0, 10.0) // 2.0
-define QuantityLogIsNull: Log(null, 10.0)
+define "IntegerLog": Log(16, 2) // 4.0
+define "LongLog": Log(16L, 2L) // 4.0
+define "DecimalLog": Log(100.0, 10.0) // 2.0
+define "QuantityLogIsNull": Log(null, 10.0)
 ----
 
 === LowBoundary
@@ -2296,10 +2296,10 @@ The following examples illustrate the behavior of the [.id]#Ln# operator:
 
 [source,cql]
 ----
-define IntegerLn: Ln(1) // 0.0
-define LongLn: Ln(1L) // 0.0
-define DecimalLn: Ln(1.0) // 0.0
-define QuantityLnIsNull: Ln(null as Decimal)
+define "IntegerLn": Ln(1) // 0.0
+define "LongLn": Ln(1L) // 0.0
+define "DecimalLn": Ln(1.0) // 0.0
+define "QuantityLnIsNull": Ln(null as Decimal)
 ----
 
 [[maximum]]
@@ -2343,10 +2343,10 @@ The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
 [source,cql]
 ----
-define IntegerMaximum: maximum Integer // 2147483647
-define LongMaximum: maximum Long // 9223372036854775807
-define DateTimeMaximum: maximum DateTime // @9999-12-31T23:59:59.999
-define ErrorMaximum: maximum Quantity
+define "IntegerMaximum": maximum Integer // 2147483647
+define "LongMaximum": maximum Long // 9223372036854775807
+define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999
+define "ErrorMaximum": maximum Quantity
 ----
 
 [[minimum]]
@@ -2390,10 +2390,10 @@ The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
 [source,cql]
 ----
-define IntegerMinimum: minimum Integer // -2147483648
-define LongMinimum: minimum Integer // -9223372036854775808
-define DateTimeMinimum: minimum DateTime // @0001-01-01T00:00:00.000
-define ErrorMinimum: minimum Quantity
+define "IntegerMinimum": minimum Integer // -2147483648
+define "LongMinimum": minimum Integer // -9223372036854775808
+define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
+define "ErrorMinimum": minimum Quantity
 ----
 
 [[modulo]]
@@ -2435,10 +2435,10 @@ The following examples illustrate the behavior of the [.kw]#mod# operator:
 
 [source,cql]
 ----
-define IntegerModulo: 3 mod 2 // 1
-define LongModulo: 3L mod 2 // 1L
-define DecimalModulo: 2.5 mod 2 // 0.5
-define ModuloIsNull: 2.5 mod null
+define "IntegerModulo": 3 mod 2 // 1
+define "LongModulo": 3L mod 2 // 1L
+define "DecimalModulo": 2.5 mod 2 // 0.5
+define "ModuloIsNull": 2.5 mod null
 ----
 
 [[multiply]]
@@ -2515,11 +2515,11 @@ The following examples illustrate the behavior of the _negate_ operator:
 
 [source,cql]
 ----
-define IntegerNegate: -3 // -3
-define LongNegate: -3L // -3L
-define DecimalNegate: -(-3.3) // 3.3
-define QuantityNegate: -3.3 'mg' // -3.3 'mg'
-define NegateIsNull: -(null as Integer)
+define "IntegerNegate": -3 // -3
+define "LongNegate": -3L // -3L
+define "DecimalNegate": -(-3.3) // 3.3
+define "QuantityNegate": -3.3 'mg' // -3.3 'mg'
+define "NegateIsNull": -(null as Integer)
 ----
 
 === Precision
@@ -2593,11 +2593,11 @@ The following examples illustrate the behavior of the [.kw]#predecessor# operato
 
 [source,cql]
 ----
-define IntegerPredecessor: predecessor of 100 // 99
-define LongPredecessor: predecessor of 100L // 99L
-define DecimalPredecessor: predecessor of 1.0 // 0.99999999
-define DatePredecessor: predecessor of @2014-01-01 // @2013-12-31
-define PredecessorIsNull: predecessor of (null as Quantity)
+define "IntegerPredecessor": predecessor of 100 // 99
+define "LongPredecessor": predecessor of 100L // 99L
+define "DecimalPredecessor": predecessor of 1.0 // 0.99999999
+define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31
+define "PredecessorIsNull": predecessor of (null as Quantity)
 ----
 
 [[power]]
