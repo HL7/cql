@@ -1045,7 +1045,7 @@ However, CQL also allows for _static_ bindings which allow two components to be 
 1.  Version – The version of the valueset to be referenced, specified as a string.
 2.  Code Systems – A list of code systems referenced by the valueset definition.
 
-If the binding specifies a valueset version, then the expansion set must be derived from that specific version. This does not restrict the code system versions to be used, therefore more than one expansion set is possible.
+If the binding specifies a valueset version, then the expansion set must be derived from that specific version. This does not restrict the code system versions available for use, therefore more than one expansion set is possible.
 
 If any code systems are specified, they indicate which version of the particular code system should be used when constructing the expansion set. As with valuesets, if no code system version is specified, the expansion set should be constructed using the most current published version of the codesystem. Note that if the external valueset definition explicitly states that a particular version of a code system should be used, then it is an error if the code system version specified in the CQL static binding does not match the code system version specified in the external valueset definition. To create a reliable static binding where only one value set expansion set is possible, both the value set version and the code system versions should be specified.
 
