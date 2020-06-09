@@ -394,7 +394,7 @@ The following table defines the truth table for this operator:
 |*NULL*  |NULL |FALSE |NULL
 |==========================
 
-Table 9‑A
+Table 9‑A - The truth table for the [.kw]#And# operator
 
 *Example:*
 
@@ -437,7 +437,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*TRUE* |*NULL* |*NULL*
 |=======================
 
-Table 9‑A
+Table 9‑A1 - The truth table for the [.kw]#Implies# operator
 
 *Example:*
 
@@ -476,7 +476,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*NULL*
 |===========
 
-Table 9‑B
+Table 9‑B - The truth table for the [.kw]#Not# operator
 
 The following examples illustrate the behavior of the [.kw]#not# operator:
 
@@ -512,7 +512,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*TRUE* |*NULL* |*NULL*
 |========================
 
-Table 9‑C
+Table 9‑C - The truth table for the [.kw]#Or# operator
 
 *Example:*
 
@@ -553,7 +553,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*NULL* |*NULL* |*NULL*
 |========================
 
-Table 9‑D
+Table 9‑D - The truth table for the [.kw]#Xor# operator
 
 The following examples illustrate the behavior of the [.kw]#xor# operator:
 
@@ -658,7 +658,7 @@ The following table lists the conversions supported in CQL:
 |*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
-Table 9‑E
+Table 9‑E - The conversions supported in CQL
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
@@ -997,7 +997,7 @@ The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Bool
 |[.id]#false f no n 0# |[.kw]#false#
 |====================================
 
-Table 9‑F
+Table 9‑F - The string representations that the ToBoolean operator accepts
 
 Note that the operator will ignore case when interpreting the string as a [.id]#Boolean# value.
 
@@ -1355,7 +1355,7 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |[.id]#Time# |*hh:mm:ss.fff*
 |===========================================
 
-Table 9‑G
+Table 9‑G - The string representations that the ToString operator uses for each data type
 
 See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 

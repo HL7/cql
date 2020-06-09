@@ -16,7 +16,7 @@ Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the
 [[figure-4-a]]
 image:extracted-media/media/image10.png[image,width=107,height=99]
 
-Figure 4‑A
+Figure 4‑A - A diagram to explain how ELM represents addition of 2 literal values
 
 By combining instances of the appropriate classes of ELM, the logic for any expression can be represented. Note that the type of the expression can be inferred from the representation, Integer in this example.
 
@@ -80,7 +80,7 @@ The following example illustrates the construction of a tuple using the _Tuple_ 
 [[figure-4-h]]
 image:extracted-media/media/image17.png[image,width=190,height=157]
 
-Figure 4‑H
+Figure 4‑H - A diagram to explain how ELM represents the construction of a [.kw]#Tuple#
 
 === Instance
 
@@ -100,7 +100,7 @@ The following example illustrates the construction of a structured value using t
 [[figure-4-i]]
 image:extracted-media/media/image18.png[image,width=184,height=152]
 
-Figure 4‑I
+Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the [.kw]#Instance# class
 
 === Property
 
@@ -1176,7 +1176,7 @@ The following example illustrates a simple _Equal_ comparison:
 [[figure-4-b]]
 image:extracted-media/media/image11.png[image,width=109,height=102]
 
-Figure 4‑B
+Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 
 [[equivalent]]
 === Equivalent
@@ -1339,7 +1339,7 @@ The following example illustrates a simple _And_ expression:
 [[figure-4-c]]
 image:extracted-media/media/image12.png[image,width=138,height=217]
 
-Figure 4‑C
+Figure 4‑C - A diagram to explain how ELM represents a simple [.kw]#And# expression
 
 === Implies
 
@@ -1466,14 +1466,14 @@ The following example illustrates a more complex multi-conditional _Case_ expres
 [[figure-4-e]]
 image:extracted-media/media/image14.png[image,width=230,height=397]
 
-Figure 4‑E
+Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional [.kw]#Case# expression
 
 And finally, an equivalent comparand-based _Case_ expression:
 
 [[figure-4-f]]
 image:extracted-media/media/image15.png[image,width=184,height=286]
 
-Figure 4‑F
+Figure 4‑F - A diagram to explain how ELM represents a comparand-base [.kw]#Case# expression
 
 === If
 
@@ -1495,7 +1495,7 @@ The following examples illustrates a simple _If_ expression (i.e. if / then / el
 [[figure-4-d]]
 image:extracted-media/media/image13.png[image,width=143,height=193]
 
-Figure 4‑D
+Figure 4‑D - A diagram to explain how ELM represents a simple [.kw]#If# expression
 
 [[arithmetic-operators]]
 == Arithmetic Operators
@@ -1562,7 +1562,7 @@ The following example illustrates a simple _Add_ expression:
 [[figure-4-g]]
 image:extracted-media/media/image16.png[image,width=102,height=94]
 
-Figure 4‑G
+Figure 4‑G - A diagram to explain how ELM represents a simple [.kw]#Add# expression
 
 === Ceiling
 

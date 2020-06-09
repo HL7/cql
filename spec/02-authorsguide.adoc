@@ -51,7 +51,7 @@ Libraries can contain any or all of the following constructs:
 |*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
 
-Table 2‑A
+Table 2‑A - Constructs that CQL libraries can contain
 
 The following sections discuss these constructs in more detail.
 
@@ -184,7 +184,7 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 |*Default Value* |An optional default value for the parameter
 |=====================================================================================================================================================================================
 
-Table 2‑B
+Table 2‑B - Elements that define a parameter
 
 The parameters defined in a library may be referenced by name in any expression within the library. When expressions in a CQL library are evaluated, the values for parameters are provided by the environment. For example, a library that defines criteria for a quality measure may define a parameter to represent the measurement period:
 
@@ -239,7 +239,7 @@ The context declaration defines the overall context for statements within the la
 |*Unfiltered* |The Unfiltered context indicates that expressions are not interpreted with reference to a particular context.
 |========================================================================================================================================
 
-Table 2‑C
+Table 2‑C - Typical contexts for CQL
 
 Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
@@ -447,7 +447,7 @@ The query construct has a _primary source_ and four main _clauses_ that each all
 |*Sort* |The sort clause allows the result set to be ordered according to any criteria as needed.
 |============================================================================================================================================
 
-Table 2‑D
+Table 2‑D - Four main clauses for a query construct
 
 Each of these clauses will be discussed in more detail in the following sections.
 
@@ -746,7 +746,7 @@ CQL supports several types of simple values:
 
 |=======================================
 
-Table 2‑E
+Table 2‑E - Types of simple values that CQL supports
 
 [[boolean]]
 ==== Boolean
@@ -915,7 +915,7 @@ The [.id]#Code# type has the following elements:
 |*version* |[.id]#String# |The version of the code system.
 |==================================================
 
-Table 2‑F
+Table 2‑F - Elements that make up a [.kw]#code# type
 
 The following examples illustrate the code declaration:
 
@@ -975,7 +975,7 @@ The [.id]#Concept# type has the following elements:
 |*display* |[.id]#String# |A description of the concept.
 |=========================================================================
 
-Table 2‑G
+Table 2‑G - Elements that make up a [.kw]#Concept# type
 
 [.note-warning]
 ____
@@ -1317,7 +1317,7 @@ The most basic operation in CQL involves comparison of two values. This is accom
 |*!~* |Inequivalent |Returns [.kw]#true# if the arguments are not equivalent and [.kw]#false# otherwise.
 |===========================================================================================================================================
 
-Table 2‑H
+Table 2‑H - The built-in comparison operators that CQL provides
 
 In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns [.kw]#true#:
 
@@ -1424,7 +1424,7 @@ Combining the results of comparisons and other boolean-valued expressions is ess
 |*not* |Logical negation
 |==================================
 
-Table 2‑I
+Table 2‑I - Logical operations that CQL provides
 
 The following examples illustrate some common uses of logical operators:
 
@@ -1472,7 +1472,7 @@ The following table lists the arithmetic operations available in CQL:
 |*^* |exponentiation |Raises the first argument to the power given by the second argument
 |===========================================================================================================================
 
-Table 2‑J
+Table 2‑J - Arithmetic operations that CQL provides
 
 [[datetime-operators]]
 === Date and Time Operators
@@ -1515,7 +1515,7 @@ The [.id]#DateTime# operator takes the following arguments:
 |*Timezone Offset* |[.id]#Decimal# |The timezone offset component of the [.id]#DateTime# (in hours)
 |==================================================================================
 
-Table 2‑K
+Table 2‑K - The arguments that the [.kw]#DateTime# operator takes
 
 The [.id]#Date# operator takes only the first three arguments: Year, Month, and Day.
 
@@ -1545,7 +1545,7 @@ The [.id]#Time# operator takes the following arguments:
 |*Millisecond* |[.id]#Integer# |The millisecond component of the [.id]#DateTime#
 |=======================================================================
 
-Table 2‑L
+Table 2‑L - The arguments that the [.kw]#Time# operator takes
 
 As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, if timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
@@ -1560,7 +1560,7 @@ In addition to the ability to construct specific dates and times using component
 |*TimeOfDay* |Returns the time-of-day of the start timestamp associated with the evaluation request
 |===============================================================================================================
 
-Table 2‑M
+Table 2‑M - The operators that CQL supports for retrieving the current date and time
 
 The current date and time operators are defined based on the timestamp of the evaluation request for two reasons:
 
@@ -1660,7 +1660,7 @@ Date and time comparisons are performed by comparing the values at each precisio
 |*>=* |[.kw]#same or after#
 |==================================
 
-Table 2‑N
+Table 2‑N - The precision-based comparison operators for [.kw]#Date# and [.kw]#Time# comparisons
 
 If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for [.id]#Time# values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
 
@@ -1734,7 +1734,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 |*timezoneoffset from X* |Extracts the timezone offset component of its argument |[.id]#Decimal#
 |==================================================================================
 
-Table 2‑O
+Table 2‑O - The valid extraction components for extracting [.kw]#Date# and [.kw]#Time# components
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
@@ -1792,7 +1792,7 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |===
 
-Table 2‑P
+Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
@@ -1968,7 +1968,7 @@ CQL supports comparison of two interval values using a complete set of operation
 [[table-2-q]]
 image:extracted-media/media/image5.png[image,width=626,height=394]
 
-Table 2‑Q
+Table 2‑Q - Comparison of two interval values using a complete set of operations
 
 Each of these operators returns [.kw]#true# if the intervals X and Y are in the given relationship to each other. If either or both arguments are [.kw]#null#, the result is [.kw]#null#. Otherwise, the result is [.kw]#false#.
 
@@ -2052,7 +2052,7 @@ Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
 |*includes* |no |yes |no |no |no |no |no
 |====================================================================================================
 
-Table 2‑R
+Table 2‑R - The operators that can be used to construct timing phrases
 
 A yes in the Beginning Boundary column indicates that the operator can be preceded by [.kw]#starts# or [.kw]#ends# if the left comparand is an interval.
 
@@ -2112,7 +2112,7 @@ The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#exce
 [[figure-2-a]]
 image:extracted-media/media/image6.png[image,width=626,height=128]
 
-Figure 2‑A
+Figure 2‑A - The union, intersect, and except operators for intervals
 
 [[datetime-intervals]]
 ==== Date and Time Intervals
@@ -2238,7 +2238,7 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 |*X [.kw]#properly included in# Y* |Returns [.kw]#true# if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
-Table 2‑S
+Table 2‑S - The operators that can be used for list comparisons
 
 [source,cql]
 ----
@@ -2336,7 +2336,7 @@ The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#exce
 [[figure-2-b]]
 image:extracted-media/media/image7.png[image,width=626,height=176]
 
-Figure 2‑B
+Figure 2‑B - The union, intersect, and except operators for lists
 
 As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# operators use the equality operator to determine when two elements are the same. In particular, this means that nulls in the input to a [.kw]#distinct# will be preserved in the output.
 
@@ -2368,7 +2368,7 @@ Most list operators in CQL operate on lists of any type, but for lists of interv
 [[figure-2-c]]
 image:extracted-media/media/image8.png[image,width=353,height=75]
 
-Figure 2‑C
+Figure 2‑C - Example intervals to explain how the [.kw]#collapse# operator works on them
 
 If we want to determine the total duration _covered_ by these intervals, we cannot simply use the [.kw]#distinct# operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate [.kw]#union# of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
@@ -2377,7 +2377,7 @@ The solution is the [.kw]#collapse# operator which returns the set of intervals 
 [[figure-2-d]]
 image:extracted-media/media/image9.png[image,width=348,height=56]
 
-Figure 2‑D
+Figure 2‑D - Example intervals to explain how the [.kw]#collapse# operator works on them
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
@@ -2443,7 +2443,7 @@ The following table lists the aggregate operators available in CQL:
 |*Product*| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
 
-Table 2‑T
+Table 2‑T - The aggregate operators available in CQL
 
 [[clinical-operators]]
 === Clinical Operators
@@ -2560,7 +2560,7 @@ To support determination of patient age consistently throughout quality logic, C
 |*CalculateAgeInHours(D)* |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
 
-Table 2‑U
+Table 2‑U - The age related operators available in CQL
 
 These operators calculate age using calendar duration.
 
@@ -2631,7 +2631,7 @@ The following table lists the QDM data elements involved and their mappings to t
 |*Laboratory Test, Result* |DiagnosticReport
 |===================================================
 
-Table 2‑V
+Table 2‑V - QDM Data elements and their mapping to QUICK data structures
 
 Note that the specific mapping to the QUICK data structures is beyond the scope of this walkthrough; it is only provided here to demonstrate the link back to the original QDM.
 
