@@ -1278,15 +1278,13 @@ Interval[1, 1] // Unit interval containing only the point 1
 Interval[1, 1) // Invalid interval, conflicting to say it both includes and excludes 1
 ----
 
-Such an [.id]#Interval# contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval.
+Such an [.id]#Interval# contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval. Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
 
 [source,cql]
 ----
 point from Interval[1, 1] // Results in 1
 point from Interval[1, 5] // Invalid extractor, this will result in an error
 ----
-
-Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
 
 [[operations]]
 == Operations
