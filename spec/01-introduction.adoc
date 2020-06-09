@@ -44,7 +44,7 @@ The discrepancy shown here between standards used in the different domains intro
 
 Using the framework of metadata, data model, and expression logic, the following diagram depicts the overall target specification areas involved in clinical quality artifact representation:
 
-image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=445,height=258]
+image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=720,height=400]
 
 [[figure-1-a]]
 Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
