@@ -813,6 +813,8 @@ CQL supports the representation of [.id]#Date#, [.id]#DateTime#, and [.id]#Time#
 @2014-01-25
 ----
 
+Note that the [.id]#Date# value literal format is identical to the date value portion of the [.id]#DateTime# literal format.
+
 [.id]#Time# values are used to represent a time of day, independent of the date. [.id]#Time# value must be known to at least the hour precision, and potentially to the millisecond precision. [.id]#Time# values are specified using an at-symbol with a capital T ([.sym]#@T#) followed by an ISO-8601 textual representation of the [.id]#Time# value:
 
 [source,cql]
