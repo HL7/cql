@@ -1162,7 +1162,7 @@ In addition, to simplify path traversal for models that make extensive use of li
 Info.Phones.Number
 ----
 
-The result of this invocation is a list containing the [.id]#Number# elements of all the [.id]#Phones#.
+The result of this invocation is a list containing the [.id]#Number# elements of all the [.id]#Phones# within [.id]#Info#.
 
 [[missing-information]]
 ==== Missing Information
