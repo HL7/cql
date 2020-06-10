@@ -751,7 +751,7 @@ Table 2‑E
 [[boolean]]
 ==== Boolean
 
-The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
+The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
 
 [[integer]]
 ==== Integer
