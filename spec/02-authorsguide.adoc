@@ -144,7 +144,7 @@ Consider the following valueset declaration:
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
-This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, more specifically, an Object Identifier (OID) in this particular case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID; instead, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
