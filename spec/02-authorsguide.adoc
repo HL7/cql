@@ -775,7 +775,7 @@ The [.id]#Decimal# type in CQL supports the representation of real numbers, posi
 'active'
 ----
 
-Note that if the value to be represented contains a single-quote, use a backslash to include it within the string in CQL:
+Note that if the value you are attempting to represent contains a single-quote, use a backslash to include it within the string in CQL:
 
 [source,cql]
 ----
