@@ -1781,7 +1781,7 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 [[table-2-p]]
 [cols=",",options="header",]
 |===
-|Unit |Description
+|Date/Time Precision |Calendar Semantic Description
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
 |month |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used.
 |week |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths.
