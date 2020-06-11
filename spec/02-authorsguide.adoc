@@ -540,7 +540,7 @@ CQL queries can sort results in any order using the [.kw]#sort by# clause. For e
 
 This example returns inpatient encounters, sorted by period.
 
-Calculated values can also be used to determine the sort, ascending ([.kw]#asc#) or descending ([.kw]#desc#), as in:
+Calculated values such as [.kw]#asc# (ascending) or [.kw]#desc# (descending) can also be used to determine the sort:
 
 [source,cql]
 ----
