@@ -155,7 +155,7 @@ define PatientIsFemale: Patient.gender in "Female Administrative Sex"
 
 The above example defines the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
 
-Note that the name of the valueset uses double quotes, in contrast to the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
+Note that the name of the valueset uses double quotes, unlike the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
 
 Note also that the local name for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. However, when using external terminologies, authors should use the name of the terminology as defined externally to avoid introducing any potential confusion of meaning.
 
