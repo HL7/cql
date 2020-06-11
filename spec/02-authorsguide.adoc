@@ -228,7 +228,7 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the overall context for statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
+The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
