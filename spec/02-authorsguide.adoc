@@ -1813,7 +1813,7 @@ For example, the following expression returns 2:
 months between @2014-01-01 and @2014-03-01
 ----
 
-This is because there are two whole calendar months between the two dates. Fractional months are not included in the result. This means that this expression also returns 2:
+This is because there are two whole calendar months between the two dates. Fractional months are not included in the result. This means that the following expression also returns 2:
 
 [source,cql]
 ----
