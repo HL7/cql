@@ -3150,6 +3150,8 @@ define "InNumerator":
     where S.issued during MeasurementPeriod)
 ----
 
+Note: The keyword [.kw]#called# was chosen to avoid confusion with the keyword [.kw]#as#, which is used for type-casting. We also don't use [.kw]#as# for aliasing like many SQL dialects do, for the same reason. We mean [.kw]#called# here in the sense that the library is "called a name" within this context, not that we intend to "call it by this name".
+
 And similarly for the CDS artifact:
 
 [source,cql]
