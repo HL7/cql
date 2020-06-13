@@ -220,7 +220,7 @@ In addition, because parameter defaults are part of the declaration, the express
 . Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
 . Parameter defaults cannot reference expressions or functions defined in the current library
 . Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations
+. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the <<Terminology Operators>> section.
 . Parameter defaults cannot reference other parameters
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
