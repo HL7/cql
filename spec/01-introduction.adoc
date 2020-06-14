@@ -34,7 +34,7 @@ Considering each of these components separately, the next step involves identify
 1.2+| *Electronic Clinical Quality Measurement (eCQM)* |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
 1.1+|Logical |Quality Data Model (QDM) |Quality Data Model (QDM)|
 |========================================================================================================================================================================================
-Table 1‑A
+Table 1‑A - Relationship of the current specifications to each component
 
 The discrepancy shown here between standards used in the different domains introduces burdens on both vendors and providers in electronic healthcare quality domains, including:
 
@@ -44,10 +44,10 @@ The discrepancy shown here between standards used in the different domains intro
 
 Using the framework of metadata, data model, and expression logic, the following diagram depicts the overall target specification areas involved in clinical quality artifact representation:
 
-image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=445,height=258]
+image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=720,height=400]
 
 [[figure-1-a]]
-Figure 1‑A
+Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
 
 Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. Note, however, that the QUICK specification and the Quality Improvement Core (QI-Core) Profiles are being developed concurrently with this specification to ensure that the two specifications interoperate effectively. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at link:http://hl7.org/fhir/us/qicore/qdm-to-qicore.html[QI-Core Implementation Guide - QDM -> QI-Core Mapping].
 
@@ -88,7 +88,9 @@ The logical perspective of the specification is concerned with complete and accu
 For the logical layer, this specification defines a Unified Modeling Language (UML) model called the Expression Logical Model (ELM) that defines a canonical representation of expression logic. This approach is intended to simplify implementation and machine processing by focusing on the content of an expression, rather than the syntax used to render it. The approach is based on and motivated by the concept of an Abstract Syntax Tree from traditional compiler implementation. The following diagram depicts the steps performed by a traditional compiler:
 
 [[figure-1-b]]
-image:extracted-media/media/image3.png[image,width=626,height=430]Figure 1‑B
+image:extracted-media/media/image3.png[image,width=626,height=430]
+
+Figure 1‑B - The steps performed by a traditional compiler
 
 As shown here, the ELM representation is defined as an Abstract Syntax Tree, eliminating the need for lexical analysis and parsing steps, and allowing implementations to concentrate on the core representation of the logic.
 
@@ -120,7 +122,7 @@ The specification is written with the following major roles in mind:
 |*Implementer* |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
 |====================================================================================================================================================================================================================================
 
-Table 1‑B
+Table 1‑B - Major roles that this specification was written for
 
 Note that although Chapter 2 is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
 
@@ -149,7 +151,7 @@ In particular, this specification enables the sharing use case by defining a hig
 [[figure-1-c]]
 image:extracted-media/media/image4.png[image,width=626,height=382]
 
-Figure 1‑C
+Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case
 
 [[use-case-assumptions-and-conditions]]
 === Use Case Assumptions and Conditions

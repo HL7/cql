@@ -71,5 +71,5 @@
 |*XML* |eXtended Markup Language
 |==============================================================================
 
-Table 12‑A
+Table 12‑A - Acronyms used in this specification
 

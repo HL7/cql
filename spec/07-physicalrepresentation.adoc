@@ -25,7 +25,7 @@ The physical representation for ELM is defined by the following schemata:
 |*library.xsd* |Defines the overall library container for ELM
 |=======================================================================================================
 
-Table 7‑A
+Table 7‑A - The schemata that defines the ELM physical representation
 
 As with the logical portion of the specification, this documentation is intended to provide an overview only, the schemata are the actual specification and should be considered the source of truth.
 
@@ -84,7 +84,7 @@ In addition, the implementation environment must provide a mechanism for data mo
 |*Context Information* |The set of available contexts that may be used with the model. For patient contexts, Patient Birth Date information must be supplied as well to allow the CQL-to-ELM translator to render references to patient-age-related functions (AgeInYears, AgeInYearsAt, etc.) into the non-patient-aware age-related functions in ELM (CalculateAgeInYears, CalculateAgeInYearsAt, etc.). This information is not required, but if it is not present, references to patient-age-related functions will be passed directly through to ELM as FunctionRefs.
 |=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 7‑B
+Table 7‑B - The data model reference required components
 
 For each type available in the data model, the following information should be provided:
 
@@ -101,7 +101,7 @@ For each type available in the data model, the following information should be p
 |*Target Context Relationships* |If applicable, information about how the data for this type can be used to reference contexts. For example, for a RelatedPerson type, the model may contain a LinkedPatientId, providing a reference to a Patient context that can be used in a related-context retrieve.
 |================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 7‑C
+Table 7‑C - The required information for each type available in the data model
 
 The information defined here is formally described in the modelinfo.xsd document included in the specification. The QUICK module in the CQL-to-ELM translator contains an instance of this schema, quick-modelinfo.xml, which defines this metadata for the QUICK model.
 

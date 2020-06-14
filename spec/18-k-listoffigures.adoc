@@ -10,40 +10,40 @@
 [[indroduction]]
 == Introduction
 
-1.  <<01-introduction.adoc#figure-1-a,Figure 1-A>>
+1.  <<01-introduction.adoc#figure-1-a,Figure 1-A>> : The overall target specification areas involved in clinical quality artifact representation
 
-2.  <<01-introduction.adoc#figure-1-b,Figure 1-B>>
+2.  <<01-introduction.adoc#figure-1-b,Figure 1-B>> : The steps performed by a traditional compiler
 
-3.  <<01-introduction.adoc#figure-1-c,Figure 1-C>>
+3.  <<01-introduction.adoc#figure-1-c,Figure 1-C>> : How the CQL and ELM specifications will be used in the sharing use case
 
 [[authors-guide]]
 == Author's Guide
 
-1.  <<02-authorsguide.adoc#figure-2-a,Figure 2-A>>
+1.  <<02-authorsguide.adoc#figure-2-a,Figure 2-A>> : The union, intersect, and except operators for intervals
 
-2.  <<02-authorsguide.adoc#figure-2-b,Figure 2-B>>
+2.  <<02-authorsguide.adoc#figure-2-b,Figure 2-B>> : The union, intersect, and except operators for lists
 
-3.  <<02-authorsguide.adoc#figure-2-c,Figure 2-C>>
+3.  <<02-authorsguide.adoc#figure-2-c,Figure 2-C>> : Example intervals to explain how the [.kw]#collapse# operator works on them
 
-4.  <<02-authorsguide.adoc#figure-2-d,Figure 2-D>>
+4.  <<02-authorsguide.adoc#figure-2-d,Figure 2-D>> : Example intervals to explain how the [.kw]#collapse# operator works on them
 
 [[logical-specification]]
 == Logical Specification
 
-1.  <<04-logicalspecification.adoc#figure-4-a,Figure 4-A>>
+1.  <<04-logicalspecification.adoc#figure-4-a,Figure 4-A>> : A diagram to explain how ELM represents addition of 2 literal values
 
-2.  <<04-logicalspecification.adoc#figure-4-b,Figure 4-B>>
+2.  <<04-logicalspecification.adoc#figure-4-b,Figure 4-B>> : A diagram to explain how ELM represents an equal comparison
 
-3.  <<04-logicalspecification.adoc#figure-4-c,Figure 4-C>>
+3.  <<04-logicalspecification.adoc#figure-4-c,Figure 4-C>> : A diagram to explain how ELM represents a simple [.kw]#And# expression
 
-4.  <<04-logicalspecification.adoc#figure-4-d,Figure 4-D>>
+4.  <<04-logicalspecification.adoc#figure-4-d,Figure 4-D>> : A diagram to explain how ELM represents a simple [.kw]#If# expression
 
-5.  <<04-logicalspecification.adoc#figure-4-e,Figure 4-E>>
+5.  <<04-logicalspecification.adoc#figure-4-e,Figure 4-E>> : A diagram to explain how ELM represents a complex multi-conditional [.kw]#Case# expression
 
-6.  <<04-logicalspecification.adoc#figure-4-f,Figure 4-F>>
+6.  <<04-logicalspecification.adoc#figure-4-f,Figure 4-F>> : A diagram to explain how ELM represents a comparand-base [.kw]#Case# expression
 
-7.  <<04-logicalspecification.adoc#figure-4-g,Figure 4-G>>
+7.  <<04-logicalspecification.adoc#figure-4-g,Figure 4-G>> : A diagram to explain how ELM represents a simple [.kw]#Add# expression
 
-8.  <<04-logicalspecification.adoc#figure-4-h,Figure 4-H>>
+8.  <<04-logicalspecification.adoc#figure-4-h,Figure 4-H>> : A diagram to explain how ELM represents the construction of a [.kw]#Tuple#
 
-9.  <<04-logicalspecification.adoc#figure-4-i,Figure 4-I>>
+9.  <<04-logicalspecification.adoc#figure-4-i,Figure 4-I>> : A diagram to explain how ELM represents the construction of a structured value using the [.kw]#Instance# class

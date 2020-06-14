@@ -39,7 +39,7 @@ The following table specifies the ELM equivalent for each CQL declaration:
 |[.kw]#function# |FunctionDef
 |===============================
 
-Table 6‑A
+Table 6‑A - The ELM equivalent for each CQL declaration
 
 [[types-1]]
 === Types
@@ -57,7 +57,7 @@ To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivale
 |*_choice-type-specifier_* |ChoiceTypeSpecifier
 |================================================
 
-Table 6‑B
+Table 6‑B - The ELM equivalent for each CQL type-specifier
 
 Note that for named type specifiers, the name of the type is a qualified identifier, with the qualifier representing the name of the data model that defines the type. For example, the system-defined integer type in CQL is named System.Integer, with System as the name of the data model, and Integer as the name of the type.
 
@@ -87,7 +87,7 @@ The following table defines the mapping between the various CQL literals and the
 |*_instance-selector_* |Instance
 |================================================
 
-Table 6‑C
+Table 6‑C - The ELM equivalent for each CQL Literal
 
 [[functions]]
 === Functions
@@ -108,7 +108,7 @@ Most of the functions and operations available in CQL have a direct counterpart 
 |[.kw]#*implies*# |Implies
 |============================
 
-Table 6‑D
+Table 6‑D - The ELM equivalent for each CQL logical operator
 
 [[type-operators]]
 ==== Type Operators
@@ -124,7 +124,7 @@ Table 6‑D
 |[.id]#Descendents# |Descendents
 |============================
 
-Table 6‑E
+Table 6‑E - The ELM equivalent for each CQL type operator
 
 Note that for supported conversions, a more efficient implementation would be to emit a specific operator to perform the conversion, rather than a generic Convert as specified here. For example, consider the following CQL conversion expression:
 
@@ -147,7 +147,7 @@ Note also that when translating to ELM, an implementation could emit all implici
 |[.kw]#is true# |IsTrue
 |============================
 
-Table 6‑F
+Table 6‑F - The ELM equivalent for each CQL nullological operator
 
 [[comparison-operators-3]]
 ==== Comparison Operators
@@ -167,7 +167,7 @@ Table 6‑F
 |[.sym]#!~# |Not of Equivalent
 |================================================================================
 
-Table 6‑G
+Table 6‑G - The ELM equivalent for each CQL comparison operator
 
 [[arithmetic-operators-3]]
 ==== Arithmetic Operators
@@ -198,7 +198,7 @@ Table 6‑G
 |[.kw]#div# |TruncatedDivide
 |============================
 
-Table 6‑H
+Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 
 [[string-operators-2]]
 ==== String Operators
@@ -223,7 +223,7 @@ Table 6‑H
 |[.id]#Upper# |Upper
 |===============================================================================
 
-Table 6‑I
+Table 6‑I - The ELM equivalent for each CQL [.kw]#String# operator
 
 [[datetime-operators-1]]
 ==== Date and Time Operators
@@ -250,7 +250,7 @@ Table 6‑I
 |[.id]#Today# |Today
 |=======================================
 
-Table 6‑J
+Table 6‑J - The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operator
 
 [[interval-operators-2]]
 ==== Interval Operators
@@ -293,7 +293,7 @@ Table 6‑J
 |[.kw]#width of# |Width
 |========================================
 
-Table 6‑K
+Table 6‑K - The ELM equivalent for each CQL [.kw]#Interval# operator
 
 [[list-operators-1]]
 ==== List Operators
@@ -329,7 +329,7 @@ Table 6‑K
 |[.kw]#union# |Union
 |========================================
 
-Table 6‑L
+Table 6‑L - The ELM equivalent for each CQL [.kw]#List# operator
 
 [[aggregate-operators-2]]
 ==== Aggregate Operators
@@ -355,7 +355,7 @@ Table 6‑L
 |[.id]#Variance# |Variance
 |======================================
 
-Table 6‑M
+Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 
 [[clinical-operators-2]]
 ==== Clinical Operators
@@ -374,7 +374,7 @@ Table 6‑M
 |[.kw]#in# *(Valueset)* |InValueSet
 |==================================================================================
 
-Table 6‑N
+Table 6‑N - The ELM equivalent for each CQL clinical operator
 
 [[phrases]]
 === Phrases
@@ -401,7 +401,7 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 |*_sort-clause_* |SortClause
 |==========================================
 
-Table 6‑O
+Table 6‑O - The ELM equivalent for each CQL construct
 
 Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
 

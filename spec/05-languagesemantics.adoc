@@ -85,7 +85,7 @@ Because of the way data access is modeled within CQL, the data requirements of a
 If no date range is specified, clinical data of any date will be retrieved.
 |===========================================================================================================================================================================================================================================
 
-Table 5‑A
+Table 5‑A - Description of the data defined by each retrieve
 
 These criteria are designed to allow the implementation environment to communicate the data requirements for an artifact, or group of artifacts, to a consumer to allow the consumer to gather all and only the relevant clinical information for transport to the evaluation environment. This supports the near-real-time clinical decision support scenario where the evaluation environment is potentially separate from the medical records system environment.
 
@@ -108,7 +108,7 @@ This process produces a set of clinical data descriptors with the following stru
 |*Date Range* |The applicable date range, possibly empty (meaning all dates)
 |======================================================================================
 
-Table 5‑B
+Table 5‑B - The structure of clinical data descriptors
 
 Collectively, these descriptors then represent the minimum initial data requirements for the artifact, with any overlapping requests for the same type of data collapsed into a single request descriptor.
 
@@ -213,7 +213,7 @@ Operator* |Generally, the type of the node is determined by resolving the type o
 |*QueryLetRef* |The type of the node is the type of the referenced expression defined within the query scope.
 |============================================================================================================================================================================
 
-Table 5‑C
+Table 5‑C - The categories of nodes and the process for determining the type of each category
 
 During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of scope-sensitive operators such as Current and Property to be determined. Refer to the <<Execution Model>> (5.2.4) section for a description of the evaluation-time stack.
 
@@ -244,9 +244,9 @@ Evaluation takes place within an execution model that provides access to the dat
 |*Date* |A date time defining the clinically relevant date and/or time of the item
 |=======================================================================================
 
-Note that the "must have" here is referring to the fact that structures to be tracked in this way must have these elements, not that the instances of those structures must have values for them.
+Table 5‑D - The required properties for a cacheable item
 
-Table 5‑D
+Note that the "must have" here is referring to the fact that structures to be tracked in this way must have these elements, not that the instances of those structures must have values for them.
 
 Note that the _context_ associated with each ExpressionDef is important here, as it provides a filter on the set of data returned as described by the model. For example, in the `Patient` context, only data for a specific patient should be returned, and the unique id of that patient must be provided by the evaluation environment. This means in particular that the relationship of data elements in the model to the context must be understood and managed by the implementation so that only data related to the current context is provided through the data access layer.
 
@@ -268,7 +268,7 @@ The graph of the expression being evaluated is traversed and the result of each 
 |*ValueSetRef* |The result of the node is the expansion set of the referenced value set definition. Note that in the case of the InValueSet operator specifically, the expansion set need not be materialized; the membership test can be passed to a terminology service using only the valueset definition information.
 |======================================================================================================================================================================================================================================================================================================================
 
-Table 5‑E
+Table 5‑E - The general categories of nodes and the process of evaluation for each
 
 During evaluation, the implementation must maintain a stack that is used to represent the value that is currently in scope. Certain operations within the expression language are defined with a scope, and these operations use the stack to represent this scope. The following table details these operations:
 
@@ -282,7 +282,7 @@ During evaluation, the implementation must maintain a stack that is used to repr
 |*Aggregate* |For each item in the _source_ operand, the item is pushed on to the stack, the _expression_ is evaluated, and the item is popped off of the stack.
 |====================================================================================================================================================================
 
-Table 5‑F
+Table 5‑F - The operations within the expression language are defined with a scope, and the stack to represent this scope
 
 The _scope_ attribute of these operators provides an optional name for the item being pushed on to the stack. This name can be used within the *Current* and *Property* expressions to determine which element on the stack is being accessed. If no scope is provided, the top of the stack is assumed.
 
@@ -424,7 +424,7 @@ Unless otherwise specified, the term designates a calendar year in the Gregorian
 |*Leap year* |Calendar year in the Gregorian calendar that has 366 calendar days. |
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑G
+Table 5‑G - Definitions for the terms involved in dealing with [.kw]#Date# and [.kw]#Time# values
 
 ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date and time values using the following components:
 
@@ -442,7 +442,7 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 |*Timezone Offset* |Real |[-12.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
 |======================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑H
+Table 5‑H - The components used to represent [.kw]#Date# and [.kw]#Time# values in CQL
 
 [[datetime-arithmetic-1]]
 === Date and Time Arithmetic
@@ -463,7 +463,7 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 |*Millisecond* |Integer |[0, 999] |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑I
+Table 5‑I - The [.kw]#Quantities# and their precision that can be used for [.kw]#Date# and [.kw]#Time# calculations in CQL
 
 [[precision-based-timing]]
 == Precision-Based Timing
