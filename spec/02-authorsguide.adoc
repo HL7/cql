@@ -168,6 +168,8 @@ code "Screening for Chlamydia trachomatis (procedure)":
   '442487003' from "SNOMED" display 'Screening for Chlamydia trachomatis (procedure)'
 ----
 
+This codesystem declaration in this example establishes the local name "SNOMED" as a reference to the external identifier for the codesystem, the URI "http://snomed.info/sct". The code declaration in this example establishes the local name "Screening for Chlamydia trachomatis (procedure)" as a reference to the code '442487003' from the "SNOMED" code system already defined.
+
 For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
 
 [[parameters]]
