@@ -21,7 +21,7 @@ In addition, this specification introduces a high-level, domain-specific languag
 Clinical Decision Support and Clinical Quality Measurement are closely related, share many common requirements, and both support improving healthcare quality. However, the standards used for the electronic representation of CDS and CQM artifacts have not been developed in consideration of each other, and the domains use different approaches to the representation of patient data and computable expression logic. The first step in enabling a harmonization of these approaches is clearly identifying the various components involved in the specification of quality artifacts, and then establishing as a principle the notion that they should be treated independently. Broadly, the components of an artifact involve specifying:
 
 * Metadata – Information about the artifact such as its identifier and version, what health topics it covers, supporting evidence, related artifacts, etc.
-* Clinical Quality Information – The structure and content of the clinical data involved in the artifact
+* Clinical Information – The structure and content of the clinical data involved in the artifact
 * Expression Logic – The actual knowledge and reasoning being communicated by the artifact
 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
