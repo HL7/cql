@@ -124,7 +124,7 @@ Table 1‑B
 
 Note that although Chapter 2 is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
 
-In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in Chapter 2, the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapters 2 & 3; the Integrator role will be primarily interested in Chapter 4, the formal description of the logical model; and the Implementer role will be primarily interested in Chapters 5, 6, and 7, which discuss the intended execution semantics, translation semantics, and physical representation, respectively, as well as Appendix B, and ELM UML model artifacts.
+In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in Chapter 2, the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapters 2 & 3; the Integrator role will be primarily interested in Chapter 4, the formal description of the logical model; and the Implementer role will be primarily interested in Chapters 5, 6, and 7, which discuss the intended execution semantics, translation semantics, and physical representation, respectively, as well as Chapter 9 - Appendix B, and ELM UML model artifacts.
 
 [[scope-of-the-specification]]
 == Scope of the Specification
