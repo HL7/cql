@@ -573,7 +573,7 @@ When the sort elements do not provide a unique ordering (i.e. there is a possibi
 
 A query may only contain a single [.kw]#sort# clause, and it must always appear last in the query.
 
-When the data being sorted includes [.kw]#nulls#, they are sorted first, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
+When the data being sorted includes [.kw]#nulls#, they are considered lower than any non-null value, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
 
 [[relationships]]
 === Relationships
