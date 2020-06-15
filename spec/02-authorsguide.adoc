@@ -28,7 +28,7 @@ And as a final introductory note, CQL is designed to support two levels of usage
 [[declarations]]
 == Declarations
 
-Constructs expressed within CQL are packaged in containers called _libraries_. Libraries provide a convenient unit for the definition, versioning, and distribution of logic. For simplicity, libraries in CQL correspond directly with a single file.
+All the constructs that can be expressed within CQL are packaged in a container called a _library_. Libraries provide a convenient unit for the definition, versioning, and distribution of logic. For simplicity, libraries in CQL correspond directly with a single file.
 
 Libraries in CQL provide the overall packaging for CQL definitions. Each library allows a set of declarations to provide information about the library as well as to define constructs that will be available within the library.
 
