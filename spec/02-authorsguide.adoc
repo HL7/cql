@@ -553,7 +553,7 @@ Note that the properties that can be specified within the [.kw]#sort# clause are
 
 If no ascending or descending specifier is provided, the order is ascending.
 
-If no [.kw]#sort# clause is provided, the order of the result is undefined and may vary by implementation.
+If no [.kw]#sort# clause is provided, the order of the result is unprescribed and is implementation specific.
 
 The [.kw]#sort# clause may include multiple attributes, each with their own sort order:
 
