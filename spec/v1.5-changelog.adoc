@@ -3,7 +3,7 @@
 :backend: xhtml
 :toc:
 
-== Normative Ballot Changes
+== Normative/Trial-Use Ballot Changes
 
 === Compatible, Substantive
 
