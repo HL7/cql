@@ -30,9 +30,9 @@ Considering each of these components separately, the next step involves identify
 [cols=",,,,",options="header"]
 |========================================================================================================================================================================================
 | | Model Type | Quality Information | Computable Expression Logic | Metadata
-| *Clinical Decision Support (CDS)* |Physical and logical |Virtual Medical Record (vMR) |CDS Knowledge Artifact Specification |CDS Knowledge Artifact Specification/Decision Support Service
-1.2+| *Electronic Clinical Quality Measurement (eCQM)* |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
-1.1+|Logical |Quality Data Model (QDM) |Quality Data Model (QDM)|
+| *Clinical Decision Support (CDS)* |<<Approach, Physical and Logical>> |https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338[Virtual Medical Record (vMR)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] / http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12[Decision Support Service]
+1.2+| *Electronic Clinical Quality Measurement (eCQM)* |<<Approach, Physical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35[Quality Reporting Document Architecture (QRDA)] |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>> |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>>
+1.1+|<<Approach, Logical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)]|
 |========================================================================================================================================================================================
 Table 1‑A - Relationship of the current specifications to each component
 
