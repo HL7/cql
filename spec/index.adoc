@@ -24,7 +24,7 @@ link:license.html[License]
 
 http://cql.hl7.org/history.html[Version History]
 
-link:00-executivesummary.html[0. Executive Summary]
+link:00-executivesummary.html[Executive Summary]
 
 [[organization-of-this-specification]]
 == Organization of this Specification
@@ -45,7 +45,7 @@ link:06-translationsemantics.html[Chapter 6] – Translation Semantics describes
 
 link:07-physicalrepresentation.html[Chapter 7] – Physical Representation is reference documentation for the XML schema used to persist ELM.
 
-link:08-a-cqlsyntax.html[Appendix A – CQL Syntax Formal Specification] discusses the ANTLR4 grammar for the Clinical Quality Language.
+link:08-a-cqlsyntax.html[Appendix A] – CQL Syntax Formal Specification discusses the ANTLR4 grammar for the Clinical Quality Language.
 
 link:09-b-cqlreference.html[Appendix B] – CQL Reference provides a complete reference for the types and operators available in CQL, and is intended to be used by authors and developers alike.
 
