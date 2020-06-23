@@ -761,14 +761,14 @@ The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#fa
 [[integer]]
 ==== Integer
 
-The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of Arithmetic Operators for performing computations involving whole numbers.
+The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
 
 In addition, any operation involving [.id]#Decimal# values can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
 
 [[decimal]]
 ==== Decimal
 
-The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of Arithmetic Operators for performing computations involving real numbers.
+The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
 
 [[string]]
 ==== String
