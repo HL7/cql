@@ -10,10 +10,9 @@ import fhirpath;
 /*
  * Parser Rules
  */
-
-library
+ 
+definition
     :
-    libraryDefinition?
     usingDefinition*
     includeDefinition*
     codesystemDefinition*
@@ -21,6 +20,11 @@ library
     codeDefinition*
     conceptDefinition*
     parameterDefinition*
+    ;
+
+library
+    :
+    libraryDefinition?
     statement*
     EOF
     ;
