@@ -299,7 +299,7 @@ For more information on the use of define statements, refer to the <<Using Defin
 [[retrieve]]
 == Retrieve
 
-The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
+The _retrieve_ expression is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
