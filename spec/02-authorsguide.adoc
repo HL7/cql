@@ -359,7 +359,7 @@ define "Get Condition from CodeSystem Declaration":
 
 The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
 
-When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. When the code path is specified, the code comparison operation can be specified as well:
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. For more information about the [.sym]#~# symbol, refer to the <<Comparison Operators>> section. When the code path is specified, the code comparison operation can be specified as well:
 
 [source,cql]
 ----
