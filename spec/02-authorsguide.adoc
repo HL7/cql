@@ -549,20 +549,27 @@ CQL queries can sort results in any order using the [.kw]#sort by# clause. For e
 [Encounter: "Inpatient"] E sort by start of period
 ----
 
-This example returns inpatient encounters, sorted by period.
+This example returns inpatient encounters, sorted by the start of the encounter period.
 
-Calculated values such as [.kw]#asc# (ascending) or [.kw]#desc# (descending) can also be used to determine the sort:
+Results can be sorted ascending or descending using the [.kw]#asc# (ascending) or [.kw]#desc# (descending) keywords:
+
+[source,cql]
+----
+[Encounter: "Inpatient"] E sort by start of period desc
+----
+
+If no ascending or descending specifier is provided, the order is ascending.
+
+Calculated values can also be used to determine the sort:
 
 [source,cql]
 ----
 [Encounter: "Inpatient"] E
   return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
-    sort by lengthOfStay desc
+    sort by lengthOfStay
 ----
 
 Note that the properties that can be specified within the [.kw]#sort# clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the [.kw]#return# clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
-
-If no ascending or descending specifier is provided, the order is ascending.
 
 If no [.kw]#sort# clause is provided, the order of the result is undefined and may vary by implementation.
 
