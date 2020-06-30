@@ -394,7 +394,7 @@ The following table defines the truth table for this operator:
 |*NULL*  |NULL |FALSE |NULL
 |==========================
 
-Table 9‑A
+Table 9‑A - The truth table for the [.kw]#And# operator
 
 *Example:*
 
@@ -402,10 +402,10 @@ The following examples illustrate the behavior of the [.kw]#and# operator:
 
 [source,cql]
 ----
-define IsTrue: true and true
-define IsFalse: true and false
-define IsAlsoFalse: false and null
-define IsNull: true and null
+define "IsTrue": true and true
+define "IsFalse": true and false
+define "IsAlsoFalse": false and null
+define "IsNull": true and null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -437,7 +437,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*TRUE* |*NULL* |*NULL*
 |=======================
 
-Table 9‑A
+Table 9‑A1 - The truth table for the [.kw]#Implies# operator
 
 *Example:*
 
@@ -445,10 +445,10 @@ The following examples illustrate the behavior of the [.kw]#implies# operator:
 
 [source,cql]
 ----
-define IsTrue: false implies false
-define IsAlsoTrue: false implies null
-define IsFalse: true implies false
-define IsNull: true implies null
+define "IsTrue": false implies false
+define "IsAlsoTrue": false implies null
+define "IsFalse": true implies false
+define "IsNull": true implies null
 ----
 
 [[not]]
@@ -476,15 +476,15 @@ The following table defines the truth table for this operator:
 |*NULL* |*NULL*
 |===========
 
-Table 9‑B
+Table 9‑B - The truth table for the [.kw]#Not# operator
 
 The following examples illustrate the behavior of the [.kw]#not# operator:
 
 [source,cql]
 ----
-define IsTrue: not false
-define IsFalse: not true
-define IsNull: not null
+define "IsTrue": not false
+define "IsFalse": not true
+define "IsNull": not null
 ----
 
 [[or]]
@@ -512,7 +512,7 @@ The following table defines the truth table for this operator:
 |*NULL* |*TRUE* |*NULL* |*NULL*
 |========================
 
-Table 9‑C
+Table 9‑C - The truth table for the [.kw]#Or# operator
 
 *Example:*
 
@@ -520,10 +520,10 @@ The following examples illustrate the behavior of the [.kw]#or# operator:
 
 [source,cql]
 ----
-define IsTrue: true or false
-define IsAlsoTrue: true or null
-define IsFalse: false or false
-define IsNull: false or null
+define "IsTrue": true or false
+define "IsAlsoTrue": true or null
+define "IsFalse": false or false
+define "IsNull": false or null
 ----
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
@@ -553,16 +553,16 @@ The following table defines the truth table for this operator:
 |*NULL* |*NULL* |*NULL* |*NULL*
 |========================
 
-Table 9‑D
+Table 9‑D - The truth table for the [.kw]#Xor# operator
 
 The following examples illustrate the behavior of the [.kw]#xor# operator:
 
 [source,cql]
 ----
-define IsTrue: true xor false
-define IsAlsoTrue: false xor true
-define IsFalse: true xor true
-define IsNull: true xor null
+define "IsTrue": true xor false
+define "IsAlsoTrue": false xor true
+define "IsFalse": true xor true
+define "IsNull": true xor null
 ----
 
 [[type-operators-1]]
@@ -593,14 +593,14 @@ The following examples illustrate the use of the [.kw]#as# operator.
 
 [source,cql]
 ----
-define AllProcedures: [Procedure]
+define "AllProcedures": [Procedure]
 
-define ImagingProcedures:
+define "ImagingProcedures":
   AllProcedures P
     where P is ImagingProcedure
     return P as ImagingProcedure
 
-define RuntimeError:
+define "RuntimeError":
   ImagingProcedures P
     return cast P as Observation
 ----
@@ -658,7 +658,7 @@ The following table lists the conversions supported in CQL:
 |*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
 |===============================================================================================
 
-Table 9‑E
+Table 9‑E - The conversions supported in CQL
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
@@ -712,8 +712,8 @@ The following examples illustrate the behavior of the [.kw]#is# operator:
 
 [source,cql]
 ----
-define IsTrue: 5 is Integer
-define IsFalse: '5' is Integer
+define "IsTrue": 5 is Integer
+define "IsFalse": '5' is Integer
 ----
 
 [[canconvertquantity]]
@@ -763,8 +763,8 @@ If either argument is null, the result is null.
 
 [source,cql]
 ----
-define ConvertQuantity: ConvertQuantity(5 'mg', 'g')
-define ConvertSyntax: convert 5 'mg' to 'g'
+define "ConvertQuantity": ConvertQuantity(5 'mg', 'g')
+define "ConvertSyntax": convert 5 'mg' to 'g'
 ----
 
 [[convertstoboolean]]
@@ -997,7 +997,7 @@ The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Bool
 |[.id]#false f no n 0# |[.kw]#false#
 |====================================
 
-Table 9‑F
+Table 9‑F - The string representations that the ToBoolean operator accepts
 
 Note that the operator will ignore case when interpreting the string as a [.id]#Boolean# value.
 
@@ -1009,9 +1009,9 @@ The following examples illustrate the behavior of the [.id]#ToBoolean# operator:
 
 [source,cql]
 ----
-define IsTrue: ToBoolean('y')
-define IsFalse: ToBoolean('0')
-define IsNull: ToBoolean('falsetto')
+define "IsTrue": ToBoolean('y')
+define "IsFalse": ToBoolean('0')
+define "IsNull": ToBoolean('falsetto')
 ----
 
 [[toconcept]]
@@ -1037,8 +1037,8 @@ The following examples illustrate the behavior of the [.id]#ToConcept# operator:
 
 [source,cql]
 ----
-define IsValid: ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
-define IsNull: ToConcept(null as Code)
+define "IsValid": ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
+define "IsNull": ToConcept(null as Code)
 ----
 
 [[todate]]
@@ -1153,8 +1153,8 @@ The following examples illustrate the behavior of the [.id]#ToDecimal# operator:
 
 [source,cql]
 ----
-define IsValid: ToDecimal('-0.1')
-define IsNull: ToDecimal('+-0.1')
+define "IsValid": ToDecimal('-0.1')
+define "IsNull": ToDecimal('+-0.1')
 ----
 
 [[tolong]]
@@ -1192,8 +1192,8 @@ The following examples illustrate the behavior of the [.id]#ToLong# operator:
 
 [source,cql]
 ----
-define IsValid: ToLong('-1')
-define IsNull: ToLong('one')
+define "IsValid": ToLong('-1')
+define "IsNull": ToLong('one')
 ----
 
 [[tointeger]]
@@ -1234,8 +1234,8 @@ The following examples illustrate the behavior of the [.id]#ToInteger# operator:
 
 [source,cql]
 ----
-define IsValid: ToInteger('-1')
-define IsNull: ToInteger('one')
+define "IsValid": ToInteger('-1')
+define "IsNull": ToInteger('one')
 ----
 
 [[toquantity]]
@@ -1277,10 +1277,10 @@ The following examples illustrate the behavior of the [.id]#ToQuantity# operator
 
 [source,cql]
 ----
-define DecimalOverload: ToQuantity(0.1) // 0.1 '1'
-define IntegerOverload: ToQuantity(13) // 13 '1'
-define StringOverload: ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
-define IsNull: ToQuantity('444 \'cm')
+define "DecimalOverload": ToQuantity(0.1) // 0.1 '1'
+define "IntegerOverload": ToQuantity(13) // 13 '1'
+define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
+define "IsNull": ToQuantity('444 \'cm')
 ----
 
 [[toratio]]
@@ -1309,8 +1309,8 @@ The following examples illustrate the behavior of the [.id]#ToRatio# operator:
 
 [source,cql]
 ----
-define IsValid: ToRatio('1.0 \'mg\':2.0 \'mg\'')
-define IsNull: ToRatio('1.0 \'mg\';2.0 \'mg\'')
+define "IsValid": ToRatio('1.0 \'mg\':2.0 \'mg\'')
+define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ----
 
 [[tostring]]
@@ -1355,7 +1355,7 @@ The [.id]#ToString# operator converts the value of its argument to a [.id]#Strin
 |[.id]#Time# |*hh:mm:ss.fff*
 |===========================================
 
-Table 9‑G
+Table 9‑G - The string representations that the ToString operator uses for each data type
 
 See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
@@ -1367,16 +1367,16 @@ The following examples illustrate the behavior of the [.id]#ToString# operator:
 
 [source,cql]
 ----
-define BooleanOverload: ToString(true)
-define IntegerOverload: ToString(13)
-define LongOverload: ToString(10000L)
-define DecimalOverload: ToString(0.1)
-define QuantityOverload: ToString(-0.1 'mg')
-define RatioOverload: ToString(-0.1 'mg':0.1 'mg')
-define DateOverload: ToString(@2012-01-01)
-define DateTimeOverload: ToString(@2012-01-01T12:30:00.000-05:00)
-define TimeOverload: ToString(@T12:30:00.000)
-define IsNull: ToString(null as Integer)
+define "BooleanOverload": ToString(true)
+define "IntegerOverload": ToString(13)
+define "LongOverload": ToString(10000L)
+define "DecimalOverload": ToString(0.1)
+define "QuantityOverload": ToString(-0.1 'mg')
+define "RatioOverload": ToString(-0.1 'mg':0.1 'mg')
+define "DateOverload": ToString(@2012-01-01)
+define "DateTimeOverload": ToString(@2012-01-01T12:30:00.000-05:00)
+define "TimeOverload": ToString(@T12:30:00.000)
+define "IsNull": ToString(null as Integer)
 ----
 
 [[totime]]
@@ -1439,9 +1439,9 @@ The following examples illustrate the behavior of the [.id]#Coalesce# operator:
 
 [source,cql]
 ----
-define Coalesce15: Coalesce(null, 15, null)
-define IsNull: Coalesce({ null, null, null })
-define CoalesceError: Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
+define "Coalesce15": Coalesce(null, 15, null)
+define "IsNull": Coalesce({ null, null, null })
+define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
 ----
 
 [[isnull]]
@@ -1462,8 +1462,8 @@ The following examples illustrate the behavior of the [.kw]#is null# operator:
 
 [source,cql]
 ----
-define IsTrue: null is null
-define IsFalse: true is null
+define "IsTrue": null is null
+define "IsFalse": true is null
 ----
 
 [[isfalse]]
@@ -1484,8 +1484,8 @@ The following examples illustrate the behavior of the [.kw]#is false# operator:
 
 [source,cql]
 ----
-define IsFalseIsTrue: false is false
-define IsFalseIsFalse: null is false
+define "IsFalseIsTrue": false is false
+define "IsFalseIsFalse": null is false
 ----
 
 [[istrue]]
@@ -1506,8 +1506,8 @@ The following examples illustrate the behavior of the [.kw]#is true# operator:
 
 [source,cql]
 ----
-define IsTrueIsTrue: true is true
-define IsTrueIsFalse: false is true
+define "IsTrueIsTrue": true is true
+define "IsTrueIsFalse": false is true
 ----
 
 [[comparison-operators-4]]
@@ -1545,7 +1545,7 @@ For comparisons involving Date, DateTime, or Time values with imprecision, note 
 
 [source,cql]
 ----
-define DateTimeBetweenIsNull: @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
+define "DateTimeBetweenIsNull": @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1558,10 +1558,10 @@ The following examples illustrate the behavior of the [.kw]#between# operator:
 
 [source,cql]
 ----
-define IntegerBetweenIsTrue: 4 between 2 and 6
-define LongBetweenIsTrue: 4L between 2L and 6L
-define DecimalBetweenIsFalse: 3.5 between 3.6 and 4.8
-define QuantityBetweenIsNull: 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
+define "IntegerBetweenIsTrue": 4 between 2 and 6
+define "LongBetweenIsTrue": 4L between 2L and 6L
+define "DecimalBetweenIsFalse": 3.5 between 3.6 and 4.8
+define "QuantityBetweenIsNull": 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 ----
 
 [[equal]]
@@ -1602,16 +1602,16 @@ The following examples illustrate the behavior of the _equal_ operator:
 
 [source,cql]
 ----
-define IntegerEqualIsTrue: 4 = (2 + 2)
-define LongEqualIsTrue: 4L = (2L + 2L)
-define DecimalEqualIsFalse: 3.5 = (3.5 - 0.1)
-define StringEqualIsFalse: 'John Doe' = 'john doe'
-define QuantityEqualIsNull: 3.5 'cm2' = 3.5 'cm'
-define RatioEqualIsTrue: 1:8 = 1:8
-define RatioEqualIsFalse: 1:8 = 2:16
-define ListEqualIsTrue: { null, 1, 2, 3 } = { null, 1, 2, 3 }
-define DateTimeEqualIsNull: @2012-01-01 = @2012-01-01T12
-define NullEqualIsNull: null = null
+define "IntegerEqualIsTrue": 4 = (2 + 2)
+define "LongEqualIsTrue": 4L = (2L + 2L)
+define "DecimalEqualIsFalse": 3.5 = (3.5 - 0.1)
+define "StringEqualIsFalse": 'John Doe' = 'john doe'
+define "QuantityEqualIsNull": 3.5 'cm2' = 3.5 'cm'
+define "RatioEqualIsTrue": 1:8 = 1:8
+define "RatioEqualIsFalse": 1:8 = 2:16
+define "ListEqualIsTrue": { null, 1, 2, 3 } = { null, 1, 2, 3 }
+define "DateTimeEqualIsNull": @2012-01-01 = @2012-01-01T12
+define "NullEqualIsNull": null = null
 ----
 
 [[equivalent]]
@@ -1656,15 +1656,15 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
-define IntegerEquivalentIsTrue: 4 ~ (2 + 2)
-define LongEquivalentIsTrue: 4L ~ (2L + 2L)
-define DecimalEquivalentIsFalse: 3.5 ~ (3.5 - 0.1)
-define StringEquivalentIsTrue: 'John Doe' ~ 'john doe'
-define QuantityEquivalentIsFalse: 3.5 'cm2' ~ 3.5 'cm'
-define RatioEquivalentIsTrue: 1:8 ~ 2:16
-define ListEquivalentIsTrue: { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
-define DateTimeEquivalentIsFalse: @2012-01-01 ~ @2012-01-01T12
-define NullEquivalentIsTrue: null ~ null
+define "IntegerEquivalentIsTrue": 4 ~ (2 + 2)
+define "LongEquivalentIsTrue": 4L ~ (2L + 2L)
+define "DecimalEquivalentIsFalse": 3.5 ~ (3.5 - 0.1)
+define "StringEquivalentIsTrue": 'John Doe' ~ 'john doe'
+define "QuantityEquivalentIsFalse": 3.5 'cm2' ~ 3.5 'cm'
+define "RatioEquivalentIsTrue": 1:8 ~ 2:16
+define "ListEquivalentIsTrue": { null, 1, 2, 3 } ~ { null, 1, 2, 3 }
+define "DateTimeEquivalentIsFalse": @2012-01-01 ~ @2012-01-01T12
+define "NullEquivalentIsTrue": null ~ null
 ----
 
 [[greater]]
@@ -1701,7 +1701,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeGreaterIsNull: @2012-01-01 > @2012-01-01T12
+define "DateTimeGreaterIsNull": @2012-01-01 > @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1712,11 +1712,11 @@ The following examples illustrate the behavior of the _greater_ operator:
 
 [source,cql]
 ----
-define IntegerGreaterIsTrue: 4 > 3
-define LongGreaterIsTrue: 4L > 3L
-define DecimalGreaterIsFalse: 3.5 > 3.5
-define QuantityGreaterIsNull: 3.6 'cm2' > 3.5 'cm'
-define NullGreaterIsNull: null > 5
+define "IntegerGreaterIsTrue": 4 > 3
+define "LongGreaterIsTrue": 4L > 3L
+define "DecimalGreaterIsFalse": 3.5 > 3.5
+define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
+define "NullGreaterIsNull": null > 5
 ----
 
 [.note-info]
@@ -1760,7 +1760,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeGreaterOrEqualIsNull: @2012-01-01 >= @2012-01-01T12
+define "DateTimeGreaterOrEqualIsNull": @2012-01-01 >= @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1771,11 +1771,11 @@ The following examples illustrate the behavior of the _greater or equal_ operato
 
 [source,cql]
 ----
-define IntegerGreaterOrEqualIsTrue: 4 >= (2 + 2)
-define LongGreaterOrEqualIsTrue: 4L >= (2L + 2L)
-define DecimalGreaterOrEqualIsFalse: 3.5 >= (3.5 + 0.1)
-define QuantityGreaterOrEqualIsNull: 3.6 'cm2' >= 3.5 'cm'
-define NullGreaterOrEqualIsNull: null >= 5
+define "IntegerGreaterOrEqualIsTrue": 4 >= (2 + 2)
+define "LongGreaterOrEqualIsTrue": 4L >= (2L + 2L)
+define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)
+define "QuantityGreaterOrEqualIsNull": 3.6 'cm2' >= 3.5 'cm'
+define "NullGreaterOrEqualIsNull": null >= 5
 ----
 
 [.note-info]
@@ -1818,7 +1818,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
+define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1829,12 +1829,12 @@ The following examples illustrate the behavior of the _less_ operator:
 
 [source,cql]
 ----
-define IntegerLessIsTrue: 4 < (2 + 2 + 2)
-define LongLessIsTrue: 4L < (2L + 2L + 2L)
-define DecimalLessIsFalse: 3.5 < 3.5
-define QuantityLessIsNull: 3.6 'cm2' < 3.5 'cm'
-define DateTimeLessIsNull: @2012-01-01 < @2012-01-01T12
-define NullLessIsNull: null < 5
+define "IntegerLessIsTrue": 4 < (2 + 2 + 2)
+define "LongLessIsTrue": 4L < (2L + 2L + 2L)
+define "DecimalLessIsFalse": 3.5 < 3.5
+define "QuantityLessIsNull": 3.6 'cm2' < 3.5 'cm'
+define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
+define "NullLessIsNull": null < 5
 ----
 
 [.note-info]
@@ -1876,7 +1876,7 @@ For Date, DateTime, and Time values, the comparison is performed by considering 
 
 [source,cql]
 ----
-define DateTimeLessOrEqualIsNull: @2012-01-01 <= @2012-01-01T12
+define "DateTimeLessOrEqualIsNull": @2012-01-01 <= @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
@@ -1887,11 +1887,11 @@ The following examples illustrate the behavior of the _less or equal_ operator:
 
 [source,cql]
 ----
-define IntegerLessOrEqualIsTrue: 4 <= (2 + 2)
-define LongLessOrEqualIsTrue: 4L <= (2L + 2L)
-define DecimalLessOrEqualIsFalse: 3.5 <= (3.5 - 0.1)
-define QuantityLessOrEqualIsNull: 3.6 'cm2' <= 3.6 'cm'
-define NullLessOrEqualIsNull: null <= 5
+define "IntegerLessOrEqualIsTrue": 4 <= (2 + 2)
+define "LongLessOrEqualIsTrue": 4L <= (2L + 2L)
+define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)
+define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'
+define "NullLessOrEqualIsNull": null <= 5
 ----
 
 [.note-info]
@@ -1920,14 +1920,14 @@ The following examples illustrate the behavior of the _not equal_ operator:
 
 [source,cql]
 ----
-define IntegerNotEqualIsFalse: 4 != (2 + 2)
-define LongNotEqualIsFalse: 4L != (2L + 2L)
-define DecimalNotEqualIsTrue: 3.5 != (3.5 - 0.1)
-define StringNotEqualIsTrue: 'John Doe' != 'john doe'
-define QuantityNotEqualIsNull: 3.5 'cm2' != 3.5 'cm'
-define ListNotEqualIsNull: { null, 1, 2, 3 } != { null, 1, 2, 3 }
-define DateTimeNotEqualIsNull: @2012-01-01 != @2012-01-01T12
-define NullNotEqualIsNull: null != null
+define "IntegerNotEqualIsFalse": 4 != (2 + 2)
+define "LongNotEqualIsFalse": 4L != (2L + 2L)
+define "DecimalNotEqualIsTrue": 3.5 != (3.5 - 0.1)
+define "StringNotEqualIsTrue": 'John Doe' != 'john doe'
+define "QuantityNotEqualIsNull": 3.5 'cm2' != 3.5 'cm'
+define "ListNotEqualIsNull": { null, 1, 2, 3 } != { null, 1, 2, 3 }
+define "DateTimeNotEqualIsNull": @2012-01-01 != @2012-01-01T12
+define "NullNotEqualIsNull": null != null
 ----
 
 [[not-equivalent]]
@@ -1950,14 +1950,14 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 
 [source,cql]
 ----
-define IntegerNotEquivalentIsFalse: 4 !~ (2 + 2)
-define LongNotEquivalentIsFalse: 4L !~ (2L + 2L)
-define DecimalNotEquivalentIsTrue: 3.5 !~ (3.5 - 0.1)
-define StringNotEquivalentIsFalse: 'John Doe' !~ 'john doe'
-define QuantityNotEquivalentIsTrue: 3.5 'cm2' !~ 3.5 'cm'
-define ListNotEquivalentIsFalse: { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
-define DateTimeNotEquivalentIsTrue: @2012-01-01 !~ @2012-01-01T12
-define NullNotEquivalentIsFalse: null !~ null
+define "IntegerNotEquivalentIsFalse": 4 !~ (2 + 2)
+define "LongNotEquivalentIsFalse": 4L !~ (2L + 2L)
+define "DecimalNotEquivalentIsTrue": 3.5 !~ (3.5 - 0.1)
+define "StringNotEquivalentIsFalse": 'John Doe' !~ 'john doe'
+define "QuantityNotEquivalentIsTrue": 3.5 'cm2' !~ 3.5 'cm'
+define "ListNotEquivalentIsFalse": { null, 1, 2, 3 } !~ { null, 1, 2, 3 }
+define "DateTimeNotEquivalentIsTrue": @2012-01-01 !~ @2012-01-01T12
+define "NullNotEquivalentIsFalse": null !~ null
 ----
 
 [[arithmetic-operators-4]]
@@ -1997,11 +1997,11 @@ The following examples illustrate the behavior of the [.id]#Abs# operator:
 
 [source,cql]
 ----
-define IntegerAbs: Abs(-5) // 5
-define IntegerAbsIsNull: Abs(null as Integer)
-define LongAbs: Abs(-5000000L) // 5000000L
-define DecimalAbs: Abs(-5.5) // 5.5
-define QuantityAbs: Abs(-5.5 'mg') // 5.5 'mg'
+define "IntegerAbs": Abs(-5) // 5
+define "IntegerAbsIsNull": Abs(null as Integer)
+define "LongAbs": Abs(-5000000L) // 5000000L
+define "DecimalAbs": Abs(-5.5) // 5.5
+define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 ----
 
 [[add]]
@@ -2042,12 +2042,12 @@ The following examples illustrate the behavior of the _add_ operator:
 
 [source,cql]
 ----
-define IntegerAdd: 2 + 2 // 4
-define IntegerAddIsNull: 2 + null
-define LongAdd: 25L + 5 // 30L
-define DecimalAdd: 2.5 + 5 // 7.5
-define QuantityAdd: -5.5 'mg' + 2 'mg' // -3.5 'mg'
-define QuantityAddIsNull: -5.5 'cm' + 2 'cm2'
+define "IntegerAdd": 2 + 2 // 4
+define "IntegerAddIsNull": 2 + null
+define "LongAdd": 25L + 5 // 30L
+define "DecimalAdd": 2.5 + 5 // 7.5
+define "QuantityAdd": -5.5 'mg' + 2 'mg' // -3.5 'mg'
+define "QuantityAddIsNull": -5.5 'cm' + 2 'cm2'
 ----
 
 [[ceiling]]
@@ -2072,9 +2072,9 @@ The following examples illustrate the behavior of the [.id]#Ceiling# operator:
 
 [source,cql]
 ----
-define IntegerCeiling: Ceiling(1) // 1
-define DecimalCeiling: Ceiling(1.1) // 2
-define QuantityCeilingIsNull: Ceiling(null as Decimal)
+define "IntegerCeiling": Ceiling(1) // 1
+define "DecimalCeiling": Ceiling(1.1) // 2
+define "QuantityCeilingIsNull": Ceiling(null as Decimal)
 ----
 
 [[divide]]
@@ -2113,12 +2113,12 @@ The following examples illustrate the behavior of the _divide_ operator:
 
 [source,cql]
 ----
-define IntegerDivide: 4.0 / 2 // 2.0
-define LongDivide: 4.0 / 2L // 2.0
-define DecimalDivide: 9.9 / 3.0 // 3.3
-define DecimalDivideIsNull: 2.2 / null
-define DecimalDivideIsError: 2.2 / 0
-define QuantityDivide: -5.5 'mg' / 2.0 'mg' // -2.75
+define "IntegerDivide": 4.0 / 2 // 2.0
+define "LongDivide": 4.0 / 2L // 2.0
+define "DecimalDivide": 9.9 / 3.0 // 3.3
+define "DecimalDivideIsNull": 2.2 / null
+define "DecimalDivideIsError": 2.2 / 0
+define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 ----
 
 [[floor]]
@@ -2143,9 +2143,9 @@ The following examples illustrate the behavior of the [.id]#Floor# operator:
 
 [source,cql]
 ----
-define IntegerFloor: Floor(1) // 1
-define DecimalFloor: Floor(2.1) // 2
-define QuantityFloorIsNull: Floor(null as Decimal)
+define "IntegerFloor": Floor(1) // 1
+define "DecimalFloor": Floor(2.1) // 2
+define "QuantityFloorIsNull": Floor(null as Decimal)
 ----
 
 [[exp]]
@@ -2172,10 +2172,10 @@ The following examples illustrate the behavior of the [.id]#Exp# operator:
 
 [source,cql]
 ----
-define IntegerExp: Exp(0) // 1.0
-define LongExp: Exp(0L) // 1.0
-define DecimalExp: Exp(-0.0) // 1.0
-define QuantityExpIsNull: Exp(null as Decimal)
+define "IntegerExp": Exp(0) // 1.0
+define "LongExp": Exp(0L) // 1.0
+define "DecimalExp": Exp(-0.0) // 1.0
+define "QuantityExpIsNull": Exp(null as Decimal)
 ----
 
 === HighBoundary
@@ -2234,10 +2234,10 @@ The following examples illustrate the behavior of the [.id]#Log# operator:
 
 [source,cql]
 ----
-define IntegerLog: Log(16, 2) // 4.0
-define LongLog: Log(16L, 2L) // 4.0
-define DecimalLog: Log(100.0, 10.0) // 2.0
-define QuantityLogIsNull: Log(null, 10.0)
+define "IntegerLog": Log(16, 2) // 4.0
+define "LongLog": Log(16L, 2L) // 4.0
+define "DecimalLog": Log(100.0, 10.0) // 2.0
+define "QuantityLogIsNull": Log(null, 10.0)
 ----
 
 === LowBoundary
@@ -2296,10 +2296,10 @@ The following examples illustrate the behavior of the [.id]#Ln# operator:
 
 [source,cql]
 ----
-define IntegerLn: Ln(1) // 0.0
-define LongLn: Ln(1L) // 0.0
-define DecimalLn: Ln(1.0) // 0.0
-define QuantityLnIsNull: Ln(null as Decimal)
+define "IntegerLn": Ln(1) // 0.0
+define "LongLn": Ln(1L) // 0.0
+define "DecimalLn": Ln(1.0) // 0.0
+define "QuantityLnIsNull": Ln(null as Decimal)
 ----
 
 [[maximum]]
@@ -2343,10 +2343,10 @@ The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
 [source,cql]
 ----
-define IntegerMaximum: maximum Integer // 2147483647
-define LongMaximum: maximum Long // 9223372036854775807
-define DateTimeMaximum: maximum DateTime // @9999-12-31T23:59:59.999
-define ErrorMaximum: maximum Quantity
+define "IntegerMaximum": maximum Integer // 2147483647
+define "LongMaximum": maximum Long // 9223372036854775807
+define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999
+define "ErrorMaximum": maximum Quantity
 ----
 
 [[minimum]]
@@ -2390,10 +2390,10 @@ The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
 [source,cql]
 ----
-define IntegerMinimum: minimum Integer // -2147483648
-define LongMinimum: minimum Integer // -9223372036854775808
-define DateTimeMinimum: minimum DateTime // @0001-01-01T00:00:00.000
-define ErrorMinimum: minimum Quantity
+define "IntegerMinimum": minimum Integer // -2147483648
+define "LongMinimum": minimum Integer // -9223372036854775808
+define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
+define "ErrorMinimum": minimum Quantity
 ----
 
 [[modulo]]
@@ -2435,10 +2435,10 @@ The following examples illustrate the behavior of the [.kw]#mod# operator:
 
 [source,cql]
 ----
-define IntegerModulo: 3 mod 2 // 1
-define LongModulo: 3L mod 2 // 1L
-define DecimalModulo: 2.5 mod 2 // 0.5
-define ModuloIsNull: 2.5 mod null
+define "IntegerModulo": 3 mod 2 // 1
+define "LongModulo": 3L mod 2 // 1L
+define "DecimalModulo": 2.5 mod 2 // 0.5
+define "ModuloIsNull": 2.5 mod null
 ----
 
 [[multiply]]
@@ -2515,11 +2515,11 @@ The following examples illustrate the behavior of the _negate_ operator:
 
 [source,cql]
 ----
-define IntegerNegate: -3 // -3
-define LongNegate: -3L // -3L
-define DecimalNegate: -(-3.3) // 3.3
-define QuantityNegate: -3.3 'mg' // -3.3 'mg'
-define NegateIsNull: -(null as Integer)
+define "IntegerNegate": -3 // -3
+define "LongNegate": -3L // -3L
+define "DecimalNegate": -(-3.3) // 3.3
+define "QuantityNegate": -3.3 'mg' // -3.3 'mg'
+define "NegateIsNull": -(null as Integer)
 ----
 
 === Precision
@@ -2593,11 +2593,11 @@ The following examples illustrate the behavior of the [.kw]#predecessor# operato
 
 [source,cql]
 ----
-define IntegerPredecessor: predecessor of 100 // 99
-define LongPredecessor: predecessor of 100L // 99L
-define DecimalPredecessor: predecessor of 1.0 // 0.99999999
-define DatePredecessor: predecessor of @2014-01-01 // @2013-12-31
-define PredecessorIsNull: predecessor of (null as Quantity)
+define "IntegerPredecessor": predecessor of 100 // 99
+define "LongPredecessor": predecessor of 100L // 99L
+define "DecimalPredecessor": predecessor of 1.0 // 0.99999999
+define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31
+define "PredecessorIsNull": predecessor of (null as Quantity)
 ----
 
 [[power]]
@@ -2633,11 +2633,11 @@ The following examples illustrate the behavior of the _power_ operator:
 
 [source,cql]
 ----
-define IntegerPower: 2^3 // 8
-define IntegerPowerFun: Power(2, 3) // 8
-define LongPower: 2L^3L // 8L
-define DecimalPower: 2.5^2.0 // 6.25
-define NegateIsNull: 2.5^null
+define "IntegerPower": 2^3 // 8
+define "IntegerPowerFun": Power(2, 3) // 8
+define "LongPower": 2L^3L // 8L
+define "DecimalPower": 2.5^2.0 // 6.25
+define "NegateIsNull": 2.5^null
 ----
 
 [[round]]
@@ -2665,9 +2665,9 @@ The following examples illustrate the behavior of the [.id]#Round# operator:
 
 [source,cql]
 ----
-define IntegerRound: Round(1) // 1
-define DecimalRound: Round(3.14159, 3) // 3.142
-define RoundIsNull: Round(null)
+define "IntegerRound": Round(1) // 1
+define "DecimalRound": Round(3.14159, 3) // 3.142
+define "RoundIsNull": Round(null)
 ----
 
 [[subtract]]
@@ -2706,12 +2706,12 @@ The following examples illustrate the behavior of the _subtract_ operator:
 
 [source,cql]
 ----
-define IntegerSubtract: 2 - 1 // 1
-define LongSubtract: 2L - 1L // 1L
-define DecimalSubtract: 3.14 - 3.12 // 0.02
-define QuantitySubtract: 3.14 'mg' - 3.12 'mg' // 0.02 'mg'
-define QuantitySubtractError: 3.14 'cm' - 3.12 'cm2'
-define SubtractIsNull: 3 - null
+define "IntegerSubtract": 2 - 1 // 1
+define "LongSubtract": 2L - 1L // 1L
+define "DecimalSubtract": 3.14 - 3.12 // 0.02
+define "QuantitySubtract": 3.14 'mg' - 3.12 'mg' // 0.02 'mg'
+define "QuantitySubtractError": 3.14 'cm' - 3.12 'cm2'
+define "SubtractIsNull": 3 - null
 ----
 
 [[successor]]
@@ -2748,11 +2748,11 @@ The following examples illustrate the behavior of the [.kw]#successor# operator:
 
 [source,cql]
 ----
-define IntegerSuccessor: successor of 100 // 101
-define LongSuccessor: successor of 100L // 101L
-define DecimalSuccessor: successor of 1.0 // 1.00000001
-define DateSuccessor: successor of @2014-01-01 // @2014-01-02
-define SuccessorIsNull: successor of (null as Quantity)
+define "IntegerSuccessor": successor of 100 // 101
+define "LongSuccessor": successor of 100L // 101L
+define "DecimalSuccessor": successor of 1.0 // 1.00000001
+define "DateSuccessor": successor of @2014-01-01 // @2014-01-02
+define "SuccessorIsNull": successor of (null as Quantity)
 ----
 
 [[truncate]]
@@ -2777,9 +2777,9 @@ The following examples illustrate the behavior of the [.id]#Truncate# operator:
 
 [source,cql]
 ----
-define IntegerTruncate: Truncate(101) // 101
-define DecimalTruncate: Truncate(1.00000001) // 1
-define TruncateIsNull: Truncate(null)
+define "IntegerTruncate": Truncate(101) // 101
+define "DecimalTruncate": Truncate(1.00000001) // 1
+define "TruncateIsNull": Truncate(null)
 ----
 
 [[truncated-divide]]
@@ -2821,10 +2821,10 @@ The following examples illustrate the behavior of the [.kw]#div# operator:
 
 [source,cql]
 ----
-define IntegerTruncatedDivide: 4 div 2 // 2
-define LongTruncatedDivide: 4L div 2L // 2L
-define DecimalTruncatedDivide: 4.14 div 2.06 // 2
-define TruncatedDivideIsNull: 3 div null
+define "IntegerTruncatedDivide": 4 div 2 // 2
+define "LongTruncatedDivide": 4L div 2L // 2L
+define "DecimalTruncatedDivide": 4.14 div 2.06 // 2
+define "TruncatedDivideIsNull": 3 div null
 ----
 
 [[string-operators-3]]
@@ -2853,9 +2853,9 @@ The following examples illustrate the behavior of the [.id]#Combine# operator:
 
 [source,cql]
 ----
-define CombineList: Combine({ 'A', 'B', 'C' }) // 'ABC'
-define CombineWithSeparator: Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
-define CombineWithNulls: Combine({ 'A', 'B', 'C', null }) // 'ABC'
+define "CombineList": Combine({ 'A', 'B', 'C' }) // 'ABC'
+define "CombineWithSeparator": Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
+define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
 ----
 
 [[concatenate]]
@@ -2881,10 +2881,10 @@ The following examples illustrate the behavior of the _concatenate_ operator:
 
 [source,cql]
 ----
-define ConcatenatePlus: 'John' + ' Doe' // 'John Doe'
-define ConcatenateAnd: 'John' & null & ' Doe' // 'John Doe'
-define ConcatenateFunction: Concatenate('John', ' Doe') // 'John Doe'
-define ConcatenateIsNull: 'John' + null + 'Doe' // null
+define "ConcatenatePlus": 'John' + ' Doe' // 'John Doe'
+define "ConcatenateAnd": 'John' & null & ' Doe' // 'John Doe'
+define "ConcatenateFunction": Concatenate('John', ' Doe') // 'John Doe'
+define "ConcatenateIsNull": 'John' + null + 'Doe' // null
 ----
 
 [[endswith]]
@@ -2909,9 +2909,9 @@ The following examples illustrate the behavior of the [.id]#EndsWith# operator:
 
 [source,cql]
 ----
-define EndsWithIsTrue: EndsWith('ABC', 'C') // true
-define EndsWithIsFalse: EndsWith('ABC', 'Z') // false
-define EndsWithIsNull: EndsWith('ABC', null) // null
+define "EndsWithIsTrue": EndsWith('ABC', 'C') // true
+define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false
+define "EndsWithIsNull": EndsWith('ABC', null) // null
 ----
 
 [[indexer]]
@@ -2938,9 +2938,9 @@ The following examples illustrate the behavior of the _indexer_ operator:
 
 [source,cql]
 ----
-define Indexer2: 'ABCDE'[2] // 'C'
-define IndexerIsNull: 'ABCDE'[14] // null
-define IndexerIsAlsoNull: 'ABCDE'[null] // null
+define "Indexer2": 'ABCDE'[2] // 'C'
+define "IndexerIsNull": 'ABCDE'[14] // null
+define "IndexerIsAlsoNull": 'ABCDE'[null] // null
 ----
 
 [[lastpositionof]]
@@ -2965,9 +2965,9 @@ The following examples illustrate the behavior of the [.id]#LastPositionOf# oper
 
 [source,cql]
 ----
-define LastPositionOfFound: LastPositionOf('B', 'ABCDEDCBA') // 7
-define LastPositionOfNotFound: LastPositionOf('XYZ', 'ABCDE') // -1
-define LastPositionOfIsNull: LastPositionOf(null, 'ABCDE') // null
+define "LastPositionOfFound": LastPositionOf('B', 'ABCDEDCBA') // 7
+define "LastPositionOfNotFound": LastPositionOf('XYZ', 'ABCDE') // -1
+define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
 ----
 
 [[length]]
@@ -2990,8 +2990,8 @@ The following examples illustrate the behavior of the [.id]#Length# operator:
 
 [source,cql]
 ----
-define Length14: Length('ABCDE') // 5
-define LengthIsNull: Length(null as String) // null
+define "Length14": Length('ABCDE') // 5
+define "LengthIsNull": Length(null as String) // null
 ----
 
 [[lower]]
@@ -3021,8 +3021,8 @@ The following examples illustrate the behavior of the [.id]#Lower# operator:
 
 [source,cql]
 ----
-define LowerCQL: Lower('ABCDE') // 'abcde'
-define LowerIsNull: Lower(null) // null
+define "LowerCQL": Lower('ABCDE') // 'abcde'
+define "LowerIsNull": Lower(null) // null
 ----
 
 [[matches]]
@@ -3052,9 +3052,9 @@ The following examples illustrate the behavior of the [.id]#Matches# operator:
 
 [source,cql]
 ----
-define MatchesTrue: Matches('1,2three', '\\d,\\d\\w+')
-define MatchesFalse: Matches('1,2three', '\\w+')
-define MatchesIsNull: Matches('12three', null)
+define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')
+define "MatchesFalse": Matches('1,2three', '\\w+')
+define "MatchesIsNull": Matches('12three', null)
 ----
 
 [[positionof]]
@@ -3079,9 +3079,9 @@ The following examples illustrate the behavior of the [.id]#PositionOf# operator
 
 [source,cql]
 ----
-define PositionOfFound: PositionOf('B', 'ABCDEDCBA') // 1
-define PositionOfNotFound: PositionOf('Z', 'ABCDE') // -1
-define PositionOfIsNull: PositionOf(null, 'ABCDE') // null
+define "PositionOfFound": PositionOf('B', 'ABCDEDCBA') // 1
+define "PositionOfNotFound": PositionOf('Z', 'ABCDE') // -1
+define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
 ----
 
 [[replacematches]]
@@ -3111,9 +3111,9 @@ The following examples illustrate the behavior of the [.id]#ReplaceMatches# oper
 
 [source,cql]
 ----
-define ReplaceMatchesFound: ReplaceMatches('ABCDE', 'C', 'XYZ') // 'ABXYZDE'
-define ReplaceMatchesNotFound: ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE'
-define ReplaceMatchesIsNull: ReplaceMatches('ABCDE', 'C', null) // null
+define "ReplaceMatchesFound": ReplaceMatches('ABCDE', 'C', 'XYZ') // 'ABXYZDE'
+define "ReplaceMatchesNotFound": ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE'
+define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
 ----
 
 [[split]]
@@ -3138,9 +3138,9 @@ The following examples illustrate the behavior of the [.id]#Split# operator:
 
 [source,cql]
 ----
-define SplitFound: Split('A B C', ' ') // { 'A', 'B', 'C' }
-define SplitNotFound: Split('A B C', ',') // { 'A B C' }
-define SplitIsNull: Split(null, ' ') // null
+define "SplitFound": Split('A B C', ' ') // { 'A', 'B', 'C' }
+define "SplitNotFound": Split('A B C', ',') // { 'A B C' }
+define "SplitIsNull": Split(null, ' ') // null
 ----
 
 [[splitonmatches]]
@@ -3185,9 +3185,9 @@ The following examples illustrate the behavior of the [.id]#StartsWith# operator
 
 [source,cql]
 ----
-define StartsWithIsTrue: StartsWith('ABCDE', 'ABC') // true
-define StartsWithIsFalse: StartsWith('ABCDE', 'XYZ') // false
-define StartsWithIsNull: StartsWith('ABCDE', null) // null
+define "StartsWithIsTrue": StartsWith('ABCDE', 'ABC') // true
+define "StartsWithIsFalse": StartsWith('ABCDE', 'XYZ') // false
+define "StartsWithIsNull": StartsWith('ABCDE', null) // null
 ----
 
 [[substring]]
@@ -3213,10 +3213,10 @@ The following examples illustrate the behavior of the [.id]#Substring# operator:
 
 [source,cql]
 ----
-define SubstringWithoutLength: Substring('ABCDE', 2) // 'CDE'
-define SubstringWithLength: Substring('ABCDE', 2, 1) // 'C'
-define SubstringIsNull: Substring('ABCDE', null) // null
-define SubstringIsAlsoNull: Substring('ABCDE', 14) // null
+define "SubstringWithoutLength": Substring('ABCDE', 2) // 'CDE'
+define "SubstringWithLength": Substring('ABCDE', 2, 1) // 'C'
+define "SubstringIsNull": Substring('ABCDE', null) // null
+define "SubstringIsAlsoNull": Substring('ABCDE', 14) // null
 ----
 
 [[upper]]
@@ -3246,8 +3246,8 @@ The following examples illustrate the behavior of the [.id]#Upper# operator:
 
 [source,cql]
 ----
-define UpperCQL: Upper('abcde') // 'ABCDE'
-define UpperIsNull: Upper(null) // null
+define "UpperCQL": Upper('abcde') // 'ABCDE'
+define "UpperIsNull": Upper(null) // null
 ----
 
 [[datetime-operators-2]]
@@ -3329,10 +3329,10 @@ The following examples illustrate the behavior of the [.kw]#after#__-precision-_
 
 [source,cql]
 ----
-define AfterIsTrue: @2012-02-01 after month of @2012-01-01
-define AfterIsFalse: @2012-01-01 after month of @2012-01-01
-define AfterUncertainIsNull: @2012-01-01 after month of @2012
-define AfterIsNull: @2012-01-01 after month of null
+define "AfterIsTrue": @2012-02-01 after month of @2012-01-01
+define "AfterIsFalse": @2012-01-01 after month of @2012-01-01
+define "AfterUncertainIsNull": @2012-01-01 after month of @2012
+define "AfterIsNull": @2012-01-01 after month of null
 ----
 
 This operator is also defined for intervals, see the <<after-1,After (Intervals)>> operator for more information.
@@ -3373,10 +3373,10 @@ The following examples illustrate the behavior of the [.kw]#before#__-precision-
 
 [source,cql]
 ----
-define BeforeIsTrue: @2012-01-01 before month of @2012-02-01
-define BeforeIsFalse: @2012-01-01 before month of @2012-01-01
-define BeforeUncertainIsNull: @2012 before month of @2012-02-01
-define BeforeIsNull: @2012-01-01 before month of null
+define "BeforeIsTrue": @2012-01-01 before month of @2012-02-01
+define "BeforeIsFalse": @2012-01-01 before month of @2012-01-01
+define "BeforeUncertainIsNull": @2012 before month of @2012-02-01
+define "BeforeIsNull": @2012-01-01 before month of null
 ----
 
 This operator is also defined for intervals, see the <<before-1,Before (Intervals)>> operator for more information.
@@ -3403,8 +3403,8 @@ The following examples illustrate the behavior of the [.id]#Date# operator:
 
 [source,cql]
 ----
-define DateValid: Date(2012, 1, 1)
-define DateInvalid: Date(2012, null, 1)
+define "DateValid": Date(2012, 1, 1)
+define "DateInvalid": Date(2012, null, 1)
 ----
 
 [[datetime-1]]
@@ -3444,8 +3444,8 @@ The following examples illustrate the behavior of the [.id]#DateTime# operator:
 
 [source,cql]
 ----
-define DateValid: DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
-define DateInvalid: DateTime(2012, 1, 1, 12, null, 0, 0, -7)
+define "DateValid": DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
+define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ----
 
 [[datetime-component-from]]
@@ -3483,11 +3483,11 @@ The following examples illustrate the behavior of the _component_-[.kw]#from# op
 
 [source,cql]
 ----
-define MonthFrom: month from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // 1
-define TimeZoneOffsetFrom: timezoneoffset from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // -7.0
-define DateFrom: date from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @2012-01-01
-define TimeFrom: time from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @T12:30:00.000-07:00
-define MonthFromIsNull: month from DateTime(2012)
+define "MonthFrom": month from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // 1
+define "TimeZoneOffsetFrom": timezoneoffset from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // -7.0
+define "DateFrom": date from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @2012-01-01
+define "TimeFrom": time from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @T12:30:00.000-07:00
+define "MonthFromIsNull": month from DateTime(2012)
 ----
 
 [[difference]]
@@ -3524,9 +3524,9 @@ The following examples illustrate the behavior of the _difference-_[.kw]#between
 
 [source,cql]
 ----
-define DifferenceInMonths: difference in months between @2012-01-01 and @2012-02-01 // 1
-define UncertainDifferenceInMonths: difference in months between @2012-01-02 and @2012 // [0, 11]
-define DifferenceIsNull: difference in months between @2012-01-01 and null
+define "DifferenceInMonths": difference in months between @2012-01-01 and @2012-02-01 // 1
+define "UncertainDifferenceInMonths": difference in months between @2012-01-02 and @2012 // [0, 11]
+define "DifferenceIsNull": difference in months between @2012-01-01 and null
 ----
 
 [[duration]]
@@ -3561,9 +3561,9 @@ The following examples illustrate the behavior of the _duration-_[.kw]#between# 
 
 [source,cql]
 ----
-define DurationInMonths: months between @2012-01-01 and @2012-02-01 // 1
-define UncertainDurationInMonths: months between @2012-01-02 and @2012 // [0, 10]
-define DurationIsNull: months between @2012-01-01 and null
+define "DurationInMonths": months between @2012-01-01 and @2012-02-01 // 1
+define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 10]
+define "DurationIsNull": months between @2012-01-01 and null
 ----
 
 [[now]]
@@ -3659,10 +3659,10 @@ The following examples illustrate the behavior of the [.kw]#same#__-precision-__
 
 [source,cql]
 ----
-define SameAsTrue: @2012-01-01 same day as @2012-01-01
-define SameAsFalse: @2012-01-01 same day as @2012-01-02
-define UncertainSameAsIsNull: @2012-01-01 same day as @2012-01
-define SameAsIsNull: @2012-01-01 same day as null
+define "SameAsTrue": @2012-01-01 same day as @2012-01-01
+define "SameAsFalse": @2012-01-01 same day as @2012-01-02
+define "UncertainSameAsIsNull": @2012-01-01 same day as @2012-01
+define "SameAsIsNull": @2012-01-01 same day as null
 ----
 
 This operator is also defined for intervals, see the <<same-as-2,Same As (Intervals)>> operator for more information.
@@ -3705,10 +3705,10 @@ The following examples illustrate the behavior of the [.kw]#same#__-precision-__
 
 [source,cql]
 ----
-define SameOrAfterTrue: @2012-01-02 same day or after @2012-01-01
-define SameOrAfterFalse: @2012-01-01 same day or after @2012-01-02
-define UncertainSameOrAfterIsNull: @2012-01-02 same day or after @2012-01
-define SameOrAfterIsNull: @2012-01-01 same day or after null
+define "SameOrAfterTrue": @2012-01-02 same day or after @2012-01-01
+define "SameOrAfterFalse": @2012-01-01 same day or after @2012-01-02
+define "UncertainSameOrAfterIsNull": @2012-01-02 same day or after @2012-01
+define "SameOrAfterIsNull": @2012-01-01 same day or after null
 ----
 
 This operator is also defined for intervals, see the <<same-or-after-2,Same Or After (Intervals)>> operator for more information.
@@ -3751,10 +3751,10 @@ The following examples illustrate the behavior of the [.kw]#same#__-precision-__
 
 [source,cql]
 ----
-define SameOrBeforeTrue: @2012-01-01 same day or before @2012-01-02
-define SameOrBeforeFalse: @2012-01-02 same day or before @2012-01-01
-define UncertainSameOrBeforeIsNull: @2012-01-02 same day or before @2012-01
-define SameOrBeforeIsNull: @2012-01-01 same day or before null
+define "SameOrBeforeTrue": @2012-01-01 same day or before @2012-01-02
+define "SameOrBeforeFalse": @2012-01-02 same day or before @2012-01-01
+define "UncertainSameOrBeforeIsNull": @2012-01-02 same day or before @2012-01
+define "SameOrBeforeIsNull": @2012-01-01 same day or before null
 ----
 
 This operator is also defined for intervals, see the <<same-or-before-2,Same Or Before (Intervals)>> operator for more information.
@@ -3824,8 +3824,8 @@ The following examples illustrate the behavior of the [.id]#Time# operator:
 
 [source,cql]
 ----
-define TimeValid: Time(12, 30, 0, 0)
-define TimeInvalid: Time(12, null, 0, 0)
+define "TimeValid": Time(12, 30, 0, 0)
+define "TimeInvalid": Time(12, null, 0, 0)
 ----
 
 [[timeofday]]
@@ -3889,9 +3889,9 @@ The following examples illustrate the behavior of the [.kw]#after# operator:
 
 [source,cql]
 ----
-define AfterIsTrue: 5 after Interval[1, 4]
-define AfterIsFalse: Interval[1, 4] after 5
-define AfterIsNull: Interval[1, 4] after null
+define "AfterIsTrue": 5 after Interval[1, 4]
+define "AfterIsFalse": Interval[1, 4] after 5
+define "AfterIsNull": Interval[1, 4] after null
 ----
 
 [[before-1]]
@@ -3924,9 +3924,9 @@ The following examples illustrate the behavior of the [.kw]#before# operator:
 
 [source,cql]
 ----
-define BeforeIsTrue: 0 before Interval[1, 4]
-define BeforeIsFalse: Interval[1, 4] before 0
-define BeforeIsNull: Interval[1, 4] before null
+define "BeforeIsTrue": 0 before Interval[1, 4]
+define "BeforeIsFalse": Interval[1, 4] before 0
+define "BeforeIsNull": Interval[1, 4] before null
 ----
 
 [[collapse]]
@@ -3960,8 +3960,8 @@ The following examples illustrate the behavior of the [.kw]#collapse# operator:
 
 [source,cql]
 ----
-define Collapse1To9: collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
-define CollapseIsNull: collapse null
+define "Collapse1To9": collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
+define "CollapseIsNull": collapse null
 ----
 
 Informatively, the following pseudo-code illustrates a potential approach to implementation of the collapse operator with a per argument aligned to the starting boundary of the first input interval:
@@ -4012,9 +4012,9 @@ The following examples illustrate the behavior of the [.kw]#contains# operator:
 
 [source,cql]
 ----
-define ContainsIsTrue: Interval[1, 5] contains 4
-define ContainsIsFalse: Interval[1, 5] contains 6
-define ContainsIsNull: Interval[1, 5] contains null
+define "ContainsIsTrue": Interval[1, 5] contains 4
+define "ContainsIsFalse": Interval[1, 5] contains 6
+define "ContainsIsNull": Interval[1, 5] contains null
 ----
 
 [[end]]
@@ -4041,8 +4041,8 @@ The following examples illustrate the behavior of the [.id]#End# operator:
 
 [source,cql]
 ----
-define EndOfInterval: end of Interval[1, 5] // 5
-define EndIsNull: end of (null as Interval<Integer>)
+define "EndOfInterval": end of Interval[1, 5] // 5
+define "EndIsNull": end of (null as Interval<Integer>)
 ----
 
 [[ends]]
@@ -4069,9 +4069,9 @@ The following examples illustrate the behavior of the [.kw]#ends# operator:
 
 [source,cql]
 ----
-define EndsIsTrue: Interval[0, 5] ends Interval[-1, 5]
-define EndsIsFalse: Interval[-1, 7] ends Interval[0, 7]
-define EndsIsNull: Interval[1, 5] ends null
+define "EndsIsTrue": Interval[0, 5] ends Interval[-1, 5]
+define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]
+define "EndsIsNull": Interval[1, 5] ends null
 ----
 
 [[equal-1]]
@@ -4094,9 +4094,9 @@ The following examples illustrate the behavior of the _equal_ operator:
 
 [source,cql]
 ----
-define EqualIsTrue: Interval[0, 5] = Interval[0, 5]
-define EqualIsFalse: Interval[-1, 7] = Interval[0, 7]
-define EqualIsNull: Interval[1, 5] = null
+define "EqualIsTrue": Interval[0, 5] = Interval[0, 5]
+define "EqualIsFalse": Interval[-1, 7] = Interval[0, 7]
+define "EqualIsNull": Interval[1, 5] = null
 ----
 
 [[equivalent-1]]
@@ -4117,9 +4117,9 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
-define EquivalentIsTrue: Interval[0, 5] ~ Interval[0, 5]
-define EquivalentIsAlsoTrue: Interval[1, null] ~ Interval[1, null]
-define EquivalentIsFalse: Interval[-1, 7] ~ Interval[0, 7]
+define "EquivalentIsTrue": Interval[0, 5] ~ Interval[0, 5]
+define "EquivalentIsAlsoTrue": Interval[1, null] ~ Interval[1, null]
+define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
 ----
 
 [[except]]
@@ -4142,8 +4142,8 @@ The following examples illustrate the behavior of the [.kw]#except# operator:
 
 [source,cql]
 ----
-define Except: Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
-define ExceptIsNull: null except Interval[-1, 7]
+define "Except": Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
+define "ExceptIsNull": null except Interval[-1, 7]
 ----
 
 [[expand]]
@@ -4273,9 +4273,9 @@ The following examples illustrate the behavior of the [.kw]#in# operator:
 
 [source,cql]
 ----
-define InIsTrue: 3 in Interval[0, 5]
-define InIsFalse: -1 in Interval[0, 7]
-define InIsAlsoFalse: 3 in (null as Interval<Integer>)
+define "InIsTrue": 3 in Interval[0, 5]
+define "InIsFalse": -1 in Interval[0, 7]
+define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 ----
 
 [[includes]]
@@ -4305,9 +4305,9 @@ The following examples illustrate the behavior of the [.kw]#includes# operator:
 
 [source,cql]
 ----
-define IncludesIsTrue: Interval[-1, 5] includes Interval[0, 5]
-define IncludesIsFalse: Interval[-1, 5] includes 6
-define IncludesIsNull: Interval[-1, 5] includes null
+define "IncludesIsTrue": Interval[-1, 5] includes Interval[0, 5]
+define "IncludesIsFalse": Interval[-1, 5] includes 6
+define "IncludesIsNull": Interval[-1, 5] includes null
 ----
 
 [[included-in]]
@@ -4339,9 +4339,9 @@ The following examples illustrate the behavior of the [.kw]#included in# operato
 
 [source,cql]
 ----
-define IncludedInIsTrue: Interval[1, 5] included in Interval[0, 5]
-define IncludedInIsFalse: -1 during Interval[0, 7]
-define IncludedInIsNull: 3 included in (null as Interval<Integer>)
+define "IncludedInIsTrue": Interval[1, 5] included in Interval[0, 5]
+define "IncludedInIsFalse": -1 during Interval[0, 7]
+define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 ----
 
 [[intersect]]
@@ -4364,8 +4364,8 @@ The following examples illustrate the behavior of the [.kw]#intersect# operator:
 
 [source,cql]
 ----
-define Intersect: Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
-define IntersectIsNull: Interval[3, 5] intersect (null as Interval<Integer>)
+define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
+define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 ----
 
 [[meets]]
@@ -4396,7 +4396,7 @@ Note that Date-, DateTime-, or Time-based intervals with partially specified bou
 
 [source,cql]
 ----
-define MeetsAtHours: Interval[@T03, @T04] meets Interval[@T05, @T06]
+define "MeetsAtHours": Interval[@T03, @T04] meets Interval[@T05, @T06]
 ----
 
 The [.id]#MeetsAtHours# expression returns true because the meets operation is performed at the hour precision.
@@ -4405,10 +4405,10 @@ The following examples illustrate the behavior of the [.kw]#meets#, [.kw]#meets 
 
 [source,cql]
 ----
-define MeetsIsTrue: Interval[6, 10] meets Interval[0, 5]
-define MeetsBeforeIsTrue: Interval[-5, -1] meets before Interval[0, 5]
-define MeetsAfterIsFalse: Interval[6, 10] meets after Interval[0, 7]
-define MeetsIsNull: Interval[6, 10] meets (null as Interval<Integer>)
+define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]
+define "MeetsBeforeIsTrue": Interval[-5, -1] meets before Interval[0, 5]
+define "MeetsAfterIsFalse": Interval[6, 10] meets after Interval[0, 7]
+define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
 ----
 
 [[not-equal-1]]
@@ -4431,9 +4431,9 @@ The following examples illustrate the behavior of the _not equal_ operator:
 
 [source,cql]
 ----
-define NotEqualIsFalse: Interval[0, 5] != Interval[0, 5]
-define NotEqualIsTrue: Interval[-1, 7] != Interval[0, 7]
-define NotEqualIsNull: Interval[1, 5] != null
+define "NotEqualIsFalse": Interval[0, 5] != Interval[0, 5]
+define "NotEqualIsTrue": Interval[-1, 7] != Interval[0, 7]
+define "NotEqualIsNull": Interval[1, 5] != null
 ----
 
 [[not-equivalent-1]]
@@ -4456,9 +4456,9 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 
 [source,cql]
 ----
-define NotEquivalentIsFalse: Interval[0, 5] !~ Interval[0, 5]
-define NotEquivalentIsAlsoFalse: Interval[1, null] !~ Interval[1, null]
-define NotEquivalentIsTrue: Interval[-1, 7] !~ Interval[0, 7]
+define "NotEquivalentIsFalse": Interval[0, 5] !~ Interval[0, 5]
+define "NotEquivalentIsAlsoFalse": Interval[1, null] !~ Interval[1, null]
+define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
 ----
 
 [[on-or-after-2]]
@@ -4529,10 +4529,10 @@ The following examples illustrate the behavior of the [.kw]#overlaps#, [.kw]#ove
 
 [source,cql]
 ----
-define OverlapsIsTrue: Interval[0, 4] overlaps Interval[1, 4]
-define OverlapsBeforeIsTrue: Interval[0, 4] overlaps before Interval[1, 4]
-define OverlapsAfterIsFalse: Interval[0, 4] overlaps after Interval[1, 4]
-define OverlapsIsNull: Interval[6, 10] overlaps (null as Interval<Integer>)
+define "OverlapsIsTrue": Interval[0, 4] overlaps Interval[1, 4]
+define "OverlapsBeforeIsTrue": Interval[0, 4] overlaps before Interval[1, 4]
+define "OverlapsAfterIsFalse": Interval[0, 4] overlaps after Interval[1, 4]
+define "OverlapsIsNull": Interval[6, 10] overlaps (null as Interval<Integer>)
 ----
 
 [[point-from]]
@@ -4555,10 +4555,10 @@ The following examples illustrate the behavior of the [.kw]#point from# operator
 
 [source,cql]
 ----
-define PointFrom: point from Interval[4, 4] // 4
-define PointFromExclusive: point from Interval[4, 5) // 4
-define PointFromError: point from Interval[1, 4] // Error
-define PointFromIsNull: point from (null as Interval<Integer>)
+define "PointFrom": point from Interval[4, 4] // 4
+define "PointFromExclusive": point from Interval[4, 5) // 4
+define "PointFromError": point from Interval[1, 4] // Error
+define "PointFromIsNull": point from (null as Interval<Integer>)
 ----
 
 Note that the [.kw]#point from# operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a point from an interval with a size greater than one, as in the [.id]#PointFromError# example above, will result in a run-time error.
@@ -4590,9 +4590,9 @@ The following examples illustrate the behavior of the [.kw]#properly includes# o
 
 [source,cql]
 ----
-define ProperlyIncludesIsTrue: Interval[-1, 5] properly includes Interval[0, 5]
-define ProperlyIncludesIsFalse: Interval[-1, 5] properly includes Interval[-1, 5]
-define ProperlyIncludesIsNull: Interval[-1, 5] properly includes null
+define "ProperlyIncludesIsTrue": Interval[-1, 5] properly includes Interval[0, 5]
+define "ProperlyIncludesIsFalse": Interval[-1, 5] properly includes Interval[-1, 5]
+define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
 ----
 
 [[properly-included-in]]
@@ -4624,9 +4624,9 @@ The following examples illustrate the behavior of the [.kw]#properly included in
 
 [source,cql]
 ----
-define ProperlyIncludedInIsTrue: Interval[1, 5] properly included in Interval[0, 5]
-define ProperlyIncludedInIsFalse: Interval[0, 7] properly during Interval[0, 7]
-define ProperlyIncludedInIsNull: Interval[1, 5] properly included in (null as Interval<Integer>)
+define "ProperlyIncludedInIsTrue": Interval[1, 5] properly included in Interval[0, 5]
+define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7]
+define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
 ----
 
 [[same-as-2]]
@@ -4759,9 +4759,9 @@ The following examples illustrate the behavior of the [.id]#Size# operator:
 
 [source,cql]
 ----
-define SizeTest: Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
-define SizeTestEquivalent: Size(Interval[3, 8)) // 5, i.e. the interval contains 5 points
-define SizeIsNull: Size(null as Interval<Integer>) // null
+define "SizeTest": Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
+define "SizeTestEquivalent": Size(Interval[3, 8)) // 5, i.e. the interval contains 5 points
+define "SizeIsNull": Size(null as Interval<Integer>) // null
 ----
 
 [[start]]
@@ -4788,8 +4788,8 @@ The following examples illustrate the behavior of the [.id]#Start# operator:
 
 [source,cql]
 ----
-define StartOfInterval: start of Interval[1, 5] // 1
-define StartIsNull: start of (null as Interval<Integer>)
+define "StartOfInterval": start of Interval[1, 5] // 1
+define "StartIsNull": start of (null as Interval<Integer>)
 ----
 
 [[starts]]
@@ -4816,9 +4816,9 @@ The following examples illustrate the behavior of the [.kw]#starts# operator:
 
 [source,cql]
 ----
-define StartsIsTrue: Interval[0, 5] starts Interval[0, 7]
-define StartsIsFalse: Interval[0, 7] starts Interval[0, 6]
-define StartsIsNull: Interval[1, 5] starts null
+define "StartsIsTrue": Interval[0, 5] starts Interval[0, 7]
+define "StartsIsFalse": Interval[0, 7] starts Interval[0, 6]
+define "StartsIsNull": Interval[1, 5] starts null
 ----
 
 [[union]]
@@ -4841,8 +4841,8 @@ The following examples illustrate the behavior of the [.kw]#union# operator:
 
 [source,cql]
 ----
-define Union: Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
-define UnionIsNull: Interval[3, 5] union (null as Interval<Integer>)
+define "Union": Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
+define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 ----
 
 [[width]]
@@ -4867,9 +4867,9 @@ The following examples illustrate the behavior of the [.kw]#width# operator:
 
 [source,cql]
 ----
-define Width: width of Interval[3, 7] // 4
-define WidthIsNull: width of (null as Interval<Integer>) // null
-define NullInterval: width of Interval[0, null) //null
+define "Width": width of Interval[3, 7] // 4
+define "WidthIsNull": width of (null as Interval<Integer>) // null
+define "NullInterval": width of Interval[0, null) //null
 ----
 
 [[list-operators-2]]
@@ -4897,10 +4897,10 @@ The following examples illustrate the behavior of the [.kw]#contains# operator:
 
 [source,cql]
 ----
-define ContainsIsTrue: { 1, 3, 5, 7 } contains 5
-define ContainsIsFalse: { 1, 3, 5, 7 } contains 4
-define ContainsIsAlsoFalse: null contains 4
-define ContainsIsNull: { 1, 3, 5, 7 } contains null
+define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5
+define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4
+define "ContainsIsAlsoFalse": null contains 4
+define "ContainsIsNull": { 1, 3, 5, 7 } contains null
 ----
 
 [[distinct]]
@@ -4925,8 +4925,8 @@ The following examples illustrate the behavior of the [.kw]#distinct# operator:
 
 [source,cql]
 ----
-define Distinct: distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
-define DistinctIsNull: distinct null // null
+define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
+define "DistinctIsNull": distinct null // null
 ----
 
 [[equal-2]]
@@ -4949,9 +4949,9 @@ The following examples illustrate the behavior of the _equal_ operator:
 
 [source,cql]
 ----
-define EqualIsTrue: { 1, 3, 5, 7 } = { 1, 3, 5, 7 }
-define EqualIsFalse: { 1, 3, 5, 7 } = { 1, 3, 5 }
-define EqualIsNull: { 1, 3, 5, 7 } = null
+define "EqualIsTrue": { 1, 3, 5, 7 } = { 1, 3, 5, 7 }
+define "EqualIsFalse": { 1, 3, 5, 7 } = { 1, 3, 5 }
+define "EqualIsNull": { 1, 3, 5, 7 } = null
 ----
 
 [[equivalent-2]]
@@ -4972,9 +4972,9 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
-define EquivalentIsTrue: { 1, 3, 5, 7 } ~ { 1, 3, 5, 7 }
-define EquivalentIsAlsoTrue: { 1, 3, 5, null } ~ { 1, 3, 5, null }
-define EquivalentIsFalse: { 1, 3, 5, 7 } ~ { 1, 3, 5 }
+define "EquivalentIsTrue": { 1, 3, 5, 7 } ~ { 1, 3, 5, 7 }
+define "EquivalentIsAlsoTrue": { 1, 3, 5, null } ~ { 1, 3, 5, null }
+define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 ----
 
 [[except-1]]
@@ -5001,10 +5001,10 @@ The following examples illustrate the behavior of the [.kw]#except# operator:
 
 [source,cql]
 ----
-define Except: { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
-define ExceptLeft: { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
-define ExceptWithNull: { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
-define ExceptIsNull: null except { 1, 3, 5 }
+define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
+define "ExceptLeft": { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
+define "ExceptWithNull": { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
+define "ExceptIsNull": null except { 1, 3, 5 }
 ----
 
 [[exists]]
@@ -5027,10 +5027,10 @@ The following examples illustrate the behavior of the [.kw]#exists# operator:
 
 [source,cql]
 ----
-define ExistsIsTrue: exists { 1, 3, 5, 7 }
-define ExistsIsFalse: exists { }
-define ExistsIsAlsoFalse: exists { null }
-define ExistsIsAlsoAlsoFalse: exists null
+define "ExistsIsTrue": exists { 1, 3, 5, 7 }
+define "ExistsIsFalse": exists { }
+define "ExistsIsAlsoFalse": exists { null }
+define "ExistsIsAlsoAlsoFalse": exists null
 ----
 
 [[flatten]]
@@ -5053,8 +5053,8 @@ The following examples illustrate the behavior of the [.kw]#flatten# operator:
 
 [source,cql]
 ----
-define Flatten: flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }
-define FlattenIsNull: flatten null
+define "Flatten": flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }
+define "FlattenIsNull": flatten null
 ----
 
 [[first]]
@@ -5077,8 +5077,8 @@ The following examples illustrate the behavior of the [.id]#First# operator:
 
 [source,cql]
 ----
-define First1: First({ 1, 2, 5 }) // 1
-define FirstIsNull: First(null)
+define "First1": First({ 1, 2, 5 }) // 1
+define "FirstIsNull": First(null)
 ----
 
 [[in-1]]
@@ -5101,10 +5101,10 @@ The following examples illustrate the behavior of the [.kw]#in# operator:
 
 [source,cql]
 ----
-define InIsTrue: 5 in { 1, 3, 5, 7 }
-define InIsFalse: 5 in { 1, 3 }
-define InIsAlsoFalse: 5 in null
-define InIsNull: null in { 1, 3, 5, null }
+define "InIsTrue": 5 in { 1, 3, 5, 7 }
+define "InIsFalse": 5 in { 1, 3 }
+define "InIsAlsoFalse": 5 in null
+define "InIsNull": null in { 1, 3, 5, null }
 ----
 
 [[includes-1]]
@@ -5132,10 +5132,10 @@ The following examples illustrate the behavior of the [.kw]#includes# operator:
 
 [source,cql]
 ----
-define IncludesIsTrue: { 1, 3, 5, 7 } includes 5
-define IncludesIsNull: { 1, 3, 5, null } includes null
-define IncludesIsFalse: { 1, 3 } includes { 1, 3, 5 }
-define IncludesIsAlsoNull: null includes { 1, 3, 5 }
+define "IncludesIsTrue": { 1, 3, 5, 7 } includes 5
+define "IncludesIsNull": { 1, 3, 5, null } includes null
+define "IncludesIsFalse": { 1, 3 } includes { 1, 3, 5 }
+define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
 ----
 
 [[included-in-1]]
@@ -5163,10 +5163,10 @@ The following examples illustrate the behavior of the [.kw]#included in# operato
 
 [source,cql]
 ----
-define IncludedInIsTrue: 5 included in { 1, 3, 5, 7 }
-define IncludedInIsNull: null included in { 1, 3, 5 }
-define IncludedInIsFalse: { 1, 3, 5 } included in { 1, 3 }
-define IncludedInIsAlsoNull: { 1, 3, 5, null } included in null
+define "IncludedInIsTrue": 5 included in { 1, 3, 5, 7 }
+define "IncludedInIsNull": null included in { 1, 3, 5 }
+define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }
+define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 ----
 
 [[indexer-1]]
@@ -5193,9 +5193,9 @@ The following examples illustrate the behavior of the _indexer_ operator:
 
 [source,cql]
 ----
-define Indexer: { 1, 3, 5, 7 }[1] // 3
-define IndexerIsNull: { 1, 3, 5 }[-1]
-define IndexerIsAlsoNull: (null as List<Integer>)[0]
+define "Indexer": { 1, 3, 5, 7 }[1] // 3
+define "IndexerIsNull": { 1, 3, 5 }[-1]
+define "IndexerIsAlsoNull": (null as List<Integer>)[0]
 ----
 
 [[indexof]]
@@ -5220,9 +5220,9 @@ The following examples illustrate the behavior of the [.id]#IndexOf# operator:
 
 [source,cql]
 ----
-define IndexOfFound: IndexOf({ 1, 3, 5, 7 }, 5) // 2
-define IndexOfNotFound: IndexOf({ 1, 3, 5, 7 }, 4) // -1
-define IndexOfIsNull: IndexOf(null, 4)
+define "IndexOfFound": IndexOf({ 1, 3, 5, 7 }, 5) // 2
+define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1
+define "IndexOfIsNull": IndexOf(null, 4)
 ----
 
 [[intersect-1]]
@@ -5249,9 +5249,9 @@ The following examples illustrate the behavior of the [.kw]#intersect# operator:
 
 [source,cql]
 ----
-define Intersect: { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
-define IntersectWithNull: { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
-define IntersectIsNull: { 1, 3, 5 } intersect null
+define "Intersect": { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
+define "IntersectWithNull": { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
+define "IntersectIsNull": { 1, 3, 5 } intersect null
 ----
 
 [[last]]
@@ -5274,8 +5274,8 @@ The following examples illustrate the behavior of the [.id]#Last# operator:
 
 [source,cql]
 ----
-define Last5: Last({ 1, 3, 5 }) // 5
-define LastIsNull: Last(null)
+define "Last5": Last({ 1, 3, 5 }) // 5
+define "LastIsNull": Last(null)
 ----
 
 [[length-1]]
@@ -5298,8 +5298,8 @@ The following examples illustrate the behavior of the [.id]#Length# operator:
 
 [source,cql]
 ----
-define Length3: Length({ 1, 3, 5 }) // 3
-define Length0: Length(null as List<Integer>)
+define "Length3": Length({ 1, 3, 5 }) // 3
+define "Length0": Length(null as List<Integer>)
 ----
 
 [[not-equal-2]]
@@ -5322,9 +5322,9 @@ The following examples illustrate the behavior of the _not equal_ operator:
 
 [source,cql]
 ----
-define NotEqualIsFalse: { 1, 3, 5, 7 } != { 1, 3, 5, 7 }
-define NotEqualIsTrue: { 1, 3, 5, 7 } != { 1, 3, 5 }
-define NotEqualIsNull: { 1, 3, 5, 7 } != null
+define "NotEqualIsFalse": { 1, 3, 5, 7 } != { 1, 3, 5, 7 }
+define "NotEqualIsTrue": { 1, 3, 5, 7 } != { 1, 3, 5 }
+define "NotEqualIsNull": { 1, 3, 5, 7 } != null
 ----
 
 [[not-equivalent-2]]
@@ -5347,9 +5347,9 @@ The following examples illustrate the behavior of the _not equivalent_ operator:
 
 [source,cql]
 ----
-define NotEquivalentIsFalse: { 1, 3, 5, 7 } !~ { 1, 3, 5, 7 }
-define NotEquivalentIsAlsoFalse: { 1, 3, 5, null } !~ { 1, 3, 5, null }
-define NotEquivalentIsTrue: { 1, 3, 5, 7 } !~ { 1, 3, 5 }
+define "NotEquivalentIsFalse": { 1, 3, 5, 7 } !~ { 1, 3, 5, 7 }
+define "NotEquivalentIsAlsoFalse": { 1, 3, 5, null } !~ { 1, 3, 5, null }
+define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 ----
 
 [[properly-includes-1]]
@@ -5379,10 +5379,10 @@ The following examples illustrate the behavior of the [.kw]#properly includes# o
 
 [source,cql]
 ----
-define ProperlyIncludesIsTrue: { 1, 3, 5, 7 } properly includes { 1, 3, 5 }
-define ProperlyIncludesIsAlsoTrue: { 1, 3, 5, null } properly includes null
-define ProperlyIncludesIsFalse: { 1, 3, 5 } properly includes { 1, 3, 5 }
-define ProperlyIncludesIsAlsoFalse: null properly includes { 1, 3, 5 }
+define "ProperlyIncludesIsTrue": { 1, 3, 5, 7 } properly includes { 1, 3, 5 }
+define "ProperlyIncludesIsAlsoTrue": { 1, 3, 5, null } properly includes null
+define "ProperlyIncludesIsFalse": { 1, 3, 5 } properly includes { 1, 3, 5 }
+define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 ----
 
 [[properly-included-in-1]]
@@ -5411,10 +5411,10 @@ The following examples illustrate the behavior of the [.kw]#properly included in
 
 [source,cql]
 ----
-define ProperlyIncludedInIsTrue: { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
-define ProperlyIncludedInIsAlsoTrue: null properly included in { 1, 3, 5 }
-define ProperlyIncludedInIsFalse: { 1, 3, 5 } properly included in { 1, 3, 5 }
-define ProperlyIncludedInIsAlsoFalse: { 1, 3, 5, null } properly included in null
+define "ProperlyIncludedInIsTrue": { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
+define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5 }
+define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
+define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in null
 ----
 
 [[singleton-from]]
@@ -5437,9 +5437,9 @@ The following examples illustrate the behavior of the [.kw]#singleton from# oper
 
 [source,cql]
 ----
-define SingletonFrom: singleton from { 1 } // 1
-define SingletonFromError: singleton from { 1, 3, 5 }
-define SingletonFromIsNull: singleton from (null as List<Integer>)
+define "SingletonFrom": singleton from { 1 } // 1
+define "SingletonFromError": singleton from { 1, 3, 5 }
+define "SingletonFromIsNull": singleton from (null as List<Integer>)
 ----
 
 [[skip]]
@@ -5466,10 +5466,10 @@ The following examples illustrate the behavior of the [.id]#Skip# operator:
 
 [source,cql]
 ----
-define Skip2: Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }
-define SkipNull: Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
-define SkipEmpty: Skip({ 1, 3, 5 }, -1) // { }
-define SkipIsNull: Skip(null, 2)
+define "Skip2": Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }
+define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
+define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
+define "SkipIsNull": Skip(null, 2)
 ----
 
 [[tail]]
@@ -5492,9 +5492,9 @@ The following examples illustrate the behavior of the [.id]#Tail# operator:
 
 [source,cql]
 ----
-define Tail234: Tail({ 1, 2, 3, 4 }) // { 2, 3, 4 }
-define TailEmpty: Tail({ }) // { }
-define TailIsNull: Tail(null)
+define "Tail234": Tail({ 1, 2, 3, 4 }) // { 2, 3, 4 }
+define "TailEmpty": Tail({ }) // { }
+define "TailIsNull": Tail(null)
 ----
 
 [[take]]
@@ -5519,10 +5519,10 @@ The following examples illustrate the behavior of the [.id]#Take# operator:
 
 [source,cql]
 ----
-define Take2: Take({ 1, 2, 3, 4 }, 2) // { 1, 2 }
-define TakeTooMany: Take({ 1, 2 }, 3) // { 1, 2 }
-define TakeEmpty: Take({ 1, 2, 3, 4 }, null) // { }
-define TakeIsNull: Take(null, 2)
+define "Take2": Take({ 1, 2, 3, 4 }, 2) // { 1, 2 }
+define "TakeTooMany": Take({ 1, 2 }, 3) // { 1, 2 }
+define "TakeEmpty": Take({ 1, 2, 3, 4 }, null) // { }
+define "TakeIsNull": Take(null, 2)
 ----
 
 [[union-1]]
@@ -5551,9 +5551,9 @@ The following examples illustrate the behavior of the [.kw]#union# operator:
 
 [source,cql]
 ----
-define Union: { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
-define UnionAlternateSyntax: { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
-define UnionWithNull: null union { 4, 5 } // { 4, 5 }
+define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
+define "UnionAlternateSyntax": { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
+define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
 ----
 
 [[aggregate-functions]]
@@ -5581,10 +5581,10 @@ The following examples illustrate the behavior of the [.id]#AllTrue# operator:
 
 [source,cql]
 ----
-define AllTrueIsTrue: AllTrue({ true, null, true })
-define AllTrueIsAlsoTrue: AllTrue({ null, null, null })
-define AllTrueIsTrueWhenNull: AllTrue(null)
-define AllTrueIsFalse: AllTrue({ true, false, null })
+define "AllTrueIsTrue": AllTrue({ true, null, true })
+define "AllTrueIsAlsoTrue": AllTrue({ null, null, null })
+define "AllTrueIsTrueWhenNull": AllTrue(null)
+define "AllTrueIsFalse": AllTrue({ true, false, null })
 ----
 
 [[anytrue]]
@@ -5609,10 +5609,10 @@ The following examples illustrate the behavior of the [.id]#AnyTrue# operator:
 
 [source,cql]
 ----
-define AnyTrueIsTrue: AnyTrue({ true, false, null })
-define AnyTrueIsFalse: AnyTrue({ false, false, null })
-define AnyTrueIsAlsoFalse: AnyTrue({ null, null, null })
-define AnyTrueIsFalseWhenNull: AnyTrue(null)
+define "AnyTrueIsTrue": AnyTrue({ true, false, null })
+define "AnyTrueIsFalse": AnyTrue({ false, false, null })
+define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })
+define "AnyTrueIsFalseWhenNull": AnyTrue(null)
 ----
 
 [[avg]]
@@ -5638,9 +5638,9 @@ The following examples illustrate the behavior of the [.id]#Avg# operator:
 
 [source,cql]
 ----
-define DecimalAvg: Avg({ 5.5, 4.7, 4.8 }) // 5.0
-define QuantityAvg: Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
-define AvgIsNull: Avg(null as List<Decimal>)
+define "DecimalAvg": Avg({ 5.5, 4.7, 4.8 }) // 5.0
+define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
+define "AvgIsNull": Avg(null as List<Decimal>)
 ----
 
 [[count]]
@@ -5661,9 +5661,9 @@ The following examples illustrate the behavior of the [.id]#Count# operator:
 
 [source,cql]
 ----
-define Count5: Count({ 1, 2, 3, 4, 5 }) // 5
-define Count0: Count({ null, null, null }) // 0
-define CountNull0: Count(null as List<Decimal>) // 0
+define "Count5": Count({ 1, 2, 3, 4, 5 }) // 5
+define "Count0": Count({ null, null, null }) // 0
+define "CountNull0": Count(null as List<Decimal>) // 0
 ----
 
 [[geometricmean]]
@@ -5693,9 +5693,9 @@ The following examples illustrate the behavior of the [.id]#GeometricMean# opera
 
 [source,cql]
 ----
-define GeometricMean4: GeometricMean({ 2.0, 8.0 }) // 4.0
-define GeometricMeanIsNull: GeometricMean({ null, null, null })
-define GeometricMeanIsAlsoNull: GeometricMean(null as List<Decimal>)
+define "GeometricMean4": GeometricMean({ 2.0, 8.0 }) // 4.0
+define "GeometricMeanIsNull": GeometricMean({ null, null, null })
+define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
 ----
 
 [[max]]
@@ -5732,11 +5732,11 @@ The following examples illustrate the behavior of the [.id]#Max# operator:
 
 [source,cql]
 ----
-define IntegerMax: Max({ 2, 4, 8, 6 }) // 8
-define LongMax: Max({ 2L, 4L, 8L, 6L }) // 8L
-define DateMax: Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
-define MaxIsNull: Max({ null as Quantity, null as Quantity, null as Quantity })
-define MaxIsAlsoNull: Max(null as List<Decimal>)
+define "IntegerMax": Max({ 2, 4, 8, 6 }) // 8
+define "LongMax": Max({ 2L, 4L, 8L, 6L }) // 8L
+define "DateMax": Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
+define "MaxIsNull": Max({ null as Quantity, null as Quantity, null as Quantity })
+define "MaxIsAlsoNull": Max(null as List<Decimal>)
 ----
 
 [[min]]
@@ -5768,11 +5768,11 @@ The following examples illustrate the behavior of the [.id]#Min# operator:
 
 [source,cql]
 ----
-define IntegerMin: Min({ 2, 4, 8, 6 }) // 2
-define LongMin: Min({ 2L, 4L, 8L, 6L }) // 2L
-define DateMin: Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
-define MinIsNull: Min({ null as Quantity, null as Quantity, null as Quantity })
-define MinIsAlsoNull: Min(null as List<Decimal>)
+define "IntegerMin": Min({ 2, 4, 8, 6 }) // 2
+define "LongMin": Min({ 2L, 4L, 8L, 6L }) // 2L
+define "DateMin": Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
+define "MinIsNull": Min({ null as Quantity, null as Quantity, null as Quantity })
+define "MinIsAlsoNull": Min(null as List<Decimal>)
 ----
 
 [[median]]
@@ -5798,10 +5798,10 @@ The following examples illustrate the behavior of the [.id]#Median# operator:
 
 [source,cql]
 ----
-define DecimalMedian: Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
-define QuantityMedian: Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
-define MedianIsNull: Median({ null as Quantity, null as Quantity, null as Quantity })
-define MedianIsAlsoNull: Median(null as List<Decimal>)
+define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
+define "QuantityMedian": Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
+define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quantity })
+define "MedianIsAlsoNull": Median(null as List<Decimal>)
 ----
 
 [[mode]]
@@ -5826,10 +5826,10 @@ The following examples illustrate the behavior of the [.id]#Mode# operator:
 
 [source,cql]
 ----
-define DecimalMode: Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
-define QuantityMode: Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
-define ModeIsNull: Mode({ null as Quantity, null as Quantity, null as Quantity })
-define ModeIsAlsoNull: Mode(null as List<Decimal>)
+define "DecimalMode": Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
+define "QuantityMode": Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
+define "ModeIsNull": Mode({ null as Quantity, null as Quantity, null as Quantity })
+define "ModeIsAlsoNull": Mode(null as List<Decimal>)
 ----
 
 [[population-stddev]]
@@ -5855,10 +5855,10 @@ The following examples illustrate the behavior of the [.id]#PopulationStdDev# op
 
 [source,cql]
 ----
-define DecimalPopulationStdDev: PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.41421356
-define QuantityPopulationStdDev: PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'
-define PopulationStdDevIsNull: PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
-define PopulationStdDevIsAlsoNull: PopulationStdDev(null as List<Decimal>)
+define "DecimalPopulationStdDev": PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.41421356
+define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'
+define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
+define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)
 ----
 
 [[population-variance]]
@@ -5884,10 +5884,10 @@ The following examples illustrate the behavior of the [.id]#PopulationVariance# 
 
 [source,cql]
 ----
-define DecimalPopulationVariance: PopulationVariance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0
-define QuantityPopulationVariance: PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'
-define PopulationVarianceIsNull: PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })
-define PopulationVarianceIsAlsoNull: PopulationVariance(null as List<Decimal>)
+define "DecimalPopulationVariance": PopulationVariance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0
+define "QuantityPopulationVariance": PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'
+define "PopulationVarianceIsNull": PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })
+define "PopulationVarianceIsAlsoNull": PopulationVariance(null as List<Decimal>)
 ----
 
 [[product]]
@@ -5920,10 +5920,10 @@ The following examples illustrate the behavior of the [.id]#Product# operator:
 
 [source,cql]
 ----
-define DecimalProduct: Product({ 1.0, 2.0, 3.0, 4.0 }) // 24.0
-define QuantityProduct: Product({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg' }) // 24.0 'mg'
-define ProductIsNull: Product({ null as Quantity, null as Quantity, null as Quantity })
-define ProductIsAlsoNull: Product(null as List<Decimal>)
+define "DecimalProduct": Product({ 1.0, 2.0, 3.0, 4.0 }) // 24.0
+define "QuantityProduct": Product({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg' }) // 24.0 'mg'
+define "ProductIsNull": Product({ null as Quantity, null as Quantity, null as Quantity })
+define "ProductIsAlsoNull": Product(null as List<Decimal>)
 ----
 
 [[stddev]]
@@ -5949,10 +5949,10 @@ The following examples illustrate the behavior of the [.id]#StdDev# operator:
 
 [source,cql]
 ----
-define DecimalStdDev: StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
-define QuantityStdDev: StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
-define StdDevIsNull: StdDev({ null as Quantity, null as Quantity, null as Quantity })
-define StdDevIsAlsoNull: StdDev(null as List<Decimal>)
+define "DecimalStdDev": StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
+define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
+define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })
+define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)
 ----
 
 [[sum]]
@@ -5985,10 +5985,10 @@ The following examples illustrate the behavior of the [.id]#Sum# operator:
 
 [source,cql]
 ----
-define DecimalSum: Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
-define QuantitySum: Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
-define SumIsNull: Sum({ null as Quantity, null as Quantity, null as Quantity })
-define SumIsAlsoNull: Sum(null as List<Decimal>)
+define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
+define "QuantitySum": Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
+define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity })
+define "SumIsAlsoNull": Sum(null as List<Decimal>)
 ----
 
 [[variance]]
@@ -6014,10 +6014,10 @@ The following examples illustrate the behavior of the [.id]#Variance# operator:
 
 [source,cql]
 ----
-define DecimalVariance: Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
-define QuantityVariance: Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
-define VarianceIsNull: Variance({ null as Quantity, null as Quantity, null as Quantity })
-define VarianceIsAlsoNull: Variance(null as List<Decimal>)
+define "DecimalVariance": Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
+define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
+define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })
+define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
 ----
 
 [[clinical-operators-3]]
@@ -6143,8 +6143,8 @@ The following examples illustrate the behavior of the [.id]#CalculateAgeAt# oper
 
 [source,cql]
 ----
-define CalculateAgeAt: CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
-define CalculateAgeAtIsNull: CalculateAgeInYearsAt(@2000-01-01, null)
+define "CalculateAgeAt": CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
+define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 ----
 
 [[equal-3]]
@@ -6168,12 +6168,12 @@ The following examples illustrate the behavior of the _equal_ operator:
 
 [source,cql]
 ----
-define Code1: Code { system: 'http://loinc.org', code: '8480-6', version: '1.0', display: 'Systolic blood pressure' }
-define Concept1: Concept { codes: { Code1 }, display: 'Concepts' }
-define Concept2: Concept { codes: { Code1 }, display: 'More Concepts' }
-define EqualIsTrue: Code1 = Code1
-define EqualIsFalse: Concept1 = Concept2
-define EqualIsNull: Code1 = null
+define "Code1": Code { system: 'http://loinc.org', code: '8480-6', version: '1.0', display: 'Systolic blood pressure' }
+define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
+define "Concept2": Concept { codes: { Code1 }, display: 'More Concepts' }
+define "EqualIsTrue": Code1 = Code1
+define "EqualIsFalse": Concept1 = Concept2
+define "EqualIsNull": Code1 = null
 ----
 
 [[equivalent-3]]
@@ -6208,12 +6208,12 @@ The following examples illustrate the behavior of the _equivalent_ operator:
 
 [source,cql]
 ----
-define Code1: Code { system: 'http://loinc.org', code: '8480-6', display: 'Systolic blood pressure' }
-define Concept1: Concept { codes: { Code1 }, display: 'Concepts' }
-define Concept2: Concept { codes: { null }, display: 'More Concepts' }
-define EquivalentIsTrue: Code1 ~ Code1
-define EquivalentIsAlsoTrue: Concept2 ~ Concept2
-define EquivalentIsFalse: Concept1 ~ Concept2
+define "Code1": Code { system: 'http://loinc.org', code: '8480-6', display: 'Systolic blood pressure' }
+define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
+define "Concept2": Concept { codes: { null }, display: 'More Concepts' }
+define "EquivalentIsTrue": Code1 ~ Code1
+define "EquivalentIsAlsoTrue": Concept2 ~ Concept2
+define "EquivalentIsFalse": Concept1 ~ Concept2
 ----
 
 [.note-warning]
@@ -6259,9 +6259,9 @@ The following examples illustrate the behavior of the [.kw]#in# (Codesystem) ope
 [source,cql]
 ----
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
-define StringInCodesystem: '12345678' in "SNOMED:2014"
-define CodeInCodesystem: Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
-define NullStringInCodesystem: null as String in "SNOMED:2014" // false
+define "StringInCodesystem": '12345678' in "SNOMED:2014"
+define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
+define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 ----
 
 [.note-warning]
@@ -6307,9 +6307,9 @@ The following examples illustrate the behavior of the [.kw]#in# (Valueset) opera
 [source,cql]
 ----
 valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
-define StringInValueset: '12345678' in "Acute Pharyngitis"
-define CodeInValueset: Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
-define NullStringInValueset: null as String in "Acute Pharyngitis" // false
+define "StringInValueset": '12345678' in "Acute Pharyngitis"
+define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
+define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
 ----
 
 [.note-warning]
@@ -6366,5 +6366,5 @@ The following examples illustrate the behavior of the [.id]#Message# operator:
 ----
 parameter Numerator Integer default 1
 parameter Denominator Integer default 0
-define ErrorMessage: Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')
+define "ErrorMessage": Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')
 ----

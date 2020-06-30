@@ -34,7 +34,7 @@ Considering each of these components separately, the next step involves identify
 1.2+| *Electronic Clinical Quality Measurement (eCQM)* |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
 1.1+|Logical |Quality Data Model (QDM) |Quality Data Model (QDM)|
 |========================================================================================================================================================================================
-Table 1‑A
+Table 1‑A - Relationship of the current specifications to each component
 
 The discrepancy shown here between standards used in the different domains introduces burdens on both vendors and providers in electronic healthcare quality domains, including:
 
@@ -44,24 +44,24 @@ The discrepancy shown here between standards used in the different domains intro
 
 Using the framework of metadata, data model, and expression logic, the following diagram depicts the overall target specification areas involved in clinical quality artifact representation:
 
-image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=445,height=258]
+image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=720,height=400]
 
 [[figure-1-a]]
-Figure 1‑A
+Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
 
-Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. Note, however, that the QUICK specification and the Quality Improvement Core (QI-Core) Profiles are being developed concurrently with this specification to ensure that the two specifications interoperate effectively. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at link:http://hl7.org/fhir/us/qicore/qdm-to-qicore.html[QI-Core Implementation Guide - QDM -> QI-Core Mapping].
+Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. A harmonized data model specification is being developed for use with quality improvement applications called Quality Improvement Core (QI-Core), an HL7 FHIR implementation guide. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at link:http://hl7.org/fhir/us/qicore/qdm-to-qicore.html[QI-Core Implementation Guide - QDM -> QI-Core Mapping].
 
 In addition, this specification is designed to be data model independent, meaning that CQL and ELM have no explicit dependencies on any aspect of any particular data model. Rather, the specification allows for any data model to be used, so long as a suitable description of that data model is supplied. Chapter 7 of this specification discusses how that description is supplied, and what facilities an implementation must support in order to enable complete data model independence of CQL and ELM.
 
 [[clinical-quality-framework-initiative]]
 == Clinical Quality Framework Initiative
 
-The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The link:https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework[Clinical Quality Framework] effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Group sin 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
+The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The link:https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework[Clinical Quality Framework] effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Groups in 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
 
 [[approach]]
 == Approach
 
-As discussed in Section 1.1, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ These requirements form the basis for the reasoning capabilities that this specification provides.
+As discussed in Section 1.1, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the link:11-d-references.html[References] section. These requirements form the basis for the reasoning capabilities that this specification provides.
 
 Building on those conceptual requirements, this specification defines the logical and physical layers necessary to achieve the goal of a unified specification for expression logic for use by both the clinical quality and decision support domains.
 
@@ -78,7 +78,7 @@ In other words, the logical level of the specification can be thought of as a co
 
 At the highest level, the author perspective is concerned with the human-readable description of clinical quality logic. This level is represented within this specification as a high-level syntax called Clinical Quality Language (CQL). CQL is a domain-specific language for clinical quality and is intended to be usable by clinical domain experts to both author and read clinical knowledge.
 
-The author perspective is informed conceptually by the Quality Data Model (QDM), the current conceptual representation of electronic clinical quality measures, and so the language being used is informed by the QDM-based logic. This heritage is intended to provide familiarity and continuity for authors coming from the quality space.
+The author perspective is informed conceptually by the Quality Data Model (QDM), the current conceptual representation of electronic clinical quality measures, and so the language being used is informed by the QDM-based logic. This heritage is intended to provide familiarity and continuity for authors coming from the quality domain.
 
 [[logical-perspective]]
 === Logical Perspective
@@ -88,7 +88,9 @@ The logical perspective of the specification is concerned with complete and accu
 For the logical layer, this specification defines a Unified Modeling Language (UML) model called the Expression Logical Model (ELM) that defines a canonical representation of expression logic. This approach is intended to simplify implementation and machine processing by focusing on the content of an expression, rather than the syntax used to render it. The approach is based on and motivated by the concept of an Abstract Syntax Tree from traditional compiler implementation. The following diagram depicts the steps performed by a traditional compiler:
 
 [[figure-1-b]]
-image:extracted-media/media/image3.png[image,width=626,height=430]Figure 1‑B
+image:extracted-media/media/image3.png[image,width=626,height=430]
+
+Figure 1‑B - The steps performed by a traditional compiler
 
 As shown here, the ELM representation is defined as an Abstract Syntax Tree, eliminating the need for lexical analysis and parsing steps, and allowing implementations to concentrate on the core representation of the logic.
 
@@ -120,7 +122,7 @@ The specification is written with the following major roles in mind:
 |*Implementer* |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
 |====================================================================================================================================================================================================================================
 
-Table 1‑B
+Table 1‑B - Major roles that this specification was written for
 
 Note that although Chapter 2 is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
 
@@ -131,7 +133,7 @@ In general, each of these roles will benefit from focusing on different aspects 
 
 The Clinical Quality Language specification includes the following components:
 
-* CQL Grammar – An ANTLR4 grammar file formally defining the syntax for the high-level authoring language described by this specification
+* CQL Grammar – An ANTLR4 (ANother Tool for Language Recognition) grammar file formally defining the syntax for the high-level authoring language described by this specification
 * Expression Logical Model – A UML model that specifies a canonical representation for expression logic
 * ELM XML Schemas – XML schemata defining a physical representation for the serialization and sharing of expression logic specified in the ELM
 
@@ -149,7 +151,7 @@ In particular, this specification enables the sharing use case by defining a hig
 [[figure-1-c]]
 image:extracted-media/media/image4.png[image,width=626,height=382]
 
-Figure 1‑C
+Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case
 
 [[use-case-assumptions-and-conditions]]
 === Use Case Assumptions and Conditions
@@ -159,7 +161,7 @@ It is important for implementers to clearly understand the underlying environmen
 [[relationship-to-other-hl7-specifications]]
 == Relationship to Other HL7 Specifications
 
-The Clinical Quality Language specification is designed as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow.
+The Clinical Quality Language specification is designed as a domain-specific language suitable for querying as well as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow. For more information about other HL7 specifications, refer to the the link:11-d-references.html[References] section.
 
 [[health-quality-measure-format-hqmf]]
 === Health Quality Measure Format (HQMF)
