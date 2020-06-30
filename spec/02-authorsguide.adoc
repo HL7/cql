@@ -397,7 +397,12 @@ As another example, consider the set of encounters:
 [Encounter: "Inpatient"]
 ----
 
-As the following diagram illustrates, in the [.id]#Unfiltered# context, this retrieve will return all the encounters in the underlying system, whereas in the [.id]#Patient# context, this retrieve will return only encounters for the _current_ patient, where _current_ is determined by the evaluation:
+Depending on the context the retrieve above will return:
+
+* [.id]#Unfiltered# - all the encounters in the underlying system.
+* [.id]#Patient# - only encounters for the _current_ patient (e.g. PAT-100)
+
+Consider the figure below:
 
 image:extracted-media/media/context-diagram.png[image]
 
