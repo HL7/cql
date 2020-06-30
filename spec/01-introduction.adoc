@@ -30,9 +30,9 @@ Considering each of these components separately, the next step involves identify
 [cols=",,,,",options="header"]
 |========================================================================================================================================================================================
 | | Model Type | Quality Information | Computable Expression Logic | Metadata
-| *Clinical Decision Support (CDS)* |Physical and logical |Virtual Medical Record (vMR) |CDS Knowledge Artifact Specification |CDS Knowledge Artifact Specification/Decision Support Service
-1.2+| *Electronic Clinical Quality Measurement (eCQM)* |Physical |Quality Reporting Document Architecture (QRDA) |Health Quality Measure Format (HQMF) |Health Quality Measure Format (HQMF)
-1.1+|Logical |Quality Data Model (QDM) |Quality Data Model (QDM)|
+| *Clinical Decision Support (CDS)* |<<Approach, Physical and Logical>> |https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338[Virtual Medical Record (vMR)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] / http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12[Decision Support Service]
+1.2+| *Electronic Clinical Quality Measurement (eCQM)* |<<Approach, Physical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35[Quality Reporting Document Architecture (QRDA)] |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>> |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>>
+1.1+|<<Approach, Logical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)]|
 |========================================================================================================================================================================================
 Table 1‑A - Relationship of the current specifications to each component
 
@@ -61,7 +61,7 @@ The Clinical Quality Framework (CQF) was initially a collaborative community of 
 [[approach]]
 == Approach
 
-As discussed in Section 1, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the link:11-d-references.html[References] section. These requirements form the basis for the reasoning capabilities that this specification provides.
+As discussed in <<Background, Section 1>>, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the link:11-d-references.html[References] section. These requirements form the basis for the reasoning capabilities that this specification provides.
 
 Building on those conceptual requirements, this specification defines the logical and physical layers necessary to achieve the goal of a unified specification for expression logic for use by both the clinical quality and decision support domains.
 
@@ -124,9 +124,9 @@ The specification is written with the following major roles in mind:
 
 Table 1‑B - Major roles that this specification was written for
 
-Note that although Chapter 2 is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
+Note that although the <<2. Author’s Guide, Author's Guide (Chapter 2)>> is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.
 
-In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in Chapter 2, the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapters 2 & 3; the Integrator role will be primarily interested in Chapter 4, the formal description of the logical model; and the Implementer role will be primarily interested in Chapters 5, 6, and 7, which discuss the intended execution semantics, translation semantics, and physical representation, respectively, as well as Appendix B, and ELM UML model artifacts.
+In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in <<2. Author’s Guide, Chapter 2>>, the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapter <<2. Author’s Guide, 2>> & <<3. Developer’s Guide, 3>>; the Integrator role will be primarily interested in <<4. Logical Specification, Chapter 4>>, the formal description of the logical model; and the Implementer role will be primarily interested in Chapters <<5. Language Semantics, 5>>, <<6. Translation Semantics, 6>>, and <<7. Physical Representation, 7>>, which discuss the intended execution semantics, translation semantics, and physical representation, respectively, along with additional reference materials in Appendix A-K.
 
 [[scope-of-the-specification]]
 == Scope of the Specification
@@ -156,7 +156,7 @@ Figure 1‑C - How the CQL and ELM specifications will be used in the sharing us
 [[use-case-assumptions-and-conditions]]
 === Use Case Assumptions and Conditions
 
-It is important for implementers to clearly understand the underlying environmental assumptions, defined in Section 5 of the CQF Use Case document referenced in the previous section, to ensure that these assumptions align to the implementation environment in which content will be exchanged using a knowledge artifact. Failure to meet any of these assumptions could impact implementation of the knowledge artifact.
+It is important for implementers to clearly understand the underlying environmental assumptions, defined in https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery[Section 5 of the CQF Use Case document] referenced in the previous section, to ensure that these assumptions align to the implementation environment in which content will be exchanged using a knowledge artifact. Failure to meet any of these assumptions could impact implementation of the knowledge artifact.
 
 [[relationship-to-other-hl7-specifications]]
 == Relationship to Other HL7 Specifications
