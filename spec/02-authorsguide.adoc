@@ -9,11 +9,11 @@
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
-The syntax, or structure, of CQL is built from several basic elements called _tokens_. These tokens are _symbols_, such as [.sym]#+# and [.sym]#*#, _keywords_, such as [.kw]#define# and [.kw]#from#, _literals_, such as [.lit]#5# and [.lit]#'active'#, and _identifiers_, such as [.id]#Person# and [.id]#"Inpatient Encounters"#.
+The syntax, or structure, of CQL is built from several basic elements that are all classified as _tokens_. There are four different types of tokens present in CQL: _symbols_, such as [.sym]#+# and [.sym]#*#, _keywords_, such as [.kw]#define# and [.kw]#from#, _literals_, such as [.lit]#5# and [.lit]#'active'#, and _identifiers_, such as [.id]#Person# and [.id]#"Inpatient Encounters"#.
 
 Statements of CQL are built up by combining these basic elements, separated by _whitespace_ (spaces, tabs, and returns), to produce language elements. The most basic of these language elements is an _expression_, which is any statement of CQL that returns a value.
 
-Expressions are built by combining _terms_, such as literals and identifiers, using _operators_, either symbolic operators, such as [.sym]#+# and [.sym]#-#, operator phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
+Expressions are made up of _terms_ (literals or identifiers) combined using _operators_, either symbolic operators, such as [.sym]#+# and [.sym]#-#, operator phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
 
 At the highest level, CQL is organized around the concept of a _library_, which can be thought of as a container for artifact logic. Libraries contain _declarations_ which specify the items the library contains. The most important of these declarations is the _named expression_, which is the basic unit of logic definition in CQL.
 
@@ -46,9 +46,9 @@ Libraries can contain any or all of the following constructs:
 |*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
 |*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
 |*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context* |Specifies the overall context, such as Patient or Practitioner, for the statements that follow.
+|*context* |Specifies the overall context, such as Patient or Practitioner, to be used in the statements that are declared in the library. Note that a library may have multiple context declarations, and that each context declaration establishes the context for the statements that follow, until the next context declaration is encountered. However, best practice is that each library should only contain a single context declaration as the first statement in the library.
 |*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
-|*function* |Libraries may also contain function definitions. These are most often used as part of shared libraries.
+|*function* |Libraries may also contain function definitions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
 
 Table 2‑A - Constructs that CQL libraries can contain
@@ -105,9 +105,9 @@ Components defined in the CMS153_Common library, version 2, can now be reference
 
 [source,cql]
 ----
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity)
-    or exists (Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity")
+    or exists (Common"LaboratoryTestsIndicatingSexualActivity")
 ----
 
 This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library using the local alias [.id]#Common#.
@@ -125,9 +125,9 @@ The above expression would need to be:
 
 [source,cql]
 ----
-define SexuallyActive:
-  exists (CMS153_Common.ConditionsIndicatingSexualActivity)
-    or exists (CMS153_Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (CMS153_Common"ConditionsIndicatingSexualActivity")
+    or exists (CMS153_Common"LaboratoryTestsIndicatingSexualActivity")
 ----
 
 [[terminology]]
@@ -144,13 +144,13 @@ Consider the following valueset declaration:
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ----
 
-This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, an Object Identifier (OID) in this case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, more specifically, an Object Identifier (OID) in this particular case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID; instead, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
 [source,cql]
 ----
-define PatientIsFemale: Patient.gender in "Female Administrative Sex"
+define "PatientIsFemale": Patient.gender in "Female Administrative Sex"
 ----
 
 The above example defines the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
@@ -167,6 +167,8 @@ codesystem "SNOMED": 'http://snomed.info/sct'
 code "Screening for Chlamydia trachomatis (procedure)":
   '442487003' from "SNOMED" display 'Screening for Chlamydia trachomatis (procedure)'
 ----
+
+This codesystem declaration in this example establishes the local name "SNOMED" as a reference to the external identifier for the codesystem, the URI "http://snomed.info/sct". The code declaration in this example establishes the local name "Screening for Chlamydia trachomatis (procedure)" as a reference to the code '442487003' from the "SNOMED" code system already defined.
 
 For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
 
@@ -199,7 +201,7 @@ This parameter definition can now be referenced anywhere within the CQL library:
 
 [source,cql]
 ----
-define Patient16To23:
+define "Patient16To23":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ----
@@ -220,7 +222,7 @@ In addition, because parameter defaults are part of the declaration, the express
 . Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
 . Parameter defaults cannot reference expressions or functions defined in the current library
 . Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations
+. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the <<Terminology Operators>> section.
 . Parameter defaults cannot reference other parameters
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
@@ -228,7 +230,7 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the overall context for statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
+The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
@@ -249,7 +251,7 @@ When no context is specified in the library, and the model has not declared a de
 ----
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -267,7 +269,7 @@ As another example, consider a [.id]#Practitioner# context:
 ----
 context Practitioner
 
-define Encounters:
+define "Encounters":
   ["Encounter": "Inpatient Encounter"]
 ----
 
@@ -282,7 +284,7 @@ The following example illustrates a simple define statement:
 
 [source,cql]
 ----
-define InpatientEncounters:
+define "InpatientEncounters":
   [Encounter: "Inpatient"] E
     where E.length <= 120 days
       and E.period ends during MeasurementPeriod
@@ -297,7 +299,7 @@ For more information on the use of define statements, refer to the <<Using Defin
 [[retrieve]]
 == Retrieve
 
-The _retrieve_ declaration is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
+The _retrieve_ expression is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
@@ -357,7 +359,7 @@ define "Get Condition from CodeSystem Declaration":
 
 The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
 
-When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. When the code path is specified, the code comparison operation can be specified as well:
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses [.kw]#in# if the terminology target is a valueset or code system, and [.sym]#~# otherwise. For more information about the [.sym]#~# symbol, refer to the <<Comparison Operators>> section. When the code path is specified, the code comparison operation can be specified as well:
 
 [source,cql]
 ----
@@ -397,7 +399,7 @@ As the following diagram illustrates, in the [.id]#Unfiltered# context, this ret
 
 image:extracted-media/media/context-diagram.png[image]
 
-Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the [.id]#Unfiltered# context.
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Best practice is for each library to have expressions in only one context, and for that context declaration to be the first declaration in the library. Note that this only applies to the [.id]#Unfiltered# context. It is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the [.id]#Unfiltered# context.
 
 In an [.id]#Unfiltered# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the unfiltered context, and the implementation environment combines the results.
 
@@ -407,12 +409,12 @@ If the result type of an expression in a specific context is not a list, the res
 ----
 context Patient
 
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 
 context Unfiltered
 
-define InitialPopulationCount:
+define "InitialPopulationCount":
   Count(InInitialPopulation IP where IP is true)
 ----
 
@@ -500,7 +502,7 @@ Note that because CQL uses three-valued logic, the result of evaluating any give
 [[shaping]]
 === Shaping
 
-The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios involve the need to extract only specific elements or to perform computations on the data involved in each element. The [.kw]#return# clause enables this type of query.
+The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The [.kw]#return# clause enables this type of query.
 
 For example:
 
@@ -599,7 +601,7 @@ This query is the same as the previous example, except that only encounters that
 
 A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
-Note that the [.kw]#such that# condition of [.kw]#with# and [.kw]#without# clauses need not be based on timing relationships, it may contain any arbitrary expression, so long as the overall result is boolean-valued. For example:
+The [.kw]#such that# conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 [source,cql]
 ----
@@ -751,19 +753,19 @@ Table 2‑E - Types of simple values that CQL supports
 [[boolean]]
 ==== Boolean
 
-The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of Comparison Operators, and can be combined with other boolean-valued expressions using Logical Operators. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
+The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
 
 [[integer]]
 ==== Integer
 
-The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of Arithmetic Operators for performing computations involving whole numbers.
+The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
 
 In addition, any operation involving [.id]#Decimal# values can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
 
 [[decimal]]
 ==== Decimal
 
-The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of Arithmetic Operators for performing computations involving real numbers.
+The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
 
 [[string]]
 ==== String
@@ -775,7 +777,7 @@ The [.id]#Decimal# type in CQL supports the representation of real numbers, posi
 'active'
 ----
 
-Note that if the value to be represented contains a single-quote, use a backslash to include it within the string in CQL:
+Note that if the value you are attempting to represent contains a single-quote, use a backslash to include it within the string in CQL:
 
 [source,cql]
 ----
@@ -1033,7 +1035,7 @@ These valueset identifiers can then be used throughout the library. For example:
 
 [source,cql]
 ----
-define Pharyngitis: [Condition: "Acute Pharyngitis"]
+define "Pharyngitis": [Condition: "Acute Pharyngitis"]
 ----
 
 This example defines [.id]#Pharyngitis# as any Condition where the code is in the [.id]#"Acute Pharyngitis"# valueset.
@@ -1068,14 +1070,13 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version 
   codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
 ----
 
-When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, then some additional aspect is required to ensure uniqueness of the names within the CQL library.
-
+When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, in which case some additional aspect is required to ensure uniqueness of the names within the CQL library.
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
 
 [[codesystems]]
 ==== Codesystems
 
-In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<valuesets>> section for an example codesystems declaration.
+In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<Valuesets>> section for an example of a codesystems declaration.
 
 For example:
 
@@ -1099,7 +1100,7 @@ For example, the following expression retrieves the first Condition with a code 
 
 [source,cql]
 ----
-define FirstPharyngitis:
+define "FirstPharyngitis":
   First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
 ----
 
@@ -1107,21 +1108,21 @@ The values of the elements of a tuple can be accessed using a dot qualifier ([.s
 
 [source,cql]
 ----
-define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
+define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 ----
 
 Tuples can also be constructed directly using a tuple selector:
 
 [source,cql]
 ----
-define Info: Tuple { Name: 'Patrick', DOB: @2014-01-01 }
+define "Info": Tuple { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
 If the tuple is of a specific type, the name of the type can be used instead of the Tuple keyword:
 
 [source,cql]
 ----
-define PatientExpression: Patient { Name: 'Patrick', DOB: @2014-01-01 }
+define "PatientExpression": Patient { Name: 'Patrick', DOB: @2014-01-01 }
 ----
 
 If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be [.kw]#null#.
@@ -1130,7 +1131,7 @@ Note that tuples can contain other tuples, as well as lists:
 
 [source,cql]
 ----
-define Info:
+define "Info":
   Tuple {
     Name: 'Patrick',
     DOB: @2014-01-01,
@@ -1173,7 +1174,7 @@ In order to provide consistent behavior in the presence of missing information, 
 
 [source,cql]
 ----
-define PharyngitisOnSetDateTime: FirstPharyngitis.onsetDateTime
+define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 ----
 
 If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
@@ -1306,13 +1307,13 @@ The most basic operation in CQL involves comparison of two values. This is accom
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
-|*=* |Equality |Returns [.kw]#true# if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*!=* |Inequality |Returns [.kw]#true# if the arguments are not the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*>* |Greater than |Returns [.kw]#true# if the left argument is greater than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*<* |Less than |Returns [.kw]#true# if the left argument is less than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*>=* |Greater than or equal |Returns [.kw]#true# if the left argument is greater than or equal to the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*\<=* |Less than or equal |Returns [.kw]#true# if the left argument is less than or equal to the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*between* | |Returns [.kw]#true# if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns [.kw]#null# if any or all arguments are [.kw]#null#.
+|*=* |Equality |Returns [.kw]#true# if the arguments are the same value. Returns [.kw]#false# if arguments are not the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*!=* |Inequality |Returns [.kw]#true# if the arguments are not the same value. Returns [.kw]#false# if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*>* |Greater than |Returns [.kw]#true# if the left argument is greater than the right argument. Returns [.kw]#false# if the left argument is less than the right argument, or if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*<* |Less than |Returns [.kw]#true# if the left argument is less than the right argument. Returns [.kw]#false# if the left argument is greater than the right argument, or if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*>=* |Greater than or equal |Returns [.kw]#true# if the left argument is greater than or equal to the right argument. Returns [.kw]#false# if the left argument is less than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*\<=* |Less than or equal |Returns [.kw]#true# if the left argument is less than or equal to the right argument. Returns [.kw]#false# if the left argument is greater than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
+|*between* | |Returns [.kw]#true# if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns [.kw]#false# if the first argument is less than the second argument or greater than the third argument. Returns [.kw]#null# if any or all arguments are [.kw]#null#.
 |*~* |Equivalent |Returns [.kw]#true# if the arguments are equivalent in value, or are both [.kw]#null#; otherwise [.kw]#false#
 |*!~* |Inequivalent |Returns [.kw]#true# if the arguments are not equivalent and [.kw]#false# otherwise.
 |===========================================================================================================================================
@@ -1391,8 +1392,8 @@ For all the comparison operators, the result type of the operation is [.id]#Bool
 
 [source,cql]
 ----
-define NullEqualityTest: 1 = null
-define NullEquivalenceTest: 1 ~ null
+define "NullEqualityTest": 1 = null
+define "NullEquivalenceTest": 1 ~ null
 ----
 
 The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
@@ -2457,14 +2458,14 @@ All quantities in CQL have _unit_ and _value_ components, which can be accessed 
 
 [source,cql]
 ----
-define IsTall: height.units = 'm' and height.value > 2
+define "IsTall": height.units = 'm' and height.value > 2
 ----
 
 However, because CQL supports operations on quantities directly, this expression could be simplified to:
 
 [source,cql]
 ----
-define IsTall: height > 2 'm'
+define "IsTall": height > 2 'm'
 ----
 
 This formulation also has the advantage of allowing for the case that the actual value of [.id]#height# is expressed in inches.
@@ -2485,17 +2486,17 @@ All ratios in CQL have _numerator_ and _denominator_ components, which can be ac
 
 [source,cql]
 ----
-define TitreRatio: 1:128
-define TitreNumerator: TitreRatio.numerator // 1
+define "TitreRatio": 1:128
+define "TitreNumerator": TitreRatio.numerator // 1
 ----
 
 CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 [source,cql]
 ----
-define RatioEqualTrue: 1:100 = 1:100
-define RatioEqualFalse: 1:100 = 10:1000
-define RatioEquivalentTrue: 1:100 ~ 10:1000
+define "RatioEqualTrue": 1:100 = 1:100
+define "RatioEqualFalse": 1:100 = 10:1000
+define "RatioEquivalentTrue": 1:100 ~ 10:1000
 ----
 
 [.note-warning]
@@ -2513,7 +2514,7 @@ In addition to providing first-class _valueset_ and _codesystem_ constructs, CQL
 [source,cql]
 ----
 valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
-define InPharyngitis: SomeCodeValue in "Acute Pharyngitis"
+define "InPharyngitis": SomeCodeValue in "Acute Pharyngitis"
 ----
 
 These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
@@ -2672,7 +2673,7 @@ In addition, to allow this criteria to be referenced both within the CQL library
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 ----
 
@@ -2680,7 +2681,7 @@ Because the quality measure is defined over a measurement period, and many, if n
 
 [source,cql]
 ----
-define MeasurementPeriod: Interval[
+define "MeasurementPeriod": Interval[
   @2013-01-01T00:00:00.0,
   @2014-01-01T00:00:00.0
 )
@@ -2690,7 +2691,7 @@ This establishes [.id]#MeasurementPeriod# as the interval beginning precisely at
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ----
@@ -2738,7 +2739,7 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 
 context Patient
 
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2817,7 +2818,7 @@ And finally, translating the rest of the statements allows us to express the ent
 
 [source,cql]
 ----
-define InInitialPopulation:
+define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
@@ -2852,12 +2853,12 @@ With this in mind, rather than expressing the entire initial population as a sin
 
 [source,cql]
 ----
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
 
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"] C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   or exists ([Condition: "Genital Herpes"] C
@@ -2870,7 +2871,7 @@ define SexuallyActive:
       during MeasurementPeriod)
   ...
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 ----
 
@@ -2884,7 +2885,7 @@ For example, the actual criteria for the denominator is that the patient is in t
 
 [source,cql]
 ----
-define InDenominator: true
+define "InDenominator": true
 ----
 
 This approach to defining the criteria is more flexible from the perspective of actually evaluating a quality measure, but it may be somewhat confusing when looking at the CQL in isolation.
@@ -2895,7 +2896,7 @@ Following this approach then, we express the numerator as:
 
 [source,cql]
 ----
-define InNumerator:
+define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
   where R.issued during MeasurementPeriod and R.result is not null)
 ----
@@ -2926,12 +2927,12 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
 
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"] C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
   or exists ([Condition: "Genital Herpes"] C
@@ -2944,12 +2945,12 @@ define SexuallyActive:
       during MeasurementPeriod)
   ...
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 
-define InDenominator: true
+define "InDenominator": true
 
-define InNumerator:
+define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during MeasurementPeriod and R.result is not null)
 ----
@@ -2997,7 +2998,7 @@ For the [.id]#Patient16To23AndFemale# criteria, we are then simply concerned wit
 
 [source,cql]
 ----
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in "Female Administrative Sex"
 ----
@@ -3006,7 +3007,7 @@ Similarly for the [.id]#SexuallyActive# criteria, we remove the relationship to 
 
 [source,cql]
 ----
-define SexuallyActive:
+define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"])
     or exists ([Condition: "Genital Herpes"])
     or exists ([Condition: "Genococcal Infections and Venereal Diseases"])
@@ -3043,7 +3044,7 @@ We combine those into a [.id]#NoScreening# criteria:
 
 [source,cql]
 ----
-define NoScreening:
+define "NoScreening":
   not exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during Interval[Today() - 1 years, Today()]
       and R.result is not null)
@@ -3056,7 +3057,7 @@ And finally, we provide an overall condition that indicates whether or not this 
 
 [source,cql]
 ----
-define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
+define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the [.id]#NeedScreening# expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
@@ -3065,7 +3066,7 @@ In addition, this library should include the proposal aspect of the intervention
 
 [source,cql]
 ----
-define ChlamydiaScreeningRequest: ProcedureRequest {
+define "ChlamydiaScreeningRequest": ProcedureRequest {
   type: Code '442487003' from "SNOMED-CT"
   display 'Screening for Chlamydia trachomatis (procedure)',
   status: 'proposed'
@@ -3098,17 +3099,17 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 
 context Patient
 
-define ConditionsIndicatingSexualActivity:
+define "ConditionsIndicatingSexualActivity":
   [Condition: "Other Female Reproductive Conditions"]
     union [Condition: "Genital Herpes"]
     union ...
 
-define LaboratoryTestsIndicatingSexualActivity:
+define "LaboratoryTestsIndicatingSexualActivity":
   [DiagnosticOrder: "Pregnancy Test"]
     union [DiagnosticOrder: "Pap"]
     union ...
 
-define ResultsPresentForChlamydiaScreening:
+define "ResultsPresentForChlamydiaScreening":
   [DiagnosticReport: "Chlamydia Screening"] R where R.result is not null
 ----
 
@@ -3129,27 +3130,29 @@ parameter MeasurementPeriod default Interval[
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in Common."Female Administrative Sex"
 
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity C
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity" C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
-  or exists (Common.LaboratoryTestsIndicatingSexualActivity R
+  or exists (Common"LaboratoryTestsIndicatingSexualActivity" R
     where R.issued during MeasurementPeriod)
 
-define InInitialPopulation:
+define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
 
-define InDenominator:
+define "InDenominator":
   true
 
-define InNumerator:
-  exists (Common.ResultsPresentForChlamydiaScreening S
+define "InNumerator":
+  exists (Common"ResultsPresentForChlamydiaScreening" S
     where S.issued during MeasurementPeriod)
 ----
+
+Note: The keyword [.kw]#called# was chosen to avoid confusion with the keyword [.kw]#as#, which is used for type-casting. We also don't use [.kw]#as# for aliasing like many SQL dialects do, for the same reason. We mean [.kw]#called# here in the sense that the library is "called a name" within this context, not that we intend to "call it by this name".
 
 And similarly for the CDS artifact:
 
@@ -3165,21 +3168,21 @@ valueset "Reason for not performing Chlamydia Screening": 'TBD'
 
 context Patient
 
-define Patient16To23AndFemale:
+define "Patient16To23AndFemale":
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in Common."Female Administrative Sex"
 
-define SexuallyActive:
-  exists (Common.ConditionsIndicatingSexualActivity)
-  or exists (Common.LaboratoryTestsIndicatingSexualActivity)
+define "SexuallyActive":
+  exists (Common"ConditionsIndicatingSexualActivity")
+  or exists (Common"LaboratoryTestsIndicatingSexualActivity")
 
-define NoScreening:
-  not exists (Common.ResultsPresentForChlamydiaScreening S
+define "NoScreening":
+  not exists (Common"ResultsPresentForChlamydiaScreening" S
     where S.issued during Interval[Today() - 1 years, Today()])
-  and not exists ([ProcedureRequest: Common."Chlamydia Screening"] R
+  and not exists ([ProcedureRequest: Common"Chlamydia Screening"] R
     where R.orderedOn same day or after Today()
 
-define NeedScreening: Patient16To23AndFemale and SexuallyActive and NoScreening
+define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
 ----
 
 In addition to sharing between quality measures and clinical decision support artifacts, the use of common libraries will allow the same logic to be shared by multiple quality measures or decision support artifacts. For example, a set of artifacts for measurement and improvement of the treatment of diabetes could all use a common library that provides base definitions for determining when a patient is part of the population of interest.
