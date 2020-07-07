@@ -99,6 +99,8 @@ A CQL library can reference zero or more other CQL libraries with [.kw]#include#
 
 For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
 
+Libraries may also be declared with a specific version. When referencing a library, the reference may include a version specifier. The [.kw]#include# declaration allows for version-specific binding, but does not require it. A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
+
 The following example illustrates an include declaration:
 
 [source,cql]
