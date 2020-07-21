@@ -13,7 +13,7 @@ The syntax, or structure, of CQL is built from several basic elements that are a
 
 Statements of CQL are built up by combining these basic elements, separated by _whitespace_ (spaces, tabs, and returns), to produce language elements. The most basic of these language elements is an _expression_, which is any statement of CQL that returns a value.
 
-Expressions are made up of _terms_ (literals or identifiers) combined using _operators_. Operators can be symbolic, such as [.sym]#+# and [.sym]#-#, operator phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
+Expressions are made up of _terms_ (literals or identifiers) combined using _operators_. Operators can be symbolic, such as [.sym]#+# and [.sym]#-#, phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
 
 At the highest level, CQL is organized around the concept of a _library_, which can be thought of as a container for artifact logic. Libraries contain _declarations_ which specify the items the library contains. The most important of these declarations is the _named expression_, which is the basic unit of logic definition in CQL.
 
