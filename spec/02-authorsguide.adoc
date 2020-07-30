@@ -892,6 +892,8 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
 |===
 
+Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units.
+
 For example, the following quantities are _calendar duration_ quantities:
 
 [source,cql]

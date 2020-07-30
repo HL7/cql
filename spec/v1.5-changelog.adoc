@@ -9,9 +9,7 @@
 
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1877[STU4#1877]: Added support for modular arithmetic for quantities
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1896[STU4#1896]: Added an overload of expand to take a single interval
-* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1907[STU4#1907]: Added an aggregate clause to the query construct
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1918[STU4#1918]: Added support for comment annotations that result in tags in the ELM output
-* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1920[STU4#1920]: Added a fluent keyword to support fluent-style function invocation
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1923[STU4#1923]: Added System.Long to support 64-bit integers
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1908[STU4#1908]: Added the ability to pass value sets and code systems as reference-type arguments
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1917[STU4#1917]: Added a text/cql.identifier media type to support referencing the name of a defined CQL expression
@@ -52,5 +50,7 @@
 
 === Compatible, Substantive
 
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1907[STU4#1907]: Added an aggregate clause to the query construct
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1910[STU4#1910]: Added support for specifying search paths in the Retrieve
+* http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1920[STU4#1920]: Added a fluent keyword to support fluent-style function invocation
 * http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=1921[STU4#1921]: Added support for specifying include and reverseInclude elements in the Retrieve
