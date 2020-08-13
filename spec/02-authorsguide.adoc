@@ -13,7 +13,7 @@ The syntax, or structure, of CQL is built from several basic elements that are a
 
 Statements of CQL are built up by combining these basic elements, separated by _whitespace_ (spaces, tabs, and returns), to produce language elements. The most basic of these language elements is an _expression_, which is any statement of CQL that returns a value.
 
-Expressions are made up of _terms_ (literals or identifiers) combined using _operators_, either symbolic operators, such as [.sym]#+# and [.sym]#-#, operator phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
+Expressions are made up of _terms_ (literals or identifiers) combined using _operators_. Operators can be symbolic, such as [.sym]#+# and [.sym]#-#, phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
 
 At the highest level, CQL is organized around the concept of a _library_, which can be thought of as a container for artifact logic. Libraries contain _declarations_ which specify the items the library contains. The most important of these declarations is the _named expression_, which is the basic unit of logic definition in CQL.
 
@@ -98,6 +98,8 @@ using QUICK version '0.3.0'
 A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by using the locally assigned name for the library.
 
 For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
+
+Libraries may also be declared with a specific version. When referencing a library, the reference may include a version specifier. The [.kw]#include# declaration allows for version-specific binding, but does not require it. A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
 
 The following example illustrates an include declaration:
 
@@ -889,6 +891,8 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 |`second`/`seconds` |`'second'` |`= 1 's'`
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
 |===
+
+Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units.
 
 For example, the following quantities are _calendar duration_ quantities:
 

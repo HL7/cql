@@ -36,7 +36,12 @@ Difference In Years: difference in years between Date1 and Date2
 
 The Duration In Years expression returns zero because a full year has not passed between the two dates. However, the Difference In Years expression returns 1 because one year boundary was crossed between the two dates.
 
-In addition, CQL provides timing phrases to allow flexible and precise natural language comparisons of date and time values and intervals. The available timing phrases in CQL fall into four categories:
+[.note-info]
+____
+Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units
+____
+
+In addition to duration and difference calculations, CQL provides timing phrases to allow flexible and precise natural language comparisons of date and time values and intervals. The available timing phrases in CQL fall into four categories:
 
 * `same as`
 * `before` and `after`
@@ -91,8 +96,8 @@ When month (date 2) = month (date 1) and day (date 2) < day (date 1) +
 Duration (years) = year (date 2) - year (date 1) - 1
 
 *Example 3.a:* +
-Date 1: 2012-02-*29* +
-Date 2: 2014-02-*28* +
+Date 1: 2012-02-*20* +
+Date 2: 2014-02-*10* +
 Duration = year (date 2) - year (date 1) - 1 = 2014 - 2012 - 1 = *1 year*
 
 ==== Scenario 4
@@ -106,10 +111,10 @@ Duration = year (date 2) - year (date 1) = 2013 - 2012 - *1 year*
 
 *Example 4.b:* +
 Date 1: 2012-*02*-29 10:18:56 +
-Date 2: 2014-*03*-01 19:02:34 +
+Date 2: 2014-*02*-28 19:02:34 +
 Duration = year (date 2) - year (date 1) = 2014 - 2012 = *2 years*
 
-*Note:* Because there is no February 29 in 2014, the number of years can only change when the date reaches March 1, the first date in 2014 that surpasses the month and day of date 1 (Feburary 29).
+*Note:* Because there is no February 29 in 2014, per the <<05-languagesemantics.adoc#datetime-arithmetic-1,Date and Time Arithmetic>> section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + *1 year* = 2013-02-28)
 
 [[negative-examples]]
 === Negative Examples
