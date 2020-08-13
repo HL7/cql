@@ -80,9 +80,11 @@ Because of the way data access is modeled within CQL, the data requirements of a
 |===========================================================================================================================================================================================================================================
 |Item |Description
 |*Clinical Data Type* |The type of clinical data to be retrieved. This includes both the data type and the template identifier.
-|*Codes* |The set of codes defining the clinical data. Only clinical data with matching codes (based on the code path of the retrieve) in the set will be retrieved. If no codes are specified, clinical data with any code will be retrieved.
-|*Date Range* |The date range for clinical data. Only data within the specified date range (based on the date range path of the retrieve) will be retrieved. +
-If no date range is specified, clinical data of any date will be retrieved.
+|*Context* |The context type and value. Only clinical data matching the context (based on the context path) will be retrieved.
+|*Id* |Optionally, the id of the data to be retrieved (based on the id path).
+|*Codes* |The set of codes defining the clinical data. Only clinical data with matching codes (based on the code path of the retrieve, and the operation specified by the comparator) in the set will be retrieved. If no codes are specified, clinical data with any code will be retrieved. If a value set property is specified, it refers to a property of the clinical data that identifies a value set, and only clinical data matching the value set for the retrieve will be retrieved.
+|*Date Range* |The date range for clinical data. Only data within the specified date range (based on the date range path of the retrieve) will be retrieved. If no date range is specified, clinical data of any date will be retrieved.
+|*Includes* |Include elements for the clinical data. For data models that define relationships between data types, this element allows data matching the include relationships to be returned as part of the retrieve as well. Implementations that support this capability must ensure that included data returned is accessible via the related retrieve statements.
 |===========================================================================================================================================================================================================================================
 
 Table 5‑A - Description of the data defined by each retrieve
@@ -91,9 +93,9 @@ These criteria are designed to allow the implementation environment to communica
 
 To support further reducing the overall size of data required to be transported, the following steps can be taken to combine retrieve descriptors that deal with the same type of clinical data.
 
-First, create a retrieve context for each unique type of retrieve using the retrieve data type (and template identifier) for each retrieve. Note that if the determination here involves dynamic information, the retrieve is not considered “initial” and could result in additional data being requested by the engine in order to complete the evaluation. An implementation environment may opt to restrict artifacts to only those that contain statically determined data requirements.
+First, create a retrieve context for each unique type of retrieve using the retrieve data type (and context type, template identifier, code path, and date path) for each retrieve. Note that if the determination here involves dynamic information, the retrieve is not considered “initial” and could result in additional data being requested by the engine in order to complete the evaluation. An implementation environment may opt to restrict artifacts to only those that contain statically determined data requirements.
 
-Next, for each retrieve, add the codes to the matching retrieve context (by data type), recording the associated date range, if any, for each code. Note that the empty set of codes should be represented as the single code “ALL” for the purposes of this method. As date ranges are recorded, they must be merged so that for each code in each retrieve context, no two date range intervals overlap or meet.
+Next, for each retrieve, add the codes to the matching retrieve context (by data type), recording the associated date range, if any, for each code. Note that the empty set of codes should be represented as the single code “ALL” for the purposes of this method. As date ranges are recorded, they must be merged so that for each code in each retrieve context, no two date range intervals overlap or meet. If the retrieve has any includes, they are added to the retrieve context.
 
 Once the date ranges for each code within each unique retrieve context are determined, the unique set of date ranges for all codes is calculated, accumulating the set of associated codes. Each unique date range for the context then results in a final descriptor. As part of this process, the “ALL” placeholder code is replaced with the empty set of codes.
 
@@ -103,9 +105,10 @@ This process produces a set of clinical data descriptors with the following stru
 [cols=",",options="header",]
 |======================================================================================
 |Property |Description
-|*Clinical Data Type* |The type of clinical data required (including template identifier)
+|*Clinical Data Type* |The type of clinical data required (including context type, template identifier, code path and date path)
 |*Codes* |The set of applicable codes, possibly empty (meaning all codes)
 |*Date Range* |The applicable date range, possibly empty (meaning all dates)
+|*Includes* |Any includes, specifying additional related data to be retrieved
 |======================================================================================
 
 Table 5‑B - The structure of clinical data descriptors
@@ -115,6 +118,46 @@ Collectively, these descriptors then represent the minimum initial data requirem
 Note that for the purposes of this method, the notion of the Clinical Data Type must be inclusive of the attributes used for filtering the codes and date ranges. For example, a retrieve of _Condition_ data filtered by _code_ must be considered separately from a retrieve of _Condition_ data filtered by _severity_.
 
 In addition to being used to describe the initial data requirements, this same process can be used to collapse additional data retrieves that are encountered as part of further evaluation of the artifact.
+
+==== Retrieve Paths
+The retrieve construct includes several paths to the elements of the clinical data:
+
+* *id*: The "key" element, an element that provides a unique identifier for the data
+* *code*: The "code" element, a terminology-valued element
+* *date*: A date-valued element
+* *context*: The "context key" element, an element that identifies the relationship to the context
+
+Each of these paths can be specified in terms of a _property_, meaning the actual name of the element, or a _path_, meaning the name of a search path, such as an index, that can be used to access the data. Both mechanisms are allowed to ensure that data models that define search paths using indexes that do not necessarily match the data elements can be supported.
+
+For example, consider a data model that defines an `Observation`:
+
+[source,cql]
+----
+Observation
+{
+  id: string,
+  code: Concept,
+  value: Quantity,
+  component: List<ObservationComponent>
+}
+
+ObservationComponent
+{
+  code: Concept,
+  value: Quantity
+}
+----
+
+To allow searching by component codes, consider further that this data model defines a search path, called `component-code` that allows searching for observations that have a component with a given code. In this case, `component-code` is not an element of Observation, or of ObservationComponent, so it's insufficient to specify a code property. To support this capability, the `codeSearch` element of the retrieve is used:
+
+[source,xml]
+----
+<operand xsi:type="Retrieve"
+  dataType="fhir:Observation"
+  codeSearch="component-code">
+  <codes xsi:type="ValueSetRef" name="Urine Drug Screening"/>
+</operand>
+----
 
 [[expression-language-semantics]]
 == Expression Language Semantics
