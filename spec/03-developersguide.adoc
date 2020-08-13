@@ -1478,6 +1478,11 @@ In addition, even if a given query is based on a list of tuples, the results are
 [[related-context-retrieves]]
 == Related Context Retrieves
 
+[.note-info]
+____
+Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is being balloted trial-use.
+____
+
 To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
 
 [source,cql]
@@ -1521,7 +1526,7 @@ CQL provides support for a limited class of recursive problems using the _aggreg
 ----
 define function Factorial(X Integer):
   (expand Interval[1, X]) Num
-    aggregate Result starting 1: Result * Num 
+    aggregate Result starting 1: Result * Num
 ----
 
 In this example, the `expand` operator is used to construct a list of integers from `1` to `X`, and then the `aggregate` clause is used to calculate the factorial, repeatedly multiplying the current result by the next integer in the list.
