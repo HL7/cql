@@ -1462,7 +1462,7 @@ define "RedefinedEncounter":
   FirstInpatientEncounter E
     return Tuple {
       type: E.type,
-      admissionDate: E.period.start
+      admissionDate: E.period.start,
       dischargeDate: E.period.end
     }
 ----
