@@ -19,13 +19,17 @@
 [[authors-guide]]
 == Author's Guide
 
-1.  <<02-authorsguide.adoc#figure-2-a,Figure 2-A>> : The union, intersect, and except operators for intervals
+1.  <<02-authorsguide.adoc#figure-2-a,Figure 2-A>> : Unfiltered vs patient context
 
-2.  <<02-authorsguide.adoc#figure-2-b,Figure 2-B>> : The union, intersect, and except operators for lists
+2.  <<02-authorsguide.adoc#figure-2-b,Figure 2-B>> : Simple patient information model
 
-3.  <<02-authorsguide.adoc#figure-2-c,Figure 2-C>> : Example intervals to explain how the [.kw]#collapse# operator works on them
+3.  <<02-authorsguide.adoc#figure-2-c,Figure 2-C>> : The union, intersect, and except operators for intervals
 
-4.  <<02-authorsguide.adoc#figure-2-d,Figure 2-D>> : Example intervals to explain how the [.kw]#collapse# operator works on them
+4.  <<02-authorsguide.adoc#figure-2-d,Figure 2-D>> : The union, intersect, and except operators for lists
+
+5.  <<02-authorsguide.adoc#figure-2-e,Figure 2-E>> : Example input intervals to illustrate the behavior of the [.kw]#collapse# operator
+
+6.  <<02-authorsguide.adoc#figure-2-f,Figure 2-F>> : Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
 
 [[logical-specification]]
 == Logical Specification
