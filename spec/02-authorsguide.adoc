@@ -242,7 +242,16 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
+The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
+
+[[figure-2-a]]
+image:extracted-media/media/patient-practitioner-model.png[image]
+
+Figure 2-A - Simplified patient/practitioner information model
+
+A patient and practitioner may both have any number of encounters. From the perspective of a patient (i.e. _in patient context_), only encounters for that particular patient are accessible. Likewise, from the perspective of a practitioner (i.e. _in practitioner context_), only encounters for that particular practitioner are accessible.
+
+The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
@@ -421,10 +430,10 @@ Depending on the context the retrieve above will return:
 
 Consider the figure below:
 
-[[figure-2-a]]
+[[figure-2-b]]
 image:extracted-media/media/context-diagram.png[image]
 
-Figure 2‑A - Unfiltered vs Patient context
+Figure 2‑B - Unfiltered vs Patient context
 
 Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Best practice is for each library to have expressions in only one context, and for that context declaration to be the first declaration in the library.
 
@@ -613,10 +622,10 @@ When the data being sorted includes [.kw]#nulls#, they are considered lower than
 
 In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
 
-[[figure-2-b]]
+[[figure-2-c]]
 image:extracted-media/media/patient-model.png[image]
 
-Figure 2‑B - Simple patient information model
+Figure 2‑C - Simple patient information model
 
 [source,cql]
 ----
@@ -2158,10 +2167,10 @@ This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# 
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators for intervals:
 
-[[figure-2-c]]
+[[figure-2-d]]
 image:extracted-media/media/image6.png[image,width=626,height=128]
 
-Figure 2‑C - The union, intersect, and except operators for intervals
+Figure 2‑D - The union, intersect, and except operators for intervals
 
 [[datetime-intervals]]
 ==== Date and Time Intervals
@@ -2382,10 +2391,10 @@ This example returns:
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
 
-[[figure-2-d]]
+[[figure-2-e]]
 image:extracted-media/media/image7.png[image,width=626,height=176]
 
-Figure 2‑D - The union, intersect, and except operators for lists
+Figure 2‑E - The union, intersect, and except operators for lists
 
 As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# operators use the equality operator to determine when two elements are the same. In particular, this means that nulls in the input to a [.kw]#distinct# will be preserved in the output.
 
@@ -2414,19 +2423,19 @@ Although the examples in this section primarily use lists of integers, these ope
 
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
-[[figure-2-e]]
+[[figure-2-f]]
 image:extracted-media/media/image8.png[image,width=353,height=75]
 
-Figure 2‑E - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
+Figure 2‑F - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
 
 If we want to determine the total duration _covered_ by these intervals, we cannot simply use the [.kw]#distinct# operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate [.kw]#union# of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
 The solution is the [.kw]#collapse# operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
-[[figure-2-f]]
+[[figure-2-g]]
 image:extracted-media/media/image9.png[image,width=348,height=56]
 
-Figure 2‑F - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
+Figure 2‑G - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
