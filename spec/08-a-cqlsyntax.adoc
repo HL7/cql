@@ -21,13 +21,7 @@ The CQL grammar is defined in an ANTLR4 grammar file, CQL.g4. The root productio
 library
     :
     libraryDefinition?
-    usingDefinition*
-    includeDefinition*
-    codesystemDefinition*
-    valuesetDefinition*
-    codeDefinition*
-    conceptDefinition*
-    parameterDefinition*
+    definition*
     statement*
     EOF
     ;
@@ -39,6 +33,16 @@ Other than _statement_, these production rules define the declarations available
 ----
 libraryDefinition
     : 'library' qualifiedIdentifier ('version' versionSpecifier)?
+    ;
+
+definition
+    : usingDefinition
+    | includeDefinition
+    | codesystemDefinition
+    | valuesetDefinition
+    | codeDefinition
+    | conceptDefinition
+    | parameterDefinition
     ;
 
 usingDefinition

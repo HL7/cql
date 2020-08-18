@@ -101,46 +101,51 @@ A structure diagram of the [.kw]#using# declaration can be seen link:cql-structu
 [[libraries]]
 === Libraries
 
-A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by using the locally assigned name for the library.
-
-For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
-
-Libraries may also be declared with a specific version. When referencing a library, the reference may include a version specifier. The [.kw]#include# declaration allows for version-specific binding, but does not require it. A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
-
-The following example illustrates an include declaration:
+A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by name.
 
 [source,cql]
 ----
-include CMS153_Common version '2' called Common
+include CMS153_Common
 ----
 
-Components defined in the CMS153_Common library, version 2, can now be referenced using the assigned name of Common. For example:
+Components defined in the CMS153_Common library can now be referenced using the library name. For example:
 
 [source,cql]
 ----
 define "SexuallyActive":
-  exists (Common"ConditionsIndicatingSexualActivity")
-    or exists (Common"LaboratoryTestsIndicatingSexualActivity")
+  exists (CMS153_Common."ConditionsIndicatingSexualActivity")
+    or exists (CMS153_Common."LaboratoryTestsIndicatingSexualActivity")
 ----
 
-This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library using the local alias [.id]#Common#.
+This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library.
 
-The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, [.id]#Common#, and the identifier, [.id]#ConditionsIndicatingSexualActivity#, separated by a dot ([.sym]#.#).
+The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, [.id]#CMS153_Common#, and the identifier, [.id]#ConditionsIndicatingSexualActivity#, separated by a dot ([.sym]#.#).
 
-The [.kw]#called# clause of the [.kw]#include# declaration is optional; if omitted, the identifier of the library is used to refer to the library. For example, given the following include:
+For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
+
+The [.kw]#include# declaration may optionally specify a version, meaning that a specific version of the library must be used:
 
 [source,cql]
 ----
 include CMS153_Common version '2'
 ----
 
-The above expression would need to be:
+A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
+
+In addition, the [.kw]#include# declaration may optionally specify an assigned name using the [.kw]#called# clause:
+
+[source,cql]
+----
+include CMS153_Common version '2' called Common
+----
+
+Components defined in the [.id]#CMS153_Common# library, version 2, can now be referenced using the assigned name of [.id]#Common#. For example:
 
 [source,cql]
 ----
 define "SexuallyActive":
-  exists (CMS153_Common"ConditionsIndicatingSexualActivity")
-    or exists (CMS153_Common"LaboratoryTestsIndicatingSexualActivity")
+  exists (Common."ConditionsIndicatingSexualActivity")
+    or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 ----
 
 A structure diagram of the [.kw]#include# declaration can be seen link:cql-structure-diagram.html#includeDefinition[here].
@@ -249,7 +254,16 @@ In other words, the value for the default of a parameter must be able to be calc
 [[context]]
 === Context
 
-The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. The following table lists some typical contexts:
+The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
+
+[[figure-2-a]]
+image:extracted-media/media/patient-practitioner-model.png[image]
+
+Figure 2-A - Simplified patient/practitioner information model
+
+A patient and practitioner may both have any number of encounters. From the perspective of a patient (i.e. _in patient context_), only encounters for that particular patient are accessible. Likewise, from the perspective of a practitioner (i.e. _in practitioner context_), only encounters for that particular practitioner are accessible.
+
+The following table lists some typical contexts:
 
 [[table-2-c]]
 [cols=",",options="header",]
@@ -397,7 +411,12 @@ define "Get Condition from Code Declaration":
 
 define "Get Condition from CodeSystem Declaration":
   [Condition: code in "SNOMED"]
+
+define "Get Condition from Exact Match To Code":
+  [Condition: code = "Acute Pharyngitis Code"]
 ----
+
+Note the last example here is using the _equality_ operator ([.sym#=#]) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
 
 [[retrieve-context]]
 === Retrieve Context
@@ -427,7 +446,10 @@ Depending on the context the retrieve above will return:
 
 Consider the figure below:
 
+[[figure-2-b]]
 image:extracted-media/media/context-diagram.png[image]
+
+Figure 2‑B - Unfiltered vs Patient context
 
 Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Best practice is for each library to have expressions in only one context, and for that context declaration to be the first declaration in the library.
 
@@ -550,7 +572,7 @@ For example:
 
 This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the [.id]#id# of the encounter as well as a [.id]#lengthOfStay# element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
 
-By default, a query returns list of distinct results, supressing duplicates. To include duplicates, use the [.kw]#all# keyword in the [.kw]#return# clause. For example, the following will return a list of the lengths of stay for each Encounter:
+By default, a query returns a list of distinct results, suppressing duplicates. To include duplicates, use the [.kw]#all# keyword in the [.kw]#return# clause. For example, the following will return a list of the lengths of stay for each Encounter:
 
 [source,cql]
 ----
@@ -622,11 +644,12 @@ When the data being sorted includes [.kw]#nulls#, they are considered lower than
 [[relationships]]
 === Relationships
 
-In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability.
+In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
 
-A structure diagram of a link:cql-structure-diagram.html#withClause[with] clause and link:cql-structure-diagram.html#withoutClause[without] clause.
+[[figure-2-c]]
+image:extracted-media/media/patient-model.png[image]
 
-For example:
+Figure 2‑C - Simple patient information model
 
 [source,cql]
 ----
@@ -649,6 +672,8 @@ The [.kw]#without# clause returns only those elements from the primary source th
 ----
 
 This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of [.id]#Acute Pharyngitis# in this case), then that Encounter is not included in the result.
+
+A structure diagram of a link:cql-structure-diagram.html#withClause[with] clause and link:cql-structure-diagram.html#withoutClause[without] clause.
 
 A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
@@ -1680,7 +1705,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
-As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, date and time arithmetic involving durations shall round using calendar semantics as specified in ISO8601.
+As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above seconds cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
 
 For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
 
@@ -1869,6 +1894,11 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |===
 
 Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
+
+[.note-warning]
+____
+Although the CQL specification does not support arithmetic with definite quantity durations above seconds, data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See link:http://hl7.org/fhir/fhirpath.html#quantity[Use of FHIR Quantity] for an example.
+____
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
@@ -2185,10 +2215,10 @@ This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# 
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators for intervals:
 
-[[figure-2-a]]
+[[figure-2-d]]
 image:extracted-media/media/image6.png[image,width=626,height=128]
 
-Figure 2‑A - The union, intersect, and except operators for intervals
+Figure 2‑D - The union, intersect, and except operators for intervals
 
 [[datetime-intervals]]
 ==== Date and Time Intervals
@@ -2409,10 +2439,10 @@ This example returns:
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
 
-[[figure-2-b]]
+[[figure-2-e]]
 image:extracted-media/media/image7.png[image,width=626,height=176]
 
-Figure 2‑B - The union, intersect, and except operators for lists
+Figure 2‑E - The union, intersect, and except operators for lists
 
 As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# operators use the equality operator to determine when two elements are the same. In particular, this means that nulls in the input to a [.kw]#distinct# will be preserved in the output.
 
@@ -2441,19 +2471,19 @@ Although the examples in this section primarily use lists of integers, these ope
 
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
-[[figure-2-c]]
+[[figure-2-f]]
 image:extracted-media/media/image8.png[image,width=353,height=75]
 
-Figure 2‑C - Example intervals to explain how the [.kw]#collapse# operator works on them
+Figure 2‑F - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
 
 If we want to determine the total duration _covered_ by these intervals, we cannot simply use the [.kw]#distinct# operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate [.kw]#union# of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
 The solution is the [.kw]#collapse# operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
-[[figure-2-d]]
+[[figure-2-g]]
 image:extracted-media/media/image9.png[image,width=348,height=56]
 
-Figure 2‑D - Example intervals to explain how the [.kw]#collapse# operator works on them
+Figure 2‑G - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
