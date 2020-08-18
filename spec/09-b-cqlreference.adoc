@@ -188,11 +188,18 @@ Although the milliseconds are specified with a separate component, seconds and m
 simple type Decimal
 ----
 
+
+[.note-warning]
+____
+Note that implementations must support at least the 28 digits of precision and 8 digits of scale, but may support more precise values.
+____
+
 *Description:*
 
 The [.id]#Decimal# type represents real values within CQL.
 
 CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10^28^ + 1)/10^8^ to (10^28^-1)/10^-8^ with a step size of 10^-8^.
+
 
 [[long-1]]
 === Long
@@ -1143,7 +1150,7 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for [.id]#Decimal# values within CQL.
+Note that the [.id]#Decimal# value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
 
@@ -1550,6 +1557,8 @@ define "DateTimeBetweenIsNull": @2012-01-01 between @2012-01-01T12 and @2012-01-
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
+For integer and decimal values, standard ordinal semantics apply.
+
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
@@ -1747,6 +1756,8 @@ define "DateTimeGreaterIsNull": @2012-01-01 > @2012-01-01T12
 ----
 
 Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
+
+For integer and decimal values, standard ordinal semantics apply.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -2384,7 +2395,12 @@ For any other type, attempting to invoke [.kw]#maximum# results in an error.
 ____
 
 Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+____
 
+[.note-warning]
+____
+
+Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the maximum representable decimal for the implementation.
 ____
 
 The following examples illustrate the behavior of the [.kw]#maximum# operator:
@@ -2429,9 +2445,12 @@ For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
 [.note-warning]
 ____
-
 Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+____
 
+[.note-warning]
+____
+Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the minimum representable decimal for the implementation.
 ____
 
 The following examples illustrate the behavior of the [.kw]#minimum# operator:
@@ -2637,6 +2656,11 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the result of the operation cannot be represented, the result is [.kw]#null#.
 
+[.note-warning]
+____
+Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
+____
+
 The following examples illustrate the behavior of the [.kw]#predecessor# operator:
 
 [source,cql]
@@ -2791,6 +2815,11 @@ For [.id]#Quantity# values, the [.kw]#successor# is equivalent to adding 1 if th
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the result of the operation cannot be represented, the result is [.kw]#null#.
+
+[.note-warning]
+____
+Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
+____
 
 The following examples illustrate the behavior of the [.kw]#successor# operator:
 

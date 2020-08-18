@@ -1880,6 +1880,11 @@ If the argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
+[.note-warning]
+____
+Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
+____
+
 === Round
 
 [source,elm]
@@ -1936,21 +1941,26 @@ If the result of the operation cannot be represented, the result is null.
 Successor : UnaryExpression
 ----
 
-The Successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+The [.id]#Successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The Successor operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
+The [.id]#Successor# operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
 
-For Integer, Successor is equivalent to adding 1.
+For [.id]#Integer#, [.id]#Successor# is equivalent to adding 1.
 
-For Long, Successor is equivalent to adding 1L.
+For [.id]#Long#, [.id]#Successor# is equivalent to adding 1L.
 
-For Decimal, Successor is equivalent to adding the minimum precision value for the Decimal type, or 10^-08.
+For [.id]#Decimal#, [.id]#Successor# is equivalent to adding the minimum precision value for the [.id]#Decimal# type, or 10^-08.
 
-For Date, DateTime, and Time values, Successor is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Successor is equivalent to adding 1 millisecond; if the DateTime is specified to the second, Successor is equivalent to adding one second, etc.
+For [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values, [.id]#Successor# is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the [.id]#DateTime# is fully specified, [.id]#Successor# is equivalent to adding 1 millisecond; if the [.id]#DateTime# is specified to the second, [.id]#Successor# is equivalent to adding one second, etc.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
-If the result of the operation cannot be represented, the result is null.
+If the result of the operation cannot be represented, the result is [.kw]#null#.
+
+[.note-warning]
+____
+Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
+____
 
 === Truncate
 
@@ -4157,7 +4167,7 @@ If the argument is null, the result is null.
 ToDecimal : UnaryExpression
 ----
 
-The ToDecimal operator converts the value of its argument to a Decimal value. The operator accepts strings using the following format:
+The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
 *(+|-)?\#0(.0#)?*
 
@@ -4165,11 +4175,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
+Note that the [.id]#Decimal# value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is null.
+If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
 
-If the argument is null, the result is null.
+If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 === ToInteger
 

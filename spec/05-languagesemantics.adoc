@@ -482,7 +482,7 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 |*Minute* |Integer |[0, 59] |
 |*Second* |Integer |[0, 59] |
 |*Millisecond* |Integer |[0, 999] |999 milliseconds is the maximum required precision. Note that many operations require the ability to compute the “next” or “prior” instant, and these semantics depend on the step-size of 1 millisecond, so systems that support more than millisecond precision will need to quantize to the millisecond to achieve these semantics.
-|*Timezone Offset* |Real |[-12.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
+|*Timezone Offset* |Real |[-13.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
 |======================================================================================================================================================================================================================================================================================================================================================================
 
 Table 5‑H - The components used to represent [.kw]#Date# and [.kw]#Time# values in CQL
