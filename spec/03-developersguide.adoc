@@ -1520,20 +1520,20 @@ ____
 The aggregate clause is a new feature of CQL 1.5, and is being balloted trial-use.
 ____
 
-CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate a factorial:
+CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate the factorial of 5:
 
 [source,cql]
 ----
-define function Factorial(X Integer):
-  (expand Interval[1, X]) Num
+define FactorialOfFive:
+  ({ 1, 2, 3, 4, 5 }) Num
     aggregate Result starting 1: Result * Num
 ----
 
-In this example, the `expand` operator is used to construct a list of integers from `1` to `X`, and then the `aggregate` clause is used to calculate the factorial, repeatedly multiplying the current result by the next integer in the list.
+In this example, the list of integers from `1` to `5` is introduced as the primary source in a query with the alias `Num`, and then the `aggregate` clause is used to calculate the factorial. The result is named `Result` and given the starting value of `1`. This result is then repeatedly multiplied by each integer in the list to produce the final result.
 
 The `aggregate` clause may be used in any query instead of a `return` clause, and causes the query to return the result of the last iteration of the aggregate expression. As in the case above, this can result in the query returning a single value, rather than a list of values, but note that since the aggregate expression may return a list, the result of an `aggregate` query may still be a list:
 
-[source, cql]
+[source,cql]
 ----
 define "RolledOutIntervals":
   MedicationRequestIntervals M
@@ -1547,7 +1547,16 @@ define "RolledOutIntervals":
 
 In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
 
-Note that in general, the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. This is not necessary in all cases, however, as the factorial example above demonstrates, since the type of the expression is inferred through the coercion that takes place during the Coalesce.
+Note that in general, since the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. The starting clause can be omitted if the type of the result can be inferred from the aggregate expression:
+
+[source,cql]
+----
+define FactorialOfFive:
+  ({ 1, 2, 3, 4, 5 }) Num
+    aggregate Result: Coalesce(Result, 1) * Result
+----
+
+In this example, since the starting clause is omitted, Result is initially null, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
 
 [[defining-functions]]
 == Defining Functions
