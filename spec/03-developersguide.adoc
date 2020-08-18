@@ -1680,6 +1680,16 @@ define "Confirmed and Active or Recurring Diabetes Conditions":
   Conditions.confirmed().activeOrRecurring()
 ----
 
+The result of this example is the same as if the functions had been invoked normally:
+
+[source,cql]
+----
+define "Confirmed and Active or Recurring Diabetes Conditions":
+  activeOrRecurring(confirmed(Conditions))
+----
+
+In other words, all the Condition elements returned from the [.id]#Diabetes Conditions# expression, where those conditions have a [.id]#verificationStatus# of [.id]#Condition Confirmed#, and a [.id]#clinicalStatus# of [.id]#Condition Active#, [.id]#Condition Recurrence#, or [.id]#Condition Relpase#.
+
 A _fluent_ function may also take multiple arguments where the first argument to the function will be provided by the value of the left-side of the dot-invocation at that point and the second argument can still be passed in. For example:
 
 [source,cql]
@@ -1689,8 +1699,18 @@ define fluent function byClinicalStatus(Conditions List<Condition>, Concept stat
 
 // usage
 define "Active Diabetes Conditions":
-  DiabetesConditions.byClinicalStatus("Condition Active")
+  "Diabetes Conditions".byClinicalStatus("Condition Active")
 ----
+
+Again, the result of this example is the same as if the function had been invoked normally:
+
+[source,cql]
+----
+define "Active Diabetes Conditions":
+  byClinicalStatus("Diabetes Conditions", "Condition Active")
+----
+
+In other words, all the Condition elements returned from the [.id]#Diabetes Conditions# expression, where those conditions have a [.id]#clinicalStatus# of [.id]#Condition Active#.
 
 [.note-info]
 ____
