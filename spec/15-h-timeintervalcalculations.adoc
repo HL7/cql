@@ -699,22 +699,25 @@ And finally, the above example returns false, because the comparison proceeds to
 
 === Interval Example Summary
 
+The following table provides a summary of the timing phrase examples:
+
+[[table-h-a]]
 |===
 |Scenario: OneHourOrLessOnOrBefore |Calculation Type |CQL Timing Phrase |Result |Comment
 
-.3+|Start: @2020-07-01T08:31:00.0
+.3+|Start: @2020-07-01T08:31:00.0 +
 End: @2020-07-01T10:30:00.0
 | Interval
-| @2020-07-01T08-08:31:00.0 1 hour *or less* on or before @2020-07-01T10:30:00.0 | `false` | Keyword `or less` is used
+| @2020-07-01T08-08:31:00.0 1 hour *or less* on or before @2020-07-01T10:30:00.0 | `false` | Keyword `or less` is used +
 Interval calculation is used, and the time difference is 1 hour and 59 minutes
 
-|Duration |hours *between* @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 | `true` | Keyword `between` is used
+|Duration |hours *between* @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 | `true` | Keyword `between` is used +
 Duration calculation is used and the hours are rounded down to the closest hour
 
-|Difference |*difference* in hours between @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 | `false` | Keyword `difference` is used
+|Difference |*difference* in hours between @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 | `false` | Keyword `difference` is used +
 Difference calculation is used
 
-.3+|Start: @2020-07-01T09:29:59.999
+.3+|Start: @2020-07-01T09:29:59.999 +
 End: @2020-07-01T10:30:00.0
 |Interval
 |@2020-07-01T09:29:59.999 1 hour *or less* on or before @2020-07-01T10:30:00.0 |`false` |Result of calculation is 1 hour and 1 millisecond
@@ -725,45 +728,51 @@ End: @2020-07-01T10:30:00.0
 
 |===
 
+Table H-A - Timing phrase examples (hours)
+
+[[table-h-b]]
 |===
 |Scenario: OneDayAfterDayOf |Calculation Type |Timing Phrase |Result |Comment
 
-|Start: @2020-07-12T10:00:00.0
+|Start: @2020-07-12T10:00:00.0 +
 End: @2020-07-11T10:00:00.0
 |Comparison
 |@2020-07-12T10:00:00.0 1 day after day of @2020-07-11T10:00:00.0 |`true` |True since calculation = 24 hours = 1 day. The keyword `day of` sets precision to `day`
 
-|Start: @2020-07-12T08:00:00.0
+|Start: @2020-07-12T08:00:00.0 +
 End: @2020-07-11T10:00:00.0
 |Comparison
 |@2020-07-12T08:00:00.0 1 day after day of @2020-07-11T10:00:00.0 |`true` |True since the calculation < 24 hours but crossing one day = 1 day. The keyword `day of` sets precision to `day`
 
-|Start: @2020-07-12T23:59:59.999
+|Start: @2020-07-12T23:59:59.999 +
 End: @2020-07-11T10:00:00.0
 |Comparison
 |@2020-07-12T23:59:59.999 1 day after day of @2020-07-11T10:00:00.0 |`true` |True since the calculation > 24 hours and crossing one day = 1 day. The keyword `day of` sets precision to `day`
 
-|Start: @2020-07-11T23:59:59.999
+|Start: @2020-07-11T23:59:59.999 +
 End: @2020-07-11T10:00:00.0
 |Comparison
 |@2020-07-011T23:59:59.999 1 day after day of @2020-07-11T10:00:00.0 |`false` |False since the dates are the same day, calculation = 0 days
 
-|Start: @2020-07-13T00:00:00.0
+|Start: @2020-07-13T00:00:00.0 +
 End: @2020-07-11T10:00:00.0
 |Comparison
 |@2020-07-13T00:00:00.0 1 day after day of @2020-07-11T10:00:00.0 |`false` |False since 7/11 to 7/13 = 2 days
 
 |===
 
+Table H-B - Timing phrase examples (days)
+
+[[table-h-c]]
 |===
 |Scenario: FortyTwoWeeksOrLessBefore |Calculation Type |Timing Phrase |Result |Comment
 
-|Start: @2019-09-23
+|Start: @2019-09-23 +
 End: @2020-07-13
 |Interval
 |@2019-09-23 42 weeks or less before @2020-07-13 |`true` |True since calculation = 42 weeks. Data only has date, but no time, so the precision is `day`
 
-.2+|Start: @2019-09-23T09:00:00.0
+.2+|Start: @2019-09-23T09:00:00.0 +
 End: @2020-07-13T10:00:00.0
 |Interval
 |@2019-09-23T09:00:00.0 42 weeks or less before @2020-07-13T10:00:00.0 |`false` |False since time is added to data, time precision is used and calculation = 42 weeks and 1 hour fails
@@ -771,28 +780,31 @@ End: @2020-07-13T10:00:00.0
 |Interval
 |@2019-09-23T09:00:00.0 42 weeks or less before *day of* @2020-07-13T10:00:00.0 |`true` |True since `day of` is setting the precision to `day`, 42 weeks 1 hour = 24 weeks 0 days
 
-|Start: @2019-09-22T11:00:00.0
+|Start: @2019-09-22T11:00:00.0 +
 End: @2020-07-13T10:00:00.0
 |Interval
 |@2019-09-22T11:00:00.0 42 weeks or less before day of @2020-07-13T10:00:00.0 |`false` |False since calculation = 42 weeks and 1 day
 
 |===
 
+Table H-C - Timing phrase examples (weeks)
+
+[[table-h-d]]
 |===
 |CQL Syntax |CQL Calculation Type
 
-|A starts (ends) *before* start (end) of B
-A starts (ends) *after* start (end) of B
+|A starts (ends) *before* start (end) of B +
+A starts (ends) *after* start (end) of B +
 A starts (ends) 3 days (weeks, hours) *or more* before start (end) of B
 |Comparison
 
-|A starts (ends) 3 days (weeks, hours) *or less* before start (end) of B
+|A starts (ends) 3 days (weeks, hours) *or less* before start (end) of B +
 A starts (ends) *within* 3 days (weeks, hours) of start (end) of B
 |Interval
 
-|A starts (ends) 3 days (weeks, hours) *before* start (end) of B
-A starts (ends) 3 days (weeks, hours) *after* start (end) of B
-days (weeks, hours) *between* A and B
+|A starts (ends) 3 days (weeks, hours) *before* start (end) of B +
+A starts (ends) 3 days (weeks, hours) *after* start (end) of B +
+days (weeks, hours) *between* A and B +
 *duration in* days (weeks, hours) between A and B
 |Duration
 
@@ -800,6 +812,8 @@ days (weeks, hours) *between* A and B
 |Difference
 
 |===
+
+Table H-D - Timing phrase interpretation summary
 
 [[during-and-includes]]
 === During and includes
