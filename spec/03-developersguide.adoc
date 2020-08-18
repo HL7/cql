@@ -1531,7 +1531,20 @@ define FactorialOfFive:
 
 In this example, the list of integers from `1` to `5` is introduced as the primary source in a query with the alias `Num`, and then the `aggregate` clause is used to calculate the factorial. The result is named `Result` and given the starting value of `1`. This result is then repeatedly multiplied by each integer in the list to produce the final result.
 
-The `aggregate` clause may be used in any query instead of a `return` clause, and causes the query to return the result of the last iteration of the aggregate expression. As in the case above, this can result in the query returning a single value, rather than a list of values, but note that since the aggregate expression may return a list, the result of an `aggregate` query may still be a list:
+More formally, the `aggregate` clause has the following syntax:
+
+[source,ebnf]
+----
+<aggregate clause> ::=
+  aggregate [(all | distinct)] <result alias> [<starting clause>] : <expression>
+
+<starting clause> ::=
+  starting (<simple literal> | <quantity | "("<expression>")")
+----
+
+The `aggregate` clause may be used in any query instead of a `return` clause, and causes the query to return the result of the last iteration of the aggregate expression. The `all` and `distinct` keywords can be used and apply to the elements prior to the iteration. The `result alias` is an identifier that can be used within the aggregation expression to refer to the current result value, enabling a limited form of recursion. The `starting clause` can be used to provide an initial value for the aggregation. If no starting clause is specified, the aggregation result is initially `null`.
+
+As in the simple example above, the result of the query can be a single value, rather than a list of values, but note that since the aggregate expression may return a list, the result of an `aggregate` query may still be a list:
 
 [source,cql]
 ----
