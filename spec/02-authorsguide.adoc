@@ -1643,7 +1643,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
-As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, although UCUM defines 'a' as 365.25 days, and 'mo' as 1/12 of a year, date and time arithmetic involving durations shall round using calendar semantics as specified in ISO8601.
+As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above seconds cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
 
 For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
 
@@ -1832,6 +1832,11 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |===
 
 Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
+
+[.note-warning]
+____
+Although the CQL specification does not support arithmetic with definite quantity durations above seconds, data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See link:http://hl7.org/fhir/fhirpath.html#quantity[Use of FHIR Quantity] for an example.
+____
 
 [[computing-durations-and-differences]]
 ==== Computing Durations and Differences
