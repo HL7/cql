@@ -381,7 +381,12 @@ define "Get Condition from Code Declaration":
 
 define "Get Condition from CodeSystem Declaration":
   [Condition: code in "SNOMED"]
+
+define "Get Condition from Exact Match To Code":
+  [Condition: code = "Acute Pharyngitis Code"]
 ----
+
+Note the last example here is using the _equality_ operator ([.sym#=#]) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
 
 [[retrieve-context]]
 === Retrieve Context
