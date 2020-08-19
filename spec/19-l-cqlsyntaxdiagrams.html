@@ -36,7 +36,7 @@
 <body data-feedly-mini="yes">
 	<div id="segment-header" class="segment">    <!-- segment-header -->
 		<div class="container">    <!-- container -->
-			<a no-external="true" id="logo" href="cql-structure-diagram.html"><img src="dist/cql-logo.png" alt="Clinical Quality Language" width="100" height="75"/> </a>
+			<a no-external="true" id="logo" href="19-l-cqlsyntaxdiagrams.html"><img src="dist/cql-logo.png" alt="Clinical Quality Language" width="100" height="75"/> </a>
 			<div id="hl7-status">
 				<b>Clinical Quality Language Release 1 (Development Build)</b>
 			</div>
@@ -64,11 +64,11 @@
 						<span class="icon-bar"> </span>
 						<span class="icon-bar"> </span>
 					</button>
-					<a href="cql-structure-diagram.html" class="navbar-brand hidden">CQL</a>
+					<a href="19-l-cqlsyntaxdiagrams.html" class="navbar-brand hidden">CQL</a>
 					<div class="nav-collapse collapse navbar-inverse-collapse">
 						<ul class="nav navbar-nav">
               <li class="dropdown">
-				  <a href="cql-structure-diagram.html" class="dropbtn">Documentation</a>
+				  <a href="19-l-cqlsyntaxdiagrams.html" class="dropbtn">Documentation</a>
 			  <div class="dropdown-content">
 				  <a href="01-introduction.html">Chapter 1 - Introduction</a>
 				  <a href="02-authorsguide.html">Chapter 2 - Author's Guide</a>
@@ -119,9 +119,11 @@
 
 <!--ReleaseHeader--><p id="publish-box">Publish Box goes here</p><!--EndReleaseHeader-->
 
-<table class="colsn"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is being balloted normative.">Normative Ballot</a></td></tr></tbody></table>
+<table class="colsi"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is informative.">Informative</a></td></tr></tbody></table>
 
 	<h1>CQL Structure Diagram (CQL.g4)</h1>
+
+  <p>These diagrams provide an alternative, visual representation of the CQL grammar. Note that the grammar represented here is simplified for the purposes of presentation. Some semantics such as operator precedence are encoded in the full grammar, but omitted here. As such, the contents of this page (and the railroad diagrams included in the rest of the specification) are strictly informative.</p>
 
   <table class="table">
       <tbody>
@@ -189,7 +191,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#libraryDefinition"><text x="158" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#libraryDefinition"><text x="158" y="45">
 libraryDefinition</text></a>
 </g>
 <path d="M236 41h20">
@@ -224,7 +226,7 @@ libraryDefinition</text></a>
 </path>
 <rect x="286" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#definition"><text x="336" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#definition"><text x="336" y="45">
 definition</text></a>
 </g>
 <path d="M386 41h10">
@@ -270,7 +272,7 @@ definition</text></a>
 </path>
 <rect x="446" y="30" width="92" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#statement"><text x="492" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#statement"><text x="492" y="45">
 statement</text></a>
 </g>
 <path d="M538 41h10">
@@ -374,7 +376,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="268" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="268" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M354 41h10">
@@ -429,7 +431,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="526" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="560" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="560" y="45">
 STRING</text></a>
 </g>
 <path d="M594 41h10">
@@ -500,7 +502,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="90" y="20" width="140" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#usingDefinition"><text x="160" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#usingDefinition"><text x="160" y="35">
 usingDefinition</text></a>
 </g>
 <path d="M230 31h10">
@@ -524,7 +526,7 @@ usingDefinition</text></a>
 </path>
 <rect x="82" y="50" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#includeDefinition"><text x="160" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#includeDefinition"><text x="160" y="65">
 includeDefinition</text></a>
 </g>
 <path d="M238 61h10">
@@ -548,7 +550,7 @@ includeDefinition</text></a>
 </path>
 <rect x="70" y="80" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codesystemDefinition"><text x="160" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codesystemDefinition"><text x="160" y="95">
 codesystemDefinition</text></a>
 </g>
 <path d="M250 91h10">
@@ -572,7 +574,7 @@ codesystemDefinition</text></a>
 </path>
 <rect x="78" y="110" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#valuesetDefinition"><text x="160" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#valuesetDefinition"><text x="160" y="125">
 valuesetDefinition</text></a>
 </g>
 <path d="M242 121h10">
@@ -596,7 +598,7 @@ valuesetDefinition</text></a>
 </path>
 <rect x="94" y="140" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codeDefinition"><text x="160" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codeDefinition"><text x="160" y="155">
 codeDefinition</text></a>
 </g>
 <path d="M226 151h10">
@@ -620,7 +622,7 @@ codeDefinition</text></a>
 </path>
 <rect x="82" y="170" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#conceptDefinition"><text x="160" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#conceptDefinition"><text x="160" y="185">
 conceptDefinition</text></a>
 </g>
 <path d="M238 181h10">
@@ -644,7 +646,7 @@ conceptDefinition</text></a>
 </path>
 <rect x="74" y="200" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#parameterDefinition"><text x="160" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#parameterDefinition"><text x="160" y="215">
 parameterDefinition</text></a>
 </g>
 <path d="M246 211h10">
@@ -722,7 +724,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="166" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="216" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="216" y="45">
 identifier</text></a>
 </g>
 <path d="M266 41h10">
@@ -777,7 +779,7 @@ identifier</text></a>
 </path>
 <rect x="438" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="472" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="472" y="45">
 STRING</text></a>
 </g>
 <path d="M506 41h10">
@@ -862,7 +864,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="268" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="268" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M354 41h10">
@@ -917,7 +919,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="526" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="560" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="560" y="45">
 STRING</text></a>
 </g>
 <path d="M594 41h10">
@@ -979,7 +981,7 @@ STRING</text></a>
 </path>
 <rect x="798" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="848" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="848" y="45">
 identifier</text></a>
 </g>
 <path d="M898 41h10">
@@ -1151,7 +1153,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="146" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="146" y="45">
 accessModifier</text></a>
 </g>
 <path d="M212 41h20">
@@ -1180,7 +1182,7 @@ accessModifier</text></a>
 </path>
 <rect x="370" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="420" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="420" y="45">
 identifier</text></a>
 </g>
 <path d="M470 41h10">
@@ -1221,7 +1223,7 @@ identifier</text></a>
 </path>
 <rect x="530" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="592" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="592" y="45">
 typeSpecifier</text></a>
 </g>
 <path d="M654 41h10">
@@ -1283,7 +1285,7 @@ typeSpecifier</text></a>
 </path>
 <rect x="866" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="916" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="916" y="45">
 expression</text></a>
 </g>
 <path d="M966 41h10">
@@ -1367,7 +1369,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="146" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="146" y="45">
 accessModifier</text></a>
 </g>
 <path d="M212 41h20">
@@ -1396,7 +1398,7 @@ accessModifier</text></a>
 </path>
 <rect x="378" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="428" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="428" y="45">
 identifier</text></a>
 </g>
 <path d="M478 41h10">
@@ -1424,7 +1426,7 @@ identifier</text></a>
 </path>
 <rect x="562" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="596" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="596" y="45">
 STRING</text></a>
 </g>
 <path d="M630 41h10">
@@ -1479,7 +1481,7 @@ STRING</text></a>
 </path>
 <rect x="802" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="836" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="836" y="45">
 STRING</text></a>
 </g>
 <path d="M870 41h10">
@@ -1563,7 +1565,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="146" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="146" y="45">
 accessModifier</text></a>
 </g>
 <path d="M212 41h20">
@@ -1592,7 +1594,7 @@ accessModifier</text></a>
 </path>
 <rect x="362" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="412" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="412" y="45">
 identifier</text></a>
 </g>
 <path d="M462 41h10">
@@ -1620,7 +1622,7 @@ identifier</text></a>
 </path>
 <rect x="546" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="580" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="580" y="45">
 STRING</text></a>
 </g>
 <path d="M614 41h10">
@@ -1675,7 +1677,7 @@ STRING</text></a>
 </path>
 <rect x="786" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="820" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="820" y="45">
 STRING</text></a>
 </g>
 <path d="M854 41h10">
@@ -1709,7 +1711,7 @@ STRING</text></a>
 </path>
 <rect x="924" y="30" width="108" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codesystems"><text x="978" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codesystems"><text x="978" y="45">
 codesystems</text></a>
 </g>
 <path d="M1032 41h20">
@@ -1802,7 +1804,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="278" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="364" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="364" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M450 41h10">
@@ -1864,7 +1866,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="584" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="670" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="670" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M756 41h10">
@@ -1973,7 +1975,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="146" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="146" y="45">
 accessModifier</text></a>
 </g>
 <path d="M212 41h20">
@@ -2002,7 +2004,7 @@ accessModifier</text></a>
 </path>
 <rect x="330" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="380" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="380" y="45">
 identifier</text></a>
 </g>
 <path d="M430 41h10">
@@ -2030,7 +2032,7 @@ identifier</text></a>
 </path>
 <rect x="514" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="548" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="548" y="45">
 STRING</text></a>
 </g>
 <path d="M582 41h10">
@@ -2058,7 +2060,7 @@ STRING</text></a>
 </path>
 <rect x="690" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="776" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="776" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M862 41h10">
@@ -2085,7 +2087,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="892" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#displayClause"><text x="954" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#displayClause"><text x="954" y="45">
 displayClause</text></a>
 </g>
 <path d="M1016 41h20">
@@ -2163,7 +2165,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="80" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="146" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="146" y="45">
 accessModifier</text></a>
 </g>
 <path d="M212 41h20">
@@ -2192,7 +2194,7 @@ accessModifier</text></a>
 </path>
 <rect x="354" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="404" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="404" y="45">
 identifier</text></a>
 </g>
 <path d="M454 41h10">
@@ -2234,7 +2236,7 @@ identifier</text></a>
 </path>
 <rect x="602" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="688" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="688" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M774 41h10">
@@ -2296,7 +2298,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="908" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="994" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="994" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M1080 41h10">
@@ -2355,7 +2357,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="1224" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#displayClause"><text x="1286" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#displayClause"><text x="1286" y="45">
 displayClause</text></a>
 </g>
 <path d="M1348 41h20">
@@ -2420,7 +2422,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="82" y="20" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#namedTypeSpecifier"><text x="164" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier"><text x="164" y="35">
 namedTypeSpecifier</text></a>
 </g>
 <path d="M246 31h10">
@@ -2444,7 +2446,7 @@ namedTypeSpecifier</text></a>
 </path>
 <rect x="86" y="50" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#listTypeSpecifier"><text x="164" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#listTypeSpecifier"><text x="164" y="65">
 listTypeSpecifier</text></a>
 </g>
 <path d="M242 61h10">
@@ -2468,7 +2470,7 @@ listTypeSpecifier</text></a>
 </path>
 <rect x="70" y="80" width="188" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#intervalTypeSpecifier"><text x="164" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#intervalTypeSpecifier"><text x="164" y="95">
 intervalTypeSpecifier</text></a>
 </g>
 <path d="M258 91h10">
@@ -2492,7 +2494,7 @@ intervalTypeSpecifier</text></a>
 </path>
 <rect x="82" y="110" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleTypeSpecifier"><text x="164" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleTypeSpecifier"><text x="164" y="125">
 tupleTypeSpecifier</text></a>
 </g>
 <path d="M246 121h10">
@@ -2516,7 +2518,7 @@ tupleTypeSpecifier</text></a>
 </path>
 <rect x="78" y="140" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#choiceTypeSpecifier"><text x="164" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#choiceTypeSpecifier"><text x="164" y="155">
 choiceTypeSpecifier</text></a>
 </g>
 <path d="M250 151h10">
@@ -2580,7 +2582,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="156" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="156" y="35">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M242 31h10">
@@ -2672,7 +2674,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="222" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="284" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="284" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M346 31h10">
@@ -2778,7 +2780,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="254" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="316" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="316" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M378 31h10">
@@ -2884,7 +2886,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="230" y="30" width="196" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleElementDefinition"><text x="328" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleElementDefinition"><text x="328" y="45">
 tupleElementDefinition</text></a>
 </g>
 <path d="M426 41h10">
@@ -2946,7 +2948,7 @@ tupleElementDefinition</text></a>
 </path>
 <rect x="560" y="30" width="196" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleElementDefinition"><text x="658" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleElementDefinition"><text x="658" y="45">
 tupleElementDefinition</text></a>
 </g>
 <path d="M756 41h10">
@@ -3042,7 +3044,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -3056,7 +3058,7 @@ identifier</text></a>
 </path>
 <rect x="190" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="252" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="252" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M314 31h10">
@@ -3148,7 +3150,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="238" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="300" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="300" y="45">
 typeSpecifier</text></a>
 </g>
 <path d="M362 41h10">
@@ -3210,7 +3212,7 @@ typeSpecifier</text></a>
 </path>
 <rect x="496" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="558" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="558" y="45">
 typeSpecifier</text></a>
 </g>
 <path d="M620 41h10">
@@ -3306,7 +3308,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionDefinition"><text x="160" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionDefinition"><text x="160" y="35">
 expressionDefinition</text></a>
 </g>
 <path d="M250 31h10">
@@ -3330,7 +3332,7 @@ expressionDefinition</text></a>
 </path>
 <rect x="82" y="50" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#contextDefinition"><text x="160" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#contextDefinition"><text x="160" y="65">
 contextDefinition</text></a>
 </g>
 <path d="M238 61h10">
@@ -3354,7 +3356,7 @@ contextDefinition</text></a>
 </path>
 <rect x="78" y="80" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#functionDefinition"><text x="160" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#functionDefinition"><text x="160" y="95">
 functionDefinition</text></a>
 </g>
 <path d="M242 91h10">
@@ -3445,7 +3447,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="184" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="250" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="250" y="45">
 accessModifier</text></a>
 </g>
 <path d="M316 41h20">
@@ -3460,7 +3462,7 @@ accessModifier</text></a>
 </path>
 <rect x="346" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="396" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="396" y="45">
 identifier</text></a>
 </g>
 <path d="M446 41h10">
@@ -3488,7 +3490,7 @@ identifier</text></a>
 </path>
 <rect x="530" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="580" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="580" y="45">
 expression</text></a>
 </g>
 <path d="M630 41h10">
@@ -3566,7 +3568,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="20" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="268" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="268" y="35">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M354 31h10">
@@ -3657,7 +3659,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="184" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#accessModifier"><text x="250" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#accessModifier"><text x="250" y="45">
 accessModifier</text></a>
 </g>
 <path d="M316 41h20">
@@ -3714,7 +3716,7 @@ accessModifier</text></a>
 </path>
 <rect x="590" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="640" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="640" y="45">
 identifier</text></a>
 </g>
 <path d="M690 41h10">
@@ -3755,7 +3757,7 @@ identifier</text></a>
 </path>
 <rect x="784" y="30" width="108" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#operandList"><text x="838" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#operandList"><text x="838" y="45">
 operandList</text></a>
 </g>
 <path d="M892 41h20">
@@ -3825,7 +3827,7 @@ operandList</text></a>
 </path>
 <rect x="1138" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="1200" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="1200" y="45">
 typeSpecifier</text></a>
 </g>
 <path d="M1262 41h10">
@@ -3872,7 +3874,7 @@ typeSpecifier</text></a>
 </path>
 <rect x="1406" y="30" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#functionBody"><text x="1464" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#functionBody"><text x="1464" y="45">
 functionBody</text></a>
 </g>
 <path d="M1522 41h10">
@@ -3964,7 +3966,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#operandDefinition"><text x="148" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#operandDefinition"><text x="148" y="45">
 operandDefinition</text></a>
 </g>
 <path d="M226 41h10">
@@ -4026,7 +4028,7 @@ operandDefinition</text></a>
 </path>
 <rect x="360" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#operandDefinition"><text x="438" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#operandDefinition"><text x="438" y="45">
 operandDefinition</text></a>
 </g>
 <path d="M516 41h10">
@@ -4108,7 +4110,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -4122,7 +4124,7 @@ identifier</text></a>
 </path>
 <rect x="190" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="252" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="252" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M314 31h10">
@@ -4186,7 +4188,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="35">
 expression</text></a>
 </g>
 <path d="M170 31h10">
@@ -4250,7 +4252,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="142" y="20" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#retrieve"><text x="184" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#retrieve"><text x="184" y="35">
 retrieve</text></a>
 </g>
 <path d="M226 31h10">
@@ -4274,7 +4276,7 @@ retrieve</text></a>
 </path>
 <rect x="98" y="50" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="184" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="184" y="65">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M270 61h10">
@@ -4312,7 +4314,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="134" y="80" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="184" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="184" y="95">
 expression</text></a>
 </g>
 <path d="M234 91h10">
@@ -4390,7 +4392,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="108" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#querySource"><text x="124" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#querySource"><text x="124" y="35">
 querySource</text></a>
 </g>
 <path d="M178 31h10">
@@ -4404,7 +4406,7 @@ querySource</text></a>
 </path>
 <rect x="198" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="248" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="248" y="35">
 identifier</text></a>
 </g>
 <path d="M298 31h10">
@@ -4468,7 +4470,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="82" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#withClause"><text x="132" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#withClause"><text x="132" y="35">
 withClause</text></a>
 </g>
 <path d="M182 31h10">
@@ -4492,7 +4494,7 @@ withClause</text></a>
 </path>
 <rect x="70" y="50" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#withoutClause"><text x="132" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#withoutClause"><text x="132" y="65">
 withoutClause</text></a>
 </g>
 <path d="M194 61h10">
@@ -4570,7 +4572,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="158" y="20" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aliasedQuerySource"><text x="240" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aliasedQuerySource"><text x="240" y="35">
 aliasedQuerySource</text></a>
 </g>
 <path d="M322 31h10">
@@ -4598,7 +4600,7 @@ aliasedQuerySource</text></a>
 </path>
 <rect x="470" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="520" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="520" y="35">
 expression</text></a>
 </g>
 <path d="M570 31h10">
@@ -4676,7 +4678,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="20" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aliasedQuerySource"><text x="264" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aliasedQuerySource"><text x="264" y="35">
 aliasedQuerySource</text></a>
 </g>
 <path d="M346 31h10">
@@ -4704,7 +4706,7 @@ aliasedQuerySource</text></a>
 </path>
 <rect x="494" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="544" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="544" y="35">
 expression</text></a>
 </g>
 <path d="M594 31h10">
@@ -4809,7 +4811,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="174" y="40" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="260" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="260" y="55">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M346 51h10">
@@ -4844,7 +4846,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="478" y="40" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#namedTypeSpecifier"><text x="560" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier"><text x="560" y="55">
 namedTypeSpecifier</text></a>
 </g>
 <path d="M642 51h10">
@@ -4926,7 +4928,7 @@ namedTypeSpecifier</text></a>
 </path>
 <rect x="806" y="40" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codePath"><text x="848" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codePath"><text x="848" y="55">
 codePath</text></a>
 </g>
 <path d="M890 51h10">
@@ -4940,7 +4942,7 @@ codePath</text></a>
 </path>
 <rect x="910" y="40" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codeComparator"><text x="976" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codeComparator"><text x="976" y="55">
 codeComparator</text></a>
 </g>
 <path d="M1042 51h10">
@@ -4961,7 +4963,7 @@ codeComparator</text></a>
 </path>
 <rect x="1102" y="40" width="108" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#terminology"><text x="1156" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#terminology"><text x="1156" y="55">
 terminology</text></a>
 </g>
 <path d="M1210 51h10">
@@ -5046,7 +5048,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#simplePath"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#simplePath"><text x="120" y="35">
 simplePath</text></a>
 </g>
 <path d="M170 31h10">
@@ -5222,7 +5224,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="156" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="156" y="35">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M242 31h10">
@@ -5246,7 +5248,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="106" y="50" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="156" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="156" y="65">
 expression</text></a>
 </g>
 <path d="M206 61h10">
@@ -5310,7 +5312,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sourceClause"><text x="128" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sourceClause"><text x="128" y="45">
 sourceClause</text></a>
 </g>
 <path d="M186 41h10">
@@ -5337,7 +5339,7 @@ sourceClause</text></a>
 </path>
 <rect x="216" y="30" width="92" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#letClause"><text x="262" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#letClause"><text x="262" y="45">
 letClause</text></a>
 </g>
 <path d="M308 41h20">
@@ -5372,7 +5374,7 @@ letClause</text></a>
 </path>
 <rect x="358" y="30" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#queryInclusionClause"><text x="448" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#queryInclusionClause"><text x="448" y="45">
 queryInclusionClause</text></a>
 </g>
 <path d="M538 41h10">
@@ -5411,7 +5413,7 @@ queryInclusionClause</text></a>
 </path>
 <rect x="588" y="30" width="108" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#whereClause"><text x="642" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#whereClause"><text x="642" y="45">
 whereClause</text></a>
 </g>
 <path d="M696 41h20">
@@ -5453,7 +5455,7 @@ whereClause</text></a>
 </path>
 <rect x="766" y="30" width="140" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aggregateClause"><text x="836" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aggregateClause"><text x="836" y="45">
 aggregateClause</text></a>
 </g>
 <path d="M906 41h10">
@@ -5477,7 +5479,7 @@ aggregateClause</text></a>
 </path>
 <rect x="778" y="60" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#returnClause"><text x="836" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#returnClause"><text x="836" y="75">
 returnClause</text></a>
 </g>
 <path d="M894 71h10">
@@ -5511,7 +5513,7 @@ returnClause</text></a>
 </path>
 <rect x="976" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sortClause"><text x="1026" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sortClause"><text x="1026" y="45">
 sortClause</text></a>
 </g>
 <path d="M1076 41h20">
@@ -5604,7 +5606,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="178" y="30" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aliasedQuerySource"><text x="260" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aliasedQuerySource"><text x="260" y="45">
 aliasedQuerySource</text></a>
 </g>
 <path d="M342 41h10">
@@ -5666,7 +5668,7 @@ aliasedQuerySource</text></a>
 </path>
 <rect x="476" y="30" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aliasedQuerySource"><text x="558" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aliasedQuerySource"><text x="558" y="45">
 aliasedQuerySource</text></a>
 </g>
 <path d="M640 41h10">
@@ -5762,7 +5764,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="150" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#letClauseItem"><text x="212" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#letClauseItem"><text x="212" y="45">
 letClauseItem</text></a>
 </g>
 <path d="M274 41h10">
@@ -5824,7 +5826,7 @@ letClauseItem</text></a>
 </path>
 <rect x="408" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#letClauseItem"><text x="470" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#letClauseItem"><text x="470" y="45">
 letClauseItem</text></a>
 </g>
 <path d="M532 41h10">
@@ -5906,7 +5908,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -5934,7 +5936,7 @@ identifier</text></a>
 </path>
 <rect x="254" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="304" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="304" y="35">
 expression</text></a>
 </g>
 <path d="M354 31h10">
@@ -6012,7 +6014,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="166" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="216" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="216" y="35">
 expression</text></a>
 </g>
 <path d="M266 31h10">
@@ -6162,7 +6164,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="374" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="424" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="424" y="45">
 expression</text></a>
 </g>
 <path d="M474 41h10">
@@ -6312,7 +6314,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="398" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="448" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="448" y="45">
 identifier</text></a>
 </g>
 <path d="M498 41h10">
@@ -6339,7 +6341,7 @@ identifier</text></a>
 </path>
 <rect x="528" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#startingClause"><text x="594" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#startingClause"><text x="594" y="45">
 startingClause</text></a>
 </g>
 <path d="M660 41h20">
@@ -6368,7 +6370,7 @@ startingClause</text></a>
 </path>
 <rect x="754" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="804" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="804" y="45">
 expression</text></a>
 </g>
 <path d="M854 41h10">
@@ -6458,7 +6460,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="282" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#simpleLiteral"><text x="344" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#simpleLiteral"><text x="344" y="35">
 simpleLiteral</text></a>
 </g>
 <path d="M406 31h10">
@@ -6482,7 +6484,7 @@ simpleLiteral</text></a>
 </path>
 <rect x="302" y="50" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="344" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="344" y="65">
 quantity</text></a>
 </g>
 <path d="M386 61h10">
@@ -6532,7 +6534,7 @@ quantity</text></a>
 </path>
 <rect x="294" y="80" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="344" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="344" y="95">
 expression</text></a>
 </g>
 <path d="M394 91h10">
@@ -6644,7 +6646,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="364" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sortDirection"><text x="426" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sortDirection"><text x="426" y="35">
 sortDirection</text></a>
 </g>
 <path d="M488 31h10">
@@ -6694,7 +6696,7 @@ sortDirection</text></a>
 </path>
 <rect x="270" y="60" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sortByItem"><text x="320" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sortByItem"><text x="320" y="75">
 sortByItem</text></a>
 </g>
 <path d="M370 71h10">
@@ -6756,7 +6758,7 @@ sortByItem</text></a>
 </path>
 <rect x="504" y="60" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sortByItem"><text x="554" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sortByItem"><text x="554" y="75">
 sortByItem</text></a>
 </g>
 <path d="M604 71h10">
@@ -6982,7 +6984,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="136" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="136" y="45">
 expressionTerm</text></a>
 </g>
 <path d="M202 41h10">
@@ -7009,7 +7011,7 @@ expressionTerm</text></a>
 </path>
 <rect x="232" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#sortDirection"><text x="294" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#sortDirection"><text x="294" y="45">
 sortDirection</text></a>
 </g>
 <path d="M356 41h20">
@@ -7108,7 +7110,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="120" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="170" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="170" y="45">
 identifier</text></a>
 </g>
 <path d="M220 41h10">
@@ -7154,7 +7156,7 @@ identifier</text></a>
 </path>
 <rect x="354" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="404" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="404" y="45">
 identifier</text></a>
 </g>
 <path d="M454 41h10">
@@ -7218,7 +7220,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="206" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="256" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="256" y="35">
 identifier</text></a>
 </g>
 <path d="M306 31h10">
@@ -7242,7 +7244,7 @@ identifier</text></a>
 </path>
 <rect x="114" y="50" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#simplePath"><text x="164" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#simplePath"><text x="164" y="65">
 simplePath</text></a>
 </g>
 <path d="M214 61h10">
@@ -7270,7 +7272,7 @@ simplePath</text></a>
 </path>
 <rect x="298" y="50" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="348" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="348" y="65">
 identifier</text></a>
 </g>
 <path d="M398 61h10">
@@ -7294,7 +7296,7 @@ identifier</text></a>
 </path>
 <rect x="70" y="80" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#simplePath"><text x="120" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#simplePath"><text x="120" y="95">
 simplePath</text></a>
 </g>
 <path d="M170 91h10">
@@ -7322,7 +7324,7 @@ simplePath</text></a>
 </path>
 <rect x="254" y="80" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#simpleLiteral"><text x="316" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#simpleLiteral"><text x="316" y="95">
 simpleLiteral</text></a>
 </g>
 <path d="M378 91h10">
@@ -7400,7 +7402,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="104" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="104" y="35">
 STRING</text></a>
 </g>
 <path d="M138 31h10">
@@ -7424,7 +7426,7 @@ STRING</text></a>
 </path>
 <rect x="70" y="50" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#NUMBER"><text x="104" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#NUMBER"><text x="104" y="65">
 NUMBER</text></a>
 </g>
 <path d="M138 61h10">
@@ -7488,7 +7490,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="222" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="288" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="288" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M354 31h10">
@@ -7512,7 +7514,7 @@ expressionTerm</text></a>
 </path>
 <rect x="246" y="50" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#retrieve"><text x="288" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#retrieve"><text x="288" y="65">
 retrieve</text></a>
 </g>
 <path d="M330 61h10">
@@ -7536,7 +7538,7 @@ retrieve</text></a>
 </path>
 <rect x="258" y="80" width="60" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#query"><text x="288" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#query"><text x="288" y="95">
 query</text></a>
 </g>
 <path d="M318 91h10">
@@ -7560,7 +7562,7 @@ query</text></a>
 </path>
 <rect x="210" y="110" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#booleanExpression"><text x="288" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#booleanExpression"><text x="288" y="125">
 booleanExpression</text></a>
 </g>
 <path d="M366 121h10">
@@ -7584,7 +7586,7 @@ booleanExpression</text></a>
 </path>
 <rect x="222" y="140" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeExpression"><text x="288" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeExpression"><text x="288" y="155">
 typeExpression</text></a>
 </g>
 <path d="M354 151h10">
@@ -7608,7 +7610,7 @@ typeExpression</text></a>
 </path>
 <rect x="222" y="170" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#castExpression"><text x="288" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#castExpression"><text x="288" y="185">
 castExpression</text></a>
 </g>
 <path d="M354 181h10">
@@ -7632,7 +7634,7 @@ castExpression</text></a>
 </path>
 <rect x="190" y="200" width="196" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#unaryLogicalExpression"><text x="288" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#unaryLogicalExpression"><text x="288" y="215">
 unaryLogicalExpression</text></a>
 </g>
 <path d="M386 211h10">
@@ -7656,7 +7658,7 @@ unaryLogicalExpression</text></a>
 </path>
 <rect x="210" y="230" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#betweenExpression"><text x="288" y="245">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#betweenExpression"><text x="288" y="245">
 betweenExpression</text></a>
 </g>
 <path d="M366 241h10">
@@ -7680,7 +7682,7 @@ betweenExpression</text></a>
 </path>
 <rect x="206" y="260" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#durationExpression"><text x="288" y="275">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#durationExpression"><text x="288" y="275">
 durationExpression</text></a>
 </g>
 <path d="M370 271h10">
@@ -7704,7 +7706,7 @@ durationExpression</text></a>
 </path>
 <rect x="198" y="290" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#comparisonExpression"><text x="288" y="305">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#comparisonExpression"><text x="288" y="305">
 comparisonExpression</text></a>
 </g>
 <path d="M378 301h10">
@@ -7728,7 +7730,7 @@ comparisonExpression</text></a>
 </path>
 <rect x="70" y="320" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="335">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="335">
 expression</text></a>
 </g>
 <path d="M170 331h10">
@@ -7742,7 +7744,7 @@ expression</text></a>
 </path>
 <rect x="190" y="320" width="196" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#intervalOperatorPhrase"><text x="288" y="335">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#intervalOperatorPhrase"><text x="288" y="335">
 intervalOperatorPhrase</text></a>
 </g>
 <path d="M386 331h10">
@@ -7756,7 +7758,7 @@ intervalOperatorPhrase</text></a>
 </path>
 <rect x="406" y="320" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="456" y="335">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="456" y="335">
 expression</text></a>
 </g>
 <path d="M506 331h10">
@@ -7780,7 +7782,7 @@ expression</text></a>
 </path>
 <rect x="198" y="350" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#membershipExpression"><text x="288" y="365">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#membershipExpression"><text x="288" y="365">
 membershipExpression</text></a>
 </g>
 <path d="M378 361h10">
@@ -7804,7 +7806,7 @@ membershipExpression</text></a>
 </path>
 <rect x="186" y="380" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#binaryLogicalExpression"><text x="288" y="395">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#binaryLogicalExpression"><text x="288" y="395">
 binaryLogicalExpression</text></a>
 </g>
 <path d="M390 391h10">
@@ -7828,7 +7830,7 @@ binaryLogicalExpression</text></a>
 </path>
 <rect x="226" y="410" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#setExpression"><text x="288" y="425">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#setExpression"><text x="288" y="425">
 setExpression</text></a>
 </g>
 <path d="M350 421h10">
@@ -7892,7 +7894,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="45">
 expression</text></a>
 </g>
 <path d="M170 41h10">
@@ -8076,7 +8078,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="35">
 expression</text></a>
 </g>
 <path d="M170 31h10">
@@ -8144,7 +8146,7 @@ expression</text></a>
 </path>
 <rect x="302" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="364" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="364" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M426 31h10">
@@ -8222,7 +8224,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="158" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="208" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="208" y="35">
 expression</text></a>
 </g>
 <path d="M258 31h10">
@@ -8250,7 +8252,7 @@ expression</text></a>
 </path>
 <rect x="350" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="412" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="412" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M474 31h10">
@@ -8368,7 +8370,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="214" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="264" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="264" y="35">
 expression</text></a>
 </g>
 <path d="M314 31h10">
@@ -8432,7 +8434,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="35">
 expression</text></a>
 </g>
 <path d="M170 31h10">
@@ -8644,7 +8646,7 @@ expression</text></a>
 </path>
 <rect x="302" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="352" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="352" y="35">
 expression</text></a>
 </g>
 <path d="M402 31h10">
@@ -8708,7 +8710,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="35">
 expression</text></a>
 </g>
 <path d="M170 31h10">
@@ -8824,7 +8826,7 @@ expression</text></a>
 </path>
 <rect x="342" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="392" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="392" y="35">
 expression</text></a>
 </g>
 <path d="M442 31h10">
@@ -8888,7 +8890,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="45">
 expression</text></a>
 </g>
 <path d="M170 41h10">
@@ -8969,7 +8971,7 @@ expression</text></a>
 </path>
 <rect x="360" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="474" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="474" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M588 41h20">
@@ -8984,7 +8986,7 @@ dateTimePrecisionSpecifier</text></a>
 </path>
 <rect x="618" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="668" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="668" y="45">
 expression</text></a>
 </g>
 <path d="M718 41h10">
@@ -9048,7 +9050,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="35">
 expression</text></a>
 </g>
 <path d="M170 31h10">
@@ -9164,7 +9166,7 @@ expression</text></a>
 </path>
 <rect x="358" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="408" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="408" y="35">
 expression</text></a>
 </g>
 <path d="M458 31h10">
@@ -9228,7 +9230,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="45">
 expression</text></a>
 </g>
 <path d="M170 41h10">
@@ -9284,7 +9286,7 @@ expression</text></a>
 </path>
 <rect x="442" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="508" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="508" y="45">
 expressionTerm</text></a>
 </g>
 <path d="M574 41h10">
@@ -9312,7 +9314,7 @@ expressionTerm</text></a>
 </path>
 <rect x="674" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="740" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="740" y="45">
 expressionTerm</text></a>
 </g>
 <path d="M806 41h10">
@@ -9478,7 +9480,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="398" y="30" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#pluralDateTimePrecision"><text x="500" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#pluralDateTimePrecision"><text x="500" y="45">
 pluralDateTimePrecision</text></a>
 </g>
 <path d="M602 41h10">
@@ -9530,7 +9532,7 @@ pluralDateTimePrecision</text></a>
 </path>
 <rect x="774" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="840" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="840" y="45">
 expressionTerm</text></a>
 </g>
 <path d="M906 41h10">
@@ -9558,7 +9560,7 @@ expressionTerm</text></a>
 </path>
 <rect x="1006" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="1072" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="1072" y="45">
 expressionTerm</text></a>
 </g>
 <path d="M1138 41h10">
@@ -9612,7 +9614,7 @@ expressionTerm</text></a>
 </path>
 <rect x="870" y="60" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="936" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="936" y="75">
 expressionTerm</text></a>
 </g>
 <path d="M1002 71h10">
@@ -10148,7 +10150,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecision"><text x="148" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecision"><text x="148" y="35">
 dateTimePrecision</text></a>
 </g>
 <path d="M226 31h10">
@@ -10284,7 +10286,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="178" y="20" width="52" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#term"><text x="204" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#term"><text x="204" y="35">
 term</text></a>
 </g>
 <path d="M230 31h10">
@@ -10308,7 +10310,7 @@ term</text></a>
 </path>
 <rect x="98" y="50" width="212" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#invocationExpressionTerm"><text x="204" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#invocationExpressionTerm"><text x="204" y="65">
 invocationExpressionTerm</text></a>
 </g>
 <path d="M310 61h10">
@@ -10332,7 +10334,7 @@ invocationExpressionTerm</text></a>
 </path>
 <rect x="110" y="80" width="188" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#indexerExpressionTerm"><text x="204" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#indexerExpressionTerm"><text x="204" y="95">
 indexerExpressionTerm</text></a>
 </g>
 <path d="M298 91h10">
@@ -10356,7 +10358,7 @@ indexerExpressionTerm</text></a>
 </path>
 <rect x="98" y="110" width="212" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#conversionExpressionTerm"><text x="204" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#conversionExpressionTerm"><text x="204" y="125">
 conversionExpressionTerm</text></a>
 </g>
 <path d="M310 121h10">
@@ -10380,7 +10382,7 @@ conversionExpressionTerm</text></a>
 </path>
 <rect x="106" y="140" width="196" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#polarityExpressionTerm"><text x="204" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#polarityExpressionTerm"><text x="204" y="155">
 polarityExpressionTerm</text></a>
 </g>
 <path d="M302 151h10">
@@ -10404,7 +10406,7 @@ polarityExpressionTerm</text></a>
 </path>
 <rect x="70" y="170" width="268" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimeComponentExpressionTerm"><text x="204" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimeComponentExpressionTerm"><text x="204" y="185">
 dateTimeComponentExpressionTerm</text></a>
 </g>
 <path d="M338 181h10">
@@ -10428,7 +10430,7 @@ dateTimeComponentExpressionTerm</text></a>
 </path>
 <rect x="86" y="200" width="236" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#unaryIntervalExpressionTerm"><text x="204" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#unaryIntervalExpressionTerm"><text x="204" y="215">
 unaryIntervalExpressionTerm</text></a>
 </g>
 <path d="M322 211h10">
@@ -10452,7 +10454,7 @@ unaryIntervalExpressionTerm</text></a>
 </path>
 <rect x="98" y="230" width="212" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeExtentExpressionTerm"><text x="204" y="245">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeExtentExpressionTerm"><text x="204" y="245">
 typeExtentExpressionTerm</text></a>
 </g>
 <path d="M310 241h10">
@@ -10476,7 +10478,7 @@ typeExtentExpressionTerm</text></a>
 </path>
 <rect x="74" y="260" width="260" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#binaryArithmeticExpressionTerm"><text x="204" y="275">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#binaryArithmeticExpressionTerm"><text x="204" y="275">
 binaryArithmeticExpressionTerm</text></a>
 </g>
 <path d="M334 271h10">
@@ -10500,7 +10502,7 @@ binaryArithmeticExpressionTerm</text></a>
 </path>
 <rect x="130" y="290" width="148" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#ifExpressionTerm"><text x="204" y="305">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#ifExpressionTerm"><text x="204" y="305">
 ifExpressionTerm</text></a>
 </g>
 <path d="M278 301h10">
@@ -10524,7 +10526,7 @@ ifExpressionTerm</text></a>
 </path>
 <rect x="122" y="320" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#caseExpressionTerm"><text x="204" y="335">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#caseExpressionTerm"><text x="204" y="335">
 caseExpressionTerm</text></a>
 </g>
 <path d="M286 331h10">
@@ -10548,7 +10550,7 @@ caseExpressionTerm</text></a>
 </path>
 <rect x="102" y="350" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#aggregateExpressionTerm"><text x="204" y="365">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#aggregateExpressionTerm"><text x="204" y="365">
 aggregateExpressionTerm</text></a>
 </g>
 <path d="M306 361h10">
@@ -10572,7 +10574,7 @@ aggregateExpressionTerm</text></a>
 </path>
 <rect x="90" y="380" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#setAggregateExpressionTerm"><text x="204" y="395">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#setAggregateExpressionTerm"><text x="204" y="395">
 setAggregateExpressionTerm</text></a>
 </g>
 <path d="M318 391h10">
@@ -10886,7 +10888,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="366" y="170" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="432" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="432" y="185">
 expressionTerm</text></a>
 </g>
 <path d="M498 181h10">
@@ -10950,7 +10952,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="136" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="136" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M202 31h10">
@@ -10978,7 +10980,7 @@ expressionTerm</text></a>
 </path>
 <rect x="286" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#invocation"><text x="336" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#invocation"><text x="336" y="35">
 invocation</text></a>
 </g>
 <path d="M386 31h10">
@@ -11042,7 +11044,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -11066,7 +11068,7 @@ identifier</text></a>
 </path>
 <rect x="78" y="50" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#function"><text x="120" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#function"><text x="120" y="65">
 function</text></a>
 </g>
 <path d="M162 61h10">
@@ -11130,7 +11132,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="136" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="136" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M202 31h10">
@@ -11158,7 +11160,7 @@ expressionTerm</text></a>
 </path>
 <rect x="286" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="336" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="336" y="35">
 expression</text></a>
 </g>
 <path d="M386 31h10">
@@ -11250,7 +11252,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="232" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="232" y="35">
 expression</text></a>
 </g>
 <path d="M282 31h10">
@@ -11290,7 +11292,7 @@ expression</text></a>
 </path>
 <rect x="394" y="20" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="456" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="456" y="35">
 typeSpecifier</text></a>
 </g>
 <path d="M518 31h10">
@@ -11314,7 +11316,7 @@ typeSpecifier</text></a>
 </path>
 <rect x="430" y="50" width="52" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#unit"><text x="456" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#unit"><text x="456" y="65">
 unit</text></a>
 </g>
 <path d="M482 61h10">
@@ -11436,7 +11438,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="174" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="240" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="240" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M306 31h10">
@@ -11500,7 +11502,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimeComponent"><text x="148" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimeComponent"><text x="148" y="35">
 dateTimeComponent</text></a>
 </g>
 <path d="M226 31h10">
@@ -11528,7 +11530,7 @@ dateTimeComponent</text></a>
 </path>
 <rect x="334" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="400" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="400" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M466 31h10">
@@ -11646,7 +11648,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="222" y="20" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#namedTypeSpecifier"><text x="304" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier"><text x="304" y="35">
 namedTypeSpecifier</text></a>
 </g>
 <path d="M386 31h10">
@@ -11764,7 +11766,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="230" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="280" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="280" y="35">
 expression</text></a>
 </g>
 <path d="M330 31h10">
@@ -11882,7 +11884,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="230" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="280" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="280" y="45">
 expression</text></a>
 </g>
 <path d="M330 41h10">
@@ -11949,7 +11951,7 @@ expression</text></a>
 </path>
 <rect x="490" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecision"><text x="568" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecision"><text x="568" y="45">
 dateTimePrecision</text></a>
 </g>
 <path d="M646 41h10">
@@ -11973,7 +11975,7 @@ dateTimePrecision</text></a>
 </path>
 <rect x="518" y="60" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="568" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="568" y="75">
 expression</text></a>
 </g>
 <path d="M618 71h10">
@@ -12048,7 +12050,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="136" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="136" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M202 31h10">
@@ -12260,7 +12262,7 @@ expressionTerm</text></a>
 </path>
 <rect x="342" y="20" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expressionTerm"><text x="408" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expressionTerm"><text x="408" y="35">
 expressionTerm</text></a>
 </g>
 <path d="M474 31h10">
@@ -12338,7 +12340,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="142" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="192" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="192" y="35">
 expression</text></a>
 </g>
 <path d="M242 31h10">
@@ -12366,7 +12368,7 @@ expression</text></a>
 </path>
 <rect x="350" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="400" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="400" y="35">
 expression</text></a>
 </g>
 <path d="M450 31h10">
@@ -12394,7 +12396,7 @@ expression</text></a>
 </path>
 <rect x="558" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="608" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="608" y="35">
 expression</text></a>
 </g>
 <path d="M658 31h10">
@@ -12485,7 +12487,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="168" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="218" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="218" y="45">
 expression</text></a>
 </g>
 <path d="M268 41h20">
@@ -12507,7 +12509,7 @@ expression</text></a>
 </path>
 <rect x="308" y="30" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#caseExpressionItem"><text x="390" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#caseExpressionItem"><text x="390" y="45">
 caseExpressionItem</text></a>
 </g>
 <path d="M472 41h10">
@@ -12546,7 +12548,7 @@ caseExpressionItem</text></a>
 </path>
 <rect x="590" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="640" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="640" y="45">
 expression</text></a>
 </g>
 <path d="M690 41h10">
@@ -12638,7 +12640,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="158" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="208" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="208" y="35">
 expression</text></a>
 </g>
 <path d="M258 31h10">
@@ -12666,7 +12668,7 @@ expression</text></a>
 </path>
 <rect x="366" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="416" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="416" y="35">
 expression</text></a>
 </g>
 <path d="M466 31h10">
@@ -12730,7 +12732,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecision"><text x="148" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecision"><text x="148" y="35">
 dateTimePrecision</text></a>
 </g>
 <path d="M226 31h10">
@@ -13084,7 +13086,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="92" y="30" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="134" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="134" y="45">
 quantity</text></a>
 </g>
 <path d="M176 41h10">
@@ -13111,7 +13113,7 @@ quantity</text></a>
 </path>
 <rect x="206" y="30" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#offsetRelativeQualifier"><text x="308" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#offsetRelativeQualifier"><text x="308" y="45">
 offsetRelativeQualifier</text></a>
 </g>
 <path d="M410 41h20">
@@ -13152,7 +13154,7 @@ offsetRelativeQualifier</text></a>
 </path>
 <rect x="90" y="60" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#exclusiveRelativeQualifier"><text x="204" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#exclusiveRelativeQualifier"><text x="204" y="75">
 exclusiveRelativeQualifier</text></a>
 </g>
 <path d="M318 71h10">
@@ -13166,7 +13168,7 @@ exclusiveRelativeQualifier</text></a>
 </path>
 <rect x="338" y="60" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="380" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="380" y="75">
 quantity</text></a>
 </g>
 <path d="M422 71h10">
@@ -13490,7 +13492,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="74" y="20" width="308" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#concurrentWithIntervalOperatorPhrase"><text x="228" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#concurrentWithIntervalOperatorPhrase"><text x="228" y="35">
 concurrentWithIntervalOperatorPhrase</text></a>
 </g>
 <path d="M382 31h10">
@@ -13514,7 +13516,7 @@ concurrentWithIntervalOperatorPhrase</text></a>
 </path>
 <rect x="98" y="50" width="260" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#includesIntervalOperatorPhrase"><text x="228" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#includesIntervalOperatorPhrase"><text x="228" y="65">
 includesIntervalOperatorPhrase</text></a>
 </g>
 <path d="M358 61h10">
@@ -13538,7 +13540,7 @@ includesIntervalOperatorPhrase</text></a>
 </path>
 <rect x="90" y="80" width="276" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#includedInIntervalOperatorPhrase"><text x="228" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#includedInIntervalOperatorPhrase"><text x="228" y="95">
 includedInIntervalOperatorPhrase</text></a>
 </g>
 <path d="M366 91h10">
@@ -13562,7 +13564,7 @@ includedInIntervalOperatorPhrase</text></a>
 </path>
 <rect x="78" y="110" width="300" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#beforeOrAfterIntervalOperatorPhrase"><text x="228" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#beforeOrAfterIntervalOperatorPhrase"><text x="228" y="125">
 beforeOrAfterIntervalOperatorPhrase</text></a>
 </g>
 <path d="M378 121h10">
@@ -13586,7 +13588,7 @@ beforeOrAfterIntervalOperatorPhrase</text></a>
 </path>
 <rect x="106" y="140" width="244" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#withinIntervalOperatorPhrase"><text x="228" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#withinIntervalOperatorPhrase"><text x="228" y="155">
 withinIntervalOperatorPhrase</text></a>
 </g>
 <path d="M350 151h10">
@@ -13610,7 +13612,7 @@ withinIntervalOperatorPhrase</text></a>
 </path>
 <rect x="70" y="170" width="316" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#meetsOrOverlapsIntervalOperatorPhrase"><text x="228" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#meetsOrOverlapsIntervalOperatorPhrase"><text x="228" y="185">
 meetsOrOverlapsIntervalOperatorPhrase</text></a>
 </g>
 <path d="M386 181h10">
@@ -13634,7 +13636,7 @@ meetsOrOverlapsIntervalOperatorPhrase</text></a>
 </path>
 <rect x="82" y="200" width="292" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#startsOrEndsIntervalOperatorPhrase"><text x="228" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#startsOrEndsIntervalOperatorPhrase"><text x="228" y="215">
 startsOrEndsIntervalOperatorPhrase</text></a>
 </g>
 <path d="M374 211h10">
@@ -13821,7 +13823,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="352" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecision"><text x="430" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecision"><text x="430" y="45">
 dateTimePrecision</text></a>
 </g>
 <path d="M508 41h20">
@@ -13848,7 +13850,7 @@ dateTimePrecision</text></a>
 </path>
 <rect x="558" y="30" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#relativeQualifier"><text x="636" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#relativeQualifier"><text x="636" y="45">
 relativeQualifier</text></a>
 </g>
 <path d="M714 41h10">
@@ -14067,7 +14069,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="340" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="454" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="454" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M568 41h20">
@@ -14395,7 +14397,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="588" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="702" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="702" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M816 41h20">
@@ -14569,7 +14571,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="264" y="30" width="132" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantityOffset"><text x="330" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantityOffset"><text x="330" y="45">
 quantityOffset</text></a>
 </g>
 <path d="M396 41h20">
@@ -14584,7 +14586,7 @@ quantityOffset</text></a>
 </path>
 <rect x="426" y="30" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#temporalRelationship"><text x="516" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#temporalRelationship"><text x="516" y="45">
 temporalRelationship</text></a>
 </g>
 <path d="M606 41h10">
@@ -14611,7 +14613,7 @@ temporalRelationship</text></a>
 </path>
 <rect x="636" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="750" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="750" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M864 41h20">
@@ -14886,7 +14888,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="498" y="30" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="540" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="540" y="45">
 quantity</text></a>
 </g>
 <path d="M582 41h10">
@@ -15175,7 +15177,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="424" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="538" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="538" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M652 41h20">
@@ -15307,7 +15309,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="224" y="30" width="228" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecisionSpecifier"><text x="338" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecisionSpecifier"><text x="338" y="45">
 dateTimePrecisionSpecifier</text></a>
 </g>
 <path d="M452 41h20">
@@ -15372,7 +15374,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="134" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="184" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="184" y="35">
 identifier</text></a>
 </g>
 <path d="M234 31h10">
@@ -15396,7 +15398,7 @@ identifier</text></a>
 </path>
 <rect x="146" y="50" width="76" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#literal"><text x="184" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#literal"><text x="184" y="65">
 literal</text></a>
 </g>
 <path d="M222 61h10">
@@ -15420,7 +15422,7 @@ literal</text></a>
 </path>
 <rect x="142" y="80" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#selector"><text x="184" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#selector"><text x="184" y="95">
 selector</text></a>
 </g>
 <path d="M226 91h10">
@@ -15444,7 +15446,7 @@ selector</text></a>
 </path>
 <rect x="142" y="110" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#function"><text x="184" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#function"><text x="184" y="125">
 function</text></a>
 </g>
 <path d="M226 121h10">
@@ -15468,7 +15470,7 @@ function</text></a>
 </path>
 <rect x="98" y="140" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#iterationIdentifier"><text x="184" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#iterationIdentifier"><text x="184" y="155">
 iterationIdentifier</text></a>
 </g>
 <path d="M270 151h10">
@@ -15492,7 +15494,7 @@ iterationIdentifier</text></a>
 </path>
 <rect x="110" y="170" width="148" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#externalConstant"><text x="184" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#externalConstant"><text x="184" y="185">
 externalConstant</text></a>
 </g>
 <path d="M258 181h10">
@@ -15530,7 +15532,7 @@ externalConstant</text></a>
 </path>
 <rect x="134" y="200" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="184" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="184" y="215">
 expression</text></a>
 </g>
 <path d="M234 211h10">
@@ -15720,7 +15722,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="45">
 identifier</text></a>
 </g>
 <path d="M170 41h10">
@@ -15761,7 +15763,7 @@ identifier</text></a>
 </path>
 <rect x="264" y="30" width="92" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#paramList"><text x="310" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#paramList"><text x="310" y="45">
 paramList</text></a>
 </g>
 <path d="M356 41h20">
@@ -15840,7 +15842,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="120" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="120" y="45">
 expression</text></a>
 </g>
 <path d="M170 41h10">
@@ -15902,7 +15904,7 @@ expression</text></a>
 </path>
 <rect x="304" y="30" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="354" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="354" y="45">
 expression</text></a>
 </g>
 <path d="M404 41h10">
@@ -15984,7 +15986,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="148" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#intervalSelector"><text x="144" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#intervalSelector"><text x="144" y="35">
 intervalSelector</text></a>
 </g>
 <path d="M218 31h10">
@@ -16008,7 +16010,7 @@ intervalSelector</text></a>
 </path>
 <rect x="82" y="50" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleSelector"><text x="144" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleSelector"><text x="144" y="65">
 tupleSelector</text></a>
 </g>
 <path d="M206 61h10">
@@ -16032,7 +16034,7 @@ tupleSelector</text></a>
 </path>
 <rect x="70" y="80" width="148" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#instanceSelector"><text x="144" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#instanceSelector"><text x="144" y="95">
 instanceSelector</text></a>
 </g>
 <path d="M218 91h10">
@@ -16056,7 +16058,7 @@ instanceSelector</text></a>
 </path>
 <rect x="86" y="110" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#listSelector"><text x="144" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#listSelector"><text x="144" y="125">
 listSelector</text></a>
 </g>
 <path d="M202 121h10">
@@ -16080,7 +16082,7 @@ listSelector</text></a>
 </path>
 <rect x="86" y="140" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codeSelector"><text x="144" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codeSelector"><text x="144" y="155">
 codeSelector</text></a>
 </g>
 <path d="M202 151h10">
@@ -16104,7 +16106,7 @@ codeSelector</text></a>
 </path>
 <rect x="74" y="170" width="140" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#conceptSelector"><text x="144" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#conceptSelector"><text x="144" y="185">
 conceptSelector</text></a>
 </g>
 <path d="M214 181h10">
@@ -16240,7 +16242,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="86" y="110" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="120" y="125">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="120" y="125">
 STRING</text></a>
 </g>
 <path d="M154 121h10">
@@ -16264,7 +16266,7 @@ STRING</text></a>
 </path>
 <rect x="86" y="140" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#NUMBER"><text x="120" y="155">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#NUMBER"><text x="120" y="155">
 NUMBER</text></a>
 </g>
 <path d="M154 151h10">
@@ -16288,7 +16290,7 @@ NUMBER</text></a>
 </path>
 <rect x="70" y="170" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#LONGNUMBER"><text x="120" y="185">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#LONGNUMBER"><text x="120" y="185">
 LONGNUMBER</text></a>
 </g>
 <path d="M170 181h10">
@@ -16312,7 +16314,7 @@ LONGNUMBER</text></a>
 </path>
 <rect x="78" y="200" width="84" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#DATETIME"><text x="120" y="215">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#DATETIME"><text x="120" y="215">
 DATETIME</text></a>
 </g>
 <path d="M162 211h10">
@@ -16336,7 +16338,7 @@ DATETIME</text></a>
 </path>
 <rect x="94" y="230" width="52" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#DATE"><text x="120" y="245">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#DATE"><text x="120" y="245">
 DATE</text></a>
 </g>
 <path d="M146 241h10">
@@ -16360,7 +16362,7 @@ DATE</text></a>
 </path>
 <rect x="94" y="260" width="52" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#TIME"><text x="120" y="275">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#TIME"><text x="120" y="275">
 TIME</text></a>
 </g>
 <path d="M146 271h10">
@@ -16384,7 +16386,7 @@ TIME</text></a>
 </path>
 <rect x="78" y="290" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="120" y="305">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="120" y="305">
 quantity</text></a>
 </g>
 <path d="M162 301h10">
@@ -16408,7 +16410,7 @@ quantity</text></a>
 </path>
 <rect x="90" y="320" width="60" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#ratio"><text x="120" y="335">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#ratio"><text x="120" y="335">
 ratio</text></a>
 </g>
 <path d="M150 331h10">
@@ -16472,7 +16474,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#NUMBER"><text x="104" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#NUMBER"><text x="104" y="45">
 NUMBER</text></a>
 </g>
 <path d="M138 41h10">
@@ -16499,7 +16501,7 @@ NUMBER</text></a>
 </path>
 <rect x="168" y="30" width="52" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#unit"><text x="194" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#unit"><text x="194" y="45">
 unit</text></a>
 </g>
 <path d="M220 41h20">
@@ -16564,7 +16566,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="94" y="20" width="156" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#dateTimePrecision"><text x="172" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#dateTimePrecision"><text x="172" y="35">
 dateTimePrecision</text></a>
 </g>
 <path d="M250 31h10">
@@ -16588,7 +16590,7 @@ dateTimePrecision</text></a>
 </path>
 <rect x="70" y="50" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#pluralDateTimePrecision"><text x="172" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#pluralDateTimePrecision"><text x="172" y="65">
 pluralDateTimePrecision</text></a>
 </g>
 <path d="M274 61h10">
@@ -16612,7 +16614,7 @@ pluralDateTimePrecision</text></a>
 </path>
 <rect x="138" y="80" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="172" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="172" y="95">
 STRING</text></a>
 </g>
 <path d="M206 91h10">
@@ -16676,7 +16678,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="112" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="112" y="35">
 quantity</text></a>
 </g>
 <path d="M154 31h10">
@@ -16704,7 +16706,7 @@ quantity</text></a>
 </path>
 <rect x="238" y="20" width="84" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#quantity"><text x="280" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#quantity"><text x="280" y="35">
 quantity</text></a>
 </g>
 <path d="M322 31h10">
@@ -16794,7 +16796,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="154" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="204" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="204" y="35">
 identifier</text></a>
 </g>
 <path d="M254 31h10">
@@ -16818,7 +16820,7 @@ identifier</text></a>
 </path>
 <rect x="170" y="50" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="204" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="204" y="65">
 STRING</text></a>
 </g>
 <path d="M238 61h10">
@@ -16954,7 +16956,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="294" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="344" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="344" y="35">
 expression</text></a>
 </g>
 <path d="M394 31h10">
@@ -16982,7 +16984,7 @@ expression</text></a>
 </path>
 <rect x="478" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="528" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="528" y="35">
 expression</text></a>
 </g>
 <path d="M578 31h10">
@@ -17190,7 +17192,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="290" y="70" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleElementSelector"><text x="380" y="85">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleElementSelector"><text x="380" y="85">
 tupleElementSelector</text></a>
 </g>
 <path d="M470 81h10">
@@ -17252,7 +17254,7 @@ tupleElementSelector</text></a>
 </path>
 <rect x="604" y="70" width="180" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#tupleElementSelector"><text x="694" y="85">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#tupleElementSelector"><text x="694" y="85">
 tupleElementSelector</text></a>
 </g>
 <path d="M784 81h10">
@@ -17356,7 +17358,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -17384,7 +17386,7 @@ identifier</text></a>
 </path>
 <rect x="254" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="304" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="304" y="35">
 expression</text></a>
 </g>
 <path d="M354 31h10">
@@ -17448,7 +17450,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="164" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#namedTypeSpecifier"><text x="152" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier"><text x="152" y="35">
 namedTypeSpecifier</text></a>
 </g>
 <path d="M234 31h10">
@@ -17524,7 +17526,7 @@ namedTypeSpecifier</text></a>
 </path>
 <rect x="358" y="60" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#instanceElementSelector"><text x="460" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#instanceElementSelector"><text x="460" y="75">
 instanceElementSelector</text></a>
 </g>
 <path d="M562 71h10">
@@ -17586,7 +17588,7 @@ instanceElementSelector</text></a>
 </path>
 <rect x="696" y="60" width="204" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#instanceElementSelector"><text x="798" y="75">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#instanceElementSelector"><text x="798" y="75">
 instanceElementSelector</text></a>
 </g>
 <path d="M900 71h10">
@@ -17690,7 +17692,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="70" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#identifier"><text x="120" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#identifier"><text x="120" y="35">
 identifier</text></a>
 </g>
 <path d="M170 31h10">
@@ -17718,7 +17720,7 @@ identifier</text></a>
 </path>
 <rect x="254" y="20" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="304" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="304" y="35">
 expression</text></a>
 </g>
 <path d="M354 31h10">
@@ -17864,7 +17866,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="302" y="40" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#typeSpecifier"><text x="364" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#typeSpecifier"><text x="364" y="55">
 typeSpecifier</text></a>
 </g>
 <path d="M426 51h10">
@@ -17947,7 +17949,7 @@ typeSpecifier</text></a>
 </path>
 <rect x="694" y="40" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="744" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="744" y="55">
 expression</text></a>
 </g>
 <path d="M794 51h10">
@@ -18009,7 +18011,7 @@ expression</text></a>
 </path>
 <rect x="928" y="40" width="100" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#expression"><text x="978" y="55">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#expression"><text x="978" y="55">
 expression</text></a>
 </g>
 <path d="M1028 51h10">
@@ -18126,7 +18128,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="182" y="20" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="216" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="216" y="35">
 STRING</text></a>
 </g>
 <path d="M250 31h10">
@@ -18204,7 +18206,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="158" y="30" width="68" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#STRING"><text x="192" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#STRING"><text x="192" y="45">
 STRING</text></a>
 </g>
 <path d="M226 41h10">
@@ -18232,7 +18234,7 @@ STRING</text></a>
 </path>
 <rect x="334" y="30" width="172" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#qualifiedIdentifier"><text x="420" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier"><text x="420" y="45">
 qualifiedIdentifier</text></a>
 </g>
 <path d="M506 41h10">
@@ -18259,7 +18261,7 @@ qualifiedIdentifier</text></a>
 </path>
 <rect x="536" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#displayClause"><text x="598" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#displayClause"><text x="598" y="45">
 displayClause</text></a>
 </g>
 <path d="M660 41h20">
@@ -18352,7 +18354,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="246" y="30" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codeSelector"><text x="304" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codeSelector"><text x="304" y="45">
 codeSelector</text></a>
 </g>
 <path d="M362 41h10">
@@ -18414,7 +18416,7 @@ codeSelector</text></a>
 </path>
 <rect x="496" y="30" width="116" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#codeSelector"><text x="554" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#codeSelector"><text x="554" y="45">
 codeSelector</text></a>
 </g>
 <path d="M612 41h10">
@@ -18473,7 +18475,7 @@ codeSelector</text></a>
 </path>
 <rect x="756" y="30" width="124" height="22">
 </rect>
-<a xlink:href="cql-structure-diagram.html#displayClause"><text x="818" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#displayClause"><text x="818" y="45">
 displayClause</text></a>
 </g>
 <path d="M880 41h20">
@@ -27570,7 +27572,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="106" y="20" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#IDENTIFIER"><text x="156" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#IDENTIFIER"><text x="156" y="35">
 IDENTIFIER</text></a>
 </g>
 <path d="M206 31h10">
@@ -27594,7 +27596,7 @@ IDENTIFIER</text></a>
 </path>
 <rect x="70" y="50" width="172" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#DELIMITEDIDENTIFIER"><text x="156" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#DELIMITEDIDENTIFIER"><text x="156" y="65">
 DELIMITEDIDENTIFIER</text></a>
 </g>
 <path d="M242 61h10">
@@ -27618,7 +27620,7 @@ DELIMITEDIDENTIFIER</text></a>
 </path>
 <rect x="82" y="80" width="148" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#QUOTEDIDENTIFIER"><text x="156" y="95">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#QUOTEDIDENTIFIER"><text x="156" y="95">
 QUOTEDIDENTIFIER</text></a>
 </g>
 <path d="M230 91h10">
@@ -27717,7 +27719,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="194" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#ESC"><text x="216" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#ESC"><text x="216" y="35">
 ESC</text></a>
 </g>
 <path d="M238 31h10">
@@ -27850,7 +27852,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="134" y="20" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#DATEFORMAT"><text x="184" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#DATEFORMAT"><text x="184" y="35">
 DATEFORMAT</text></a>
 </g>
 <path d="M234 31h10">
@@ -27928,7 +27930,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="134" y="30" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#DATEFORMAT"><text x="184" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#DATEFORMAT"><text x="184" y="45">
 DATEFORMAT</text></a>
 </g>
 <path d="M234 41h10">
@@ -27969,7 +27971,7 @@ DATEFORMAT</text></a>
 </path>
 <rect x="328" y="30" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#TIMEFORMAT"><text x="378" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#TIMEFORMAT"><text x="378" y="45">
 TIMEFORMAT</text></a>
 </g>
 <path d="M428 41h20">
@@ -27997,7 +27999,7 @@ TIMEFORMAT</text></a>
 </path>
 <rect x="468" y="30" width="180" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#TIMEZONEOFFSETFORMAT"><text x="558" y="45">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#TIMEZONEOFFSETFORMAT"><text x="558" y="45">
 TIMEZONEOFFSETFORMAT</text></a>
 </g>
 <path d="M648 41h20">
@@ -28090,7 +28092,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="198" y="20" width="100" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#TIMEFORMAT"><text x="248" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#TIMEFORMAT"><text x="248" y="35">
 TIMEFORMAT</text></a>
 </g>
 <path d="M298 31h10">
@@ -29165,7 +29167,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="194" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#ESC"><text x="216" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#ESC"><text x="216" y="35">
 ESC</text></a>
 </g>
 <path d="M238 31h10">
@@ -29319,7 +29321,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="194" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#ESC"><text x="216" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#ESC"><text x="216" y="35">
 ESC</text></a>
 </g>
 <path d="M238 31h10">
@@ -30070,7 +30072,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="170" y="50" width="76" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#UNICODE"><text x="208" y="65">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#UNICODE"><text x="208" y="65">
 UNICODE</text></a>
 </g>
 <path d="M246 61h10">
@@ -30152,7 +30154,7 @@ svg.railroad-diagram rect[rx~="10"] {
 </path>
 <rect x="134" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#HEX"><text x="156" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#HEX"><text x="156" y="35">
 HEX</text></a>
 </g>
 <path d="M178 31h10">
@@ -30166,7 +30168,7 @@ HEX</text></a>
 </path>
 <rect x="198" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#HEX"><text x="220" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#HEX"><text x="220" y="35">
 HEX</text></a>
 </g>
 <path d="M242 31h10">
@@ -30180,7 +30182,7 @@ HEX</text></a>
 </path>
 <rect x="262" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#HEX"><text x="284" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#HEX"><text x="284" y="35">
 HEX</text></a>
 </g>
 <path d="M306 31h10">
@@ -30194,7 +30196,7 @@ HEX</text></a>
 </path>
 <rect x="326" y="20" width="44" height="22" rx="10" ry="10">
 </rect>
-<a xlink:href="cql-structure-diagram.html#HEX"><text x="348" y="35">
+<a xlink:href="19-l-cqlsyntaxdiagrams.html#HEX"><text x="348" y="35">
 HEX</text></a>
 </g>
 <path d="M370 31h10">
