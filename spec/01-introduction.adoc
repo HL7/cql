@@ -92,7 +92,7 @@ image:extracted-media/media/image3-1.png[image,width=626,height=430]
 
 Figure 1‑B - The steps performed by a traditional compiler
 
-As shown here, the process begins with lexical analysis, turning the raw CQL text into a stream of tokens according to the lexical rules of the language. In this case, the stream of tokens `x`, `+`, `y`, `*`, `z`. The next step is parsing, which operates on the stream of tokens to produce an Abstract Syntax Tree or AST, that is a representation of the statement according to the grammar rules of the language. The next step, depicted by the next tree, is semantic analysis, or the process of verifying the "meaning" of the statement. In this case, semantic analysis resolves the `+` to an addition operation with integer-valued inputs, and the `x`, `y`, and `z` to symbol references (i.e. references to expression definitions). 
+As shown here, the process begins with lexical analysis, turning the raw CQL text into a stream of tokens according to the lexical rules of the language. In this case, the stream of tokens `x`, `+`, `y`, `*`, `z`. The next step is parsing, which operates on the stream of tokens to produce an Abstract Syntax Tree or AST, that is a representation of the statement according to the grammar rules of the language. The next step, depicted by the next tree, is semantic analysis, or the process of verifying the "meaning" of the statement. In this case, semantic analysis resolves the `+` to an addition operation with integer-valued inputs, and the `x`, `y`, and `z` to symbol references (i.e. references to expression definitions).
 
 The ELM representation is defined as an Abstract Syntax Tree, eliminating the need for lexical analysis and parsing steps, and allowing implementations to concentrate on the core representation of the logic by making use of existing serialization formats (XML and JSON) to allow direct communication of the semantically verified logic.
 
@@ -225,3 +225,5 @@ link:16-i-fhirpathtranslation.html[Appendix I] – FHIRPath Function Translation
 link:17-j-listoftables.html[Appendix J] - List of Tables
 
 link:18-k-listoffigures.html[Appendix K] - List of Figures
+
+link:19-l-cqlsyntaxdiagrams.html[Appendix L] - CQL Syntax Diagrams
