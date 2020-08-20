@@ -70,6 +70,75 @@ A quality artifact can be said to be strictly conforming if all references to cl
 
 A quality artifact can be said to be loosely conforming if the artifact references properties that are not explicitly constrained by the templates used in the retrieves. This is not to say that the artifact is necessarily invalid, just that the instances of clinical data provided to the retrieve may or may not contain the elements referenced by properties within the artifact.
 
+[[language-capabilities]]
+==== Language Capabilities
+
+Because of the scope of CQL, and the various implementation options for different features of the language, implementations may find it useful to advertise the language capabilities they support. The following list is a summary of language capabilities of CQL:
+
+. Data Model and Type Support
+.. Decimal precision and scale
+.. Datetime precision and scale
+.. UCUM unit conversion support
+.. Regex dialect
+.. Supported data models
+. Compatibility Level
+.. 1.3
+... System.Ratio
+... System.Date
+... Expand operator
+... FHIRPath Support
+.. 1.4
+... Precision operators for Decimal and Date/Time types
+... Model-defined contexts
+... Library namespaces
+... Related-context retrieves
+... Unit conversion support
+.. 1.5
+... Modular arithmetic for quantities
+... Expand a single interval
+... Aggregate clause
+... Include retrieves
+... Searchpath retrieves
+... Id retrieves
+... System.Long
+... System.Vocabulary
+... System.CodeSystem
+... System.ValueSet
+. System Data Types
+. Operators
+.. Logical Operators
+.. Type Operators
+.. Nullological Operators
+.. Comparison Operators
+.. Arithmetic Operators
+.. String Operators
+.. Date and Time Operators
+.. Interval Operators
+.. List Operators
+.. Aggregate Functions
+.. Clinical Operators
+.. Diagnostic Operators
+. Queries
+.. Single source
+.. Relationships
+.. Let clause
+.. Where clause
+.. Return clause
+.. Aggregate clause
+.. Multi source
+. Retrieve
+.. Unfiltered context
+.. Terminology-based retrieve
+.. Valueset terminology target
+.. CodeSystem terminology target
+.. Code terminology target
+.. Searchpath retrieve
+.. Include retrieve
+.. Related-context retrieve
+.. Profile-based retrieve
+
+Using these capabilities to advertise support, and enabling reference implementations to declare usage of these features within CQL, will allow authors and implementers to understand run-time implications of the CQL they are creating and using.
+
 [[artifact-data-requirements]]
 === Artifact Data Requirements
 
