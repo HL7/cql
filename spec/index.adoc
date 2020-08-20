@@ -18,13 +18,12 @@ This specification is being balloted normative, except where identified as infor
 For a complete description of the changes to this version, please review the version history linked below.
 ____
 
-link:title.html[Title Page]
-
-link:license.html[License]
-
-http://cql.hl7.org/history.html[Version History]
-
-link:00-executivesummary.html[Executive Summary]
+|===
+|link:title.html[Title Page]
+|link:license.html[License]
+|http://cql.hl7.org/history.html[Version History]
+|link:00-executivesummary.html[Executive Summary]
+|===
 
 [[organization-of-this-specification]]
 == Organization of this Specification
@@ -66,3 +65,5 @@ link:16-i-fhirpathtranslation.html[Appendix I] – FHIRPath Function Translation
 link:17-j-listoftables.html[Appendix J] – List Of Tables
 
 link:18-k-listoffigures.html[Appendix K] – List Of Figures
+
+link:19-l-cqlsyntaxdiagrams.html[Appendix L] - CQL Syntax Diagrams
