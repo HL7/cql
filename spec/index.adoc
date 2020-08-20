@@ -19,10 +19,7 @@ For a complete description of the changes to this version, please review the ver
 ____
 
 |===
-|link:title.html[Title Page]
-|link:license.html[License]
-|http://cql.hl7.org/history.html[Version History]
-|link:00-executivesummary.html[Executive Summary]
+|link:title.html[Title Page] |link:license.html[License] |http://cql.hl7.org/history.html[Version History] |link:00-executivesummary.html[Executive Summary]
 |===
 
 [[organization-of-this-specification]]

@@ -5,11 +5,11 @@
 
 image:extracted-media/media/image1.png[image,width=144,height=148]
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 Normative Ballot (CQL 1.5)*
+*HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
 
-*May 2020 Publication*
+*September 2020 Publication*
 
-*HL7 Normative Specification*
+*HL7 Mixed Normative/Trial-Use Specification*
 
 *Sponsored by:*
 
