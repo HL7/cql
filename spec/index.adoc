@@ -3,7 +3,7 @@
 :backend: xhtml
 :page-standards-status: normative
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 Normative Ballot 1 (CQL 1.5)*
+*HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
 
 *HL7 Mixed Normative/STU Specification*
 
@@ -13,7 +13,7 @@ In addition, this specification describes a machine-readable canonical represent
 
 [.note-info]
 ____
-This specification is being balloted normative, except where identified as informative or trial-use content.
+This specification is normative, except where identified as informative or trial-use content.
 
 For a complete description of the changes to this version, please review the version history linked below.
 ____
@@ -21,6 +21,15 @@ ____
 |===
 |link:title.html[Title Page] |link:license.html[License] |http://cql.hl7.org/history.html[Version History] |link:00-executivesummary.html[Executive Summary]
 |===
+
+[[getting-started]]
+== Getting Started
+
+Welcome to the HL7 Clinical Quality Language (CQL) specification!
+
+CQL has matured into a capable and flexible specification for representing clinically-focused logic, and is being used in a broad variety of applications from cohort definition and quality measurement, to clinical decision and cognitive support, computable guidelines, and public health reporting. See the link:examples.html[Examples] page for examples of these various usages, and be sure to visit the link:10-c-referenceimplementations.html[Reference Implementations] page for a description of the available tooling and resources, as well as a link to community projects.
+
+To join the active and growing community of CQL authors and implementers, subscribe to the link:https://chat.fhir.org/#narrow/stream/179220-cql[CQL stream] on the FHIR Zulip. As with any HL7 specification, we welcome continued feedback and are constantly striving to improve. If you have comments or suggestions, or even just notice a typo, please let us know by submitting an issue via the link:http://jira.hl7.org[HL7 JIRA], just set the "Project" to FHIR and the "Specification" to "Clinical Quality Language" in the issue you submit.
 
 [[organization-of-this-specification]]
 == Organization of this Specification
