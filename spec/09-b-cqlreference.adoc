@@ -104,7 +104,7 @@ The [.id]#Code# type represents single terminology codes within CQL.
 
 [.note-info]
 ____
-The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
@@ -206,7 +206,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 [.note-info]
 ____
-The CodeSystem type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
@@ -330,7 +330,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 [.note-info]
 ____
-The ValueSet type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The ValueSet type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
@@ -353,7 +353,7 @@ The [.id]#ValueSet# type represents value set references within CQL. The ValueSe
 
 [.note-info]
 ____
-The Vocabulary type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Vocabulary type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
@@ -856,7 +856,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Signature:*
@@ -885,7 +885,7 @@ ConvertsToInteger(argument Long) Boolean
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -955,7 +955,7 @@ ConvertsToString(argument Time) Boolean
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1169,7 +1169,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Signature:*
@@ -1216,7 +1216,7 @@ ToInteger(argument Long) Integer
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1340,7 +1340,7 @@ ToString(argument Time) String
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1539,7 +1539,7 @@ between(argument String, low String, high String) Boolean
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1735,7 +1735,7 @@ define "NullEquivalentIsTrue": null ~ null
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1798,7 +1798,7 @@ ____
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1858,7 +1858,7 @@ ____
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -1918,7 +1918,7 @@ ____
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2039,7 +2039,7 @@ Abs(argument Quantity) Quantity
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2078,7 +2078,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2478,8 +2478,8 @@ mod(left Quantity, right Quantity) Quantity
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
-The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2523,7 +2523,7 @@ define "ModuloIsNull": 2.5 mod null
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2565,7 +2565,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2686,7 +2686,7 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2757,7 +2757,7 @@ define "RoundIsNull": Round(null)
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -2874,8 +2874,8 @@ div(left Quantity, right Quantity) Quantity
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
-The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -4236,7 +4236,7 @@ expand(argument Interval<T>, per Quantity) List<T>
 
 [.note-info]
 ____
-The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -5794,7 +5794,7 @@ Max(argument List<String>) String
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -5982,7 +5982,7 @@ Product(argument List<Quantity>) Quantity
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*
@@ -6047,7 +6047,7 @@ Sum(argument List<Quantity>) Quantity
 
 [.note-info]
 ____
-The Long type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Description:*

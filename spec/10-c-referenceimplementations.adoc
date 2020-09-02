@@ -49,7 +49,7 @@ https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects
 * https://github.com/cqframework/cql-execution: Java-Script Execution Engine
 * https://github.com/cqframework/cql-exec-fhir: A FHIR data source provider for the CQL Execution framework
 * https://github.com/cqframework/cql-exec-vsac: A VSAC-enabled value set provider for the CQL Execution framework
-* https://github.com/cqframework/cql-exec-examples: Simple examples demonstrating how to use cql-execution, cql-exec-fhir, and cql-exec-vasc
+* https://github.com/cqframework/cql-exec-examples: Simple examples demonstrating how to use cql-execution, cql-exec-fhir, and cql-exec-vsac
 
 [[cql-translation-service]]
 === CQL Translation Service
