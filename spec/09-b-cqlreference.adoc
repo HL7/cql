@@ -781,12 +781,12 @@ define "ConvertSyntax": convert 5 'mg' to 'g'
 
 [source,cql]
 ----
-ConvertsToBoolean(argument String) Boolean
+ConvertsToBoolean(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToBoolean# operator returns [.kw]#true# if its argument can be converted to a [.id]#Boolean# value. See the [.id]#<<ToBoolean>># operator for a description of the supported conversions.
+The [.id]#ConvertsToBoolean# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Boolean# value. See the [.id]#<<ToBoolean>># operator for a description of the supported conversions.
 
 If the input cannot be interpreted as a valid [.id]#Boolean# value, the result is [.kw]#false#.
 
@@ -799,12 +799,12 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToDate(argument String) Boolean
-----
+ConvertsToDate(argument Any) Boolean
+---
 
 *Description:*
 
-The [.id]#ConvertsToDate# operator returns [.kw]#true# if its argument can be converted to a [.id]#Date# value. See the [.id]#<<ToDate>># operator for a description of the supported conversions.
+The [.id]#ConvertsToDate# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Date# value. See the [.id]#<<ToDate>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is [.kw]#false#.
 
@@ -819,13 +819,12 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToDateTime(argument Date) Boolean
-ConvertsToDateTime(argument String) Boolean
+ConvertsToDateTime(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToDateTime# operator returns [.kw]#true# if its argument can be converted to a [.id]#DateTime# value. See the [.id]#<<ToDateTime>># operator for a description of the supported conversions.
+The [.id]#ConvertsToDateTime# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#DateTime# value. See the [.id]#<<ToDateTime>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is [.kw]#false#.
 
@@ -840,12 +839,12 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToDecimal(argument String) Boolean
+ConvertsToDecimal(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ToDecimal# operator returns [.kw]#true# if its argument can be converted to a [.id]#Decimal# value. See the [.id]#<<ToDecimal>># operator for a description of the supported conversions.
+The [.id]#ToDecimal# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Decimal# value. See the [.id]#<<ToDecimal>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#false#.
 
@@ -863,12 +862,12 @@ ____
 
 [source,cql]
 ----
-ConvertsToLong(argument String) Boolean
+ConvertsToLong(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToLong# operator returns [.kw]#true# if its argument can be converted to a [.id]#Long# value. See the [.id]#<<ToLong>># operator for a description of the supported conversions.
+The [.id]#ConvertsToLong# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Long# value. See the [.id]#<<ToLong>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Long# value, the result is [.kw]#false#.
 
@@ -879,8 +878,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 [source,cql]
 ----
-ConvertsToInteger(argument String) Boolean
-ConvertsToInteger(argument Long) Boolean
+ConvertsToInteger(argument Any) Boolean
 ----
 
 [.note-info]
@@ -890,7 +888,7 @@ ____
 
 *Description:*
 
-The [.id]#ConvertsToInteger# operator returns [.kw]#true# if its argument can be converted to an [.id]#Integer# value. See the [.id]#<<ToInteger>># operator for a description of the supported conversions.
+The [.id]#ConvertsToInteger# operator returns [.kw]#true# if its argument is or can be converted to an [.id]#Integer# value. See the [.id]#<<ToInteger>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Integer# value, the result is [.kw]#false#.
 
@@ -903,15 +901,12 @@ If the input is a [.id]#Long# value, the result is [.kw]#true# if the value is w
 
 [source,cql]
 ----
-ConvertsToQuantity(argument Decimal) Boolean
-ConvertsToQuantity(argument Integer) Boolean
-ConvertsToQuantity(argument Ratio) Boolean
-ConvertsToQuantity(argument String) Boolean
+ConvertsToQuantity(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToQuantity# operator returns [.kw]#true# if its argument can be converted to a [.id]#Quantity# value. See the [.id]#<<ToQuantity>># operator for a description of the supported conversions.
+The [.id]#ConvertsToQuantity# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Quantity# value. See the [.id]#<<ToQuantity>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Quantity# value, the result is [.kw]#false#.
 
@@ -924,12 +919,12 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToRatio(argument String) Boolean
+ConvertsToRatio(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToRatio# operator returns [.kw]#true# if its argument can be converted to a [.id]#Ratio# value. See the [.id]#<<ToRatio>># operator for a description of the supported conversions.
+The [.id]#ConvertsToRatio# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Ratio# value. See the [.id]#<<ToRatio>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Ratio# value, the result is [.kw]#false#.
 
@@ -942,15 +937,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToString(argument Boolean) Boolean
-ConvertsToString(argument Integer) Boolean
-ConvertsToString(argument Long) Boolean
-ConvertsToString(argument Decimal) Boolean
-ConvertsToString(argument Quantity) Boolean
-ConvertsToString(argument Ratio) Boolean
-ConvertsToString(argument Date) Boolean
-ConvertsToString(argument DateTime) Boolean
-ConvertsToString(argument Time) Boolean
+ConvertsToString(argument Any) Boolean
 ----
 
 [.note-info]
@@ -960,7 +947,7 @@ ____
 
 *Description:*
 
-The [.id]#ConvertsToString# operator returns [.kw]#true# if its argument can be converted to a [.id]#String# value. See the [.id]#<<ToString>># operator for a description of the supported conversions.
+The [.id]#ConvertsToString# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#String# value. See the [.id]#<<ToString>># operator for a description of the supported conversions.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -971,12 +958,12 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ConvertsToTime(argument String) Time
+ConvertsToTime(argument Any) Boolean
 ----
 
 *Description:*
 
-The [.id]#ConvertsToTime# operator returns [.kw]#true# if its argument can be converted to a [.id]#Time# value. See the [.id]#<<ToTime>># operator for a description of the supported conversions.
+The [.id]#ConvertsToTime# operator returns [.kw]#true# if its argument is or can be converted to a [.id]#Time# value. See the [.id]#<<ToTime>># operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is [.kw]#false#.
 
@@ -989,6 +976,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
+ToBoolean(argument Boolean) Boolean
 ToBoolean(argument String) Boolean
 ----
 
@@ -1028,6 +1016,7 @@ define "IsNull": ToBoolean('falsetto')
 
 [source,cql]
 ----
+ToConcept(argument Concept) Concept
 ToConcept(argument Code) Concept
 ToConcept(argument List<Code>) Concept
 ----
@@ -1055,6 +1044,7 @@ define "IsNull": ToConcept(null as Code)
 
 [source,cql]
 ----
+ToDate(argument Date) Date
 ToDate(argument DateTime) Date
 ToDate(argument String) Date
 ----
@@ -1098,6 +1088,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [source,cql]
 ----
 ToDateTime(argument Date) DateTime
+ToDateTime(argument DateTime) DateTime
 ToDateTime(argument String) DateTime
 ----
 
@@ -1137,6 +1128,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
+ToDecimal(argument Decimal) Decimal
 ToDecimal(argument String) Decimal
 ----
 
@@ -1176,6 +1168,7 @@ ____
 
 [source,cql]
 ----
+ToLong(argument Long) Long
 ToLong(argument String) Long
 ----
 
@@ -1210,6 +1203,7 @@ define "IsNull": ToLong('one')
 
 [source,cql]
 ----
+ToInteger(argument Integer) Integer
 ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ----
@@ -1254,6 +1248,7 @@ define "IsNull": ToInteger('one')
 ----
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
+ToQuantity(argument Quantity) Quantity
 ToQuantity(argument Ratio) Quantity
 ToQuantity(argument String) Quantity
 ----
@@ -1297,6 +1292,7 @@ define "IsNull": ToQuantity('444 \'cm')
 
 [source,cql]
 ----
+ToRatio(argument Ratio) Ratio
 ToRatio(argument String) Ratio
 ----
 
@@ -1335,6 +1331,7 @@ ToString(argument Quantity) String
 ToString(argument Ratio) String
 ToString(argument Date) String
 ToString(argument DateTime) String
+ToString(argument String) String
 ToString(argument Time) String
 ----
 

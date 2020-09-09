@@ -3834,7 +3834,7 @@ If either argument is null, the result is null.
 ConvertsToBoolean : UnaryExpression
 ----
 
-The ConvertsToBoolean operator returns true if the value of its argument can be converted to a Boolean value.
+The ConvertsToBoolean operator returns true if the value of its argument is or can be converted to a Boolean value.
 
 The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
 
@@ -3849,7 +3849,7 @@ If the argument is null the result is null.
 ConvertsToDate : UnaryExpression
 ----
 
-The ConvertsToDate operator returns true if the value of its argument can be converted to a Date value.
+The ConvertsToDate operator returns true if the value of its argument is or can be converted to a Date value.
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
@@ -3874,7 +3874,7 @@ If the argument is null, the result is null.
 ConvertsToDateTime : UnaryExpression
 ----
 
-The ConvertsToDateTime operator returns true if the value of its argument can be converted to a DateTime value.
+The ConvertsToDateTime operator returns true if the value of its argument is or can be converted to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
@@ -3897,7 +3897,7 @@ If the argument is null, the result is null.
 ConvertsToDecimal : UnaryExpression
 ----
 
-The ConvertsToDecimal operator returns true if the value of its argument can be converted to a Decimal value. The operator accepts strings using the following format:
+The ConvertsToDecimal operator returns true if the value of its argument is or can be converted to a Decimal value. The operator accepts strings using the following format:
 
 *(+|-)?\#0(.0#)?*
 
@@ -3918,7 +3918,7 @@ If the argument is null, the result is null.
 ConvertsToLong : UnaryExpression
 ----
 
-The ConvertsToLong operator returns true if the value of its argument can be converted to a Long value. The operator accepts strings using the following format:
+The ConvertsToLong operator returns true if the value of its argument is or can be converted to a Long value. The operator accepts strings using the following format:
 
 *(+|-)?#0*
 
@@ -3939,7 +3939,7 @@ If the argument is null, the result is null.
 ConvertsToInteger : UnaryExpression
 ----
 
-The ConvertsToInteger operator returns true if the value of its argument can be converted to an Integer value. The operator accepts strings using the following format:
+The ConvertsToInteger operator returns true if the value of its argument is or can be converted to an Integer value. The operator accepts strings using the following format:
 
 *(+|-)?#0*
 
@@ -3960,7 +3960,7 @@ If the argument is null, the result is null.
 ConvertsToQuantity : UnaryExpression
 ----
 
-The ConvertsToQuantity operator returns true if the value of its argument can be converted to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
+The ConvertsToQuantity operator returns true if the value of its argument is or can be converted to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
 
 For String values, the operator accepts strings using the following format:
 
@@ -3985,7 +3985,7 @@ If the argument is null, the result is null.
 ConvertsToRatio : UnaryExpression
 ----
 
-The ConvertsToRatio operator returns true if the value of its argument can be converted to a Ratio value. The operator accepts strings using the following format:
+The ConvertsToRatio operator returns true if the value of its argument is or can be converted to a Ratio value. The operator accepts strings using the following format:
 
 *<quantity>:<quantity>*
 
@@ -4002,7 +4002,7 @@ If the argument is null, the result is null.
 ConvertsToString : UnaryExpression
 ----
 
-The ConvertsToString operator returns true if the value of its argument can be converted to a String value.
+The ConvertsToString operator returns true if the value of its argument is or can be converted to a String value.
 
 The operator returns true if the argument is any of the following types:
 
@@ -4014,7 +4014,8 @@ DateTime +
 Date +
 Time +
 Quantity +
-Ratio
+Ratio +
+String
 
 If the argument is null, the result is null.
 
@@ -4025,7 +4026,7 @@ If the argument is null, the result is null.
 ConvertsToTime : UnaryExpression
 ----
 
-The ConvertsToTime operator returns true if the value of its argument can be converted to a Time value.
+The ConvertsToTime operator returns true if the value of its argument is or can be converted to a Time value.
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
