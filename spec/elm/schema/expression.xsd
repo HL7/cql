@@ -657,6 +657,10 @@ Conversion between String and Date/DateTime/Time is checked using the ISO-8601 s
 
 The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
 
+If the input is an Integer or Long, the result is true if the integer is 1, false if the integer is 0.
+
+If the input is a Decimal, the result is true if the decimal is 1.0, false if the decimal is 0.0.
+
 If the input cannot be interpreted as a valid Boolean value, the result is null.
 
 If the argument is null the result is null.</xs:documentation>
@@ -670,6 +674,10 @@ If the argument is null the result is null.</xs:documentation>
 			<xs:documentation>The ConvertsToBoolean operator returns true if the value of its argument is or can be converted to a Boolean value.
 
 The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
+
+If the input is an Integer or Long, the result is true if the integer is 1 or 0.
+
+If the input is a Decimal, the result is true if the decimal is 1.0 or 0.0.
 
 If the input cannot be interpreted as a valid Boolean value, the result is false.
 
@@ -795,9 +803,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
-Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
+Note that for this operator to return true, the input value must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is false.
+
+If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
@@ -819,6 +829,8 @@ Note that the decimal value returned by this operator must be limited in precisi
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is null.
 
+If the input is Boolean, true will result in 1.0, false will result in 0.0.
+
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -835,9 +847,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Specification for a description of formatting strings.
 
-Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
+Note that for this operator to return true, the input must be a valid value in the range representable for Integer values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is false.
+
+If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
@@ -859,6 +873,8 @@ Note that the integer value returned by this operator must be a valid value in t
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is null.
 
+If the input is Boolean, true will result in 1, false will result in 0.
+
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -878,6 +894,8 @@ See the Formatting Strings topic in the CQL Reference (Appendix B) of the CQL Sp
 Note that for this operator to return true, the input must be a valid value in the range representable for Long values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is false.
+
+If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>

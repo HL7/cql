@@ -928,10 +928,17 @@ will result in [.kw]#null#. The convert syntax is equivalent to invoking one of 
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
 |Operator |Description
+|*ToBoolean(Decimal)* |Converts the decimal representation of a boolean value (`0.0` or `1.0`) to a Boolean value
+|*ToBoolean(Integer)* |Converts the integer representation of a boolean value (`0` or `1`) to a Boolean value
+|*ToBoolean(Long)* |Converts the long representation of a boolean value (`0L` or `1L`) to a Boolean value
 |*ToBoolean(String)* |Converts the string representation of a boolean value to a Boolean value
+|*ToInteger(Boolean)* |Converts a boolean to an integer value, true results in `1`, false results in `0`
+|*ToInteger(Long)* |Converts a Long value to an equivalent Integer value
 |*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format ([.sym]#+\|-#)d*
+|*ToLong(Boolean)* |Converts a boolean value to an equivalent Long value, true results in `1L`, false results in `0L`
 |*ToLong(Integer)* |Converts an Integer value to an equivalent Long value
 |*ToLong(String)* |Converts the string representation of a long value to a Long value using the format ([.sym]#+\|-#)d*
+|*ToDecimal(Boolean)* |Converts a Boolean value to an equivalent Decimal value, true results in `1.0`, false results in `0.0`
 |*ToDecimal(Integer)* |Converts an Integer value to an equivalent Decimal value
 |*ToDecimal(Long)* |Converts a Long value to an equivalent Decimal value
 |*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format ([.sym]#+\|-#)d*.d*
@@ -990,10 +997,10 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |- |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Long* |- |- |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
-|*Decimal* |- |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Boolean* |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Long* |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|*Decimal* |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
 |*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
 |*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
 |*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-

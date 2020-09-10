@@ -3840,6 +3840,10 @@ The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations 
 
 If the input cannot be interpreted as a valid Boolean value, the result is false.
 
+If the input is an Integer or Long, the result is true if the integer is 1 or 0.
+
+If the input is a Decimal, the result is true if the decimal is 1.0 or 0.0.
+
 If the argument is null the result is null.
 
 === ConvertsToDate
@@ -3905,9 +3909,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the decimal value returned by this operator must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
+Note that for this operator to return true, the input value must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Decimal value, the result is false.
+
+If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.
 
@@ -3926,9 +3932,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the integer value returned by this operator must be a valid value in the range representable for Long values in CQL.
+Note that for this operator to return true, the input must be a valid value in the range representable for Long values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is false.
+
+If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.
 
@@ -3947,9 +3955,11 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
+Note that for this operator to return true, the input must be a valid value in the range representable for Integer values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is false.
+
+If the input is a Boolean, the result is true
 
 If the argument is null, the result is null.
 
@@ -4081,6 +4091,10 @@ The ToBoolean operator converts the value of its argument to a Boolean value.
 
 The operator accepts 'true', 't', 'yes', 'y', and '1' as string representations of true, and 'false', 'f', 'no', 'n', and '0' as string representations of false, ignoring case.
 
+If the input is an Integer or Long, the result is true if the integer is 1, false if the integer is 0.
+
+If the input is a Decimal, the result is true if the decimal is 1.0, false if the decimal is 0.0.
+
 If the input cannot be interpreted as a valid Boolean value, the result is null.
 
 If the argument is null the result is null.
@@ -4180,6 +4194,8 @@ Note that the [.id]#Decimal# value returned by this operator will be limited in 
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
 
+If the input is Boolean, true will result in 1.0, false will result in 0.0.
+
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 === ToInteger
@@ -4200,6 +4216,8 @@ See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a descr
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Integer value, the result is null.
+
+If the input is Boolean, true will result in 1, false will result in 0.
 
 If the argument is null, the result is null.
 
@@ -4236,6 +4254,8 @@ See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a descr
 Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Long value, the result is null.
+
+If the input is Boolean, true will result in 1, false will result in 0.
 
 If the argument is null, the result is null.
 

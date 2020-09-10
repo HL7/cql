@@ -976,7 +976,9 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ToBoolean(argument Boolean) Boolean
+ToBoolean(argument Decimal) Boolean
+ToBoolean(argument Long) Boolean
+ToBoolean(argument Integer) Boolean
 ToBoolean(argument String) Boolean
 ----
 
@@ -998,6 +1000,10 @@ Note that the operator will ignore case when interpreting the string as a [.id]#
 
 If the input cannot be interpreted as a valid [.id]#Boolean# value, the result is [.kw]#null#.
 
+If the input is an Integer or Long, the result is true if the integer is 1, false if the integer is 0.
+
+If the input is a Decimal, the result is true if the decimal is 1.0, false if the decimal is 0.0.
+
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToBoolean# operator:
@@ -1016,7 +1022,6 @@ define "IsNull": ToBoolean('falsetto')
 
 [source,cql]
 ----
-ToConcept(argument Concept) Concept
 ToConcept(argument Code) Concept
 ToConcept(argument List<Code>) Concept
 ----
@@ -1044,7 +1049,6 @@ define "IsNull": ToConcept(null as Code)
 
 [source,cql]
 ----
-ToDate(argument Date) Date
 ToDate(argument DateTime) Date
 ToDate(argument String) Date
 ----
@@ -1088,7 +1092,6 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [source,cql]
 ----
 ToDateTime(argument Date) DateTime
-ToDateTime(argument DateTime) DateTime
 ToDateTime(argument String) DateTime
 ----
 
@@ -1128,7 +1131,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 [source,cql]
 ----
-ToDecimal(argument Decimal) Decimal
+ToDecimal(argument Boolean) Decimal
 ToDecimal(argument String) Decimal
 ----
 
@@ -1145,6 +1148,8 @@ See <<formatting-strings,Formatting Strings>> for a description of the formattin
 Note that the [.id]#Decimal# value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
+
+If the input is Boolean, true will result in 1.0, false will result in 0.0.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -1168,7 +1173,8 @@ ____
 
 [source,cql]
 ----
-ToLong(argument Long) Long
+ToLong(argument Boolean) Long
+ToLong(argument Integer) Long
 ToLong(argument String) Long
 ----
 
@@ -1182,7 +1188,7 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the integer value returned by this operator must be a valid value in the range representable for [.id]#Long# values in CQL.
+Note that the long value returned by this operator must be a valid value in the range representable for [.id]#Long# values in CQL.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Long# value, the result is [.kw]#null#.
 
@@ -1203,7 +1209,7 @@ define "IsNull": ToLong('one')
 
 [source,cql]
 ----
-ToInteger(argument Integer) Integer
+ToInteger(argument Boolean) Integer
 ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ----
@@ -1229,6 +1235,8 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the input is a [.id]#Long# value that can be represented within the range of [.id]#Integer# values, the result is the [.id]#Integer# value; otherwise, the result is [.kw]#null#.
 
+If the input is Boolean, true will result in 1, false will result in 0.
+
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToInteger# operator:
@@ -1248,7 +1256,6 @@ define "IsNull": ToInteger('one')
 ----
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
-ToQuantity(argument Quantity) Quantity
 ToQuantity(argument Ratio) Quantity
 ToQuantity(argument String) Quantity
 ----
@@ -1292,7 +1299,6 @@ define "IsNull": ToQuantity('444 \'cm')
 
 [source,cql]
 ----
-ToRatio(argument Ratio) Ratio
 ToRatio(argument String) Ratio
 ----
 
@@ -1331,7 +1337,6 @@ ToString(argument Quantity) String
 ToString(argument Ratio) String
 ToString(argument Date) String
 ToString(argument DateTime) String
-ToString(argument String) String
 ToString(argument Time) String
 ----
 
