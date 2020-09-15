@@ -650,10 +650,10 @@ The following table lists the conversions supported in CQL:
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |- |- |- |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |- |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Long* |- |- |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
-|*Decimal* |- |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
+|*Boolean* |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |-
+|*Integer* |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
+|*Long* |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|*Decimal* |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
 |*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
 |*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
 |*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
@@ -800,7 +800,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 [source,cql]
 ----
 ConvertsToDate(argument Any) Boolean
----
+----
 
 *Description:*
 
