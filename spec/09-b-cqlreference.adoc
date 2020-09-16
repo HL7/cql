@@ -1597,11 +1597,12 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For time-valued quantities, UCUM definite-time duration quantities above seconds are not comparable to calendar duration quantities above seconds. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
 
 [source,cql]
 ----
 1 year = 12 months
+1 week = 7 days
 1 day = 24 hours
 1 hour = 60 minutes
 1 minute = 60 seconds
@@ -1660,16 +1661,16 @@ For decimals, equivalent means the values are the same with the comparison done 
 
 For quantities, equivalent means the values are the same quantity when considering unit conversion (e.g. 100 'cm' ~ 1 'm') and using decimal equivalent semantics for the value. Note that implementations are not required to support unit conversion and so are allowed to return false for equivalence of quantities with different units.
 
-For time-valued quantities, UCUM definite-time duration quantities above seconds are considered equivalent to their calendar duration counterparts:
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are considered equivalent to their calendar duration counterparts:
 
 [source,cql]
 ----
 1 year ~ 1 'a'
 1 month ~ 1 'mo'
-1 week ~ 1 'wk'
-1 day ~ 1 'd'
-1 hour ~ 1 'h'
-1 minute ~ 1 'min'
+1 week = 1 'wk' // and 1 week ~ 1 'wk'
+1 day = 1 'd' // and 1 day ~ 1 'd'
+1 hour = 1 'h' // and 1 hour ~ 1 'h'
+1 minute = 1 'min' // and 1 minute ~ 1 'min'
 1 second = 1 's' // and 1 second ~ 1 's'
 1 millisecond = 1 'ms' // and 1 millsecond ~ 1 'ms'
 ----
@@ -1681,6 +1682,7 @@ Definite-time duration unit conversions shall be performed as specified in ISO-8
 1 year ~ 12 months
 1 year ~ 365 days
 1 month ~ 30 days
+1 week = 7 days
 1 day = 24 hours
 1 hour = 60 minutes
 1 minute = 60 seconds
@@ -1748,7 +1750,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For time-valued quantities, the UCUM definite-quantity durations above seconds are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
@@ -1811,7 +1813,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For time-valued quantities, the UCUM definite-quantity durations above seconds are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
@@ -1871,7 +1873,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For time-valued quantities, the UCUM definite-quantity durations above seconds are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
@@ -1931,7 +1933,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of [.lit]#'cm'# and [.lit]#'m'# are comparable, but units of [.lit]#'cm2'# and [.lit]#'cm'# are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
 
-For time-valued quantities, the UCUM definite-quantity durations above seconds are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
@@ -3354,7 +3356,7 @@ For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw
 
 For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-Note that the quantity units may be specified in singular, plural, or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to add a definite-duration time-valued unit above seconds, a calendar duration must be used.
+Note that the quantity units may be specified in singular, plural, or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to add a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 
 For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
 
@@ -3860,7 +3862,7 @@ For [.id]#DateTime# values, the quantity unit must be one of: [.kw]#years#, [.kw
 
 For [.id]#Time# values, the quantity unit must be one of: [.kw]#hours#, [.kw]#minutes#, [.kw]#seconds#, or [.kw]#milliseconds#.
 
-Note that the quantity units may be specified in singular, plural or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to subtract a definite-duration time-valued unit above seconds, a calendar duration must be used.
+Note that the quantity units may be specified in singular, plural or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to subtract a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 
 For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
 

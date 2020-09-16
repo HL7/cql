@@ -939,15 +939,15 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 
 |`year`/`years` |`'year'` |`~ 1 'a'`
 |`month`/`months` |`'month'` |`~ 1 'mo'`
-|`week`/`weeks` |`'week'` |`~ 1 'wk'`
-|`day`/`days` |`'day'` |`~ 1 'd'`
-|`hour`/`hours` |`'hour'` |`~ 1 'h'`
-|`minute`/`minutes` |`'minute'` |`~ 1 'min'`
+|`week`/`weeks` |`'week'` |`= 1 'wk'`
+|`day`/`days` |`'day'` |`= 1 'd'`
+|`hour`/`hours` |`'hour'` |`= 1 'h'`
+|`minute`/`minutes` |`'minute'` |`= 1 'min'`
 |`second`/`seconds` |`'second'` |`= 1 's'`
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
 |===
 
-Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units.
+Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units.
 
 For example, the following quantities are _calendar duration_ quantities:
 
@@ -966,6 +966,11 @@ Whereas the following quantities are _definite duration_ quantities:
 ----
 
 The table above defines the equality/equivalence relationship between calendar and definite duration quantities. For example, `1 year` is not _equal_ (`=`) to `1 'a'` (defined in UCUM as 365.25 'd'), but it is _equivalent_ (`~`) to `1 'a'`.
+
+[.note-info]
+____
+For all but years and months, calendar durations are both equal and equivalent to the corresponding UCUM definite-time duration unit. Note that due to the possibility of leap seconds, this is not totally accurate, however, for practical reasons, implementations typically ignore leap seconds when performing date/time arithmetic.
+____
 
 For a discussion of the operations available for quantities, see the <<Quantity Operators>> section.
 
@@ -1705,7 +1710,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
-As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above seconds cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
+As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
 
 For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
 
@@ -1875,7 +1880,7 @@ Note also that this means that if decimals appear in the time-valued quantities,
 
 Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning should be issued by the translator.
 
-To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above seconds in a date/time arithmetic calculation will result in a run-time error.
+To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above days (and weeks) in a date/time arithmetic calculation will result in a run-time error.
 
 Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
@@ -1897,7 +1902,7 @@ Table 2‑P - The ISO8601 calendar semantics that should be used for calculation
 
 [.note-warning]
 ____
-Although the CQL specification does not support arithmetic with definite quantity durations above seconds, data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See link:http://hl7.org/fhir/fhirpath.html#quantity[Use of FHIR Quantity] for an example.
+Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See link:http://hl7.org/fhir/fhirpath.html#quantity[Use of FHIR Quantity] for an example.
 ____
 
 [[computing-durations-and-differences]]
