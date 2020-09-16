@@ -26,6 +26,10 @@
 			<expression>Abs(-1.0'cm')</expression>
 			<output>1.0'cm'</output>
 		</test>
+		<test name="AbsLong">
+			<expression>Abs(-1L)</expression>
+			<output>1L</output>
+		</test>
 	</group>
 	<group name="Add">
 		<test name="AddNull">
@@ -47,6 +51,10 @@
 		<test name="AddIAndD">
 			<expression>1 + 2.0</expression>
 			<output>3.0</output>
+		</test>
+		<test name="Add1L1L">
+			<expression>1L + 1L</expression>
+			<output>2L</output>
 		</test>
 	</group>
 	<group name="Ceiling">
@@ -200,6 +208,24 @@
 			<!-- EXPECT: Results in positive infinity -->
 		</test>
 	</group>
+	<group name="HighBoundary">
+		<test name="HighBoundaryDecimal">
+			<expression>HighBoundary(1.587, 8)</expression>
+			<output>1.58799999</output>
+		</test>
+		<test name="HighBoundaryDateMonth">
+			<expression>HighBoundary(@2014, 6)</expression>
+			<output>@2014-12</output>
+		</test>
+		<test name="HighBoundaryDateTimeMillisecond">
+			<expression>HighBoundary(@2014-01-01T08, 17)</expression>
+			<output>@2014-01-01T08:59:59.999</output>
+		</test>
+		<test name="HighBoundaryTimeMillisecond">
+			<expression>HighBoundary(@T10:30, 9)</expression>
+			<output>@T10:30:59.999</output>
+		</test>
+	</group>
 	<group name="Log">
 		<test name="LogNullNull">
 			<expression>Log(null, null)</expression>
@@ -229,6 +255,25 @@
 			<expression>Log(0.125, 2)</expression>
 			<output>-3.0</output>
 		</test>
+	</group>
+	<group name="LowBoundary">
+		<test name="LowBoundaryDecimal">
+			<expression>LowBoundary(1.587, 8)</expression>
+			<output>1.58700000</output>
+		</test>
+		<test name="LowBoundaryDateMonth">
+			<expression>LowBoundary(@2014, 6)</expression>
+			<output>@2014-01</output>
+		</test>
+		<test name="LowBoundaryDateTimeMillisecond">
+			<expression>LowBoundary(@2014-01-01T08, 17)</expression>
+			<output>@2014-01-01T08:00:00.000</output>
+		</test>
+		<test name="LowBoundaryTimeMillisecond">
+			<expression>LowBoundary(@T10:30, 9)</expression>
+			<output>@T10:30:00.000</output>
+		</test>
+	</group>
 	</group>
 	<group name="Ln">
 		<test name="LnNull">
@@ -266,6 +311,10 @@
 			<output>-2147483648</output>
 			<!-- TODO: make Engine parse -2147483648 holistically not as a negated positive -->
 		</test>
+		<test name="LongMinValue">
+			<expression>minimum Long</expression>
+			<output>-9223372036854775808</output>
+		</test>
 		<test name="DecimalMinValue">
 			<expression>minimum Decimal</expression>
 			<output>-9999999999999999999999999999.99999999</output>
@@ -274,6 +323,10 @@
 		<test name="DateTimeMinValue">
 			<expression>minimum DateTime</expression>
 			<output>@0001-01-01T00:00:00.000</output>
+		</test>
+		<test name="DateMinValue">
+			<expression>minimum Date</expression>
+			<output>@0001-01-01</output>
 		</test>
 		<test name="TimeMinValue">
 			<expression>minimum Time</expression>
@@ -285,6 +338,10 @@
 			<expression>maximum Integer</expression>
 			<output>2147483647</output>
 		</test>
+		<test name="LongMaxValue">
+			<expression>maximum Long</expression>
+			<output>9223372036854775807</output>
+		</test>
 		<test name="DecimalMaxValue">
 			<expression>maximum Decimal</expression>
 			<output>9999999999999999999999999999.99999999</output>
@@ -293,6 +350,10 @@
 		<test name="DateTimeMaxValue">
 			<expression>maximum DateTime</expression>
 			<output>@9999-12-31T23:59:59.999</output>
+		</test>
+		<test name="DateMaxValue">
+			<expression>maximum Date</expression>
+			<output>@9999-12-31</output>
 		</test>
 		<test name="TimeMaxValue">
 			<expression>maximum Time</expression>
@@ -311,6 +372,10 @@
 		<test name="Modulo4By2">
 			<expression>4 mod 2</expression>
 			<output>0</output>
+		</test>
+		<test name="Modulo4LBy2L">
+			<expression>4L mod 2L</expression>
+			<output>0L</output>
 		</test>
 		<test name="Modulo4DBy2D">
 			<expression>4.0 mod 2.0</expression>
@@ -332,6 +397,10 @@
 			<expression>3.5 mod 3</expression>
 			<output>0.5</output>
 		</test>
+		<test name="ModuloQuantity">
+			<expression>3.5 'gm' mod 3 'gm'</expression>
+			<output>0.5 'gm'</output>
+		</test>
 	</group>
 	<group name="Multiply">
 		<test name="MultiplyNull">
@@ -345,6 +414,10 @@
 		<test name="Multiply1DBy2D">
 			<expression>1.0 * 2.0</expression>
 			<output>2.0</output>
+		</test>
+		<test name="Multiply1By1L">
+			<expression>1 * 1L</expression>
+			<output>1L</output>
 		</test>
 		<test name="Multiply1IBy2D">
 			<expression>1 * 2.0</expression>
@@ -377,6 +450,10 @@
 			<expression>-(-1)</expression>
 			<output>1</output>
 		</test>
+		<test name="NegateNeg1L">
+			<expression>-(-1L)</expression>
+			<output>1L</output>
+		</test>
 		<test name="Negate0D">
 			<expression>-(0.0)</expression>
 			<output>0.0</output>
@@ -398,6 +475,28 @@
 			<output>-1.0'cm'</output>
 		</test>
 	</group>
+	<group name="Precision">
+		<test name="PrecisionDecimal">
+			<expression>Precision(1.58700)</expression>
+			<output>5</output>
+		</test>
+		<test name="PrecisionYear">
+			<expression>Precision(@2014)</expression>
+			<output>4</output>
+		</test>
+		<test name="PrecisionDateTimeMilliseconds">
+			<expression>Precision(@2014-01-05T10:30:00.000)</expression>
+			<output>17</output>
+		</test>
+		<test name="PrecisionTimeMinutes">
+			<expression>Precision(@T10:30)</expression>
+			<output>4</output>
+		</test>
+		<test name="PrecisionTimeMilliseconds">
+			<expression>Precision(@T10:30:00.000)</expression>
+			<output>9</output>
+		</test>
+	</group>
 	<group name="Predecessor">
 		<test name="PredecessorNull">
 			<expression>predecessor of (null as Integer)</expression>
@@ -410,6 +509,10 @@
 		<test name="PredecessorOf1">
 			<expression>predecessor of 1</expression>
 			<output>0</output>
+		</test>
+		<test name="PredecessorOf1L">
+			<expression>predecessor of 1L</expression>
+			<output>0L</output>
 		</test>
 		<test name="PredecessorOf1D">
 			<expression>predecessor of 1.0</expression>
@@ -460,6 +563,10 @@
 		<test name="Power2ToNeg2">
 			<expression>Power(2, -2)</expression>
 			<output>0.25</output>
+		</test>
+		<test name="Power2LTo2L">
+			<expression>Power(2L, 2L)</expression>
+			<output>4L</output>
 		</test>
 		<test name="Power2DTo2D">
 			<expression>Power(2.0, 2.0)</expression>
@@ -549,6 +656,10 @@
 			<expression>1 - 1</expression>
 			<output>0</output>
 		</test>
+		<test name="Subtract1LAnd1L">
+			<expression>1L - 1L</expression>
+			<output>0L</output>
+		</test>
 		<test name="Subtract1DAnd2D">
 			<expression>1.0 - 2.0</expression>
 			<output>-1.0</output>
@@ -574,6 +685,10 @@
 		<test name="SuccessorOf1">
 			<expression>successor of 1</expression>
 			<output>2</output>
+		</test>
+		<test name="SuccessorOf1L">
+			<expression>successor of 1L</expression>
+			<output>2L</output>
 		</test>
 		<test name="SuccessorOf1D">
 			<expression>successor of 1.0</expression>
@@ -663,6 +778,10 @@
 			<expression>10 div 3</expression>
 			<output>3</output>
 		</test>
+		<test name="TruncatedDivide10LBy3L">
+			<expression>10L div 3L</expression>
+			<output>3L</output>
+		</test>
 		<test name="TruncatedDivide10d1By3D1">
 			<expression>10.1 div 3.1</expression>
 			<output>3.0</output>
@@ -706,6 +825,10 @@
 		<test name="TruncatedDivide10By5D">
 			<expression>10 div 5.0</expression>
 			<output>2.0</output>
+		</test>
+		<test name="TruncatedDivide10d1ByNeg3D1Quantity">
+			<expression>10.1 'gm' div -3.1 'gm'</expression>
+			<output>-3.0 'gm'</output>
 		</test>
 	</group>
 </tests>

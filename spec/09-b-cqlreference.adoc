@@ -2462,7 +2462,7 @@ The following examples illustrate the behavior of the [.kw]#minimum# operator:
 [source,cql]
 ----
 define "IntegerMinimum": minimum Integer // -2147483648
-define "LongMinimum": minimum Integer // -9223372036854775808
+define "LongMinimum": minimum Long // -9223372036854775808
 define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
 define "ErrorMinimum": minimum Quantity
 ----

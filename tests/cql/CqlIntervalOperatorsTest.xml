@@ -235,6 +235,40 @@
 			<output>{Interval [ @T01:59:59.999, @T15:59:59.999 ]}</output>
 		</test>
 	</group>
+	<group name="Expand">
+		<test name="ExpandPerDay">
+			<expression>expand { Interval[@2018-01-01, @2018-01-04] } per day</expression>
+			<output>{ Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }</output>
+		</test>
+		<test name="ExpandPer2Days">
+			<expression>expand { Interval[@2018-01-01, @2018-01-04] } per 2 days</expression>
+			<output>{ Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }</output>
+		</test>
+		<test name="ExpandPerHour">
+			<expression>expand { Interval[@T10:00, @T12:30] } per hour</expression>
+			<output>{ Interval[@T10, @T10], Interval[@T11, @T11], Interval[@T12, @T12] }</output>
+		</test>
+		<test name="ExpandPer1">
+			<expression>expand { Interval[10.0, 12.5] } per 1</expression>
+			<output>{ Interval[10, 10], Interval[11, 11], Interval[12, 12] }</output>
+		</test>
+		<test name="ExpandPerMinute">
+			<expression>expand { Interval[@T10, @T10] } per minute</expression>
+			<output>{ }</output>
+		</test>
+		<test name="ExpandPer0D1">
+			<expression>expand { Interval[10, 10] } per 0.1</expression>
+			<output>{ Interval[10.0, 10.0], Interval[10.1, 10.1], ..., Interval[10.9, 10.9] }</output>
+		</test>
+		<test name="ExpandInterval">
+			<expression>expand Interval[1, 10]</expression>
+			<output>{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }</output>
+		</test>
+		<test name="ExpandIntervalPer2">
+			<expression>expand Interval[1, 10] per 2</expression>
+			<output>{ 1, 3, 5, 7, 9 }</output>
+		</test>
+	</group>
 	<group name="Contains">
 		<test name="TestContainsNull">
 			<expression>Interval[1, 10] contains null</expression>
@@ -517,7 +551,7 @@
 		<test name="Issue32Interval">
 			<expression>
 				Interval[@2017-12-20T10:30:00, @2017-12-20T12:00:00]
-				starts 1 day or less on or after day of start of 
+				starts 1 day or less on or after day of start of
 				Interval[@2017-12-20T11:00:00, @2017-12-21T21:00:00]
 			</expression>
 			<output>true</output>
