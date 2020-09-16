@@ -14,11 +14,10 @@ This is the same test format used by the FHIRPath specification.
 
 <a href="tests.zip">Test Source</a>.
 
-Note that these tests have not been fully updated to the 1.5 specification.
-
-At this point, the tests cover the following sections of the specification:
+The tests cover the following sections of the specification:
 
 * Aggregate Functions
+* Aggregate Operator
 * Arithmetic Functions
 * Comparison Operators
 * Conditional Operators
