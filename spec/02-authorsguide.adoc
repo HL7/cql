@@ -2005,7 +2005,7 @@ Interval[3, 5) contains 4
 
 These two expressions are equivalent (inverse of each other) and both return [.kw]#true#.
 
-The boundary point for an interval can be determined using the [.kw]#start of# and [.kw]#end of# operators:
+The starting and ending points for an interval can be determined using the [.kw]#start of# and [.kw]#end of# operators:
 
 [source,cql]
 ----
@@ -2014,6 +2014,16 @@ end of Interval[3, 5)
 ----
 
 The first expression above returns 3, while the second expression returns 4.
+
+Property expressions can also be used to access the boundary points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed:
+
+[source, cql]
+----
+Interval[3, 5).high
+Interval[3, 5).highClosed
+----
+
+The first expression above returns 5, and the second expression returns false.
 
 To extract a point from an interval, the [.kw]#point from# operator is used:
 
