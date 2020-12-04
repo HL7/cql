@@ -38,14 +38,15 @@ The schema for ELM is described for XML using the above XSDs. To support multipl
 |======================================================================
 |Content Type |Description
 |*text/cql* |The content is a text document containing CQL
-|*text/cql.identifier* |The content is plain text, containing only the name of a top-level CQL construct such as an expression definition
+|*text/cql-identifier* |The content is plain text, containing only the name of a top-level CQL construct such as an expression definition
+|*text/cql-expression* |The content is plain text, containing only a single expression (i.e. a string that can be parsed using the `expression` production rule of the grammar)
 |*application/elm+xml* |The content is an ELM document, rendered as XML
 |*application/elm+json* |The content is an ELM document, rendered as JSON
 |======================================================================
 
 [.note-info]
 ____
-The text/cql.identifier media type is a new feature being introduced in CQL 1.5, and is being balloted trial-use.
+The text/cql-identifier and text/cql-expression media types are a new feature being introduced in CQL 1.5, and are trial-use.
 ____
 
 [cols=",",options="header",]
