@@ -7,9 +7,19 @@ image:extracted-media/media/image1.png[image,width=144,height=148]
 
 *HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
 
-*September 2020 Publication*
+*December 2020 Publication*
 
 *HL7 Mixed Normative/Trial-Use Specification*
+
+image:dist/ansi-approved.gif[]
+
+|===
+|Formal Name: |HL7 Cross-Paradigm Specification: Clinical Quality Language, Release 1
+|ANSI Designation: |ANSI/HL7 CQLANG, R1-2020
+|Date of Approval: |2020-12-01
+|===
+
+CQL is an ANSI Normative Standard. ANSI has certificated that the portions of this specification marked Normative have met its requirements for development of a formal standard.
 
 *Sponsored by:*
 
@@ -19,7 +29,7 @@ ________________________________________________________________________________
 *in collaboration with the Health and Human Services Standards and Interoperability Framework Clinical Quality Framework Initiative*
 ____________________________________________________________________________________________________________________________________
 
-Copyright © 2014-2019 Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
+Copyright © 2014+ Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
 
 Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?ref=nav[*IP Compliance Policy*].
 
@@ -33,7 +43,7 @@ Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?
 
 *Ballot Cycle:* May 2020
 
-*Specification Date:* May 2020
+*Specification Date:* Dec 2020
 
 [cols=",",]
 |==================================================================

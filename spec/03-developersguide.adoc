@@ -66,7 +66,7 @@ Note that nested multi-line comments are not supported.
 
 [.note-info]
 ____
-Comment tags are a new feature of CQL 1.5, and are being ballot trial-use
+Comment tags are a new feature of CQL 1.5, and are trial-use
 ____
 
 Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, followed by a colon (`:`). For example:
@@ -1517,7 +1517,7 @@ In addition, even if a given query is based on a list of tuples, the results are
 
 [.note-info]
 ____
-Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is being balloted trial-use.
+Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
 ____
 
 To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
@@ -1554,7 +1554,7 @@ ____
 
 [.note-info]
 ____
-The aggregate clause is a new feature of CQL 1.5, and is being balloted trial-use.
+The aggregate clause is a new feature of CQL 1.5, and is trial-use.
 ____
 
 CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate the factorial of 5:
@@ -1655,7 +1655,7 @@ Functions can be defined that reference other functions anywhere within any libr
 [.note-info]
 ____
 
-Fluent functions are a new feature of CQL 1.5, and are being balloted trial-use.
+Fluent functions are a new feature of CQL 1.5, and are trial-use.
 ____
 
 Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:

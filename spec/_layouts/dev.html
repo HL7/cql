@@ -39,7 +39,7 @@
 		<div class="container">  <!-- container -->
 			<a id="logo" no-external="true" href="index.html"><img alt="Clinical Quality Language" src="dist/cql-logo.png" width="100" height="75"/> </a>
 			<div id="hl7-status">
-				<b>Clinical Quality Language Release 1 (Development Build)</b>
+				<b>Clinical Quality Language Release 1</b>
 			</div>
 
 			<div id="hl7-nav">
@@ -127,9 +127,9 @@
 {% if page.standards-status == "informative" %}
 <table class="colsi"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is informative.">Informative</a></td></tr></tbody></table>
 {% elsif page.standards-status == "normative" %}
-<table class="colsn"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is being balloted normative.">Normative Ballot</a></td></tr></tbody></table>
+<table class="colsn"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is normative.">Normative</a></td></tr></tbody></table>
 {% else %}
-<table class="colstu"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 5</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is being balloted normative track (currently trial use).">Trial Use Ballot</a></td></tr></tbody></table>
+<table class="colstu"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: 5</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is trial use.">Trial Use</a></td></tr></tbody></table>
 {% endif %}
 
 	<h1>{{page.title}}</h1>
@@ -153,18 +153,17 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2014+. CQL (Development Build) (<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher}}</a>). {{site.data.fhir.packageId}}#{{site.data.fhir.igVer}} generated on {{ site.time }}
+        &copy; HL7.org 2014+. CQL (Release) (<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher}}</a>). {{site.data.fhir.packageId}}#{{site.data.fhir.igVer}} generated on {{ site.time }}
         <span style="color: #FFFF77">|
 <!--               <a style="color: #81BEF7" href="http://services.w3.org/htmldiff?doc1=http%3A%2F%2Fcql.hl7.org%2FSTU2%2F<%rellink%>&amp;doc2=<%baseURL%><%rellink%>">Compare to STU2</a> | -->
                <a style="color: #81BEF7" rel="license" href="license.html">License</a> |
                <a style="color: #81BEF7" rel="history" href="http://cql.hl7.org/history.html">Version History</a> |
-               <a style="color: #81BEF7" target="_blank" href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=400">Propose a change</a>
+               <a style="color: #81BEF7" target="_blank" href="https://jira.hl7.org/issues">Propose a change</a>
         </span>
         </p>
 			</div>  <!-- /inner-wrapper -->
 		</div>  <!-- /container -->
 	</div>  <!-- /segment-footer -->
-
 
 	<div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
 		<div class="container">  <!-- container -->

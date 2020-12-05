@@ -230,7 +230,7 @@
 	},
 	"canonicalBase": "http://cql.hl7.org",
 	"version": "4.0.1",
-	"fixed-business-version": "1.5.0",
+	"fixed-business-version": "1.5.1",
 	"source": "ig.xml",
   "license": "CC0-1.0",
 	"logging": ["init", "progress", "context", "html", "tx"],
