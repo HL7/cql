@@ -156,15 +156,15 @@
 	<group name="Time">
 		<test name="TimeUpperBoundHours">
 			<expression invalid="true">@T24:59:59.999</expression>
-			<!-- Invalid date-time input (T24:59:59.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm). -->
+			<!-- Translation Error: Invalid date-time input (T24:59:59.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm). -->
 		</test>
 		<test name="TimeUpperBoundMinutes">
 			<expression invalid="true">@T23:60:59.999</expression>
-			<!-- Invalid date-time input (T23:60:59.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm). -->
+			<!-- Translation Error: Invalid date-time input (T23:60:59.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm). -->
 		</test>
 		<test name="TimeUpperBoundSeconds">
 			<expression invalid="true">@T23:59:60.999</expression>
-			<!--Invalid date-time input (T23:59:60.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm).  -->
+			<!--Translation Error: Invalid date-time input (T23:59:60.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm).  -->
 		</test>
 		<test name="TimeUpperBoundMillis">
 			<expression invalid="true">@T23:59:59.10000</expression>
