@@ -1605,7 +1605,7 @@ Note that in general, since the type of the aggregate expression is not known un
 ----
 define FactorialOfFive:
   ({ 1, 2, 3, 4, 5 }) Num
-    aggregate Result: Coalesce(Result, 1) * Result
+    aggregate Result: Coalesce(Result, 1) * Num
 ----
 
 In this example, since the starting clause is omitted, Result is initially [.kw]#null#, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
