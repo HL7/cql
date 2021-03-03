@@ -38,7 +38,7 @@ libraryDefinition
     ;
 
 usingDefinition
-    : 'using' modelIdentifier ('version' versionSpecifier)?
+    : 'using' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)?
     ;
 
 includeDefinition
@@ -164,8 +164,12 @@ contextDefinition
     : 'context' (modelIdentifier '.')? identifier
     ;
 
+fluentModifier
+    : 'fluent'
+    ;
+
 functionDefinition
-    : 'define' accessModifier? 'fluent'? 'function' identifierOrFunctionIdentifier '(' (operandDefinition (',' operandDefinition)*)? ')'
+    : 'define' accessModifier? fluentModifier? 'function' identifierOrFunctionIdentifier '(' (operandDefinition (',' operandDefinition)*)? ')'
         ('returns' typeSpecifier)?
         ':' (functionBody | 'external')
     ;
@@ -334,6 +338,7 @@ dateTimeComponent
     : dateTimePrecision
     | 'date'
     | 'time'
+    | 'timezone' // NOTE: 1.3 compatibility level only
     | 'timezoneoffset'
     ;
 
@@ -604,6 +609,7 @@ keyword
     | 'such that'
     | 'then'
     | 'time'
+    | 'timezone' // NOTE: 1.3 Compatibility level only
     | 'timezoneoffset'
     | 'to'
     | 'true'
@@ -746,6 +752,7 @@ keywordIdentifier
     | 'starts'
     | 'successor'
     | 'time'
+    | 'timezone' // NOTE: 1.3 Compatibility Level only
     | 'timezoneoffset'
     | 'union'
     | 'using'
@@ -777,6 +784,7 @@ obsoleteIdentifier
     | 'not'
     | 'start'
     | 'time'
+    | 'timezone' // NOTE: 1.3 Compatibility level only
     | 'timezoneoffset'
     | 'version'
     | 'where'
@@ -885,6 +893,7 @@ functionIdentifier
     | 'such that'
     | 'then'
     | 'time'
+    | 'timezone' // NOTE: 1.3 Compatibility level only
     | 'timezoneoffset'
     | 'to'
     | 'true'
