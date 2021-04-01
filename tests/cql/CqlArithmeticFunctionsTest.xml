@@ -316,7 +316,7 @@
 		</test>
 		<test name="DecimalMinValue">
 			<expression>minimum Decimal</expression>
-			<output>-9999999999999999999999999999.99999999</output>
+			<output>-99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMinValue: minimum Quantity -->
 		<test name="DateTimeMinValue">
@@ -343,7 +343,7 @@
 		</test>
 		<test name="DecimalMaxValue">
 			<expression>maximum Decimal</expression>
-			<output>9999999999999999999999999999.99999999</output>
+			<output>99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMaxValue: maximum Quantity -->
 		<test name="DateTimeMaxValue">
