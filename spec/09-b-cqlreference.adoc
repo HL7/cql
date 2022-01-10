@@ -206,7 +206,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 [.note-info]
 ____
-The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
