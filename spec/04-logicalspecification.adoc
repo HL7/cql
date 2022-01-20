@@ -4365,14 +4365,18 @@ AnyInCodeSystem : OperatorExpression
   ¦
   1..1 --> codes : Expression
   ¦
-  1..1 --> codesystem : Expression
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
 ----
 
 The AnyInCodeSystem operator returns true if any of the given codes are in the given code system.
 
 The first argument is expected to be a list of String, Code, or Concept.
 
-The second argument is expected to be of type CodeSystem. When this argument is statically a CodeSystemRef, this allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is a CodeSystemRef. This allows for static analysis of code system references within an artifact and preserves backwards compatibility with the 1.4 ELM.
+
+The third argument is expected to be of type CodeSystem, allowing references to code systems to be preserved as references.
 
 === AnyInValueSet
 
@@ -4382,14 +4386,18 @@ AnyInValueSet : OperatorExpression
   ¦
   1..1 --> codes : Expression
   ¦
-  1..1 --> valueset : Expression
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
 ----
 
 The AnyInValueSet operator returns true if any of the given codes are in the given value set.
 
 The first argument is expected to be a list of String, Code, or Concept.
 
-The second argument is expected to be of type ValueSet. When this argument is statically a ValueSetRef, this allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+The second argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The third argument is expected to be of type ValueSet, allowing references to value sets to be preserved as references.
 
 === CalculateAge
 
@@ -4443,14 +4451,18 @@ InCodeSystem : OperatorExpression
   ¦
   1..1 --> code : Expression
   ¦
-  1..1 --> codesystem : Expression
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
 ----
 
 The InCodeSystem operator returns true if the given code is in the given code system.
 
 The first argument is expected to be a String, Code, or Concept.
 
-The second argument is expected to be of type CodeSystem. When this argument is statically a CodeSystemRef, this allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is statically a CodeSystemRef. This This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+
+The third argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
 
 === InValueSet
 
@@ -4460,14 +4472,18 @@ InValueSet : OperatorExpression
   ¦
   1..1 --> code : Expression
   ¦
-  1..1 --> valueset : Expression
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
 ----
 
 The InValueSet operator returns true if the given code is in the given value set.
 
 The first argument is expected to be a String, Code, or Concept.
 
-The second argument is expected to be of type ValueSet. When this argument is statically a ValueSetRef, this allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+The second argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The third argument is expected to be a ValueSet, allowing references to value sets to be preserved as references.
 
 === Not Equal
 
