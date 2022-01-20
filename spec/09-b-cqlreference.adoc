@@ -111,16 +111,19 @@ ____
 
 [source,cql]
 ----
-structured type CodeSystem
+structured type CodeSystem : Vocabulary
 {
-  id String,
-  version String
+  id String, // inherited
+  version String, // inherited
+  name String // inherited
 }
 ----
 
 *Description:*
 
 The [.id]#CodeSystem# type represents code system references within CQL. The CodeSystem type in CQL is _not_ the definition of a code system, it is a reference to an externally defined code system via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the code system).
+
+The [.id]#name# element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
 [[concept-1]]
 === Concept
@@ -206,7 +209,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 [.note-info]
 ____
-The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
+The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 ____
 
 *Definition:*
@@ -337,16 +340,22 @@ ____
 
 [source,cql]
 ----
-structured type ValueSet
+structured type ValueSet : Vocabulary
 {
-  id String,
-  version String
+  id String, // inherited
+  version String, // inherited
+  name String, // inherited
+  codesystems List<CodeSystem>
 }
 ----
 
 *Description:*
 
 The [.id]#ValueSet# type represents value set references within CQL. The ValueSet type is _not_ the definition of a value set, it is a reference to an externally defined value set via a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
+
+The [.id]#name# element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
+
+The [.id]#codesystems# element is used to capture code system version overrides as can be specified in a CQL ValueSet declaration. Any codesystem may be listed, but the codesystem is expected to be a codesystem used as part of the definition of the valueset being referenced. If a codesystem override is provided for a code system that is not used by the value set definition, it has no effect and will be ignored.
 
 [[vocabulary]]
 === Vocabulary
@@ -363,7 +372,8 @@ ____
 structured type Vocabulary
 {
   id String,
-  version String
+  version String,
+  name String
 }
 ----
 
@@ -371,7 +381,9 @@ structured type Vocabulary
 
 The [.id]#Vocabulary# type is the abstract base type for the CodeSystem and ValueSet types. It is intended to support the definition of operations that could be performed against a ValueSet or a CodeSystem.
 
-The Vocabulary type is _not_ a definitional type, it is a reference type that supports references to externally defined code systems and value sets through a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
+The [.id]#Vocabulary# type is _not_ a definitional type, it is a reference type that supports references to externally defined code systems and value sets through a globally unique identifier (the [.id]#id# element, typically a URL) and an optional version (the [.id]#version# element, an opaque string, typically a version identifier as specified by the publishing authority).
+
+The [.id]#name# element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
 [[logical-operators-3]]
 == Logical Operators
@@ -6351,6 +6363,39 @@ ____
 Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 
 ____
+
+[[expandvalueset]]
+=== ExpandValueSet (ValueSet)
+
+[.note-info]
+____
+The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.
+____
+
+*Signature:*
+[source,cql]
+----
+ExpandValueSet(ValueSet) List<Code>
+----
+
+*Description:*
+
+The ExpandValueSet function returns the current expansion for the given value set.
+
+The function expects a single argument of type [.id]#ValueSet#. This may be a static reference to a value set (as shown in the example below), or a [.id]#ValueSet# value to support dynamic value set usage.
+
+The function is used to provide implicit conversion from a [.id]#ValueSet# reference to a [.id]#List<Code>#.
+
+If the argument is null, the result is null.
+
+The following example illustrates use of the ExpandValueSet function:
+
+[source,cql]
+----
+valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
+
+define TestExpandValueSet: ExpandValueSet("Value Set Reference")
+----
 
 [[in-valueset]]
 === In (Valueset)
