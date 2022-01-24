@@ -996,20 +996,21 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 [[table-3-j]]
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
-|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
-|*Boolean* |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |-
-|*Integer* |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|*Long* |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
-|*Decimal* |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
-|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
-|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
-|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |-
-|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |-
-|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |-
-|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
-|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
-|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code> |ValueSet
+|*Boolean* |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |- |-
+|*Integer* |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
+|*Long* |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |- |-
+|*Decimal* |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |- |-
+|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |- |-
+|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |- |-
+|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |- |-
+|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |- |-
+|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |- |-
+|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |- |-
+|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |- |-
+|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit |-
+|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A |-
+|*ValueSet* |- |- |- |- |- |- |- |- |- |- |- |- |Implicit |N/A
 |===============================================================================================
 
 Table 3‑J - The explicit and implicit conversions supported in CQL

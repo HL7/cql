@@ -319,9 +319,13 @@ ValueSetRef : Expression
   0..1 --> name
   ¦
   0..1 --> libraryName
+  |
+  0..1 --> preserve
 ----
 
 The ValueSetRef expression allows a previously defined named value set to be referenced within an expression. Conceptually, referencing a value set returns the expansion set for the value set as a list of codes.
+
+The preserve attribute is trial-use in CQL 1.5.2 and was introduced to allow engines to determine whether or not to expand a ValueSetRef (the 1.4 behavior), ensuring that 1.5 engines can run 1.4 ELM.
 
 [[type-specifiers]]
 == Type Specifiers
@@ -4484,6 +4488,19 @@ The first argument is expected to be a String, Code, or Concept.
 The second argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
 
 The third argument is expected to be a ValueSet, allowing references to value sets to be preserved as references.
+
+=== ExpandValueSet
+
+[source,elm]
+----
+ExpandValueSet : UnaryExpression
+----
+
+The ExpandValueSet operator returns the current expansion for the given value set.
+
+The operation expects a single argument of type ValueSet. This may be a static reference to a value set (i.e. a ValueSetRef), or a ValueSet value to support dynamic value set usage. The operation is used as the implicit conversion from a ValueSet reference to a list of codes.
+
+If the argument is null, the result is null.
 
 === Not Equal
 
