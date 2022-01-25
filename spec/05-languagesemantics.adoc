@@ -137,7 +137,97 @@ Because of the scope of CQL, and the various implementation options for differen
 .. Related-context retrieve
 .. Profile-based retrieve
 
-Using these capabilities to advertise support, and enabling reference implementations to declare usage of these features within CQL, will allow authors and implementers to understand run-time implications of the CQL they are creating and using.
+Using these capabilities to advertise support, and enabling implementations to declare usage of these features within CQL, will allow authors and implementers to understand run-time implications of the CQL they are creating and using.
+
+[[version-differences]]
+==== Version Differences
+
+To help implementers correctly support version differences and backwards (and to the extent possible, forwards) compatibility, the following sections describe version-specific behavior differences in CQL operators, functions, and language constructs.
+
+[.note-warning]
+____
+This is not an exhaustive list of changes to the specification, it is a summary of behavior changes between versions to help implementers deal with version-specific implementation issues. For a complete listing of changes to the specification, refer to the version history and version-specific change logs.
+____
+
+===== Context Support
+
+In the initial version of CQL, the name [.id]#Population# was used to describe an unspecified, or unfiltered context. Beginning in 1.4, the context name was changed to [.id]#Unfiltered#. Note that the ballot version was [.id]#Unspecified#. As a result, implementations may choose to support all three names as synonyms for the Unfiltered context.
+
+===== CalculateAge Functions
+
+With the introduction of the [.id]#Date# type in 1.3, [.id]#Date# overloads of the CalculateAge and CalculateAgeAt operators were introduced.
+
+===== Comparisons
+
+In 1.3, [.id]#Date#, [.id]#Time#, and [.id]#DateTime# comparison operator semantics were changed to return null only if the comparands have different precisions and the comparison cannot be resolved within the precision specified for both comparands.
+
+===== Conversions
+
+In 1.3, the implicit conversion from [.kw]#List#[.sym]#<#[.id]#Code#[.sym]#># to [.id]#Concept# was changed to be explicit.
+
+In 1.3, implicit conversions from [.id]#Integer# and [.id]#Decimal# to [.id]#Quantity# were added.
+
+In 1.3, [.id]#Date# and [.id]#Ratio# overloads of [.id]#ToString# were added.
+
+In 1.4, unit conversion was added for quantities.
+
+In 1.4, the [.id]#ToDateTime#([.id]#Date#) function was changed to leave the time components unspecified in the resulting [.id]#DateTime# value, rather than setting the time components to zero.
+
+In 1.4, a [.id]#Ratio# overload of [.id]#ToQuantity# was added.
+
+In 1.4, the [.id]#ConvertQuantity# operator now throws an exception if the requested unit conversion is not supported by the implementation.
+
+In 1.5, a [.id]#Long# overload of [.id]#ToString# was added
+
+===== Collapse and Expand Operators
+
+In 1.3, a [.kw]#per# clause was added to the [.id]#Collapse# operator.
+
+In 1.5, an [.id]#Interval# overload was added to the [.id]#Expand# operator
+
+===== Equality Semantics
+
+In 1.3, [.id]#Tuple# equality semantics were changed to return [.kw]#null# only if the comparands have different elements specified.
+
+In 1.3, [.id]#Date#, [.id]#Time#, and [.id]#DateTime# equality semantics were changed to return null only if the comparands have different precisions and equality cannot be resolved within the precision specified for both comparands.
+
+===== Equivalence Semantics
+
+In 1.3, a [.id]#Concept# overload was added to the [.id]#Equivalence# operator ([.kw]#~#).
+
+===== Exists Operator
+
+In 1.3, the [.kw]#exists# operator was changed to ignore [.kw]#null# elements in the input (i.e. a list with only [.kw]#null# elements is considered empty).
+
+===== List Membership and Duplicate Detection
+
+In 1.3, List membership (i.e. [.kw]#in# and [.kw]#contains#) and duplicate detection (e.g. via the [.kw]#distinct# operator) were changed to use equality semantics, rather than equivalence semantics.
+
+In 1.3, a [.id]#List#[.sym]#<#[.id]#Code#[.sym]#># overload was added to the [.kw]#in# operator.
+
+In 1.3, singleton overloads were added for the [.kw]#includes# and [.kw]#included in# operators.
+
+In 1.4, List operators were changed to treat [.kw]#null# elements as equal for the purposes of membership determination.
+
+===== Media Types
+
+In 1.5, media types for CQL identifiers ([.id]#text/cql-identifier#) and expressions ([.id]#text/cql-expression#) were added. Note that these were introduced as [.id]#text/cql.identifier# and [.id]#text/cql.expression# in the ballot, so implementations may choose to accept both forms as valid to support backwards compatibility with the ballot specifiers. However, only the dash versions are officially registered IANA media types.
+
+===== Query Construct
+
+In 1.5, an [.kw]#aggregate# clause was introduced into the query construct.
+
+===== Quantity Arithmetic
+
+In 1.4, [.id]#Quantity# overloads of the [.kw]#div# and [.kw]#mod# operators were added.
+
+===== Timezone Keyword
+
+In 1.4, the [.kw]#timezone# keyword was changed to [.kw]#timezoneoffset# and the [.kw]#timezone# element was removed from the [.id]#Time# type. However, to ensure backwards-compatibility of ELM, the [.kw]#timezone# element was retained in the ELM schema, allowing implementations to simultaneously support 1.4 and 1.3 ELM.
+
+===== Vocabulary Types
+
+In 1.5, a [.id]#Vocabulary# abstract type with two subtypes, [.id]#CodeSystem# and [.id]#ValueSet#, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from [.id]#List#[.sym]#<#[.id]#Code#[.sym]#># to [.id]#ValueSet#. To ensure this is not a backwards-incompatible change, 1.5 also introduced an [.id]#ExpandValueSet# function to support explicit expansion of value sets, and an implicit conversion from [.id]#ValueSet# to [.id]#List#[.sym]#<#[.id]#Code#[.sym]#>#. In the ELM, the [.id]#preserve# attribute was added to the [.id]#ValueSetRef# node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a [.id]#ValueSetRef# should be expanded or not.
 
 [[artifact-data-requirements]]
 === Artifact Data Requirements
