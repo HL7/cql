@@ -109,7 +109,7 @@
 			<output>1.0</output>
 		</test>
 		<test name="Divide103">
-			<expression>10 / 3</expression>
+			<expression>Round(10 / 3, 8)</expression>
 			<output>3.33333333</output>
 		</test>
 		<test name="Divide1Q1">
@@ -192,12 +192,12 @@
 			<output>1.0</output>
 		</test>
 		<test name="Exp1">
-			<expression>Exp(1)</expression>
-			<output>2.718281828459045090795598298427648842334747314453125</output>
+			<expression>Round(Exp(1), 8)</expression>
+			<output>2.71828183</output>
 		</test>
 		<test name="ExpNeg1">
-			<expression>Exp(-1)</expression>
-			<output>0.367879441171442334024277442949824035167694091796875</output>
+			<expression>Round(Exp(-1), 8)</expression>
+			<output>0.36787944</output>
 		</test>
 		<test name="Exp1000">
 			<expression invalid="true">Exp(1000)</expression>
@@ -296,12 +296,12 @@
 			<output>null</output>
 		</test>
 		<test name="Ln1000">
-			<expression>Ln(1000)</expression>
-			<output>6.907755278982136815102421678602695465087890625</output>
+			<expression>Round(Ln(1000), 8)</expression>
+			<output>6.90775528</output>
 		</test>
 		<test name="Ln1000D">
-			<expression>Ln(1000.0)</expression>
-			<output>6.907755278982136815102421678602695465087890625</output>
+			<expression>Round(Ln(1000.0), 8)</expression>
+			<output>6.90775528</output>
 		</test>
 	</group>
 	<group name="MinValue">
@@ -312,7 +312,7 @@
 		</test>
 		<test name="LongMinValue">
 			<expression>minimum Long</expression>
-			<output>-9223372036854775808</output>
+			<output>-9223372036854775808L</output>
 		</test>
 		<test name="DecimalMinValue">
 			<expression>minimum Decimal</expression>
@@ -339,7 +339,7 @@
 		</test>
 		<test name="LongMaxValue">
 			<expression>maximum Long</expression>
-			<output>9223372036854775807</output>
+			<output>9223372036854775807L</output>
 		</test>
 		<test name="DecimalMaxValue">
 			<expression>maximum Decimal</expression>
