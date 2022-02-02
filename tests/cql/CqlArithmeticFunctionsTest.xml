@@ -109,7 +109,7 @@
 			<output>1.0</output>
 		</test>
 		<test name="Divide103">
-			<expression>10 / 3</expression>
+			<expression>Round(10 / 3, 8)</expression>
 			<output>3.33333333</output>
 		</test>
 		<test name="Divide1Q1">
@@ -192,12 +192,12 @@
 			<output>1.0</output>
 		</test>
 		<test name="Exp1">
-			<expression>Exp(1)</expression>
-			<output>2.718281828459045090795598298427648842334747314453125</output>
+			<expression>Round(Exp(1), 8)</expression>
+			<output>2.71828183</output>
 		</test>
 		<test name="ExpNeg1">
-			<expression>Exp(-1)</expression>
-			<output>0.367879441171442334024277442949824035167694091796875</output>
+			<expression>Round(Exp(-1), 8)</expression>
+			<output>0.36787944</output>
 		</test>
 		<test name="Exp1000">
 			<expression invalid="true">Exp(1000)</expression>
@@ -237,7 +237,7 @@
 		</test>
 		<test name="Log1Base1">
 			<expression>Log(1, 1)</expression>
-			<output>0.0</output>
+			<output>null</output>
 		</test>
 		<test name="Log1Base2">
 			<expression>Log(1, 2)</expression>
@@ -274,7 +274,6 @@
 			<output>@T10:30:00.000</output>
 		</test>
 	</group>
-	</group>
 	<group name="Ln">
 		<test name="LnNull">
 			<expression>Ln(null)</expression>
@@ -297,12 +296,12 @@
 			<output>null</output>
 		</test>
 		<test name="Ln1000">
-			<expression>Ln(1000)</expression>
-			<output>6.907755278982136815102421678602695465087890625</output>
+			<expression>Round(Ln(1000), 8)</expression>
+			<output>6.90775528</output>
 		</test>
 		<test name="Ln1000D">
-			<expression>Ln(1000.0)</expression>
-			<output>6.907755278982136815102421678602695465087890625</output>
+			<expression>Round(Ln(1000.0), 8)</expression>
+			<output>6.90775528</output>
 		</test>
 	</group>
 	<group name="MinValue">
@@ -313,11 +312,11 @@
 		</test>
 		<test name="LongMinValue">
 			<expression>minimum Long</expression>
-			<output>-9223372036854775808</output>
+			<output>-9223372036854775808L</output>
 		</test>
 		<test name="DecimalMinValue">
 			<expression>minimum Decimal</expression>
-			<output>-9999999999999999999999999999.99999999</output>
+			<output>-99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMinValue: minimum Quantity -->
 		<test name="DateTimeMinValue">
@@ -340,11 +339,11 @@
 		</test>
 		<test name="LongMaxValue">
 			<expression>maximum Long</expression>
-			<output>9223372036854775807</output>
+			<output>9223372036854775807L</output>
 		</test>
 		<test name="DecimalMaxValue">
 			<expression>maximum Decimal</expression>
-			<output>9999999999999999999999999999.99999999</output>
+			<output>99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMaxValue: maximum Quantity -->
 		<test name="DateTimeMaxValue">
@@ -398,8 +397,8 @@
 			<output>0.5</output>
 		</test>
 		<test name="ModuloQuantity">
-			<expression>3.5 'gm' mod 3 'gm'</expression>
-			<output>0.5 'gm'</output>
+			<expression>3.5 'cm' mod 3 'cm'</expression>
+			<output>0.5 'cm'</output>
 		</test>
 	</group>
 	<group name="Multiply">
@@ -528,7 +527,7 @@
 		</test>
 		<test name="PredecessorOfJan12000">
 			<expression>predecessor of DateTime(2000,1,1)</expression>
-			<output>@1999-12-31</output>
+			<output>@1999-12-31T</output>
 		</test>
 		<test name="PredecessorOfNoon">
 			<expression>predecessor of @T12:00:00.000</expression>
@@ -700,7 +699,7 @@
 		</test>
 		<test name="SuccessorOfJan12000">
 			<expression>successor of DateTime(2000,1,1)</expression>
-			<output>@2000-01-02</output>
+			<output>@2000-01-02T</output>
 		</test>
 		<test name="SuccessorOfNoon">
 			<expression>successor of @T12:00:00.000</expression>
@@ -827,8 +826,8 @@
 			<output>2.0</output>
 		</test>
 		<test name="TruncatedDivide10d1ByNeg3D1Quantity">
-			<expression>10.1 'gm' div -3.1 'gm'</expression>
-			<output>-3.0 'gm'</output>
+			<expression>10.1 'cm' div -3.1 'cm'</expression>
+			<output>-3.0 'cm'</output>
 		</test>
 	</group>
 </tests>

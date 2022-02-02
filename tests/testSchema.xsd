@@ -113,6 +113,21 @@
 				<xs:documentation>True if this test represents a predicate.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="mode" type="ModeType">
+			<xs:annotation>
+				<xs:documentation>Strict vs Loose, determines whether type checking is strict as specified in [Type Safety and Strict Evaluation](http://hl7.org/fhirpath/#type-safety-and-strict-evaluation)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ordered" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Whether the results are expected to be ordered, false if not present</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="checkOrderedFunctions" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Whether to ensure that attempting to use ordered functions with an unordered input should throw (e.g., using .skip() on an unordered list)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="Expression">
 		<xs:simpleContent>
@@ -128,11 +143,11 @@
 	<xs:complexType name="Output">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="type" type="OutputType" use="required">
+				<xs:attribute name="type" type="OutputType" use="optional">
 					<xs:annotation>
-						<xs:documentation>The type of the expected output.</xs:documentation>
+						<xs:documentation>The type of the expected output. If no type is provided, the value is expected to be an expression in the language under test and will be set equal to the test expression and the expected evaluation result will be true. In the special case that the output is a null, a null predicate test will be used.</xs:documentation>
 					</xs:annotation>
-				<xs:attribute>
+				</xs:attribute>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -143,7 +158,8 @@
 			<xs:enumeration value="date"/>
 			<xs:enumeration value="dateTime"/>
 			<xs:enumeration value="decimal"/>
-			<xs:enumeration value="integer"/>
+            <xs:enumeration value="integer"/>
+            <xs:enumeration value="long"/>
 			<xs:enumeration value="quantity"/>
 			<xs:enumeration value="string"/>
 			<xs:enumeration value="time"/>
@@ -166,6 +182,20 @@
 					<xs:documentation>Indicates the test is expected to produce a runtime error.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
-		</xs:restrction>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="strict">
+				<xs:annotation>
+					<xs:documentation>Indicates the test is expected to evaluate with strict semantics</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="loose">
+				<xs:annotation>
+					<xs:documentation>Indicates the test is expected to evaluate with loose semantics</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>
