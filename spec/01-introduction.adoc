@@ -216,7 +216,7 @@ link:12-e-acronyms.html[Appendix E] – Acronyms
 
 link:13-f-glossary.html[Appendix F] – Glossary
 
-link:14-g-formattingconventions.html[Appendix G] – Formatting Conventions
+link:14-g-formattingconventions.html[Appendix G] – Conventions
 
 link:15-h-timeintervalcalculations.html[Appendix H] – Timing Interval Calculation Examples
 

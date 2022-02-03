@@ -1,5 +1,5 @@
 [[appendix-g-formatting-conventions]]
-= Appendix G – Formatting Conventions
+= Appendix G – Conventions
 :page-layout: dev
 :backend: xhtml
 :sectnums:
@@ -7,7 +7,7 @@
 :toc:
 :page-standards-status: informative
 
-This guidance describes syntactic conventions for formatting statements and expressions of Clinical Quality Language (CQL) that encourage consistency, readability, maintainability, and reusability of the resulting CQL. Throughout the discussion, the following simplified syntax element definitions are used. Formal definitions of these elements can be found in the CQL Specification.
+This guidance describes syntactic conventions and best practices for authoring statements and expressions of Clinical Quality Language (CQL) that encourage consistency, readability, maintainability, and reusability of the resulting CQL. Throughout the discussion, the following simplified syntax element definitions are used. Formal definitions of these elements can be found in the CQL Specification.
 
 * _Whitespace_ - Whitespace defines the separation between all tokens in the language (e.g. spaces, tabs, returns, etc.)
 * _Comment_ - Comments are ignored by the language, allowing for descriptive text to be included
@@ -204,3 +204,25 @@ Syntax highlighting is an important aspect of readability. In order to enable di
 ** Variable Identifiers
 ** Function Identifiers
 
+[[best-practices]]
+== Best Practices
+
+The following sections discuss best practices for authoring readable, maintainable, and reusable CQL.
+
+[[direct-reference-codes]]
+=== Direct Reference Codes
+
+Using "direct reference codes", involves declaring an identifier for a specific code in a code system, and using that directly within the logic. That's appropriate for cases where you know exactly what you want, and there's very little possibility for variation on that (i.e. systems are likely to use those codes directly, rather than have local codes that they are mapping to).
+
+When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning:
+
+[source,cql]
+----
+code "Venous foot pump, device (physical object)": '442023007' from "SNOMED-CT"
+----
+
+Note that for direct reference code usage, the local identifier (in the example above, the local identifier is "Venous foot pump, device (physical object)") should be the same as the description of the code within the terminology in order to avoid conflicting with any usage or license agreements with the referenced terminologies, but can be different to allow for potential naming conflicts, as well as simplification of longer names when appropriate.
+
+Although CQL supports both version-specific and version-independent specification of and comparison to direct reference codes, artifact authors should use version-independent direct reference codes and comparisons unless there is a specific reason not to (such as the code is retired in the current code system version). Even when using version-specific direct reference codes, authors should use equivalence (~) for the comparison (again, unless there is a specific reason to use version-specific comparison with equality (=)).
+
+Note: Using direct reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may require modification of the CQL, as opposed to the use of a value set which many systems already use to provide support for mapping to local codes.
