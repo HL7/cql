@@ -4386,7 +4386,7 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The [.kw]#includes# operator for intervals returns [.kw]#true# if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator, and will return [.kw]#false# is the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
+For the point overload, this operator is a synonym for the [.kw]#<<contains,contains>># operator.
 
 For the interval overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4982,9 +4982,9 @@ contains(argument List<T>, element T) Boolean
 
 *Description:*
 
-The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list using equality semantics.
+The [.kw]#contains# operator for lists returns [.kw]#true# if the given element is in the list using equality semantics, with the exception that [.kw]#null# elements are considered equal.
 
-If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
+If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#true# if the list contains any [.kw]#null# elements, and [.kw]#false# otherwise.
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
@@ -4993,7 +4993,7 @@ The following examples illustrate the behavior of the [.kw]#contains# operator:
 define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5
 define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4
 define "ContainsIsAlsoFalse": null contains 4
-define "ContainsIsNull": { 1, 3, 5, 7 } contains null
+define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null
 ----
 
 [[distinct]]
@@ -5186,9 +5186,9 @@ in(element T, argument List<T>) Boolean
 
 *Description:*
 
-The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list using equality semantics.
+The [.kw]#in# operator for lists returns [.kw]#true# if the given element is in the given list using equality semantics, with the exception that [.kw]#null# elements are considered equal.
 
-If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second argument is [.kw]#null#, the result is [.kw]#false#.
+If the first argument is [.kw]#null#, the result is [.kw]#true# if the list contains any [.kw]#null# elements, and [.kw]#false# otherwise. If the second argument is [.kw]#null#, the result is [.kw]#false#.
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
@@ -5197,7 +5197,7 @@ The following examples illustrate the behavior of the [.kw]#in# operator:
 define "InIsTrue": 5 in { 1, 3, 5, 7 }
 define "InIsFalse": 5 in { 1, 3 }
 define "InIsAlsoFalse": 5 in null
-define "InIsNull": null in { 1, 3, 5, null }
+define "NullInIsTrue": null in { 1, 3, 5, null }
 ----
 
 [[includes-1]]
@@ -5213,9 +5213,9 @@ includes(left List<T>, right T) Boolean
 
 *Description:*
 
-The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list using equality semantics.
+The [.kw]#includes# operator for lists returns [.kw]#true# if the first list contains every element of the second list using equality semantics, with the exception that [.kw]#null# elements are considered equal.
 
-For the singleton overload, this operator is a synonym for the [.kw]#<<contains-1,contains>># operator, and will return [.kw]#false# if the first argument is [.kw]#null#, and [.kw]#null# if the second argument is [.kw]#null#.
+For the singleton overload, this operator is a synonym for the [.kw]#<<contains-1,contains>># operator.
 
 For the list overload, if either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -5462,7 +5462,7 @@ The [.kw]#properly includes# operator for lists returns [.kw]#true# if the first
 
 For the element overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
-This operator uses equality semantics to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -5494,7 +5494,7 @@ The [.kw]#properly included in# operator for lists returns [.kw]#true# if every 
 
 For the element overload, this operator returns true if the element is in (i.e. included in) the list and it is not the only element in the list.
 
-This operator uses equality semantics to determine whether or not two elements are the same.
+This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
