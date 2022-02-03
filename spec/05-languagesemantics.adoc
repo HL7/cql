@@ -1089,6 +1089,21 @@ Note that as with the before and after transformations, a null test is required 
 
 In general, interval comparisons are already defined in terms of the fundamental comparison operators ([.sym]#=#, [.sym]#>#, [.sym]#<#, [.sym]#>=#, [.sym]#\<=#, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
 
+Note that open null boundaries of intervals are treaterd as uncertainties for the purposes of interval computation. For example:
+
+[source,cql]
+----
+intersect Interval[1, 10] intersect Interval[5, null)
+----
+
+This results in an interval that begins at 5, and ends at some value between 5 and 10. Implementations can accomplish this by normalizing open intervals to closed intervals with uncertain boundaries:
+
+[source,pseudo-code]
+----
+  if interval.low is null then interval.low = Uncertainty(minimumValue, interval.high)
+  if interval.high is null then interval.high = Uncertainty(interval.low, maximumValue)
+----
+
 [[implementing-precision-based-timing-with-uncertainty]]
 === Implementing Precision-Based Timing with Uncertainty
 

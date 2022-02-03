@@ -397,11 +397,11 @@ The low and high elements are both optional. If the low element is not specified
 
 The static type of the low bound determines the type of the interval, and the high bound must be of the same type.
 
-If the low bound of the interval is null and open, the low bound of the interval is interpreted as unknown, and computations involving the low boundary will result in null.
+If the low bound of the interval is null and open, the low bound of the interval is interpreted as unknown and represented as an uncertainty from the minimum value of the point type of the interval to the high boundary (inclusive); computations involving the low boundary may result in null.
 
 If the low bound of the interval is null and closed, the interval is interpreted to start at the minimum value of the point type, and computations involving the low boundary will be performed with that value.
 
-If the high bound of the interval is null and open, the high bound of the interval is unknown, and computations involving the high boundary will result in null.
+If the high bound of the interval is null and open, the high bound of the interval is unknown and represented as an uncertainty from the low boundary (inclusive) to the maximum value of the point type of the interval; computations involving the high boundary may result in null.
 
 If the high bound of the interval is null and closed, the interval is interpreted to end at the maximum value of the point type, and computations involving the high boundary will be performed with that interpretation.</xs:documentation>
 		</xs:annotation>
