@@ -44,6 +44,17 @@ The schema for ELM is described for XML using the above XSDs. To support multipl
 |*application/elm+json* |The content is an ELM document, rendered as JSON
 |======================================================================
 
+Optionally, a version parameter can be used with CQL and ELM media types to indicate the specification version of the content. The value of the version parameter is always and only the major and minor components of the version of the CQL specification, and can reference any published version of the specification, currently 1.0, 1.1, 1.2, 1.3, 1.4, and 1.5.
+
+For example, to specify that a library is CQL version 1.4, the following content type would be used:
+
+[source]
+----
+text/cql; version=1.4
+----
+
+Implementations consuming CQL or ELM that has a version indicated by the content type in this way should respect the version specified. Implementations should deal gracefully when processing CQL for versions they do not understand, but this is an implementation decision, especially given the backwards-compatible and future-compatible possibilities of CQL and ELM.
+
 [.note-info]
 ____
 The text/cql-identifier and text/cql-expression media types are a new feature being introduced in CQL 1.5, and are trial-use.
