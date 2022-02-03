@@ -8,6 +8,8 @@ The following contains a zip file that contains a set of unit tests for Clinical
 
 The tests are expressed in a simple XML format describing the expression and its expected outcome.
 
+Some tests cover functionality related to calculation and string representation of times, and are built to be run with an _evaluation request timestamp_ in UTC, to avoid introducing any location dependence to the tests.
+
 The XML Schema for these tests is included in the zip.
 
 This is the same test format used by the FHIRPath specification.
