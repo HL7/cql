@@ -3529,6 +3529,8 @@ The [.id]#DateTime# operator constructs a DateTime value from the given componen
 
 At least one component other than [.id]#timezoneOffset# must be specified, and no component may be specified at a precision below an unspecified precision. For example, [.id]#hour# may be [.kw]#null#, but if it is, [.id]#minute#, [.id]#second#, and [.id]#millisecond# must all be [.kw]#null# as well.
 
+If all the arguments are [.kw]#null#, the result is [.kw]#null#, as opposed to a [.id]#DateTime# with no components specified.
+
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
 
 If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offset of the evaluation request.
