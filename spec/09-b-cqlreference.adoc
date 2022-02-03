@@ -1549,6 +1549,7 @@ between(argument Date, low Date, high Date) Boolean
 between(argument DateTime, low DateTime, high DateTime) Boolean
 between(argument Time, low Time, high Time) Boolean
 between(argument String, low String, high String) Boolean
+between(argument Interval<T>, low T, high T) Boolean
 ----
 
 [.note-info]
@@ -1574,6 +1575,24 @@ Note that for the purposes of comparison, seconds and milliseconds are combined 
 For integer and decimal values, standard ordinal semantics apply.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
+
+When the first argument to a between is an interval, the operator is a synonym for the <<included-in,during (or included in)>> operator, using the first argument and an inclusive interval constructed from the second and third arguments. For example:
+
+[source,cql]
+----
+define "Retinal Exam in Measurement Period or Year Prior":
+  ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
+    where RetinalExam.relevantPeriod between start of "Measurement Period" - 1 year and end of "Measurement Period"
+----
+
+is equivalent to:
+
+[source,cql]
+----
+define "Retinal Exam in Measurement Period or Year Prior":
+  ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
+    where RetinalExam.relevantPeriod during Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"]
+----
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
 
