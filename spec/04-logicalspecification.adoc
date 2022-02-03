@@ -1743,13 +1743,15 @@ MaxValue : Expression
 
 The MaxValue operator returns the maximum representable value for the given type.
 
-The MaxValue operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
+The MaxValue operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
 For Integer, MaxValue returns the maximum signed 32-bit integer, 2^31 - 1.
 
 For Long, MaxValue returns the maximum signed 64-bit integer, 2^63 - 1.
 
 For Decimal, MaxValue returns the maximum representable Decimal value, (10^28 - 1) / 10^8 (99999999999999999999.99999999).
+
+For Quantity, MaxValue returns the maximum representable quantity, i.e. the maximum representable decimal value with a default unit (1).
 
 For Date, MaxValue returns the maximum representable Date value, Date(9999, 12, 31).
 
@@ -1773,13 +1775,15 @@ MinValue : Expression
 
 The MinValue operator returns the minimum representable value for the given type.
 
-The MinValue operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
+The MinValue operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
 For Integer, MinValue returns the minimum signed 32-bit integer, -(2^31).
 
 For Long, MinValue returns the minimum signed 64-bit integer, -(2^63).
 
 For Decimal, MinValue returns the minimum representable Decimal value, (-10^28 + 1) / 10^8 (-99999999999999999999.99999999).
+
+For Quantity, MinValue returns the minimum representable quantity, i.e. the minimum representable decimal value with a default unit (1).
 
 For Date, MinValue returns the minimum representable Date value, Date(1, 1, 1).
 
@@ -1894,7 +1898,7 @@ Predecessor : UnaryExpression
 
 The Predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
-The Predecessor operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
+The Predecessor operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
 For Integer, Predecessor is equivalent to subtracting 1.
 
@@ -1903,6 +1907,8 @@ For Long, Predecessor is equivalent to subtracting 1L.
 For Decimal, Predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08.
 
 For Date, DateTime, and Time values, Predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, Predecessor is equivalent to subtracting one second, etc.
+
+For Quantity values, the Predecessor is equivalent to subtracting 1 if the quantity is an integer, and the minimum precision value for Decimal if the quantity is a decimal. The units are unchanged.
 
 If the argument is null, the result is null.
 
@@ -1971,7 +1977,7 @@ Successor : UnaryExpression
 
 The [.id]#Successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The [.id]#Successor# operator is defined for the Integer, Long, Decimal, Date, DateTime, and Time types.
+The [.id]#Successor# operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
 For [.id]#Integer#, [.id]#Successor# is equivalent to adding 1.
 
@@ -1980,6 +1986,8 @@ For [.id]#Long#, [.id]#Successor# is equivalent to adding 1L.
 For [.id]#Decimal#, [.id]#Successor# is equivalent to adding the minimum precision value for the [.id]#Decimal# type, or 10^-08.
 
 For [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values, [.id]#Successor# is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the [.id]#DateTime# is fully specified, [.id]#Successor# is equivalent to adding 1 millisecond; if the [.id]#DateTime# is specified to the second, [.id]#Successor# is equivalent to adding one second, etc.
+
+For [.id]#Quantity# values, [.id]#Successor# is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the [.id]#Decimal# type if the quantity is a decimal. The units are unchanged.
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 

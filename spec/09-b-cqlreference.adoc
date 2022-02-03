@@ -2391,13 +2391,15 @@ maximum<T>() T
 
 The [.kw]#maximum# operator returns the maximum representable value for the given type.
 
-The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#maximum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Quantity#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#maximum# returns the maximum signed 32-bit integer, 2^31^ - 1.
 
 For [.id]#Long#, [.kw]#maximum# returns the maximum signed 64-bit long, 2^63^ - 1.
 
 For [.id]#Decimal#, [.kw]#maximum# returns the maximum representable decimal value, (10^28^ – 1) / 10^8^ (99999999999999999999.99999999).
+
+For [.id]#Quantity#, [.kw]#maximum# returns the maximum representable quantity, i.e. the maximum representable decimal value with a default unit ([.sym]#1#).
 
 For [.id]#Date#, [.kw]#maximum# returns the maximum representable date value, [.id]#Date#([.lit]#9999#, [.lit]#12#, [.lit]#31#).
 
@@ -2443,13 +2445,15 @@ minimum<T>() T
 
 The [.kw]#minimum# operator returns the minimum representable value for the given type.
 
-The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
+The [.kw]#minimum# operator is defined for the [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Quantity#, [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types.
 
 For [.id]#Integer#, [.kw]#minimum# returns the minimum signed 32-bit integer, -2^31^.
 
 For [.id]#Long#, [.kw]#minimum# returns the minimum signed 64-bit long, -2^63^.
 
 For [.id]#Decimal#, [.kw]#minimum# returns the minimum representable decimal value, (-10^28^ + 1) / 10^8^ (-99999999999999999999.99999999).
+
+For [.id]#Quantity#, [.kw]#minimum# returns the minimum representable quantity, i.e. the minimum representable decimal value with a default unit ([.sym]#1#).
 
 For [.id]#Date#, [.kw]#minimum# returns the minimum representable date value, [.id]#DateTime#([.lit]#1#, [.lit]#1#, [.lit]#1#).
 
