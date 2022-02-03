@@ -1650,6 +1650,27 @@ A syntax diagram of defining a function can be seen link:19-l-cqlsyntaxdiagrams.
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
 
+[[operator-functions]]
+=== Operator Functions
+
+Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator ([.sym]#+#) is implemented by the [.id]#Add# function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the <<06-translationsemantics.html#functions,Functions>> topic in the Translation Semantics chapter.
+
+A consequence of having these system function definitions is that operators can also be invoked directly as functions. For example:
+
+[source,cql]
+----
+exists X
+X = Y
+----
+
+The above expressions could also be written as:
+
+[source,cql]
+----
+Exists(X)
+Equal(X, Y)
+----
+
 [[fluent-functions]]
 === Fluent Functions
 
