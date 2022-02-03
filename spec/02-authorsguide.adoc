@@ -2087,7 +2087,7 @@ The first expression returns the number of whole days between the starting and e
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
 
 [[table-2-q]]
-image:extracted-media/media/image5-1.png[image,width=626,height=394]
+image:extracted-media/media/image5.png[image,width=626,height=394]
 
 Table 2‑Q - Comparison of two interval values using a complete set of operations
 
