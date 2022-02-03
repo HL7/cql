@@ -773,6 +773,17 @@ FunctionRef : ExpressionRef
 
 The FunctionRef type defines an expression that invokes a previously defined function. The result of evaluating each operand is passed to the function.
 
+=== OperandRef
+
+[source,elm]
+----
+OperandRef : Expression
+  ¦
+  0..1 --> name
+----
+
+The OperandRef expression allows the value of an operand to be referenced as part of an expression within the body of a function definition.
+
 [[queries]]
 == Queries
 
@@ -857,6 +868,19 @@ ByExpression : SortByItem
 ----
 
 The ByExpression element specifies that the sort should be performed using the given expression and direction. This approach is used to specify the sort order as a calculated expression.
+
+=== IdentifierRef
+
+[source,elm]
+----
+IdentifierRef : Expression
+  ¦
+  1..1 --> name
+  ¦
+  0..1 --> libraryName
+----
+
+The IdentifierRef type defines an expression that references an identifier that is either unresolved, or has been resolved to an attribute in an unambiguous iteration scope such as a sort. Implementations should attempt to resolve the identifier, only throwing an error at compile-time (or run-time for an interpretive system) if the identifier reference cannot be resolved.
 
 === LetClause
 
