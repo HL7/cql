@@ -959,6 +959,15 @@ Because the datetime values are both only specified to the month (from January o
 
 CQL also supports a difference in operator which, rather than calculating the number of calendar periods between two dates, calculates the number of boundaries crossed between the two dates. As with the duration operator, difference is defined to take imprecision in date and time values into account by returning an uncertainty.
 
+Note that uncertainty calculations, just like date and time comparison calculations, consider seconds and milliseconds as a single combined precision with decimal semantics. For example:
+
+[source,cql]
+----
+hours between @2012-01-01T01:00:00 and @2012-01-01T02:00:00.0
+----
+
+The above example results in [.sym]#1#, even though the second argument is specified to milliseconds and the first argument is only specified to seconds.
+
 [[timing-phrases]]
 === Timing Phrases
 
