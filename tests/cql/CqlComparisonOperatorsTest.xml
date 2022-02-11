@@ -167,6 +167,10 @@
 			<expression>0.0 &gt; -1.0</expression>
 			<output>true</output>
 		</test>
+		<test name="GreaterDec1Int2">
+			<expression>1.0 &gt; 2</expression>
+			<output>false</output>
+		</test>
 		<test name="GreaterCM0CM0">
 			<expression>0'cm' &gt; 0'cm'</expression>
 			<output>false</output>
@@ -266,6 +270,10 @@
 		<test name="GreaterOrEqualDecZNeg1">
 			<expression>0.0 &gt;= -1.0</expression>
 			<output>true</output>
+		</test>
+		<test name="GreaterOrEqualDec1Int2">
+			<expression>1.0 &gt;= 2</expression>
+			<output>false</output>
 		</test>
 		<test name="GreaterOrEqualCM0CM0">
 			<expression>0'cm' &gt;= 0'cm'</expression>
@@ -375,6 +383,10 @@
 			<expression>0.0 &lt; -1.0</expression>
 			<output>false</output>
 		</test>
+		<test name="LessDec1Int2">
+			<expression>1.0 &lt; 2</expression>
+			<output>true</output>
+		</test>
 		<test name="LessCM0CM0">
 			<expression>0'cm' &lt; 0'cm'</expression>
 			<output>false</output>
@@ -474,6 +486,10 @@
 		<test name="LessOrEqualDecZNeg1">
 			<expression>0.0 &lt;= -1.0</expression>
 			<output>false</output>
+		</test>
+		<test name="LessOrEqualDec1Int2">
+			<expression>1.0 &lt;= 2</expression>
+			<output>true</output>
 		</test>
 		<test name="LessOrEqualCM0CM0">
 			<expression>0'cm' &lt;= 0'cm'</expression>
