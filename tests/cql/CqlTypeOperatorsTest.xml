@@ -100,6 +100,10 @@
 			<expression>ToDateTime(@2014-01-01)</expression>
 			<output>@2014-01-01T</output>
 		</test>
+		<test name="ToDateTimeTimeUnspecified">
+			<expression>hour from ToDateTime(@2014-01-01) is null</expression>
+			<output>true</output>
+		</test>
 	</group>
 	<group name="ToDecimal">
 		<test name="String25D5ToDecimal">
