@@ -1,8 +1,7 @@
----
-layout: dev
-title: Clinical Quality Language Tests
-standards-status: informative
----
+= Clinical Quality Language Tests
+:page-layout: dev
+:backend: xhtml
+:page-standards-status: informative
 
 The following contains a zip file that contains a set of unit tests for Clinical Quality Language functionality.
 
@@ -14,7 +13,7 @@ The XML Schema for these tests is included in the zip.
 
 This is the same test format used by the FHIRPath specification.
 
-<a href="tests.zip">Test Source</a>.
+link:tests.zip[Test Source]
 
 The tests cover the following sections of the specification:
 
@@ -34,5 +33,7 @@ The tests cover the following sections of the specification:
 * Types
 * Value Literals and Selectors
 
+[.note-info]
+____
 The tests defined here are informative, not normative aspects of the specification. If there is a discrepancy between the behavior of a test and the specification, the specification should be considered the source of truth.
-{:.note-info}
+____
