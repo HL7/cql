@@ -197,3 +197,38 @@
 * https://jira.hl7.org/browse/FHIR-29931[J#FHIR-29931]: Corrected media types for cql.identifier and cql.expression to cql-identifier and cql-expression based on IANA feedback https://github.com/HL7/cql/search?q=29931&type=commits[View changes]
 * https://jira.hl7.org/browse/FHIR-29932[J#FHIR-29932]: Fixed backwards compatibility for TimezoneFrom https://github.com/HL7/cql/search?q=29932&type=commits[View changes]
 * https://jira.hl7.org/browse/FHIR-29934[J#FHIR-29934]: Corrected type of target attribute in model info https://github.com/HL7/cql/search?q=29934&type=commits[View changes]
+
+== Errata 1 Changes (v1.5.2)
+
+=== Trial-Use Changes
+
+==== Compatible, Substantive
+
+* https://jira.hl7.org/browse/FHIR-32666[FHIR-32666] Add version parameter for media types
+* https://jira.hl7.org/browse/FHIR-34804[FHIR-34804] Improve backwards compatibility support for terminology types
+
+=== Normative Changes
+
+==== Non-substantive
+
+* https://jira.hl7.org/browse/FHIR-35869[FHIR-35869] Inconsistent description of ToDateTime operator
+* https://jira.hl7.org/browse/FHIR-32951[FHIR-32951] Function-style invocation of keyword operators is not documented
+* https://jira.hl7.org/browse/FHIR-32950[FHIR-32950] Interval overload of between is not documented
+* https://jira.hl7.org/browse/FHIR-35926[FHIR-35926] Clarify Quantity Predecessor/Successor behavior
+* https://jira.hl7.org/browse/FHIR-35925[FHIR-35925] Correct missing quantity overloads in Logical Specification
+* https://jira.hl7.org/browse/FHIR-35917[FHIR-35917] Fix missing IdentifierRef documentation
+* https://jira.hl7.org/browse/FHIR-35915[FHIR-35915] Clarify interval computation semantics with open null boundaries
+* https://jira.hl7.org/browse/FHIR-35909[FHIR-35909] Add a clarifying example to the uncertainty calculation discussion
+* https://jira.hl7.org/browse/FHIR-35905[FHIR-35905] Clarify the result of a DateTime with all null components
+* https://jira.hl7.org/browse/FHIR-35904[FHIR-35904] Clarify equality semantics exception for nulls
+* https://jira.hl7.org/browse/FHIR-32971[FHIR-32971] Use codeSystemEx and valueSetEx elements in value set membership operations
+
+=== Informative Changes
+
+* https://jira.hl7.org/browse/FHIR-28127[FHIR-28127] Incorrect test case for single-source query sort
+* https://jira.hl7.org/browse/FHIR-31883[FHIR-31883] Diagram of interval operators uses "begins"
+* https://jira.hl7.org/browse/FHIR-35881[FHIR-35881] Document that test cases are built to be run with an evaluation timestamp of UTC
+* https://jira.hl7.org/browse/FHIR-35918[FHIR-35918] Add a best-practice about the use of equivalent rather than equal for terminology comparison
+* https://jira.hl7.org/browse/FHIR-34199[FHIR-34199] Document cql-options that affect language behavior
+* https://jira.hl7.org/browse/FHIR-32679[FHIR-32679] Compile specific behavior differences between 1.3/1.4/1.5
+* https://jira.hl7.org/browse/FHIR-30081[FHIR-30081] Errors in test cases
