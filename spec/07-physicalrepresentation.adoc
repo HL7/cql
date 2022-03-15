@@ -57,7 +57,7 @@ Implementations consuming CQL or ELM that has a version indicated by the content
 
 [.note-info]
 ____
-The text/cql-identifier and text/cql-expression media types are a new feature being introduced in CQL 1.5, and are trial-use.
+The text/cql-identifier and text/cql-expression media types, as well as use of the version parameter with all the media types, are new features being introduced in CQL 1.5, and are trial-use.
 ____
 
 [cols=",",options="header",]
