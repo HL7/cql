@@ -1,7 +1,7 @@
 {
   "package-id" : "hl7.cql",
   "version": "1.5.2",
-  "path": "http://cql.hl7.org/N1/index.html",
+  "path": "http://cql.hl7.org/N1",
   "mode": "technical-correction",
   "status": "normative",
   "sequence": "Normative",

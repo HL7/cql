@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Hidden IG for de facto IG publishing-->
+
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
+  <extension url="http://hl7.org/fhir/StructureDefinition/igpublisher-folder-resource">
+    <valueString value="/Users/grahamegrieve/temp/igs/HL7-cql#master/resources"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages">
+    <valueString value="/Users/grahamegrieve/temp/igs/HL7-cql#master/spec"/>
+  </extension>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
   <version value="1.5.2"/>
   <name value="CQL"/>
@@ -16,6 +22,8 @@
     </telecom>
   </contact>
   <packageId value="hl7.cql"/>
+  <license value="CC0-1.0"/>
+  <fhirVersion value="4.0.1"/>
   <fhirVersion value="4.0.1"/>
   <definition>
     <resource>
@@ -374,9 +382,28 @@
       </reference>
     </resource>
     <page>
-      <nameUrl value="index.html"/>
+      <sourceUrl value="index.html"/>
+      <name value="index.html"/>
       <title value="CQL Specification"/>
       <generation value="html"/>
     </page>
+    <parameter>
+      <code>
+        <code value="apply"/>
+      </code>
+      <value value="version"/>
+    </parameter>
+    <parameter>
+      <code>
+        <code value="generate"/>
+      </code>
+      <value value="xml"/>
+    </parameter>
+    <parameter>
+      <code>
+        <code value="generate"/>
+      </code>
+      <value value="JSON"/>
+    </parameter>
   </definition>
 </ImplementationGuide>
