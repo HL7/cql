@@ -406,10 +406,8 @@ Although these elements can be used to directly represent the _query_ construct 
 
 There are several points throughout the specification that introduce optionality to support different use cases and implementation goals. This section provides a summary of those options with an explanation of their impact on translation and language features.
 
-[.note-warning]
-____
-Note that implementations may define other options as appropriate for their translation use cases, but these options all potentially impact whether a given library of CQL can be correctly compiled, and should therefore be used with care. Implementations that make use of these options should provide facilities for ensuring that these options are communicated as part of the resulting ELM output, as well as that the appropriate options are used if the CQL library is re-translated by consuming environments.
-____
+> Note that implementations may define other options as appropriate for their translation use cases, but these options all potentially impact whether a given library of CQL can be correctly compiled, and should therefore be used with care. Implementations that make use of these options should provide facilities for ensuring that these options are communicated as part of the resulting ELM output, as well as that the appropriate options are used if the CQL library is re-translated by consuming environments.
+{: .note-warning}
 
 #### Disable List Promotion and Demotion
 
@@ -423,10 +421,8 @@ In addition to list promotion and demotion, CQL allows for paths to be traversed
 
 To support FHIRPath as the base expression language for CQL, beginning with 1.3, the option to allow functions to be invoked using method-style invocation was introduced. This feature can be disabled using the _disable-method-invocation_ option. For a more complete discussion, see [Method Invocation](03-developersguide.html#method-invocation).
 
-[.note-warning]
-____
-Note that with the introduction of [Fluent Functions](03-developersguide.html#fluent-functions) in 1.5, using this option effectively disables fluent functions as well.
-____
+> Note that with the introduction of [Fluent Functions](03-developersguide.html#fluent-functions) in 1.5, using this option effectively disables fluent functions as well.
+{: .note-warning}
 
 #### Require From Keyword
 

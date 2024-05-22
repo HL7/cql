@@ -100,10 +100,8 @@ The [.id]#Code# type represents single terminology codes within CQL.
 
 ### CodeSystem
 
-[.note-info]
-____
-The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Definition:*
 
@@ -188,10 +186,8 @@ simple type Decimal
 ```
 
 
-[.note-warning]
-____
-Note that implementations must support at least the 28 digits of precision and 8 digits of scale, but may support more precise values.
-____
+> Note that implementations must support at least the 28 digits of precision and 8 digits of scale, but may support more precise values.
+{: .note-warning}
 
 *Description:*
 
@@ -203,10 +199,8 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 [[long-1]]
 ### Long
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Definition:*
 
@@ -323,10 +317,8 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 ### ValueSet
 
-[.note-info]
-____
-The ValueSet type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The ValueSet type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Definition:*
 
@@ -351,10 +343,8 @@ The [.id]#codesystems# element is used to capture code system version overrides 
 
 ### Vocabulary
 
-[.note-info]
-____
-The Vocabulary type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Vocabulary type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Definition:*
 
@@ -729,12 +719,8 @@ CanConvertQuantity(argument Quantity, unit String)
 
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
 
-[.note-warning]
-____
-
-Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
-
-____
+> Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+{: .note-warning}
 
 If either argument is null, the result is null.
 
@@ -750,12 +736,8 @@ ConvertQuantity(argument Quantity, unit String)
 
 The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
 
-[.note-warning]
-____
-
-Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
-
-____
+> Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
+{: .note-warning}
 
 If either argument is null, the result is null.
 
@@ -839,10 +821,8 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 ### ConvertsToLong
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Signature:*
 
@@ -866,10 +846,8 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument Any) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -922,10 +900,8 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 ConvertsToString(argument Any) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1139,10 +1115,8 @@ define "IsNull": ToDecimal('+-0.1')
 
 ### ToLong
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Signature:*
 
@@ -1188,10 +1162,8 @@ ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1311,10 +1283,8 @@ ToString(argument DateTime) String
 ToString(argument Time) String
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1505,10 +1475,8 @@ between(argument String, low String, high String) Boolean
 between(argument Interval<T>, low T, high T) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1718,10 +1686,8 @@ define "NullEquivalentIsTrue": null ~ null
 >(left String, right String) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1757,11 +1723,8 @@ define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
 define "NullGreaterIsNull": null > 5
 ```
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 
 ### Greater Or Equal
@@ -1780,10 +1743,8 @@ ____
 >=(left String, right String) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1817,11 +1778,8 @@ define "QuantityGreaterOrEqualIsNull": 3.6 'cm2' >= 3.5 'cm'
 define "NullGreaterOrEqualIsNull": null >= 5
 ```
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### Less
 
@@ -1839,10 +1797,8 @@ ____
 <(left String, right String) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1877,10 +1833,8 @@ define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 define "NullLessIsNull": null < 5
 ```
 
-[.note-info]
-____
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### Less Or Equal
 
@@ -1898,10 +1852,8 @@ ____
 <=(left String, right String) Boolean
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -1935,11 +1887,8 @@ define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'
 define "NullLessOrEqualIsNull": null <= 5
 ```
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### Not Equal
 
@@ -2016,10 +1965,8 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2054,10 +2001,8 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2364,17 +2309,11 @@ For [.id]#Time#, [.kw]#maximum# returns the maximum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
-[.note-warning]
-____
+> Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
+{: .note-warning}
 
-Note that implementations may choose to represent the maximum DateTime value using a constant offset such as UTC.
-____
-
-[.note-warning]
-____
-
-Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the maximum representable decimal for the implementation.
-____
+> Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the maximum representable decimal for the implementation.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
@@ -2417,15 +2356,11 @@ For [.id]#Time#, [.kw]#minimum# returns the minimum representable time value, [.
 
 For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
-[.note-warning]
-____
-Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
-____
+> Note that implementations may choose to represent the minimum DateTime value using a constant offset such as UTC.
+{: .note-warning}
 
-[.note-warning]
-____
-Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the minimum representable decimal for the implementation.
-____
+> Note that if implementations support larger and/or more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, they will return the minimum representable decimal for the implementation.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
@@ -2449,11 +2384,9 @@ mod(left Decimal, right Decimal) Decimal
 mod(left Quantity, right Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2493,10 +2426,8 @@ define "ModuloIsNull": 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2534,10 +2465,8 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 -(argument Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2626,10 +2555,8 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the result of the operation cannot be represented, the result is [.kw]#null#.
 
-[.note-warning]
-____
-Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
-____
+> Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.kw]#predecessor# operator:
 
@@ -2653,10 +2580,8 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 ^(argument Decimal, exponent Decimal) Decimal
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2722,10 +2647,8 @@ define "RoundIsNull": Round(null)
 -(left Quantity, right Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -2782,10 +2705,8 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the result of the operation cannot be represented, the result is [.kw]#null#.
 
-[.note-warning]
-____
-Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
-____
+> Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.kw]#successor# operator:
 
@@ -2836,11 +2757,9 @@ div(left Long, right Long) Long
 div(left Quantity, right Quantity) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -3042,12 +2961,8 @@ Lower(argument String) String
 
 The [.id]#Lower# operator returns the given string with all characters converted to their lower case equivalents.
 
-[.note-warning]
-____
-
-Note that the definition of _lowercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
-
-____
+> Note that the definition of _lowercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+{: .note-warning}
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -3074,12 +2989,8 @@ The [.id]#Matches# operator returns true if the given string matches the given r
 
 If either argument is [.kw]#null#, the result is [.kw]#null#.
 
-[.note-warning]
-____
-
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
-
-____
+> Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.id]#Matches# operator:
 
@@ -3131,12 +3042,8 @@ The [.id]#ReplaceMatches# operator matches the given string using the given regu
 
 If any argument is [.kw]#null#, the result is [.kw]#null#.
 
-[.note-warning]
-____
-
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
-
-____
+> Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
+{: .note-warning}
 
 The following examples illustrate the behavior of the [.id]#ReplaceMatches# operator:
 
@@ -3259,12 +3166,8 @@ Upper(argument String) String
 
 The [.id]#Upper# operator returns the given string with all characters converted to their upper case equivalents.
 
-[.note-info]
-____
-
-Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
-
-____
+> Note that the definition of _uppercase_ for a given character is a locale-dependent determination, and is not specified by CQL. Implementations are expected to provide appropriate and consistent handling of locale for their environment.
+{: .note-info}
 
 If the argument is [.kw]#null#, the result is [.kw]#null#.
 
@@ -4171,10 +4074,8 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
 
-[.note-info]
-____
-The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -4258,12 +4159,8 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
-[.note-warning]
-____
-
-For intervals with null boundaries (intervals with an undefined start or end date), if the boundary is open (e.g., Interval[0, null)), the interval will not contribute any results to the output. If the boundary is closed (e.g., Interval[0, null]), in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
-
-____
+> For intervals with null boundaries (intervals with an undefined start or end date), if the boundary is open (e.g., Interval[0, null)), the interval will not contribute any results to the output. If the boundary is closed (e.g., Interval[0, null]), in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
+{: .note-warning}
 
 ### In
 
@@ -5698,10 +5595,8 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -5880,10 +5775,8 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -5943,10 +5836,8 @@ Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ```
 
-[.note-info]
-____
-The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Description:*
 
@@ -6167,12 +6058,8 @@ For [.id]#Concept# values, equivalence is defined as a non-empty intersection of
 
 Note that this operator will always return [.kw]#true# or [.kw]#false#, even if either or both of its arguments are [.kw]#null#, or contain [.kw]#null# components.
 
-[.note-warning]
-____
-
-Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information when determining terminological membership.
-
-____
+> Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information when determining terminological membership.
+{: .note-warning}
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
@@ -6186,12 +6073,8 @@ define "EquivalentIsAlsoTrue": Concept2 ~ Concept2
 define "EquivalentIsFalse": Concept1 ~ Concept2
 ```
 
-[.note-warning]
-____
-
-Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
-
-____
+> Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
+{: .note-warning}
 
 ### In (Codesystem)
 
@@ -6233,20 +6116,14 @@ define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345
 define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 ```
 
-[.note-warning]
-____
-
-Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
-
-____
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+{: .note-warning}
 
 [[expandvalueset]]
 ### ExpandValueSet (ValueSet)
 
-[.note-info]
-____
-The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.
-____
+> The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.
+{: .note-info}
 
 *Signature:*
 [source,cql]
@@ -6313,12 +6190,8 @@ define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '1234567
 define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
 ```
 
-[.note-warning]
-____
-
-Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
-
-____
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+{: .note-warning}
 
 ## Errors and Messaging
 
@@ -6352,12 +6225,8 @@ If no severity is supplied, a default severity of Message is assumed.
 
 The message is the content of the actual message that is sent to the calling environment.
 
-[.note-danger]
-____
-
-Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
-
-____
+> Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
+{: .note-danger}
 
 The following examples illustrate the behavior of the [.id]#Message# operator:
 

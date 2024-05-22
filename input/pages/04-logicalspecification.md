@@ -1248,11 +1248,8 @@ If either argument is null, the result is null.
 
 The Greater operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### GreaterOrEqual
 
@@ -1273,11 +1270,8 @@ If either argument is null, the result is null.
 
 The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### Less
 
@@ -1298,11 +1292,8 @@ If either argument is null, the result is null.
 
 The Less operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 ### LessOrEqual
 
@@ -1323,11 +1314,8 @@ If either argument is null, the result is null.
 
 The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-[.note-info]
-____
-
-Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
-____
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+{: .note-info}
 
 [[not-equal]]
 ### NotEqual
@@ -1895,10 +1883,8 @@ If the argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-[.note-warning]
-____
-Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
-____
+> Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
+{: .note-warning}
 
 ### Round
 
@@ -1973,10 +1959,8 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 If the result of the operation cannot be represented, the result is [.kw]#null#.
 
-[.note-warning]
-____
-Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
-____
+> Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
+{: .note-warning}
 
 ### Truncate
 

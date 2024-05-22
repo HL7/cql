@@ -21,12 +21,10 @@ image:dist/ansi-approved.gif[]
 
 CQL is an ANSI Normative Standard. ANSI has certificated that the portions of this specification marked Normative have met its requirements for development of a formal standard.
 
-[.note-info]
-____
-This specification is normative, except where identified as informative or trial-use content.
-
-For a complete description of the changes to this version, please review the version history linked below.
-____
+> This specification is normative, except where identified as informative or trial-use content.
+>
+> For a complete description of the changes to this version, please review the version history linked below.
+{: .note-info}
 
 |===
 |[Title Page](title.html) |[License](license.html) |http://cql.hl7.org/history.html[Version History] |[Executive Summary](00-executivesummary.html)

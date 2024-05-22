@@ -60,10 +60,8 @@ Note that nested multi-line comments are not supported.
 
 #### Tags
 
-[.note-info]
-____
-Comment tags are a new feature of CQL 1.5, and are trial-use
-____
+> Comment tags are a new feature of CQL 1.5, and are trial-use
+{: .note-info}
 
 Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, followed by a colon (`:`). For example:
 
@@ -953,12 +951,8 @@ convert 28 days to weeks
 
 If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is [.kw]#null#.
 
-[.note-warning]
-____
-
-Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
-
-____
+> Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
+{: .note-warning}
 
 #### Implicit Conversions
 
@@ -1476,10 +1470,8 @@ In addition, even if a given query is based on a list of tuples, the results are
 
 ## Related Context Retrieves
 
-[.note-info]
-____
-Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
-____
+> Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
+{: .note-info}
 
 To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
 
@@ -1503,19 +1495,15 @@ Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Moth
 
 If the expression being defined (such as "Mother" in the previous example) is [.kw]#null#, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
 
-[.note-danger]
-____
-As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
-
-See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
-____
+> As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
+>
+> See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
+{: .note-danger}
 
 ## Aggregate Queries
 
-[.note-info]
-____
-The aggregate clause is a new feature of CQL 1.5, and is trial-use.
-____
+> The aggregate clause is a new feature of CQL 1.5, and is trial-use.
+{: .note-info}
 
 CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate the factorial of 5:
 
@@ -1629,12 +1617,8 @@ Equal(X, Y)
 
 ### Fluent Functions
 
-[.note-info]
-____
-
-Fluent functions are a new feature of CQL 1.5, and are trial-use.
-____
-
+> Fluent functions are a new feature of CQL 1.5, and are trial-use.
+{: .note-info}
 Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:
 
 [source,cql]
@@ -1696,10 +1680,8 @@ define "Active Diabetes Conditions":
 
 In other words, all the Condition elements returned from the [.id]#Diabetes Conditions# expression, where those conditions have a [.id]#clinicalStatus# of [.id]#Condition Active#.
 
-[.note-info]
-____
-Note that the examples in this section are adapted from the [CDS Connect FHIR Commons](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178) library.
-____
+> Note that the examples in this section are adapted from the [CDS Connect FHIR Commons](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178) library.
+{: .note-info}
 
 ### External Functions
 

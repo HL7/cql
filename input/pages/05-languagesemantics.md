@@ -136,10 +136,8 @@ Using these capabilities to advertise support, and enabling implementations to d
 
 To help implementers correctly support version differences and backwards (and to the extent possible, forwards) compatibility, the following sections describe version-specific behavior differences in CQL operators, functions, and language constructs.
 
-[.note-warning]
-____
-This is not an exhaustive list of changes to the specification, it is a summary of behavior changes between versions to help implementers deal with version-specific implementation issues. For a complete listing of changes to the specification, refer to the version history and version-specific change logs.
-____
+> This is not an exhaustive list of changes to the specification, it is a summary of behavior changes between versions to help implementers deal with version-specific implementation issues. For a complete listing of changes to the specification, refer to the version history and version-specific change logs.
+{: .note-warning}
 
 ##### Context Support
 

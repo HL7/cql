@@ -36,10 +36,8 @@ Difference In Years: difference in years between Date1 and Date2
 
 The Duration In Years expression returns zero because a full year has not passed between the two dates. However, the Difference In Years expression returns 1 because one year boundary was crossed between the two dates.
 
-[.note-info]
-____
-Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units
-____
+> Durations above seconds are calendar durations that are not comparable with definite quantity UCUM duration units
+{: .note-info}
 
 In addition to duration and difference calculations, CQL provides timing phrases to allow flexible and precise natural language comparisons of date and time values and intervals. The available timing phrases in CQL fall into four categories:
 

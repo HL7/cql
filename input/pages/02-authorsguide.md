@@ -459,11 +459,8 @@ If the result type of the [.id]#Patient# context expression is a list, the resul
 
 In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unfiltered# context expression results in the evaluation of the [.id]#Unfiltered# context expression, and the result type is unaffected.
 
-[.note-info]
-____
-In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
-
-____
+> In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
+{: .note-info}
 
 ## Queries
 
@@ -934,10 +931,8 @@ Whereas the following quantities are _definite duration_ quantities:
 
 The table above defines the equality/equivalence relationship between calendar and definite duration quantities. For example, `1 year` is not _equal_ (`=`) to `1 'a'` (defined in UCUM as 365.25 'd'), but it is _equivalent_ (`~`) to `1 'a'`.
 
-[.note-info]
-____
-For all but years and months, calendar durations are both equal and equivalent to the corresponding UCUM definite-time duration unit. Note that due to the possibility of leap seconds, this is not totally accurate, however, for practical reasons, implementations typically ignore leap seconds when performing date/time arithmetic.
-____
+> For all but years and months, calendar durations are both equal and equivalent to the corresponding UCUM definite-time duration unit. Note that due to the possibility of leap seconds, this is not totally accurate, however, for practical reasons, implementations typically ignore leap seconds when performing date/time arithmetic.
+{: .note-info}
 
 For a discussion of the operations available for quantities, see the <<Quantity Operators>> section.
 
@@ -1015,10 +1010,8 @@ Although CQL supports both version-specific and version-independent specificatio
 
 When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning.
 
-[.note-warning]
-____
-Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may require modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
-____
+> Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may require modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
+{: .note-warning}
 
 #### Concept
 
@@ -1036,10 +1029,8 @@ The [.id]#Concept# type has the following elements:
 
 Table 2‑G - Elements that make up a [.kw]#Concept# type
 
-[.note-warning]
-____
-Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
-____
+> Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
+{: .note-warning}
 
 The following example illustrates the concept declaration:
 
@@ -1498,12 +1489,8 @@ INRResult > 5 or DischargedOnOverlapTherapy
 
 Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard [.id]#Boolean# (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
-[.note-info]
-____
-
-To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
-
-____
+> To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
+{: .note-info}
 
 ### Arithmetic Operators
 
@@ -1853,10 +1840,8 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 
 Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
 
-[.note-warning]
-____
-Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See [Use of FHIR Quantity](http://hl7.org/fhir/fhirpath.html#quantity) for an example.
-____
+> Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See [Use of FHIR Quantity](http://hl7.org/fhir/fhirpath.html#quantity) for an example.
+{: .note-warning}
 
 #### Computing Durations and Differences
 
@@ -2531,12 +2516,8 @@ This formulation also has the advantage of allowing for the case that the actual
 
 CQL supports the standard comparison operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~# [.sym]#<# [.sym]#\<=# [.sym]#># [.sym]#>=#) and the standard arithmetic operators ([.sym]#+# [.sym]#-# [.sym]#*# [.sym]#/#) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as [.id]#Min#, [.id]#Max#, [.id]#Sum#, etc.
 
-[.note-warning]
-____
-
-Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return [.kw]#null# if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
-
-____
+> Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return [.kw]#null# if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
+{: .note-warning}
 
 #### Ratio Operators
 
@@ -2557,12 +2538,8 @@ define "RatioEqualFalse": 1:100 = 10:1000
 define "RatioEquivalentTrue": 1:100 ~ 10:1000
 ```
 
-[.note-warning]
-____
-
-Note that the relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the [.id]#numerator# and [.id]#denominator# components of the ratio directly, or by using the [.id]#ToQuantity# operator to convert the ratio to a decimal quantity.
-
-____
+> Note that the relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the [.id]#numerator# and [.id]#denominator# components of the ratio directly, or by using the [.id]#ToQuantity# operator to convert the ratio to a decimal quantity.
+{: .note-warning}
 
 #### Terminology Operators
 
@@ -2576,12 +2553,8 @@ define "InPharyngitis": SomeCodeValue in "Acute Pharyngitis"
 
 These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
 
-[.note-info]
-____
-
-Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same value for the code and system elements, ignoring display and version). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
-
-____
+> Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same value for the code and system elements, ignoring display and version). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
+{: .note-info}
 
 Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is [.kw]#true# if any Code in the Concept is a member of the given valueset.
 

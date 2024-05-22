@@ -52,10 +52,8 @@ text/cql; version=1.4
 
 Implementations consuming CQL or ELM that has a version indicated by the content type in this way should respect the version specified. Implementations should deal gracefully when processing CQL for versions they do not understand, but this is an implementation decision, especially given the backwards-compatible and future-compatible possibilities of CQL and ELM.
 
-[.note-info]
-____
-The text/cql-identifier and text/cql-expression media types, as well as use of the version parameter with all the media types, are new features being introduced in CQL 1.5, and are trial-use.
-____
+> The text/cql-identifier and text/cql-expression media types, as well as use of the version parameter with all the media types, are new features being introduced in CQL 1.5, and are trial-use.
+{: .note-info}
 
 [cols=",",options="header",]
 |===================================
@@ -112,8 +110,5 @@ Table 7‑C - The required information for each type available in the data model
 
 The information defined here is formally described in the modelinfo.xsd document included in the specification. The QUICK module in the CQL-to-ELM translator contains an instance of this schema, quick-modelinfo.xml, which defines this metadata for the QUICK model.
 
-[.note-info]
-____
-
-Note that the actual model info definition and associated artifacts are part of the reference implementation for CQL and not a normative aspect of the CQL specification. CQL only specifies the expected behavior at the conceptual level. How that behavior is achieved with respect to any particular data model is an implementation aspect and not prescribed by this specification.
-____
+> Note that the actual model info definition and associated artifacts are part of the reference implementation for CQL and not a normative aspect of the CQL specification. CQL only specifies the expected behavior at the conceptual level. How that behavior is achieved with respect to any particular data model is an implementation aspect and not prescribed by this specification.
+{: .note-info}

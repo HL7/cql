@@ -21,7 +21,5 @@ Model Info schema is available here:
 
 [modelinfo.xsd](elm/schema/modelinfo.xsd) - Model info schema used by translation tooling to define model structures
 
-[.note-info]
-____
-NOTE: Model info is an implementation detail included here for convenience, it is not a normative part of the CQL specification.
-____
+> NOTE: Model info is an implementation detail included here for convenience, it is not a normative part of the CQL specification.
+{: .note-info}
