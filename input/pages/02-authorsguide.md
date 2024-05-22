@@ -1967,7 +1967,7 @@ The first expression above returns 3, while the second expression returns 4.
 
 Property expressions can also be used to access the boundary points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed:
 
-[source, cql]
+[source,cql]
 ```
 Interval[3, 5).high
 Interval[3, 5).highClosed

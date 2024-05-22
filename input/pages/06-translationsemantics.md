@@ -438,8 +438,7 @@ In addition to being able to translate CQL to ELM, any given expression of ELM c
 
 This bi-directionality means that a given expression of CQL could be translated to ELM, and then back again. However, because ELM is typically a more primitive representation, this process is not necessarily a “round-trip”. For example, consider the following CQL:
 
-[source,cql]
-```
+``` cql
 A starts within 3 days of start B
 ```
 
@@ -464,8 +463,7 @@ This will actually result in the following ELM output:
 
 The above expression, rendered directly back to CQL would be:
 
-[source,cql]
-```
+``` cql
 days between start of A and start of B in [-3, 3]
 ```
 
@@ -529,8 +527,7 @@ The _ForEach_ operator in ELM takes an argument of type list and returns a list 
 
 This expression returns the list of integers from the List1 expression. Although there is no direct counterpart in CQL, this expression can be represented using the _query_ construct. The source for the _ForEach_ is used as the primary query source, and the _element_ expression is represented using the _return-clause_:
 
-[source,cql]
-```
+``` cql
 List1 A return A.X
 ```
 
@@ -547,8 +544,7 @@ The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, 
 
 Assuming List1 and List2 are defined as specified above, the equivalent CQL is a multi-source query with a source for each operand in the _Times_, and a return clause that builds the resulting tuples:
 
-[source,cql]
-```
+``` cql
 from List1 A, List2 B
   return { X: A.X, Y: B.Y }
 ```
@@ -569,8 +565,7 @@ The _Filter_ operator in ELM filters the contents of a list, returning only thos
 
 Again, although no direct counterpart in CQL exists, the _where_ clause of the _query_ construct provides the equivalent functionality:
 
-[source,cql]
-```
+``` cql
 List1 A where A.X = 1
 ```
 
@@ -588,7 +583,6 @@ The _Sort_ operator in ELM sorts the contents of a list. For example:
 
 Again, the CQL query construct provides the equivalent functionality:
 
-[source,cql]
-```
+``` cql
 List1 A sort by X desc
 ```

@@ -401,7 +401,7 @@ In particular, the use of identifiers that differ only in case should be avoided
 
 A delimited identifier is any sequence of characters enclosed in backticks ([.sym]#`#):
 
-[source, cql]
+[source,cql]
 ```
 `Encounter, Performed`
 `Diagnosis`
