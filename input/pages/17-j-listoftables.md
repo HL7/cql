@@ -7,14 +7,12 @@
 :toc:
 :page-standards-status: informative
 
-[[introduction]]
 ## Introduction
 
 1.  <<01-introduction.adoc#table-1-a,Table 1-A>> : Relationship of the current specifications to each component
 
 2.  <<01-introduction.adoc#table-1-b,Table 1-B>> : Major roles that this specification was written for
 
-[[authors-guide]]
 ## Author's Guide
 
 1.  <<02-authorsguide.adoc#table-2-a,Table 2-A>> : Constructs that CQL libraries can contain
@@ -61,7 +59,6 @@
 
 22.  <<02-authorsguide.adoc#table-2-v,Table 2-V>> : QDM Data elements and their mapping to QUICK data structures
 
-[[developers-guide]]
 ## Developer's Guide
 
 1.  <<03-developersguide.adoc#table-3-a,Table 3-A>> : The basic lexical elements defined in CQL
@@ -84,10 +81,8 @@
 
 10. <<03-developersguide.adoc#table-3-j,Table 3-J>> : The explicit and implicit conversions supported in CQL
 
-[[logical-specification]]
 ## Logical Specification
 
-[[language-semantics]]
 ## Language Semantics
 
 1.  <<05-languagesemantics.adoc#table-5-a,Table 5-A>> : Description of the data defined by each retrieve
@@ -108,7 +103,6 @@
 
 9.  <<05-languagesemantics.adoc#table-5-i,Table 5-I>> : The [.kw]#Quantities# and their precision that can be used for [.kw]#Date# and [.kw]#Time# calculations in CQL
 
-[[translation-semantics]]
 ## Translation Semantics
 
 1.  <<06-translationsemantics.adoc#table-6-a,Table 6-A>> : The ELM equivalent for each CQL declaration
@@ -141,7 +135,6 @@
 
 15.  <<06-translationsemantics.adoc#table-6-o,Table 6-O>> : The ELM equivalent for each CQL construct
 
-[[physical-representation]]
 ## Physical Representation
 
 1.  <<07-physicalrepresentation.adoc#table-7-a,Table 7-A>> : The schemata that defines the ELM physical representation

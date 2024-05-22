@@ -35,7 +35,6 @@ The documentation provided here serves only as a high-level structural reference
 
 Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in [Appendix B – CQL Reference](09-b-cqlreference.html).
 
-[[simple-values]]
 ## Simple Values
 
 Support for simple values is provided by the _Literal_ class. This class defines properties to represent the type of the value, as well as the value itself.
@@ -53,7 +52,6 @@ Literal : Expression
 
 The Literal type defines a single scalar value. For example, the literal 5, the boolean value true or the string "antithrombotic".
 
-[[structured-values]]
 ## Structured Values
 
 Structured values in ELM are values with sets of named elements (tuples), each of which may have a value of any type. Structured values are most commonly used to represent clinical information such as encounters, problems, and procedures.
@@ -127,7 +125,6 @@ If a scope is specified, the name is used to resolve the scope in which the path
 
 Property expressions can also be used to access the individual points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed.
 
-[[clinical-values]]
 ## Clinical Values
 
 The following represents clinical information in ELM.
@@ -327,7 +324,6 @@ The ValueSetRef expression allows a previously defined named value set to be ref
 
 The preserve attribute is trial-use in CQL 1.5.2 and was introduced to allow engines to determine whether or not to expand a ValueSetRef (the 1.4 behavior), ensuring that 1.5 engines can run 1.4 ELM.
 
-[[type-specifiers]]
 ## Type Specifiers
 
 ELM provides the following elements for type specifiers.
@@ -409,7 +405,6 @@ ELM defines the notion of a library as the basic container for logic constructs.
 
 Once defined, libraries can then be referenced by other libraries with the _IncludeDef_ class, which defines properties for the name and version of the library being referenced, as well as a local name that is used to access components of the library.
 
-[[library]]
 ### Library
 
 [source,elm]
@@ -535,7 +530,6 @@ ContextDef : Element
 
 The ContextDef type defines a context used within the library.
 
-[[data-model]]
 ## Data Model
 
 ELM does not reference any specific data model, and so can be used to represent logic expressed against any data model. These data models are specified using the _UsingDef_ class. This class provides attributes for specifying the name and version of the data model. An ELM library can reference any number of models.
@@ -557,7 +551,6 @@ UsingDef : Element
 
 Defines a data model that is available within the artifact.
 
-[[parameters]]
 ## Parameters
 
 In addition to external data, ELM provides a mechanism for defining parameters to an artifact. A library can define any number of parameters, each of which has a name, and a defined type, as well as an optional default value.
@@ -604,7 +597,6 @@ ParameterRef : Expression
 
 The ParameterRef expression allows the value of a parameter to be referenced as part of an expression.
 
-[[expressions]]
 ## Expressions
 
 The ELM Expression component defines a mechanism for representing the structure of logic.
@@ -698,7 +690,6 @@ Aggregate expressions deal with missing information by excluding missing values 
 
 An aggregate operation performed over an empty list is defined to return null, except as noted in the documentation for each operator (Count, AllTrue, and AnyTrue are the exceptions).
 
-[[reusing-logic]]
 ## Reusing Logic
 
 ELM provides a mechanism for reusing expressions by declaring a named expression. This construct is similar to a function call with no parameters in a traditional imperative language, with the exception that since ELM is a pure-functional system, the result of the evaluation could be cached by an implementation to avoid performing the same computation multiple times.
@@ -784,7 +775,6 @@ OperandRef : Expression
 
 The OperandRef expression allows the value of an operand to be referenced as part of an expression within the body of a function definition.
 
-[[queries]]
 ## Queries
 
 ELM provides a mechanism for expressing the structure of a query.
@@ -976,7 +966,6 @@ Without : RelationshipClause
 
 The Without clause restricts the elements of a given source to only those elements that do not have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-difference in database languages.
 
-[[external-data]]
 ## External Data
 
 All access to external data within ELM is represented by _Retrieve_ expressions.
@@ -989,7 +978,6 @@ In addition, the _Retrieve_ introduces the ability to specify optional criteria 
 
 Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unfiltered) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unfiltered context, the data is returned for the entire source.
 
-[[retrieve]]
 ### Retrieve
 
 [source,elm]
@@ -1126,7 +1114,6 @@ This property may be specified as a path, including qualifiers and constant inde
 #### dateSearch
 The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
 
-[[includeelement]]
 ### IncludeElement
 
 The IncludeElement type specifies include information for an include within a retrieve.
@@ -1169,7 +1156,6 @@ ELM defines a standard set of comparison operators for use with simple values. E
 
 For more information on the semantics of the various comparison operators, see the <<09-b-cqlreference.adoc#comparison-operators-4,Comparison Operators>> section of the [CQL Reference](09-b-cqlreference.html).
 
-[[equal]]
 ### Equal
 
 [source,elm]
@@ -1208,7 +1194,6 @@ image:extracted-media/media/image11.png[image,width=109,height=102]
 
 Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 
-[[equivalent]]
 ### Equivalent
 
 [source,elm]
@@ -1419,7 +1404,6 @@ Xor : BinaryExpression
 
 The Xor operator returns the exclusive or of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that the result is true if and only if one argument is true and the other is false, and that the result is false if and only if both arguments are true or both arguments are false. If either or both arguments are null, the result is null.
 
-[[nullological-operators]]
 ## Nullological Operators
 
 ELM defines several nullological operators that are useful for dealing with potentially missing information. These are _Null, IsNull_, _IsTrue_, _IsFalse_, and _Coalesce_.
@@ -1473,7 +1457,6 @@ IsTrue : UnaryExpression
 
 The IsTrue operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; if the argument evaluates to false or null, the result is false.
 
-[[conditional-operators]]
 ## Conditional Operators
 
 ELM defines several conditional expressions that can be used to return different values based on a condition, or set of conditions. These are the _If_ (conditional) expression, and the _Case_ expression.
@@ -1537,7 +1520,6 @@ image:extracted-media/media/image13.png[image,width=143,height=193]
 
 Figure 4‑D - A diagram to explain how ELM represents a simple [.kw]#If# expression
 
-[[arithmetic-operators]]
 ## Arithmetic Operators
 
 ELM provides a complete set of arithmetic operators to allow for manipulation of integer and real values within artifacts. In general, these operators have the expected semantics for arithmetic operators.
@@ -1565,7 +1547,6 @@ If the result of taking the absolute value of the input cannot be represented (e
 
 The Abs operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-[[add]]
 ### Add
 
 [source,elm]
@@ -1936,7 +1917,6 @@ If the argument is null, the result is null.
 
 Precision determines the decimal place at which the rounding will occur. If precision is not specified or null, 0 is assumed.
 
-[[subtract]]
 ### Subtract
 
 [source,elm]
@@ -2026,7 +2006,6 @@ The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quan
 
 For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit.
 
-[[string-operators]]
 ## String Operators
 
 ELM defines a set of string operators to allow for manipulation of string values within artifact definitions.
@@ -2272,7 +2251,6 @@ Note that the definition of uppercase for a given character is a locale-dependen
 
 If the argument is null, the result is null.
 
-[[date-and-time-operators]]
 ## Date and Time Operators
 
 ELM defines several operators for representing the manipulation of date and time values. These operators are defined using a common precision type that allows the various precisions (e.g. day, month, week, hour, minute, second) of time to be manipulated.
@@ -2593,7 +2571,6 @@ Today : OperatorExpression
 
 The Today operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.
 
-[[interval-operators]]
 ## Interval Operators
 
 ELM defines a complete set of operators for use in defining and manipulating interval values.
@@ -2726,7 +2703,6 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the source argument is null, the result is null.
 
-[[contains]]
 ### Contains
 
 [source,elm]
@@ -2786,7 +2762,6 @@ Refer to the <<equal,Equal section>> in the Comparison Operators.
 
 Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 
-[[except]]
 ### Except
 
 [source,elm]
@@ -2829,7 +2804,6 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the source argument is null, the result is null.
 
-[[in]]
 ### In
 
 [source,elm]
@@ -2849,7 +2823,6 @@ For the T, List overload, this operator returns true if the given element is in 
 
 For the T, Interval overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is null. If the second argument is null, the result is false.
 
-[[includes]]
 ### Includes
 
 [source,elm]
@@ -2897,7 +2870,6 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-[[intersect]]
 ### Intersect
 
 [source,elm]
@@ -3167,7 +3139,6 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-[[union]]
 ### Union
 
 [source,elm]
@@ -3200,7 +3171,6 @@ Note that this operator is not defined for intervals of type Date, DateTime, and
 
 If the argument is null, the result is null.
 
-[[list-operators]]
 ## List Operators
 
 ELM allows for the expression and manipulation of lists of values of any type. The most basic list operation is the _List_ class, which represents a simple list selector.
@@ -3500,7 +3470,6 @@ If either argument is null, the result is null.
 
 Refer to the <<union,Union section>> in the Interval Operators.
 
-[[aggregate-operators]]
 ## Aggregate Operators
 
 For computing aggregate quantities, ELM defines several aggregate operators. These operators perform computations on lists of values, either on the elements of the list directly, or on a specific property of each element in the list.
@@ -3736,7 +3705,6 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-[[type-operators]]
 ## Type Operators
 
 For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the [CQL Reference](09-b-cqlreference.html).
@@ -4382,7 +4350,6 @@ For DateTime values, the result is the same as extracting the Time component fro
 
 If the argument is null, the result is null.
 
-[[clinical-operators]]
 ## Clinical Operators
 
 For working with clinical data, ELM defines operators for terminology sets, quantities, and calculating age.
@@ -4558,7 +4525,6 @@ For the Concept overload, this operator returns true if any code in the first co
 
 If either or both arguments are null, the result is null.
 
-[[errors-and-messages]]
 ## Errors and Messages
 
 ELM defines a utility operation that is useful for generating run-time messages, warnings, traces, and errors. The operator is a single, general-purpose function intended to provide a single implementation point for messaging and run-time error functionality when those messages are generated from ELM logic.

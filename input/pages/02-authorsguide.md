@@ -25,7 +25,6 @@ Throughout the discussion, readers may find it helpful to refer to [Appendix B �
 
 And as a final introductory note, CQL is designed to support two levels of usage. The first level focuses on the simplest possible expression of the most common use cases encountered in quality measurement and decision support, while the second level focuses on more advanced capabilities such as multi-source queries and user-defined functions. The first level is covered in this chapter, the Author's Guide, while the second level is covered in the next chapter, the Developer's Guide.
 
-[[declarations]]
 ## Declarations
 
 Constructs expressed within CQL are packaged in containers called _libraries_. Libraries provide a convenient unit for the definition, versioning, and distribution of logic. For simplicity, libraries in CQL correspond directly with a single file.
@@ -57,7 +56,6 @@ A syntax diagram of a library containing all of the constructs can be seen [here
 
 The following sections discuss these constructs in more detail.
 
-[[library]]
 ### Library
 
 The [.kw]#library# declaration specifies both the name of the library and an optional version for the library. The library name is used as an identifier to reference the library from other CQL libraries, as well as eCQM and CDS artifacts. A library can have at most one library declaration.
@@ -73,7 +71,6 @@ The above declaration names the library with the identifier [.id]#CMS153_CQM# an
 
 A syntax diagram of the [.kw]#library# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
 
-[[data-models]]
 ### Data Models
 
 A CQL library can reference zero or more data models with [.kw]#using# declarations. These data models define the structures that can be used within retrieve expressions in the library.
@@ -98,7 +95,6 @@ using QUICK version '0.3.0'
 
 A syntax diagram of the [.kw]#using# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
 
-[[libraries]]
 ### Libraries
 
 A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by name.
@@ -150,7 +146,6 @@ define "SexuallyActive":
 
 A syntax diagram of the [.kw]#include# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
 
-[[terminology]]
 ### Terminology
 
 A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
@@ -194,7 +189,6 @@ This codesystem declaration in this example establishes the local name "SNOMED" 
 
 For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
 
-[[parameters]]
 ### Parameters
 
 A CQL library can define zero or more parameters. Each parameter is defined with the elements listed in the following table:
@@ -251,7 +245,6 @@ In addition, because parameter defaults are part of the declaration, the express
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
 
-[[context]]
 ### Context
 
 The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
@@ -310,7 +303,6 @@ define "Encounters":
 
 The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the <<Retrieve Context>> discussion below.
 
-[[statements]]
 ### Statements
 
 A CQL Library can contain zero or more [.kw]#define# statements describing named expressions that can be referenced either from other expressions within the same library or by containing quality and decision support artifacts.
@@ -331,7 +323,6 @@ Note that the use of terms like [.id]#Encounter#, [.id]#length#, and [.id]#perio
 
 For more information on the use of define statements, refer to the <<Using Define Statements>> section.
 
-[[retrieve]]
 ## Retrieve
 
 The _retrieve_ expression is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
@@ -342,7 +333,6 @@ A syntax diagram of the [.kw]#retrieve# expression can be seen [here](19-l-cqlsy
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
-[[clinical-statement-structure]]
 ### Clinical Statement Structure
 
 The retrieve expression is a reflection of the idea that clinical data in general can be viewed as clinical statements of some type as defined by the model. The type of the clinical statement determines the structure of the data that is returned by the retrieve, as well as the semantics of the data involved.
@@ -358,7 +348,6 @@ In the simplest case, a retrieve specifies only the type of data to be retrieved
 
 Assuming the default context of [.id]#Patient#, this example retrieves all [.id]#Encounter# statements for a patient.
 
-[[filtering-with-terminology]]
 ### Filtering with Terminology
 
 In addition to describing the type of clinical statements, the retrieve expression allows the results to be filtered using terminology, including valuesets, code systems, or by specifying a single code. The use of codes within clinical data is ubiquitous, and most clinical statements have at least one code-valued attribute. In addition, there is typically a “primary” code-valued attribute for each type of clinical statement. This primary code is used to drive the terminology filter. For example:
@@ -418,7 +407,6 @@ define "Get Condition from Exact Match To Code":
 
 Note the last example here is using the _equality_ operator ([.sym#=#]) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
 
-[[retrieve-context]]
 ### Retrieve Context
 
 Within the [.id]#Patient# context, the results of any given retrieve will always be scoped to a single patient, as determined by the environment. For example, in a quality measure evaluation environment, the [.id]#Patient# context may be the current patient being considered. In a clinical decision support environment, the [.id]#Patient# context would be the patient for which guidance is being sought.
@@ -484,7 +472,6 @@ In some cases, measures or decision support artifacts may need to access data fo
 
 ____
 
-[[queries]]
 ## Queries
 
 Beyond the retrieve expression, CQL provides a _query_ construct that allows the results of retrieves to be further filtered, shaped, and extended to enable the expression of arbitrary clinical logic that can be used in quality and decision support artifacts.
@@ -525,7 +512,6 @@ Although the alias in this example is a single-letter abbreviation, [.id]#E#, it
 
 Note that alias names, as with all language constructs, may be the subject of language conventions. The [Formatting Conventions](14-g-formattingconventions.html) section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
 
-[[filtering]]
 ### Filtering
 
 The [.kw]#where# clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to [.kw]#true# for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
@@ -555,7 +541,6 @@ The condition of a [.kw]#where# clause is allowed to contain any arbitrary combi
 
 Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ ([.kw]#null#). For example, if the list of inpatient encounters from the first example contains some elements whose [.id]#period# attribute is [.kw]#null#, the result of the condition for that element will not be [.kw]#false#, but [.kw]#null#, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to [.kw]#true# are included in the result, effectively ignoring the entries for which the logical expression evaluates to [.kw]#null#.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
 
-[[shaping]]
 ### Shaping
 
 The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The [.kw]#return# clause enables this type of query.
@@ -588,7 +573,6 @@ If two encounters have the same value for [.id]#lengthOfStay#, that value will o
   return all E.lengthOfStay
 ----
 
-[[sorting]]
 ### Sorting
 
 CQL queries can sort results in any order using the [.kw]#sort by# clause.
@@ -641,7 +625,6 @@ A query may only contain a single [.kw]#sort# clause, and it must always appear 
 
 When the data being sorted includes [.kw]#nulls#, they are considered lower than any non-null value, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
 
-[[relationships]]
 ### Relationships
 
 In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
@@ -701,7 +684,6 @@ MeasurementPeriodEncounters E
 
 This example retrieves all the elements returned by the expression [.id]#MeasurementPeriodEncounters# that have both a related [.id]#Pharyngitis# and [.id]#Antibiotics# result.
 
-[[full-query]]
 ### Full Query
 
 The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
@@ -758,7 +740,6 @@ Even though this example has multiple [.kw]#without# clauses, there is still onl
 
 Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
 
-[[values]]
 ## Values
 
 CQL supports several categories of values:
@@ -800,7 +781,6 @@ To ensure there can never be a loss of information, this implicit conversion wil
 
 In the sections that follow, the various categories of values that can be represented in CQL will be considered in more detail.
 
-[[simple-values]]
 ### Simple Values
 
 CQL supports several types of simple values:
@@ -826,24 +806,20 @@ CQL supports several types of simple values:
 
 Table 2‑E - Types of simple values that CQL supports
 
-[[boolean]]
 #### Boolean
 
 The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
 
-[[integer]]
 #### Integer
 
 The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
 
 In addition, any operation involving [.id]#Decimal# values can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
 
-[[decimal]]
 #### Decimal
 
 The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
 
-[[string]]
 #### String
 
 [.id]#String# values within CQL are represented using single-quotes:
@@ -913,12 +889,10 @@ For more information on the use of date and time values within CQL, refer to the
 
 Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in [.kw]#null#, rather than the [.kw]#true# or [.kw]#false# that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
 
-[[clinical-values]]
 ### Clinical Values
 
 In addition to simple values, CQL supports some types of values that are specific to the clinical quality domain. For example, CQL supports _codes_, _concepts_, _quantities_, _ratios_, and _valuesets_.
 
-[[quantities]]
 #### Quantities
 
 A quantity is a number with an associated unit. For example:
@@ -974,7 +948,6 @@ ____
 
 For a discussion of the operations available for quantities, see the <<Quantity Operators>> section.
 
-[[ratios]]
 #### Ratios
 
 A ratio is a relationship between two quantities, expressed in CQL using standard mathematical notation:
@@ -987,7 +960,6 @@ A ratio is a relationship between two quantities, expressed in CQL using standar
 
 For a discussion of the operations available for ratios, see the <<Ratio Operators>> section.
 
-[[code]]
 #### Code
 
 The use of codes to specify meaning within clinical data is ubiquitous. CQL therefore supports a top-level construct for dealing with codes using a structure called [.id]#Code# that is consistent with the way terminologies are typically represented.
@@ -1055,7 +1027,6 @@ ____
 Using direct-reference codes can be more difficult for implementations to map to local settings, because modification of the codes for local usage may require modification of the CQL, as opposed to the use of a value set which many systems already have support for mapping to local codes.
 ____
 
-[[concept]]
 #### Concept
 
 Within clinical information, multiple terminologies can often be used to code for the same concept. As such, CQL defines a top-level construct called [.id]#Concept# that allows for multiple codes to be specified.
@@ -1110,7 +1081,6 @@ This example constructs a [.id]#Concept# with display [.lit]#'Type B viral hepat
 
 A syntax diagram of a [.id]#Concept# literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptSelector).
 
-[[valuesets]]
 #### Valuesets
 
 As a value, a valueset is simply a list of [.id]#Code# values. However, CQL allows valuesets to be used without reference to the codes involved by declaring valuesets as a special type of value within the language.
@@ -1170,7 +1140,6 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version 
 When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, in which case some additional aspect is required to ensure uniqueness of the names within the CQL library.
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
 
-[[codesystems]]
 #### Codesystems
 
 In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<Valuesets>> section for an example of a codesystem declaration.
@@ -1266,7 +1235,6 @@ Info.Phones.Number
 
 The result of this invocation is a list containing the [.id]#Number# elements of all the [.id]#Phones# within [.id]#Info#.
 
-[[missing-information]]
 #### Missing Information
 
 Because clinical information is often incomplete, CQL provides a special construct, [.kw]#null#, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the [.id]#admissionDate# element of the Encounter tuple is [.kw]#null#.
@@ -1282,7 +1250,6 @@ If the onsetDateTime is not present, the result of this expression is [.kw]#null
 
 For more information on missing information, see the <<03-developersguide.adoc#nullological-operators,Nullological Operators>> section.
 
-[[list-values]]
 ### List Values
 
 CQL supports the representation of lists of any type of value (including other lists).  Although some operations may result in lists containing mixed types, in normal use cases, lists contain items that are all of the same type.
@@ -1316,7 +1283,6 @@ Note that in general, clinical data may be expected to contain various types of 
 
 For a description of the distinct operator, as well as other operations that can be performed with lists, refer to the <<List Operators>> section.
 
-[[interval-values]]
 ### Interval Values
 
 CQL supports the representation of intervals, or ranges, of values of various types. In particular, intervals of date and time values, and ranges of integers and reals.
@@ -1392,7 +1358,6 @@ point from Interval[1, 1] // Results in 1
 point from Interval[1, 5] // Invalid extractor, this will result in an error
 ----
 
-[[operations]]
 ## Operations
 
 In addition to retrieving clinical information about a patient or set of patients, the expression of clinical knowledge artifacts often involves the use of various operations such as comparison, logical operations such as [.kw]#and# and [.kw]#or#, computation, and so on. To ensure that the language can effectively express a broad range of knowledge artifacts, CQL includes a comprehensive set of operations. In general, these operations are all _expressions_ in that they can be evaluated to return a value of some type, and the type of that return value can be determined by examining the types of values and operations involved in the expression.
@@ -1401,7 +1366,6 @@ This means that for each operation, CQL defines the number and type of each inpu
 
 The following sections define the operations that can be used within CQL, divided into semantically related categories.
 
-[[comparison-operators]]
 ### Comparison Operators
 
 For all the comparison operators, the result type of the operation is [.id]#Boolean#, meaning they may result in [.kw]#true#, [.kw]#false#, or [.kw]#null# (meaning _unknown_). In general, if either or both of the values being compared is [.kw]#null#, the result of the comparison is [.kw]#null#.
@@ -1515,7 +1479,6 @@ In addition, equivalence is defined more loosely than equality for some types:
 
 For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> and <<09-b-cqlreference.adoc#equivalent,Equivalent>> in the CQL reference.
 
-[[logical-operators]]
 ### Logical Operators
 
 Combining the results of comparisons and other boolean-valued expressions is essential and is performed in CQL using the following logical operations:
@@ -1549,7 +1512,6 @@ To ensure that CQL expressions can be freely rewritten by underlying implementat
 
 ____
 
-[[arithmetic-operators]]
 ### Arithmetic Operators
 
 The expression of clinical logic often involves numeric computation, and CQL provides a complete set of arithmetic operations for expressing computational logic. In general, these operators have the standard semantics for arithmetic operators, with the general caveat that unless otherwise stated in the documentation for a specific operation, if any argument to an operation is [.kw]#null#, the result is [.kw]#null#. In addition, calculations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in [.kw]#null#, rather than a run-time error.
@@ -1716,7 +1678,6 @@ For a detailed discussion of calendar calculation semantics, refer to [Appendix 
 
 For comparisons involving time durations (where no anchor to a calendar is available), the duration of a year is considered to be 365 days, and the duration of a month is considered to be 30 days. Duration calculations involving weeks consider a week as equivalent to 7 days.
 
-[[comparing-dates-and-times]]
 #### Comparing Dates and Times
 
 CQL supports comparison of [.id]#Date# and [.id]#Time# values using the expected comparison operators. Note however, that when [.id]#Date# and [.id]#Time# values are not specified completely, the result may be [.kw]#null#, depending on whether there is enough information to make an accurate determination. In general, CQL treats [.id]#Date# and [.id]#Time# values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
@@ -1810,7 +1771,6 @@ Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
 
 The result in this example is [.kw]#null# because the first date has no _hour_ component.
 
-[[extracting-date-and-time-components]]
 #### Extracting Date and Time Components
 
 Given a [.id]#Date# and [.id]#Time# value, CQL supports extraction of any of the components. For example:
@@ -1905,7 +1865,6 @@ ____
 Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See [Use of FHIR Quantity](http://hl7.org/fhir/fhirpath.html#quantity) for an example.
 ____
 
-[[computing-durations-and-differences]]
 #### Computing Durations and Differences
 
 In addition to constructing durations, CQL supports the ability to compute duration and difference between two [.id]#DateTimes#. For duration, the calculation is performed based on the calendar duration for the precision. For difference, the calculation is performed by counting the number of boundaries of the specific precision crossed between the two dates.
@@ -1976,7 +1935,6 @@ If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 For a detailed set of examples of calculating time intervals, please refer to [Appendix H - Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
-[[timing-and-interval-operators]]
 ### Timing and Interval Operators
 
 Clinical information often contains not only date and time information as timestamps (points in time), but intervals of time, such as the effective time for an encounter or condition. Moreover, clinical logic involving this information often requires the ability to relate this temporal information. For example, a clinical quality measure might look for “patients with an inpatient encounter during which a condition started”. CQL provides an exhaustive set of operators for describing these types of temporal relationships between clinical information.
@@ -1988,7 +1946,6 @@ These interval operations can be broadly categorized as follows:
 * Timing – Describing the relationship between two intervals using boundaries
 * Computation – Using existing intervals to compute new ones
 
-[[operating-on-intervals]]
 #### Operating on Intervals
 
 General interval operators in CQL provide basic operations for dealing with interval values, including construction, extraction, and membership.
@@ -2081,7 +2038,6 @@ difference in days between start of X and end of X
 
 The first expression returns the number of whole days between the starting and ending dates of the interval X, while the second expression returns the number of day boundaries crossed between the starting and ending dates of the interval X.
 
-[[comparing-intervals]]
 #### Comparing Intervals
 
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
@@ -2097,7 +2053,6 @@ In addition, CQL allows [.kw]#meets# and [.kw]#overlaps# to be invoked without t
 
 Note that to use these operators, the intervals must be of the same point type. For example, it is invalid to compare an interval of dates or times with an interval of numbers.
 
-[[timing-relationships]]
 #### Timing Relationships
 
 In addition to the interval comparison operators described above, CQL allows various timing relationships to be expressed by directly accessing the start and end boundaries of the intervals involved. For example:
@@ -2198,7 +2153,6 @@ X occurs within 3 days of start Y
 
 The [.kw]#occurs# keyword is both optional and ignored by CQL. It is only provided to enable more natural phrasing.
 
-[[computing-intervals]]
 #### Computing Intervals
 
 CQL provides several operators that can be used to combine existing intervals into new intervals. For example:
@@ -2261,7 +2215,6 @@ In addition, the boundaries may even be specified to different levels of precisi
 Interval[Date(2014), Date(2015, 1, 1)]
 ----
 
-[[list-operators]]
 ### List Operators
 
 Clinical information is almost always stored, collected, and presented in terms of lists of information. As a result, the expression of clinical knowledge almost always involves dealing with lists of information in some way. The query construct already discussed provides a powerful mechanism for dealing with lists, but CQL also provides a comprehensive set of operations for dealing with lists in other ways. These operations can be broadly categorized into three groups:
@@ -2270,7 +2223,6 @@ Clinical information is almost always stored, collected, and presented in terms 
 * Comparisons – Operations for comparing one list to another
 * Computation – Operations for constructing new lists based on existing ones
 
-[[operating-on-lists]]
 #### Operating on Lists
 
 Although the most common source of lists in CQL is the retrieve expression, lists can also be constructed directly using the _list selector_ discussed in List Values.
@@ -2344,7 +2296,6 @@ In the above examples, the first expression returns [.lit]#1#, and the second ex
 
 In addition, to provide consistent and intuitive semantics when dealing with lists, whenever an operation needs to determine whether or not a given list contains an element (including list operations discussed later such as [.kw]#intersect#, [.kw]#except#, and [.kw]#distinct#), CQL uses equality semantics.
 
-[[comparing-lists]]
 #### Comparing Lists
 
 In addition to list equality, already discussed in <<Comparison Operators>>, lists can be compared using the following operators:
@@ -2387,7 +2338,6 @@ In the above examples, the first two expressions are [.kw]#true#, but the next t
 
 Note that [.kw]#during# is a synonym for [.kw]#included in# and can be used anywhere included in is allowed. The syntax allows for both keywords to enable more natural phrasing of time-based relationships depending on context.
 
-[[computing-lists]]
 #### Computing Lists
 
 CQL provides several operators for computing new lists from existing ones.
@@ -2481,7 +2431,6 @@ Note also that flatten only flattens one level, it is not recursive.
 
 Although the examples in this section primarily use lists of integers, these operators work on lists with elements of any type.
 
-[[lists-of-intervals]]
 #### Lists of Intervals
 
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
@@ -2511,7 +2460,6 @@ expand EffectivePeriods per day
 
 This expression would result in the list of _day_ intervals, one for each day in the intervals in the input.
 
-[[aggregate-operators]]
 ### Aggregate Operators
 
 Summaries and statistical calculations are a critical aspect of being able to represent clinical knowledge, especially in the quality measurement domain. Thus, CQL includes a comprehensive set of aggregate operators.
@@ -2566,12 +2514,10 @@ The following table lists the aggregate operators available in CQL:
 
 Table 2‑T - The aggregate operators available in CQL
 
-[[clinical-operators]]
 ### Clinical Operators
 
 CQL supports several operators for use with the various clinical types in the language.
 
-[[quantity-operators]]
 #### Quantity Operators
 
 All quantities in CQL have _unit_ and _value_ components, which can be accessed in the same way as properties. For example:
@@ -2599,7 +2545,6 @@ Note that complete support for unit conversion for all valid UCUM units would be
 
 ____
 
-[[ratio-operators]]
 #### Ratio Operators
 
 All ratios in CQL have _numerator_ and _denominator_ components, which can be accessed in the same way as properties. For example:
@@ -2626,7 +2571,6 @@ Note that the relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [
 
 ____
 
-[[terminology-operators]]
 #### Terminology Operators
 
 In addition to providing first-class _valueset_ and _codesystem_ constructs, CQL provides operators for retrieving and testing membership in valuesets and codesystems:
@@ -2650,7 +2594,6 @@ Note that this operator can be invoked with a code argument of type [.id]#String
 
 A common terminological operation involves determining whether a given concept is _implied_, or _subsumed_ by another. This operation is generally referred to as _subsumption_ and although useful, is deliberately omitted from this specification. The reason for this omission different terminology systems generally provide different mechanisms for defining and interpreting subsumption relationships. As a result, specifying how that occurs is beyond the scope of CQL at this time. This is not to say that a specific library of subsumption operators could not be provided and broadly adopted and used, only that the CQL specification does not prescribe the semantics of that operation.
 
-[[patient-operators]]
 #### Patient Operators
 
 To support determination of patient age consistently throughout quality logic, CQL defines several age-related operators:
@@ -2687,14 +2630,12 @@ These operators calculate age using calendar duration.
 
 Note that when Age operators are invoked in an unspecified context, the result is a list of patient ages, not a single age for the current patient.
 
-[[authoring-artifact-logic]]
 ## Authoring Artifact Logic
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
 Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the [Examples](examples.html) included with this specification.
 
-[[running-example]]
 ### Running Example
 
 The running example for this walkthrough is a simplification of CMS153, version 2, Chlamydia Screening for Women. The original QDM for this measure was simplified by including only references to the following QDM data elements:
@@ -2758,7 +2699,6 @@ Note that the specific mapping to the QUICK data structures is beyond the scope 
 
 Note also that the use of the QDM as a starting point was deliberately chosen to provide familiarity and is not a general requirement for building CQL. Artifact development could also begin directly from clinical guidelines expressed in other formats or directly from relevant clinical domain expertise. Using the QDM provides a familiar way to establish the starting requirements.
 
-[[clinical-quality-measure-logic]]
 ### Clinical Quality Measure Logic
 
 For clinical quality measures, the CQL library simply provides a repository for definitions of the populations involved. CQL is intended to support both CQM and CDS applications, so it does not contain quality measure specific constructs. Rather, the containing artifact definition, such as an HQMF document, would reference the appropriate criteria expression by name within the CQL document.
@@ -2958,7 +2898,6 @@ define "InInitialPopulation":
     )
 ----
 
-[[using-define-statements]]
 ### Using Define Statements
 
 Because CQL allows any number of [.kw]#define# statements with any identifiers, we can structure the logic of the measure to communicate more meaning to readers of the logic. For example, if we look at the description of the quality measure:
@@ -3075,7 +3014,6 @@ define "InNumerator":
     where R.issued during MeasurementPeriod and R.result is not null)
 ----
 
-[[clinical-decision-support-logic]]
 ### Clinical Decision Support Logic
 
 Using the same simplified measure expression as a basis, we will now build a complementary clinical decision support rule that can provide guidance at the point-of-care. In general, when choosing what decision support artifacts will be most complementary to a given quality measure, several factors must be considered including EHR and practitioner workflows, data availability, the potential impacts of the guidance, and many others.
@@ -3196,7 +3134,6 @@ define "ChlamydiaScreeningRequest": ProcedureRequest {
 
 The containing artifact would then use this expression as the target of an action, evaluating the expression if the condition of the decision support rule is met, and returning the result as the proposal to the calling environment.
 
-[[using-libraries-to-share-logic]]
 ### Using Libraries to Share Logic
 
 The previous examples of building a quality measure and a decision support artifact have so far demonstrated the ability to describe the logic involved using the same underlying data model, as well as the same expression language. Now we can take that one step further and look at the use of CQL libraries to actually express the artifacts using the same logic, rather than just the same data model and language.

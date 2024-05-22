@@ -11,7 +11,6 @@ As discussed in the introductory section, this specification covers three levels
 
 To achieve these goals, the Logical level establishes a semantically complete bi-directional mapping between the Conceptual and Physical levels. This chapter describes this mapping in more detail, and sketches a process for translation from the Conceptual to the Logical, and from the Logical to the Conceptual. The Physical level is an isomorphic concrete realization of the Logical level; translation between the Logical and Physical levels is therefore a matter of serialization and realization of the data model, and is covered in detail in the [Physical Representation](07-physicalrepresentation.html) chapter.
 
-[[cql-to-elm]]
 ## CQL-to-ELM
 
 Every statement of CQL has a semantically equivalent representation in ELM. As such, it is possible to programmatically translate any statement of CQL into its equivalent ELM representation. The following sections define the mappings between the language elements of CQL and their equivalent ELM representations, as well as providing a sketch for how these mappings could be used to translate from CQL to ELM.
@@ -89,7 +88,6 @@ The following table defines the mapping between the various CQL literals and the
 
 Table 6‑C - The ELM equivalent for each CQL Literal
 
-[[functions]]
 ### Functions
 
 Most of the functions and operations available in CQL have a direct counterpart in ELM. For ease of reference, the operations and functions are grouped the same way they are in the CQL Reference.
@@ -110,7 +108,6 @@ Most of the functions and operations available in CQL have a direct counterpart 
 
 Table 6‑D - The ELM equivalent for each CQL logical operator
 
-[[type-operators]]
 #### Type Operators
 
 [[table-6-e]]
@@ -405,7 +402,6 @@ Table 6‑O - The ELM equivalent for each CQL construct
 
 Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
 
-[[translation-options]]
 ### Translation Options
 
 There are several points throughout the specification that introduce optionality to support different use cases and implementation goals. This section provides a summary of those options with an explanation of their impact on translation and language features.
@@ -415,17 +411,14 @@ ____
 Note that implementations may define other options as appropriate for their translation use cases, but these options all potentially impact whether a given library of CQL can be correctly compiled, and should therefore be used with care. Implementations that make use of these options should provide facilities for ensuring that these options are communicated as part of the resulting ELM output, as well as that the appropriate options are used if the CQL library is re-translated by consuming environments.
 ____
 
-[[disable-list-promotion-and-demotion]]
 #### Disable List Promotion and Demotion
 
 List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the [.kw]#singleton from# operator) and vice-versa (by invoking the [.id]#ToList# function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see [List Promotion and Demotion](03-developersguide.html#promotion-and-demotion).
 
-[[disable-list-traversal]]
 #### Disable List Traversal
 
 In addition to list promotion and demotion, CQL allows for paths to be traversed through list-valued elements. Again, this is useful when writing expressions against models with variable cardinality elements, and can be disabled with the _disable-list-traversal_ option. For a more detailed discussion, see [Path Traversal](03-developersguide.html#path-traversal).
 
-[[disable-method-invocation]]
 #### Disable Method Invocation
 
 To support FHIRPath as the base expression language for CQL, beginning with 1.3, the option to allow functions to be invoked using method-style invocation was introduced. This feature can be disabled using the _disable-method-invocation_ option. For a more complete discussion, see [Method Invocation](03-developersguide.html#method-invocation).
@@ -435,12 +428,10 @@ ____
 Note that with the introduction of [Fluent Functions](03-developersguide.html#fluent-functions) in 1.5, using this option effectively disables fluent functions as well.
 ____
 
-[[require-from-keyword]]
 #### Require From Keyword
 
 To encourage consistent use of the [.kw]#from# keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See [Query Syntax Options](03-developersguide.html#query-syntax-options) for more discussion.
 
-[[elm-to-cql]]
 ## ELM-to-CQL
 
 In addition to being able to translate CQL to ELM, any given expression of ELM can be represented in CQL. Support for this direction of translation would be useful for applications that produce ELM from another source, and need to display a human-readable representation of the logic.
@@ -527,7 +518,6 @@ The examples in the following section will make use of the following expression 
 </def>
 ----
 
-[[foreach]]
 ### ForEach
 
 The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
@@ -547,7 +537,6 @@ This expression returns the list of integers from the List1 expression. Although
 List1 A return A.X
 ----
 
-[[times]]
 ### Times
 
 The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
@@ -568,7 +557,6 @@ from List1 A, List2 B
   return { X: A.X, Y: B.Y }
 ----
 
-[[filter]]
 ### Filter
 
 The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:

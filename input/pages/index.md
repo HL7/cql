@@ -32,7 +32,6 @@ ____
 |[Title Page](title.html) |[License](license.html) |http://cql.hl7.org/history.html[Version History] |[Executive Summary](00-executivesummary.html)
 |===
 
-[[getting-started]]
 ## Getting Started
 
 Welcome to the HL7 Clinical Quality Language (CQL) specification!
@@ -41,7 +40,6 @@ CQL has matured into a capable and flexible specification for representing clini
 
 To join the active and growing community of CQL authors and implementers, subscribe to the [CQL stream](https://chat.fhir.org/#narrow/stream/179220-cql) on the FHIR Zulip. As with any HL7 specification, we welcome continued feedback and are constantly striving to improve. If you have comments or suggestions, or even just notice a typo, please let us know by submitting an issue via the [HL7 JIRA](http://jira.hl7.org), just set the "Project" to FHIR and the "Specification" to "Clinical Quality Language" in the issue you submit.
 
-[[organization-of-this-specification]]
 ## Organization of this Specification
 
 The organization of this specification follows the outline of the perspectives discussed in the Approach section—conceptual, logical, and physical. Below is a listing of the chapters with a short summary of the content of each.

@@ -1,4 +1,3 @@
-[[examples]]
 # Examples
 :page-layout: dev
 :backend: xhtml
@@ -8,7 +7,6 @@
   
 The examples provided here illustrate the use of Clinical Quality Language to express the logic involved in decision support and quality measurement artifacts. The examples are intended for educational and demonstration purposes only and should not be considered endorsed or production ready.
 
-[[chlamydia-screening-examples]]
 ## Chlamydia Screening Examples
 
 These examples illustrate the logic for coordinated decision support and quality measurement artifacts expressed in CQL, as developed in the Author's Guide. The first set illustrates independent logic, and the second set illustrates the same artifacts using a common library to share logic.
@@ -61,14 +59,12 @@ ELM Artifacts with Debug Information Included:
 
 These examples illustrate various quality measures expressed in CQL.
 
-[[cms26v2]]
 ### CMS26v2
 
 * [CQL](examples\CMS26v2_CQM.cql)
 * [ELM (XML)](examples\CMS26v2_CQM.xml)
 * [ELM (JSON)](examples\CMS26v2_CQM.json)
 
-[[cms55v1]]
 ### CMS55v1
 
 Using QUICK:
@@ -83,14 +79,12 @@ Using QDM:
 * [ELM (XML)](examples\CMS55v1_QDM.xml)
 //* [ELM (JSON)](examples\CMS55v1_QDM.json)
 
-[[cms135]]
 ### CMS135
 
 * [CQL](examples\CMS135_QDM.cql)
 * [ELM (XML)](examples\CMS135_QDM.xml)
 * [ELM (JSON)](examples\CMS135_QDM.json)
 
-[[cms146v2]]
 ### CMS146v2
 
 Using QUICK:
@@ -105,14 +99,12 @@ Using QDM:
 * [ELM (XML)](examples\CMS146v2_QDM.xml)
 * [ELM (JSON)](examples\CMS146v2_QDM.json)
 
-[[cms154v1]]
 ### CMS154v1
 
 * [CQL](examples\CMS154v1_NQF0069.cql)
 * [ELM (XML)](examples\CMS154v1_NQF0069.xml)
 * [ELM (JSON)](examples\CMS154v1_NQF0069.json)
 
-[[cms179v2]]
 ### CMS179v2
 
 Using QUICK:
@@ -127,7 +119,6 @@ Using QDM:
 * [ELM (XML)](examples\CMS179v2_QDM.xml)
 * [ELM (JSON)](examples\CMS179v2_QDM.json)
   
-[[mother-infant-measure]]
 ### Mother Infant Measure
 
 This example illustrates the use of related-context retrieves to access the

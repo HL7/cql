@@ -16,7 +16,6 @@ This guidance describes syntactic conventions and best practices for authoring s
 * _Keyword_ - Grammar-recognized keywords such as [.id]#define# and [.id]#where#
 * _Identifier_ - User-defined identifiers
 
-[[case-related-conventions]]
 ## Case-Related Conventions
 
 CQL is a case-sensitive language, meaning that the grammar uses the case of letters when comparing identifiers and keywords. For example, the keyword [.id]#define# must be expressed with all lower case letters, [.id]#Define# is not recognized. This aspect of CQL encourages consistency and reduces the potential for naming clashes with keywords in the language.
@@ -28,7 +27,6 @@ This discussion defines the following terms to describe different approaches to 
 * PascalCase - First letters of words are capitalized, including words not capitalized in Title Case like "and" and "of", with no whitespace characters allowed
 * Title Case - Standard title casing including spaces and tabs, but no other whitespace characters allowed
 
-[[cql-defined-casing]]
 ### CQL-Defined Casing
 
 These casings are defined by the specification, so they are not conventions per se, but are highlighted here for completeness.
@@ -39,7 +37,6 @@ System library functions are always PascalCase.
 
 System type names are always PascalCase.
 
-[[spacing-conventions]]
 ## Spacing Conventions
 
 CQL treats all whitespace as a single token, meaning that it doesn't matter whether you use spaces or tabs to separate keywords and other tokens, so long as you have some whitespace as defined by the rules of the language. This allows authors to format their expressions using whatever conventions are appropriate for their environment. While this flexibility is beneficial in that it allows CQL to be used in a wide variety of settings, it can also lead to inconsistent formatting, reducing readability. As such, these simple conventions are recommended to ensure consistent formatting:
@@ -59,7 +56,6 @@ To help maintain readability of CQL, lines should fit reasonably within standard
 
 CQL distinguishes between _operators_, which use symbols such as [.sym]#+#, [.sym]#*#, and and, [.id]#and# _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
 
-[[operators]]
 ### Operators
 
 Operators are always keywords, and always lowercase.
@@ -103,7 +99,6 @@ For Quantities, always put a space between the numerical value and the unit:
 28 'mm[Hg]'
 ----
 
-[[intervals]]
 ### Intervals
 
 Intervals can be expressed based on any type that supports ordered comparison (Integer, Decimal, DateTime, Time, Quantity).
@@ -121,7 +116,6 @@ Never put a space before or after the opening or closing boundary.
 
 Always put a space after the comma.
 
-[[lists-and-tuples]]
 ### Lists and Tuples
 
 Lists in CQL can contain elements of any type.
@@ -186,7 +180,6 @@ If a query, or a clause of a query, needs more than one line, continue the claus
 
 When a query needs multiple lines, each clause should start on a new line indented one level.
 
-[[syntax-highlighting]]
 ## Syntax Highlighting
 
 Syntax highlighting is an important aspect of readability. In order to enable different environments to provide consistent highlighting, the following syntactic categories are defined for CQL:
@@ -204,12 +197,10 @@ Syntax highlighting is an important aspect of readability. In order to enable di
 ** Variable Identifiers
 ** Function Identifiers
 
-[[best-practices]]
 ## Best Practices
 
 The following sections discuss best practices for authoring readable, maintainable, and reusable CQL.
 
-[[direct-reference-codes]]
 ### Direct Reference Codes
 
 Using "direct reference codes", involves declaring an identifier for a specific code in a code system, and using that directly within the logic. That's appropriate for cases where you know exactly what you want, and there's very little possibility for variation on that (i.e. systems are likely to use those codes directly, rather than have local codes that they are mapping to).

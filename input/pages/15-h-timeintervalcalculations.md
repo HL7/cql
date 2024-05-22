@@ -50,10 +50,8 @@ In addition to duration and difference calculations, CQL provides timing phrases
 
 The following sections provide detailed examples of calculating duration and difference, as well as interpreting timing phrases of CQL.
 
-[[calculating-duration-in-years]]
 ## Calculating Duration in Years
 
-[[definition]]
 ### Definition
 
 In CQL, a _year_ is defined as the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at:
@@ -63,7 +61,6 @@ In CQL, a _year_ is defined as the duration of any time interval which starts at
 
 *Note:* When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 
-[[examples]]
 ### Examples
 
 #### Scenario 1
@@ -116,7 +113,6 @@ Duration = year (date 2) - year (date 1) = 2014 - 2012 = *2 years*
 
 *Note:* Because there is no February 29 in 2014, per the <<05-languagesemantics.adoc#datetime-arithmetic-1,Date and Time Arithmetic>> section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + *1 year* = 2013-02-28)
 
-[[negative-examples]]
 ### Negative Examples
 
 #### Scenario 5
@@ -165,7 +161,6 @@ Date 1: 2015-*11*-05 05:50:45 +
 Date 2: 2013-*03*-29 11:01:05 +
 Duration = year (date 2) - year (date 1) = 2013 - 2015 = *-2 years*
 
-[[calculating-duration-in-months]]
 ## Calculating Duration in Months
 
 [[definition-1]]
@@ -236,7 +231,6 @@ Date 2: 2011-08-*21* 05:48:02 +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) + 1 +
 # (2011 - 2012) * 12 + (8 - 6) + 1 = (-12) + (2) + 1 = *-9 months*
 
-[[calculating-duration-in-weeks]]
 ## Calculating Duration in Weeks
 
 [[definition-2]]
@@ -261,7 +255,6 @@ Date 2: 2013-05-12 20:25:30 +
 Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1) + 1) + # days (month (date 1) + 2) + ... + # days (month (date 2) - 1) + day (date 2)+++]+++ / 7 +
 # (12 - 26) / 7 = -14/7 = *-2 weeks*
 
-[[calculating-duration-in-days]]
 ## Calculating Duration in Days
 
 [[definition-3]]
@@ -315,7 +308,6 @@ Duration = 12-04 - 12-05 = *-1 day*
 
 
 
-[[calculating-duration-in-hours]]
 ## Calculating Duration in Hours
 
 [[definition-4]]
@@ -359,7 +351,6 @@ Date 1: 2013-10-10 12:00:00 +
 Date 2: 2013-10-10 11:30:00 +
 Duration = *0 hours*
 
-[[calculating-duration-in-minutes]]
 ## Calculating Duration in Minutes
 
 [[definition-5]]
@@ -393,7 +384,6 @@ Date 1: 2012-12-30 00:20:00 +
 Date 2: 2012-12-29 22:00:00 +
 Duration = *-140 minutes*
 
-[[difference-calculations]]
 ## Difference Calculations
 
 Difference calculations are performed by truncating the datetime values at the next precision, and then performing the corresponding duration calculation on the truncated values.
@@ -504,10 +494,8 @@ Date 2 (normalized): 2016-10-31 03:45:55 +
 Difference (minutes) = Duration (minutes) between 2016-10-31 04:30:00.0 and 2016-10-31 03:45:00.0 +
 Difference (minutes) = *-45 minutes*
 
-[[interpreting-timing-phrases]]
 ## Interpreting Timing Phrases
 
-[[same-as]]
 ### Same as
 To directly compare two date/time values, you can use the standard equality operators:
 
@@ -533,7 +521,6 @@ When used without a precision specifier as in the above example, the `same as` t
 
 This returns true because the comparison only proceeds to the `month` precision.
 
-[[relative-comparison]]
 ### Relative comparison
 
 To determine whether a date/time value is before or after another, CQL supports relative comparisons. As with equality, the standard relative comparison operators can be used:
@@ -561,7 +548,6 @@ When no precision specifier is provided, these phrases are equivalent to the sta
 
 This comparison returns false, because although July 30th is _before_ July 31st, the comparison only proceeds to the _month_ and the months are the same.
 
-[[direct-comparison-with-offsets]]
 ### Direct comparison with offsets
 
 Timing phrases for comparison can also include an _offset_, which allows a _duration_ to be considered as part of the comparison. For example:
@@ -587,7 +573,6 @@ This returns false because 8:30AM on July 1st is more than 1 hour before 10:30AM
 
 The result of this comparison is true.
 
-[[relative-comparison-with-offsets]]
 ### Relative comparison with offsets
 
 When using `or less`, the comparison is evaluated by considering an interval:
@@ -815,7 +800,6 @@ days (weeks, hours) *between* A and B +
 
 Table H-D - Timing phrase interpretation summary
 
-[[during-and-includes]]
 ### During and includes
 
 [source,cql]

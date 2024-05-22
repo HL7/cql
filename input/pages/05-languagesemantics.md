@@ -11,12 +11,10 @@ This section contains more detailed information relating to the intended semanti
 
 Note that the semantics are described here with reference to the representation defined by the ELM, but because CQL syntax is equivalent to ELM, the semantics apply to CQL as well.
 
-[[clinical-data-retrieval-in-quality-artifacts]]
 ## Clinical Data Retrieval in Quality Artifacts
 
 This section discusses the problem of clinical data retrieval in the clinical quality space in general, and how the problem is addressed in the CQL specification.
 
-[[defining-clinical-data]]
 ### Defining Clinical Data
 
 The problem of determining what data is required in the evaluation of an artifact containing arbitrary queries against the data model is equivalent to the problem of query containment from database theory. This problem is known to be undecidable for arbitrary queries of the relational algebra, but is also shown to be both decidable and equivalent to the problem of query evaluation for the restricted class of conjunctive queries (Foundations of Databases, Abiteboul, Hull, Vianu).
@@ -39,7 +37,6 @@ Third, by using standard terminologies within this data interface, the CQL speci
 
 These three motivating factors inform the design of the _retrieve_ expression (_Retrieve_ element in ELM) used within the CQL specification.
 
-[[conformance-levels]]
 ### Conformance Levels
 
 Even though CQL and ELM are intended to be used with a standard data model, there are many possibilities for variance in the way that data is provided, even within a particular model. This problem leads to the potential for artifacts to reference properties within the model that may or not be provided within a given specific instance of clinical data. To address this potential problem, the retrieve elements within ELM specify not only the type of the data (meaning the specific model type being retrieved), but optionally a template, or profile identifier that further constrains the data that is expected in a given retrieve. If a template identifier is provided, then the retrieve expression is expected to return only data that matches the constraints in the given template.
@@ -60,17 +57,14 @@ In this example, the data type is specified as "[.id]#quick:Condition#", indicat
 
 To help communicate validity of an artifact for a specific use, this specification defines two conformance levels related to this use of templates:
 
-[[strict-conformance]]
 #### Strict Conformance
 
 A quality artifact can be said to be strictly conforming if all references to clinical statement model properties (elements and attributes of model types) within the artifact are explicitly constrained by the templates used in the retrieves.
 
-[[loose-conformance]]
 #### Loose Conformance
 
 A quality artifact can be said to be loosely conforming if the artifact references properties that are not explicitly constrained by the templates used in the retrieves. This is not to say that the artifact is necessarily invalid, just that the instances of clinical data provided to the retrieve may or may not contain the elements referenced by properties within the artifact.
 
-[[language-capabilities]]
 #### Language Capabilities
 
 Because of the scope of CQL, and the various implementation options for different features of the language, implementations may find it useful to advertise the language capabilities they support. The following list is a summary of language capabilities of CQL:
@@ -139,7 +133,6 @@ Because of the scope of CQL, and the various implementation options for differen
 
 Using these capabilities to advertise support, and enabling implementations to declare usage of these features within CQL, will allow authors and implementers to understand run-time implications of the CQL they are creating and using.
 
-[[version-differences]]
 #### Version Differences
 
 To help implementers correctly support version differences and backwards (and to the extent possible, forwards) compatibility, the following sections describe version-specific behavior differences in CQL operators, functions, and language constructs.
@@ -229,7 +222,6 @@ In 1.4, the [.kw]#timezone# keyword was changed to [.kw]#timezoneoffset# and the
 
 In 1.5, a [.id]#Vocabulary# abstract type with two subtypes, [.id]#CodeSystem# and [.id]#ValueSet#, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from [.id]#List#[.sym]#<#[.id]#Code#[.sym]#># to [.id]#ValueSet#. To ensure this is not a backwards-incompatible change, 1.5 also introduced an [.id]#ExpandValueSet# function to support explicit expansion of value sets, and an implicit conversion from [.id]#ValueSet# to [.id]#List#[.sym]#<#[.id]#Code#[.sym]#>#. In the ELM, the [.id]#preserve# attribute was added to the [.id]#ValueSetRef# node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a [.id]#ValueSetRef# should be expanded or not.
 
-[[artifact-data-requirements]]
 ### Artifact Data Requirements
 
 Because of the way data access is modeled within CQL, the data requirements of a particular artifact can be clearly and accurately defined by inspecting only the _Retrieve_ expressions defined within the artifact. The following table broadly describes the data defined by each retrieve:
@@ -318,7 +310,6 @@ To allow searching by component codes, consider further that this data model def
 </operand>
 ----
 
-[[expression-language-semantics]]
 ## Expression Language Semantics
 
 In order to completely specify the semantics of the expression logic defined by CQL, the intended execution model for expressions must be clearly defined. The following sections discuss the conceptual components of the expression language, and how these components are defined to operate.
@@ -341,40 +332,34 @@ A _value_ within CQL represents some piece of data. All values are of some _type
 4.  Interval types – Types representing an interval of some declared type, called the _point_ type
 5.  Choice types - Types representing values from a set of possible types
 
-[[simple-types]]
 #### Simple Types
 
 Simple types allow for the representation of simple, atomic types, such as integers and strings. For example, the value *5* is a value of type _Integer_, meaning that it can be used in operations that require integer-valued input such as addition or comparison.
 
 Note that because CQL defines a set of basic supported types, an implementation must map these types to the equivalent types in the selected data model. Ideally, this mapping would occur as part of the data access layer to isolate the mapping and minimize complexity.
 
-[[structured-types]]
 #### Structured Types
 
 Structured types allow for the representation of composite values. Typically, these types correspond to the model types defined in the clinical data model used for the artifact. Structured types are defined as containing a set of named properties, each of which are of some type, and may have a value of that type.
 
 As with simple types, the core expression layer does not define any structured types, it only provides facilities for constructing values of structured types and for operating on structured values.
 
-[[collection-types]]
 #### Collection Types
 
 Collection types allow for the representation of lists and sets of values of any type. All the values within a collection are expected to be of the same type.
 
 Collections may be empty, and are defined to be 0-based for indexing purposes.
 
-[[interval-types]]
 #### Interval Types
 
 Interval types allow for the representation of ranges over some point type. For example, an interval of integers allows the expression of the interval 1 to 5. Intervals can be open or closed at the beginning and/or end of the interval, and the beginning or end of the interval can be unspecified.
 
 The core expression layer does not define any interval types, it only provides facilities for constructing values of interval types, and for operating on intervals.
 
-[[choice-types]]
 #### Choice Types
 
 Choice types allow for the representation of elements that may be any of a possible list of types. A given value at run-time will always be of a specific type, so a choice type is only a compile-time construct that allows for data models that contain elements with multiple possible types, or for the results of expressions where the result may be any of a possible set of types (e.g. a union of different types).
 
-[[language-elements]]
 ### Language Elements
 
 The expression language represented by the ELM is defined as an Abstract Syntax Tree. Whereas a traditional language would have syntax and require lexical analysis and parsing, using the ELM exclusively allows expressions to be represented directly as trees. This removes potential ambiguities such as operator order precedence, and makes analysis and processing of the expressions in the language much easier.
@@ -389,7 +374,6 @@ Each expression returns a value of some type, and an expression or function defi
 
 These expressions and expression definitions are then used throughout the CQL specification wherever logic needs to be defined within an artifact.
 
-[[semantic-validation]]
 ### Semantic Validation
 
 Semantic Validation of an expression within CQL is the process of verifying that the meaning of the expression is valid. This involves determining the type of each expression, and verifying that the arguments to each operation have the correct type.
@@ -421,7 +405,6 @@ During validation, the implementation must maintain a stack of symbols that trac
 
 Details for the specifics of type determination for each operator are provided with the documentation for those operators.
 
-[[execution-model]]
 ### Execution Model
 
 All logic in CQL is represented as _expressions_. The language is pure functional, meaning no operations are allowed to have side effects of any kind. An expression may consist of any number of other expressions and operations, so long as they are all combined according to the semantic rules for each operation as described in the <<Semantic Validation>> (5.2.3) section.
@@ -490,7 +473,6 @@ The _scope_ attribute of these operators provides an optional name for the item 
 
 Details for the evaluation behavior of each specific operator are provided as part of the documentation for each operator.
 
-[[query-evaluation]]
 ## Query Evaluation
 
 In general, query evaluation can be performed in many different ways, especially when queries involve large numbers of sources. Rather than address the many ways queries could be evaluated, the intent of this section is to describe the expected semantics for query evaluation, regardless of how the underlying implementation actually executes any given query.
@@ -508,7 +490,6 @@ The outline of the process is:
 
 The following sections discuss each of these steps in more detail.
 
-[[evaluate-sources]]
 ### Evaluate Sources
 
 The first step in evaluation of a given query is to establish the query sources. Conceptually, this step involves generating the cartesian product of all the sources involved. In a single-source query, this is simply the source. But for a multi-source query, the evaluation needs to be performed for every possible combination of the sources involved.
@@ -517,48 +498,39 @@ How this actually occurs is up to the specific implementation, but note that the
 
 Note that although this discussion generally treats sources as lists, query sources in general may be singleton values as well.
 
-[[iteration]]
 ### Iteration
 
 Once the source for the query has been established, the iterative clauses must be evaluated for each element of the source, in order, as described in the following sections.
 
-[[let-clause]]
 #### Let Clause
 
 The let clause, if present, allows a CQL author to introduce expression definitions scoped to the query scope. For each definition specified in the let clause, the result of the expression is evaluated and made available within the query scope such that subsequent clauses can access the value. Note that an implementation may opt for lazy evaluation, saving the cost of evaluating an expression that is never actually referenced.
 
-[[with-clause]]
 #### With Clause
 
 Each with clause present in the query acts as a filter to remove items from the result if they do not satisfy the conditions of the with clause. Evaluation proceeds by introducing the related source into the query scope and evaluating the “such that” condition of the with clause for each element of the introduced source. If no element of the introduced source satisfies the such that condition, the current row of the query source is filtered out of the result.
 
 Note that because this is a positive existence condition, the test can stop after the first positive result. Only in the case of a negative result would all the elements of the introduced source need to be processed.
 
-[[without-clause]]
 #### Without Clause
 
 Each without clause present in the query acts as a filter to remove items from the result if they satisfy the conditions of the without clause. This is the opposite of the with clause. Evaluation proceeds the same way as a with clause, except that an element from the query source will only pass the filter if there a no rows from the introduced source that satisfy the conditions of the without clause.
 
-[[where-clause]]
 #### Where Clause
 
 The where clause, if present simply determines whether each element should be included in the result. If the condition evaluates to true, the element is included. Otherwise, the element is excluded from the result.
 
-[[return-clause]]
 #### Return Clause
 
 The return clause, if present, defines the final shape of each element produced by the query, as well as whether or not to eliminate duplicates from the result. If distinct is specified as part of the return clause, any duplicates must not appear in the result set. The expression defined in the return clause is evaluated and the result is added to the output. If neither all or distinct is specified, distinct is the default behavior.
 
-[[aggregate-clause]]
 #### Aggregate Clause
 The aggregate clause, if present, defines the final result of the query in terms of an expression that is evaluated for each item. If distinct is specified, it is applied to the items in the query prior to aggregation. For aggregation, an accumulator tracking the result of the aggregation is created, and named according to the identifier element of the aggregate clause. If a starting expression is specified, the accumulator is initialized to the result of evaluating the starting expression. For each item in the query, the aggregation expression is evaluated, and the result replaces the current value of the accumulator. Once the iteration is complete, the accumulator is returned as the result of the query.
 
-[[sort]]
 ### Sort
 
 After the iterative clauses are executed for each element of the query source, the sort clause, if present, specifies a sort order for the final output. This step simply involves sorting the output of the iterative steps by the conditions defined in the sort clause. This may involve sorting by a particular element of the result tuples, or it may simply involve sorting the resulting list by the defined comparison for the data type (for example, if the result of the query is simply a list of integers).
 
-[[implementing-query-evaluation]]
 ### Implementing Query Evaluation
 
 It is worth noting that the implementation of query evaluation can be simplified by decomposing the query into a set of more primitive operations. For example, the following operations are sufficient to evaluate any query of CQL:
@@ -582,12 +554,10 @@ The following sketch details an implementation plan for any query using these pr
 
 Using this sketch, the evaluation of a query can be performed by pipelining the query into a series of more primitive operations that can be implemented more easily. This approach also lends itself to translation and/or optimization if necessary.
 
-[[timing-calculations]]
 ## Timing Calculations
 
 This section discusses the precise semantics for the representation of date and time values within CQL, as well as the calculation of date and time arithmetic. The discussion in this section assumes fully-specified date time values. The next section will discuss the implications of partially-specified date and time values.
 
-[[definitions]]
 ### Definitions
 
 This section provides precise definitions for the terms involved in dealing with date and time values. These definitions are based on the ISO 8601:2004 standard for the representation of date and time values.
@@ -667,7 +637,6 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 
 Table 5‑I - The [.kw]#Quantities# and their precision that can be used for [.kw]#Date# and [.kw]#Time# calculations in CQL
 
-[[precision-based-timing]]
 ## Precision-Based Timing
 
 One of the most complex aspects of quality expression logic is dealing with timing relationships in the presence of partially-specified date and time values. This section discusses the precise semantics used by CQL to help mitigate this complexity and allow measure and decision support authors to express temporal logic intuitively and accurately, even in the presence of uncertain date and time data.
@@ -678,7 +647,6 @@ In general, the approach taken by CQL formally defines the notion of _uncertaint
 
 The discussion here begins by formally defining uncertainty and the semantics of operations involving uncertainty. The calculation of duration between imprecise dates is then discussed in terms of uncertainty, and then the CQL timing phrases are all defined in terms of either date and time comparison, or duration calculation. The discussion concludes with some notes on implementation of these semantics within an engine or translated environment.
 
-[[uncertainty]]
 ### Uncertainty
 
 Formally, an _uncertainty_ is a closed interval over a given point type, with specific semantics defined for comparison operators. For simplicity, we use the point type Integer in the discussion that follows.
@@ -860,7 +828,6 @@ uncertainty[17, 44] * uncertainty[2, 4] // returns uncertainty[34, 176]
 
 The result of this calculation multiplies the boundaries of the uncertainties to determine the range of possible values for the result, in this case _some value between 34 and 176_.
 
-[[implicit-conversion]]
 #### Implicit Conversion
 
 An important step to achieving the intended semantics for precision-based timing comparisons in CQL is to allow for implicit conversion between uncertainties and point-values. This means that anywhere an uncertainty is involved in an operation with a point-value, the point-value will be implicitly converted to an uncertainty of width zero and the uncertainty semantics defined above are then used to perform the calculation. For example:
@@ -886,7 +853,6 @@ days between Date(2014, 1, 15) and Date(2014, 2) > 2
 
 Even though determining the correct answer to this question involves the use of uncertainty, it is implicit in the way the operations are defined, and does not surface to the CQL authors.
 
-[[determining-difference-and-duration]]
 ### Determining Difference and Duration
 
 To determine the duration between two date or time values, CQL supports a _between_ operator for each date and time component. For example:
@@ -968,12 +934,10 @@ hours between @2012-01-01T01:00:00 and @2012-01-01T02:00:00.0
 
 The above example results in [.sym]#1#, even though the second argument is specified to milliseconds and the first argument is only specified to seconds.
 
-[[timing-phrases]]
 ### Timing Phrases
 
 Using the foundational elements described in the previous sections, the semantics for the various CQL timing phrases can now be described in detail. The general approach for each timing phrase is to transform it to an equivalent representation in terms of either a direct comparison, or a comparison involving a duration calculation.
 
-[[same-as]]
 #### Same As
 
 The _same as_ timing phrase is simply defined to be equivalent to a _same as_ comparison of the date and time values involved:
@@ -1006,7 +970,6 @@ start of A same day or after start of B
 start of A same day or before start of B
 ----
 
-[[beforeafter]]
 #### Before/After
 
 The basic _before_ and _after_ timing phrases are defined to be equivalent to a _before_ or _after_ comparison of the date and time values involved:
@@ -1065,7 +1028,6 @@ start of A in (start of B, start of B + 3 days) and B is not null
 
 Note the addition of the null test in the case that an interval is constructed from the point B. This is necessary because if B is null and the constructed interval has inclusive boundaries, the null boundary of the resulting interval will be interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
-[[within]]
 #### Within
 
 The _within_ timing phrase is defined in terms of an interval membership test:
@@ -1104,7 +1066,6 @@ This results in an interval that begins at 5, and ends at some value between 5 a
   if interval.high is null then interval.high = Uncertainty(interval.low, maximumValue)
 ----
 
-[[implementing-precision-based-timing-with-uncertainty]]
 ### Implementing Precision-Based Timing with Uncertainty
 
 Implementation of these semantics can be simplified by recognizing that all the date and time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:

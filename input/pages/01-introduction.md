@@ -15,7 +15,6 @@ The canonical representation, the Expression Logical Model (ELM)footnote:[Note t
 
 In addition, this specification introduces a high-level, domain-specific language, Clinical Quality Language (CQL), focused on clinical quality and targeted at measure and decision support artifact authors. This high-level syntax can then be rendered in the canonical representation provided by ELM.
 
-[[background]]
 ## Background
 
 Clinical Decision Support and Clinical Quality Measurement are closely related, share many common requirements, and both support improving healthcare quality. However, the standards used for the electronic representation of CDS and CQM artifacts have not been developed in consideration of each other, and the domains use different approaches to the representation of patient data and computable expression logic. The first step in enabling a harmonization of these approaches is clearly identifying the various components involved in the specification of quality artifacts, and then establishing as a principle the notion that they should be treated independently. Broadly, the components of an artifact involve specifying:
@@ -53,12 +52,10 @@ Following this overall structure, this specification focuses on the common repre
 
 In addition, this specification is designed to be data model independent, meaning that CQL and ELM have no explicit dependencies on any aspect of any particular data model. Rather, the specification allows for any data model to be used, so long as a suitable description of that data model is supplied. Chapter 7 of this specification discusses how that description is supplied, and what facilities an implementation must support in order to enable complete data model independence of CQL and ELM.
 
-[[clinical-quality-framework-initiative]]
 ## Clinical Quality Framework Initiative
 
 The Clinical Quality Framework (CQF) was initially a collaborative community of participants from the public and private sectors, convened in 2013 by the Centers for Medicare & Medicaid Services (CMS) and the U.S. Office of the National Coordinator (ONC), focused on identifying, defining, and harmonizing standards and specifications that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM). The [Clinical Quality Framework](https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework) effort transitioned to HL7's Clinical Quality Information (CQI) and Clinical Decision Support (CDS) Work Groups in 2016. The HL7 CDS Work Group maintains this specification, co-sponsored by the CQI Work Group.
 
-[[approach]]
 ## Approach
 
 As discussed in <<Background, Section 1>>, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the [References](11-d-references.html) section. These requirements form the basis for the reasoning capabilities that this specification provides.
@@ -73,14 +70,12 @@ Broadly, this specification can be viewed from three perspectives:
 
 In other words, the logical level of the specification can be thought of as a complete bi-directional mapping between the author and physical levels. The various components involved in the specification are then concerned with ensuring that semantics can be clearly communicated through each of these levels.
 
-[[author-perspective]]
 ### Author Perspective
 
 At the highest level, the author perspective is concerned with the human-readable description of clinical quality logic. This level is represented within this specification as a high-level syntax called Clinical Quality Language (CQL). CQL is a domain-specific language for clinical quality and is intended to be usable by clinical domain experts to both author and read clinical knowledge.
 
 The author perspective is informed conceptually by the Quality Data Model (QDM), the current conceptual representation of electronic clinical quality measures, and so the language being used is informed by the QDM-based logic. This heritage is intended to provide familiarity and continuity for authors coming from the quality domain.
 
-[[logical-perspective]]
 ### Logical Perspective
 
 The logical perspective of the specification is concerned with complete and accurate representation of the semantics involved in the expression of quality logic, independent of the syntax in which that logic is rendered.
@@ -102,12 +97,10 @@ The result is a dramatic reduction in the complexity of processing quality artif
 
 The logical perspective is informed conceptually by the HL7 Version 3 Standard: Clinical Decision Support Knowledge Artifact Specification, Release 1.2 (CDS KAS), a prior version of a standard for the representation of clinical decision support artifacts. This heritage is intended to provide familiarity and continuity for authors and consumers in the decision support space. The current version of that standard, Release 1.3, has been updated to use the ELM as defined in this specification.
 
-[[physical-perspective]]
 ### Physical Perspective
 
 The physical perspective is concerned with the implementation and communication aspects of the logical model—specifically, with how the canonical representation of expression logic is shared between producers and consumers. This specification defines an XML schema representation of the ELM for this purpose, describes the intended semantics of CQL, and discusses various implementation approaches.
 
-[[audience]]
 ## Audience
 
 The audience for this specification includes stakeholders and interested parties from a broad range of health quality applications, including health IT vendors, quality agencies, quality artifact authors and consumers, and any party interested in producing or consuming health quality artifacts.
@@ -130,7 +123,6 @@ Note that although the [Author's Guide (Chapter 2)](02-authorsguide.html) is int
 
 In general, each of these roles will benefit from focusing on different aspects of the specification. In particular, the Author role will be primarily interested in [Author's Guide (Chapter 2)](02-authorsguide.html), the Language Guide for the high-level CQL syntax; the Developer role will be primarily interested in Chapter [Author's Guide (Chapter 2)](02-authorsguide.html) & [Developer's Guide (Chapter 3)](03-developersguide.html); the Integrator role will be primarily interested in [Logical Specification (Chapter 4)](04-logicalspecification.html), the formal description of the logical model; and the Implementer role will be primarily interested in Chapters [Language Semantics (Chapter 5)](05-languagesemantics.html), [Translation Semantics (Chapter 6)](06-translationsemantics.html), and [Physical Representation (Chapter 7)](07-physicalrepresentation.html), which discuss the intended execution semantics, translation semantics, and physical representation, respectively, along with additional reference materials in Appendix A-L.
 
-[[scope-of-the-specification]]
 ## Scope of the Specification
 
 The Clinical Quality Language specification includes the following components:
@@ -141,7 +133,6 @@ The Clinical Quality Language specification includes the following components:
 
 Note that syntax highlighting is used throughout the specification to make the examples easier to read. However, the highlighting is for example use only and is not a normative aspect of the specification.
 
-[[alignment-to-cqf-artifact-sharing-use-case]]
 ## Alignment to CQF Artifact Sharing Use Case
 
 The specific requirements implemented within this specification focus on the structure, semantics, and encoding of expression logic representation within quality artifacts. These requirements are directly tied to the Clinical Quality Framework Artifact Sharing Use Case. Full material on this Use Case can be found here:
@@ -155,37 +146,30 @@ image:extracted-media/media/image4.png[image,width=626,height=382]
 
 Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case
 
-[[use-case-assumptions-and-conditions]]
 ### Use Case Assumptions and Conditions
 
 It is important for implementers to clearly understand the underlying environmental assumptions, defined in https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery[Section 5 of the CQF Use Case document] referenced in the previous section, to ensure that these assumptions align to the implementation environment in which content will be exchanged using a knowledge artifact. Failure to meet any of these assumptions could impact implementation of the knowledge artifact.
 
-[[relationship-to-other-hl7-specifications]]
 ## Relationship to Other HL7 Specifications
 
 The Clinical Quality Language specification is designed as a domain-specific language suitable for querying as well as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow. For more information about other HL7 specifications, refer to the the [References](11-d-references.html) section.
 
-[[health-quality-measure-format-hqmf]]
 ### Health Quality Measure Format (HQMF)
 
 Health Quality Measure Format is an HL7 V3 Standard for the representation of electronic Clinical Quality Measures (eCQMs). HQMF uses a conceptual model of clinical information called Quality Data Model (QDM) to represent patient information in population criteria for the measure. QDM originally (and through version 4.3) also included an expression language for use in eCQMs. Clinical Quality Language is capable of providing more precise and flexible semantics and HQMF-based eCQMs have transitioned to using Clinical Quality Language.
 
-[[clinical-decision-support-knowledge-artifact-specification-kas]]
 ### Clinical Decision Support Knowledge Artifact Specification (KAS)
 
 The Knowledge Artifact Specification is an HL7 Standard for the representation of clinical decision support artifacts such as order sets, documentation templates, and event-condition-action rules. The original version (and through release 1.2) of that specification included an XML-based syntax for encoding the logic involved in the knowledge artifacts. The Expression Logical Model defined by this specification is a derivative of that XML-based syntax, and in release 1.3 of KAS, the syntax was updated to reference this specification.
 
-[[fast-healthcare-interoperability-resources-fhir]]
 ### Fast Healthcare Interoperability Resources (FHIR)
 
 FHIR is an HL7 standard for enabling healthcare interoperability by defining a framework for reliable data exchange. The Clinical Reasoning Module of FHIR describes how Clinical Quality Language can be used within FHIR to represent the logic involved in knowledge artifacts.
 
-[[fhirpath]]
 ### FHIRPath
 
 FHIRPath is an HL7 specification for a path-based navigation and extraction language, somewhat like XPath. CQL is a superset of FHIRPath, meaning that any valid FHIRPath expression is also a valid CQL expression. This allows CQL to easily express path navigation in hierarchical data models. For more information, see the Using FHIRPath topic in the Developer’s Guide.
 
-[[organization-of-this-specification]]
 ## Organization of this Specification
 
 The organization of this specification follows the outline of the perspectives discussed in the Approach section—conceptual, logical, and physical. Below is a listing of the chapters with a short summary of the content of each.

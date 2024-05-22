@@ -117,7 +117,6 @@ codeId
     ;
 ----
 
-[[type-specifiers]]
 ## Type Specifiers
 
 The _typeSpecifier_ production rule defines all type specifiers available in the language.
@@ -444,7 +443,6 @@ intervalOperatorPhrase
     ;
 ----
 
-[[terms]]
 ## Terms
 
 The _term_ production rule defines the syntax for core expression terms within CQL:
@@ -987,7 +985,6 @@ identifier
     ;
 ----
 
-[[lexer-rules]]
 ## Lexer Rules
 
 The lexer rules define the terminal production rules in the language:
