@@ -9,10 +9,9 @@ For a visual representation of the syntax of CQL, refer to [Appendix L - CQL Syn
 
 [Raw CQL grammar,id=cql](cql/cql.g4)
 
-[source]
-----
-include::cql/cql.g4[]
-----
+``` antlr4
+{% include_relative cql/cql.g4 %}
+```
 
 [.note-info]
 ____
@@ -21,7 +20,6 @@ ____
 
 [Raw FHIRPath grammar,id=fhirpath](cql/fhirpath.g4)
 
-[source]
-----
-include::cql/fhirpath.g4[]
-----
+``` antlr4
+{% include_relative cql/fhirpath.g4 %}
+```
