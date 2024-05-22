@@ -1,4 +1,4 @@
-= Clinical Quality Language (CQL)
+# Clinical Quality Language (CQL)
 :page-layout: dev
 :backend: xhtml
 :page-standards-status: normative

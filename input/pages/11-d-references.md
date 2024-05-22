@@ -1,5 +1,5 @@
 [[appendix-d-references]]
-= Appendix D – References
+# Appendix D – References
 :page-layout: dev
 :backend: xhtml
 :sectnums:

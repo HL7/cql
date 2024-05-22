@@ -1,5 +1,5 @@
 [[translation-semantics]]
-= 6. Translation Semantics
+# 6. Translation Semantics
 :page-layout: dev
 :backend: xhtml
 :sectnums:
@@ -12,12 +12,12 @@ As discussed in the introductory section, this specification covers three levels
 To achieve these goals, the Logical level establishes a semantically complete bi-directional mapping between the Conceptual and Physical levels. This chapter describes this mapping in more detail, and sketches a process for translation from the Conceptual to the Logical, and from the Logical to the Conceptual. The Physical level is an isomorphic concrete realization of the Logical level; translation between the Logical and Physical levels is therefore a matter of serialization and realization of the data model, and is covered in detail in the [Physical Representation](07-physicalrepresentation.html) chapter.
 
 [[cql-to-elm]]
-== CQL-to-ELM
+## CQL-to-ELM
 
 Every statement of CQL has a semantically equivalent representation in ELM. As such, it is possible to programmatically translate any statement of CQL into its equivalent ELM representation. The following sections define the mappings between the language elements of CQL and their equivalent ELM representations, as well as providing a sketch for how these mappings could be used to translate from CQL to ELM.
 
 [[declarations-1]]
-=== Declarations
+### Declarations
 
 In both CQL and ELM, the basic container for all declarations is the _Library_. In CQL, a library corresponds to a single source document, usually represented as a text file. In ELM, a library is represented as a single instance of the _Library_ class which contains all the declarations for the library.
 
@@ -42,7 +42,7 @@ The following table specifies the ELM equivalent for each CQL declaration:
 Table 6‑A - The ELM equivalent for each CQL declaration
 
 [[types-1]]
-=== Types
+### Types
 
 To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivalent TypeSpecifier abstract class is defined, with appropriate subclasses to represent the various types of specifiers, as detailed in the following table:
 
@@ -62,7 +62,7 @@ Table 6‑B - The ELM equivalent for each CQL type-specifier
 Note that for named type specifiers, the name of the type is a qualified identifier, with the qualifier representing the name of the data model that defines the type. For example, the system-defined integer type in CQL is named System.Integer, with System as the name of the data model, and Integer as the name of the type.
 
 [[literals-and-selectors-1]]
-=== Literals and Selectors
+### Literals and Selectors
 
 The following table defines the mapping between the various CQL literals and their equivalent representation in ELM:
 
@@ -90,12 +90,12 @@ The following table defines the mapping between the various CQL literals and the
 Table 6‑C - The ELM equivalent for each CQL Literal
 
 [[functions]]
-=== Functions
+### Functions
 
 Most of the functions and operations available in CQL have a direct counterpart in ELM. For ease of reference, the operations and functions are grouped the same way they are in the CQL Reference.
 
 [[logical-operators-2]]
-==== Logical Operators
+#### Logical Operators
 
 [[table-6-d]]
 [cols=",",options="header",]
@@ -111,7 +111,7 @@ Most of the functions and operations available in CQL have a direct counterpart 
 Table 6‑D - The ELM equivalent for each CQL logical operator
 
 [[type-operators]]
-==== Type Operators
+#### Type Operators
 
 [[table-6-e]]
 [cols=",",options="header",]
@@ -135,7 +135,7 @@ Rather than emitting a _Convert_, an implementation could emit a _ToString_ whic
 Note also that when translating to ELM, an implementation could emit all implicit conversions directly, avoiding the need for an ELM translator or execution engine to deal with implicit conversion.
 
 [[nullological-operators-2]]
-==== Nullological Operators
+#### Nullological Operators
 
 [[table-6-f]]
 [cols=",",options="header",]
@@ -150,7 +150,7 @@ Note also that when translating to ELM, an implementation could emit all implici
 Table 6‑F - The ELM equivalent for each CQL nullological operator
 
 [[comparison-operators-3]]
-==== Comparison Operators
+#### Comparison Operators
 
 [[table-6-g]]
 [cols=",",options="header",]
@@ -170,7 +170,7 @@ Table 6‑F - The ELM equivalent for each CQL nullological operator
 Table 6‑G - The ELM equivalent for each CQL comparison operator
 
 [[arithmetic-operators-3]]
-==== Arithmetic Operators
+#### Arithmetic Operators
 
 [[table-6-h]]
 [cols=",",options="header",]
@@ -201,7 +201,7 @@ Table 6‑G - The ELM equivalent for each CQL comparison operator
 Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 
 [[string-operators-2]]
-==== String Operators
+#### String Operators
 
 [[table-6-i]]
 [cols=",",options="header",]
@@ -226,7 +226,7 @@ Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 Table 6‑I - The ELM equivalent for each CQL [.kw]#String# operator
 
 [[datetime-operators-1]]
-==== Date and Time Operators
+#### Date and Time Operators
 
 [[table-6-j]]
 [cols=",",options="header",]
@@ -253,7 +253,7 @@ Table 6‑I - The ELM equivalent for each CQL [.kw]#String# operator
 Table 6‑J - The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operator
 
 [[interval-operators-2]]
-==== Interval Operators
+#### Interval Operators
 
 [[table-6-k]]
 [cols=",",options="header",]
@@ -296,7 +296,7 @@ Table 6‑J - The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operat
 Table 6‑K - The ELM equivalent for each CQL [.kw]#Interval# operator
 
 [[list-operators-1]]
-==== List Operators
+#### List Operators
 
 [[table-6-l]]
 [cols=",",options="header",]
@@ -332,7 +332,7 @@ Table 6‑K - The ELM equivalent for each CQL [.kw]#Interval# operator
 Table 6‑L - The ELM equivalent for each CQL [.kw]#List# operator
 
 [[aggregate-operators-2]]
-==== Aggregate Operators
+#### Aggregate Operators
 
 [[table-6-m]]
 [cols=",",options="header",]
@@ -358,7 +358,7 @@ Table 6‑L - The ELM equivalent for each CQL [.kw]#List# operator
 Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 
 [[clinical-operators-2]]
-==== Clinical Operators
+#### Clinical Operators
 
 [[table-6-n]]
 [cols=",",options="header",]
@@ -377,12 +377,12 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 Table 6‑N - The ELM equivalent for each CQL clinical operator
 
 [[phrases]]
-=== Phrases
+### Phrases
 
 In general, the various phrases of CQL do not have a direct representation in ELM, but rather result in operator and function invocations which then do have representations. For more information, see the <<05-languagesemantics.adoc#timing-phrases,Timing Phrases>> section.
 
 [[queries-3]]
-=== Queries
+### Queries
 
 The CQL query construct has a direct representation in ELM, as shown by the following table:
 
@@ -406,7 +406,7 @@ Table 6‑O - The ELM equivalent for each CQL construct
 Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
 
 [[translation-options]]
-=== Translation Options
+### Translation Options
 
 There are several points throughout the specification that introduce optionality to support different use cases and implementation goals. This section provides a summary of those options with an explanation of their impact on translation and language features.
 
@@ -416,17 +416,17 @@ Note that implementations may define other options as appropriate for their tran
 ____
 
 [[disable-list-promotion-and-demotion]]
-==== Disable List Promotion and Demotion
+#### Disable List Promotion and Demotion
 
 List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the [.kw]#singleton from# operator) and vice-versa (by invoking the [.id]#ToList# function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see [List Promotion and Demotion](03-developersguide.html#promotion-and-demotion).
 
 [[disable-list-traversal]]
-==== Disable List Traversal
+#### Disable List Traversal
 
 In addition to list promotion and demotion, CQL allows for paths to be traversed through list-valued elements. Again, this is useful when writing expressions against models with variable cardinality elements, and can be disabled with the _disable-list-traversal_ option. For a more detailed discussion, see [Path Traversal](03-developersguide.html#path-traversal).
 
 [[disable-method-invocation]]
-==== Disable Method Invocation
+#### Disable Method Invocation
 
 To support FHIRPath as the base expression language for CQL, beginning with 1.3, the option to allow functions to be invoked using method-style invocation was introduced. This feature can be disabled using the _disable-method-invocation_ option. For a more complete discussion, see [Method Invocation](03-developersguide.html#method-invocation).
 
@@ -436,12 +436,12 @@ Note that with the introduction of [Fluent Functions](03-developersguide.html#fl
 ____
 
 [[require-from-keyword]]
-==== Require From Keyword
+#### Require From Keyword
 
 To encourage consistent use of the [.kw]#from# keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See [Query Syntax Options](03-developersguide.html#query-syntax-options) for more discussion.
 
 [[elm-to-cql]]
-== ELM-to-CQL
+## ELM-to-CQL
 
 In addition to being able to translate CQL to ELM, any given expression of ELM can be represented in CQL. Support for this direction of translation would be useful for applications that produce ELM from another source, and need to display a human-readable representation of the logic.
 
@@ -528,7 +528,7 @@ The examples in the following section will make use of the following expression 
 ----
 
 [[foreach]]
-=== ForEach
+### ForEach
 
 The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
 
@@ -548,7 +548,7 @@ List1 A return A.X
 ----
 
 [[times]]
-=== Times
+### Times
 
 The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
 
@@ -569,7 +569,7 @@ from List1 A, List2 B
 ----
 
 [[filter]]
-=== Filter
+### Filter
 
 The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:
 
@@ -592,7 +592,7 @@ List1 A where A.X = 1
 ----
 
 [[sort-1]]
-=== Sort
+### Sort
 
 The _Sort_ operator in ELM sorts the contents of a list. For example:
 

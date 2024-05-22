@@ -1,5 +1,5 @@
 [[appendix-h-time-interval-calculation-examples]]
-= Appendix H – Time Interval Calculation Examples
+# Appendix H – Time Interval Calculation Examples
 :page-layout: dev
 :backend: xhtml
 :sectnums:
@@ -51,10 +51,10 @@ In addition to duration and difference calculations, CQL provides timing phrases
 The following sections provide detailed examples of calculating duration and difference, as well as interpreting timing phrases of CQL.
 
 [[calculating-duration-in-years]]
-== Calculating Duration in Years
+## Calculating Duration in Years
 
 [[definition]]
-=== Definition
+### Definition
 
 In CQL, a _year_ is defined as the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at:
 
@@ -64,9 +64,9 @@ In CQL, a _year_ is defined as the duration of any time interval which starts at
 *Note:* When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 
 [[examples]]
-=== Examples
+### Examples
 
-==== Scenario 1
+#### Scenario 1
 When month (date 2) < month (date 1): +
 Duration (years) = year (date 2) - year (date 1) - 1
 
@@ -75,7 +75,7 @@ Date 1: 2012-*03*-10 22:05:09 +
 Date 2: 2013-*02*-18 19:10:03 +
 Duration = year (date 2) - year (date 1) - 1 = 2013 - 2012 - 1 = *0 years*
 
-==== Scenario 2
+#### Scenario 2
 When month (date 2) = month (date 1) and day (date 2) >= day (date 1) +
 Duration (years) = year (date 2) - year (date 1)
 
@@ -91,7 +91,7 @@ Date 1: 2012-03-*10* 22:05:09 +
 Date 2: 2013-03-*20* 04:01:30 +
 Duration = year (date 2) - year (date 1) = 2013 - 2012 = *1 year*
 
-==== Scenario 3
+#### Scenario 3
 When month (date 2) = month (date 1) and day (date 2) < day (date 1) +
 Duration (years) = year (date 2) - year (date 1) - 1
 
@@ -100,7 +100,7 @@ Date 1: 2012-02-*20* +
 Date 2: 2014-02-*10* +
 Duration = year (date 2) - year (date 1) - 1 = 2014 - 2012 - 1 = *1 year*
 
-==== Scenario 4
+#### Scenario 4
 When month (date 2) > month (date 1) +
 Duration (years) = year (date 2) - year (date 1)
 
@@ -117,9 +117,9 @@ Duration = year (date 2) - year (date 1) = 2014 - 2012 = *2 years*
 *Note:* Because there is no February 29 in 2014, per the <<05-languagesemantics.adoc#datetime-arithmetic-1,Date and Time Arithmetic>> section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + *1 year* = 2013-02-28)
 
 [[negative-examples]]
-=== Negative Examples
+### Negative Examples
 
-==== Scenario 5
+#### Scenario 5
 When month (date 1) < month (date 2) +
 Duration (years) = year (date 2) - year (date 1) + 1
 
@@ -128,7 +128,7 @@ Date 1: 2012-*02*-20 10:20:56 +
 Date 2: 2011-*03*-19 19:16:02 +
 Duration = year (date 2) - year (date 1) + 1 = 2011 - 2012 + 1 = *0 years*
 
-==== Scenario 6
+#### Scenario 6
 When month (date 2) = month (date 1) and day (date 2) +<=+ day (date 1) +
 Duration (years) = year (date 2) - year (date 1)
 
@@ -142,7 +142,7 @@ Date 1: 2013-05-*15* 10:19:55 +
 Date 2: 2012-05-*10* 12:20:25 +
 Duration = year (date 2) - year (date 1) = 2012 - 2013 = *-1 year*
 
-==== Scenario 7
+#### Scenario 7
 When month (date 2) = month (date 1) and day (date 2) > day (date 1) +
 Duration (years) = year (date 2) - year (date 1) + 1
 
@@ -151,7 +151,7 @@ Date 1: 2013-03-*20* 05:01:30 +
 Date 2: 2011-03-*30* 06:45:50 +
 Duration = year (date 2) - year (date 1) + 1 = 2011 - 2013 + 1 = *-1 year*
 
-==== Scenario 8
+#### Scenario 8
 When month (date 2) < month (date 1) +
 Duration (years) = year (date 2) - year (date 1)
 
@@ -166,10 +166,10 @@ Date 2: 2013-*03*-29 11:01:05 +
 Duration = year (date 2) - year (date 1) = 2013 - 2015 = *-2 years*
 
 [[calculating-duration-in-months]]
-== Calculating Duration in Months
+## Calculating Duration in Months
 
 [[definition-1]]
-=== Definition
+### Definition
 
 A month in CQL is defined as the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at:
 
@@ -179,9 +179,9 @@ A month in CQL is defined as the duration of any time interval which starts at a
 *Notes:* When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 
 [[examples-1]]
-=== Examples
+### Examples
 
-==== Scenario 1
+#### Scenario 1
 When day (date 2) >= day (date 1) +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1))
 
@@ -189,15 +189,15 @@ Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - mon
 Date 1: 2012-03-*01* 14:05:45 +
 Date 2: 2012-03-*31* 23:01:49 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - (month (date 1)) +
-= (2012 - 2012) * 12 + (3 - 3) = *0 months*
+# (2012 - 2012) * 12 + (3 - 3) = *0 months*
 
 *Example 1.b:* +
 Date 1: 2012-03-*10* 22:05:09 +
 Date 2: 2013-06-*30* 13:00:23 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - (month date 1)) +
-= (2013 - 2012) * 12 + (6 - 3) = 12 + 3 = *15 months*
+# (2013 - 2012) * 12 + (6 - 3) = 12 + 3 = *15 months*
 
-==== Scenario 2
+#### Scenario 2
 When day (day 2) < day (date 1) +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) - 1
 
@@ -205,12 +205,12 @@ Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - mon
 Date 1: 2012-03-*10* 22:05:09 +
 Date 2: 2013-01-*09* 07:19:33 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) - 1 +
-= (2013 - 2012) * 12 + (1 - 3) - 1 = 12 - 2 - 1 = *9 months*
+# (2013 - 2012) * 12 + (1 - 3) - 1 = 12 - 2 - 1 = *9 months*
 
 [[negative-exapmles-1]]
-=== Negative Examples
+### Negative Examples
 
-==== Scenario 3
+#### Scenario 3
 When day (date 2) +<=+ day (date 1) +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1))
 
@@ -218,15 +218,15 @@ Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - mon
 Date 1: 2013-10-*15* 13:07:40 +
 Date 2: 2013-10-*02* 10:13:59 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) +
-= (2013 - 2013) * 12 - (10 - 10) = *0 months*
+# (2013 - 2013) * 12 - (10 - 10) = *0 months*
 
 *Example 3.b:* +
 Date 1: 2014-05-*10* 21:02:45 +
 Date 2: 2013-01-*08* 11:13:06 +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) +
-= (2013 - 2014) * 12 + (1 - 5) = (-12) + (-4) = *-16 months*
+# (2013 - 2014) * 12 + (1 - 5) = (-12) + (-4) = *-16 months*
 
-==== Scenario 4
+#### Scenario 4
 When day (day 2) > day (date 1) +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) + 1
 
@@ -234,18 +234,18 @@ Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - mon
 Date 1: 2012-06-*11* 12:16:17 +
 Date 2: 2011-08-*21* 05:48:02 +
 Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) + 1 +
-= (2011 - 2012) * 12 + (8 - 6) + 1 = (-12) + (2) + 1 = *-9 months*
+# (2011 - 2012) * 12 + (8 - 6) + 1 = (-12) + (2) + 1 = *-9 months*
 
 [[calculating-duration-in-weeks]]
-== Calculating Duration in Weeks
+## Calculating Duration in Weeks
 
 [[definition-2]]
-=== Definition
+### Definition
 
 In CQL, a week is defined as a duration of any time interval which starts at a certain time of day at a certain calendar day at a certain calendar week and ends at the same time of day at the same calendar day of the ending calendar week. In other words, a complete week is always seven days long.
 
 [[examples-2]]
-=== Examples
+### Examples
 
 Duration = +++[+++date 2 - date 1 (days)+++]+++ / 7
 
@@ -253,28 +253,28 @@ Duration = +++[+++date 2 - date 1 (days)+++]+++ / 7
 Date 1: 2012-03-10 22:05:09 +
 Date 2: 2012-03-20 07:19:33 +
 Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1) + 1) + # days (month (date 1) + 2) + ... + # days (month (date 2) - 1) + day (date 2)+++]+++ / 7 +
-= (20 - 10) / 7 = 10 / 7 = *1 week*
+# (20 - 10) / 7 = 10 / 7 = *1 week*
 
 *Example 2:* +
 Date 1: 2013-05-26 23:06:11 +
 Date 2: 2013-05-12 20:25:30 +
 Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1) + 1) + # days (month (date 1) + 2) + ... + # days (month (date 2) - 1) + day (date 2)+++]+++ / 7 +
-= (12 - 26) / 7 = -14/7 = *-2 weeks*
+# (12 - 26) / 7 = -14/7 = *-2 weeks*
 
 [[calculating-duration-in-days]]
-== Calculating Duration in Days
+## Calculating Duration in Days
 
 [[definition-3]]
-=== Definition
+### Definition
 
 In CQL, a day is defined as a duration of any time interval which starts at a certain calendar day and ends at the next calendar day (1 second to 23 hours, 59 minutes, and 59 seconds).
 
 The duration in days between two dates will generally be given by subtracting the start calendar date from the end calendar date, respecting the time of day between the two dates.
 
 [[examples-3]]
-=== Examples
+### Examples
 
-==== Scenario 1
+#### Scenario 1
 When time (date 2) < time (date 1) +
 Duration = +++[+++date 2 - date 1 (days)+++]+++ - 1
 
@@ -283,7 +283,7 @@ Date 1: 2012-01-31 *12:30:00* +
 Date 2: 2012-02-01 *09:00:00* +
 Duration = 02-01 - 01-31 - 1 = *0 days*
 
-==== Scenario 2
+#### Scenario 2
 When time (date 2) >= time (date 1) +
 Duration = date 2 - date 1 (days)
 
@@ -293,9 +293,9 @@ Date 2: 2012-02-01 *14:00:00* +
 Duration = 02-01 - 01-31 = *1 day*
 
 [[negative-examples-2]]
-=== Negative Examples
+### Negative Examples
 
-==== Scenario 3
+#### Scenario 3
 When time (date 2) > time (date 1) +
 Duration = +++[+++date 2 - date 1 (days)+++]+++ + 1
 
@@ -304,7 +304,7 @@ Date 1: 2011-12-05 *05:00:00* +
 Date 2: 2011-12-04 *08:45:00* +
 Duration = 12-04 - 12-05 + 1 = *0 days*
 
-==== Scenario 4
+#### Scenario 4
 When time (date 2) +<=+ time (date 1) +
 Duration = date 2 - date 1 (days)
 
@@ -316,15 +316,15 @@ Duration = 12-04 - 12-05 = *-1 day*
 
 
 [[calculating-duration-in-hours]]
-== Calculating Duration in Hours
+## Calculating Duration in Hours
 
 [[definition-4]]
-=== Definition
+### Definition
 
 In CQL, an hour is defined as 60 minutes. The duration in hours between two dates is the number of minutes between the two dates, divided by 60. The result is truncated to the unit.
 
 [[examples-4]]
-=== Examples
+### Examples
 
 *Example 1:* +
 Date 1: 2012-03-01 03:10:00 +
@@ -342,7 +342,7 @@ Date 2: 2012-03-01 04:00 +
 Duration = *0 hours*
 
 [[negative-examples-3]]
-=== Negative Examples
+### Negative Examples
 
 *Example 4:* +
 Date 1: 2013-10-10 12:30:00 +
@@ -360,15 +360,15 @@ Date 2: 2013-10-10 11:30:00 +
 Duration = *0 hours*
 
 [[calculating-duration-in-minutes]]
-== Calculating Duration in Minutes
+## Calculating Duration in Minutes
 
 [[definition-5]]
-=== Definition
+### Definition
 
 In CQL, a minute is defined as 60 seconds. The duration in minutes between two dates is the number of seconds between the two dates, divided by 60. The result is truncated to the unit.
 
 [[examples-5]]
-=== Examples
+### Examples
 
 *Example 1:* +
 Date 1: 2012-03-01 03:10:00 +
@@ -381,7 +381,7 @@ Date 2: 2012-03-01 00:20:00 +
 Duration = *70 minutes*
 
 [[negative-examples-4]]
-=== Negative Examples
+### Negative Examples
 
 *Example 3:* +
 Date 1: 2012-12-30 08:40:00 +
@@ -394,7 +394,7 @@ Date 2: 2012-12-29 22:00:00 +
 Duration = *-140 minutes*
 
 [[difference-calculations]]
-== Difference Calculations
+## Difference Calculations
 
 Difference calculations are performed by truncating the datetime values at the next precision, and then performing the corresponding duration calculation on the truncated values.
 
@@ -405,7 +405,7 @@ To support the expected results in all cases, normalization of datetime values m
 When difference is calculated for hours or finer units, timezone offsets should be normalized prior to truncation to correctly consider real (actual elapsed) time. When difference is calculated for days or coarser units, however, the time components (including timezone offset) should be truncated without normalization to correctly reflect the difference in calendar days, months, and years.
 
 [[examples-6]]
-=== Examples
+### Examples
 
 *Example 1:* +
 Date 1: 2012-03-01 03:10:00 +
@@ -464,7 +464,7 @@ With normalization prior to truncation, the second date would become 11:00pm EST
 The difference in days would be 0, which is not the expected result.
 
 [[negative-examples-5]]
-=== Negative Examples
+### Negative Examples
 
 *Example 8:* +
 Date 1: 2015-05-30 12:30:14 +
@@ -505,10 +505,10 @@ Difference (minutes) = Duration (minutes) between 2016-10-31 04:30:00.0 and 2016
 Difference (minutes) = *-45 minutes*
 
 [[interpreting-timing-phrases]]
-== Interpreting Timing Phrases
+## Interpreting Timing Phrases
 
 [[same-as]]
-=== Same as
+### Same as
 To directly compare two date/time values, you can use the standard equality operators:
 
 [source,cql]
@@ -534,7 +534,7 @@ When used without a precision specifier as in the above example, the `same as` t
 This returns true because the comparison only proceeds to the `month` precision.
 
 [[relative-comparison]]
-=== Relative comparison
+### Relative comparison
 
 To determine whether a date/time value is before or after another, CQL supports relative comparisons. As with equality, the standard relative comparison operators can be used:
 
@@ -562,7 +562,7 @@ When no precision specifier is provided, these phrases are equivalent to the sta
 This comparison returns false, because although July 30th is _before_ July 31st, the comparison only proceeds to the _month_ and the months are the same.
 
 [[direct-comparison-with-offsets]]
-=== Direct comparison with offsets
+### Direct comparison with offsets
 
 Timing phrases for comparison can also include an _offset_, which allows a _duration_ to be considered as part of the comparison. For example:
 
@@ -588,7 +588,7 @@ This returns false because 8:30AM on July 1st is more than 1 hour before 10:30AM
 The result of this comparison is true.
 
 [[relative-comparison-with-offsets]]
-=== Relative comparison with offsets
+### Relative comparison with offsets
 
 When using `or less`, the comparison is evaluated by considering an interval:
 
@@ -697,7 +697,7 @@ However, the above example returns true, because the comparison only proceeds to
 
 And finally, the above example returns false, because the comparison proceeds to the day, and September 22nd 2019 is 1 day more than 42 weeks before July 13th 2020.
 
-=== Interval Example Summary
+### Interval Example Summary
 
 The following table provides a summary of the timing phrase examples:
 
@@ -816,7 +816,7 @@ days (weeks, hours) *between* A and B +
 Table H-D - Timing phrase interpretation summary
 
 [[during-and-includes]]
-=== During and includes
+### During and includes
 
 [source,cql]
 ----

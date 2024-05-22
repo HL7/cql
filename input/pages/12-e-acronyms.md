@@ -1,5 +1,5 @@
 [[appendix-e-acronyms]]
-= Appendix E – Acronyms
+# Appendix E – Acronyms
 :page-layout: dev
 :backend: xhtml
 :sectnums:

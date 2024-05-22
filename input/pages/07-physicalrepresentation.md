@@ -1,5 +1,5 @@
 [[physical-representation]]
-= 7. Physical Representation
+# 7. Physical Representation
 :page-layout: dev
 :backend: xhtml
 :sectnums:
@@ -10,7 +10,7 @@
 The physical representation for CQL is specifically concerned with communicating the logic involved in any given artifact. As discussed in the previous sections, the unit of distribution for CQL is the library, which corresponds to a single file of CQL at the author level, or a single ELM document at the physical level.
 
 [[schemata]]
-== Schemata
+## Schemata
 
 The physical representation is simply a set of XML schemata which define XML types for each class defined in the ELM UML model. A CQL physical library is then an ELM document with a single _Library_ element as the root.
 
@@ -30,7 +30,7 @@ Table 7‑A - The schemata that defines the ELM physical representation
 As with the logical portion of the specification, this documentation is intended to provide an overview only, the schemata are the actual specification and should be considered the source of truth.
 
 [[media-types-and-namespaces]]
-=== Media Types and Namespaces
+### Media Types and Namespaces
 
 The schema for ELM is described for XML using the above XSDs. To support multiple serialization formats, the following media types and namespaces are defined:
 
@@ -75,12 +75,12 @@ When serializing an ELM document using JSON, each XML element is serialized as a
 4.  Mixed content serialization is not supported, ELM XML documents should not contain mixed content.
 
 [[library-references]]
-== Library References
+## Library References
 
 The implementation environment must provide a mechanism for library references to be resolved based on their names and versions.
 
 [[data-model-references]]
-== Data Model References
+## Data Model References
 
 In addition, the implementation environment must provide a mechanism for data model references to be resolved. At a minimum, the data model definition must define the structure of all the types available within the data model, generally by providing an XSD or similar class structure definition. If the implementation environment is only concerned with translation or execution of ELM documents, then the type structures for each data model are sufficient. However, to fully enable the authoring features of CQL syntax, the data model reference must also define the following:
 

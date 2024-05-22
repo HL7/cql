@@ -1,5 +1,5 @@
 [[appendix-a-cql-syntax-formal-specification]]
-= Appendix A – CQL Syntax Formal Specification
+# Appendix A – CQL Syntax Formal Specification
 :page-layout: dev
 :backend: xhtml
 :sectnums:
@@ -14,7 +14,7 @@ The material in this section is necessarily technical and assumes familiarity wi
 For a visual representation of the syntax of CQL, refer to [Appendix L - CQL Syntax Diagrams](19-l-cqlsyntaxdiagrams.html).
 
 [[declarations-2]]
-== Declarations
+## Declarations
 
 The CQL grammar is defined in an ANTLR4 grammar file, CQL.g4. The root production rule is _library_, which specifies the overall structure for a library file:
 
@@ -118,7 +118,7 @@ codeId
 ----
 
 [[type-specifiers]]
-== Type Specifiers
+## Type Specifiers
 
 The _typeSpecifier_ production rule defines all type specifiers available in the language.
 
@@ -163,7 +163,7 @@ choiceTypeSpecifier
 
 
 [[statements-1]]
-== Statements
+## Statements
 
 The main body of the library then consists of any number of statements, defined by the _statement_ production rule:
 
@@ -199,7 +199,7 @@ functionBody
 ----
 
 [[queries-4]]
-== Queries
+## Queries
 
 The _query_ production rule defines the syntax for queries within CQL:
 
@@ -330,7 +330,7 @@ simpleLiteral
 ----
 
 [[expressions-1]]
-== Expressions
+## Expressions
 
 The _expression_ production rule defines the syntax for all expressions within CQL:
 
@@ -445,7 +445,7 @@ intervalOperatorPhrase
 ----
 
 [[terms]]
-== Terms
+## Terms
 
 The _term_ production rule defines the syntax for core expression terms within CQL:
 
@@ -988,7 +988,7 @@ identifier
 ----
 
 [[lexer-rules]]
-== Lexer Rules
+## Lexer Rules
 
 The lexer rules define the terminal production rules in the language:
 

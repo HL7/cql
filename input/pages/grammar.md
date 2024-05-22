@@ -1,4 +1,4 @@
-= Clinical Quality Language Grammar
+# Clinical Quality Language Grammar
 :page-layout: dev
 :backend: xhtml
 :page-standards-status: normative

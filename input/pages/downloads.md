@@ -1,4 +1,4 @@
-= Downloads
+# Downloads
 :page-layout: dev
 :backend: xhtml
 :page-standards-status: informative

@@ -1,5 +1,5 @@
 [[appendix-f-glossary]]
-= Appendix F – Glossary
+# Appendix F – Glossary
 :page-layout: dev
 :backend: xhtml
 :sectnums:

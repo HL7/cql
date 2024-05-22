@@ -1,4 +1,4 @@
-= Executive Summary
+# Executive Summary
 :page-layout: dev
 :backend: xhtml
 :page-standards-status: informative
