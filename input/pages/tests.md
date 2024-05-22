@@ -13,7 +13,7 @@ The XML Schema for these tests is included in the zip.
 
 This is the same test format used by the FHIRPath specification.
 
-link:tests.zip[Test Source]
+[Test Source](tests.zip)
 
 The tests cover the following sections of the specification:
 

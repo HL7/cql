@@ -5,21 +5,21 @@
 
 Expression Logical Model Schema Files are available here:
 
-link:elm/schema/expression.xsd[expression.xsd] - Base expression schema
+[expression.xsd](elm/schema/expression.xsd) - Base expression schema
 
-link:elm/schema/clinicalexpression.xsd[clinicalexpression.xsd] - Clinical extensions to the base schema
+[clinicalexpression.xsd](elm/schema/clinicalexpression.xsd) - Clinical extensions to the base schema
 
-link:elm/schema/cqlannotations.xsd[cqlannotations.xsd] - Cql annotations schema for including CQL source in ELM libraries
+[cqlannotations.xsd](elm/schema/cqlannotations.xsd) - Cql annotations schema for including CQL source in ELM libraries
 
-link:elm/schema/library.xsd[library.xsd] - Library container schema
+[library.xsd](elm/schema/library.xsd) - Library container schema
 
 XML Types schema that defines CQL system types in an XML schema:
 
-link:elm/schema/types.xsd[types.xsd]
+[types.xsd](elm/schema/types.xsd)
 
 Model Info schema is available here:
 
-link:elm/schema/modelinfo.xsd[modelinfo.xsd] - Model info schema used by translation tooling to define model structures
+[modelinfo.xsd](elm/schema/modelinfo.xsd) - Model info schema used by translation tooling to define model structures
 
 [.note-info]
 ____

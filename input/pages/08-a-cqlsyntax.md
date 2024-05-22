@@ -9,9 +9,9 @@
 
 The formal specification for the CQL syntax is defined using the ANTLR4 grammar framework. This framework is a general purpose cross-platform technology for describing computer languages. For more information on this framework, refer to the ANTLR website <http://www.antlr.org/>.
 
-The material in this section is necessarily technical and assumes familiarity with language definition in general, and ANTLR4 grammars in particular. In addition, the g4 presented here is somewhat simplified for ease of reference and is provided for informative use only. For the complete, normative g4 definition, refer to the link:grammar.html#cql[CQL.g4] and link:grammar.html#fhirpath[fhirpath.g4] files included with the specification package.
+The material in this section is necessarily technical and assumes familiarity with language definition in general, and ANTLR4 grammars in particular. In addition, the g4 presented here is somewhat simplified for ease of reference and is provided for informative use only. For the complete, normative g4 definition, refer to the [CQL.g4](grammar.html#cql) and [fhirpath.g4](grammar.html#fhirpath) files included with the specification package.
 
-For a visual representation of the syntax of CQL, refer to link:19-l-cqlsyntaxdiagrams.html[Appendix L - CQL Syntax Diagrams].
+For a visual representation of the syntax of CQL, refer to [Appendix L - CQL Syntax Diagrams](19-l-cqlsyntaxdiagrams.html).
 
 [[declarations-2]]
 == Declarations

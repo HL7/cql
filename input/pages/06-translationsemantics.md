@@ -9,7 +9,7 @@
 
 As discussed in the introductory section, this specification covers three levels of definition, the Conceptual or Author level, the Logical level, and the Physical level. The Conceptual level is concerned with the representation of logic in a format suitable for authoring and consumption by clinical experts; the Physical level is concerned with the representation of logic in a format suitable for processing and transferring by machines; and the Logical level is concerned with providing a mapping between the Conceptual and Physical levels in a way that preserves the semantics of the logic represented while also enabling integration and execution functionality.
 
-To achieve these goals, the Logical level establishes a semantically complete bi-directional mapping between the Conceptual and Physical levels. This chapter describes this mapping in more detail, and sketches a process for translation from the Conceptual to the Logical, and from the Logical to the Conceptual. The Physical level is an isomorphic concrete realization of the Logical level; translation between the Logical and Physical levels is therefore a matter of serialization and realization of the data model, and is covered in detail in the link:07-physicalrepresentation.html[Physical Representation] chapter.
+To achieve these goals, the Logical level establishes a semantically complete bi-directional mapping between the Conceptual and Physical levels. This chapter describes this mapping in more detail, and sketches a process for translation from the Conceptual to the Logical, and from the Logical to the Conceptual. The Physical level is an isomorphic concrete realization of the Logical level; translation between the Logical and Physical levels is therefore a matter of serialization and realization of the data model, and is covered in detail in the [Physical Representation](07-physicalrepresentation.html) chapter.
 
 [[cql-to-elm]]
 == CQL-to-ELM
@@ -418,27 +418,27 @@ ____
 [[disable-list-promotion-and-demotion]]
 ==== Disable List Promotion and Demotion
 
-List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the [.kw]#singleton from# operator) and vice-versa (by invoking the [.id]#ToList# function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see link:03-developersguide.html#promotion-and-demotion[List Promotion and Demotion].
+List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the [.kw]#singleton from# operator) and vice-versa (by invoking the [.id]#ToList# function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see [List Promotion and Demotion](03-developersguide.html#promotion-and-demotion).
 
 [[disable-list-traversal]]
 ==== Disable List Traversal
 
-In addition to list promotion and demotion, CQL allows for paths to be traversed through list-valued elements. Again, this is useful when writing expressions against models with variable cardinality elements, and can be disabled with the _disable-list-traversal_ option. For a more detailed discussion, see link:03-developersguide.html#path-traversal[Path Traversal].
+In addition to list promotion and demotion, CQL allows for paths to be traversed through list-valued elements. Again, this is useful when writing expressions against models with variable cardinality elements, and can be disabled with the _disable-list-traversal_ option. For a more detailed discussion, see [Path Traversal](03-developersguide.html#path-traversal).
 
 [[disable-method-invocation]]
 ==== Disable Method Invocation
 
-To support FHIRPath as the base expression language for CQL, beginning with 1.3, the option to allow functions to be invoked using method-style invocation was introduced. This feature can be disabled using the _disable-method-invocation_ option. For a more complete discussion, see link:03-developersguide.html#method-invocation[Method Invocation].
+To support FHIRPath as the base expression language for CQL, beginning with 1.3, the option to allow functions to be invoked using method-style invocation was introduced. This feature can be disabled using the _disable-method-invocation_ option. For a more complete discussion, see [Method Invocation](03-developersguide.html#method-invocation).
 
 [.note-warning]
 ____
-Note that with the introduction of link:03-developersguide.html#fluent-functions[Fluent Functions] in 1.5, using this option effectively disables fluent functions as well.
+Note that with the introduction of [Fluent Functions](03-developersguide.html#fluent-functions) in 1.5, using this option effectively disables fluent functions as well.
 ____
 
 [[require-from-keyword]]
 ==== Require From Keyword
 
-To encourage consistent use of the [.kw]#from# keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See link:03-developersguide.html#query-syntax-options[Query Syntax Options] for more discussion.
+To encourage consistent use of the [.kw]#from# keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See [Query Syntax Options](03-developersguide.html#query-syntax-options) for more discussion.
 
 [[elm-to-cql]]
 == ELM-to-CQL

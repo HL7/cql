@@ -3160,7 +3160,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 [.note-warning]
 ____
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
 
 ____
 

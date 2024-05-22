@@ -21,7 +21,7 @@ In the sections that follow, the various constructs introduced above will be dis
 
 It is important to keep in mind throughout the discussion that follows that CQL is a _query language_, which means that the statements of the language are really _questions_, formulated in terms of a _data model_ that describes the available data. Depending on the use case, these questions will be evaluated in different ways to produce a response. For example, for decision  support, the questions will likely be evaluated in the context of a specific patient and at some specific point in a workflow. For quality measurement, the questions will likely be evaluated for each of a set of patients in an overall population. However the evaluation occurs, the discussions in this chapter refer generally to the notion of an _evaluation request_ that represents a request by some consumer to evaluate a CQL expression. This evaluation request generally includes the _context_ of the evaluation (i.e. the inputs to the evaluation such as the patient and any parameter values), as well as a _timestamp_ associated with when the evaluation request occurs.
 
-Throughout the discussion, readers may find it helpful to refer to link:09-b-cqlreference.html[Appendix B – CQL Reference] for more detailed discussion of particular concepts.
+Throughout the discussion, readers may find it helpful to refer to [Appendix B – CQL Reference](09-b-cqlreference.html) for more detailed discussion of particular concepts.
 
 And as a final introductory note, CQL is designed to support two levels of usage. The first level focuses on the simplest possible expression of the most common use cases encountered in quality measurement and decision support, while the second level focuses on more advanced capabilities such as multi-source queries and user-defined functions. The first level is covered in this chapter, the Author's Guide, while the second level is covered in the next chapter, the Developer's Guide.
 
@@ -53,7 +53,7 @@ Libraries can contain any or all of the following constructs:
 
 Table 2‑A - Constructs that CQL libraries can contain
 
-A syntax diagram of a library containing all of the constructs can be seen link:19-l-cqlsyntaxdiagrams.html#library[here].
+A syntax diagram of a library containing all of the constructs can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
 
 The following sections discuss these constructs in more detail.
 
@@ -71,7 +71,7 @@ library CMS153_CQM version '2'
 
 The above declaration names the library with the identifier [.id]#CMS153_CQM# and specifies the version [.lit]#'2'#.
 
-A syntax diagram of the [.kw]#library# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#libraryDefinition[here].
+A syntax diagram of the [.kw]#library# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
 
 [[data-models]]
 === Data Models
@@ -96,7 +96,7 @@ If necessary, a version specifier can be provided to indicate which version of t
 using QUICK version '0.3.0'
 ----
 
-A syntax diagram of the [.kw]#using# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#usingDefinition[here].
+A syntax diagram of the [.kw]#using# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
 
 [[libraries]]
 === Libraries
@@ -148,7 +148,7 @@ define "SexuallyActive":
     or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 ----
 
-A syntax diagram of the [.kw]#include# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#includeDefinition[here].
+A syntax diagram of the [.kw]#include# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
 
 [[terminology]]
 === Terminology
@@ -157,7 +157,7 @@ A CQL library may contain zero or more named terminology declarations, including
 
 These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library where the terminology is expected.
 
-The syntax diagrams of the link:19-l-cqlsyntaxdiagrams.html#codesystemDefinition[codesystem definition],link:19-l-cqlsyntaxdiagrams.html#valuesetDefinition[valueset definition], link:19-l-cqlsyntaxdiagrams.html#codeDefinition[code definition] and link:19-l-cqlsyntaxdiagrams.html#conceptDefinition[concept definition].
+The syntax diagrams of the [codesystem definition](19-l-cqlsyntaxdiagrams.html#codesystemDefinition),[valueset definition](19-l-cqlsyntaxdiagrams.html#valuesetDefinition), [code definition](19-l-cqlsyntaxdiagrams.html#codeDefinition) and [concept definition](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
 
 Consider the following valueset declaration:
 
@@ -210,7 +210,7 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 
 Table 2‑B - Elements that define a parameter
 
-A syntax diagram of the [.kw]#parameter# can be seen link:19-l-cqlsyntaxdiagrams.html#parameterDefinition[here].
+A syntax diagram of the [.kw]#parameter# can be seen [here](19-l-cqlsyntaxdiagrams.html#parameterDefinition).
 
 The parameters defined in a library may be referenced by name in any expression within the library. When expressions in a CQL library are evaluated, the values for parameters are provided by the environment. For example, a library that defines criteria for a quality measure may define a parameter to represent the measurement period:
 
@@ -276,7 +276,7 @@ The following table lists some typical contexts:
 
 Table 2‑C - Typical contexts for CQL
 
-A syntax diagram of the [.kw]#context# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#contextDefinition[here].
+A syntax diagram of the [.kw]#context# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#contextDefinition).
 
 Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
@@ -338,7 +338,7 @@ The _retrieve_ expression is the central construct for accessing clinical inform
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
-A syntax diagram of the [.kw]#retrieve# expression can be seen link:19-l-cqlsyntaxdiagrams.html#retrieve[here].
+A syntax diagram of the [.kw]#retrieve# expression can be seen [here](19-l-cqlsyntaxdiagrams.html#retrieve).
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
@@ -523,14 +523,14 @@ Although the alias in this example is a single-letter abbreviation, [.id]#E#, it
 [Encounter: "Inpatient"] Enc
 ----
 
-Note that alias names, as with all language constructs, may be the subject of language conventions. The link:14-g-formattingconventions.html[Formatting Conventions] section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
+Note that alias names, as with all language constructs, may be the subject of language conventions. The [Formatting Conventions](14-g-formattingconventions.html) section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
 
 [[filtering]]
 === Filtering
 
 The [.kw]#where# clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to [.kw]#true# for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
 
-A syntax diagram of a [.kw]#where# clause can be seen link:19-l-cqlsyntaxdiagrams.html#whereClause[here].
+A syntax diagram of a [.kw]#where# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#whereClause).
 
 For example:
 
@@ -560,7 +560,7 @@ Note that because CQL uses three-valued logic, the result of evaluating any give
 
 The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The [.kw]#return# clause enables this type of query.
 
-A syntax diagram of a [.kw]#return# clause can be seen link:19-l-cqlsyntaxdiagrams.html#returnClause[here].
+A syntax diagram of a [.kw]#return# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#returnClause).
 
 For example:
 
@@ -593,7 +593,7 @@ If two encounters have the same value for [.id]#lengthOfStay#, that value will o
 
 CQL queries can sort results in any order using the [.kw]#sort by# clause.
 
-A syntax diagram of a [.kw]#sort# clause can be seen link:19-l-cqlsyntaxdiagrams.html#sortClause[here].
+A syntax diagram of a [.kw]#sort# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#sortClause).
 
 For example:
 
@@ -673,7 +673,7 @@ The [.kw]#without# clause returns only those elements from the primary source th
 
 This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of [.id]#Acute Pharyngitis# in this case), then that Encounter is not included in the result.
 
-A syntax diagram of a link:19-l-cqlsyntaxdiagrams.html#withClause[with] clause and link:19-l-cqlsyntaxdiagrams.html#withoutClause[without] clause.
+A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withClause) clause and [without](19-l-cqlsyntaxdiagrams.html#withoutClause) clause.
 
 A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
 
@@ -876,7 +876,7 @@ For case- and locale-insensitive comparison, locale-insensitive meaning that an 
 
 CQL supports the representation of [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values.
 
-A syntax diagram of a [.id]#Date, DateTime and Time# format can be seen link:19-l-cqlsyntaxdiagrams.html#DATETIME[here].
+A syntax diagram of a [.id]#Date, DateTime and Time# format can be seen [here](19-l-cqlsyntaxdiagrams.html#DATETIME).
 
 [.id]#DateTime# values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. [.id]#DateTime# values are specified using an at-symbol ([.sym]#@#) followed by an ISO-8601 textual representation of the [.id]#DateTime# value:
 
@@ -1006,7 +1006,7 @@ The [.id]#Code# type has the following elements:
 
 Table 2‑F - Elements that make up a [.kw]#code# type
 
-A syntax diagram of a [.id]#Code# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#codeDefinition[here].
+A syntax diagram of a [.id]#Code# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#codeDefinition).
 
 The following examples illustrate the code declaration:
 
@@ -1021,7 +1021,7 @@ code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood 
 
 The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
-A syntax diagram of a [.id]#Code# referencing an existing code can be seen link:19-l-cqlsyntaxdiagrams.html#codeSelector[here].
+A syntax diagram of a [.id]#Code# referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeSelector).
 
 In addition, CQL provides a [.id]#Code# literal that can be used to reference an existing code from a specific code system.
 
@@ -1092,7 +1092,7 @@ concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (IC
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
-A syntax diagram of a [.id]#Concept# declaration can be seen link:19-l-cqlsyntaxdiagrams.html#conceptDefinition[here].
+A syntax diagram of a [.id]#Concept# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
 
 As with codes, local names for concept declarations should be consistent with external declarations to avoid introducing any confusion of meaning.
 
@@ -1108,14 +1108,14 @@ Concept {
 
 This example constructs a [.id]#Concept# with display [.lit]#'Type B viral hepatitis'# and code of [.lit]#'66071002'#.
 
-A syntax diagram of a [.id]#Concept# literal can be seen link:19-l-cqlsyntaxdiagrams.html#conceptSelector[here].
+A syntax diagram of a [.id]#Concept# literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptSelector).
 
 [[valuesets]]
 ==== Valuesets
 
 As a value, a valueset is simply a list of [.id]#Code# values. However, CQL allows valuesets to be used without reference to the codes involved by declaring valuesets as a special type of value within the language.
 
-A syntax diagram of a valueset declaration can be seen link:19-l-cqlsyntaxdiagrams.html#valuesetDefinition[here].
+A syntax diagram of a valueset declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#valuesetDefinition).
 
 The following example illustrates some typical valueset declarations:
 
@@ -1210,7 +1210,7 @@ define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 
 Tuples can also be constructed directly using a tuple selector.
 
-A syntax diagram of a _tuple_ selector can be seen link:19-l-cqlsyntaxdiagrams.html#tupleSelector[here].
+A syntax diagram of a _tuple_ selector can be seen [here](19-l-cqlsyntaxdiagrams.html#tupleSelector).
 
 For example:
 
@@ -1323,7 +1323,7 @@ CQL supports the representation of intervals, or ranges, of values of various ty
 
 Intervals in CQL are represented by specifying the low and high points of the [.id]#Interval# and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses.
 
-A syntax diagram of an [.id]#Interval# construct can be seen link:19-l-cqlsyntaxdiagrams.html#intervalSelector[here].
+A syntax diagram of an [.id]#Interval# construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalSelector).
 
 For example:
 
@@ -1540,7 +1540,7 @@ AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
 ----
 
-Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard [.id]#Boolean# (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of link:09-b-cqlreference.html[Appendix B – CQL Reference].
+Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard [.id]#Boolean# (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
 [.note-info]
 ____
@@ -1712,7 +1712,7 @@ Note that CQL supports both plural and singular duration units to allow for the 
 
 As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
 
-For a detailed discussion of calendar calculation semantics, refer to link:15-h-timeintervalcalculations.html[Appendix H – Time Interval Calculation Examples].
+For a detailed discussion of calendar calculation semantics, refer to [Appendix H – Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
 For comparisons involving time durations (where no anchor to a calendar is available), the duration of a year is considered to be 365 days, and the duration of a month is considered to be 30 days. Duration calculations involving weeks consider a week as equivalent to 7 days.
 
@@ -1902,7 +1902,7 @@ Table 2‑P - The ISO8601 calendar semantics that should be used for calculation
 
 [.note-warning]
 ____
-Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See link:http://hl7.org/fhir/fhirpath.html#quantity[Use of FHIR Quantity] for an example.
+Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See [Use of FHIR Quantity](http://hl7.org/fhir/fhirpath.html#quantity) for an example.
 ____
 
 [[computing-durations-and-differences]]
@@ -1974,7 +1974,7 @@ When computing duration or difference between [.id]#DateTime# values with differ
 
 If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
-For a detailed set of examples of calculating time intervals, please refer to link:15-h-timeintervalcalculations.html[Appendix H - Time Interval Calculation Examples].
+For a detailed set of examples of calculating time intervals, please refer to [Appendix H - Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
 [[timing-and-interval-operators]]
 === Timing and Interval Operators
@@ -2692,7 +2692,7 @@ Note that when Age operators are invoked in an unspecified context, the result i
 
 This section provides a walkthrough of the process of developing shareable artifact logic using CQL. The walkthrough is based on the development of the logic for a simplified Chlamydia Screening quality measure and its associated decision support rule.
 
-Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the link:examples.html[Examples] included with this specification.
+Although the examples in this guide focus on populations of patients, CQL can also be used to express non-patient-based artifacts such as episode-of-care measures, or organizational measures such as number of staff in a facility. For examples of these types of measures, see the [Examples](examples.html) included with this specification.
 
 [[running-example]]
 === Running Example

@@ -5,9 +5,9 @@
 
 This page contains the http://www.antlr.org/[Antlr 4.0] grammar for Clinical Quality Language.
 
-For a visual representation of the syntax of CQL, refer to link:19-l-cqlsyntaxdiagrams.html[Appendix L - CQL Syntax Diagrams].
+For a visual representation of the syntax of CQL, refer to [Appendix L - CQL Syntax Diagrams](19-l-cqlsyntaxdiagrams.html).
 
-link:cql/cql.g4[Raw CQL grammar,id=cql]
+[Raw CQL grammar,id=cql](cql/cql.g4)
 
 [source]
 ----
@@ -19,7 +19,7 @@ ____
 NOTE: CQL extends from the FHIRPath grammar, and so uses the core production rules defined there. The FHIRPath grammar is included here for reference only, the FHIRPath grammar below is part of the FHIRPath specification.
 ____
 
-link:cql/fhirpath.g4[Raw FHIRPath grammar,id=fhirpath]
+[Raw FHIRPath grammar,id=fhirpath](cql/fhirpath.g4)
 
 [source]
 ----

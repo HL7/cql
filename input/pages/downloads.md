@@ -5,12 +5,12 @@
 
 The following downloads are available for this specification:
 
-* link:grammar.zip[Raw FHIRPath and CQL Grammars (ANTLR G4)]
-* link:elm-schemas.zip[ELM and related schemas (XSD)]
-* link:examples.cql.zip[Examples (as CQL and ELM (in XML and JSON formats))]
-* link:tests.zip[Test Schema (XSD) and Tests (XML)]
-* link:content.zip[All Computable Content]
+* [Raw FHIRPath and CQL Grammars (ANTLR G4)](grammar.zip)
+* [ELM and related schemas (XSD)](elm-schemas.zip)
+* [Examples (as CQL and ELM (in XML and JSON formats))](examples.cql.zip)
+* [Test Schema (XSD) and Tests (XML)](tests.zip)
+* [All Computable Content](content.zip)
 * FHIR Resources (The above computable content in represented in FHIR Resources)
-** link:examples.xml.zip[As XML]
-** link:examples.json.zip[As JSON]
-* link:full-ig.zip[Full Specification]
+** [As XML](examples.xml.zip)
+** [As JSON](examples.json.zip)
+* [Full Specification](full-ig.zip)

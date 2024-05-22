@@ -28,12 +28,12 @@ The ELM consists of the following components:
 
 Each of these components is defined fully within the ELM UML model. This model is defined formally as an XMI, and the model definition is also presented as an Enterprise Architect Project file (.eap) for viewing.
 
-* link:elm/model/elm.xmi[Raw XMI Model Definition]
-* link:elm/model/ELM.eap[Raw EAP Model Definition]
+* [Raw XMI Model Definition](elm/model/elm.xmi)
+* [Raw EAP Model Definition](elm/model/ELM.eap)
 
 The documentation provided here serves only as a high-level structural reference for the ELM. The actual content of the specification is defined by the XMI file, and that provides the “source-of-truth” for the ELM specification.
 
-Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in link:09-b-cqlreference.html[Appendix B – CQL Reference].
+Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in [Appendix B – CQL Reference](09-b-cqlreference.html).
 
 [[simple-values]]
 == Simple Values
@@ -789,7 +789,7 @@ The OperandRef expression allows the value of an operand to be referenced as par
 
 ELM provides a mechanism for expressing the structure of a query.
 
-For more information on query semantics, refer to the <<02-authorsguide.adoc#queries,Queries>> section of the link:02-authorsguide.html[Author’s Guide], as well as the <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>> and <<03-developersguide.adoc#non-retrieve-queries,Non-Retrieve Queries>> sections of the link:03-developersguide.html[Developer’s Guide].
+For more information on query semantics, refer to the <<02-authorsguide.adoc#queries,Queries>> section of the [Author’s Guide](02-authorsguide.html), as well as the <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>> and <<03-developersguide.adoc#non-retrieve-queries,Non-Retrieve Queries>> sections of the [Developer’s Guide](03-developersguide.html).
 
 === Query
 
@@ -1167,7 +1167,7 @@ The isReverse attribute indicates that the include is reverse, i.e. that the rel
 
 ELM defines a standard set of comparison operators for use with simple values. Each comparison operator takes two arguments of the same type, and returns a boolean indicating the result of the comparison. Note that for comparison operators, if either or both operands evaluate to null, the result of the comparison is _null_, not false.
 
-For more information on the semantics of the various comparison operators, see the <<09-b-cqlreference.adoc#comparison-operators-4,Comparison Operators>> section of the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of the various comparison operators, see the <<09-b-cqlreference.adoc#comparison-operators-4,Comparison Operators>> section of the [CQL Reference](09-b-cqlreference.html).
 
 [[equal]]
 === Equal
@@ -1363,7 +1363,7 @@ ELM defines logical operators that can be used to combine the results of logical
 
 Note that these operators are defined with 3-valued logic semantics, allowing the operators to deal consistently with missing information.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === And
 
@@ -1424,7 +1424,7 @@ The Xor operator returns the exclusive or of its arguments. Note that this opera
 
 ELM defines several nullological operators that are useful for dealing with potentially missing information. These are _Null, IsNull_, _IsTrue_, _IsFalse_, and _Coalesce_.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#nullological-operators-3,Nullological Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#nullological-operators-3,Nullological Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === Null
 
@@ -1546,7 +1546,7 @@ Note that if an operand evaluates to null, the result of the operation is define
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators-4,Arithmetic Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators-4,Arithmetic Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === Abs
 
@@ -2035,7 +2035,7 @@ Indexes within strings are defined to be 0-based.
 
 Note that except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#string-operators-3,String Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#string-operators-3,String Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === Combine
 
@@ -2155,7 +2155,7 @@ The Matches operator returns true if the given string matches the given regular 
 
 If either argument is null, the result is null.
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
 
 === Not Equal
 
@@ -2189,7 +2189,7 @@ The ReplaceMatches operator matches the given string using the regular expressio
 
 If any argument is null, the result is null.
 
-Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the link:http://www.pcre.org[PCRE] dialect.
+Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
 
 === Split
 
@@ -2279,7 +2279,7 @@ ELM defines several operators for representing the manipulation of date and time
 
 Except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators-2,Date, DateTime, and Time Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators-2,Date, DateTime, and Time Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === Add
 
@@ -2608,7 +2608,7 @@ In addition, the language supports operators for combining and manipulating inte
 
 Note that ELM does not include a definition for During because it is synonymous with IncludedIn.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#interval-operators-3,Interval Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#interval-operators-3,Interval Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === Interval
 
@@ -3211,7 +3211,7 @@ The use of the scope attribute allows for more complex expressions such as corre
 
 ELM also supports a flattening operator, _Flatten_ to construct a single list from a list of lists.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#list-operators-2,List Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#list-operators-2,List Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === List
 
@@ -3509,7 +3509,7 @@ Unless noted in the documentation for each operator, aggregate operators deal wi
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === AllTrue
 
@@ -3739,7 +3739,7 @@ If the source is null, the result is null.
 [[type-operators]]
 == Type Operators
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 === As
 

@@ -7,7 +7,7 @@
 :toc:
 :page-standards-status: normative
 
-This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the link:02-authorsguide.html[Author’s Guide] in the discussions that follow.
+This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the [Author’s Guide](02-authorsguide.html) in the discussions that follow.
 
 [[lexical-elements]]
 == Lexical Elements
@@ -121,7 +121,7 @@ Literals provide for the representation of basic values within CQL. The followin
 
 Table 3‑B - The types of literals supported in CQL
 
-A syntax diagram of the types of literals supported can be seen link:19-l-cqlsyntaxdiagrams.html#literal[here].
+A syntax diagram of the types of literals supported can be seen [here](19-l-cqlsyntaxdiagrams.html#literal).
 
 CQL uses standard escape sequences for string literals:
 
@@ -142,7 +142,7 @@ CQL uses standard escape sequences for string literals:
 
 Table 3‑C - The escape sequences for string literals in CQL
 
-A syntax diagram of the standard escape sequences for string literals supported can be seen link:19-l-cqlsyntaxdiagrams.html#ESC[here].
+A syntax diagram of the standard escape sequences for string literals supported can be seen [here](19-l-cqlsyntaxdiagrams.html#ESC).
 
 [[symbols]]
 === Symbols
@@ -297,7 +297,7 @@ year
 years
 ----
 
-A syntax diagram of the keywords supported can be seen link:19-l-cqlsyntaxdiagrams.html#keyword[here].
+A syntax diagram of the keywords supported can be seen [here](19-l-cqlsyntaxdiagrams.html#keyword).
 
 [[reserved-words]]
 === Reserved Words
@@ -384,14 +384,14 @@ Note that most reserved words may still be used as identifiers if the usage is u
 
 In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
-A syntax diagram of the _reserved_ words supported can be seen link:19-l-cqlsyntaxdiagrams.html#reservedWord[here].
+A syntax diagram of the _reserved_ words supported can be seen [here](19-l-cqlsyntaxdiagrams.html#reservedWord).
 
 [[identifiers]]
 === Identifiers
 
 Identifiers are used to name various elements within the language. There are three types of identifiers in CQL, simple, delimited, and quoted.
 
-A syntax diagram of the types of _identifiers_ in CQL can be seen link:19-l-cqlsyntaxdiagrams.html#identifier[here].
+A syntax diagram of the types of _identifiers_ in CQL can be seen [here](19-l-cqlsyntaxdiagrams.html#identifier).
 
 A simple identifier is any alphabetical character or an underscore, followed by any number of alpha-numeric characters or underscores. For example, the following are all valid simple identifiers:
 
@@ -426,7 +426,7 @@ A quoted identifier is any sequence of characters enclosed in double-quotes ([.s
 
 The use of double-quotes and backticks allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
 
-A syntax diagram of quoted identifier can be seen link:19-l-cqlsyntaxdiagrams.html#QUOTEDIDENTIFIER[here].
+A syntax diagram of quoted identifier can be seen [here](19-l-cqlsyntaxdiagrams.html#QUOTEDIDENTIFIER).
 
 To specify a quoted or delimited identifier that includes a double-quote ([.sym]#"#) or backtick ([.sym]#`#), use a backslash to escape the delimiter:
 
@@ -461,7 +461,7 @@ Table 3‑E - The escape sequences for identifiers in CQL
 
 Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common.ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
 
-A syntax diagram of a _qualified identifier_ can be seen link:19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier[here].
+A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier).
 
 [[operator-precedence]]
 === Operator Precedence
@@ -532,7 +532,7 @@ Libraries provide the basic unit of code organization for CQL. Each CQL file con
 * Circular library references are not allowed.
 * Library references are not transitive.
 
-A syntax diagram of a library construct can be seen link:19-l-cqlsyntaxdiagrams.html#library[here].
+A syntax diagram of a library construct can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
 
 Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a <<04-logicalspecification.adoc#library,library>> contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> for an example of how namespaces are specified in ELM.
 
@@ -586,7 +586,7 @@ In addition, library references are not transitive, meaning that in order to ref
 
 Each component of a library may have an access modifier applied, either [.kw]#public# or [.kw]#private#. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
 
-A syntax diagram of the access modifiers can be seen link:19-l-cqlsyntaxdiagrams.html#accessModifier[here].
+A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessModifier).
 
 [[identifier-resolution]]
 === Identifier Resolution
@@ -695,7 +695,7 @@ In addition, CQL defines several structured types to facilitate representation a
 
 Table 3‑H - The structured types to facilitate representation and manipulation of clinical information
 
-For more information about these types, refer to the link:09-b-cqlreference.html[CQL Reference] section on <<09-b-cqlreference.adoc#types-2,Types>>.
+For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on <<09-b-cqlreference.adoc#types-2,Types>>.
 
 [[specifying-types]]
 === Specifying Types
@@ -708,7 +708,7 @@ In various constructs, the type of a value must be specified. For example, when 
 * List Types
 * Choice Types
 
-A syntax diagram of the _type specifiers_ in CQL can be seen link:19-l-cqlsyntaxdiagrams.html#typeSpecifier[here].
+A syntax diagram of the _type specifiers_ in CQL can be seen [here](19-l-cqlsyntaxdiagrams.html#typeSpecifier).
 
 The _named type specifier_ is simply the name of the type. For example:
 
@@ -719,7 +719,7 @@ parameter Threshold Integer
 
 This example declares a parameter named [.id]#Threshold# of type [.id]#Integer#.
 
-A syntax diagram of a _named type specifier_ construct can be seen link:19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier[here].
+A syntax diagram of a _named type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier).
 
 The _tuple type specifier_ allows the names and types of the elements of the type to be specified. For example:
 
@@ -728,7 +728,7 @@ The _tuple type specifier_ allows the names and types of the elements of the typ
 parameter Demographics Tuple { address String, city String, zip String }
 ----
 
-A syntax diagram of a _tuple type specifier_ construct can be seen link:19-l-cqlsyntaxdiagrams.html#tupleTypeSpecifier[here].
+A syntax diagram of a _tuple type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#tupleTypeSpecifier).
 
 The _interval type specifier_ allows the point-type of the interval to be specified:
 
@@ -737,7 +737,7 @@ The _interval type specifier_ allows the point-type of the interval to be specif
 parameter Range Interval<Integer>
 ----
 
-A syntax diagram of a _interval type specifier_ construct can be seen link:19-l-cqlsyntaxdiagrams.html#intervalTypeSpecifier[here].
+A syntax diagram of a _interval type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalTypeSpecifier).
 
 The _list type specifier_ allows the element-type of a list to be specified:
 
@@ -746,7 +746,7 @@ The _list type specifier_ allows the element-type of a list to be specified:
 parameter Points List<Integer>
 ----
 
-A syntax diagram of a _list type specifier_ construct can be seen link:19-l-cqlsyntaxdiagrams.html#listTypeSpecifier[here].
+A syntax diagram of a _list type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#listTypeSpecifier).
 
 And finally, the _choice type specifier_ allows a choice type to be specified:
 
@@ -755,7 +755,7 @@ And finally, the _choice type specifier_ allows a choice type to be specified:
 parameter ChoiceValue Choice<Integer, String>
 ----
 
-A syntax diagram of a _choice type specifier_ construct can be seen link:19-l-cqlsyntaxdiagrams.html#choiceTypeSpecifier[here].
+A syntax diagram of a _choice type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#choiceTypeSpecifier).
 
 [[type-testing]]
 === Type Testing
@@ -966,7 +966,7 @@ will result in [.kw]#null#. The convert syntax is equivalent to invoking one of 
 
 Table 3‑I - The defined type conversion operators in CQL
 
-For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the link:09-b-cqlreference.html[CQL Reference].
+For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the [CQL Reference](09-b-cqlreference.html).
 
 [[quantity-conversions]]
 ==== Quantity Conversions
@@ -1598,7 +1598,7 @@ define "RolledOutIntervals":
 
 In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
 
-A syntax diagram of an `aggregate` clause construct can be seen link:19-l-cqlsyntaxdiagrams.html#aggregateClause[here].
+A syntax diagram of an `aggregate` clause construct can be seen [here](19-l-cqlsyntaxdiagrams.html#aggregateClause).
 
 Note that in general, since the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. The starting clause can be omitted if the type of the result can be inferred from the aggregate expression:
 
@@ -1616,7 +1616,7 @@ In this example, since the starting clause is omitted, Result is initially [.kw]
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type.
 
-A syntax diagram of a function defintion can be seen link:19-l-cqlsyntaxdiagrams.html#functionDefinition[here].
+A syntax diagram of a function defintion can be seen [here](19-l-cqlsyntaxdiagrams.html#functionDefinition).
 
 For example:
 
@@ -1646,7 +1646,7 @@ define "CD": Core.CumulativeDuration(Encounters E return E.period)
 
 In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
 
-A syntax diagram of defining a function can be seen link:19-l-cqlsyntaxdiagrams.html#function[here].
+A syntax diagram of defining a function can be seen [here](19-l-cqlsyntaxdiagrams.html#function).
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
 
@@ -1743,7 +1743,7 @@ In other words, all the Condition elements returned from the [.id]#Diabetes Cond
 
 [.note-info]
 ____
-Note that the examples in this section are adapted from the link:https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178[CDS Connect FHIR Commons] library.
+Note that the examples in this section are adapted from the [CDS Connect FHIR Commons](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178) library.
 ____
 
 [[external-functions]]
@@ -1827,6 +1827,6 @@ This approach enables the flexibility of FHIRPath expressions but still maintain
 
 The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as [.id]#$this# that can be addressed in the body of the method.
 
-This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the link:16-i-fhirpathtranslation.html[FHIRPath Function Translation Appendix].
+This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the [FHIRPath Function Translation Appendix](16-i-fhirpathtranslation.html).
 
 The _disable-method-invocation_ option controls whether or not method-style invocation is allowed in the translator.
