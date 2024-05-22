@@ -1530,8 +1530,7 @@ In this example, the list of integers from `1` to `5` is introduced as the prima
 
 More formally, the `aggregate` clause has the following syntax:
 
-[source,ebnf]
-```
+``` ebnf
 <aggregate clause> ::=
   aggregate [(all | distinct)] <result alias> [<starting clause>] : <expression>
 

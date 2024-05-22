@@ -445,8 +445,7 @@ A starts within 3 days of start B
 
 This will actually result in the following ELM output:
 
-[source,xml]
-```
+``` xml
 <expression xsi:type="In">
   <operand xsi:type="DurationBetween" precision="Day">
     <operand xsi:type="Start">
@@ -476,8 +475,7 @@ In general, the mapping from ELM to CQL is simply the opposite of the mapping de
 
 The examples in the following section will make use of the following expression definitions:
 
-[source,xml]
-```
+``` xml
 <def name="List1">
   <expression xsi:type="List">
     <element xsi:type="Tuple">
@@ -522,8 +520,7 @@ The examples in the following section will make use of the following expression 
 
 The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
 
-[source,xml]
-```
+``` xml
 <expression xsi:type="ForEach">
   <source xsi:type="ExpressionRef" name="List1"/>
   <element xsi:type="Property" path="X"/>
@@ -541,8 +538,7 @@ List1 A return A.X
 
 The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
 
-[source,xml]
-```
+``` xml
 <expression xsi:type="Times">
   <source xsi:type="ExpressionRef" name="List1"/>
   <source xsi:type="ExpressionRef" name="List2"/>
@@ -561,8 +557,7 @@ from List1 A, List2 B
 
 The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:
 
-[source,xml]
-```
+``` xml
 <expression xsi:type="Filter">
   <source xsi:type="ExpressionRef" name="List1"/>
   <condition xsi:type="Equal">
@@ -584,8 +579,7 @@ List1 A where A.X = 1
 
 The _Sort_ operator in ELM sorts the contents of a list. For example:
 
-[source,xml]
-```
+``` xml
 <expression xsi:type="Sort">
   <source xsi:type="ExpressionRef" name="List1"/>
   <by xsi:type="ByColumn" path="X" direction="desc"/>

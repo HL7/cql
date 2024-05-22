@@ -3986,8 +3986,7 @@ define "CollapseIsNull": collapse null
 
 Informatively, the following pseudo-code illustrates a potential approach to implementation of the collapse operator with a per argument aligned to the starting boundary of the first input interval:
 
-[source,java]
-```
+``` java
 anchor = start of i[0]
 for (n = 0; n < i.size; n++) {
   if (start of i[n] < anchor) {

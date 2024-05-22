@@ -43,8 +43,7 @@ Even though CQL and ELM are intended to be used with a standard data model, ther
 
 For example, consider the following retrieve element:
 
-[source,xml]
-```
+``` xml
 <operand xsi:type="Retrieve"
   dataType="quick:Condition"
   templateId="qicore-condition"
@@ -301,8 +300,7 @@ ObservationComponent
 
 To allow searching by component codes, consider further that this data model defines a search path, called `component-code` that allows searching for observations that have a component with a given code. In this case, `component-code` is not an element of Observation, or of ObservationComponent, so it's insufficient to specify a code property. To support this capability, the `codeSearch` element of the retrieve is used:
 
-[source,xml]
-```
+``` xml
 <operand xsi:type="Retrieve"
   dataType="fhir:Observation"
   codeSearch="component-code">
@@ -1060,8 +1058,7 @@ intersect Interval[1, 10] intersect Interval[5, null)
 
 This results in an interval that begins at 5, and ends at some value between 5 and 10. Implementations can accomplish this by normalizing open intervals to closed intervals with uncertain boundaries:
 
-[source,pseudo-code]
-```
+``` pseudo-code
   if interval.low is null then interval.low = Uncertainty(minimumValue, interval.high)
   if interval.high is null then interval.high = Uncertainty(interval.low, maximumValue)
 ```
