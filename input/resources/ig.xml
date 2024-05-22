@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Hidden IG for de facto IG publishing-->
+
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
@@ -15,7 +15,7 @@
       <value value="http://www.hl7.org/Special/committees/dss/index.cfm"/>
     </telecom>
   </contact>
-  <packageId value="hl7.cql"/>
+  <packageId value="hl7.fhir.uv.cql"/>
   <fhirVersion value="4.0.1"/>
   <definition>
     <resource>
@@ -374,9 +374,148 @@
       </reference>
     </resource>
     <page>
-      <nameUrl value="index.html"/>
-      <title value="CQL Specification"/>
+      <nameUrl value="toc.html"/>
+      <title value="CQL Specification - table of contents"/>
       <generation value="html"/>
+
+      <page>
+        <nameUrl value="index.html"/>
+        <title value="CQL Specification"/>
+        <generation value="markdown"/>
+        <page>
+          <nameUrl value="01-introduction.html"/>
+          <title value="Chapter 1 - Introduction"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="02-authorsguide.html"/>
+          <title value="Author's Guide"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="03-developersguide.html"/>
+          <title value="Developer's Guide"/>
+          <generation value="markdown"/>
+        </page>
+
+        <page>
+          <nameUrl value="04-logicalspecification.html"/>
+          <title value="Chapter 4 - Logical Specification"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="05-languagesemantics.html"/>
+          <title value="Chapter 5 - Language Semantics"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="06-translationsemantics.html"/>
+          <title value="Chapter 6 - Translation Semantics"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="07-physicalrepresentation.html"/>
+          <title value="Chapter 7 - Physical Representation"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="08-a-cqlsyntax.html"/>
+          <title value="Appendix A - CQL Syntax"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="09-b-cqlreference.html"/>
+          <title value="Appendix B - CQL Reference"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="10-c-referenceimplementations.html"/>
+          <title value="Appendix C - Reference Implementations"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="11-d-references.html"/>
+          <title value="Appendix D - References"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="12-e-acronyms.html"/>
+          <title value="Appendix E - Acronyms"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="13-f-glossary.html"/>
+          <title value="Appendix F - Glossary"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="14-g-formattingconventions.html"/>
+          <title value="Appendix G - Formatting Conventions"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="15-h-timeintervalcalculations.html"/>
+          <title value="Appendix H - Time Interval Calculations"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="16-i-fhirpathtranslation.html"/>
+          <title value="Appendix I - FHIRPath Translation"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="17-j-listoftables.html"/>
+          <title value="Appendix J - List Of Tables"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="18-k-listoffigures.html"/>
+          <title value="Appendix K - List Of Figures"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <nameUrl value="19-l-cqlsyntaxdiagrams.html"/>
+          <title value="Appendix L - CQL Syntax Diagrams"/>
+          <generation value="html"/>
+        </page>
+      </page>
+      <page>
+        <nameUrl value="grammar.html"/>
+        <title value="Grammar"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="elm.html"/>
+        <title value="ELM"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="examples.html"/>
+        <title value="Examples"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="tests.html"/>
+        <title value="Tests"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="downloads.html"/>
+        <title value="Downloads"/>
+        <generation value="markdown"/>
+      </page>
     </page>
+    <parameter>
+      <code value="apply"/>
+      <value value="version"/>
+    </parameter>
+    <parameter>
+      <code value="generate"/>
+      <value value="xml"/>
+    </parameter>
+    <parameter>
+      <code value="generate"/>
+      <value value="JSON"/>
+    </parameter>
   </definition>
 </ImplementationGuide>
