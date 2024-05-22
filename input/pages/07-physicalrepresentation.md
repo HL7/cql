@@ -47,9 +47,9 @@ Optionally, a version parameter can be used with CQL and ELM media types to indi
 For example, to specify that a library is CQL version 1.4, the following content type would be used:
 
 [source]
-----
+```
 text/cql; version=1.4
-----
+```
 
 Implementations consuming CQL or ELM that has a version indicated by the content type in this way should respect the version specified. Implementations should deal gracefully when processing CQL for versions they do not understand, but this is an implementation decision, especially given the backwards-compatible and future-compatible possibilities of CQL and ELM.
 

@@ -439,14 +439,14 @@ In addition to being able to translate CQL to ELM, any given expression of ELM c
 This bi-directionality means that a given expression of CQL could be translated to ELM, and then back again. However, because ELM is typically a more primitive representation, this process is not necessarily a “round-trip”. For example, consider the following CQL:
 
 [source,cql]
-----
+```
 A starts within 3 days of start B
-----
+```
 
 This will actually result in the following ELM output:
 
 [source,xml]
-----
+```
 <expression xsi:type="In">
   <operand xsi:type="DurationBetween" precision="Day">
     <operand xsi:type="Start">
@@ -461,14 +461,14 @@ This will actually result in the following ELM output:
     <high xsi:type="Literal" valueType="xs:int" value="3"/>
   </operand>
 </expression>
-----
+```
 
 The above expression, rendered directly back to CQL would be:
 
 [source,cql]
-----
+```
 days between start of A and start of B in [-3, 3]
-----
+```
 
 These expressions are semantically equivalent, but not syntactically the same, as the first is targeted at understandability, while the second is targeted at implementation. To preserve “round-trip” capability, an implementation could emit annotations with the ELM using the extension mechanism of the base _Element_ class to provide the original source CQL.
 
@@ -477,7 +477,7 @@ In general, the mapping from ELM to CQL is simply the opposite of the mapping de
 The examples in the following section will make use of the following expression definitions:
 
 [source,xml]
-----
+```
 <def name="List1">
   <expression xsi:type="List">
     <element xsi:type="Tuple">
@@ -516,53 +516,53 @@ The examples in the following section will make use of the following expression 
     </element>
   </expression>
 </def>
-----
+```
 
 ### ForEach
 
 The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
 
 [source,xml]
-----
+```
 <expression xsi:type="ForEach">
   <source xsi:type="ExpressionRef" name="List1"/>
   <element xsi:type="Property" path="X"/>
 </expression>
-----
+```
 
 This expression returns the list of integers from the List1 expression. Although there is no direct counterpart in CQL, this expression can be represented using the _query_ construct. The source for the _ForEach_ is used as the primary query source, and the _element_ expression is represented using the _return-clause_:
 
 [source,cql]
-----
+```
 List1 A return A.X
-----
+```
 
 ### Times
 
 The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
 
 [source,xml]
-----
+```
 <expression xsi:type="Times">
   <source xsi:type="ExpressionRef" name="List1"/>
   <source xsi:type="ExpressionRef" name="List2"/>
 </expression>
-----
+```
 
 Assuming List1 and List2 are defined as specified above, the equivalent CQL is a multi-source query with a source for each operand in the _Times_, and a return clause that builds the resulting tuples:
 
 [source,cql]
-----
+```
 from List1 A, List2 B
   return { X: A.X, Y: B.Y }
-----
+```
 
 ### Filter
 
 The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:
 
 [source,xml]
-----
+```
 <expression xsi:type="Filter">
   <source xsi:type="ExpressionRef" name="List1"/>
   <condition xsi:type="Equal">
@@ -570,14 +570,14 @@ The _Filter_ operator in ELM filters the contents of a list, returning only thos
     <operand xsi:type="Literal" valueType="xs:int" value="1"/>
   </condition>
 </expression>
-----
+```
 
 Again, although no direct counterpart in CQL exists, the _where_ clause of the _query_ construct provides the equivalent functionality:
 
 [source,cql]
-----
+```
 List1 A where A.X = 1
-----
+```
 
 [[sort-1]]
 ### Sort
@@ -585,16 +585,16 @@ List1 A where A.X = 1
 The _Sort_ operator in ELM sorts the contents of a list. For example:
 
 [source,xml]
-----
+```
 <expression xsi:type="Sort">
   <source xsi:type="ExpressionRef" name="List1"/>
   <by xsi:type="ByColumn" path="X" direction="desc"/>
 </expression>
-----
+```
 
 Again, the CQL query construct provides the equivalent functionality:
 
 [source,cql]
-----
+```
 List1 A sort by X desc
-----
+```

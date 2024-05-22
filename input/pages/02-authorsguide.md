@@ -62,10 +62,9 @@ The [.kw]#library# declaration specifies both the name of the library and an opt
 
 The following example illustrates the library declaration:
 
-[source,cql]
-----
+``` cql
 library CMS153_CQM version '2'
-----
+```
 
 The above declaration names the library with the identifier [.id]#CMS153_CQM# and specifies the version [.lit]#'2'#.
 
@@ -79,19 +78,17 @@ For more information on how these data models are used, see the <<Retrieve>> sec
 
 The following example illustrates the using declaration:
 
-[source,cql]
-----
+``` cql
 using QUICK
-----
+```
 
 The above declaration specifies that the [.id]#QUICK# model will be used as the data model within the library. The http://hl7.org/fhir/us/qicore/quick/QUICK-index.html[QUICK data model] will be used for the examples in this section unless specified otherwise.
 
 If necessary, a version specifier can be provided to indicate which version of the data model should be used as shown below:
 
-[source,cql]
-----
+``` cql
 using QUICK version '0.3.0'
-----
+```
 
 A syntax diagram of the [.kw]#using# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
 
@@ -99,19 +96,17 @@ A syntax diagram of the [.kw]#using# declaration can be seen [here](19-l-cqlsynt
 
 A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by name.
 
-[source,cql]
-----
+``` cql
 include CMS153_Common
-----
+```
 
 Components defined in the CMS153_Common library can now be referenced using the library name. For example:
 
-[source,cql]
-----
+``` cql
 define "SexuallyActive":
   exists (CMS153_Common."ConditionsIndicatingSexualActivity")
     or exists (CMS153_Common."LaboratoryTestsIndicatingSexualActivity")
-----
+```
 
 This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library.
 
@@ -121,28 +116,26 @@ For more information on libraries, refer to the <<Using Libraries to Share Logic
 
 The [.kw]#include# declaration may optionally specify a version, meaning that a specific version of the library must be used:
 
-[source,cql]
-----
+``` cql
 include CMS153_Common version '2'
-----
+```
 
 A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
 
 In addition, the [.kw]#include# declaration may optionally specify an assigned name using the [.kw]#called# clause:
 
-[source,cql]
-----
+``` cql
 include CMS153_Common version '2' called Common
-----
+```
 
 Components defined in the [.id]#CMS153_Common# library, version 2, can now be referenced using the assigned name of [.id]#Common#. For example:
 
 [source,cql]
-----
+```
 define "SexuallyActive":
   exists (Common."ConditionsIndicatingSexualActivity")
     or exists (Common."LaboratoryTestsIndicatingSexualActivity")
-----
+```
 
 A syntax diagram of the [.kw]#include# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
 
@@ -157,18 +150,18 @@ The syntax diagrams of the [codesystem definition](19-l-cqlsyntaxdiagrams.html#c
 Consider the following valueset declaration:
 
 [source,cql]
-----
+```
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
-----
+```
 
 This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, more specifically, an Object Identifier (OID) in this particular case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID; instead, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
 [source,cql]
-----
+```
 define "PatientIsFemale": Patient.gender in "Female Administrative Sex"
-----
+```
 
 The above example defines the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
 
@@ -179,11 +172,11 @@ Note also that the local name for a valueset is user-defined and not required to
 The following example illustrates a _code system_ and a _code_ declaration:
 
 [source,cql]
-----
+```
 codesystem "SNOMED": 'http://snomed.info/sct'
 code "Screening for Chlamydia trachomatis (procedure)":
   '442487003' from "SNOMED" display 'Screening for Chlamydia trachomatis (procedure)'
-----
+```
 
 This codesystem declaration in this example establishes the local name "SNOMED" as a reference to the external identifier for the codesystem, the URI "http://snomed.info/sct". The code declaration in this example establishes the local name "Screening for Chlamydia trachomatis (procedure)" as a reference to the code '442487003' from the "SNOMED" code system already defined.
 
@@ -209,29 +202,29 @@ A syntax diagram of the [.kw]#parameter# can be seen [here](19-l-cqlsyntaxdiagra
 The parameters defined in a library may be referenced by name in any expression within the library. When expressions in a CQL library are evaluated, the values for parameters are provided by the environment. For example, a library that defines criteria for a quality measure may define a parameter to represent the measurement period:
 
 [source,cql]
-----
+```
 parameter MeasurementPeriod default Interval[@2013-01-01, @2014-01-01)
-----
+```
 
 Note the syntax for the default here is called an _interval selector_ and will be discussed in more detail in the section on <<Interval Values>>.
 
 This parameter definition can now be referenced anywhere within the CQL library:
 
 [source,cql]
-----
+```
 define "Patient16To23":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
-----
+```
 
 The above example defines the [.id]#Patient16To23# expression as patients whose age at the start of the MeasurementPeriod was at least 16 and less than 24.
 
 The default value for a parameter is optional, but if no default is provided, the parameter must include a type specifier:
 
 [source,cql]
-----
+```
 parameter MeasurementPeriod Interval<DateTime>
-----
+```
 
 If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be [.kw]#null#.
 
@@ -276,14 +269,14 @@ Depending on different needs, models may define any context appropriate to their
 When no context is specified in the library, and the model has not declared a default context, the default context is [.id]#Unfiltered#.
 
 [source,cql]
-----
+```
 context Patient
 
 define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
-----
+```
 
 Because the context has been established as Patient, the expression has access to patient-specific concepts such as the [.id]#AgeInYearsAt()# operator and the [.id]#Patient.gender# attribute. Note that the attributes available in the Patient context are defined by the data model in use.
 
@@ -294,12 +287,12 @@ Effectively, the statement [.kw]#context# [.id]#Patient# defines an expression n
 As another example, consider a [.id]#Practitioner# context:
 
 [source,cql]
-----
+```
 context Practitioner
 
 define "Encounters":
   ["Encounter": "Inpatient Encounter"]
-----
+```
 
 The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the <<Retrieve Context>> discussion below.
 
@@ -310,12 +303,12 @@ A CQL Library can contain zero or more [.kw]#define# statements describing named
 The following example illustrates a simple define statement:
 
 [source,cql]
-----
+```
 define "InpatientEncounters":
   [Encounter: "Inpatient"] E
     where E.length <= 120 days
       and E.period ends during MeasurementPeriod
-----
+```
 
 This example defines the [.id]#InpatientEncounters# expression as [.id]#Encounter# events whose code is in the [.id]#"Inpatient"# valueset, whose length is less than or equal to 120 days, and whose period ended (i.e. patient was discharged) during MeasurementPeriod.
 
@@ -342,9 +335,9 @@ The type may be a general category, such as a Condition, Procedure, or Encounter
 In the simplest case, a retrieve specifies only the type of data to be retrieved. For example:
 
 [source,cql]
-----
+```
 [Encounter]
-----
+```
 
 Assuming the default context of [.id]#Patient#, this example retrieves all [.id]#Encounter# statements for a patient.
 
@@ -353,25 +346,25 @@ Assuming the default context of [.id]#Patient#, this example retrieves all [.id]
 In addition to describing the type of clinical statements, the retrieve expression allows the results to be filtered using terminology, including valuesets, code systems, or by specifying a single code. The use of codes within clinical data is ubiquitous, and most clinical statements have at least one code-valued attribute. In addition, there is typically a “primary” code-valued attribute for each type of clinical statement. This primary code is used to drive the terminology filter. For example:
 
 [source,cql]
-----
+```
 [Condition: "Acute Pharyngitis"]
-----
+```
 
 This example requests only those [.id]#Conditions# whose primary code attribute is a code from the valueset identified by [.id]#"Acute Pharyngitis"#. The attribute used as the primary code attribute is defined by the data model being used.
 
 In addition, the retrieve expression allows the filtering attribute name to be specified:
 
 [source,cql]
-----
+```
 [Condition: severity in "Acute Severity"]
-----
+```
 
 This requests clinical statements that assert the presence of a condition with a severity in the [.id]#"Acute Severity"# valueset.
 
 Note that the terminology reference [.id]#"Acute Severity"# in the above examples is a valueset, but it could also be a code system, a concept, or a specific code:
 
 [source,cql]
-----
+```
 codesystem "SNOMED": 'http://snomed.info/sct'
 code "Acute Pharyngitis Code":
   '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
@@ -381,7 +374,7 @@ define "Get Condition from Code Declaration":
 
 define "Get Condition from CodeSystem Declaration":
   [Condition: "SNOMED"]
-----
+```
 
 The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
 
@@ -390,7 +383,7 @@ When the primary code attribute is used (i.e. no filtering attribute name is spe
 When the code path is specified, the code comparison operation can be specified as well:
 
 [source,cql]
-----
+```
 codesystem "SNOMED": 'http://snomed.info/sct'
 code "Acute Pharyngitis Code":
   '363746003' from "SNOMED" display 'Acute pharyngitis (disorder)'
@@ -403,7 +396,7 @@ define "Get Condition from CodeSystem Declaration":
 
 define "Get Condition from Exact Match To Code":
   [Condition: code = "Acute Pharyngitis Code"]
-----
+```
 
 Note the last example here is using the _equality_ operator ([.sym#=#]) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
 
@@ -414,18 +407,18 @@ Within the [.id]#Patient# context, the results of any given retrieve will always
 By contrast, if the [.id]#Unfiltered# context is used, the results of any given retrieve will not be limited to a particular context. For example:
 
 [source,cql]
-----
+```
 [Condition: "Acute Pharyngitis"] C where C.onsetDateTime during MeasurementPeriod
-----
+```
 
 When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unfiltered# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
 
 As another example, consider the set of encounters:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"]
-----
+```
 
 Depending on the context the retrieve above will return:
 
@@ -448,7 +441,7 @@ In an [.id]#Unfiltered# context, a reference to a specified context expression (
 If the result type of an expression in a specific context is not a list, the result of accessing it from an [.id]#Unfiltered# context will be a list with elements of the type of the  expression. For example:
 
 [source,cql]
-----
+```
 context Patient
 
 define "InInitialPopulation":
@@ -458,7 +451,7 @@ context Unfiltered
 
 define "InitialPopulationCount":
   Count(InInitialPopulation IP where IP is true)
-----
+```
 
 In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to [.kw]#true#.
 
@@ -497,18 +490,18 @@ Each of these clauses will be discussed in more detail in the following sections
 A query construct begins by introducing an _alias_ for the primary source:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
-----
+```
 
 The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
 
 Although the alias in this example is a single-letter abbreviation, [.id]#E#, it could also be a longer abbreviation:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] Enc
-----
+```
 
 Note that alias names, as with all language constructs, may be the subject of language conventions. The [Formatting Conventions](14-g-formattingconventions.html) section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
 
@@ -521,23 +514,23 @@ A syntax diagram of a [.kw]#where# clause can be seen [here](19-l-cqlsyntaxdiagr
 For example:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   where duration in days of E.period >= 120
-----
+```
 
 The alias [.id]#E# is used to access the period attribute of each encounter in the primary source. The filter condition tests whether the duration of that range is at least 120 days.
 
 The condition of a [.kw]#where# clause is allowed to contain any arbitrary combination of operations of CQL, so long as the overall result of the condition is boolean-valued. For example, the following where clause includes multiple conditions on different attributes of the source:
 
 [source,cql]
-----
+```
 [CommunicationRequest] C
   where C.mode = 'ordered'
     and C.sender.role = 'nurse'
     and C.recipient.role = 'doctor'
     and C.indication in "Fever"
-----
+```
 
 Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ ([.kw]#null#). For example, if the list of inpatient encounters from the first example contains some elements whose [.id]#period# attribute is [.kw]#null#, the result of the condition for that element will not be [.kw]#false#, but [.kw]#null#, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to [.kw]#true# are included in the result, effectively ignoring the entries for which the logical expression evaluates to [.kw]#null#.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
 
@@ -550,28 +543,28 @@ A syntax diagram of a [.kw]#return# clause can be seen [here](19-l-cqlsyntaxdiag
 For example:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
-----
+```
 
 This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the [.id]#id# of the encounter as well as a [.id]#lengthOfStay# element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
 
 By default, a query returns a list of distinct results, suppressing duplicates. To include duplicates, use the [.kw]#all# keyword in the [.kw]#return# clause. For example, the following will return a list of the lengths of stay for each Encounter:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   return E.lengthOfStay
-----
+```
 
 If two encounters have the same value for [.id]#lengthOfStay#, that value will only appear once in the result unless the [.kw]#all# keyword is used:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   return all E.lengthOfStay
-----
+```
 
 ### Sorting
 
@@ -582,29 +575,29 @@ A syntax diagram of a [.kw]#sort# clause can be seen [here](19-l-cqlsyntaxdiagra
 For example:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E sort by start of period
-----
+```
 
 This example returns inpatient encounters, sorted by the start of the encounter period.
 
 Results can be sorted ascending or descending using the [.kw]#asc# (ascending) or [.kw]#desc# (descending) keywords:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E sort by start of period desc
-----
+```
 
 If no ascending or descending specifier is provided, the order is ascending.
 
 Calculated values can also be used to determine the sort:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
     sort by lengthOfStay
-----
+```
 
 Note that the properties that can be specified within the [.kw]#sort# clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the [.kw]#return# clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
 
@@ -613,9 +606,9 @@ If no [.kw]#sort# clause is provided, the order of the result is unprescribed an
 The [.kw]#sort# clause may include multiple attributes, each with their own sort order:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E sort by start of period desc, identifier asc
-----
+```
 
 Sorting is performed in the order in which the attributes are defined in the [.kw]#sort# clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
 
@@ -635,24 +628,24 @@ image:extracted-media/media/patient-model.png[image]
 Figure 2‑C - Simple patient information model
 
 [source,cql]
-----
+```
 [Encounter: "Ambulatory/ED Visit"] E
   with [Condition: "Acute Pharyngitis"] P
     such that P.onsetDateTime during E.period
       and P.abatementDate after end of E.period
-----
+```
 
 This query returns [.id]#"Ambulatory/ED Visit"# encounters performed where the patient also has a condition of [.id]#"Acute Pharyngitis"# that overlaps after the period of the encounter.
 
 The [.kw]#without# clause returns only those elements from the primary source that do not have a specific relationship to another source. For example:
 
 [source,cql]
-----
+```
 [Encounter: "Ambulatory/ED Visit"] E
   without [Condition: "Acute Pharyngitis"] P
     such that P.onsetDateTime during E.period
       and P.abatementDate after end of E.period
-----
+```
 
 This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of [.id]#Acute Pharyngitis# in this case), then that Encounter is not included in the result.
 
@@ -663,24 +656,24 @@ A given query may include any number of [.kw]#with# and [.kw]#without# clauses i
 The [.kw]#such that# conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 [source,cql]
-----
+```
 [MedicationDispense: "Warfarin"] D
   with [MedicationPrescription: "Warfarin"] P
     such that P.status = 'active'
       and P.identifier = D.authorizingPrescription.identifier
-----
+```
 This example retrieves all dispense records for active prescriptions of [.id]#Warfarin#.
 
 When multiple [.kw]#with# or [.kw]#without# clauses appear in a single query, the result will only include elements that meet the [.kw]#such that# conditions for all the relationship clauses. For example:
 
 [source,cql]
-----
+```
 MeasurementPeriodEncounters E
   with Pharyngitis P
     such that Interval[P.onsetDateTime, P.abatementDateTime] includes E.period
       or P.onsetDateTime.value in E.period
   with Antibiotics A such that A.dateWritten 3 days or less after start of E.period
-----
+```
 
 This example retrieves all the elements returned by the expression [.id]#MeasurementPeriodEncounters# that have both a related [.id]#Pharyngitis# and [.id]#Antibiotics# result.
 
@@ -689,13 +682,13 @@ This example retrieves all the elements returned by the expression [.id]#Measure
 The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
 
 [source,cql]
-----
+```
 <primary-source> <alias>
   <with-or-without-clauses>
   <where-clause>
   <return-clause>
   <sort-clause>
-----
+```
 
 A query must contain an aliased primary source, but this is the only required clause.
 
@@ -710,7 +703,7 @@ A query may contain at most one [.kw]#sort# clause, and it must be the last clau
 For example:
 
 [source,cql]
-----
+```
 [Encounter: "Inpatient"] E
   with [Condition: "Acute Pharyngitis"] P
     such that P.onsetDateTime during E.period
@@ -718,14 +711,14 @@ For example:
   where duration in days of E.period >= 120
   return Tuple { id: E.id, lengthOfStay: duration in days of E.period }
   sort by lengthOfStay desc
-----
+```
 
 This query returns all [.id]#"Inpatient"# encounter events that have an overlapping condition of [.id]#"Acute Pharyngitis"# and a duration of at least 120 days. For each such event, the result will include the [.id]#id# of the event and the duration in days, and the results will be ordered by that duration descending.
 
 As another example, consider a query with multiple [.kw]#without# clauses:
 
 [source,cql]
-----
+```
 SingleLiveBirthEncounter E
   without [Condition: "Galactosemia"] G
     such that G.onsetDatetime during E.period
@@ -734,7 +727,7 @@ SingleLiveBirthEncounter E
   where not exists ( E.diagnosis ED
     where ED.code in "Galactosemia"
   )
-----
+```
 
 Even though this example has multiple [.kw]#without# clauses, there is still only a single [.kw]#where# clause for the query.
 
@@ -755,25 +748,25 @@ The result of evaluating any expression in CQL is a value of some type. For exam
 As a result, any given expression of CQL can be verified as meaningful or be determined meaningless, at least in terms of the operations performed. For example, consider the following expression:
 
 [source,cql]
-----
+```
 6 + 6
-----
+```
 
 The expression involves the addition of values of type [.id]#Integer#, and so is a meaningful expression of CQL. By contrast:
 
 [source,cql]
-----
+```
 6 + 'active'
-----
+```
 
 This expression involves the addition of a value of type [.id]#Integer#, [.lit]#6#, to a value of type [.id]#String#, [.lit]#'active'#. This expression is meaningless since CQL does not define addition for values of type [.id]#Integer# and [.id]#String#.
 
 However, there are cases where an expression is meaningful, even if the types do not match exactly. For example, consider the following addition:
 
 [source,cql]
-----
+```
 6 + 6.0
-----
+```
 
 This expression involves the addition of a value of type [.id]#Integer#, and a value of type [.id]#Decimal#. This is meaningful, but in order to infer the correct result type, the [.id]#Integer# value will be implicitly converted to a value of type [.id]#Decimal#, and the [.id]#Decimal# addition operator will be used, resulting in a value of type [.id]#Decimal#.
 
@@ -825,25 +818,25 @@ The [.id]#Decimal# type in CQL supports the representation of real numbers, posi
 [.id]#String# values within CQL are represented using single-quotes:
 
 [source,cql]
-----
+```
 'active'
-----
+```
 
 Note that if the value you are attempting to represent contains a single-quote, use a backslash to include it within the string in CQL:
 
 [source,cql]
-----
+```
 'patient\'s condition is normal'
-----
+```
 
 Comparison of [.id]#String# values in CQL is case-sensitive, meaning that the strings 'patient' and 'Patient' are not equal:
 
 [source,cql]
-----
+```
 'Patient' = 'Patient'
 'Patient' != 'patient'
 'Patient' ~ 'patient'
-----
+```
 
 For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent ([.sym]#~#) operator. Note that string equivalence will also "normalize whitespace", meaning that all whitespace characters are treated as equivalent.
 
@@ -857,27 +850,27 @@ A syntax diagram of a [.id]#Date, DateTime and Time# format can be seen [here](1
 [.id]#DateTime# values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. [.id]#DateTime# values are specified using an at-symbol ([.sym]#@#) followed by an ISO-8601 textual representation of the [.id]#DateTime# value:
 
 [source,cql]
-----
+```
 @2014-01-25T14:30
 @2014-01-25T14:30:14.559
-----
+```
 
 [.id]#Date# values are used to represent only dates on a calendar, irrespective of the time of day. [.id]#Date# values are specified using an at-symbol ([.sym]#@#) followed by an ISO-8601 textual representation of the [.id]#Date# value:
 
 [source,cql]
-----
+```
 @2014-01-25
-----
+```
 
 Note that the [.id]#Date# value literal format is identical to the date value portion of the [.id]#DateTime# literal format.
 
 [.id]#Time# values are used to represent a time of day, independent of the date. [.id]#Time# value must be known to at least the hour precision, and potentially to the millisecond precision. [.id]#Time# values are specified using an at-symbol with a capital T ([.sym]#@T#) followed by an ISO-8601 textual representation of the [.id]#Time# value:
 
 [source,cql]
-----
+```
 @T12:00
 @T14:30:14.559
-----
+```
 
 Note that the [.id]#Time# value literal format is identical to the time value portion of the [.id]#DateTime# literal format.
 
@@ -898,11 +891,11 @@ In addition to simple values, CQL supports some types of values that are specifi
 A quantity is a number with an associated unit. For example:
 
 [source,cql]
-----
+```
 6 'gm/cm3'
 80 'mm[Hg]'
 3 months
-----
+```
 
 The number portion of a quantity can be an [.id]#Integer# or [.id]#Decimal#, and the unit portion is a (single-quoted) [.id]#String# representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
@@ -926,18 +919,18 @@ Durations above days (and weeks) are calendar durations that are not comparable 
 For example, the following quantities are _calendar duration_ quantities:
 
 [source,cql]
-----
+```
 1 year
 4 days
-----
+```
 
 Whereas the following quantities are _definite duration_ quantities:
 
 [source,cql]
-----
+```
 1 'a'
 4 'd'
-----
+```
 
 The table above defines the equality/equivalence relationship between calendar and definite duration quantities. For example, `1 year` is not _equal_ (`=`) to `1 'a'` (defined in UCUM as 365.25 'd'), but it is _equivalent_ (`~`) to `1 'a'`.
 
@@ -953,10 +946,10 @@ For a discussion of the operations available for quantities, see the <<Quantity 
 A ratio is a relationship between two quantities, expressed in CQL using standard mathematical notation:
 
 [source,cql]
-----
+```
 1:128
 5 'mg' : 10 'mL'
-----
+```
 
 For a discussion of the operations available for ratios, see the <<Ratio Operators>> section.
 
@@ -983,13 +976,13 @@ A syntax diagram of a [.id]#Code# declaration can be seen [here](19-l-cqlsyntaxd
 The following examples illustrate the code declaration:
 
 [source,cql]
-----
+```
 codesystem "LOINC": 'http://loinc.org'
 
 code "Blood pressure": '55284-4' from "LOINC" display 'Blood pressure'
 code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
 code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
-----
+```
 
 The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
@@ -1000,21 +993,21 @@ In addition, CQL provides a [.id]#Code# literal that can be used to reference an
 For example
 
 [source,cql]
-----
+```
 Code '66071002' from "SNOMED-CT" display 'Type B viral hepatitis'
-----
+```
 
 The example specifies the code [.lit]#'66071002'# from a previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
 
 This use of code declarations to reference a single code in a CQL expression is referred to as a _direct reference code_:
 
 [source,cql]
-----
+```
 code "Discharge to home for hospice care (procedure)": '428361000124107' from "SNOMEDCT"
 
 define "Encounters Discharged to Hospice":
   "Encounters" E where E.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
-----
+```
 
 Note the use of the _equivalent_ operator (`~`) rather than _equality_ (`=`). For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
 
@@ -1051,7 +1044,7 @@ ____
 The following example illustrates the concept declaration:
 
 [source,cql]
-----
+```
 codesystem "SNOMED-CT": 'urn:oid:2.16.840.1.113883.6.96'
 codesystem "ICD-10-CM": 'urn:oid:2.16.840.1.113883.6.90'
 
@@ -1059,7 +1052,7 @@ code "Hepatitis Type B (SNOMED)": '66071002' from "SNOMED-CT" display 'Viral hep
 code "Hepatitis Type B (ICD-10)": 'B18.1' from "ICD-10-CM" display 'Chronic viral hepatitis B without delta-agent'
 
 concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (ICD-10)" } display 'Type B Hepatitis'
-----
+```
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
@@ -1070,12 +1063,12 @@ As with codes, local names for concept declarations should be consistent with ex
 The following example illustrates the use of a [.id]#Concept# literal:
 
 [source,cql]
-----
+```
 Concept {
   Code '66071002' from "SNOMED-CT",
   Code 'B18.1' from "ICD-10-CM"
 } display 'Type B viral hepatitis'
-----
+```
 
 This example constructs a [.id]#Concept# with display [.lit]#'Type B viral hepatitis'# and code of [.lit]#'66071002'#.
 
@@ -1090,20 +1083,20 @@ A syntax diagram of a valueset declaration can be seen [here](19-l-cqlsyntaxdiag
 The following example illustrates some typical valueset declarations:
 
 [source,cql]
-----
+```
 valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 valueset "Acute Tonsillitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1012'
 valueset "Ambulatory/ED Visit": 'urn:oid:2.16.840.1.113883.3.464.1003.101.12.1061'
-----
+```
 
 Each valueset declaration defines a local identifier that can be used to reference the valueset within the library, as well as the global identifier for the valueset, typically an object identifier (OID) or uniform resource identifier (URI).
 
 These valueset identifiers can then be used throughout the library. For example:
 
 [source,cql]
-----
+```
 define "Pharyngitis": [Condition: "Acute Pharyngitis"]
-----
+```
 
 This example defines [.id]#Pharyngitis# as any Condition where the code is in the [.id]#"Acute Pharyngitis"# valueset.
 
@@ -1121,21 +1114,21 @@ If any code systems are specified, they indicate which version of the particular
 The following example illustrates the use of static binding based only on the version of the valueset:
 
 [source,cql]
-----
+```
 valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
-----
+```
 
 The next example illustrates a static binding based on both the version of the valueset, as well as the versions of the code systems within the valueset:
 
 [source,cql]
-----
+```
 codesystem "SNOMED-CT:2013-09": 'urn:oid:2.16.840.1.113883.6.96' version '2031-09'
 codesystem "ICD-9-CM:2014": 'urn:oid:2.16.840.1.113883.6.103' version '2014'
 codesystem "ICD-10-CM:2014": 'urn:oid:2.16.840.1.113883.6.90' version '2014'
 
 valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version '20140501'
   codesystems { "SNOMED-CT:2013-09", "ICD-9-CM:2014", "ICD-10-CM:2014" }
-----
+```
 
 When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, in which case some additional aspect is required to ensure uniqueness of the names within the CQL library.
 See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
@@ -1147,11 +1140,11 @@ In addition to their use as part of valueset definitions, codesystem definitions
 For example:
 
 [source,cql]
-----
+```
 codesystem "LOINC": 'http://loinc.org'
 
 define "LOINC Observations": [Observation: "LOINC"]
-----
+```
 
 The above example retrieves all observations coded using LOINC codes.
 
@@ -1165,17 +1158,17 @@ Structured values, or _tuples_, are values that contain named elements, each hav
 For example, the following expression retrieves the first Condition with a code in the [.id]#"Acute Pharyngitis"# valueset for a patient:
 
 [source,cql]
-----
+```
 define "FirstPharyngitis":
   First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
-----
+```
 
 The values of the elements of a tuple can be accessed using a dot qualifier ([.sym]#.#) followed by the name of the element:
 
 [source,cql]
-----
+```
 define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
-----
+```
 
 Tuples can also be constructed directly using a tuple selector.
 
@@ -1184,23 +1177,23 @@ A syntax diagram of a _tuple_ selector can be seen [here](19-l-cqlsyntaxdiagrams
 For example:
 
 [source,cql]
-----
+```
 define "Info": Tuple { Name: 'Patrick', DOB: @2014-01-01 }
-----
+```
 
 If the tuple is of a specific type, the name of the type can be used instead of the Tuple keyword:
 
 [source,cql]
-----
+```
 define "PatientExpression": Patient { Name: 'Patrick', DOB: @2014-01-01 }
-----
+```
 
 If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be [.kw]#null#.
 
 Note that tuples can contain other tuples, as well as lists:
 
 [source,cql]
-----
+```
 define "Info":
   Tuple {
     Name: 'Patrick',
@@ -1208,30 +1201,30 @@ define "Info":
     Address: Tuple { Line1: '41 Spinning Ave', City: 'Dayton', State: 'OH' },
     Phones: { Tuple { Number: '202-413-1234', Use: 'Home' } }
   }
-----
+```
 
 Accordingly, element access can nest as deeply as necessary:
 
 [source,cql]
-----
+```
 Info.Address.City
-----
+```
 
 This accesses the [.id]#City# element of the [.id]#Address# element of [.id]#Info#. Lists can be traversed within element accessors using the list indexer ([.sym]#[]#):
 
 [source,cql]
-----
+```
 Info.Phones[0].Number
-----
+```
 
 This accesses the [.id]#Number# element of the first element of the [.id]#Phones# list within [.id]#Info#.
 
 In addition, to simplify path traversal for models that make extensive use of list-valued attributes, the indexer can be omitted:
 
 [source,cql]
-----
+```
 Info.Phones.Number
-----
+```
 
 The result of this invocation is a list containing the [.id]#Number# elements of all the [.id]#Phones# within [.id]#Info#.
 
@@ -1242,9 +1235,9 @@ Because clinical information is often incomplete, CQL provides a special constru
 In order to provide consistent behavior in the presence of missing information, CQL defines [.kw]#null# behavior for all operations. For example, consider the following expression:
 
 [source,cql]
-----
+```
 define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
-----
+```
 
 If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
 
@@ -1257,25 +1250,25 @@ CQL supports the representation of lists of any type of value (including other l
 Lists can be constructed directly, as in:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 }
-----
+```
 
 But more commonly, lists of tuples are the result of retrieve expressions. For example:
 
 [source,cql]
-----
+```
 [Condition: code in "Acute Pharyngitis"]
-----
+```
 
 This expression results in a list of tuples, where each tuple’s elements are determined by the data model in use.
 
 Lists in CQL use zero-based indexes, meaning that the first element in a list has index 0. For example, given the list of integers:
 
 [source,cql]
-----
+```
 { 6, 7, 8, 9, 10 }
-----
+```
 
 The first element is 6 and has index 0, the second element is 7 and has index 1, and so on.
 
@@ -1294,69 +1287,69 @@ A syntax diagram of an [.id]#Interval# construct can be seen [here](19-l-cqlsynt
 For example:
 
 [source,cql]
-----
+```
 Interval[3, 5)
-----
+```
 
 This expression results in an [.id]#Interval# that contains the integers 3 and 4, but not 5.
 
 [source,cql]
-----
+```
 Interval[3.0, 5.0)
-----
+```
 
 This expression results in an [.id]#Interval# that contains all the real numbers [.sym]#>=# 3.0 and [.sym]#<# 5.0.
 
 Intervals can be constructed based on any type that supports unique and ordered comparison. For example:
 
 [source,cql]
-----
+```
 Interval[@2014-01-01T00:00:00.0, @2015-01-01T00:00:00.0)
-----
+```
 
 This expression results in an [.id]#Interval# that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
 
 [source,cql]
-----
+```
 Interval[@2014-01-01T00:00:00.0, @2014-12-31T23:59:59.999]
-----
+```
 
 Furthermore, take the following example:
 
 [source,cql]
-----
+```
 Interval[@2014-01-01, @2015-01-01)
-----
+```
 
 This expression results in an [.id]#Interval# that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
 
 [source,cql]
-----
+```
 Interval[@2014-01-01, @2014-12-31]
-----
+```
 
 Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid [.id]#Interval# will result in a run-time error. For example:
 
 [source,cql]
-----
+```
 Interval[1, -1] // Invalid interval, this will result in an error
-----
+```
 
 It is valid to construct an [.id]#Interval# with the same start and end boundary, so long as the boundaries are inclusive:
 
 [source,cql]
-----
+```
 Interval[1, 1] // Unit interval containing only the point 1
 Interval[1, 1) // Invalid interval, conflicting to say it both includes and excludes 1
-----
+```
 
 Such an [.id]#Interval# contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval. Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
 
 [source,cql]
-----
+```
 point from Interval[1, 1] // Results in 1
 point from Interval[1, 5] // Invalid extractor, this will result in an error
-----
+```
 
 ## Operations
 
@@ -1392,16 +1385,16 @@ Table 2‑H - The built-in comparison operators that CQL provides
 In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns [.kw]#true#:
 
 [source,cql]
-----
+```
 5 = 5
-----
+```
 
 However, the following equality comparison is invalid because numbers and strings cannot be meaningfully compared:
 
 [source,cql]
-----
+```
 5 = 'completed'
-----
+```
 
 Attempting to compare numbers and strings as in this example will result in an error message indicating that there is no equality ([.sym]#=#) operator available to compare numbers and strings.
 
@@ -1412,32 +1405,32 @@ For [.id]#Date# and [.id]#Time# values, equality is defined to account for the p
 For structured values, equality returns [.kw]#true# if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns [.kw]#true#:
 
 [source,cql]
-----
+```
 Tuple { id: 'ABC-001', name: 'John Smith' } = Tuple { id: 'ABC-001', name: 'John Smith' }
-----
+```
 
 For lists, equality returns [.kw]#true# if the lists contain the same elements in the same order. For example, the following lists are equal:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 } = { 1, 2, 3, 4, 5 }
-----
+```
 
 And the following lists are not equal:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 } != { 5, 4, 3, 2, 1 }
-----
+```
 
 Note that in the above example, if the second list was sorted ascending prior to the comparison, the result would be [.kw]#true#.
 
 For intervals, equality returns [.kw]#true# if the intervals use the same point type and cover the same range. For example:
 
 [source,cql]
-----
+```
 Interval[1,5] = Interval[1,6)
-----
+```
 
 This returns [.kw]#true# because the intervals cover the same set of points, 1 through 5.
 
@@ -1446,24 +1439,24 @@ The relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#
 The [.kw]#between# operator is shorthand for comparison of an expression against an upper and lower bound. For example:
 
 [source,cql]
-----
+```
 4 between 2 and 8
-----
+```
 
 This expression is equivalent to:
 
 [source,cql]
-----
+```
 4 >= 2 and 4 <= 8
-----
+```
 
 For all the comparison operators, the result type of the operation is [.id]#Boolean#. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null# (meaning _unknown_). This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is generally the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not:
 
 [source,cql]
-----
+```
 define "NullEqualityTest": 1 = null
 define "NullEquivalenceTest": 1 ~ null
-----
+```
 
 The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
 
@@ -1498,10 +1491,10 @@ Table 2‑I - Logical operations that CQL provides
 The following examples illustrate some common uses of logical operators:
 
 [source,cql]
-----
+```
 AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
-----
+```
 
 Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard [.id]#Boolean# (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
@@ -1560,10 +1553,10 @@ Operations on date and time data are an essential component of expressing clinic
 In addition to the literals described in the Date, DateTime, and Time section, the [.id]#Date#, [.id]#DateTime#, and [.id]#Time# operators allow for the construction of specific [.id]#Date# and [.id]#Time# values based on the values for their components. For example:
 
 [source,cql]
-----
+```
 Date(2014, 7, 5)
 DateTime(2014, 7, 5, 4, 0, 0, 0, -7)
-----
+```
 
 The first example constructs the [.id]#Date# July 5, 2014. The second example constructs a [.id]#DateTime# of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
 
@@ -1590,12 +1583,12 @@ The [.id]#Date# operator takes only the first three arguments: Year, Month, and 
 At least one component other than timezone offset must be provided, and for any particular component that is provided, all the components of broader precision must be provided. For example:
 
 [source,cql]
-----
+```
 Date(2014)
 Date(2014, 7)
 Date(2014, 7, 11)
 Date(null, null, 11) // invalid
-----
+```
 
 The first three expressions above are valid, constructing dates with a specified precision of years, months, and days, respectively. However, the fourth expression is invalid, because it attempts to create a date with a day but no year or month component.
 
@@ -1642,16 +1635,16 @@ In addition, all operations on [.id]#DateTime# values are defined to take timezo
 As discussed in the <<Quantities>> section above, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
 [source,cql]
-----
+```
 3 months
 1 year
 5 minutes
-----
+```
 
 Valid time duration units are:
 
 [source,cql]
-----
+```
 year
 years
 month
@@ -1668,7 +1661,7 @@ second
 seconds
 millisecond
 milliseconds
-----
+```
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
@@ -1683,30 +1676,30 @@ For comparisons involving time durations (where no anchor to a calendar is avail
 CQL supports comparison of [.id]#Date# and [.id]#Time# values using the expected comparison operators. Note however, that when [.id]#Date# and [.id]#Time# values are not specified completely, the result may be [.kw]#null#, depending on whether there is enough information to make an accurate determination. In general, CQL treats [.id]#Date# and [.id]#Time# values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
 
 [source,cql]
-----
+```
 Date(2014)
-----
+```
 
 This value can be read as “some date within the year 2014”, because only the year component is known. Applying these semantics yields the intuitively correct result when comparing [.id]#Date# and [.id]#Time# values with varying levels of precision.
 
 [source,cql]
-----
+```
 Date(2012) < Date(2014, 2, 15)
-----
+```
 
 This example returns [.kw]#true# because even though the month and day of the first date are unknown, the year, 2012, is known to be less than the year of the second date, 2014. By contrast:
 
 [source,cql]
-----
+```
 Date(2015) < Date(2014, 2, 15)
-----
+```
 
 The result in this example is [.kw]#false# because the year, 2015, is not less than the year of the second date. And finally:
 
 [source,cql]
-----
+```
 Date(2014) < Date(2014, 2, 15)
-----
+```
 
 The result in this example is [.kw]#null# because the first date could be any date within the year 2014, so it could be less than the second date, but it could be greater.
 
@@ -1732,11 +1725,11 @@ Table 2‑N - The precision-based comparison operators for [.kw]#Date# and [.kw]
 If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for [.id]#Time# values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
 
 [source,cql]
-----
+```
 Date(2014) same year as Date(2014, 7, 11)
 Date(2014, 7) same month as Date(2014, 7, 11)
 DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
-----
+```
 
 Each of these expressions returns [.kw]#true# because the [.id]#Date# and [.id]#Time# values are equal at the specified level of precision and above. For example, [.kw]#same month as# means the same year _and_ the same month.
 
@@ -1745,29 +1738,29 @@ Note: To compare a specific component of two dates, use the extraction operators
 For relative comparisons involving equality, the [.kw]#same as# operator is suffixed with [.kw]#before# or [.kw]#after#:
 
 [source,cql]
-----
+```
 Date(2015) same year or after Date(2014, 7, 11)
 Date(2014, 4) same month or before Date(2014, 7, 11)
 DateTime(2014, 7, 15) same day or after DateTime(2014, 7, 11, 14, 0, 0)
-----
+```
 
 Each of these expressions also returns [.kw]#true#. And finally, for the relative inequalities ([.sym]#<# and [.sym]#>#):
 
 [source,cql]
-----
+```
 Date(2015) after year of Date(2014, 7, 11)
 Date(2014, 4) before month of Date(2014, 7, 11)
 DateTime(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
-----
+```
 
 Each of these expressions also returns [.kw]#true#.
 
 Note that these operators may still return [.kw]#null# if the [.id]#Date# and [.id]#Time# values involved have unspecified components at or above the specified comparison precision. For example:
 
 [source,cql]
-----
+```
 Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
-----
+```
 
 The result in this example is [.kw]#null# because the first date has no _hour_ component.
 
@@ -1776,11 +1769,11 @@ The result in this example is [.kw]#null# because the first date has no _hour_ c
 Given a [.id]#Date# and [.id]#Time# value, CQL supports extraction of any of the components. For example:
 
 [source,cql]
-----
+```
 date from X
 year from X
 minute from X
-----
+```
 
 These examples extract the date from X, the year from X, and the minute from X. The following table lists the valid extraction components and their resulting types:
 
@@ -1814,9 +1807,9 @@ When extracting the [.id]#Time# from a [.id]#DateTime# value, implementations sh
 By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols ([.sym]#+# and [.sym]#-#) are used for this purpose. For example:
 
 [source,cql]
-----
+```
 Today() - 1 year
-----
+```
 
 The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any [.id]#Date# and [.id]#Time# value.
 
@@ -1825,18 +1818,18 @@ Note that as with the numeric arithmetic operators, if either or both arguments 
 For partial date/time values where the time-valued quantity is more precise than the partial date/time, the operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then adding it to (or subtracting it from) the first argument. For example, consider the following addition:
 
 [source,cql]
-----
+```
 DateTime(2014) + 24 months
-----
+```
 
 This example results in the value [.id]#DateTime(2016)# even though the [.id]#DateTime# value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored. For example:
 
 [source,cql]
-----
+```
 @2016-01-01 – 1.1 years
-----
+```
 
 Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning should be issued by the translator.
 
@@ -1870,49 +1863,49 @@ ____
 In addition to constructing durations, CQL supports the ability to compute duration and difference between two [.id]#DateTimes#. For duration, the calculation is performed based on the calendar duration for the precision. For difference, the calculation is performed by counting the number of boundaries of the specific precision crossed between the two dates.
 
 [source,cql]
-----
+```
 months between X and Y
-----
+```
 
 This example calculates the number of months between its arguments. For variable length precisions (months and years), the operation uses the calendar length of the precision to determine the number of periods.
 
 For example, the following expression returns 2:
 
 [source,cql]
-----
+```
 months between @2014-01-01 and @2014-03-01
-----
+```
 
 This is because there are two whole calendar months between the two dates. Fractional months are not included in the result. This means that the following expression also returns 2:
 
 [source,cql]
-----
+```
 months between @2014-01-01 and @2014-03-15
-----
+```
 
 For difference, the calculation is concerned with the number of boundaries crossed:
 
 [source,cql]
-----
+```
 difference in months between X and Y
-----
+```
 
 The above example calculates the number of month boundaries crossed between X and Y.
 
 To illustrate the difference between the two calculations, consider the following examples:
 
 [source,cql]
-----
+```
 duration in months between @2014-01-31 and @2014-02-01
 difference in months between @2014-01-31 and @2014-02-01
-----
+```
 
 The first example returns 0 because there is less than one calendar month between the two dates. The second example, however, returns 1, because a month boundary was crossed between the two dates.
 
 The following duration units are valid for the duration and difference operators:
 
 [source,cql]
-----
+```
 years
 months
 weeks
@@ -1921,7 +1914,7 @@ hours
 minutes
 seconds
 milliseconds
-----
+```
 
 If the first argument is after the second, the result will be negative.
 
@@ -1955,40 +1948,40 @@ Interval values can be constructed using the _interval selector_, as discussed i
 Membership testing for intervals can be done using the [.kw]#in# and [.kw]#contains# operators. For example:
 
 [source,cql]
-----
+```
 Interval[3, 5) contains 4
 4 in Interval[3, 5)
-----
+```
 
 These two expressions are equivalent (inverse of each other) and both return [.kw]#true#.
 
 The starting and ending points for an interval can be determined using the [.kw]#start of# and [.kw]#end of# operators:
 
 [source,cql]
-----
+```
 start of Interval[3, 5)
 end of Interval[3, 5)
-----
+```
 
 The first expression above returns 3, while the second expression returns 4.
 
 Property expressions can also be used to access the boundary points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed:
 
 [source, cql]
-----
+```
 Interval[3, 5).high
 Interval[3, 5).highClosed
-----
+```
 
 The first expression above returns 5, and the second expression returns false.
 
 To extract a point from an interval, the [.kw]#point from# operator is used:
 
 [source,cql]
-----
+```
 point from Interval[3, 3]
 point from Interval[3, 4)
-----
+```
 
 The two expressions are equivalent and both return 3.
 
@@ -1997,44 +1990,44 @@ Note that the [.kw]#point from# operator may only be used on a _unit interval_, 
 The starting and ending point of an interval may be [.kw]#null#, the meaning of which depends on whether the interval is closed (inclusive) or open (exclusive). If a boundary point is [.kw]#null# and the boundary is exclusive, the boundary is considered unknown, and represents an uncertainty between the boundary and the minimum or maximum value for the point type of the interval. In this case, operations involving that point may return [.kw]#null#. For example:
 
 [source,cql]
-----
+```
 Interval[3, null) contains 5
-----
+```
 
 This expression results in [.kw]#null#. However, if the point is [.kw]#null# and the interval boundary is inclusive, the boundary is interpreted as the beginning or ending of the range of the point type. For example:
 
 [source,cql]
-----
+```
 Interval[3, null] contains 5
-----
+```
 
 This expression returns [.kw]#true# because the [.kw]#null# ending boundary is inclusive and is therefore interpreted as extending to the end of the range of possible values for the point type of the interval.
 
 For numeric intervals, CQL defines a [.kw]#width# operator, which returns the ending boundary minus the starting boundary:
 
 [source,cql]
-----
+```
 width of Interval[3, 5)
 width of Interval[3, 5]
-----
+```
 
 The first expression returns 1 (ending boundary of 4, minus the starting boundary of 3), while the second expression returns 2 (ending boundary of 5, minus the starting boundary of 3).
 
 For date and time intervals, CQL defines a [.kw]#duration of# operator as well as a [.kw]#difference of# operator, both of which are defined in the same way as the date and time duration and difference operators, respectively. For example:
 
 [source,cql]
-----
+```
 duration in days of X
 difference in days of X
-----
+```
 
 These expressions are equivalent to:
 
 [source,cql]
-----
+```
 duration in days between start of X and end of X
 difference in days between start of X and end of X
-----
+```
 
 The first expression returns the number of whole days between the starting and ending dates of the interval X, while the second expression returns the number of day boundaries crossed between the starting and ending dates of the interval X.
 
@@ -2058,38 +2051,38 @@ Note that to use these operators, the intervals must be of the same point type. 
 In addition to the interval comparison operators described above, CQL allows various timing relationships to be expressed by directly accessing the start and end boundaries of the intervals involved. For example:
 
 [source,cql]
-----
+```
 X starts before start Y
-----
+```
 
 This expression returns [.kw]#true# if the start of X is before the start of Y.
 
 In addition, timing phrases allow the use of time durations to offset the relationship. For example:
 
 [source,cql]
-----
+```
 X starts 3 days before start Y
-----
+```
 
 This returns [.kw]#true# if the start of X is equal to three days before the start of Y. Timing phrases can also include [.kw]#less than#, [.kw]#more than#, [.kw]#or less# and [.kw]#or more# to determine how the time duration is interpreted. For example:
 
 [source,cql]
-----
+```
 X starts 3 days or less before start Y
 X starts less than 3 days before start Y
 X starts 3 days or more before start Y
 X starts more than 3 days before start Y
-----
+```
 
 The first expression returns [.kw]#true# if the start of X is within the interval beginning three days before the start of Y and ending just before the start of Y. The second expression returns [.kw]#true# if the start of X is within the interval beginning just after three days before the start of Y and ending just before the start of Y. The third expression returns [.kw]#true# if the start of X is three days or more before the start of Y. And the fourth expression returns [.kw]#true# if the start of X is more than three days before the start of Y.
 
 Timing phrases can also support inclusive comparisons using [.kw]#on or# and [.kw]#or on# syntax. For example:
 
 [source,cql]
-----
+```
 X starts 3 days or less before or on start Y
 X starts less than 3 days on or after end Y
-----
+```
 
 The first expression returns [.kw]#true# if the start of X is within the interval beginning three days before the start of Y and ending exactly on the start of Y. The second expression returns [.kw]#true# if the start of X is within the interval beginning exactly on the end of Y and ending less than 3 days after the end of Y.
 
@@ -2098,18 +2091,18 @@ Note that [.kw]#on or# and [.kw]#or on# can be used with both [.kw]#before# and 
 Timing phrases also allow the use of [.kw]#within# to establish a range for comparison:
 
 [source,cql]
-----
+```
 X starts within 3 days of start Y
-----
+```
 
 This expression returns [.kw]#true# if the start of X is in the interval beginning three days before the start of Y and ending 3 days after the start of Y.
 
 In addition, if either comparand is a [.id]#Date# or [.id]#Time# value, rather than an interval, it can be used in any of the timing phrases without the boundary access modifiers:
 
 [source,cql]
-----
+```
 dateTimeX within 3 days of dateTimeY
-----
+```
 
 In other words, the timing phrases in general compare two quantities, either of which may be an date- or time-valued interval or date or time point value, and the boundary access modifiers can be added to a given timing phrase to access the boundary of an interval.
 
@@ -2147,9 +2140,9 @@ And finally, a yes in the Or On/On Or column indicates that the timing phrase ma
 In addition, to support more natural-language phrasing of timing operations, the keyword [.kw]#occurs# may appear anywhere that [.kw]#starts# or [.kw]#ends# can appear in the timing phrase. For example:
 
 [source,cql]
-----
+```
 X occurs within 3 days of start Y
-----
+```
 
 The [.kw]#occurs# keyword is both optional and ignored by CQL. It is only provided to enable more natural phrasing.
 
@@ -2158,27 +2151,27 @@ The [.kw]#occurs# keyword is both optional and ignored by CQL. It is only provid
 CQL provides several operators that can be used to combine existing intervals into new intervals. For example:
 
 [source,cql]
-----
+```
 Interval[1, 3] union Interval[3, 6]
-----
+```
 
 This expression returns the interval [.lit]#[1, 6]#. Note that interval [.kw]#union# is only defined if the arguments overlap or meet.
 
 Interval [.kw]#intersect# results in the overlapping portion of two intervals:
 
 [source,cql]
-----
+```
 Interval[1, 4] intersect Interval[3, 6]
-----
+```
 
 This expression results in the interval [.lit]#[3, 4]#.
 
 Interval [.kw]#except# computes the difference between two intervals. In other words, the result is points in the left operand that are not in the right operand. For example:
 
 [source,cql]
-----
+```
 Interval[1, 4] except Interval[3, 6]
-----
+```
 
 This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# is only defined for cases that result in a well-formed interval. For example, if either argument properly includes the other and does not start or end it, the result of subtracting one interval from the other would be two intervals, and the result is thus not defined and results in [.kw]#null#.
 
@@ -2195,25 +2188,25 @@ Figure 2‑D - The union, intersect, and except operators for intervals
 Because CQL supports date and time values with varying levels of precision, intervals of dates and times can potentially involve imprecise date and time values. To ensure well-defined intervals and consistent semantics, date and time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1^st^, 2014, and ending at midnight on January 1^st^, 2015:
 
 [source,cql]
-----
+```
 Interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
-----
+```
 
 However, if the boundaries of the interval are specified to a lower precision, the interval is interpreted as beginning at some time within the most specified precision, and ending at some time within the most specified precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime in the year 2015:
 
 [source,cql]
-----
+```
 Interval[Date(2014), Date(2015)]
-----
+```
 
 When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date or time values.
 
 In addition, the boundaries may even be specified to different levels of precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime on January 1^st^, 2015:
 
 [source,cql]
-----
+```
 Interval[Date(2014), Date(2015, 1, 1)]
-----
+```
 
 ### List Operators
 
@@ -2230,67 +2223,67 @@ Although the most common source of lists in CQL is the retrieve expression, list
 The elements of a list can be accessed using the _indexer_ ([.sym]#[]#) operator. For example:
 
 [source,cql]
-----
+```
 X[0]
-----
+```
 
 This expression accesses the first element of the list X.
 
 If a list contains a single element, [.kw]#the singleton# from operator can be used to extract it:
 
 [source,cql]
-----
+```
 singleton from { 1 }
 singleton from { 1, 2, 3 }
-----
+```
 
 Using [.kw]#singleton from# on a list with multiple elements will result in a run-time error.
 
 The index of an element e in a list X can be obtained using the [.id]#IndexOf# operator. For example:
 
 [source,cql]
-----
+```
 IndexOf({'a', 'b', 'c' }, 'b') // returns 1
-----
+```
 
 If the element is not found in the list, [.id]#IndexOf# returns -1.
 
 In addition, the number of elements in a list can be determined using the [.id]#Count# operator. For example:
 
 [source,cql]
-----
+```
 Count({ 1, 2, 3, 4, 5 })
-----
+```
 
 This expression returns the value [.lit]#5#.
 
 Membership in lists can be determined using the [.kw]#in# operator and its inverse, [.kw]#contains#:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 } contains 4
 4 in { 1, 2, 3, 4, 5 }
-----
+```
 
 The [.kw]#exists# operator can be used to test whether a list contains any elements:
 
 [source,cql]
-----
+```
 exists ( { 1, 2, 3, 4, 5 } )
 exists ( { } )
-----
+```
 
 The first expression returns [.kw]#true#, while the second expression returns [.kw]#false#. This is most often used in queries to determine whether a query returns any results.
 
 The [.id]#First# and [.id]#Last# operators can be used to retrieve the first and last elements of a list. For example:
 
 [source,cql]
-----
+```
 First({ 1, 2, 3, 4, 5 })
 Last({ 1, 2, 3, 4, 5 })
 First({})
 Last({})
-----
+```
 
 In the above examples, the first expression returns [.lit]#1#, and the second expression returns [.lit]#5#. The last two expressions both return [.kw]#null# since there is no first or last element of an empty list. Note that the [.id]#First# and [.id]#Last# operators refer to the position of an element in the list, not the temporal relationship between elements. In order to extract the _earliest_ or _latest_ elements of a list, the list would first need to be sorted appropriately.
 
@@ -2313,26 +2306,26 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 Table 2‑S - The operators that can be used for list comparisons
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 } includes { 5, 2, 3 }
 { 5, 2, 3 } included in { 1, 2, 3, 4, 5 }
 { 1, 2, 3, 4, 5 } includes { 4, 5, 6 }
 { 4, 5, 6 } included in { 1, 2, 3, 4, 5 }
-----
+```
 
 In the above examples, the first two expressions are [.kw]#true#, but the last two expressions are [.kw]#false#.
 
 The properly modifier ensures that the lists are not the same list. For example:
 
 [source,cql]
-----
+```
 { 1, 2, 3 } includes { 1, 2, 3 }
 { 1, 2, 3 } included in { 1, 2, 3 }
 { 1, 2, 3 } properly includes { 1, 2, 3 }
 { 1, 2, 3 } properly included in { 1, 2, 3 }
 { 1, 2, 3, 4, 5 } properly includes { 2, 3, 4 }
 { 2, 3, 4 } properly included in { 1, 2, 3, 4, 5 }
-----
+```
 
 In the above examples, the first two expressions are [.kw]#true#, but the next two expressions are [.kw]#false#, because although each element is in the other list, the properly requires that one list be strictly larger than the other, as in the last two expressions.
 
@@ -2345,62 +2338,62 @@ CQL provides several operators for computing new lists from existing ones.
 To eliminate duplicates from a list, use the [.kw]#distinct# operator:
 
 [source,cql]
-----
+```
 distinct { 1, 1, 2, 2, 3, 4, 5 }
-----
+```
 
 This example returns:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 }
-----
+```
 
 Note that the distinct operator uses equality semantics ([.sym]#~#) to detect duplicates. Because equality is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equality (i.e. tuples are equal if they have the same type and value (or no value) for each element of the same name).
 
 To combine all the elements from multiple lists, use the [.kw]#union# operator:
 
 [source,cql]
-----
+```
 { 1, 2, 3 } union { 3, 4, 5 }
-----
+```
 
 This example returns:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 4, 5 }
-----
+```
 
 Note that duplicates are eliminated in the result of a [.kw]#union#.
 
 To compute only the common elements from multiple lists, use the [.kw]#intersect# operator:
 
 [source,cql]
-----
+```
 { 1, 2, 3 } intersect { 3, 4, 5 }
-----
+```
 
 This example returns:
 
 [source,cql]
-----
+```
 { 3 }
-----
+```
 
 To remove the elements in one list from another list, use the [.kw]#except# operator:
 
 [source,cql]
-----
+```
 { 1, 2, 3 } except { 3, 4, 5 }
-----
+```
 
 This example returns:
 
 [source,cql]
-----
+```
 { 1, 2 }
-----
+```
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
 
@@ -2414,16 +2407,16 @@ As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# op
 Because lists may contain lists, CQL provides a [.kw]#flatten# operation that can flatten lists of lists:
 
 [source,cql]
-----
+```
 flatten { { 1, 2, 3 }, { 3, 4, 5 } }
-----
+```
 
 This example returns:
 
 [source,cql]
-----
+```
 { 1, 2, 3, 3, 4, 5 }
-----
+```
 
 Note that unlike the [.kw]#union# operator, duplicate elements are retained in the result.
 
@@ -2454,9 +2447,9 @@ Now, when we take the Sum of the durations of the intervals, we are guaranteed n
 In addition, CQL supports an [.kw]#expand# operator that determines the list of intervals of size _per_ from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
 
 [source,cql]
-----
+```
 expand EffectivePeriods per day
-----
+```
 
 This expression would result in the list of _day_ intervals, one for each day in the intervals in the input.
 
@@ -2467,25 +2460,25 @@ Summaries and statistical calculations are a critical aspect of being able to re
 Aggregate operators are defined to work on lists of values. For example, the Count operator works on any list:
 
 [source,cql]
-----
+```
 Count([Encounter])
-----
+```
 
 This expression returns the number of [.id]#Encounter# events.
 
 The [.id]#Sum# operator, however, works only on lists of numbers or lists of quantities:
 
 [source,cql]
-----
+```
 Sum({ 1, 2, 3, 4, 5 })
-----
+```
 
 This example results in the sum [.lit]#15#. To sum the results of a list of [.id]#Observation# values, for example, a query is used to extract the values to be summed:
 
 [source,cql]
-----
+```
 Sum([Observation] R return R.result)
-----
+```
 
 In general, [.kw]#nulls# encountered during aggregation are ignored, and with the exception of [.id]#Count#, [.id]#AllTrue#, and [.id]#AnyTrue#, the result of the invocation of an aggregate on an empty list is [.kw]#null#. [.id]#Count# is defined to return [.lit]#0# for an empty list. [.id]#AllTrue# is defined to return [.kw]#true# for an empty list, and [.id]#AnyTrue# is defined to return [.kw]#false# for an empty list. In addition, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in [.kw]#null#, rather than a run-time error.
 
@@ -2523,16 +2516,16 @@ CQL supports several operators for use with the various clinical types in the la
 All quantities in CQL have _unit_ and _value_ components, which can be accessed in the same way as properties. For example:
 
 [source,cql]
-----
+```
 define "IsTall": height.units = 'm' and height.value > 2
-----
+```
 
 However, because CQL supports operations on quantities directly, this expression could be simplified to:
 
 [source,cql]
-----
+```
 define "IsTall": height > 2 'm'
-----
+```
 
 This formulation also has the advantage of allowing for the case that the actual value of [.id]#height# is expressed in inches.
 
@@ -2550,19 +2543,19 @@ ____
 All ratios in CQL have _numerator_ and _denominator_ components, which can be accessed in the same way as properties. For example:
 
 [source,cql]
-----
+```
 define "TitreRatio": 1:128
 define "TitreNumerator": TitreRatio.numerator // 1
-----
+```
 
 CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 [source,cql]
-----
+```
 define "RatioEqualTrue": 1:100 = 1:100
 define "RatioEqualFalse": 1:100 = 10:1000
 define "RatioEquivalentTrue": 1:100 ~ 10:1000
-----
+```
 
 [.note-warning]
 ____
@@ -2576,10 +2569,10 @@ ____
 In addition to providing first-class _valueset_ and _codesystem_ constructs, CQL provides operators for retrieving and testing membership in valuesets and codesystems:
 
 [source,cql]
-----
+```
 valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define "InPharyngitis": SomeCodeValue in "Acute Pharyngitis"
-----
+```
 
 These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
 
@@ -2718,74 +2711,74 @@ Looking at the Initial Population, we have the demographic criteria:
 For the age criteria, CQL defines an AgeInYearsAt operator that returns the age of the patient as of a given date or datetime. Using this operator, and assuming a measurement period of the year 2013, we can express the patient age criteria as:
 
 [source,cql]
-----
+```
 AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
-----
+```
 
 In order to use the [.id]#AgeInYearsAt# operator, we must be in the [.id]#Patient# context:
 
 [source,cql]
-----
+```
 context Patient
-----
+```
 
 In addition, to allow this criteria to be referenced both within the CQL library by other expressions, as well as potentially externally, we need to assign an identifier:
 
 [source,cql]
-----
+```
 define "InInitialPopulation":
   AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
-----
+```
 
 Because the quality measure is defined over a measurement period, and many, if not all, of the criteria we build will have some relationship to this measurement period, it is useful to define the measurement period directly:
 
 [source,cql]
-----
+```
 define "MeasurementPeriod": Interval[
   @2013-01-01T00:00:00.0,
   @2014-01-01T00:00:00.0
 )
-----
+```
 
 This establishes [.id]#MeasurementPeriod# as the interval beginning precisely at midnight on January 1^st^, 2013, and ending immediately before midnight on January 1^st^, 2014. We can now use this in the age criteria:
 
 [source,cql]
-----
+```
 define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
-----
+```
 
 Even more useful would be to define [.id]#MeasurementPeriod# as a _parameter_ that can be provided when the quality measure is evaluated. This allows us to use the same logic to evaluate the quality measure for different years. So instead of using a [.kw]#define# statement, we have:
 
 [source,cql]
-----
+```
 parameter MeasurementPeriod default Interval[
   @2013-01-01T00:00:00.0,
   @2014-01-01T00:00:00.0
 )
-----
+```
 
 The [.id]#InInitialPopulation# expression remains the same, but it now accesses the value of the parameter instead of the define statement.
 
 Since we are in the [.id]#Patient# context and have access to the attributes of the Patient (as defined by the data model in use), the gender criteria can be expressed as follows:
 
 [source,cql]
-----
+```
 Patient.gender in "Female Administrative Sex"
-----
+```
 
 This criteria requires that the gender attribute of a Patient be a code that is in the valueset identified by [.id]#"Female Administrative Sex"#. Of course, this requires the valueset definition:
 
 [source,cql]
-----
+```
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
-----
+```
 
 Putting it all together, we now have:
 
 [source,cql]
-----
+```
 library CMS153_CQM version '2'
 
 using QUICK
@@ -2803,14 +2796,14 @@ define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
     and Patient.gender in "Female Administrative Sex"
-----
+```
 
 The next step is to capture the rest of the initial population criteria, beginning with this QDM statement:
 
 [source,cql]
-----
+```
 "Diagnosis: Other Female Reproductive Conditions" overlaps with "Measurement Period"
-----
+```
 
 This criteria has three main components:
 
@@ -2822,20 +2815,20 @@ This criteria has three main components:
 Using the mapping to QUICK, the equivalent retrieve in CQL is:
 
 [source,cql]
-----
+```
 [Condition: "Other Female Reproductive Conditions"] C
   where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod
-----
+```
 
 This query retrieves all [.id]#Condition# events for the patient with a code in the [.id]#"Other Female Reproductive Conditions"# valueset that overlap the measurement period. Note that in order to use the [.kw]#overlaps# operator, we had to construct an interval from the [.id]#onsetDateTime# and [.id]#abatementDate# elements. If the model had an interval-valued “effective time” element, we could have used that directly, rather than having to construct an interval.
 
 The result of the query is a list of conditions. However, this isn’t quite what the QDM statement is actually saying. In QDM, the statement can be read loosely as “include patients in the initial population that have at least one active diagnosis from the Other Female Reproductive Conditions valueset.” To express this in CQL, what we really need to ask is whether the equivalent retrieve above returns any results, which is accomplished with the [.kw]#exists# operator:
 
 [source,cql]
-----
+```
 exists ([Condition: "Other Female Reproductive Conditions"] C
   where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
-----
+```
 
 Incorporating the next QDM statement:
 
@@ -2844,14 +2837,14 @@ OR: "Diagnosis: Genital Herpes" overlaps with "Measurement Period"
 We have:
 
 [source,cql]
-----
+```
 exists ([Condition: "Other Female Reproductive Conditions"] C
   where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod
 )
   or exists ([Condition: "Genital Herpes"] C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod
   )
-----
+```
 
 Which we can repeat for each Diagnosis, Active statement. Note here that even though we are using the same alias, C, for each query, they do not clash because they are only declared within their respective queries (or _scopes_).
 
@@ -2866,18 +2859,18 @@ Next, we get to the Laboratory Test statements:
 We use the same approach. The equivalent retrieve for the first criteria is:
 
 [source,cql]
-----
+```
 exists ([DiagnosticOrder: "Pregnancy Test"] O
   where Last(O.event E where E.status = 'completed' sort by date).date
     during MeasurementPeriod)
-----
+```
 
 This query is retrieving pregnancy tests that were completed within the measurement period. Because diagnostic orders do not have a top-level completion date, the date must be retrieved with a nested query on the events associated with the diagnostic orders. The nested query returns the set of completed events ordered by their completion date, the [.id]#Last# invocation returns the most recent of those events, and the [.id]#.date# accessor retrieves the value of the [.id]#date# element of that event.
 
 And finally, translating the rest of the statements allows us to express the entire initial population as:
 
 [source,cql]
-----
+```
 define "InInitialPopulation":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
@@ -2896,7 +2889,7 @@ define "InInitialPopulation":
           during MeasurementPeriod)
       ...
     )
-----
+```
 
 ### Using Define Statements
 
@@ -2911,7 +2904,7 @@ it becomes clear that the intent of the Diagnosis, Active and Laboratory Test, O
 With this in mind, rather than expressing the entire initial population as a single [.kw]#define#, we can break it up into several more understandable and more meaningful expressions:
 
 [source,cql]
-----
+```
 define "Patient16To23AndFemale":
   AgeInYearsAt(start of MeasurementPeriod) >= 16
     and AgeInYearsAt(start of MeasurementPeriod) < 24
@@ -2932,7 +2925,7 @@ define "SexuallyActive":
 
 define "InInitialPopulation":
   Patient16To23AndFemale and SexuallyActive
-----
+```
 
 Restructuring the logic in this way not only simplifies the expressions involved and makes them more understandable, but it clearly communicates the intent of each group of criteria.
 
@@ -2943,9 +2936,9 @@ The next population to define is the denominator, which in our simplified expres
 For example, the actual criteria for the denominator is that the patient is in the initial population. But because that notion is already implied by the definition of a population measure (that the denominator is a subset of the initial population), the CQL for the denominator should simply be:
 
 [source,cql]
-----
+```
 define "InDenominator": true
-----
+```
 
 This approach to defining the criteria is more flexible from the perspective of actually evaluating a quality measure, but it may be somewhat confusing when looking at the CQL in isolation.
 
@@ -2954,25 +2947,25 @@ Note that the approach to defining population criteria is established by quality
 Following this approach then, we express the numerator as:
 
 [source,cql]
-----
+```
 define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
   where R.issued during MeasurementPeriod and R.result is not null)
-----
+```
 
 Note that the [.id]#R.result# [.kw]#is not null# condition is required because the original QDM statement involves a test for the presence of an attribute:
 
 [source,cql]
-----
+```
 "Laboratory Test, Result: Chlamydia Screening (result)" during "Measurement Period"
-----
+```
 
 The [.id]#(result)# syntax indicates that the item should only be included if there is some value present for the result attribute. The equivalent expression in CQL is the [.kw]#null# test.
 
 Finally, putting it all together, we have a complete, albeit simplified, definition of the logic involved in defining the population criteria for a measure:
 
 [source,cql]
-----
+```
 library CMS153_CQM version '2'
 
 using QUICK
@@ -3012,7 +3005,7 @@ define "InDenominator": true
 define "InNumerator":
   exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during MeasurementPeriod and R.result is not null)
-----
+```
 
 ### Clinical Decision Support Logic
 
@@ -3037,7 +3030,7 @@ With these factors in mind, and using the CQL for the measure we have already bu
 To begin with, we are using the same data model, QUICK, the same valueset declarations, and the same context:
 
 [source,cql]
-----
+```
 library CMS153_CDS version '2'
 
 using QUICK
@@ -3048,23 +3041,23 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
 
 context Patient
-----
+```
 
 Note that we are not using the [.id]#MeasurementPeriod# parameter. There are other potential uses for parameters within the point-of-care intervention (for example, to specify a threshold for how far back to look for a Chlamydia screening), but we are ignoring those aspects for the purposes of this walkthrough.
 
 For the [.id]#Patient16To23AndFemale# criteria, we are then simply concerned with female patients between the ages of 16 and 24, so we change the criteria to use the [.id]#AgeInYears#, rather than the [.id]#AgeInYearsAt# operator, to determine the patient’s age as of today:
 
 [source,cql]
-----
+```
 define "Patient16To23AndFemale":
   AgeInYears() >= 16 and AgeInYears() < 24
     and Patient.gender in "Female Administrative Sex"
-----
+```
 
 Similarly for the [.id]#SexuallyActive# criteria, we remove the relationship to the measurement period:
 
 [source,cql]
-----
+```
 define "SexuallyActive":
   exists ([Condition: "Other Female Reproductive Conditions"])
     or exists ([Condition: "Genital Herpes"])
@@ -3072,36 +3065,36 @@ define "SexuallyActive":
     ...
     or exists ([DiagnosticOrder: "Pregnancy Test"])
     ...
-----
+```
 
 For the numerator, we need to invert the logic, so that we are looking for patients that have not had a Chlamydia screening, and rather than the measurement period, we are looking for the test within the last year:
 
 [source,cql]
-----
+```
 not exists ([DiagnosticReport: "Chlamydia Screening"] R
   where R.issued during Interval[Today() - 1 years, Today()]
     and R.result is not null)
-----
+```
 
 In addition, we need a test to ensure that the patient does not have a planned Chlamydia screening:
 
 [source,cql]
-----
+```
 not exists ([ProcedureRequest: "Chlamydia Screening"] R
   where R.orderedOn same day or after Today())
-----
+```
 
 And to ensure that there is not a reason for not performing a Chlamydia screening:
 
 [source,cql]
-----
+```
 not exists ([Observation: "Reason for not performing Chlamydia Screening"])
-----
+```
 
 We combine those into a [.id]#NoScreening# criteria:
 
 [source,cql]
-----
+```
 define "NoScreening":
   not exists ([DiagnosticReport: "Chlamydia Screening"] R
     where R.issued during Interval[Today() - 1 years, Today()]
@@ -3109,28 +3102,28 @@ define "NoScreening":
   and not exists ([ProcedureRequest: "Chlamydia Screening"] R
     where R.orderedOn same day or after Today())
   and not exists ([Observation: "Reason for not performing Chlamydia Screening"])
-----
+```
 
 And finally, we provide an overall condition that indicates whether or not this intervention should be triggered:
 
 [source,cql]
-----
+```
 define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
-----
+```
 
 Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the [.id]#NeedScreening# expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
 
 In addition, this library should include the proposal aspect of the intervention. In general, the overall artifact definition (such as a CDS KAS artifact) would define what actions should be performed when the condition is satisfied. Portions of that action definition may reference other expressions within a CQL library, just as the HQMF for a quality measure may reference multiple expressions within CQL to identify the various populations in the measure. In this case, the intervention may construct a proposal for a Chlamydia Screening:
 
 [source,cql]
-----
+```
 define "ChlamydiaScreeningRequest": ProcedureRequest {
   type: Code '442487003' from "SNOMED-CT"
   display 'Screening for Chlamydia trachomatis (procedure)',
   status: 'proposed'
   // values for other elements of the request...
 }
-----
+```
 
 The containing artifact would then use this expression as the target of an action, evaluating the expression if the condition of the decision support rule is met, and returning the result as the proposal to the calling environment.
 
@@ -3146,7 +3139,7 @@ We start by identifying the aspects that are identical between the two:
 With these in mind, we can create a new library, [.id]#CMS153_Common#, that will contain the common elements:
 
 [source,cql]
-----
+```
 library CMS153_Common version '2'
 
 using QUICK
@@ -3168,12 +3161,12 @@ define "LaboratoryTestsIndicatingSexualActivity":
 
 define "ResultsPresentForChlamydiaScreening":
   [DiagnosticReport: "Chlamydia Screening"] R where R.result is not null
-----
+```
 
 Using this library, we can then rewrite the CQM to reference the common elements from the library:
 
 [source,cql]
-----
+```
 library CMS153_CQM version '2'
 
 using QUICK
@@ -3207,14 +3200,14 @@ define "InDenominator":
 define "InNumerator":
   exists (Common"ResultsPresentForChlamydiaScreening" S
     where S.issued during MeasurementPeriod)
-----
+```
 
 Note: The keyword [.kw]#called# was chosen to avoid confusion with the keyword [.kw]#as#, which is used for type-casting. We also don't use [.kw]#as# for aliasing like many SQL dialects do, for the same reason. We mean [.kw]#called# here in the sense that the library is "called a name" within this context, not that we intend to "call it by this name".
 
 And similarly for the CDS artifact:
 
 [source,cql]
-----
+```
 library CMS153_CDS version '2'
 
 using QUICK
@@ -3240,6 +3233,6 @@ define "NoScreening":
     where R.orderedOn same day or after Today()
 
 define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
-----
+```
 
 In addition to sharing between quality measures and clinical decision support artifacts, the use of common libraries will allow the same logic to be shared by multiple quality measures or decision support artifacts. For example, a set of artifacts for measurement and improvement of the treatment of diabetes could all use a common library that provides base definitions for determining when a patient is part of the population of interest.

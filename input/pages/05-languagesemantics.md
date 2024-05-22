@@ -44,14 +44,14 @@ Even though CQL and ELM are intended to be used with a standard data model, ther
 For example, consider the following retrieve element:
 
 [source,xml]
-----
+```
 <operand xsi:type="Retrieve"
   dataType="quick:Condition"
   templateId="qicore-condition"
   codeProperty="code">
   <codes xsi:type="ValueSetRef" name="Other Female Reproductive Conditions"/>
 </operand>
-----
+```
 
 In this example, the data type is specified as "[.id]#quick:Condition#", indicating that the result of the retrieve is a list of Condition instances. In addition, each instance must conform to the profile defined by the identifier "[.id]#qicore-condition#".
 
@@ -283,7 +283,7 @@ Each of these paths can be specified in terms of a _property_, meaning the actua
 For example, consider a data model that defines an `Observation`:
 
 [source,cql]
-----
+```
 Observation
 {
   id: string,
@@ -297,18 +297,18 @@ ObservationComponent
   code: Concept,
   value: Quantity
 }
-----
+```
 
 To allow searching by component codes, consider further that this data model defines a search path, called `component-code` that allows searching for observations that have a component with a given code. In this case, `component-code` is not an element of Observation, or of ObservationComponent, so it's insufficient to specify a code property. To support this capability, the `codeSearch` element of the retrieve is used:
 
 [source,xml]
-----
+```
 <operand xsi:type="Retrieve"
   dataType="fhir:Observation"
   codeSearch="component-code">
   <codes xsi:type="ValueSetRef" name="Urine Drug Screening"/>
 </operand>
-----
+```
 
 ## Expression Language Semantics
 
@@ -669,9 +669,9 @@ Must be treated as equivalent to the point value, 1 in this case.
 Comparison semantics for uncertainty are defined to result in the intuitively expected behavior. For example, when comparing two uncertainties for equality:
 
 [source,cql]
-----
+```
 uncertainty[1, 10] = uncertainty[1, 10]
-----
+```
 
 The above expression results in _null_, because the meaning of the statement is actually:
 
@@ -680,9 +680,9 @@ Is _some value between 1 and 10_ equal to _some value between 1 and 10_?
 And the intuitively correct answer to that question is, _I don’t know_. However, for cases where there is no overlap between the uncertainties, the result is _false_:
 
 [source,cql]
-----
+```
 uncertainty[1, 10] = uncertainty[21, 30]
-----
+```
 
 Again, the intended semantics of this statement are:
 
@@ -693,9 +693,9 @@ And the correct answer is, _No_, because there is no possible value in either un
 In the special case of equality comparisons of two uncertainties of width zero, the result is true:
 
 [source,cql]
-----
+```
 uncertainty[2, 2] = uncertainty[2, 2]
-----
+```
 
 This expression can be read:
 
@@ -706,27 +706,27 @@ And the correct answer is, _Yes_.
 More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
 
 [source,cql]
-----
+```
 A = B
-----
+```
 
 Is equivalent to:
 
 [source,cql]
-----
+```
 if A~low~ <= B~high~ and A~high~ >= B~low~
   then if A~low~ = A~high~ and B~low~ = B~high~
     then true
     else null
   else false
-----
+```
 
 For relative comparisons, again, the semantics are defined to give the intuitively correct answer given the intended meaning of uncertainty. For example:
 
 [source,cql]
-----
+```
 uncertainty[30, 40] < uncertainty[50, 60]
-----
+```
 
 This expression can be read:
 
@@ -735,16 +735,16 @@ _Is some value between 30 and 40 less than some value between 50 and 60?_
 And the correct answer is, _Yes_. If the ranges overlap:
 
 [source,cql]
-----
+```
 uncertainty[30, 40] < uncertainty[35, 45]
-----
+```
 
 Then the result is _null_, with one exception having to do with boundaries. Consider the following:
 
 [source,cql]
-----
+```
 uncertainty[30, 40] < uncertainty[20, 30]
-----
+```
 
 This expression can be read:
 
@@ -755,27 +755,27 @@ And the correct answer is, _No_, because even though the ranges overlap (by widt
 More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
 
 [source,cql]
-----
+```
 A < B
-----
+```
 
 Is equivalent to:
 
 [source,cql]
-----
+```
 case
   when A~high~ < B~low~ then true
   when A~low~ >= B~high~ then false
   else null
 end
-----
+```
 
 And finally, for relative comparisons involving equality, consider the following:
 
 [source,cql]
-----
+```
 uncertainty[30, 40] <= uncertainty[40, 50]
-----
+```
 
 This expression can be read:
 
@@ -786,20 +786,20 @@ And the correct answer is, _Yes_, because every possible value between 30 and 40
 More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
 
 [source,cql]
-----
+```
 A <= B
-----
+```
 
 Is equivalent to:
 
 [source,cql]
-----
+```
 case
   when A~high~ <= B~low~ then true
   when A~low~ > B~high~ then false
   else null
 end
-----
+```
 
 Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A [.sym]#=# B or A [.sym]#<# B_ is _not_ equivalent to _A [.sym]#\<=# B_ because of the uncertainty.
 
@@ -809,9 +809,9 @@ Note carefully that these semantics introduce some asymmetries into the comparis
 In addition to comparison operators, the basic arithmetic operators are defined for uncertainty, again based on the intuitively expected semantics. For example:
 
 [source,cql]
-----
+```
 uncertainty[17, 44] + uncertainty[5, 10] // returns uncertainty[22, 54]
-----
+```
 
 The above expression can be read:
 
@@ -822,9 +822,9 @@ The result of this calculation simply adds the respective boundaries to determin
 Similarly for multiplication:
 
 [source,cql]
-----
+```
 uncertainty[17, 44] * uncertainty[2, 4] // returns uncertainty[34, 176]
-----
+```
 
 The result of this calculation multiplies the boundaries of the uncertainties to determine the range of possible values for the result, in this case _some value between 34 and 176_.
 
@@ -833,23 +833,23 @@ The result of this calculation multiplies the boundaries of the uncertainties to
 An important step to achieving the intended semantics for precision-based timing comparisons in CQL is to allow for implicit conversion between uncertainties and point-values. This means that anywhere an uncertainty is involved in an operation with a point-value, the point-value will be implicitly converted to an uncertainty of width zero and the uncertainty semantics defined above are then used to perform the calculation. For example:
 
 [source,cql]
-----
+```
 uncertainty[17, 44] > 2
-----
+```
 
 The point-value of _2_ in this example is implicitly converted to an uncertainty of width zero:
 
 [source,cql]
-----
+```
 uncertainty[17, 44] > uncertainty[2, 2]
-----
+```
 
 This implicit conversion means that in general, the notion of uncertainty will not be visible in the resulting syntax of CQL. For example:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2) > 2
-----
+```
 
 Even though determining the correct answer to this question involves the use of uncertainty, it is implicit in the way the operations are defined, and does not surface to the CQL authors.
 
@@ -858,68 +858,68 @@ Even though determining the correct answer to this question involves the use of 
 To determine the duration between two date or time values, CQL supports a _between_ operator for each date and time component. For example:
 
 [source,cql]
-----
+```
 days between A and B
-----
+```
 
 This expression returns the number of whole days between A and B. If A is before B, the result will be a positive integer. If A is after B, the result will be a negative integer. And if A is the same day as B, the result will be zero.
 
 However, to support the case where one or the other comparand in the duration operation does not specify components to the level of precision being determined, the between operator does not return a strict integer, it returns an _uncertainty_, which is defined as a range of values, similar to an interval. For example:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2)
-----
+```
 
 The number of days between these two dates cannot be determined reliably, but a definite range of possible values can be determined. The lower bound of that range is found by determining the duration between the maximum possible value of the first comparand and the minimum possible value of the second comparand; and the upper bound is determined using the minimum possible value of the first comparand and the maximum possible value of the second:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2, 1) // 17 days
 days between Date(2014, 1, 15) and Date(2014, 2, 28) // 44 days
-----
+```
 
 Intuitively, what this means is that the number of days between January 15^th^, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2) > 2
-----
+```
 
 This comparison returns true, because the lower bound of the uncertainty, 17, is greater than 2, so no matter what the actual date of the second comparand, it would always be at least 17 days. By contrast:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2) > 50
-----
+```
 
 This comparison returns false, because the upper bound of the uncertainty, 44, is less than 50, so no matter what the actual date of the second comparand, it would always be at most 44 days. And finally:
 
 [source,cql]
-----
+```
 days between Date(2014, 1, 15) and Date(2014, 2) > 20
-----
+```
 
 This comparison returns unknown (null), because the value being compared, 20, falls within the uncertainty, so no determination can be reliably made.
 
 As another example, consider the case when a duration is being computed between DateTime values of different precisions:
 
 [source,cql]
-----
+```
 days between @2017-08-07T17:00 and @2017-08-14T // [6, 7]
-----
+```
 
 This duration results in an uncertainty because the starting datetime value is specified to the minute, `17:00`, while the second value is only specified to the day. The resulting uncertainty interval is between 6 and 7 days, and so `[6,7]` is returned.
 
 Uncertainties may also result when calculating duration for a finer precision than what is specified in the input values. For example:
 
 [source,cql]
-----
+```
 days between @2012-01 and @2012-02
 
 // Results in an uncertainty from the shortest possible duration, to the longest possible duration
 // [days between @2012-01-31 and @2012-02-01, days between @2012-01-01 and @2012-02-29]
-----
+```
 
 Because the datetime values are both only specified to the month (from January of 2012 to February of 2012), the result is an uncertainty interval beginning with the number of days between the 31st of January, 2012 and the 1st of February, 2012 (the shortest possible duration), and ending with the number of days between the 1st of January, 2012 and the 29th of February, 2012 (the longest possible duration).
 
@@ -928,9 +928,9 @@ CQL also supports a difference in operator which, rather than calculating the nu
 Note that uncertainty calculations, just like date and time comparison calculations, consider seconds and milliseconds as a single combined precision with decimal semantics. For example:
 
 [source,cql]
-----
+```
 hours between @2012-01-01T01:00:00 and @2012-01-01T02:00:00.0
-----
+```
 
 The above example results in [.sym]#1#, even though the second argument is specified to milliseconds and the first argument is only specified to seconds.
 
@@ -943,88 +943,88 @@ Using the foundational elements described in the previous sections, the semantic
 The _same as_ timing phrase is simply defined to be equivalent to a _same as_ comparison of the date and time values involved:
 
 [source,cql]
-----
+```
 A starts same day as start B
-----
+```
 
 This expression is equivalent to:
 
 [source,cql]
-----
+```
 start of A same day as start of B
-----
+```
 
 Similarly for the _or after_ and _or before_ comparisons:
 
 [source,cql]
-----
+```
 A starts same day or after start B
 A starts same day or before start B
-----
+```
 
 These expressions are equivalent to:
 
 [source,cql]
-----
+```
 start of A same day or after start of B
 start of A same day or before start of B
-----
+```
 
 #### Before/After
 
 The basic _before_ and _after_ timing phrases are defined to be equivalent to a _before_ or _after_ comparison of the date and time values involved:
 
 [source,cql]
-----
+```
 A starts before start B
 A starts after start B
-----
+```
 
 These expressions are equivalent to:
 
 [source,cql]
-----
+```
 start of A before start of B
 start of A after start of B
-----
+```
 
 If the phrase involves a duration offset, the duration offset is applied as a date and time arithmetic calculation:
 
 [source,cql]
-----
+```
 A starts 3 days before start B
 A starts 3 days after start B
-----
+```
 
 These expressions are equivalent to:
 
 [source,cql]
-----
+```
 start of A same as start of B – 3 days
 start of A same as start of B + 3 days
-----
+```
 
 Note that these calculations use date/time arithmetic, applying _duration_, not _difference_ semantics for the comparison.
 
 For timing phrases involving relative comparison, the prefixes _less than_ and _more than_, as well as the suffixes _or more_ and _or less_ can be used:
 
 [source,cql]
-----
+```
 A starts 3 days or more before start B
 A starts more than 3 days before start B
 A starts 3 days or less after start B
 A starts less than 3 days after start B
-----
+```
 
 These expressions are equivalent to:
 
 [source,cql]
-----
+```
 start of A same or before start of B - 3 days
 start of A before start of B - 3 days
 start of A in (start of B, start of B + 3 days] and B is not null
 start of A in (start of B, start of B + 3 days) and B is not null
-----
+```
 
 Note the addition of the null test in the case that an interval is constructed from the point B. This is necessary because if B is null and the constructed interval has inclusive boundaries, the null boundary of the resulting interval will be interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
@@ -1033,16 +1033,16 @@ Note the addition of the null test in the case that an interval is constructed f
 The _within_ timing phrase is defined in terms of an interval membership test:
 
 [source,cql]
-----
+```
 A starts within 3 days of start B
-----
+```
 
 This expression is equivalent to:
 
 [source,cql]
-----
+```
 start of A in [start of B - 3 days, start of B + 3 days] and B is not null
-----
+```
 
 Note that as with the before and after transformations, a null test is required here because if B is null, then the constructed interval would be incorrectly interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
@@ -1054,17 +1054,17 @@ In general, interval comparisons are already defined in terms of the fundamental
 Note that open null boundaries of intervals are treaterd as uncertainties for the purposes of interval computation. For example:
 
 [source,cql]
-----
+```
 intersect Interval[1, 10] intersect Interval[5, null)
-----
+```
 
 This results in an interval that begins at 5, and ends at some value between 5 and 10. Implementations can accomplish this by normalizing open intervals to closed intervals with uncertain boundaries:
 
 [source,pseudo-code]
-----
+```
   if interval.low is null then interval.low = Uncertainty(minimumValue, interval.high)
   if interval.high is null then interval.high = Uncertainty(interval.low, maximumValue)
-----
+```
 
 ### Implementing Precision-Based Timing with Uncertainty
 
@@ -1078,30 +1078,30 @@ Implementation of these semantics can be simplified by recognizing that all the 
 All the other operations and semantics can be achieved using only these primitives. For example, given _A_ and _B_, both datetime values, the comparison:
 
 [source,cql]
-----
+```
 A > B
-----
+```
 
 Can be evaluated as:
 
 [source,cql]
-----
+```
 difference in milliseconds between A and B > 0
-----
+```
 
 Similarly:
 
 [source,cql]
-----
+```
 A same day as B
-----
+```
 
 Can be evaluated as:
 
 [source,cql]
-----
+```
 difference in days between A and B = 0
-----
+```
 
 Because the difference operation will return an uncertainty when imprecise date and time values are involved, the correct semantics will be applied to the comparison to the point value, 0 in this case. By structuring the evaluation engine such that all operations involving dates and times are performed in terms of these primitives, correct semantics can be achieved with a comparatively straightforward implementation.
 

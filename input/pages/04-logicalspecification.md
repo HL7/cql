@@ -42,13 +42,13 @@ Support for simple values is provided by the _Literal_ class. This class defines
 ### Literal
 
 [source,elm]
-----
+```
 Literal : Expression
   ¦
   1..1 --> valueType
   ¦
   0..1 --> value
-----
+```
 
 The Literal type defines a single scalar value. For example, the literal 5, the boolean value true or the string "antithrombotic".
 
@@ -65,11 +65,11 @@ The path attribute specifies a property path relative to the source structured v
 ### Tuple
 
 [source,elm]
-----
+```
 Tuple : Expression
   ¦
   0..* --> element : TupleElement
-----
+```
 
 The Tuple expression allows tuples of any type to be built up as an expression. The tupleType attribute specifies the type of the tuple being built, if any, and the list of tuple elements specify the values for the elements of the tuple. Note that the value of an element may be any expression, including another Tuple.
 
@@ -83,13 +83,13 @@ Figure 4‑H - A diagram to explain how ELM represents the construction of a [.k
 ### Instance
 
 [source,elm]
-----
+```
 Instance : Expression
   ¦
   0..* --> element : InstanceElement
   ¦
   1..1 --> classType
-----
+```
 
 The Instance expression allows class instances of any type to be built up as an expression. The classType attribute specifies the type of the class instance being built, and the list of instance elements specify the values for the elements of the class instance. Note that the value of an element may be any expression, including another Instance.
 
@@ -103,7 +103,7 @@ Figure 4‑I - A diagram to explain how ELM represents the construction of a str
 ### Property
 
 [source,elm]
-----
+```
 Property : Expression
   ¦
   0..1 --> source : Expression
@@ -111,7 +111,7 @@ Property : Expression
   1..1 --> path
   ¦
   0..1 --> scope
-----
+```
 
 The Property operator returns the value of the property on source specified by the path attribute.
 
@@ -132,7 +132,7 @@ The following represents clinical information in ELM.
 ### Code
 
 [source,elm]
-----
+```
 Code : Expression
   ¦
   1..1 --> system : CodeSystemRef
@@ -140,14 +140,14 @@ Code : Expression
   1..1 --> code
   ¦
   0..1 --> display
-----
+```
 
 The Code type represents a literal code selector.
 
 ### CodeDef
 
 [source,elm]
-----
+```
 CodeDef : Element
   ¦
   0..1 --> codeSystem : CodeSystemRef <1>
@@ -159,7 +159,7 @@ CodeDef : Element
   0..1 --> display
   ¦
   0..1 --> accessLevel
-----
+```
 
 <1> The code system that contains the code being referenced.
 
@@ -168,20 +168,20 @@ The CodeDef type defines a code identifier that can then be used to reference si
 ### CodeRef
 
 [source,elm]
-----
+```
 CodeRef : Expression
   ¦
   0..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The CodeRef expression allows a previously defined code to be referenced within an expression.
 
 ### CodeSystemDef
 
 [source,elm]
-----
+```
 CodeSystemDef : Element
   ¦
   1..1 --> name
@@ -191,40 +191,40 @@ CodeSystemDef : Element
   0..1 --> version
   ¦
   0..1 --> accessLevel
-----
+```
 
 The CodeSystemDef type defines a code system identifier that can then be used to identify code systems involved in value set definitions.
 
 ### CodeSystemRef
 
 [source,elm]
-----
+```
 CodeSystemRef : Expression
   ¦
   0..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The CodeSystemRef expression allows a previously defined named code system to be referenced within an expression. Conceptually, referencing a code system returns the set of codes in the code system. Note that this operation should almost never be performed in practice. Code system references are allowed in order to allow for testing of code membership in a particular code system.
 
 ### Concept
 
 [source,elm]
-----
+```
 Concept : Expression
   ¦
   1..* --> code : Code
   ¦
   0..1 --> display
-----
+```
 
 The Concept type represents a literal concept selector.
 
 ### ConceptDef
 
 [source,elm]
-----
+```
 ConceptDef : Element
   ¦
   1..* --> code : CodeRef <1>
@@ -234,7 +234,7 @@ ConceptDef : Element
   0..1 --> display
   ¦
   0..1 --> accessLevel
-----
+```
 
 <1> A code that makes up the concept. All codes within a given concept must be synonyms.
 
@@ -243,46 +243,46 @@ The ConceptDef type defines a concept identifier that can then be used to refere
 ### ConceptRef
 
 [source,elm]
-----
+```
 ConceptRef : Expression
   ¦
   0..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The ConceptRef expression allows a previously defined concept to be referenced within an expression.
 
 ### Quantity
 
 [source,elm]
-----
+```
 Quantity : Expression
   ¦
   0..1 --> value
   ¦
   0..1 --> unit
-----
+```
 
 The Quantity type defines a clinical quantity. For example, the quantity 10 days or 30 mmHg. The value is a decimal, while the unit is expected to be a valid UCUM unit or calendar duration keyword, singular or plural.
 
 ### Ratio
 
 [source,elm]
-----
+```
 Ratio : Expression
   ¦
   1..1 --> numerator : Quantity
   ¦
   1..1 --> denominator : Quantity
-----
+```
 
 The Ratio type defines a ratio between two quantities. For example, the titre 1:128, or the concentration ratio 5 mg/10 mL. The numerator and denominator are both quantities.
 
 ### ValueSetDef
 
 [source,elm]
-----
+```
 ValueSetDef : Element
   ¦
   0..* --> codeSystem : CodeSystemRef <1>
@@ -294,7 +294,7 @@ ValueSetDef : Element
   0..1 --> version
   ¦
   0..1 --> accessLevel
-----
+```
 
 <1> The code system that should be used to construct the expansion set. Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystem elements are provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.
 
@@ -310,7 +310,7 @@ Note that the recommended approach to statically binding to an expansion set is 
 ### ValueSetRef
 
 [source,elm]
-----
+```
 ValueSetRef : Expression
   ¦
   0..1 --> name
@@ -318,7 +318,7 @@ ValueSetRef : Expression
   0..1 --> libraryName
   |
   0..1 --> preserve
-----
+```
 
 The ValueSetRef expression allows a previously defined named value set to be referenced within an expression. Conceptually, referencing a value set returns the expansion set for the value set as a list of codes.
 
@@ -331,9 +331,9 @@ ELM provides the following elements for type specifiers.
 ### TypeSpecifier
 
 [source,elm]
-----
+```
 TypeSpecifier : Element
-----
+```
 
 TypeSpecifier is the abstract base type for all type specifiers.
 
@@ -341,11 +341,11 @@ TypeSpecifier is the abstract base type for all type specifiers.
 ### NamedTypeSpecifier
 
 [source,elm]
-----
+```
 NamedTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> name
-----
+```
 
 NamedTypeSpecifier defines a type identified by a name, such as Integer, String, Patient, or Encounter.
 
@@ -353,46 +353,46 @@ NamedTypeSpecifier defines a type identified by a name, such as Integer, String,
 ### IntervalTypeSpecifier
 
 [source,elm]
-----
+```
 IntervalTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> pointType : TypeSpecifier
-----
+```
 
 IntervalTypeSpecifier defines an interval type by specifying the point type. Any type can serve as the point type for an interval, so long as it supports comparison operators, minimum and maximum value determination, as well as predecessor and successor functions.
 
 ### ListTypeSpecifier
 
 [source,elm]
-----
+```
 ListTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> elementType : TypeSpecifier
-----
+```
 
 ListTypeSpecifier defines a list type by specifying the type of elements the list may contain.
 
 ### TupleTypeSpecifier
 
 [source,elm]
-----
+```
 TupleTypeSpecifier : TypeSpecifier
   ¦
   0..* --> element : TupleElementDefinition
-----
+```
 
 TupleTypeSpecifier defines the possible elements of a tuple.
 
 ### ChoiceTypeSpecifier
 
 [source,elm]
-----
+```
 ChoiceTypeSpecifier : TypeSpecifier
   ¦
   0..* --> type : TypeSpecifier <1>
   ¦
   0..* --> choice : TypeSpecifier
-----
+```
 
 <1> This element is deprecated. New implementations should use the new choice element.
 
@@ -408,7 +408,7 @@ Once defined, libraries can then be referenced by other libraries with the _Incl
 ### Library
 
 [source,elm]
-----
+```
 Library : Element
   ¦
   1..1 --> identifier : VersionedIdentifier <1>
@@ -450,7 +450,7 @@ Library : Element
   0..1 --> statements <13>
            ¦
            0..* --> def : ExpressionDef
-----
+```
 
 <1> The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
 
@@ -483,7 +483,7 @@ A Library is an instance of a CQL-ELM library.
 ### IncludeDef
 
 [source,elm]
-----
+```
 IncludeDef : Element
   ¦
   1..1 --> localIdentifier
@@ -493,14 +493,14 @@ IncludeDef : Element
   1..1 --> path
   ¦
   0..1 --> version
-----
+```
 
 Includes a library for use within the artifact.
 
 ### VersionedIdentifier
 
 [source,elm]
-----
+```
 VersionedIdentifier
   ¦
   0..1 --> id
@@ -508,7 +508,7 @@ VersionedIdentifier
   0..1 --> system
   ¦
   0..1 --> version
-----
+```
 
 VersionedIdentifier is composed of three parts: (1) an optional system, or
   namespace, which provides a globally unique, stable scope for the identifier,
@@ -520,11 +520,11 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
 ### ContextDef
 
 [source,elm]
-----
+```
 ContextDef : Element
   ¦
   1..1 --> name <1>
-----
+```
 
 <1> The name of the context
 
@@ -539,7 +539,7 @@ The name of the model is an implementation-specific identifier that provides the
 ### UsingDef
 
 [source,elm]
-----
+```
 UsingDef : Element
   ¦
   1..1 --> localIdentifier
@@ -547,7 +547,7 @@ UsingDef : Element
   1..1 --> uri
   ¦
   0..1 --> version
-----
+```
 
 Defines a data model that is available within the artifact.
 
@@ -560,7 +560,7 @@ Parameter values, if any, are expected to be provided as part of the evaluation 
 ### ParameterDef
 
 [source,elm]
-----
+```
 ParameterDef : Element
   ¦
   0..1 --> default : Expression
@@ -572,7 +572,7 @@ ParameterDef : Element
   0..1 --> parameterType
   ¦
   0..1 --> accessLevel
-----
+```
 
 The ParameterDef type defines a parameter that can be referenced by name anywhere within an expression.
 
@@ -587,13 +587,13 @@ Note that the expression specified in the default element must be able to be eva
 ### ParameterRef
 
 [source,elm]
-----
+```
 ParameterRef : Expression
   ¦
   0..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The ParameterRef expression allows the value of a parameter to be referenced as part of an expression.
 
@@ -606,20 +606,20 @@ Every expression in ELM is represented as a descendant of the abstract base elem
 ### Expression
 
 [source,elm]
-----
+```
 Expression : Element
-----
+```
 
 The Expression type defines the abstract base type for all expressions used in the ELM expression language.
 
 ### OperatorExpression
 
 [source,elm]
-----
+```
 OperatorExpression : Expression
   ¦
   0..* --> signature : TypeSpecifier <1>
-----
+```
 
 <1> Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
@@ -628,51 +628,51 @@ The Operator type defines the abstract base type for all built-in operators used
 ### UnaryExpression
 
 [source,elm]
-----
+```
 UnaryExpression : OperatorExpression
   ¦
   1..1 --> operand : Expression
-----
+```
 
 The UnaryExpression type defines the abstract base type for expressions that take a single argument.
 
 ### BinaryExpression
 
 [source,elm]
-----
+```
 BinaryExpression : OperatorExpression
   ¦
   2..2 --> operand : Expression
-----
+```
 
 The BinaryExpression type defines the abstract base type for expressions that take two arguments.
 
 ### TernaryExpression
 
 [source,elm]
-----
+```
 TernaryExpression : OperatorExpression
   ¦
   3..3 --> operand : Expression
-----
+```
 
 The TernaryExpression type defines the abstract base type for expressions that take three arguments.
 
 ### NaryExpression
 
 [source,elm]
-----
+```
 NaryExpression : OperatorExpression
   ¦
   0..* --> operand : Expression
-----
+```
 
 The NaryExpression type defines an abstract base class for an expression that takes any number of arguments, including zero.
 
 ### AggregateExpression
 
 [source,elm]
-----
+```
 AggregateExpression : Expression
   ¦
   0..* --> signature : TypeSpecifier <1>
@@ -680,7 +680,7 @@ AggregateExpression : Expression
   1..1 --> source : Expression
   ¦
   0..1 --> path
-----
+```
 
 <1> Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
@@ -705,7 +705,7 @@ The _ExpressionDef_ class introduces the notion of _context_ which specifies the
 ### ExpressionDef
 
 [source,elm]
-----
+```
 ExpressionDef : Element
   ¦
   0..1 --> expression : Expression
@@ -715,7 +715,7 @@ ExpressionDef : Element
   0..1 --> context
   ¦
   0..1 --> accessLevel
-----
+```
 
 The ExpressionDef type defines an expression and an associated name that can be referenced by any expression in the artifact. The name must be unique within the artifact.
 
@@ -724,20 +724,20 @@ The context attribute specifies the context of the execution and is used by the 
 ### ExpressionRef
 
 [source,elm]
-----
+```
 ExpressionRef : Expression
   ¦
   0..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The ExpressionRef type defines an expression that references a previously defined NamedExpression. The result of evaluating an ExpressionReference is the result of evaluating the referenced NamedExpression.
 
 ### FunctionDef
 
 [source,elm]
-----
+```
 FunctionDef : ExpressionDef
   ¦
   0..* --> operand : OperandDef
@@ -745,20 +745,20 @@ FunctionDef : ExpressionDef
   0..1 --> external
   ¦
   0..1 --> fluent
-----
+```
 
 The FunctionDef type defines a named function that can be invoked by any expression in the artifact. Function names must be unique within the artifact. Functions may take any number of operands.
 
 ### FunctionRef
 
 [source,elm]
-----
+```
 FunctionRef : ExpressionRef
   ¦
   0..* --> signature : TypeSpecifier <1>
   ¦
   0..* --> operand : Expression
-----
+```
 
 <1> Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
@@ -767,11 +767,11 @@ The FunctionRef type defines an expression that invokes a previously defined fun
 ### OperandRef
 
 [source,elm]
-----
+```
 OperandRef : Expression
   ¦
   0..1 --> name
-----
+```
 
 The OperandRef expression allows the value of an operand to be referenced as part of an expression within the body of a function definition.
 
@@ -784,7 +784,7 @@ For more information on query semantics, refer to the <<02-authorsguide.adoc#que
 ### Query
 
 [source,elm]
-----
+```
 Query : Expression
   ¦
   1..* --> source : AliasedQuerySource
@@ -800,130 +800,130 @@ Query : Expression
   0..1 --> aggregate : AggregateClause
   ¦
   0..1 --> sort : SortClause
-----
+```
 
 The Query operator represents a clause-based query. The result of the query is determined by the type of sources included, as well as the clauses used in the query.
 
 ### AliasedQuerySource
 
 [source,elm]
-----
+```
 AliasedQuerySource : Element
   ¦
   1..1 --> expression : Expression
   ¦
   1..1 --> alias
-----
+```
 
 The AliasedQuerySource element defines a single source for inclusion in a query scope. The type of the source is determined by the expression element, and the source can be accessed within the query scope by the given alias.
 
 ### AliasRef
 
 [source,elm]
-----
+```
 AliasRef : Expression
   ¦
   0..1 --> name
-----
+```
 
 The AliasRef expression allows for the reference of a specific source within the scope of a query.
 
 ### ByColumn
 
 [source,elm]
-----
+```
 ByColumn : SortByItem
   ¦
   0..1 --> path
-----
+```
 
 The ByColumn element specifies that the sort should be performed using the given column and direction. This approach is used to specify the sort order for a query when the result is a list of tuples.
 
 ### ByDirection
 
 [source,elm]
-----
+```
 ByDirection : SortByItem
-----
+```
 
 The ByDirection element specifies that the sort should be performed using the given direction. This approach is used when the result of the query is a list of non-tuple elements and only the sort direction needs to be specified.
 
 ### ByExpression
 
 [source,elm]
-----
+```
 ByExpression : SortByItem
   ¦
   1..1 --> expression : Expression
-----
+```
 
 The ByExpression element specifies that the sort should be performed using the given expression and direction. This approach is used to specify the sort order as a calculated expression.
 
 ### IdentifierRef
 
 [source,elm]
-----
+```
 IdentifierRef : Expression
   ¦
   1..1 --> name
   ¦
   0..1 --> libraryName
-----
+```
 
 The IdentifierRef type defines an expression that references an identifier that is either unresolved, or has been resolved to an attribute in an unambiguous iteration scope such as a sort. Implementations should attempt to resolve the identifier, only throwing an error at compile-time (or run-time for an interpretive system) if the identifier reference cannot be resolved.
 
 ### LetClause
 
 [source,elm]
-----
+```
 LetClause : Element
   ¦
   1..1 --> expression : Expression
   ¦
   1..1 --> identifier
-----
+```
 
 The LetClause element allows any number of expression definitions to be introduced within a query scope. Defined expressions can be referenced by name within the query scope.
 
 ### QueryLetRef
 
 [source,elm]
-----
+```
 QueryLetRef : Expression
   ¦
   0..1 --> name
-----
+```
 
 The QueryLetRef expression allows for the reference of a specific let definition within the scope of a query.
 
 ### RelationshipClause
 
 [source,elm]
-----
+```
 RelationshipClause : AliasedQuerySource
   ¦
   1..1 --> suchThat : Expression
-----
+```
 
 The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query scope. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query scope.
 
 ### ReturnClause
 
 [source,elm]
-----
+```
 ReturnClause : Element
   ¦
   1..1 --> expression : Expression
   ¦
   0..1 --> distinct
-----
+```
 
 The ReturnClause element defines the shape of the result set of the query.
 
 ### AggregateClause
 
 [source,elm]
-----
+```
 AggregateClause : Element
   ¦
   1..1 --> expression : Expression
@@ -933,36 +933,36 @@ AggregateClause : Element
   1..1 --> identifier
   ¦
   0..1 --> distinct
-----
+```
 
 The AggregateClause element defines the result of the query in terms of an aggregation expression performed for each item in the query.
 
 ### SortClause
 
 [source,elm]
-----
+```
 SortClause : Element
   ¦
   1..* --> by : SortByItem
-----
+```
 
 The SortClause element defines the sort order for the query.
 
 ### With
 
 [source,elm]
-----
+```
 With : RelationshipClause
-----
+```
 
 The With clause restricts the elements of a given source to only those elements that have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-join in database languages.
 
 ### Without
 
 [source,elm]
-----
+```
 Without : RelationshipClause
-----
+```
 
 The Without clause restricts the elements of a given source to only those elements that do not have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-difference in database languages.
 
@@ -981,7 +981,7 @@ Note that because every expression is being evaluated within a context (such as 
 ### Retrieve
 
 [source,elm]
-----
+```
 Retrieve : Expression
   ¦
   0..1 --> id : Expression
@@ -1021,7 +1021,7 @@ Retrieve : Expression
   0..1 --> dateHighProperty
   ¦
   0..1 --> dateSearch
-----
+```
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
@@ -1119,7 +1119,7 @@ The dateSearch attribute specifies the name of the search path to use for search
 The IncludeElement type specifies include information for an include within a retrieve.
 
 [source,elm]
-----
+```
 IncludeElement : Element
   ¦
   0..1 --> relatedDataType
@@ -1129,7 +1129,7 @@ IncludeElement : Element
   0..1 --> relatedSearch
   ¦
   0..1 --> isReverse
-----
+```
 
 #### relatedDataType
 
@@ -1159,9 +1159,9 @@ For more information on the semantics of the various comparison operators, see t
 ### Equal
 
 [source,elm]
-----
+```
 Equal : BinaryExpression
-----
+```
 
 The Equal operator returns true if the arguments are equal; false if the arguments are known unequal, and null otherwise. Equality semantics are defined to be value-based.
 
@@ -1197,9 +1197,9 @@ Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 ### Equivalent
 
 [source,elm]
-----
+```
 Equivalent : BinaryExpression
-----
+```
 
 The Equivalent operator returns true if the arguments are the same value, or if they are both null; and false otherwise.
 
@@ -1232,9 +1232,9 @@ Note that this operator will always return true or false, even if either or both
 ### Greater
 
 [source,elm]
-----
+```
 Greater : BinaryExpression
-----
+```
 
 The Greater operator returns true if the first argument is greater than the second argument.
 
@@ -1257,9 +1257,9 @@ ____
 ### GreaterOrEqual
 
 [source,elm]
-----
+```
 GreaterOrEqual : BinaryExpression
-----
+```
 
 The GreaterOrEqual operator returns true if the first argument is greater than or equal to the second argument.
 
@@ -1282,9 +1282,9 @@ ____
 ### Less
 
 [source,elm]
-----
+```
 Less : BinaryExpression
-----
+```
 
 The Less operator returns true if the first argument is less than the second argument.
 
@@ -1307,9 +1307,9 @@ ____
 ### LessOrEqual
 
 [source,elm]
-----
+```
 LessOrEqual : BinaryExpression
-----
+```
 
 The LessOrEqual operator returns true if the first argument is less than or equal to the second argument.
 
@@ -1333,9 +1333,9 @@ ____
 ### NotEqual
 
 [source,elm]
-----
+```
 NotEqual : BinaryExpression
-----
+```
 
 The NotEqual operator returns true if its arguments are not the same value.
 
@@ -1353,9 +1353,9 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### And
 
 [source,elm]
-----
+```
 And : BinaryExpression
-----
+```
 
 The And operator returns the logical conjunction of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that if either argument is false, the result is false; if both arguments are true, the result is true; otherwise, the result is null. Note also that ELM does not prescribe short-circuit evaluation.
 
@@ -1369,9 +1369,9 @@ Figure 4‑C - A diagram to explain how ELM represents a simple [.kw]#And# expre
 ### Implies
 
 [source,elm]
-----
+```
 Implies : BinaryExpression
-----
+```
 
 The Implies operator returns the logical implication of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that if the left operand evaluates to true, this operator returns the boolean evaluation of the right operand. If the left operand evaluates to false, this operator returns true. Otherwise, this operator returns true if the right operand evaluates to true, and null otherwise.
 
@@ -1380,27 +1380,27 @@ Note that implies may use short-circuit evaluation in the case that the first op
 ### Not
 
 [source,elm]
-----
+```
 Not : UnaryExpression
-----
+```
 
 The Not operator returns the logical negation of its argument. If the argument is true, the result is false; if the argument is false, the result is true; otherwise, the result is null.
 
 ### Or
 
 [source,elm]
-----
+```
 Or : BinaryExpression
-----
+```
 
 The Or operator returns the logical disjunction of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that if either argument is true, the result is true; if both arguments are false, the result is false; otherwise, the result is null. Note also that ELM does not prescribe short-circuit evaluation.
 
 ### Xor
 
 [source,elm]
-----
+```
 Xor : BinaryExpression
-----
+```
 
 The Xor operator returns the exclusive or of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that the result is true if and only if one argument is true and the other is false, and that the result is false if and only if both arguments are true or both arguments are false. If either or both arguments are null, the result is null.
 
@@ -1413,47 +1413,47 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### Null
 
 [source,elm]
-----
+```
 Null : Expression
   ¦
   0..1 --> valueType
-----
+```
 
 The Null operator returns a null, or missing information marker. To avoid the need to cast this result, the operator is allowed to return a typed null.
 
 ### Coalesce
 
 [source,elm]
-----
+```
 Coalesce : NaryExpression
-----
+```
 
 The Coalesce operator returns the first non-null result in a list of arguments. If all arguments evaluate to null, the result is null. The static type of the first argument determines the type of the result, and all subsequent arguments must be of that same type.
 
 ### IsFalse
 
 [source,elm]
-----
+```
 IsFalse : UnaryExpression
-----
+```
 
 The IsFalse operator determines whether or not its argument evaluates to false. If the argument evaluates to false, the result is true; if the argument evaluates to true or null, the result is false.
 
 ### IsNull
 
 [source,elm]
-----
+```
 IsNull : UnaryExpression
-----
+```
 
 The IsNull operator determines whether or not its argument evaluates to null. If the argument evaluates to null, the result is true; otherwise, the result is false.
 
 ### IsTrue
 
 [source,elm]
-----
+```
 IsTrue : UnaryExpression
-----
+```
 
 The IsTrue operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; if the argument evaluates to false or null, the result is false.
 
@@ -1468,7 +1468,7 @@ The case expression has two varieties, one that is equivalent to repeated condit
 ### Case
 
 [source,elm]
-----
+```
 Case : Expression
   ¦
   0..1 --> comparand : Expression
@@ -1476,7 +1476,7 @@ Case : Expression
   1..* --> caseItem : CaseItem
   ¦
   1..1 --> else : Expression
-----
+```
 
 The Case operator allows for multiple conditional expressions to be chained together in a single expression, rather than having to nest multiple If operators. In addition, the comparand operand provides a variant on the case that allows a single value to be compared in each conditional.
 
@@ -1501,7 +1501,7 @@ Figure 4‑F - A diagram to explain how ELM represents a comparand-base [.kw]#Ca
 ### If
 
 [source,elm]
-----
+```
 If : Expression
   ¦
   1..1 --> condition : Expression
@@ -1509,7 +1509,7 @@ If : Expression
   1..1 --> then : Expression
   ¦
   1..1 --> else : Expression
-----
+```
 
 The If operator evaluates a condition, and returns the then argument if the condition evaluates to true; if the condition evaluates to false or null, the result of the else argument is returned. The static type of the then argument determines the result type of the conditional, and the else argument must be of that same type.
 
@@ -1533,9 +1533,9 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### Abs
 
 [source,elm]
-----
+```
 Abs : UnaryExpression
-----
+```
 
 The Abs operator returns the absolute value of its argument.
 
@@ -1550,9 +1550,9 @@ The Abs operator is defined for the Integer, Long, Decimal, and Quantity types.
 ### Add
 
 [source,elm]
-----
+```
 Add : BinaryExpression
-----
+```
 
 The Add operator performs numeric addition of its arguments.
 
@@ -1588,9 +1588,9 @@ Figure 4‑G - A diagram to explain how ELM represents a simple [.kw]#Add# expre
 ### Ceiling
 
 [source,elm]
-----
+```
 Ceiling : UnaryExpression
-----
+```
 
 The Ceiling operator returns the first integer greater than or equal to the argument.
 
@@ -1599,9 +1599,9 @@ If the argument is null, the result is null.
 ### Divide
 
 [source,elm]
-----
+```
 Divide : BinaryExpression
-----
+```
 
 The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer or Long. For integer division, use the truncated divide operator.
 
@@ -1616,9 +1616,9 @@ The Divide operator is defined for the Decimal and Quantity types.
 ### Exp
 
 [source,elm]
-----
+```
 Exp : UnaryExpression
-----
+```
 
 The Exp operator returns e raised to the given power.
 
@@ -1629,9 +1629,9 @@ If the result of the operation cannot be represented, the result is null.
 ### Floor
 
 [source,elm]
-----
+```
 Floor : UnaryExpression
-----
+```
 
 The Floor operator returns the first integer less than or equal to the argument.
 
@@ -1640,9 +1640,9 @@ If the argument is null, the result is null.
 ### HighBoundary
 
 [source,elm]
-----
+```
 HighBoundary : BinaryExpression
-----
+```
 
 The HighBoundary operator returns the greatest possible value of the input to the specified precision.
 
@@ -1653,21 +1653,21 @@ If the precision is greater than the maximum possible precision of the implement
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
 [source,cql]
-----
+```
 HighBoundary(1.587, 8) // 1.58799999
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
 HighBoundary(@T10:30, 9) // @T10:30:59.999
-----
+```
 
 If the input value is null, the result is null.
 
 ### Log
 
 [source,elm]
-----
+```
 Log : BinaryExpression
-----
+```
 
 The Log operator computes the logarithm of its first argument, using the second argument as the base.
 
@@ -1678,9 +1678,9 @@ If the result of the operation cannot be represented, the result is null.
 ### LowBoundary
 
 [source,elm]
-----
+```
 LowBoundary : BinaryExpression
-----
+```
 
 The LowBoundary operator returns the least possible value of the input to the specified precision.
 
@@ -1691,21 +1691,21 @@ If the precision is greater than the maximum possible precision of the implement
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
 [source,cql]
-----
+```
 LowBoundary(1.587, 8) // 1.58700000
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
 LowBoundary(@T10:30, 9) // @T10:30:00.000
-----
+```
 
 If the input value is null, the result is null.
 
 ### Ln
 
 [source,elm]
-----
+```
 Ln : UnaryExpression
-----
+```
 
 The Ln operator computes the natural logarithm of its argument.
 
@@ -1716,11 +1716,11 @@ If the result of the operation cannot be represented, the result is null.
 ### MaxValue
 
 [source,elm]
-----
+```
 MaxValue : Expression
   ¦
   1..1 --> valueType
-----
+```
 
 The MaxValue operator returns the maximum representable value for the given type.
 
@@ -1748,11 +1748,11 @@ For any other type, attempting to invoke MaxValue results in an error.
 ### MinValue
 
 [source,elm]
-----
+```
 MinValue : Expression
   ¦
   1..1 --> valueType
-----
+```
 
 The MinValue operator returns the minimum representable value for the given type.
 
@@ -1779,9 +1779,9 @@ For any other type, attempting to invoke MinValue results in an error.
 ### Modulo
 
 [source,elm]
-----
+```
 Modulo : BinaryExpression
-----
+```
 
 The Modulo operator computes the remainder of the division of its arguments.
 
@@ -1796,9 +1796,9 @@ For Modulo operations involving quantities, the resulting quantity will have the
 ### Multiply
 
 [source,elm]
-----
+```
 Multiply : BinaryExpression
-----
+```
 
 The Multiply operator performs numeric multiplication of its arguments.
 
@@ -1813,9 +1813,9 @@ The Multiply operator is defined for the Integer, Long, Decimal and Quantity typ
 ### Negate
 
 [source,elm]
-----
+```
 Negate : UnaryExpression
-----
+```
 
 The Negate operator returns the negative of its argument.
 
@@ -1830,9 +1830,9 @@ The Negate operator is defined for the Integer, Long, Decimal, and Quantity type
 ### Power
 
 [source,elm]
-----
+```
 Power : BinaryExpression
-----
+```
 
 The Power operator raises the first argument to the power given by the second argument.
 
@@ -1843,9 +1843,9 @@ If the result of the operation cannot be represented, the result is null.
 ### Precision
 
 [source,elm]
-----
+```
 Precision : UnaryExpression
-----
+```
 
 The Precision operator returns the number of digits of precision in the input value.
 
@@ -1854,28 +1854,28 @@ The operator can be used with Decimal, Date, DateTime, and Time values.
 For Decimal values, the operator returns the number of digits of precision after the decimal place in the input value.
 
 [source,cql]
-----
+```
 Precision(1.58700) // 5
-----
+```
 
 For Date and DateTime values, the operator returns the number of digits of precision in the input value.
 
 [source,cql]
-----
+```
 Precision(@2014) // 4
 Precision(@2014-01-05T10:30:00.000) // 17
 Precision(@T10:30) // 4
 Precision(@T10:30:00.000) // 9
-----
+```
 
 If the argument is null, the result is null.
 
 ### Predecessor
 
 [source,elm]
-----
+```
 Predecessor : UnaryExpression
-----
+```
 
 The Predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
 
@@ -1903,13 +1903,13 @@ ____
 ### Round
 
 [source,elm]
-----
+```
 Round : OperatorExpression
   ¦
   1..1 --> operand : Expression
   ¦
   0..1 --> precision : Expression
-----
+```
 
 The Round operator returns the nearest integer to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
 
@@ -1920,9 +1920,9 @@ Precision determines the decimal place at which the rounding will occur. If prec
 ### Subtract
 
 [source,elm]
-----
+```
 Subtract : BinaryExpression
-----
+```
 
 The Subtract operator performs numeric subtraction of its arguments.
 
@@ -1951,9 +1951,9 @@ If the result of the operation cannot be represented, the result is null.
 ### Successor
 
 [source,elm]
-----
+```
 Successor : UnaryExpression
-----
+```
 
 The [.id]#Successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
@@ -1981,9 +1981,9 @@ ____
 ### Truncate
 
 [source,elm]
-----
+```
 Truncate : UnaryExpression
-----
+```
 
 The Truncate operator returns the integer component of its argument.
 
@@ -1992,9 +1992,9 @@ If the argument is null, the result is null.
 ### TruncatedDivide
 
 [source,elm]
-----
+```
 TruncatedDivide : BinaryExpression
-----
+```
 
 The TruncatedDivide operator performs integer division of its arguments.
 
@@ -2019,13 +2019,13 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### Combine
 
 [source,elm]
-----
+```
 Combine : OperatorExpression
   ¦
   1..1 --> source : Expression
   ¦
   0..1 --> separator : Expression
-----
+```
 
 The Combine operator combines a list of strings, optionally separating each string with the given separator.
 
@@ -2034,9 +2034,9 @@ If either argument is null, or any element in the source list of strings is null
 ### Concatenate
 
 [source,elm]
-----
+```
 Concatenate : NaryExpression
-----
+```
 
 The Concatenate operator performs string concatenation of its arguments.
 
@@ -2045,9 +2045,9 @@ If any argument is null, the result is null.
 ### EndsWith
 
 [source,elm]
-----
+```
 EndsWith : BinaryExpression
-----
+```
 
 The EndsWith operator returns true if the given string ends with the given suffix.
 
@@ -2066,9 +2066,9 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 ### Indexer
 
 [source,elm]
-----
+```
 Indexer : BinaryExpression
-----
+```
 
 The Indexer operator returns the index^th^ element in a string or list.
 
@@ -2081,13 +2081,13 @@ If either argument is null, the result is null.
 ### LastPositionOf
 
 [source,elm]
-----
+```
 LastPositionOf : OperatorExpression
   ¦
   1..1 --> pattern : Expression
   ¦
   1..1 --> string : Expression
-----
+```
 
 The LastPositionOf operator returns the 0-based index of the beginning of the last appearance of the given pattern in the given string.
 
@@ -2098,9 +2098,9 @@ If either argument is null, the result is null.
 ### Length
 
 [source,elm]
-----
+```
 Length : UnaryExpression
-----
+```
 
 The Length operator returns the length of its argument.
 
@@ -2113,9 +2113,9 @@ If the argument is null, the result is 0.
 ### Lower
 
 [source,elm]
-----
+```
 Lower : UnaryExpression
-----
+```
 
 The Lower operator returns the given string with all characters converted to their lowercase equivalents.
 
@@ -2126,9 +2126,9 @@ If the argument is null, the result is null.
 ### Matches
 
 [source,elm]
-----
+```
 Matches : BinaryExpression
-----
+```
 
 The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
 
@@ -2143,13 +2143,13 @@ Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
 ### PositionOf
 
 [source,elm]
-----
+```
 PositionOf : OperatorExpression
   ¦
   1..1 --> pattern : Expression
   ¦
   1..1 --> string : Expression
-----
+```
 
 The PositionOf operator returns the 0-based index of the beginning given pattern in the given string.
 
@@ -2160,9 +2160,9 @@ If either argument is null, the result is null.
 ### ReplaceMatches
 
 [source,elm]
-----
+```
 ReplaceMatches : TernaryExpression
-----
+```
 
 The ReplaceMatches operator matches the given string using the regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode and allow Unicode characters.
 
@@ -2173,13 +2173,13 @@ Platforms will typically use native regular expression implementations. These ar
 ### Split
 
 [source,elm]
-----
+```
 Split : OperatorExpression
   ¦
   1..1 --> stringToSplit : Expression
   ¦
   0..1 --> separator : Expression
-----
+```
 
 The Split operator splits a string into a list of strings using a separator.
 
@@ -2190,13 +2190,13 @@ If the stringToSplit argument does not contain any appearances of the separator,
 ### SplitOnMatches
 
 [source,elm]
-----
+```
 SplitOnMatches : OperatorExpression
   ¦
   1..1 --> stringToSplit : Expression
   ¦
   1..1 --> separatorPattern : Expression
-----
+```
 
 The SplitOnMatches operator splits a string into a list of strings using matches of a regex pattern.
 
@@ -2209,9 +2209,9 @@ If the stringToSplit argument does not contain any appearances of the separator 
 ### StartsWith
 
 [source,elm]
-----
+```
 StartsWith : BinaryExpression
-----
+```
 
 The StartsWith operator returns true if the given string starts with the given prefix.
 
@@ -2222,7 +2222,7 @@ If either argument is null, the result is null.
 ### Substring
 
 [source,elm]
-----
+```
 Substring : OperatorExpression
   ¦
   1..1 --> stringToSub : Expression
@@ -2230,7 +2230,7 @@ Substring : OperatorExpression
   1..1 --> startIndex : Expression
   ¦
   0..1 --> length : Expression
-----
+```
 
 The Substring operator returns the string within stringToSub, starting at the 0-based index startIndex, and consisting of length characters.
 
@@ -2241,9 +2241,9 @@ If stringToSub or startIndex is null, or startIndex is out of range, the result 
 ### Upper
 
 [source,elm]
-----
+```
 Upper : UnaryExpression
-----
+```
 
 The Upper operator returns the given string with all characters converted to their upper case equivalents.
 
@@ -2282,7 +2282,7 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 ### Date
 
 [source,elm]
-----
+```
 Date : OperatorExpression
   ¦
   1..1 --> year : Expression
@@ -2290,7 +2290,7 @@ Date : OperatorExpression
   0..1 --> month : Expression
   ¦
   0..1 --> day : Expression
-----
+```
 
 The Date operator constructs a date value from the given components.
 
@@ -2299,9 +2299,9 @@ At least one component must be specified, and no component may be specified at a
 ### DateFrom
 
 [source,elm]
-----
+```
 DateFrom : UnaryExpression
-----
+```
 
 The DateFrom operator returns the date (with no time components specified) of the argument.
 
@@ -2310,7 +2310,7 @@ If the argument is null, the result is null.
 ### DateTime
 
 [source,elm]
-----
+```
 DateTime : OperatorExpression
   ¦
   1..1 --> year : Expression
@@ -2328,7 +2328,7 @@ DateTime : OperatorExpression
   0..1 --> millisecond : Expression
   ¦
   0..1 --> timezoneOffset : Expression
-----
+```
 
 The DateTime operator constructs a DateTime value from the given components.
 
@@ -2343,11 +2343,11 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 ### DateTimeComponentFrom
 
 [source,elm]
-----
+```
 DateTimeComponentFrom : UnaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The DateTimeComponentFrom operator returns the specified component of the argument.
 
@@ -2358,11 +2358,11 @@ The precision must be one of Year, Month, Day, Hour, Minute, Second, or Millisec
 ### DifferenceBetween
 
 [source,elm]
-----
+```
 DifferenceBetween : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The DifferenceBetween operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. Because this operation is only counting boundaries crossed, the result is always an integer.
 
@@ -2381,11 +2381,11 @@ Note that this operator can be implemented using Uncertainty as described in the
 ### DurationBetween
 
 [source,elm]
-----
+```
 DurationBetween : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The DurationBetween operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.
 
@@ -2408,9 +2408,9 @@ Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
 ### Now
 
 [source,elm]
-----
+```
 Now : OperatorExpression
-----
+```
 
 The Now operator returns the date and time of the start timestamp associated with the evaluation request. Now is defined in this way for two reasons:
 1) The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
@@ -2420,11 +2420,11 @@ The Now operator returns the date and time of the start timestamp associated wit
 ### SameAs
 
 [source,elm]
-----
+```
 SameAs : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The SameAs operator is defined for Date, DateTime, and Time values, as well as intervals.
 
@@ -2449,11 +2449,11 @@ If either argument is null, the result is null.
 ### SameOrBefore
 
 [source,elm]
-----
+```
 SameOrBefore : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The SameOrBefore operator is defined for Date, DateTime, and Time values, as well as intervals.
 
@@ -2478,11 +2478,11 @@ If either argument is null, the result is null.
 ### SameOrAfter
 
 [source,elm]
-----
+```
 SameOrAfter : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The SameOrAfter operator is defined for Date, DateTime, and Time values, as well as intervals.
 
@@ -2511,7 +2511,7 @@ Refer to the <<subtract,Subtract section>> in the Arithmetic Operators.
 ### Time
 
 [source,elm]
-----
+```
 Time : OperatorExpression
   ¦
   1..1 --> hour : Expression
@@ -2521,7 +2521,7 @@ Time : OperatorExpression
   0..1 --> second : Expression
   ¦
   0..1 --> millisecond : Expression
-----
+```
 
 The Time operator constructs a time value from the given components.
 
@@ -2532,9 +2532,9 @@ Although the milliseconds are specified with a separate component, seconds and m
 ### TimeFrom
 
 [source,elm]
-----
+```
 TimeFrom : UnaryExpression
-----
+```
 
 The TimeFrom operator returns the Time of the argument.
 
@@ -2545,9 +2545,9 @@ If the argument is null, the result is null.
 ### TimezoneOffsetFrom
 
 [source,elm]
-----
+```
 TimezoneOffsetFrom : UnaryExpression
-----
+```
 
 The TimezoneOffsetFrom operator returns the timezone offset of the argument.
 
@@ -2556,18 +2556,18 @@ If the argument is null, the result is null.
 ### TimeOfDay
 
 [source,elm]
-----
+```
 TimeOfDay : OperatorExpression
-----
+```
 
 The TimeOfDay operator returns the time-of-day of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the TimeOfDay operator in this way.
 
 ### Today
 
 [source,elm]
-----
+```
 Today : OperatorExpression
-----
+```
 
 The Today operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.
 
@@ -2590,7 +2590,7 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### Interval
 
 [source,elm]
-----
+```
 Interval : Expression
   ¦
   0..1 --> low : Expression
@@ -2604,7 +2604,7 @@ Interval : Expression
   0..1 --> lowClosed
   ¦
   0..1 --> highClosed
-----
+```
 
 The Interval selector defines an interval value. An interval must be defined using a point type that supports comparison, as well as Successor and Predecessor operations, and Minimum and Maximum Value operations.
 
@@ -2626,11 +2626,11 @@ If the high bound of the interval is null and closed, the interval is interprete
 ### After
 
 [source,elm]
-----
+```
 After : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The After operator is defined for Intervals, as well as Date, DateTime, and Time values.
 
@@ -2656,11 +2656,11 @@ If either argument is null, the result is null.
 ### Before
 
 [source,elm]
-----
+```
 Before : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Before operator is defined for Intervals, as well as Date, DateTime, and Time values.
 
@@ -2685,9 +2685,9 @@ If either argument is null, the result is null.
 ### Collapse
 
 [source,elm]
-----
+```
 Collapse : BinaryExpression
-----
+```
 
 The Collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals. In other words, adjacent intervals within a sorted list are merged if they either overlap or meet.
 
@@ -2706,11 +2706,11 @@ If the source argument is null, the result is null.
 ### Contains
 
 [source,elm]
-----
+```
 Contains : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Contains operator returns true if the first operand contains the second.
 
@@ -2725,9 +2725,9 @@ For the Interval, T overload, this operator returns true if the given point is e
 ### End
 
 [source,elm]
-----
+```
 End : UnaryExpression
-----
+```
 
 The End operator returns the ending point of an interval.
 
@@ -2740,11 +2740,11 @@ If the argument is null, the result is null.
 ### Ends
 
 [source,elm]
-----
+```
 Ends : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Ends operator returns true if the first interval ends the second. In other words, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
@@ -2765,9 +2765,9 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 ### Except
 
 [source,elm]
-----
+```
 Except : NaryExpression
-----
+```
 
 The Except operator returns the set difference of the two arguments.
 
@@ -2784,9 +2784,9 @@ If the first argument is null, the result is null. If the second argument is nul
 ### Expand
 
 [source,elm]
-----
+```
 Expand : BinaryExpression
-----
+```
 
 The Expand operator returns the set of intervals of size per for all the ranges present in the given list of intervals, or the list of points covering the range of the given interval, if invoked on a single interval.
 
@@ -2807,11 +2807,11 @@ If the source argument is null, the result is null.
 ### In
 
 [source,elm]
-----
+```
 In : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The In operator tests for membership in an interval or list.
 
@@ -2826,11 +2826,11 @@ For the T, Interval overload, this operator returns true if the given point is e
 ### Includes
 
 [source,elm]
-----
+```
 Includes : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Includes operator returns true if the first operand completely includes the second.
 
@@ -2850,11 +2850,11 @@ If either argument is null, the result is null.
 ### IncludedIn
 
 [source,elm]
-----
+```
 IncludedIn : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The IncludedIn operator returns true if the first operand is completely included in the second.
 
@@ -2873,9 +2873,9 @@ If either argument is null, the result is null.
 ### Intersect
 
 [source,elm]
-----
+```
 Intersect : NaryExpression
-----
+```
 
 The Intersect operator returns the intersection of its arguments.
 
@@ -2892,11 +2892,11 @@ If either argument is null, the result is null.
 ### Meets
 
 [source,elm]
-----
+```
 Meets : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Meets operator returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second, or if the starting point of the first interval is equal to the successor of the ending point of the second.
 
@@ -2909,11 +2909,11 @@ If either argument is null, the result is null.
 ### MeetsBefore
 
 [source,elm]
-----
+```
 MeetsBefore : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The MeetsBefore operator returns true if the first interval ends immediately before the second interval starts. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second.
 
@@ -2926,11 +2926,11 @@ If either argument is null, the result is null.
 ### MeetsAfter
 
 [source,elm]
-----
+```
 MeetsAfter : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The MeetsAfter operator returns true if the first interval starts immediately after the second interval ends. In other words, if the starting point of the first interval is equal to the successor of the ending point of the second.
 
@@ -2947,11 +2947,11 @@ Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
 ### Overlaps
 
 [source,elm]
-----
+```
 Overlaps : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Overlaps operator returns true if the first interval overlaps the second. In other words, if the starting or ending point of either interval is in the other, or if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.
 
@@ -2964,11 +2964,11 @@ If either argument is null, the result is null.
 ### OverlapsBefore
 
 [source,elm]
-----
+```
 OverlapsBefore : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The OverlapsBefore operator returns true if the first interval starts before and overlaps the second. In other words, if the first interval starts before and ends on or after the start of the second interval.
 
@@ -2981,11 +2981,11 @@ If either argument is null, the result is null.
 ### OverlapsAfter
 
 [source,elm]
-----
+```
 OverlapsAfter : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The OverlapsAfter operator returns true if the first interval overlaps and ends after the second. In other words, if the first interval ends after and starts on or before the end of the second interval.
 
@@ -2998,9 +2998,9 @@ If either argument is null, the result is null.
 ### PointFrom
 
 [source,elm]
-----
+```
 PointFrom : UnaryExpression
-----
+```
 
 The PointFrom expression extracts the single point from the source interval. The source interval must be a unit interval (meaning an interval with the same starting and ending boundary), otherwise, a run-time error is thrown. If the source interval is null, the result is null.
 
@@ -3008,11 +3008,11 @@ The PointFrom expression extracts the single point from the source interval. The
 ### ProperContains
 
 [source,elm]
-----
+```
 ProperContains : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The ProperContains operator returns true if the first operand properly contains the second.
 
@@ -3028,11 +3028,11 @@ For the Interval, T overload, this operator returns [.kw]#true# if the given poi
 ### ProperIn
 
 [source,elm]
-----
+```
 ProperIn : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The ProperIn operator tests for proper membership in an interval or list.
 
@@ -3048,11 +3048,11 @@ For the T, Interval overload, this operator returns true if the given point is g
 ### ProperIncludes
 
 [source,elm]
-----
+```
 ProperIncludes : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The ProperIncludes operator returns true if the first operand includes the second, and is strictly larger.
 
@@ -3072,11 +3072,11 @@ If either argument is null, the result is null.
 ### ProperIncludedIn
 
 [source,elm]
-----
+```
 ProperIncludedIn : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The ProperIncludedIn operator returns true if the first operand is included in the second, and is strictly smaller.
 
@@ -3095,9 +3095,9 @@ If either argument is null, the result is null.
 ### Size
 
 [source,elm]
-----
+```
 Size : UnaryExpression
-----
+```
 
 The Size operator returns the size of an interval.
 
@@ -3110,9 +3110,9 @@ If the argument is null, the result is null.
 ### Start
 
 [source,elm]
-----
+```
 Start : UnaryExpression
-----
+```
 
 The Start operator returns the starting point of an interval.
 
@@ -3125,11 +3125,11 @@ If the argument is null, the result is null.
 ### Starts
 
 [source,elm]
-----
+```
 Starts : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 The Starts operator returns true if the first interval starts the second. In other words, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
@@ -3142,9 +3142,9 @@ If either argument is null, the result is null.
 ### Union
 
 [source,elm]
-----
+```
 Union : NaryExpression
-----
+```
 
 The Union operator returns the union of its arguments.
 
@@ -3161,9 +3161,9 @@ If either argument is null, the operation is performed as though the argument wa
 ### Width
 
 [source,elm]
-----
+```
 Width : UnaryExpression
-----
+```
 
 The Width operator returns the width of an interval. The result of this operator is equivalent to invoking: End(i) - Start(i).
 
@@ -3186,13 +3186,13 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### List
 
 [source,elm]
-----
+```
 List : Expression
   ¦
   0..1 --> typeSpecifier : TypeSpecifier
   ¦
   0..* --> element : Expression
-----
+```
 
 The List selector returns a value of type List, whose elements are the result of evaluating the arguments to the List selector, in order.
 
@@ -3207,11 +3207,11 @@ Refer to the <<contains,Contains section>> in the Interval Operators.
 ### Current
 
 [source,elm]
-----
+```
 Current : Expression
   ¦
   0..1 --> scope
-----
+```
 
 The Current expression returns the value of the object currently in scope. For example, within a ForEach expression, this returns the current element being considered in the iteration.
 
@@ -3220,9 +3220,9 @@ It is an error to invoke the Current operator outside the context of a scoped op
 ### Distinct
 
 [source,elm]
-----
+```
 Distinct : UnaryExpression
-----
+```
 
 The Distinct operator takes a list of elements and returns a list containing only the unique elements within the input. For example, given the list of integers { 1, 1, 1, 2, 2, 3, 4, 4 }, the result of Distinct would be { 1, 2, 3, 4 }.
 
@@ -3245,9 +3245,9 @@ Refer to the <<except,Except section>> in the Interval Operators.
 ### Exists
 
 [source,elm]
-----
+```
 Exists : UnaryExpression
-----
+```
 
 The Exists operator returns true if the list contains any non-null elements.
 
@@ -3256,7 +3256,7 @@ If the argument is null, the result is false.
 ### Filter
 
 [source,elm]
-----
+```
 Filter : Expression
   ¦
   1..1 --> source : Expression
@@ -3264,7 +3264,7 @@ Filter : Expression
   1..1 --> condition : Expression
   ¦
   0..1 --> scope
-----
+```
 
 The Filter operator returns a list with only those elements in the source list for which the condition element evaluates to true.
 
@@ -3273,13 +3273,13 @@ If the source argument is null, the result is null.
 ### First
 
 [source,elm]
-----
+```
 First : OperatorExpression
   ¦
   1..1 --> source : Expression
   ¦
   0..1 --> orderBy
-----
+```
 
 The First operator returns the first element in a list. If the order by attribute is specified, the list is sorted by that ordering prior to returning the first element.
 
@@ -3288,9 +3288,9 @@ If the argument is null, the result is null.
 ### Flatten
 
 [source,elm]
-----
+```
 Flatten : UnaryExpression
-----
+```
 
 The Flatten operator flattens a list of lists into a single list.
 
@@ -3299,7 +3299,7 @@ If the argument is null, the result is null.
 ### ForEach
 
 [source,elm]
-----
+```
 ForEach : Expression
   ¦
   1..1 --> source : Expression
@@ -3307,7 +3307,7 @@ ForEach : Expression
   1..1 --> element : Expression
   ¦
   0..1 --> scope
-----
+```
 
 The ForEach expression iterates over the list of elements in the source element, and returns a list with the same number of elements, where each element in the new list is the result of evaluating the element expression for each element in the source list.
 
@@ -3330,13 +3330,13 @@ Refer to the <<included-in,IncludedIn section>> in the Interval Operators.
 ### IndexOf
 
 [source,elm]
-----
+```
 IndexOf : OperatorExpression
   ¦
   1..1 --> source : Expression
   ¦
   1..1 --> element : Expression
-----
+```
 
 The IndexOf operator returns the 0-based index of the given element in the given source list.
 
@@ -3353,13 +3353,13 @@ Refer to the <<intersect,Intersect section>> in the Interval Operators.
 ### Last
 
 [source,elm]
-----
+```
 Last : OperatorExpression
   ¦
   1..1 --> source : Expression
   ¦
   0..1 --> orderBy
-----
+```
 
 The Last operator returns the last element in a list. If the order by attribute is specified, the list is sorted by that ordering prior to returning the last element.
 
@@ -3388,7 +3388,7 @@ Refer to the <<proper-included-in,ProperIncludedIn section>> in the Interval Ope
 ### Repeat
 
 [source,elm]
-----
+```
 Repeat : Expression
   ¦
   1..1 --> source : Expression
@@ -3396,7 +3396,7 @@ Repeat : Expression
   1..1 --> element : Expression
   ¦
   0..1 --> scope
-----
+```
 
 The Repeat expression performs successive ForEach until no new elements are returned.
 
@@ -3409,16 +3409,16 @@ If the element argument evaluates to null for some item in the source list, the 
 ### SingletonFrom
 
 [source,elm]
-----
+```
 SingletonFrom : UnaryExpression
-----
+```
 
 The SingletonFrom expression extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown. If the source list is null, the result is null.
 
 ### Slice
 
 [source,elm]
-----
+```
 Slice : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3426,7 +3426,7 @@ Slice : OperatorExpression
   1..1 --> startIndex : Expression
   ¦
   1..1 --> endIndex : Expression
-----
+```
 
 The Slice operator returns a portion of the elements in a list, beginning at the start index and ending just before the ending index.
 
@@ -3441,13 +3441,13 @@ If the startIndex or endIndex is less than 0, or if the endIndex is less than th
 ### Sort
 
 [source,elm]
-----
+```
 Sort : Expression
   ¦
   1..1 --> source : Expression
   ¦
   1..* --> by : SortByItem
-----
+```
 
 The Sort operator returns a list with all the elements in source, sorted as described by the by element.
 
@@ -3458,9 +3458,9 @@ If the argument is null, the result is null.
 ### Times
 
 [source,elm]
-----
+```
 Times : BinaryExpression
-----
+```
 
 The Times operator performs the cartesian product of two lists of tuples. The return type of a Times operator is a tuple with all the components from the tuple types of both arguments. The result will contain a tuple for each possible combination of tuples from both arguments with the values for each component derived from the pairing of the source tuples.
 
@@ -3483,9 +3483,9 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### AllTrue
 
 [source,elm]
-----
+```
 AllTrue : AggregateExpression
-----
+```
 
 The AllTrue operator returns true if all the non-null elements in source are true.
 
@@ -3498,9 +3498,9 @@ If the source is null, the result is true.
 ### AnyTrue
 
 [source,elm]
-----
+```
 AnyTrue : AggregateExpression
-----
+```
 
 The AnyTrue operator returns true if any non-null element in source is true.
 
@@ -3513,9 +3513,9 @@ If the source is null, the result is false.
 ### Avg
 
 [source,elm]
-----
+```
 Avg : AggregateExpression
-----
+```
 
 The Avg operator returns the average of the non-null elements in source.
 
@@ -3528,9 +3528,9 @@ If the source is null, the result is null.
 ### Count
 
 [source,elm]
-----
+```
 Count : AggregateExpression
-----
+```
 
 The Count operator returns the number of non-null elements in the source.
 
@@ -3543,9 +3543,9 @@ If the list is null, the result is 0.
 ### GeometricMean
 
 [source,elm]
-----
+```
 GeometricMean : AggregateExpression
-----
+```
 
 The GeometricMean operator returns the geometric mean of the non-null elements in source.
 
@@ -3558,9 +3558,9 @@ If the source is null, the result is null.
 ### Product
 
 [source,elm]
-----
+```
 Product : AggregateExpression
-----
+```
 
 The Product operator returns the geometric product of non-null elements in the source.
 
@@ -3573,9 +3573,9 @@ If the list is null, the result is null.
 ### Max
 
 [source,elm]
-----
+```
 Max : AggregateExpression
-----
+```
 
 The Max operator returns the maximum element in the source. Comparison semantics are defined by the comparison operators for the type of the values being aggregated.
 
@@ -3588,9 +3588,9 @@ If the source is null, the result is null.
 ### Median
 
 [source,elm]
-----
+```
 Median : AggregateExpression
-----
+```
 
 The Median operator returns the median of the elements in source.
 
@@ -3603,9 +3603,9 @@ If the source is null, the result is null.
 ### Min
 
 [source,elm]
-----
+```
 Min : AggregateExpression
-----
+```
 
 The Min operator returns the minimum element in the source. Comparison semantics are defined by the comparison operators for the type of the values being aggregated.
 
@@ -3618,9 +3618,9 @@ If the source is null, the result is null.
 ### Mode
 
 [source,elm]
-----
+```
 Mode : AggregateExpression
-----
+```
 
 The Mode operator returns the statistical mode of the elements in source.
 
@@ -3633,9 +3633,9 @@ If the source is null, the result is null.
 ### PopulationVariance
 
 [source,elm]
-----
+```
 PopulationVariance : AggregateExpression
-----
+```
 
 The PopulationVariance operator returns the statistical population variance of the elements in source.
 
@@ -3648,9 +3648,9 @@ If the source is null, the result is null.
 ### PopulationStdDev
 
 [source,elm]
-----
+```
 PopulationStdDev : AggregateExpression
-----
+```
 
 The PopulationStdDev operator returns the statistical standard deviation of the elements in source.
 
@@ -3663,9 +3663,9 @@ If the source is null, the result is null.
 ### Sum
 
 [source,elm]
-----
+```
 Sum : AggregateExpression
-----
+```
 
 The Sum operator returns the sum of non-null elements in the source.
 
@@ -3678,9 +3678,9 @@ If the list is null, the result is null.
 ### StdDev
 
 [source,elm]
-----
+```
 StdDev : AggregateExpression
-----
+```
 
 The StdDev operator returns the statistical standard deviation of the elements in source.
 
@@ -3693,9 +3693,9 @@ If the list is null, the result is null.
 ### Variance
 
 [source,elm]
-----
+```
 Variance : AggregateExpression
-----
+```
 
 The Variance operator returns the statistical variance of the elements in source.
 
@@ -3712,7 +3712,7 @@ For more information on the semantics of these operators, refer to the <<09-b-cq
 ### As
 
 [source,elm]
-----
+```
 As : UnaryExpression
   ¦
   0..1 --> asTypeSpecifier : TypeSpecifier
@@ -3720,20 +3720,20 @@ As : UnaryExpression
   0..1 --> asType
   ¦
   0..1 --> strict
-----
+```
 
 The As operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument. If the argument is not of the specified type, and the strict attribute is false (the default), the result is null. If the argument is not of the specified type and the strict attribute is true, an exception is thrown.
 
 ### CanConvert
 
 [source,elm]
-----
+```
 CanConvert : UnaryExpression
   ¦
   0..1 --> toTypeSpecifier : TypeSpecifier
   ¦
   0..1 --> toType
-----
+```
 
 The CanConvert operator returns true if the given value can be converted to a specific type, and false otherwise.
 
@@ -3756,9 +3756,9 @@ See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a descr
 ### CanConvertQuantity
 
 [source,elm]
-----
+```
 CanConvertQuantity : BinaryExpression
-----
+```
 
 The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
 
@@ -3769,11 +3769,11 @@ If either argument is null, the result is null.
 ### Children
 
 [source,elm]
-----
+```
 Children : OperatorExpression
   ¦
   1..1 --> source : Expression
-----
+```
 
 For structured types, the Children operator returns a list of all the values of the elements of the type. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
@@ -3784,13 +3784,13 @@ If the source is null, the result is null.
 ### Convert
 
 [source,elm]
-----
+```
 Convert : UnaryExpression
   ¦
   0..1 --> toTypeSpecifier : TypeSpecifier
   ¦
   0..1 --> toType
-----
+```
 
 The Convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible.
 
@@ -3815,9 +3815,9 @@ See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a descr
 ### ConvertQuantity
 
 [source,elm]
-----
+```
 ConvertQuantity : BinaryExpression
-----
+```
 
 The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
 
@@ -3828,9 +3828,9 @@ If either argument is null, the result is null.
 ### ConvertsToBoolean
 
 [source,elm]
-----
+```
 ConvertsToBoolean : UnaryExpression
-----
+```
 
 The ConvertsToBoolean operator returns true if the value of its argument is or can be converted to a Boolean value.
 
@@ -3847,9 +3847,9 @@ If the argument is null the result is null.
 ### ConvertsToDate
 
 [source,elm]
-----
+```
 ConvertsToDate : UnaryExpression
-----
+```
 
 The ConvertsToDate operator returns true if the value of its argument is or can be converted to a Date value.
 
@@ -3872,9 +3872,9 @@ If the argument is null, the result is null.
 ### ConvertsToDateTime
 
 [source,elm]
-----
+```
 ConvertsToDateTime : UnaryExpression
-----
+```
 
 The ConvertsToDateTime operator returns true if the value of its argument is or can be converted to a DateTime value.
 
@@ -3895,9 +3895,9 @@ If the argument is null, the result is null.
 ### ConvertsToDecimal
 
 [source,elm]
-----
+```
 ConvertsToDecimal : UnaryExpression
-----
+```
 
 The ConvertsToDecimal operator returns true if the value of its argument is or can be converted to a Decimal value. The operator accepts strings using the following format:
 
@@ -3918,9 +3918,9 @@ If the argument is null, the result is null.
 ### ConvertsToLong
 
 [source,elm]
-----
+```
 ConvertsToLong : UnaryExpression
-----
+```
 
 The ConvertsToLong operator returns true if the value of its argument is or can be converted to a Long value. The operator accepts strings using the following format:
 
@@ -3941,9 +3941,9 @@ If the argument is null, the result is null.
 ### ConvertsToInteger
 
 [source,elm]
-----
+```
 ConvertsToInteger : UnaryExpression
-----
+```
 
 The ConvertsToInteger operator returns true if the value of its argument is or can be converted to an Integer value. The operator accepts strings using the following format:
 
@@ -3964,9 +3964,9 @@ If the argument is null, the result is null.
 ### ConvertsToQuantity
 
 [source,elm]
-----
+```
 ConvertsToQuantity : UnaryExpression
-----
+```
 
 The ConvertsToQuantity operator returns true if the value of its argument is or can be converted to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
 
@@ -3989,9 +3989,9 @@ If the argument is null, the result is null.
 ### ConvertsToRatio
 
 [source,elm]
-----
+```
 ConvertsToRatio : UnaryExpression
-----
+```
 
 The ConvertsToRatio operator returns true if the value of its argument is or can be converted to a Ratio value. The operator accepts strings using the following format:
 
@@ -4006,9 +4006,9 @@ If the argument is null, the result is null.
 ### ConvertsToString
 
 [source,elm]
-----
+```
 ConvertsToString : UnaryExpression
-----
+```
 
 The ConvertsToString operator returns true if the value of its argument is or can be converted to a String value.
 
@@ -4030,9 +4030,9 @@ If the argument is null, the result is null.
 ### ConvertsToTime
 
 [source,elm]
-----
+```
 ConvertsToTime : UnaryExpression
-----
+```
 
 The ConvertsToTime operator returns true if the value of its argument is or can be converted to a Time value.
 
@@ -4053,11 +4053,11 @@ If the argument is null, the result is null.
 ### Descendents
 
 [source,elm]
-----
+```
 Descendents : OperatorExpression
   ¦
   1..1 --> source : Expression
-----
+```
 
 For structured types, the Descendents operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
@@ -4068,22 +4068,22 @@ If the source is null, the result is null.
 ### Is
 
 [source,elm]
-----
+```
 Is : UnaryExpression
   ¦
   0..1 --> isTypeSpecifier : TypeSpecifier
   ¦
   0..1 --> isType
-----
+```
 
 The Is operator allows the type of a result to be tested. The language must support the ability to test against any type. If the run-time type of the argument is of the type being tested, the result of the operator is true; otherwise, the result is false.
 
 ### ToBoolean
 
 [source,elm]
-----
+```
 ToBoolean : UnaryExpression
-----
+```
 
 The ToBoolean operator converts the value of its argument to a Boolean value.
 
@@ -4100,9 +4100,9 @@ If the argument is null the result is null.
 ### ToChars
 
 [source,elm]
-----
+```
 ToChars : UnaryExpression
-----
+```
 
 The ToChars operator takes a string and returns a list with one string for each character in the input, in the order in which they appear in the string.
 
@@ -4111,9 +4111,9 @@ If the argument is null, the result is null.
 ### ToConcept
 
 [source,elm]
-----
+```
 ToConcept : UnaryExpression
-----
+```
 
 The ToConcept operator converts a value of type Code to a Concept value with the given Code as its primary and only Code. If the Code has a display value, the resulting Concept will have the same display value.
 
@@ -4124,9 +4124,9 @@ If the argument is null, the result is null.
 ### ToDate
 
 [source,elm]
-----
+```
 ToDate : UnaryExpression
-----
+```
 
 The ToDate operator converts the value of its argument to a Date value.
 
@@ -4151,9 +4151,9 @@ If the argument is null, the result is null.
 ### ToDateTime
 
 [source,elm]
-----
+```
 ToDateTime : UnaryExpression
-----
+```
 
 The ToDateTime operator converts the value of its argument to a DateTime value.
 
@@ -4176,9 +4176,9 @@ If the argument is null, the result is null.
 ### ToDecimal
 
 [source,elm]
-----
+```
 ToDecimal : UnaryExpression
-----
+```
 
 The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
 
@@ -4199,9 +4199,9 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 ### ToInteger
 
 [source,elm]
-----
+```
 ToInteger : UnaryExpression
-----
+```
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
@@ -4222,9 +4222,9 @@ If the argument is null, the result is null.
 ### ToList
 
 [source,elm]
-----
+```
 ToList : UnaryExpression
-----
+```
 
 The ToList operator returns its argument as a List value. The operator accepts a singleton value of any type and returns a list with the value as the single element.
 
@@ -4237,9 +4237,9 @@ The operator is used to implement list promotion efficiently.
 ### ToLong
 
 [source,elm]
-----
+```
 ToLong : UnaryExpression
-----
+```
 
 The ToLong operator converts the value of its argument to a Long value. The operator accepts strings using the following format:
 
@@ -4260,9 +4260,9 @@ If the argument is null, the result is null.
 ### ToQuantity
 
 [source,elm]
-----
+```
 ToQuantity : UnaryExpression
-----
+```
 
 The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
 
@@ -4285,9 +4285,9 @@ If the argument is null, the result is null.
 ### ToRatio
 
 [source,elm]
-----
+```
 ToRatio : UnaryExpression
-----
+```
 
 The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
 
@@ -4302,9 +4302,9 @@ If the argument is null, the result is null.
 ### ToString
 
 [source,elm]
-----
+```
 ToString : UnaryExpression
-----
+```
 
 The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type
 
@@ -4328,9 +4328,9 @@ If the argument is null, the result is null.
 ### ToTime
 
 [source,elm]
-----
+```
 ToTime : UnaryExpression
-----
+```
 
 The ToTime operator converts the value of its argument to a Time value.
 
@@ -4357,7 +4357,7 @@ For working with clinical data, ELM defines operators for terminology sets, quan
 ### AnyInCodeSystem
 
 [source,elm]
-----
+```
 AnyInCodeSystem : OperatorExpression
   ¦
   1..1 --> codes : Expression
@@ -4365,7 +4365,7 @@ AnyInCodeSystem : OperatorExpression
   0..1 --> codesystem : CodeSystemRef
   |
   0..1 --> codesystemExpression : Expression
-----
+```
 
 The AnyInCodeSystem operator returns true if any of the given codes are in the given code system.
 
@@ -4378,7 +4378,7 @@ The third argument is expected to be of type CodeSystem, allowing references to 
 ### AnyInValueSet
 
 [source,elm]
-----
+```
 AnyInValueSet : OperatorExpression
   ¦
   1..1 --> codes : Expression
@@ -4386,7 +4386,7 @@ AnyInValueSet : OperatorExpression
   0..1 --> valueset : ValueSetRef
   |
   0..1 --> valuesetExpression : Expression
-----
+```
 
 The AnyInValueSet operator returns true if any of the given codes are in the given value set.
 
@@ -4399,11 +4399,11 @@ The third argument is expected to be of type ValueSet, allowing references to va
 ### CalculateAge
 
 [source,elm]
-----
+```
 CalculateAge : UnaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 Calculates the age in the specified precision of a person born on the given date.
 
@@ -4416,11 +4416,11 @@ For the DateTime overload, the calculation is performed using Now(), and the res
 ### CalculateAgeAt
 
 [source,elm]
-----
+```
 CalculateAgeAt : BinaryExpression
   ¦
   0..1 --> precision
-----
+```
 
 Calculates the age in the specified precision of a person born on a given date, as of another given date.
 
@@ -4443,7 +4443,7 @@ Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
 ### InCodeSystem
 
 [source,elm]
-----
+```
 InCodeSystem : OperatorExpression
   ¦
   1..1 --> code : Expression
@@ -4451,7 +4451,7 @@ InCodeSystem : OperatorExpression
   0..1 --> codesystem : CodeSystemRef
   |
   0..1 --> codesystemExpression : Expression
-----
+```
 
 The InCodeSystem operator returns true if the given code is in the given code system.
 
@@ -4464,7 +4464,7 @@ The third argument is expected to be a CodeSystem, allowing references to code s
 ### InValueSet
 
 [source,elm]
-----
+```
 InValueSet : OperatorExpression
   ¦
   1..1 --> code : Expression
@@ -4472,7 +4472,7 @@ InValueSet : OperatorExpression
   0..1 --> valueset : ValueSetRef
   |
   0..1 --> valuesetExpression : Expression
-----
+```
 
 The InValueSet operator returns true if the given code is in the given value set.
 
@@ -4485,9 +4485,9 @@ The third argument is expected to be a ValueSet, allowing references to value se
 ### ExpandValueSet
 
 [source,elm]
-----
+```
 ExpandValueSet : UnaryExpression
-----
+```
 
 The ExpandValueSet operator returns the current expansion for the given value set.
 
@@ -4502,9 +4502,9 @@ Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
 ### SubsumedBy
 
 [source,elm]
-----
+```
 SubsumedBy : BinaryExpression
-----
+```
 
 The SubsumedBy operator returns true if the given codes are equivalent, or if the first code is subsumed by the second code (i.e. the first code is a descendent of the second code in a subsumption hierarchy), and false otherwise.
 
@@ -4515,9 +4515,9 @@ If either or both arguments are null, the result is null.
 ### Subsumes
 
 [source,elm]
-----
+```
 Subsumes : BinaryExpression
-----
+```
 
 The Subsumes operator returns true if the given codes are equivalent, or if the first code subsumes the second (i.e. the first code is an ancestor of the second in a subsumption hierarchy), and false otherwise.
 
@@ -4532,7 +4532,7 @@ ELM defines a utility operation that is useful for generating run-time messages,
 ### Message
 
 [source,elm]
-----
+```
 Message : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -4544,7 +4544,7 @@ Message : OperatorExpression
   0..1 --> severity : Expression
   ¦
   0..1 --> message : Expression
-----
+```
 
 The Message operator is used to support errors, warnings, messages, and tracing in an ELM evaluation environment.
 

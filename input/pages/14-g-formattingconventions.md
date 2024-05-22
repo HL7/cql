@@ -94,10 +94,10 @@ Literals in CQL allow for the expression of values of each of the system-defined
 For Quantities, always put a space between the numerical value and the unit:
 
 [source,cql]
-----
+```
 45 'mg'
 28 'mm[Hg]'
-----
+```
 
 ### Intervals
 
@@ -106,11 +106,11 @@ Intervals can be expressed based on any type that supports ordered comparison (I
 Intervals use standard mathematical notation to indicate whether the boundaries are open or closed:
 
 [source,cql]
-----
+```
 Interval[1, 5]
 Interval(1, 9)
 Interval[@2015-01-01T00:00:00.0Z, @2016-01-01T00:00:00.0Z)
-----
+```
 
 Never put a space before or after the opening or closing boundary.
 
@@ -123,29 +123,29 @@ Lists in CQL can contain elements of any type.
 Always separate the contents of the list with a space to help visually distinguish the braces from parentheses:
 
 [source,cql]
-----
+```
 { 1, 2, 3 }
 Sum({ 1, 2, 3 })
-----
+```
 
 Tuples in CQL contain named elements of any type.
 
 Always separate the contents of the tuple with a space:
 
 [source,cql]
-----
+```
 { name: 'Patrick', birthDate: @2014-01-01 }
-----
+```
 
 Do not put a space between the tuple element name and the value specifier ([.sym]#:#), but always put a space between the value specifier and the value.
 
 The Tuple keyword is optional, but this means that the empty tuple has a special construct:
 
 [source,cql]
-----
+```
 { } // empty list
 { : } // empty Tuple
-----
+```
 
 [[queries-5]]
 ## Queries
@@ -153,30 +153,30 @@ The Tuple keyword is optional, but this means that the empty tuple has a special
 The central expression construct of CQL is the query. The query construct in CQL is clause-based:
 
 [source,cql]
-----
+```
 <primary source> <alias>
   <with or without clauses>
   <where clause>
   <return clause>
   <sort clause>
-----
+```
 
 In general, simple queries can fit on a single line:
 
 [source,cql]
-----
+```
 ["Encounter, Performed": "Inpatient"] Encounter where duration in days of Encounter.period >= 120
-----
+```
 
 If a query, or a clause of a query, needs more than one line, continue the clauses indented beneath the query or clause:
 
 [source,cql]
-----
+```
 "Pharyngitis Encounters with Antibiotics" Pharyngitis
   with ["Laboratory Test, Performed": "Group A Streptococcus Test"] Test
     such that Test.result is not null
       and Test.startDateTime in Interval[Pharyngitis.startTime - 3 days, Pharyngitis.stopDateTime + 3 days]
-----
+```
 
 When a query needs multiple lines, each clause should start on a new line indented one level.
 
@@ -208,9 +208,9 @@ Using "direct reference codes", involves declaring an identifier for a specific 
 When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning:
 
 [source,cql]
-----
+```
 code "Venous foot pump, device (physical object)": '442023007' from "SNOMED-CT"
-----
+```
 
 Note that for direct reference code usage, the local identifier (in the example above, the local identifier is "Venous foot pump, device (physical object)") should be the same as the description of the code within the terminology in order to avoid conflicting with any usage or license agreements with the referenced terminologies, but can be different to allow for potential naming conflicts, as well as simplification of longer names when appropriate.
 
