@@ -83,7 +83,7 @@ The logical perspective of the specification is concerned with complete and accu
 This perspective defines a Unified Modeling Language (UML) model called the Expression Logical Model (ELM) that defines a canonical representation of expression logic. This approach is intended to simplify implementation and machine processing by focusing on the content of an expression, rather than the syntax used to render it. The approach is based on and motivated by the concept of an Abstract Syntax Tree from traditional compiler implementation. The following diagram depicts the steps performed by a traditional compiler:
 
 <a name="figure-1-b"></a>
-image:extracted-media/media/image3-1.png[image,width=626,height=430]
+![extracted-media/media/image3-1](extracted-media/media/image3-1.png){: width=626; height=430; }
 
 Figure 1‑B - The steps performed by a traditional compiler
 
@@ -142,7 +142,7 @@ https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Di
 In particular, this specification enables the sharing use case by defining a high-level syntax suitable for authors, a logical-level representation suitable for language processing applications, and a mechanism for translation between them. The following diagram depicts how these specifications will be used in the sharing use case:
 
 <a name="figure-1-c"></a>
-image:extracted-media/media/image4.png[image,width=626,height=382]
+![extracted-media/media/image4](extracted-media/media/image4.png){: width=626; height=382; }
 
 Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case
 

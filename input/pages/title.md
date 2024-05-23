@@ -3,7 +3,7 @@
 :backend: xhtml
 :page-standards-status: normative
 
-image:extracted-media/media/image1.png[image,width=144,height=148]
+![extracted-media/media/image1](extracted-media/media/image1.png){: width=144; height=148; }
 
 *HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
 

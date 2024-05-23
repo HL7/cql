@@ -236,7 +236,7 @@ In other words, the value for the default of a parameter must be able to be calc
 The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
 
 <a name="figure-2-a"></a>
-image:extracted-media/media/patient-practitioner-model.png[image]
+![extracted-media/media/patient-practitioner-model](extracted-media/media/patient-practitioner-model.png)
 
 Figure 2-A - Simplified patient/practitioner information model
 
@@ -411,7 +411,7 @@ Depending on the context the retrieve above will return:
 Consider the figure below:
 
 <a name="figure-2-b"></a>
-image:extracted-media/media/context-diagram.png[image]
+![extracted-media/media/context-diagram](extracted-media/media/context-diagram.png)
 
 Figure 2‑B - Unfiltered vs Patient context
 
@@ -591,7 +591,7 @@ When the data being sorted includes [.kw]#nulls#, they are considered lower than
 In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
 
 <a name="figure-2-c"></a>
-image:extracted-media/media/patient-model.png[image]
+![extracted-media/media/patient-model](extracted-media/media/patient-model.png)
 
 Figure 2‑C - Simple patient information model
 
@@ -1900,7 +1900,7 @@ The first expression returns the number of whole days between the starting and e
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
 
 <a name="table-2-q"></a>
-image:extracted-media/media/image5.png[image,width=626,height=394]
+![extracted-media/media/image5](extracted-media/media/image5.png){: width=626; height=394; }
 
 Table 2‑Q - Comparison of two interval values using a complete set of operations
 
@@ -2032,7 +2032,7 @@ This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators for intervals:
 
 <a name="figure-2-d"></a>
-image:extracted-media/media/image6.png[image,width=626,height=128]
+![extracted-media/media/image6](extracted-media/media/image6.png){: width=626; height=128; }
 
 Figure 2‑D - The union, intersect, and except operators for intervals
 
@@ -2232,7 +2232,7 @@ This example returns:
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
 
 <a name="figure-2-e"></a>
-image:extracted-media/media/image7.png[image,width=626,height=176]
+![extracted-media/media/image7](extracted-media/media/image7.png){: width=626; height=176; }
 
 Figure 2‑E - The union, intersect, and except operators for lists
 
@@ -2261,7 +2261,7 @@ Although the examples in this section primarily use lists of integers, these ope
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
 <a name="figure-2-f"></a>
-image:extracted-media/media/image8.png[image,width=353,height=75]
+![extracted-media/media/image8](extracted-media/media/image8.png){: width=353; height=75; }
 
 Figure 2‑F - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
 
@@ -2270,7 +2270,7 @@ If we want to determine the total duration _covered_ by these intervals, we cann
 The solution is the [.kw]#collapse# operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
 <a name="figure-2-g"></a>
-image:extracted-media/media/image9.png[image,width=348,height=56]
+![extracted-media/media/image9](extracted-media/media/image9.png){: width=348; height=56; }
 
 Figure 2‑G - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
 
