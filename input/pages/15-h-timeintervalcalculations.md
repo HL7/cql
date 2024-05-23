@@ -684,7 +684,7 @@ And finally, the above example returns false, because the comparison proceeds to
 
 The following table provides a summary of the timing phrase examples:
 
-[[table-h-a]]
+<a name="table-h-a"></a>
 |===
 |Scenario: OneHourOrLessOnOrBefore |Calculation Type |CQL Timing Phrase |Result |Comment
 
@@ -713,7 +713,7 @@ End: @2020-07-01T10:30:00.0
 
 Table H-A - Timing phrase examples (hours)
 
-[[table-h-b]]
+<a name="table-h-b"></a>
 |===
 |Scenario: OneDayAfterDayOf |Calculation Type |Timing Phrase |Result |Comment
 
@@ -746,7 +746,7 @@ End: @2020-07-11T10:00:00.0
 
 Table H-B - Timing phrase examples (days)
 
-[[table-h-c]]
+<a name="table-h-c"></a>
 |===
 |Scenario: FortyTwoWeeksOrLessBefore |Calculation Type |Timing Phrase |Result |Comment
 
@@ -772,7 +772,7 @@ End: @2020-07-13T10:00:00.0
 
 Table H-C - Timing phrase examples (weeks)
 
-[[table-h-d]]
+<a name="table-h-d"></a>
 |===
 |CQL Syntax |CQL Calculation Type
 

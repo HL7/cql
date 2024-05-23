@@ -223,7 +223,7 @@ In 1.5, a [.id]#Vocabulary# abstract type with two subtypes, [.id]#CodeSystem# a
 
 Because of the way data access is modeled within CQL, the data requirements of a particular artifact can be clearly and accurately defined by inspecting only the _Retrieve_ expressions defined within the artifact. The following table broadly describes the data defined by each retrieve:
 
-[[table-5-a]]
+<a name="table-5-a"></a>
 [cols=",",options="header",]
 |===========================================================================================================================================================================================================================================
 |Item |Description
@@ -249,7 +249,7 @@ Once the date ranges for each code within each unique retrieve context are deter
 
 This process produces a set of clinical data descriptors with the following structure:
 
-[[table-5-b]]
+<a name="table-5-b"></a>
 [cols=",",options="header",]
 |======================================================================================
 |Property |Description
@@ -378,7 +378,7 @@ This process proceeds as follows:
 
 The graph of the expression being validated is traversed to determine the result type of each node. If the node has children (operands) the type of each child is determined in order to determine the type of the node. The following table defines the categories of nodes and the process for determining the type of each category:
 
-[[table-5-c]]
+<a name="table-5-c"></a>
 [cols=",",options="header",]
 |============================================================================================================================================================================
 |Node Category |Type Determination
@@ -416,7 +416,7 @@ In general, operations are defined to result in null if any of their arguments a
 
 Evaluation takes place within an execution model that provides access to the data and parameters provided to the evaluation. Data is provided to the evaluation as a set of lists of structured values representing the clinical information. In order to be represented in this data set, a given structured value must be a _cacheable_ item. A cacheable item must have the following:
 
-[[table-5-d]]
+<a name="table-5-d"></a>
 [cols=",",options="header",]
 |=======================================================================================
 |Property |Description
@@ -437,7 +437,7 @@ During the evaluation phase, the result of the expression is determined. Concept
 
 The graph of the expression being evaluated is traversed and the result of each node is calculated. If the node has children (operands), the result of each child is evaluated before the result of the node can be determined. The following table describes the general categories of nodes and the process of evaluation for each:
 
-[[table-5-e]]
+<a name="table-5-e"></a>
 [cols=",",options="header",]
 |======================================================================================================================================================================================================================================================================================================================
 |Node Category |Evaluation
@@ -453,7 +453,7 @@ Table 5‑E - The general categories of nodes and the process of evaluation for 
 
 During evaluation, the implementation must maintain a stack that is used to represent the value that is currently in scope. Certain operations within the expression language are defined with a scope, and these operations use the stack to represent this scope. The following table details these operations:
 
-[[table-5-f]]
+<a name="table-5-f"></a>
 [cols=",",options="header",]
 |====================================================================================================================================================================
 |Operation |Stack Effect
@@ -558,7 +558,7 @@ This section discusses the precise semantics for the representation of date and 
 
 This section provides precise definitions for the terms involved in dealing with date and time values. These definitions are based on the ISO 8601:2004 standard for the representation of date and time values.
 
-[[table-5-g]]
+<a name="table-5-g"></a>
 [cols=",,",options="header",]
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Term |Definition |Notes
@@ -596,7 +596,7 @@ Table 5‑G - Definitions for the terms involved in dealing with [.kw]#Date# and
 
 ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date and time values using the following components:
 
-[[table-5-h]]
+<a name="table-5-h"></a>
 [cols=",,,",options="header",]
 |======================================================================================================================================================================================================================================================================================================================================================================
 |Component |Type |Range |Notes
@@ -617,7 +617,7 @@ Table 5‑H - The components used to represent [.kw]#Date# and [.kw]#Time# value
 
 CQL allows time durations, represented as Quantities, to be added to or subtracted from date or time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
 
-[[table-5-i]]
+<a name="table-5-i"></a>
 [cols=",,,",options="header",]
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Precision |Type |Range |Semantics

@@ -7,7 +7,7 @@
 :toc:
 :page-standards-status: informative
 
-[[table-12-a]]
+<a name="table-12-a"></a>
 [cols=",",options="header",]
 |==============================================================================
 |Acronym |Definition/Description

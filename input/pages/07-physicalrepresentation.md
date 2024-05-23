@@ -15,7 +15,7 @@ The physical representation is simply a set of XML schemata which define XML typ
 
 The physical representation for ELM is defined by the following schemata:
 
-[[table-7-a]]
+<a name="table-7-a"></a>
 [cols=",",options="header",]
 |=======================================================================================================
 |Schema |Description
@@ -77,7 +77,7 @@ The implementation environment must provide a mechanism for library references t
 
 In addition, the implementation environment must provide a mechanism for data model references to be resolved. At a minimum, the data model definition must define the structure of all the types available within the data model, generally by providing an XSD or similar class structure definition. If the implementation environment is only concerned with translation or execution of ELM documents, then the type structures for each data model are sufficient. However, to fully enable the authoring features of CQL syntax, the data model reference must also define the following:
 
-[[table-7-b]]
+<a name="table-7-b"></a>
 [cols=",",options="header",]
 |=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 |Component |Description
@@ -93,7 +93,7 @@ Table 7‑B - The data model reference required components
 
 For each type available in the data model, the following information should be provided:
 
-[[table-7-c]]
+<a name="table-7-c"></a>
 [cols=",",options="header",]
 |================================================================================================================================================================================================================================================================================================================================================================================================
 |Component |Description

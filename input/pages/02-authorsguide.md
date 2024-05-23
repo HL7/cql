@@ -33,7 +33,7 @@ Libraries in CQL provide the overall packaging for CQL definitions. Each library
 
 Libraries can contain any or all of the following constructs:
 
-[[table-2-a]]
+<a name="table-2-a"></a>
 [cols=",",options="header"]
 |====================================================================================================================================================================
 |Construct |Description
@@ -186,7 +186,7 @@ For more information about terminologies as values within CQL, refer to the <<Cl
 
 A CQL library can define zero or more parameters. Each parameter is defined with the elements listed in the following table:
 
-[[table-2-b]]
+<a name="table-2-b"></a>
 [cols=",",options="header",]
 |=====================================================================================================================================================================================
 |Element |Description
@@ -242,7 +242,7 @@ In other words, the value for the default of a parameter must be able to be calc
 
 The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
 
-[[figure-2-a]]
+<a name="figure-2-a"></a>
 image:extracted-media/media/patient-practitioner-model.png[image]
 
 Figure 2-A - Simplified patient/practitioner information model
@@ -251,7 +251,7 @@ A patient and practitioner may both have any number of encounters. From the pers
 
 The following table lists some typical contexts:
 
-[[table-2-c]]
+<a name="table-2-c"></a>
 [cols=",",options="header",]
 |========================================================================================================================================
 |Context |Description
@@ -427,7 +427,7 @@ Depending on the context the retrieve above will return:
 
 Consider the figure below:
 
-[[figure-2-b]]
+<a name="figure-2-b"></a>
 image:extracted-media/media/context-diagram.png[image]
 
 Figure 2‑B - Unfiltered vs Patient context
@@ -470,7 +470,7 @@ Although similar to a retrieve in that a query will typically result in a list o
 
 The query construct has a _primary source_ and four main _clauses_ that each allow for different types of operations to be performed:
 
-[[table-2-d]]
+<a name="table-2-d"></a>
 [cols=",",options="header",]
 |============================================================================================================================================
 |Clause |Operation
@@ -619,7 +619,7 @@ When the data being sorted includes [.kw]#nulls#, they are considered lower than
 
 In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
 
-[[figure-2-c]]
+<a name="figure-2-c"></a>
 image:extracted-media/media/patient-model.png[image]
 
 Figure 2‑C - Simple patient information model
@@ -775,7 +775,7 @@ In the sections that follow, the various categories of values that can be repres
 
 CQL supports several types of simple values:
 
-[[table-2-e]]
+<a name="table-2-e"></a>
 [cols=",",options="header",]
 |=======================================
 |Value |Examples
@@ -954,7 +954,7 @@ The use of codes to specify meaning within clinical data is ubiquitous. CQL ther
 
 The [.id]#Code# type has the following elements:
 
-[[table-2-f]]
+<a name="table-2-f"></a>
 [cols=",,",options="header",]
 |==================================================
 |Name |Type |Description
@@ -1019,7 +1019,7 @@ Within clinical information, multiple terminologies can often be used to code fo
 
 The [.id]#Concept# type has the following elements:
 
-[[table-2-g]]
+<a name="table-2-g"></a>
 [cols=",,",options="header",]
 |=========================================================================
 |Name |Type |Description
@@ -1356,7 +1356,7 @@ For all the comparison operators, the result type of the operation is [.id]#Bool
 
 The most basic operation in CQL involves comparison of two values. This is accomplished with the built-in comparison operators:
 
-[[table-2-h]]
+<a name="table-2-h"></a>
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
@@ -1467,7 +1467,7 @@ For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> a
 
 Combining the results of comparisons and other boolean-valued expressions is essential and is performed in CQL using the following logical operations:
 
-[[table-2-i]]
+<a name="table-2-i"></a>
 [cols=",",options="header",]
 |==================================
 |Operator |Description
@@ -1498,7 +1498,7 @@ The expression of clinical logic often involves numeric computation, and CQL pro
 
 The following table lists the arithmetic operations available in CQL:
 
-[[table-2-j]]
+<a name="table-2-j"></a>
 [cols=",,",options="header",]
 |===========================================================================================================================
 |Operator |Name |Description
@@ -1549,7 +1549,7 @@ The first example constructs the [.id]#Date# July 5, 2014. The second example co
 
 The [.id]#DateTime# operator takes the following arguments:
 
-[[table-2-k]]
+<a name="table-2-k"></a>
 [cols=",,",options="header",]
 |==================================================================================
 |Name |Type |Description
@@ -1583,7 +1583,7 @@ The only component that is ever defaulted is the timezone offset component. If n
 
 The [.id]#Time# operator takes the following arguments:
 
-[[table-2-l]]
+<a name="table-2-l"></a>
 [cols=",,",options="header",]
 |=======================================================================
 |Name |Type |Description
@@ -1599,7 +1599,7 @@ As with the [.id]#Date# and [.id]#DateTime# operators, at least the first compon
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
-[[table-2-m]]
+<a name="table-2-m"></a>
 [cols=",",options="header",]
 |===============================================================================================================
 |Operator |Description
@@ -1696,7 +1696,7 @@ When comparing [.id]#DateTime# values with different timezone offsets, implement
 
 Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a [.id]#Decimal#. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
-[[table-2-n]]
+<a name="table-2-n"></a>
 [cols=",",options="header",]
 |==================================
 |Operator |Precision-based Operator
@@ -1764,7 +1764,7 @@ minute from X
 
 These examples extract the date from X, the year from X, and the minute from X. The following table lists the valid extraction components and their resulting types:
 
-[[table-2-o]]
+<a name="table-2-o"></a>
 [cols=",,",options="header",]
 |==================================================================================
 |Component |Description |Result Type
@@ -1824,7 +1824,7 @@ To avoid the potential confusion of calendar-based date/time arithmetic with def
 
 Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
 
-[[table-2-p]]
+<a name="table-2-p"></a>
 [cols=",",options="header",]
 |===
 |Date/Time Precision |Calendar Semantic Description
@@ -2020,7 +2020,7 @@ The first expression returns the number of whole days between the starting and e
 
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
 
-[[table-2-q]]
+<a name="table-2-q"></a>
 image:extracted-media/media/image5.png[image,width=626,height=394]
 
 Table 2‑Q - Comparison of two interval values using a complete set of operations
@@ -2093,7 +2093,7 @@ In other words, the timing phrases in general compare two quantities, either of 
 
 The following table describes the operators that can be used to construct timing phrases:
 
-[[table-2-r]]
+<a name="table-2-r"></a>
 [cols=",,,,,,,",options="header",]
 |====================================================================================================
 |Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/ +
@@ -2162,12 +2162,12 @@ This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# 
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators for intervals:
 
-[[figure-2-d]]
+<a name="figure-2-d"></a>
 image:extracted-media/media/image6.png[image,width=626,height=128]
 
 Figure 2‑D - The union, intersect, and except operators for intervals
 
-[[datetime-intervals]]
+<a name="datetime-intervals"></a>
 #### Date and Time Intervals
 
 Because CQL supports date and time values with varying levels of precision, intervals of dates and times can potentially involve imprecise date and time values. To ensure well-defined intervals and consistent semantics, date and time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1^st^, 2014, and ending at midnight on January 1^st^, 2015:
@@ -2278,7 +2278,7 @@ In addition, to provide consistent and intuitive semantics when dealing with lis
 
 In addition to list equality, already discussed in <<Comparison Operators>>, lists can be compared using the following operators:
 
-[[table-2-s]]
+<a name="table-2-s"></a>
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
@@ -2382,7 +2382,7 @@ This example returns:
 
 The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
 
-[[figure-2-e]]
+<a name="figure-2-e"></a>
 image:extracted-media/media/image7.png[image,width=626,height=176]
 
 Figure 2‑E - The union, intersect, and except operators for lists
@@ -2413,7 +2413,7 @@ Although the examples in this section primarily use lists of integers, these ope
 
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
-[[figure-2-f]]
+<a name="figure-2-f"></a>
 image:extracted-media/media/image8.png[image,width=353,height=75]
 
 Figure 2‑F - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
@@ -2422,7 +2422,7 @@ If we want to determine the total duration _covered_ by these intervals, we cann
 
 The solution is the [.kw]#collapse# operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
-[[figure-2-g]]
+<a name="figure-2-g"></a>
 image:extracted-media/media/image9.png[image,width=348,height=56]
 
 Figure 2‑G - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
@@ -2469,7 +2469,7 @@ In general, [.kw]#nulls# encountered during aggregation are ignored, and with th
 
 The following table lists the aggregate operators available in CQL:
 
-[[table-2-t]]
+<a name="table-2-t"></a>
 [cols=",",options="header",]
 |=========================================================================================================================================================================================================================
 |Operator |Description
@@ -2564,7 +2564,7 @@ A common terminological operation involves determining whether a given concept i
 
 To support determination of patient age consistently throughout quality logic, CQL defines several age-related operators:
 
-[[table-2-u]]
+<a name="table-2-u"></a>
 [cols=",",options="header",]
 |================================================================================================================================================
 |Operator |Description
@@ -2648,7 +2648,7 @@ As an aside, one of the simplifications made to the QDM presented above is the r
 
 The following table lists the QDM data elements involved and their mappings to the QUICK data structures:
 
-[[table-2-v]]
+<a name="table-2-v"></a>
 [cols=",",options="header",]
 |===================================================
 |QDM Data Element |QUICK Equivalent

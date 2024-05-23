@@ -384,7 +384,7 @@ The [.kw]#and# operator returns true if both its arguments are true. If either a
 
 The following table defines the truth table for this operator:
 
-[[table-9-a]]
+<a name="table-9-a"></a>
 [cols=",,,",options="header",]
 |==========================
 | |TRUE |FALSE |NULL
@@ -426,7 +426,7 @@ Note that implies may use short-circuit evaluation in the case that the first op
 
 The following table defines the truth table for this operator:
 
-[[table-9-a1]]
+<a name="table-9-a1"></a>
 [cols=",,,",options="header",]
 |=======================
 | |TRUE |FALSE |NULL
@@ -464,7 +464,7 @@ The [.kw]#not# operator returns true if the argument is false and false if the a
 
 The following table defines the truth table for this operator:
 
-[[table-9-b]]
+<a name="table-9-b"></a>
 [cols=",",options="header",]
 |===========
 |  |NOT
@@ -499,7 +499,7 @@ The [.kw]#or# operator returns true if either of its arguments are true. If both
 
 The following table defines the truth table for this operator:
 
-[[table-9-c]]
+<a name="table-9-c"></a>
 [cols=",,,",options="header",]
 |========================
 | |TRUE |FALSE |NULL
@@ -539,7 +539,7 @@ The [.kw]#xor# (exclusive or) operator returns true if one argument is true and 
 
 The following table defines the truth table for this operator:
 
-[[table-9-d]]
+<a name="table-9-d"></a>
 [cols=",,,",options="header",]
 |========================
 | |TRUE |FALSE |NULL
@@ -631,7 +631,7 @@ The [.kw]#convert# operator converts a value to a specific type. The result of t
 
 The following table lists the conversions supported in CQL:
 
-[[table-9-e]]
+<a name="table-9-e"></a>
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
@@ -942,7 +942,7 @@ ToBoolean(argument String) Boolean
 
 The [.id]#ToBoolean# operator converts the value of its argument to a [.id]#Boolean# value. The operator accepts the following string representations, ignoring case:
 
-[[table-9-f]]
+<a name="table-9-f"></a>
 [cols=",",options="header",]
 |====================================
 |String Representation |Boolean Value
@@ -1290,7 +1290,7 @@ ToString(argument Time) String
 
 The [.id]#ToString# operator converts the value of its argument to a [.id]#String# value. The operator uses the following string representations for each type
 
-[[table-9-g]]
+<a name="table-9-g"></a>
 [cols=",",options="header",]
 |===========================================
 |Type |String Representation

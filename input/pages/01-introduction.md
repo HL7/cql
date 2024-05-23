@@ -25,7 +25,7 @@ Clinical Decision Support and Clinical Quality Measurement are closely related, 
 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
 
-[[table-1-a]]
+<a name="table-1-a"></a>
 [cols=",,,,",options="header"]
 |========================================================================================================================================================================================
 | | Model Type | Quality Information | Computable Expression Logic | Metadata
@@ -45,7 +45,7 @@ Using the framework of metadata, data model, and expression logic, the following
 
 image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=720,height=400]
 
-[[figure-1-a]]
+<a name="figure-1-a"></a>
 Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
 
 Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. A harmonized data model specification is being developed for use with quality improvement applications called Quality Improvement Core (QI-Core), an HL7 FHIR implementation guide. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at [QI-Core Implementation Guide - QDM -> QI-Core Mapping](http://hl7.org/fhir/us/qicore/qdm-to-qicore.html).
@@ -82,7 +82,7 @@ The logical perspective of the specification is concerned with complete and accu
 
 This perspective defines a Unified Modeling Language (UML) model called the Expression Logical Model (ELM) that defines a canonical representation of expression logic. This approach is intended to simplify implementation and machine processing by focusing on the content of an expression, rather than the syntax used to render it. The approach is based on and motivated by the concept of an Abstract Syntax Tree from traditional compiler implementation. The following diagram depicts the steps performed by a traditional compiler:
 
-[[figure-1-b]]
+<a name="figure-1-b"></a>
 image:extracted-media/media/image3-1.png[image,width=626,height=430]
 
 Figure 1‑B - The steps performed by a traditional compiler
@@ -107,7 +107,7 @@ The audience for this specification includes stakeholders and interested parties
 
 The specification is written with the following major roles in mind:
 
-[[table-1-b]]
+<a name="table-1-b"></a>
 [cols=",",options="header"]
 |====================================================================================================================================================================================================================================
 |Role |Description
@@ -141,7 +141,7 @@ https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Di
 
 In particular, this specification enables the sharing use case by defining a high-level syntax suitable for authors, a logical-level representation suitable for language processing applications, and a mechanism for translation between them. The following diagram depicts how these specifications will be used in the sharing use case:
 
-[[figure-1-c]]
+<a name="figure-1-c"></a>
 image:extracted-media/media/image4.png[image,width=626,height=382]
 
 Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case

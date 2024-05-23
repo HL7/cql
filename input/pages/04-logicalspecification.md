@@ -13,7 +13,7 @@ The ELM defines a mechanism for representing artifact logic independent of synta
 
 Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 [.sym]#+# 2 can be represented as instances of the appropriate classes:
 
-[[figure-4-a]]
+<a name="figure-4-a"></a>
 image:extracted-media/media/image10.png[image,width=107,height=99]
 
 Figure 4‑A - A diagram to explain how ELM represents addition of 2 literal values
@@ -75,7 +75,7 @@ The Tuple expression allows tuples of any type to be built up as an expression. 
 
 The following example illustrates the construction of a tuple using the _Tuple_ class:
 
-[[figure-4-h]]
+<a name="figure-4-h"></a>
 image:extracted-media/media/image17.png[image,width=190,height=157]
 
 Figure 4‑H - A diagram to explain how ELM represents the construction of a [.kw]#Tuple#
@@ -95,7 +95,7 @@ The Instance expression allows class instances of any type to be built up as an 
 
 The following example illustrates the construction of a structured value using the _Instance_ class:
 
-[[figure-4-i]]
+<a name="figure-4-i"></a>
 image:extracted-media/media/image18.png[image,width=184,height=152]
 
 Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the [.kw]#Instance# class
@@ -1189,7 +1189,7 @@ If either argument is null, the result is null.
 
 The following example illustrates a simple _Equal_ comparison:
 
-[[figure-4-b]]
+<a name="figure-4-b"></a>
 image:extracted-media/media/image11.png[image,width=109,height=102]
 
 Figure 4‑B - A diagram to explain how ELM represents an equal comparison
@@ -1349,7 +1349,7 @@ The And operator returns the logical conjunction of its arguments. Note that thi
 
 The following example illustrates a simple _And_ expression:
 
-[[figure-4-c]]
+<a name="figure-4-c"></a>
 image:extracted-media/media/image12.png[image,width=138,height=217]
 
 Figure 4‑C - A diagram to explain how ELM represents a simple [.kw]#And# expression
@@ -1474,14 +1474,14 @@ The static type of the then argument within the first caseItem determines the ty
 
 The following example illustrates a more complex multi-conditional _Case_ expression:
 
-[[figure-4-e]]
+<a name="figure-4-e"></a>
 image:extracted-media/media/image14.png[image,width=230,height=397]
 
 Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional [.kw]#Case# expression
 
 And finally, an equivalent comparand-based _Case_ expression:
 
-[[figure-4-f]]
+<a name="figure-4-f"></a>
 image:extracted-media/media/image15.png[image,width=184,height=286]
 
 Figure 4‑F - A diagram to explain how ELM represents a comparand-base [.kw]#Case# expression
@@ -1503,7 +1503,7 @@ The If operator evaluates a condition, and returns the then argument if the cond
 
 The following examples illustrates a simple _If_ expression (i.e. if / then / else):
 
-[[figure-4-d]]
+<a name="figure-4-d"></a>
 image:extracted-media/media/image13.png[image,width=143,height=193]
 
 Figure 4‑D - A diagram to explain how ELM represents a simple [.kw]#If# expression
@@ -1568,7 +1568,7 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 
 The following example illustrates a simple _Add_ expression:
 
-[[figure-4-g]]
+<a name="figure-4-g"></a>
 image:extracted-media/media/image16.png[image,width=102,height=94]
 
 Figure 4‑G - A diagram to explain how ELM represents a simple [.kw]#Add# expression

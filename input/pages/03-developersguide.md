@@ -17,7 +17,7 @@ As with any traditional computer language, CQL uses typical lexical elements suc
 
 CQL defines the following basic lexical elements:
 
-[[table-3-a]]
+<a name="table-3-a"></a>
 [cols=",",options="header",]
 |================================================================================
 |Element |Description
@@ -95,7 +95,7 @@ define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
 
 Literals provide for the representation of basic values within CQL. The following types of literals are supported:
 
-[[table-3-b]]
+<a name="table-3-b"></a>
 [cols=",",options="header",]
 |============================================================================================================
 |Literal |Description
@@ -118,7 +118,7 @@ A syntax diagram of the types of literals supported can be seen [here](19-l-cqls
 
 CQL uses standard escape sequences for string literals:
 
-[[table-3-c]]
+<a name="table-3-c"></a>
 [cols=",",options="header",]
 |========================================================================================
 |Escape |Character
@@ -141,7 +141,7 @@ A syntax diagram of the standard escape sequences for string literals supported 
 
 Symbols provide structure to the grammar and allow symbolic invocation of common operators such as addition. CQL defines the following symbols:
 
-[[table-3-d]]
+<a name="table-3-d"></a>
 [cols=",",options="header",]
 |===============================================================================================
 |Symbol |Description
@@ -428,7 +428,7 @@ Note that double-quoted and delimited identifiers are still case-sensitive, and 
 
 CQL escape sequences for strings also work for identifiers:
 
-[[table-3-e]]
+<a name="table-3-e"></a>
 [cols=",",options="header",]
 |========================================================================================
 |Escape |Character
@@ -455,7 +455,7 @@ A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdi
 
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precedence in CQL from highest to lowest:
 
-[[table-3-f]]
+<a name="table-3-f"></a>
 [cols=",",options="header",]
 |==============================================================
 |Category |Operators
@@ -642,7 +642,7 @@ The maximal supertype is System.Any. All other types derive from System.Any, mea
 
 All the system-defined types derive directly from System.Any. The primitive types and their ranges are summarized here:
 
-[[table-3-g]]
+<a name="table-3-g"></a>
 [cols=",,",options="header",]
 |=========================================================================
 |Type |Range |Step Size
@@ -662,7 +662,7 @@ Note that CQL supports three-valued logic, see the section on <<02-authorsguide.
 
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
-[[table-3-h]]
+<a name="table-3-h"></a>
 [cols=",",options="header",]
 |==========================================================================================================
 |Type |Description
@@ -895,7 +895,7 @@ convert 'Foo' to Integer
 
 will result in [.kw]#null#. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
-[[table-3-i]]
+<a name="table-3-i"></a>
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
 |Operator |Description
@@ -958,7 +958,7 @@ If the unit conversion is valid, the expression results in a quantity with the t
 
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
-[[table-3-j]]
+<a name="table-3-j"></a>
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code> |ValueSet
