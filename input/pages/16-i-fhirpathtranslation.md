@@ -11,59 +11,51 @@ This appendix provides detailed mappings for each FHIRPath function in terms of 
 
 ## .aggregate()
 
-[source,cql]
-```
+``` cql
 X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
 ```
 
 ## .abs()
 
-[source,cql]
-```
+``` cql
 X.abs() === Abs(X)
 ```
 
 ## .all()
 
-[source,cql]
-```
+``` cql
 X.all(<condition>) === AllTrue(X $this let a: <condition> where a return a)
 ```
 
 ## .allFalse()
 
-[source,cql]
-```
+``` cql
 X.allFalse() === AllTrue(X A return not A)
 ```
 
 [[alltrue-1]]
 ## .allTrue()
 
-[source,cql]
-```
+``` cql
 X.allTrue() === AllTrue(X)
 ```
 
 ## .anyFalse()
 
-[source,cql]
-```
+``` cql
 X.anyFalse() === AnyTrue(X A return not A)
 ```
 
 [[anytrue-1]]
 ## .anyTrue()
 
-[source,cql]
-```
+``` cql
 X.anyTrue() === AnyTrue(X)
 ```
 
 ## .as()
 
-[source,cql]
-```
+``` cql
 X.as(T) === X as T
 ```
 
@@ -71,31 +63,27 @@ Note that the type argument T is expected to be a literal string and must resolv
 
 ## .ceiling()
 
-[source,cql]
-```
+``` cql
 X.ceiling() === Ceiling(X)
 ```
 
 [[children-1]]
 ## .children()
 
-[source,cql]
-```
+``` cql
 .children(X) === Children(X)
 ```
 
 [[combine-1]]
 ## .combine()
 
-[source,cql]
-```
+``` cql
 X.combine(Y) === Flatten(\{ X, Y })
 ```
 
 ## .conformsTo()
 
-[source,cql]
-```
+``` cql
 X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
 ```
 
@@ -104,111 +92,96 @@ Note that this mapping relies on an external library, FHIRSupport to provide con
 [[contains-2]]
 ## .contains()
 
-[source,cql]
-```
+``` cql
 X.contains(Y) === PositionOf(Y, X) >= 0
 ```
 
 ## .convertsToBoolean()
 
-[source,cql]
-```
+``` cql
 X.convertsToBoolean() === ConvertsToBoolean(X)
 ```
 
 ## .convertsToDate()
 
-[source,cql]
-```
+``` cql
 X.convertsToDate() === ConvertsToDate(X)
 ```
 
 ## .convertsToDateTime()
 
-[source,cql]
-```
+``` cql
 X.convertsToDateTime() === ConvertsToDateTime(X)
 ```
 
 ## .convertsToDecimal()
 
-[source,cql]
-```
+``` cql
 X.convertsToDecimal() === ConvertsToDecimal(X)
 ```
 
 ## .convertsToInteger()
 
-[source,cql]
-```
+``` cql
 X.convertsToInteger() === ConvertsToInteger(X)
 ```
 
 ## .convertsToQuantity()
 
-[source,cql]
-```
+``` cql
 X.convertsToQuantity() === ConvertsToQuantity(X)
 ```
 
 ## .convertsToTime()
 
-[source,cql]
-```
+``` cql
 X.convertsToTime() === ConvertsToTime(X)
 ```
 
 [[count-1]]
 ## .count()
 
-[source,cql]
-```
+``` cql
 X.count() === Count(X)
 ```
 
 [[descendents-1]]
 ## .descendents()
 
-[source,cql]
-```
+``` cql
 .descendents(X) === Descendents(X)
 ```
 
 [[distinct-1]]
 ## .distinct()
 
-[source,cql]
-```
+``` cql
 X.distinct() === distinct X
 ```
 
 ## .empty()
 
-[source,cql]
-```
+``` cql
 X.empty() === not exists X
 ```
 
 [[endswith-1]]
 ## .endsWith()
 
-[source,cql]
-```
+``` cql
 X.endsWith(Y) === EndsWith(X, Y)
 ```
 
 ## .exclude()
 
-[source,cql]
-```
+``` cql
 X.exclude(Y) === X except Y
 ```
 
 [[exists-1]]
 ## .exists()
 
-[source,cql]
-```
+``` cql
 X.exists() === exists X
 
 X.exists(<condition>) === exists (X $this where <condition>)
@@ -216,37 +189,32 @@ X.exists(<condition>) === exists (X $this where <condition>)
 
 ## .exp()
 
-[source,cql]
-```
+``` cql
 X.exp() === Exp(X)
 ```
 
 [[first-1]]
 ## .first()
 
-[source,cql]
-```
+``` cql
 X.first() === First(X)
 ```
 
 ## .floor()
 
-[source,cql]
-```
+``` cql
 X.floor() === Floor(X)
 ```
 
 ## .hasValue()
 
-[source,cql]
-```
+``` cql
 X.hasValue() === X is not null
 ```
 
 ## .iif()
 
-[source,cql]
-```
+``` cql
 iif(X, Y) === if X then Y else null
 
 iif(X, Y, Z) === if X then Y else Z
@@ -255,22 +223,19 @@ iif(X, Y, Z) === if X then Y else Z
 [[indexof-1]]
 ## .indexOf()
 
-[source,cql]
-```
+``` cql
 X.indexOf(Y) === PositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of IndexOf
 ```
 
 ## .intersect()
 
-[source,cql]
-```
+``` cql
 X.intersect(Y) === X intersect Y
 ```
 
 ## .is()
 
-[source,cql]
-```
+``` cql
 X.is(T) === X is T
 ```
 
@@ -278,74 +243,64 @@ Note that the argument T is expected to be a literal string and must resolve to 
 
 ## .isDistinct()
 
-[source,cql]
-```
+``` cql
 X.isDistinct() === Count(X) = Count(distinct X)
 ```
 
 [[last-1]]
 ## .last()
 
-[source,cql]
-```
+``` cql
 X.last() === Last(X)
 ```
 
 ## .lastIndexOf()
 
-[source,cql]
-```
+``` cql
 X.lastIndexOf(Y) === LastPositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
 ```
 
 [[length-2]]
 ## .length()
 
-[source,cql]
-```
+``` cql
 X.length() === Length(X)
 ```
 
 ## .ln()
 
-[source,cql]
-```
+``` cql
 X.ln() === Ln(X)
 ```
 
 ## .log()
 
-[source,cql]
-```
+``` cql
 X.log(B) === Log(X, B)
 ```
 
 ## .lower()
 
-[source,cql]
-```
+``` cql
 X.lower() === Lower(X)
 ```
 
 [[matches-1]]
 ## .matches()
 
-[source,cql]
-```
+``` cql
 X.matches(Y) === Matches(X, Y)
 ```
 
 ## .memberOf()
 
-[source,cql]
-```
+``` cql
 X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
 ```
 
 ## .ofType()
 
-[source,cql]
-```
+``` cql
 X.ofType(T) === X $this where $this is T return $this as T
 ```
 
@@ -354,59 +309,51 @@ Note that the argument T is required to be a literal string, and is interpreted 
 [[not-1]]
 ## .not()
 
-[source,cql]
-```
+``` cql
 X.not() === not X
 ```
 
 [[now-1]]
 ## .now()
 
-[source,cql]
-```
+``` cql
 now() === Now()
 ```
 
 ## .power()
 
-[source,cql]
-```
+``` cql
 X.power(Y) === Power(X, Y)
 ```
 
 ## .repeat()
 
-[source,cql]
-```
+``` cql
 X.repeat(<element>) === Repeat(X, <element>)
 ```
 
 The type of X.repeat(<element>) is inferred as the type of:
 
-[source,cql]
-```
+``` cql
 X.select(<element>).select(<element>)
 ```
 
 ## .replace()
 
-[source,cql]
-```
+``` cql
 X.replace(Y, Z) === Replace(X, Y, Z)
 ```
 
 [[replacematches-1]]
 ## .replaceMatches()
 
-[source,cql]
-```
+``` cql
 X.replaceMatches(Y, Z) === ReplaceMatches(X, Y, Z)
 ```
 
 ## .round()
 
-[source,cql]
-```
+``` cql
 X.round() === Round(X)
 X.round(Y) === Round(X, Y)
 ```
@@ -415,60 +362,52 @@ X.round(Y) === Round(X, Y)
 
 If the result type of <element> is not list-valued:
 
-[source,cql]
-```
+``` cql
 X.select(<element>) === X $this let a: <element> where a is not null return a
 ```
 
 If the result type of <element> is list-valued:
 
-[source,cql]
-```
+``` cql
 X.select(<element>) === Flatten(X $this let a: <element> where a is not null return a)
 ```
 
 ## .single()
 
-[source,cql]
-```
+``` cql
 X.single() === singleton from X
 ```
 
 [[skip-1]]
 ## .skip()
 
-[source,cql]
-```
+``` cql
 X.skip(Y) === Slice(X, Y, null)
 ```
 
 ## .sqrt()
 
-[source,cql]
-```
+``` cql
 X.sqrt() === Power(X, 0.5)
 ```
 
 [[startswith-1]]
 ## .startsWith()
 
-[source,cql]
-```
+``` cql
 X.startsWith(Y) === StartsWith(X, Y)
 ```
 
 ## .subsetOf()
 
-[source,cql]
-```
+``` cql
 X.subsetOf(Y) === X included in Y
 ```
 
 [[substring-1]]
 ## .substring()
 
-[source,cql]
-```
+``` cql
 X.substring(Y) === SubString(X, Y)
 
 X.substring(Y, Z) === SubString(X, Y, Z)
@@ -476,150 +415,130 @@ X.substring(Y, Z) === SubString(X, Y, Z)
 
 ## .subsumes()
 
-[source,cql]
-```
+``` cql
 X.subsumes(Y) === Subsumes(X, Y)
 ```
 
 ## .subsumedBy()
 
-[source,cql]
-```
+``` cql
 X.subsumedBy(Y) === SubsumedBy(X, Y)
 ```
 
 ## .supersetOf()
 
-[source,cql]
-```
+``` cql
 X.supersetOf(Y) === X includes Y
 ```
 
 [[tail-1]]
 ## .tail()
 
-[source,cql]
-```
+``` cql
 X.tail() === Slice(X, 1, null)
 ```
 
 [[take-1]]
 ## .take()
 
-[source,cql]
-```
+``` cql
 X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
 ```
 
 ## .timeOfDay()
 
-[source,cql]
-```
+``` cql
 timeOfDay() === TimeOfDay()
 ```
 
 [[toboolean-1]]
 ## .toBoolean()
 
-[source,cql]
-```
+``` cql
 X.toBoolean() === ToBoolean(X)
 ```
 
 ## .toChars()
 
-[source,cql]
-```
+``` cql
 X.toChars() === ToChars(X)
 ```
 
 [[todate-1]]
 ## .toDate()
 
-[source,cql]
-```
+``` cql
 X.toDate() === ToDate(X)
 ```
 
 [[todatetime-1]]
 ## .toDateTime()
 
-[source,cql]
-```
+``` cql
 X.toDateTime() === ToDateTime(X)
 ```
 
 [[today-1]]
 ## .today()
 
-[source,cql]
-```
+``` cql
 today() === Today()
 ```
 
 [[todecimal-1]]
 ## .toDecimal()
 
-[source,cql]
-```
+``` cql
 X.toDecimal() === ToDecimal(X)
 ```
 
 [[tointeger-1]]
 ## .toInteger()
 
-[source,cql]
-```
+``` cql
 X.toInteger() === ToInteger(X)
 ```
 
 ## .toQuantity()
 
-[source,cql]
-```
+``` cql
 X.toQuantity() === ToQuantity(X)
 ```
 
 [[tostring-1]]
 ## .toString()
 
-[source,cql]
-```
+``` cql
 X.toString() === ToString(X)
 ```
 
 [[totime-1]]
 ## .toTime()
 
-[source,cql]
-```
+``` cql
 X.toTime() === ToTime(X)
 ```
 
 ## .trace()
 
-[source,cql]
-```
+``` cql
 X.trace(Y) === Message(X, true, Y, 'Trace', ToString(X)))
 ```
 
 ## .truncate()
 
-[source,cql]
-```
+``` cql
 X.truncate() === Truncate(X)
 ```
 
 ## .upper()
 
-[source,cql]
-```
+``` cql
 X.upper() === Upper(X)
 ```
 
 ## .where()
 
-[source,cql]
-```
+``` cql
 X.where(<condition>) === X $this where <condition>
 ```

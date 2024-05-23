@@ -13,15 +13,13 @@ For each type, the definition and semantics are provided. Note that because CQL 
 
 For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the [.kw]#and# operator is given as:
 
-[source,cql]
-```
+``` cql
 and(left Boolean, right Boolean) Boolean
 ```
 
 Even though [.kw]#and# is an infix operator and would be invoked as in the following expression:
 
-[source,cql]
-```
+``` cql
 InDemographic and NeedsScreening
 ```
 
@@ -53,8 +51,7 @@ These formatting patterns are set in bold to distinguish them typographically fr
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Any
 ```
 
@@ -67,8 +64,7 @@ The [.id]#Any# type is the maximal supertype in the CQL type system, meaning tha
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Boolean
 ```
 
@@ -83,8 +79,7 @@ For more information, see the <<Logical Operators>> section.
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type Code
 {
   code String,
@@ -105,8 +100,7 @@ The [.id]#Code# type represents single terminology codes within CQL.
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type CodeSystem : Vocabulary
 {
   id String, // inherited
@@ -126,8 +120,7 @@ The [.id]#name# element is provided to support additional run-time information f
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type Concept
 {
   codes List<Code>,
@@ -143,8 +136,7 @@ The [.id]#Concept# type represents a single terminological concept within CQL.
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Date
 ```
 
@@ -160,8 +152,7 @@ CQL also supports partial date values. For example, the date [.lit]#@2014# repre
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type DateTime
 ```
 
@@ -180,8 +171,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Decimal
 ```
 
@@ -204,8 +194,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Long
 ```
 
@@ -220,8 +209,7 @@ CQL supports long values in the range -2^63^ to 2^63^-1 with a step size of 1.
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Integer
 ```
 
@@ -235,8 +223,7 @@ CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type Quantity
 {
   value Decimal
@@ -252,8 +239,7 @@ The [.id]#Quantity# type represents quantities with a specified unit within CQL.
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type Ratio
 {
   numerator Quantity
@@ -270,8 +256,7 @@ The [.id]#Ratio# type represents a relationship between two quantities, such as 
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type String
 ```
 
@@ -300,8 +285,7 @@ For string literals, CQL uses standard escape sequences:
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 simple type Time
 ```
 
@@ -322,8 +306,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type ValueSet : Vocabulary
 {
   id String, // inherited
@@ -348,8 +331,7 @@ The [.id]#codesystems# element is used to capture code system version overrides 
 
 *Definition:*
 
-[source,cql]
-```
+``` cql
 structured type Vocabulary
 {
   id String,
@@ -373,8 +355,7 @@ The [.id]#name# element is provided to support additional run-time information f
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 and (left Boolean, right Boolean) Boolean
 ```
 
@@ -399,8 +380,7 @@ Table 9‑A - The truth table for the [.kw]#And# operator
 
 The following examples illustrate the behavior of the [.kw]#and# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": true and true
 define "IsFalse": true and false
 define "IsAlsoFalse": false and null
@@ -413,8 +393,7 @@ Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 implies (left Boolean, right Boolean) Boolean
 ```
 
@@ -441,8 +420,7 @@ Table 9‑A1 - The truth table for the [.kw]#Implies# operator
 
 The following examples illustrate the behavior of the [.kw]#implies# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": false implies false
 define "IsAlsoTrue": false implies null
 define "IsFalse": true implies false
@@ -453,8 +431,7 @@ define "IsNull": true implies null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 not (argument Boolean) Boolean
 ```
 
@@ -477,8 +454,7 @@ Table 9‑B - The truth table for the [.kw]#Not# operator
 
 The following examples illustrate the behavior of the [.kw]#not# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": not false
 define "IsFalse": not true
 define "IsNull": not null
@@ -488,8 +464,7 @@ define "IsNull": not null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 or (left Boolean, right Boolean) Boolean
 ```
 
@@ -514,8 +489,7 @@ Table 9‑C - The truth table for the [.kw]#Or# operator
 
 The following examples illustrate the behavior of the [.kw]#or# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": true or false
 define "IsAlsoTrue": true or null
 define "IsFalse": false or false
@@ -528,8 +502,7 @@ Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 xor (left Boolean, right Boolean) Boolean
 ```
 
@@ -552,8 +525,7 @@ Table 9‑D - The truth table for the [.kw]#Xor# operator
 
 The following examples illustrate the behavior of the [.kw]#xor# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": true xor false
 define "IsAlsoTrue": false xor true
 define "IsFalse": true xor true
@@ -567,8 +539,7 @@ define "IsNull": true xor null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 as<T>(argument Any) T
 cast as<T>(argument Any) T
 ```
@@ -585,8 +556,7 @@ The [.kw]#cast# prefix indicates that if the argument is not of the specified ty
 
 The following examples illustrate the use of the [.kw]#as# operator.
 
-[source,cql]
-```
+``` cql
 define "AllProcedures": [Procedure]
 
 define "ImagingProcedures":
@@ -603,8 +573,7 @@ define "RuntimeError":
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Children(argument Any) List<Any>
 ```
 
@@ -620,8 +589,7 @@ If the source is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 convert to<T>(argument Any) T
 ```
 
@@ -658,8 +626,7 @@ For conversions between dates, times, and string values, ISO-8601 standard forma
 
 For example, the following are valid string representations for date and time values:
 
-[source,cql]
-```
+``` cql
 '2014-01-01T14:30:00.0Z' // January 1st, 2014, 2:30PM UTC
 '2014-01-01T14:30:00.0-07:00' // January 1st, 2014, 2:30PM Mountain Standard (GMT-7:00)
 'T14:30:00.0Z' // 2:30PM UTC
@@ -672,8 +639,7 @@ For specific semantics for each conversion, refer to the <<03-developersguide.ad
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Descendents(argument Any) List<Any>
 ```
 
@@ -689,8 +655,7 @@ If the source is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 is<T>(argument Any) Boolean
 ```
 
@@ -700,8 +665,7 @@ The [.kw]#is# operator allows the type of a result to be tested. If the run-time
 
 The following examples illustrate the behavior of the [.kw]#is# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": 5 is Integer
 define "IsFalse": '5' is Integer
 ```
@@ -710,8 +674,7 @@ define "IsFalse": '5' is Integer
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 CanConvertQuantity(argument Quantity, unit String)
 ```
 
@@ -728,8 +691,7 @@ If either argument is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 convert <quantity> to <unit>
 ConvertQuantity(argument Quantity, unit String)
 ```
@@ -741,8 +703,7 @@ The ConvertQuantity operator converts a Quantity to an equivalent Quantity with 
 
 If either argument is null, the result is null.
 
-[source,cql]
-```
+``` cql
 define "ConvertQuantity": ConvertQuantity(5 'mg', 'g')
 define "ConvertSyntax": convert 5 'mg' to 'g'
 ```
@@ -751,8 +712,7 @@ define "ConvertSyntax": convert 5 'mg' to 'g'
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToBoolean(argument Any) Boolean
 ```
 
@@ -768,8 +728,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToDate(argument Any) Boolean
 ```
 
@@ -787,8 +746,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToDateTime(argument Any) Boolean
 ```
 
@@ -806,8 +764,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToDecimal(argument Any) Boolean
 ```
 
@@ -826,8 +783,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToLong(argument Any) Boolean
 ```
 
@@ -841,8 +797,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToInteger(argument Any) Boolean
 ```
 
@@ -861,8 +816,7 @@ If the input is a [.id]#Long# value, the result is [.kw]#true# if the value is w
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToQuantity(argument Any) Boolean
 ```
 
@@ -878,8 +832,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToRatio(argument Any) Boolean
 ```
 
@@ -895,8 +848,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToString(argument Any) Boolean
 ```
 
@@ -913,8 +865,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ConvertsToTime(argument Any) Boolean
 ```
 
@@ -930,8 +881,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToBoolean(argument Decimal) Boolean
 ToBoolean(argument Long) Boolean
 ToBoolean(argument Integer) Boolean
@@ -964,8 +914,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToBoolean# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": ToBoolean('y')
 define "IsFalse": ToBoolean('0')
 define "IsNull": ToBoolean('falsetto')
@@ -975,8 +924,7 @@ define "IsNull": ToBoolean('falsetto')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToConcept(argument Code) Concept
 ToConcept(argument List<Code>) Concept
 ```
@@ -991,8 +939,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToConcept# operator:
 
-[source,cql]
-```
+``` cql
 define "IsValid": ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
 define "IsNull": ToConcept(null as Code)
 ```
@@ -1001,8 +948,7 @@ define "IsNull": ToConcept(null as Code)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToDate(argument DateTime) Date
 ToDate(argument String) Date
 ```
@@ -1025,8 +971,7 @@ Note that the operator can take datetime formatted strings and will ignore the t
 
 For example, the following are valid string representations for date values:
 
-[source,cql]
-```
+``` cql
 '2014-01' // January, 2014
 '2014-01-01' // January 1st, 2014
 '2014-01-01T12:30:00' // Still January 1st, 2014, time portion will be ignored
@@ -1042,8 +987,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToDateTime(argument Date) DateTime
 ToDateTime(argument String) DateTime
 ```
@@ -1062,8 +1006,7 @@ In addition, the string must be interpretable as a valid DateTime value.
 
 For example, the following are valid string representations for DateTime values:
 
-[source,cql]
-```
+``` cql
 '2014-01-01' // January 1st, 2014
 '2014-01-01T14:30:00.0Z' // January 1st, 2014, 2:30PM UTC
 '2014-01-01T14:30:00.0-07:00' // January 1st, 2014, 2:30PM Mountain Standard (GMT-7:00)
@@ -1081,8 +1024,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToDecimal(argument Boolean) Decimal
 ToDecimal(argument String) Decimal
 ```
@@ -1107,8 +1049,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToDecimal# operator:
 
-[source,cql]
-```
+``` cql
 define "IsValid": ToDecimal('-0.1')
 define "IsNull": ToDecimal('+-0.1')
 ```
@@ -1120,8 +1061,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToLong(argument Boolean) Long
 ToLong(argument Integer) Long
 ToLong(argument String) Long
@@ -1145,8 +1085,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToLong# operator:
 
-[source,cql]
-```
+``` cql
 define "IsValid": ToLong('-1')
 define "IsNull": ToLong('one')
 ```
@@ -1155,8 +1094,7 @@ define "IsNull": ToLong('one')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToInteger(argument Boolean) Integer
 ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
@@ -1187,8 +1125,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToInteger# operator:
 
-[source,cql]
-```
+``` cql
 define "IsValid": ToInteger('-1')
 define "IsNull": ToInteger('one')
 ```
@@ -1197,8 +1134,7 @@ define "IsNull": ToInteger('one')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
 ToQuantity(argument Ratio) Quantity
@@ -1229,8 +1165,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToQuantity# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalOverload": ToQuantity(0.1) // 0.1 '1'
 define "IntegerOverload": ToQuantity(13) // 13 '1'
 define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
@@ -1241,8 +1176,7 @@ define "IsNull": ToQuantity('444 \'cm')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToRatio(argument String) Ratio
 ```
 
@@ -1260,8 +1194,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToRatio# operator:
 
-[source,cql]
-```
+``` cql
 define "IsValid": ToRatio('1.0 \'mg\':2.0 \'mg\'')
 define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ```
@@ -1270,8 +1203,7 @@ define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToString(argument Boolean) String
 ToString(argument Integer) String
 ToString(argument Long) String
@@ -1315,8 +1247,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ToString# operator:
 
-[source,cql]
-```
+``` cql
 define "BooleanOverload": ToString(true)
 define "IntegerOverload": ToString(13)
 define "LongOverload": ToString(10000L)
@@ -1333,8 +1264,7 @@ define "IsNull": ToString(null as Integer)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ToTime(argument String) Time
 ```
 
@@ -1350,8 +1280,7 @@ In addition, the string must be interpretable as a valid time-of-day value.
 
 For example, the following are valid string representations for time-of-day values:
 
-[source,cql]
-```
+``` cql
 '14:30:00.0' // 2:30PM
 ```
 
@@ -1368,8 +1297,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Coalesce<T>(argument1 T, argument2 T) T
 Coalesce<T>(argument1 T, argument2 T, argument3 T) T
 Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T) T
@@ -1385,8 +1313,7 @@ The static type of the first argument determines the type of the result, and all
 
 The following examples illustrate the behavior of the [.id]#Coalesce# operator:
 
-[source,cql]
-```
+``` cql
 define "Coalesce15": Coalesce(null, 15, null)
 define "IsNull": Coalesce({ null, null, null })
 define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
@@ -1396,8 +1323,7 @@ define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 is null(argument Any) Boolean
 ```
 
@@ -1407,8 +1333,7 @@ The [.kw]#is null# operator determines whether or not its argument evaluates to 
 
 The following examples illustrate the behavior of the [.kw]#is null# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrue": null is null
 define "IsFalse": true is null
 ```
@@ -1417,8 +1342,7 @@ define "IsFalse": true is null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 is false(argument Boolean) Boolean
 ```
 
@@ -1428,8 +1352,7 @@ The [.kw]#is false# operator determines whether or not its argument evaluates to
 
 The following examples illustrate the behavior of the [.kw]#is false# operator:
 
-[source,cql]
-```
+``` cql
 define "IsFalseIsTrue": false is false
 define "IsFalseIsFalse": null is false
 ```
@@ -1438,8 +1361,7 @@ define "IsFalseIsFalse": null is false
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 is true(argument Boolean) Boolean
 ```
 
@@ -1449,8 +1371,7 @@ The [.kw]#is true# operator determines whether or not its argument evaluates to 
 
 The following examples illustrate the behavior of the [.kw]#is true# operator:
 
-[source,cql]
-```
+``` cql
 define "IsTrueIsTrue": true is true
 define "IsTrueIsFalse": false is true
 ```
@@ -1462,8 +1383,7 @@ define "IsTrueIsFalse": false is true
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 between(argument Integer, low Integer, high Integer) Boolean
 between(argument Long, low Long, high Long) Boolean
 between(argument Decimal, low Decimal, high Decimal) Boolean
@@ -1486,8 +1406,7 @@ For comparisons involving quantities, the dimensions of each quantity must be th
 
 For comparisons involving Date, DateTime, or Time values with imprecision, note that the result of the comparison may be [.kw]#null#, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
 
-[source,cql]
-```
+``` cql
 define "DateTimeBetweenIsNull": @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ```
 
@@ -1499,8 +1418,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 When the first argument to a between is an interval, the operator is a synonym for the <<included-in,during (or included in)>> operator, using the first argument and an inclusive interval constructed from the second and third arguments. For example:
 
-[source,cql]
-```
+``` cql
 define "Retinal Exam in Measurement Period or Year Prior":
   ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
     where RetinalExam.relevantPeriod between start of "Measurement Period" - 1 year and end of "Measurement Period"
@@ -1508,8 +1426,7 @@ define "Retinal Exam in Measurement Period or Year Prior":
 
 is equivalent to:
 
-[source,cql]
-```
+``` cql
 define "Retinal Exam in Measurement Period or Year Prior":
   ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
     where RetinalExam.relevantPeriod during Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"]
@@ -1519,8 +1436,7 @@ If any argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#between# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerBetweenIsTrue": 4 between 2 and 6
 define "LongBetweenIsTrue": 4L between 2L and 6L
 define "DecimalBetweenIsFalse": 3.5 between 3.6 and 4.8
@@ -1531,8 +1447,7 @@ define "QuantityBetweenIsNull": 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 =<T>(left T, right T) Boolean
 ```
 
@@ -1550,8 +1465,7 @@ For quantities, this means that the dimensions of each quantity must be the same
 
 For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
 
-[source,cql]
-```
+``` cql
 1 year = 12 months
 1 week = 7 days
 1 day = 24 hours
@@ -1576,8 +1490,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerEqualIsTrue": 4 = (2 + 2)
 define "LongEqualIsTrue": 4L = (2L + 2L)
 define "DecimalEqualIsFalse": 3.5 = (3.5 - 0.1)
@@ -1594,8 +1507,7 @@ define "NullEqualIsNull": null = null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ~<T>(left T, right T) Boolean
 ```
 
@@ -1613,8 +1525,7 @@ For quantities, equivalent means the values are the same quantity when consideri
 
 For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are considered equivalent to their calendar duration counterparts:
 
-[source,cql]
-```
+``` cql
 1 year ~ 1 'a'
 1 month ~ 1 'mo'
 1 week = 1 'wk' // and 1 week ~ 1 'wk'
@@ -1627,8 +1538,7 @@ For time-valued quantities, UCUM definite-time duration quantities above days (a
 
 Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
 
-[source,cql]
-```
+``` cql
 1 year ~ 12 months
 1 year ~ 365 days
 1 month ~ 30 days
@@ -1657,8 +1567,7 @@ Note that this operator will always return [.kw]#true# or [.kw]#false#, even if 
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerEquivalentIsTrue": 4 ~ (2 + 2)
 define "LongEquivalentIsTrue": 4L ~ (2L + 2L)
 define "DecimalEquivalentIsFalse": 3.5 ~ (3.5 - 0.1)
@@ -1674,8 +1583,7 @@ define "NullEquivalentIsTrue": null ~ null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 >(left Integer, right Integer) Boolean
 >(left Long, right Long) Boolean
 >(left Decimal, right Decimal) Boolean
@@ -1701,8 +1609,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
-[source,cql]
-```
+``` cql
 define "DateTimeGreaterIsNull": @2012-01-01 > @2012-01-01T12
 ```
 
@@ -1714,8 +1621,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _greater_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerGreaterIsTrue": 4 > 3
 define "LongGreaterIsTrue": 4L > 3L
 define "DecimalGreaterIsFalse": 3.5 > 3.5
@@ -1731,8 +1637,7 @@ define "NullGreaterIsNull": null > 5
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 >=(left Integer, right Integer) Boolean
 >=(left Long, right Long) Boolean
 >=(left Decimal, right Decimal) Boolean
@@ -1758,8 +1663,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is [.kw]#true#; if the first value is less than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
-[source,cql]
-```
+``` cql
 define "DateTimeGreaterOrEqualIsNull": @2012-01-01 >= @2012-01-01T12
 ```
 
@@ -1769,8 +1673,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _greater or equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerGreaterOrEqualIsTrue": 4 >= (2 + 2)
 define "LongGreaterOrEqualIsTrue": 4L >= (2L + 2L)
 define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)
@@ -1785,8 +1688,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 <(left Integer, right Integer) Boolean
 <(left Long, right Long) Boolean
 <(left Decimal, right Decimal) Boolean
@@ -1812,8 +1714,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#false#. For example:
 
-[source,cql]
-```
+``` cql
 define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 ```
 
@@ -1823,8 +1724,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _less_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerLessIsTrue": 4 < (2 + 2 + 2)
 define "LongLessIsTrue": 4L < (2L + 2L + 2L)
 define "DecimalLessIsFalse": 3.5 < 3.5
@@ -1840,8 +1740,7 @@ define "NullLessIsNull": null < 5
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 <=(left Integer, right Integer) Boolean
 <=(left Long, right Long) Boolean
 <=(left Decimal, right Decimal) Boolean
@@ -1867,8 +1766,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is [.kw]#true#; if the first value is greater than the second, the result is [.kw]#false#; if one input has a value for the precision and the other does not, the comparison stops and the result is [.kw]#null#; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is [.kw]#true#. For example:
 
-[source,cql]
-```
+``` cql
 define "DateTimeLessOrEqualIsNull": @2012-01-01 <= @2012-01-01T12
 ```
 
@@ -1878,8 +1776,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _less or equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerLessOrEqualIsTrue": 4 <= (2 + 2)
 define "LongLessOrEqualIsTrue": 4L <= (2L + 2L)
 define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)
@@ -1894,8 +1791,7 @@ define "NullLessOrEqualIsNull": null <= 5
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !=<T>(left T, right T) Boolean
 ```
 
@@ -1907,8 +1803,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation ([.kw
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerNotEqualIsFalse": 4 != (2 + 2)
 define "LongNotEqualIsFalse": 4L != (2L + 2L)
 define "DecimalNotEqualIsTrue": 3.5 != (3.5 - 0.1)
@@ -1923,8 +1818,7 @@ define "NullNotEqualIsNull": null != null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !~<T>(left T, right T) Boolean
 ```
 
@@ -1936,8 +1830,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerNotEquivalentIsFalse": 4 !~ (2 + 2)
 define "LongNotEquivalentIsFalse": 4L !~ (2L + 2L)
 define "DecimalNotEquivalentIsTrue": 3.5 !~ (3.5 - 0.1)
@@ -1957,8 +1850,7 @@ The arithmetic operators provide a complete set of operations for performing ari
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Abs(argument Integer) Integer
 Abs(argument Long) Long
 Abs(argument Decimal) Decimal
@@ -1980,8 +1872,7 @@ If the result of taking the absolute value of the input cannot be represented (e
 
 The following examples illustrate the behavior of the [.id]#Abs# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerAbs": Abs(-5) // 5
 define "IntegerAbsIsNull": Abs(null as Integer)
 define "LongAbs": Abs(-5000000L) // 5000000L
@@ -1993,8 +1884,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 +(left Integer, right Integer) Integer
 +(left Long, right Long) Long
 +(left Decimal, right Decimal) Decimal
@@ -2022,8 +1912,7 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 
 The following examples illustrate the behavior of the _add_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerAdd": 2 + 2 // 4
 define "IntegerAddIsNull": 2 + null
 define "LongAdd": 25L + 5 // 30L
@@ -2036,8 +1925,7 @@ define "QuantityAddIsNull": -5.5 'cm' + 2 'cm2'
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Ceiling(argument Decimal) Integer
 ```
 
@@ -2051,8 +1939,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Ceiling# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerCeiling": Ceiling(1) // 1
 define "DecimalCeiling": Ceiling(1.1) // 2
 define "QuantityCeilingIsNull": Ceiling(null as Decimal)
@@ -2062,8 +1949,7 @@ define "QuantityCeilingIsNull": Ceiling(null as Decimal)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 /(left Decimal, right Decimal) Decimal
 /(left Quantity, right Quantity) Quantity
 ```
@@ -2078,8 +1964,7 @@ When invoked with a mixture of [.id]#Decimal# and [.id]#Quantity# arguments, the
 
 For division operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
-[source,cql]
-```
+``` cql
 12 'cm2' / 3 'cm'
 ```
 
@@ -2091,8 +1976,7 @@ If the result of the division cannot be represented, or the right argument is 0,
 
 The following examples illustrate the behavior of the _divide_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerDivide": 4.0 / 2 // 2.0
 define "LongDivide": 4.0 / 2L // 2.0
 define "DecimalDivide": 9.9 / 3.0 // 3.3
@@ -2105,8 +1989,7 @@ define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Floor(argument Decimal) Integer
 ```
 
@@ -2120,8 +2003,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Floor# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerFloor": Floor(1) // 1
 define "DecimalFloor": Floor(2.1) // 2
 define "QuantityFloorIsNull": Floor(null as Decimal)
@@ -2131,8 +2013,7 @@ define "QuantityFloorIsNull": Floor(null as Decimal)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Exp(argument Decimal) Decimal
 ```
 
@@ -2148,8 +2029,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Exp# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerExp": Exp(0) // 1.0
 define "LongExp": Exp(0L) // 1.0
 define "DecimalExp": Exp(-0.0) // 1.0
@@ -2160,8 +2040,7 @@ define "QuantityExpIsNull": Exp(null as Decimal)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 HighBoundary(input Decimal, precision Integer) Decimal
 HighBoundary(input Date, precision Integer) Date
 HighBoundary(input DateTime, precision Integer) DateTime
@@ -2178,8 +2057,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The function can be used with Decimal, Date, DateTime, and Time values.
 
-[source,cql]
-```
+``` cql
 HighBoundary(1.587, 8) // 1.58799999
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
@@ -2192,8 +2070,7 @@ If the input value is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Log(argument Decimal, base Decimal) Decimal
 ```
 
@@ -2209,8 +2086,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Log# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerLog": Log(16, 2) // 4.0
 define "LongLog": Log(16L, 2L) // 4.0
 define "DecimalLog": Log(100.0, 10.0) // 2.0
@@ -2221,8 +2097,7 @@ define "QuantityLogIsNull": Log(null, 10.0)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 LowBoundary(input Decimal, precision Integer) Decimal
 LowBoundary(input Date, precision Integer) Date
 LowBoundary(input DateTime, precision Integer) DateTime
@@ -2239,8 +2114,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The function can be used with Decimal, Date, DateTime, and Time values.
 
-[source,cql]
-```
+``` cql
 LowBoundary(1.587, 8) // 1.58700000
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
@@ -2253,8 +2127,7 @@ If the input value is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Ln(argument Decimal) Decimal
 ```
 
@@ -2270,8 +2143,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Ln# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerLn": Ln(1) // 0.0
 define "LongLn": Ln(1L) // 0.0
 define "DecimalLn": Ln(1.0) // 0.0
@@ -2282,8 +2154,7 @@ define "QuantityLnIsNull": Ln(null as Decimal)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 maximum<T>() T
 ```
 
@@ -2317,8 +2188,7 @@ For any other type, attempting to invoke [.kw]#maximum# results in an error.
 
 The following examples illustrate the behavior of the [.kw]#maximum# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerMaximum": maximum Integer // 2147483647
 define "LongMaximum": maximum Long // 9223372036854775807
 define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999
@@ -2329,8 +2199,7 @@ define "ErrorMaximum": maximum Quantity
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 minimum<T>() T
 ```
 
@@ -2364,8 +2233,7 @@ For any other type, attempting to invoke [.kw]#minimum# results in an error.
 
 The following examples illustrate the behavior of the [.kw]#minimum# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerMinimum": minimum Integer // -2147483648
 define "LongMinimum": minimum Long // -9223372036854775808
 define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
@@ -2376,8 +2244,7 @@ define "ErrorMinimum": minimum Quantity
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 mod(left Integer, right Integer) Integer
 mod(left Long, right Long) Long
 mod(left Decimal, right Decimal) Decimal
@@ -2406,8 +2273,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The following examples illustrate the behavior of the [.kw]#mod# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerModulo": 3 mod 2 // 1
 define "LongModulo": 3L mod 2 // 1L
 define "DecimalModulo": 2.5 mod 2 // 0.5
@@ -2418,8 +2284,7 @@ define "ModuloIsNull": 2.5 mod null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 *(left Integer, right Integer) Integer
 *(left Long, right Long) Long
 *(left Decimal, right Decimal) Decimal
@@ -2441,8 +2306,7 @@ When invoked with mixed [.id]#Decimal# and [.id]#Quantity# arguments, the [.id]#
 
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
-[source,cql]
-```
+``` cql
 12 'cm' * 3 'cm'
 3 'cm' * 12 'cm2'
 ```
@@ -2457,8 +2321,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 -(argument Integer) Integer
 -(argument Long) Long
 -(argument Decimal) Decimal
@@ -2480,8 +2343,7 @@ If the result of negating the argument cannot be represented (e.g. `-(minimum In
 
 The following examples illustrate the behavior of the _negate_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerNegate": -3 // -3
 define "LongNegate": -3L // -3L
 define "DecimalNegate": -(-3.3) // 3.3
@@ -2493,8 +2355,7 @@ define "NegateIsNull": -(null as Integer)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Precision(argument Decimal) Integer
 Precision(argument Date) Integer
 Precision(argument DateTime) Integer
@@ -2509,15 +2370,13 @@ The function can be used with Decimal, Date, DateTime, and Time values.
 
 For Decimal values, the function returns the number of digits of precision after the decimal place in the input value.
 
-[source,cql]
-```
+``` cql
 Precision(1.58700) // 5
 ```
 
 For Date and DateTime values, the function returns the number of digits of precision in the input value.
 
-[source,cql]
-```
+``` cql
 Precision(@2014) // 4
 Precision(@2014-01-05T10:30:00.000) // 17
 Precision(@T10:30) // 4
@@ -2530,8 +2389,7 @@ If the argument is null, the result is null.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 predecessor of<T>(argument T) T
 ```
 
@@ -2560,8 +2418,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#predecessor# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerPredecessor": predecessor of 100 // 99
 define "LongPredecessor": predecessor of 100L // 99L
 define "DecimalPredecessor": predecessor of 1.0 // 0.99999999
@@ -2573,8 +2430,7 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ^(argument Integer, exponent Integer) Integer
 ^(argument Long, exponent Long) Long
 ^(argument Decimal, exponent Decimal) Decimal
@@ -2597,8 +2453,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _power_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerPower": 2^3 // 8
 define "IntegerPowerFun": Power(2, 3) // 8
 define "LongPower": 2L^3L // 8L
@@ -2610,8 +2465,7 @@ define "NegateIsNull": 2.5^null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Round(argument Decimal) Decimal
 Round(argument Decimal, precision Integer) Decimal
 ```
@@ -2628,8 +2482,7 @@ Precision determines the decimal place at which the rounding will occur. If prec
 
 The following examples illustrate the behavior of the [.id]#Round# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerRound": Round(1) // 1
 define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null)
@@ -2639,8 +2492,7 @@ define "RoundIsNull": Round(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 -(left Integer, right Integer) Integer
 -(left Long, right Long) Long
 -(left Decimal, right Decimal) Decimal
@@ -2666,8 +2518,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _subtract_ operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerSubtract": 2 - 1 // 1
 define "LongSubtract": 2L - 1L // 1L
 define "DecimalSubtract": 3.14 - 3.12 // 0.02
@@ -2680,8 +2531,7 @@ define "SubtractIsNull": 3 - null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 successor of<T>(argument T) T
 ```
 
@@ -2710,8 +2560,7 @@ If the result of the operation cannot be represented, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#successor# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerSuccessor": successor of 100 // 101
 define "LongSuccessor": successor of 100L // 101L
 define "DecimalSuccessor": successor of 1.0 // 1.00000001
@@ -2723,8 +2572,7 @@ define "SuccessorIsNull": successor of (null as Quantity)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Truncate(argument Decimal) Integer
 ```
 
@@ -2738,8 +2586,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Truncate# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerTruncate": Truncate(101) // 101
 define "DecimalTruncate": Truncate(1.00000001) // 1
 define "TruncateIsNull": Truncate(null)
@@ -2749,8 +2596,7 @@ define "TruncateIsNull": Truncate(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 div(left Integer, right Integer) Integer
 div(left Decimal, right Decimal) Decimal
 div(left Long, right Long) Long
@@ -2779,8 +2625,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The following examples illustrate the behavior of the [.kw]#div# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerTruncatedDivide": 4 div 2 // 2
 define "LongTruncatedDivide": 4L div 2L // 2L
 define "DecimalTruncatedDivide": 4.14 div 2.06 // 2
@@ -2794,8 +2639,7 @@ define "TruncatedDivideIsNull": 3 div null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Combine(source List<String>) String
 Combine(source List<String>, separator String) String
 ```
@@ -2810,8 +2654,7 @@ For consistency with aggregate operator behavior, null elements in the input lis
 
 The following examples illustrate the behavior of the [.id]#Combine# operator:
 
-[source,cql]
-```
+``` cql
 define "CombineList": Combine({ 'A', 'B', 'C' }) // 'ABC'
 define "CombineWithSeparator": Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
 define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
@@ -2821,8 +2664,7 @@ define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 +(left String, right String) String
 &(left String, right String) String
 ```
@@ -2837,8 +2679,7 @@ When using [.sym]#&#, [.kw]#null# arguments are treated as an empty string ([.sy
 
 The following examples illustrate the behavior of the _concatenate_ operator:
 
-[source,cql]
-```
+``` cql
 define "ConcatenatePlus": 'John' + ' Doe' // 'John Doe'
 define "ConcatenateAnd": 'John' & null & ' Doe' // 'John Doe'
 define "ConcatenateFunction": Concatenate('John', ' Doe') // 'John Doe'
@@ -2849,8 +2690,7 @@ define "ConcatenateIsNull": 'John' + null + 'Doe' // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 EndsWith(argument String, suffix String) Boolean
 ```
 
@@ -2864,8 +2704,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#EndsWith# operator:
 
-[source,cql]
-```
+``` cql
 define "EndsWithIsTrue": EndsWith('ABC', 'C') // true
 define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false
 define "EndsWithIsNull": EndsWith('ABC', null) // null
@@ -2875,8 +2714,7 @@ define "EndsWithIsNull": EndsWith('ABC', null) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 [](argument String, index Integer) String
 ```
 
@@ -2892,8 +2730,7 @@ If the index is greater than the length of the string being indexed, the result 
 
 The following examples illustrate the behavior of the _indexer_ operator:
 
-[source,cql]
-```
+``` cql
 define "Indexer2": 'ABCDE'[2] // 'C'
 define "IndexerIsNull": 'ABCDE'[14] // null
 define "IndexerIsAlsoNull": 'ABCDE'[null] // null
@@ -2903,8 +2740,7 @@ define "IndexerIsAlsoNull": 'ABCDE'[null] // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 LastPositionOf(pattern String, argument String) Integer
 ```
 
@@ -2918,8 +2754,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#LastPositionOf# operator:
 
-[source,cql]
-```
+``` cql
 define "LastPositionOfFound": LastPositionOf('B', 'ABCDEDCBA') // 7
 define "LastPositionOfNotFound": LastPositionOf('XYZ', 'ABCDE') // -1
 define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
@@ -2929,8 +2764,7 @@ define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Length(argument String) Integer
 ```
 
@@ -2942,8 +2776,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Length# operator:
 
-[source,cql]
-```
+``` cql
 define "Length14": Length('ABCDE') // 5
 define "LengthIsNull": Length(null as String) // null
 ```
@@ -2952,8 +2785,7 @@ define "LengthIsNull": Length(null as String) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Lower(argument String) String
 ```
 
@@ -2968,8 +2800,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Lower# operator:
 
-[source,cql]
-```
+``` cql
 define "LowerCQL": Lower('ABCDE') // 'abcde'
 define "LowerIsNull": Lower(null) // null
 ```
@@ -2978,8 +2809,7 @@ define "LowerIsNull": Lower(null) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Matches(argument String, pattern String) Boolean
 ```
 
@@ -2994,8 +2824,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Matches# operator:
 
-[source,cql]
-```
+``` cql
 define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')
 define "MatchesFalse": Matches('1,2three', '\\w+')
 define "MatchesIsNull": Matches('12three', null)
@@ -3005,8 +2834,7 @@ define "MatchesIsNull": Matches('12three', null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 PositionOf(pattern String, argument String) Integer
 ```
 
@@ -3020,8 +2848,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#PositionOf# operator:
 
-[source,cql]
-```
+``` cql
 define "PositionOfFound": PositionOf('B', 'ABCDEDCBA') // 1
 define "PositionOfNotFound": PositionOf('Z', 'ABCDE') // -1
 define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
@@ -3031,8 +2858,7 @@ define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Matches(argument String, pattern String, substitution String) String
 ```
 
@@ -3047,8 +2873,7 @@ If any argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#ReplaceMatches# operator:
 
-[source,cql]
-```
+``` cql
 define "ReplaceMatchesFound": ReplaceMatches('ABCDE', 'C', 'XYZ') // 'ABXYZDE'
 define "ReplaceMatchesNotFound": ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE'
 define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
@@ -3058,8 +2883,7 @@ define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Split(stringToSplit String, separator String) List<String>
 ```
 
@@ -3073,8 +2897,7 @@ If the [.id]#stringToSplit# argument does not contain any appearances of the sep
 
 The following examples illustrate the behavior of the [.id]#Split# operator:
 
-[source,cql]
-```
+``` cql
 define "SplitFound": Split('A B C', ' ') // { 'A', 'B', 'C' }
 define "SplitNotFound": Split('A B C', ',') // { 'A B C' }
 define "SplitIsNull": Split(null, ' ') // null
@@ -3084,8 +2907,7 @@ define "SplitIsNull": Split(null, ' ') // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 SplitOnMatches(stringToSplit String, separatorPattern String) List<String>
 ```
 
@@ -3103,8 +2925,7 @@ If the [.id]#stringToSplit# argument does not contain any matches for the [.id]#
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 StartsWith(argument String, prefix String) Boolean
 ```
 
@@ -3118,8 +2939,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#StartsWith# operator:
 
-[source,cql]
-```
+``` cql
 define "StartsWithIsTrue": StartsWith('ABCDE', 'ABC') // true
 define "StartsWithIsFalse": StartsWith('ABCDE', 'XYZ') // false
 define "StartsWithIsNull": StartsWith('ABCDE', null) // null
@@ -3129,8 +2949,7 @@ define "StartsWithIsNull": StartsWith('ABCDE', null) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Substring(stringToSub String, startIndex Integer) String
 Substring(stringToSub String, startIndex Integer, length Integer) String
 ```
@@ -3145,8 +2964,7 @@ If [.id]#stringToSub# or [.id]#startIndex# is [.kw]#null#, or [.id]#startIndex# 
 
 The following examples illustrate the behavior of the [.id]#Substring# operator:
 
-[source,cql]
-```
+``` cql
 define "SubstringWithoutLength": Substring('ABCDE', 2) // 'CDE'
 define "SubstringWithLength": Substring('ABCDE', 2, 1) // 'C'
 define "SubstringIsNull": Substring('ABCDE', null) // null
@@ -3157,8 +2975,7 @@ define "SubstringIsAlsoNull": Substring('ABCDE', 14) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Upper(argument String) String
 ```
 
@@ -3173,8 +2990,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Upper# operator:
 
-[source,cql]
-```
+``` cql
 define "UpperCQL": Upper('abcde') // 'ABCDE'
 define "UpperIsNull": Upper(null) // null
 ```
@@ -3187,8 +3003,7 @@ define "UpperIsNull": Upper(null) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 +(left Date, right Quantity) Date
 +(left DateTime, right Quantity) DateTime
 +(left Time, right Quantity) Time
@@ -3226,8 +3041,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 after _precision_ of(left Date, right Date) Boolean
 after _precision_ of(left DateTime, right DateTime) Boolean
 after _precision_ of(left Time, right Time) Boolean
@@ -3255,8 +3069,7 @@ If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#after#__-precision-__[.kw]#of# operator:
 
-[source,cql]
-```
+``` cql
 define "AfterIsTrue": @2012-02-01 after month of @2012-01-01
 define "AfterIsFalse": @2012-01-01 after month of @2012-01-01
 define "AfterUncertainIsNull": @2012-01-01 after month of @2012
@@ -3269,8 +3082,7 @@ This operator is also defined for intervals, see the <<after-1,After (Intervals)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 before _precision_ of(left Date, right Date) Boolean
 before _precision_ of(left DateTime, right DateTime) Boolean
 before _precision_ of(left Time, right Time) Boolean
@@ -3298,8 +3110,7 @@ If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#before#__-precision-__[.kw]#of# operator:
 
-[source,cql]
-```
+``` cql
 define "BeforeIsTrue": @2012-01-01 before month of @2012-02-01
 define "BeforeIsFalse": @2012-01-01 before month of @2012-01-01
 define "BeforeUncertainIsNull": @2012 before month of @2012-02-01
@@ -3313,8 +3124,7 @@ This operator is also defined for intervals, see the <<before-1,Before (Interval
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Date(year Integer) Date
 Date(year Integer, month Integer) Date
 Date(year Integer, month Integer, day Integer) Date
@@ -3328,8 +3138,7 @@ At least one component must be specified, and no component may be specified at a
 
 The following examples illustrate the behavior of the [.id]#Date# operator:
 
-[source,cql]
-```
+``` cql
 define "DateValid": Date(2012, 1, 1)
 define "DateInvalid": Date(2012, null, 1)
 ```
@@ -3339,8 +3148,7 @@ define "DateInvalid": Date(2012, null, 1)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 DateTime(year Integer) DateTime
 DateTime(year Integer, month Integer) DateTime
 DateTime(year Integer, month Integer, day Integer) DateTime
@@ -3371,8 +3179,7 @@ If [.id]#timezoneOffset# is not specified, it is defaulted to the timezone offse
 
 The following examples illustrate the behavior of the [.id]#DateTime# operator:
 
-[source,cql]
-```
+``` cql
 define "DateValid": DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
 define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ```
@@ -3382,8 +3189,7 @@ define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 _precision_ from(argument Date) Integer
 _precision_ from(argument DateTime) Integer
 _precision_ from(argument Time) Integer
@@ -3410,8 +3216,7 @@ If the argument is [.kw]#null#, or is not specified to the level of precision be
 
 The following examples illustrate the behavior of the _component_-[.kw]#from# operator:
 
-[source,cql]
-```
+``` cql
 define "MonthFrom": month from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // 1
 define "TimeZoneOffsetFrom": timezoneoffset from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // -7.0
 define "DateFrom": date from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @2012-01-01
@@ -3423,8 +3228,7 @@ define "MonthFromIsNull": month from DateTime(2012)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 difference in _precision_ between(low Date, high Date) Integer
 difference in _precision_ between(low DateTime, high DateTime) Integer
 difference in _precision_ between(low Time, high Time) Integer
@@ -3450,8 +3254,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _difference-_[.kw]#between# operator:
 
-[source,cql]
-```
+``` cql
 define "DifferenceInMonths": difference in months between @2012-01-01 and @2012-02-01 // 1
 define "UncertainDifferenceInMonths": difference in months between @2012-01-02 and @2012 // [0, 11]
 define "DifferenceIsNull": difference in months between @2012-01-01 and null
@@ -3461,8 +3264,7 @@ define "DifferenceIsNull": difference in months between @2012-01-01 and null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 _duration_ between(low Date, high Date) Integer
 _duration_ between(low DateTime, high DateTime) Integer
 _duration_ between(low Time, high Time) Integer
@@ -3486,8 +3288,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _duration-_[.kw]#between# operator:
 
-[source,cql]
-```
+``` cql
 define "DurationInMonths": months between @2012-01-01 and @2012-02-01 // 1
 define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 10]
 define "DurationIsNull": months between @2012-01-01 and null
@@ -3497,8 +3298,7 @@ define "DurationIsNull": months between @2012-01-01 and null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Now() DateTime
 ```
 
@@ -3514,8 +3314,7 @@ The [.id]#Now# operator returns the date and time of the start timestamp associa
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 on or after _precision_ (left Date, right Date) Boolean
 on or after _precision_ (left DateTime, right DateTime) Boolean
 on or after _precision_ (left Time, right Time) Boolean
@@ -3534,8 +3333,7 @@ In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 on or before _precision_ (left Date, right Date) Boolean
 on or before _precision_ (left DateTime, right DateTime) Boolean
 on or before _precision_ (left Time, right Time) Boolean
@@ -3554,8 +3352,7 @@ In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ as(left Date, right Date) Boolean
 same _precision_ as(left DateTime, right DateTime) Boolean
 same _precision_ as(left Time, right Time) Boolean
@@ -3583,8 +3380,7 @@ If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#same#__-precision-__[.kw]#as# operator:
 
-[source,cql]
-```
+``` cql
 define "SameAsTrue": @2012-01-01 same day as @2012-01-01
 define "SameAsFalse": @2012-01-01 same day as @2012-01-02
 define "UncertainSameAsIsNull": @2012-01-01 same day as @2012-01
@@ -3598,8 +3394,7 @@ This operator is also defined for intervals, see the <<same-as-2,Same As (Interv
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ or after(left Date, right Date) Boolean
 same _precision_ or after(left DateTime, right DateTime) Boolean
 same _precision_ or after(left Time, right Time) Boolean
@@ -3629,8 +3424,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 The following examples illustrate the behavior of the [.kw]#same#__-precision-__[.kw]#or after# operator:
 
-[source,cql]
-```
+``` cql
 define "SameOrAfterTrue": @2012-01-02 same day or after @2012-01-01
 define "SameOrAfterFalse": @2012-01-01 same day or after @2012-01-02
 define "UncertainSameOrAfterIsNull": @2012-01-02 same day or after @2012-01
@@ -3644,8 +3438,7 @@ This operator is also defined for intervals, see the <<same-or-after-2,Same Or A
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ or before(left Date, right Date) Boolean
 same _precision_ or before(left DateTime, right DateTime) Boolean
 same _precision_ or before(left Time, right Time) Boolean
@@ -3675,8 +3468,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 The following examples illustrate the behavior of the [.kw]#same#__-precision-__[.kw]#or before# operator:
 
-[source,cql]
-```
+``` cql
 define "SameOrBeforeTrue": @2012-01-01 same day or before @2012-01-02
 define "SameOrBeforeFalse": @2012-01-02 same day or before @2012-01-01
 define "UncertainSameOrBeforeIsNull": @2012-01-02 same day or before @2012-01
@@ -3690,8 +3482,7 @@ This operator is also defined for intervals, see the <<same-or-before-2,Same Or 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 -(left Date, right Quantity) Date
 -(left DateTime, right Quantity) DateTime
 -(left Time, right Quantity) Time
@@ -3730,8 +3521,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Time(hour Integer) Time
 Time(hour Integer, minute Integer) Time
 Time(hour Integer, minute Integer, second Integer) Time
@@ -3748,8 +3538,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 The following examples illustrate the behavior of the [.id]#Time# operator:
 
-[source,cql]
-```
+``` cql
 define "TimeValid": Time(12, 30, 0, 0)
 define "TimeInvalid": Time(12, null, 0, 0)
 ```
@@ -3758,8 +3547,7 @@ define "TimeInvalid": Time(12, null, 0, 0)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 TimeOfDay() Time
 ```
 
@@ -3771,8 +3559,7 @@ The [.id]#TimeOfDay# operator returns the time of day of the start timestamp ass
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Today() Date
 ```
 
@@ -3788,8 +3575,7 @@ The [.id]#Today# operator returns the date of the start timestamp associated wit
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 after _precision_ (left Interval<T>, right Interval<T>) Boolean
 after _precision_ (left T, right Interval<T>) Boolean
 after _precision_ (left Interval<T>, right T) Boolean
@@ -3811,8 +3597,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#after# operator:
 
-[source,cql]
-```
+``` cql
 define "AfterIsTrue": 5 after Interval[1, 4]
 define "AfterIsFalse": Interval[1, 4] after 5
 define "AfterIsNull": Interval[1, 4] after null
@@ -3823,8 +3608,7 @@ define "AfterIsNull": Interval[1, 4] after null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 before _precision_ (left Interval<T>, right Interval<T>) Boolean
 before _precision_ (left T, right Interval<T>) Boolean
 before _precision_ (left interval<T>, right T) Boolean
@@ -3846,8 +3630,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#before# operator:
 
-[source,cql]
-```
+``` cql
 define "BeforeIsTrue": 0 before Interval[1, 4]
 define "BeforeIsFalse": Interval[1, 4] before 0
 define "BeforeIsNull": Interval[1, 4] before null
@@ -3857,8 +3640,7 @@ define "BeforeIsNull": Interval[1, 4] before null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 collapse(argument List<Interval<T>>) List<Interval<T>>
 collapse(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 ```
@@ -3881,8 +3663,7 @@ If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#collapse# operator:
 
-[source,cql]
-```
+``` cql
 define "Collapse1To9": collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
 define "CollapseIsNull": collapse null
 ```
@@ -3916,8 +3697,7 @@ for (n = 0; n < i.size; n++) {
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 contains _precision_ (argument Interval<T>, point T) Boolean
 ```
 
@@ -3931,8 +3711,7 @@ If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second 
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
-[source,cql]
-```
+``` cql
 define "ContainsIsTrue": Interval[1, 5] contains 4
 define "ContainsIsFalse": Interval[1, 5] contains 6
 define "ContainsIsNull": Interval[1, 5] contains null
@@ -3942,8 +3721,7 @@ define "ContainsIsNull": Interval[1, 5] contains null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 end of(argument Interval<T>) T
 ```
 
@@ -3959,8 +3737,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#End# operator:
 
-[source,cql]
-```
+``` cql
 define "EndOfInterval": end of Interval[1, 5] // 5
 define "EndIsNull": end of (null as Interval<Integer>)
 ```
@@ -3969,8 +3746,7 @@ define "EndIsNull": end of (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -3986,8 +3762,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#ends# operator:
 
-[source,cql]
-```
+``` cql
 define "EndsIsTrue": Interval[0, 5] ends Interval[-1, 5]
 define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]
 define "EndsIsNull": Interval[1, 5] ends null
@@ -3998,8 +3773,7 @@ define "EndsIsNull": Interval[1, 5] ends null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 =(left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -4011,8 +3785,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "EqualIsTrue": Interval[0, 5] = Interval[0, 5]
 define "EqualIsFalse": Interval[-1, 7] = Interval[0, 7]
 define "EqualIsNull": Interval[1, 5] = null
@@ -4023,8 +3796,7 @@ define "EqualIsNull": Interval[1, 5] = null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ~(left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -4034,8 +3806,7 @@ The _equivalent_ ([.sym]#~#) operator for intervals returns [.kw]#true# if and o
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "EquivalentIsTrue": Interval[0, 5] ~ Interval[0, 5]
 define "EquivalentIsAlsoTrue": Interval[1, null] ~ Interval[1, null]
 define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
@@ -4045,8 +3816,7 @@ define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 except(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -4058,8 +3828,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#except# operator:
 
-[source,cql]
-```
+``` cql
 define "Except": Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
 define "ExceptIsNull": null except Interval[-1, 7]
 ```
@@ -4068,8 +3837,7 @@ define "ExceptIsNull": null except Interval[-1, 7]
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
@@ -4091,48 +3859,42 @@ More precisely, for each interval in the input, contribute all the intervals of 
 
 For example:
 
-[source,cql]
-```
+``` cql
 expand { Interval[@2018-01-01, @2018-01-04] } per day
 expand { Interval[@2018-01-01, @2018-01-04] } per 2 days
 ```
 
 The following are the results of these examples:
 
-[source,cql]
-```
+``` cql
 { Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
 { Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }
 ```
 
 If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may be more broad than the input range due to this truncation. For example:
 
-[source,cql]
-```
+``` cql
 expand { Interval[@T10:00, @T12:30] } per hour
 expand { Interval[10.0, 12.5] } per 1
 ```
 
 The above examples would result in:
 
-[source,cql]
-```
+``` cql
 { Interval[@T10, @T10], Interval[@T11, @T11], Interval[@T12, @T12] }
 { Interval[10, 10], Interval[11, 11], Interval[12, 12] }
 ```
 
 If the interval boundaries are less precise than the per quantity, for dates and times where the lack of precision indicates uncertainty, the interval will not contribute any results to the output, because adding the per to the lower boundary of the input interval results in null. For numeric intervals, adding the per to the lower boundary produces a more precise value for the output intervals. For example:
 
-[source,cql]
-```
+``` cql
 expand { Interval[@T10, @T10] } per minute
 expand { Interval[10, 10] } per 0.1
 ```
 
 The above examples would result in:
 
-[source,cql]
-```
+``` cql
 { }
 { Interval[10.0, 10.0], Interval[10.1, 10.1], ..., Interval[10.9, 10.9] }
 ```
@@ -4141,16 +3903,14 @@ For intervals of quantities, the semantics of quantity arithmetic and comparison
 
 If the input argument is an interval, rather than a list of intervals, the result is a list of points, rather than a list of intervals. In this case, the calculation is performed the same way, but the starting point of each resulting interval is returned, rather than the interval. For example:
 
-[source,cql]
-```
+``` cql
 expand Interval[1, 10]
 expand Interval[1, 10] per 2
 ```
 
 The above examples would result in:
 
-[source,cql]
-```
+``` cql
 { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
 { 1, 3, 5, 7, 9 }
 ```
@@ -4166,8 +3926,7 @@ If the list argument is [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 in _precision_ (point T, argument Interval<T>) Boolean
 ```
 
@@ -4181,8 +3940,7 @@ If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second a
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
-[source,cql]
-```
+``` cql
 define "InIsTrue": 3 in Interval[0, 5]
 define "InIsFalse": -1 in Interval[0, 7]
 define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
@@ -4192,8 +3950,7 @@ define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 includes _precision_ (left Interval<T>, right Interval<T>) Boolean
 includes _precision_ (left Interval<T>, right T) Boolean
 ```
@@ -4212,8 +3969,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 The following examples illustrate the behavior of the [.kw]#includes# operator:
 
-[source,cql]
-```
+``` cql
 define "IncludesIsTrue": Interval[-1, 5] includes Interval[0, 5]
 define "IncludesIsFalse": Interval[-1, 5] includes 6
 define "IncludesIsNull": Interval[-1, 5] includes null
@@ -4223,8 +3979,7 @@ define "IncludesIsNull": Interval[-1, 5] includes null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 included in _precision_ (left Interval<T>, right Interval<T>) Boolean
 included in _precision_ (left T, right Interval<T>) Boolean
 ```
@@ -4245,8 +4000,7 @@ Note that [.kw]#during# is a synonym for included in and may be used to invoke t
 
 The following examples illustrate the behavior of the [.kw]#included in# operator:
 
-[source,cql]
-```
+``` cql
 define "IncludedInIsTrue": Interval[1, 5] included in Interval[0, 5]
 define "IncludedInIsFalse": -1 during Interval[0, 7]
 define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
@@ -4256,8 +4010,7 @@ define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 intersect(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -4269,8 +4022,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#intersect# operator:
 
-[source,cql]
-```
+``` cql
 define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
 define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 ```
@@ -4279,8 +4031,7 @@ define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 meets _precision_ (left Interval<T>, right Interval<T>) Boolean
 meets before _precision_ (left Interval<T>, right Interval<T>) Boolean
 meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
@@ -4300,8 +4051,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 Note that Date-, DateTime-, or Time-based intervals with partially specified boundaries will "meet" at the precision of the boundaries, not the finest precision for the point type. For example:
 
-[source,cql]
-```
+``` cql
 define "MeetsAtHours": Interval[@T03, @T04] meets Interval[@T05, @T06]
 ```
 
@@ -4309,8 +4059,7 @@ The [.id]#MeetsAtHours# expression returns true because the meets operation is p
 
 The following examples illustrate the behavior of the [.kw]#meets#, [.kw]#meets before#, and [.kw]#meets after# operators:
 
-[source,cql]
-```
+``` cql
 define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]
 define "MeetsBeforeIsTrue": Interval[-5, -1] meets before Interval[0, 5]
 define "MeetsAfterIsFalse": Interval[6, 10] meets after Interval[0, 7]
@@ -4322,8 +4071,7 @@ define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !=(left Interval<T>, right Interval<T>) : Boolean
 ```
 
@@ -4335,8 +4083,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation ([.kw
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "NotEqualIsFalse": Interval[0, 5] != Interval[0, 5]
 define "NotEqualIsTrue": Interval[-1, 7] != Interval[0, 7]
 define "NotEqualIsNull": Interval[1, 5] != null
@@ -4347,8 +4094,7 @@ define "NotEqualIsNull": Interval[1, 5] != null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !~(left Interval<T>, right Interval<T>) : Boolean
 ```
 
@@ -4360,8 +4106,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "NotEquivalentIsFalse": Interval[0, 5] !~ Interval[0, 5]
 define "NotEquivalentIsAlsoFalse": Interval[1, null] !~ Interval[1, null]
 define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
@@ -4372,8 +4117,7 @@ define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 on or after _precision_ (left Interval<T>, right Interval<T>) Boolean
 on or after _precision_ (left T, right Interval<T>) Boolean
 on or after _precision_ (left Interval<T>, right T) Boolean
@@ -4392,8 +4136,7 @@ In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 on or before _precision_ (left Interval<T>, right Interval<T>) Boolean
 on or before _precision_ (left T, right Interval<T>) Boolean
 on or before _precision_ (left Interval<T>, right T) Boolean
@@ -4411,8 +4154,7 @@ In timing phrases, the keyword [.kw]#same# is a synonym for [.kw]#on#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean
 overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean
 overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
@@ -4432,8 +4174,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#overlaps#, [.kw]#overlaps before#, and [.kw]#overlaps after# operators:
 
-[source,cql]
-```
+``` cql
 define "OverlapsIsTrue": Interval[0, 4] overlaps Interval[1, 4]
 define "OverlapsBeforeIsTrue": Interval[0, 4] overlaps before Interval[1, 4]
 define "OverlapsAfterIsFalse": Interval[0, 4] overlaps after Interval[1, 4]
@@ -4444,8 +4185,7 @@ define "OverlapsIsNull": Interval[6, 10] overlaps (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 point from(argument Interval<T>) : T
 ```
 
@@ -4457,8 +4197,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#point from# operator:
 
-[source,cql]
-```
+``` cql
 define "PointFrom": point from Interval[4, 4] // 4
 define "PointFromExclusive": point from Interval[4, 5) // 4
 define "PointFromError": point from Interval[1, 4] // Error
@@ -4471,8 +4210,7 @@ Note that the [.kw]#point from# operator may only be used on a _unit interval_, 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
 properly includes _precision_ (left Interval<T>, right T) Boolean
 ```
@@ -4491,8 +4229,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#properly includes# operator:
 
-[source,cql]
-```
+``` cql
 define "ProperlyIncludesIsTrue": Interval[-1, 5] properly includes Interval[0, 5]
 define "ProperlyIncludesIsFalse": Interval[-1, 5] properly includes Interval[-1, 5]
 define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
@@ -4502,8 +4239,7 @@ define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
 properly included in _precision_ (left T, right Interval<T>) Boolean
 ```
@@ -4524,8 +4260,7 @@ Note that [.kw]#during# is a synonym for [.kw]#included in#.
 
 The following examples illustrate the behavior of the [.kw]#properly included in# operator:
 
-[source,cql]
-```
+``` cql
 define "ProperlyIncludedInIsTrue": Interval[1, 5] properly included in Interval[0, 5]
 define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7]
 define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
@@ -4536,8 +4271,7 @@ define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ as(left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -4568,8 +4302,7 @@ If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ or after(left Interval<T>, right Interval<T>) Boolean
 same _precision_ or after(left T, right Interval<T>) Boolean
 same _precision_ or after(left Interval<T>, right T) Boolean
@@ -4606,8 +4339,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 same _precision_ or before(left Interval<T>, right Interval<T>) Boolean
 same _precision_ or before(left T, right Interval<T>) Boolean
 same _precision_ or before(left Interval<T>, right T) Boolean
@@ -4643,8 +4375,7 @@ Note that in timing phrases, the keyword [.kw]#on# may be used as a synonym for 
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Size(argument Interval<T>) T
 ```
 
@@ -4658,8 +4389,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Size# operator:
 
-[source,cql]
-```
+``` cql
 define "SizeTest": Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
 define "SizeTestEquivalent": Size(Interval[3, 8)) // 5, i.e. the interval contains 5 points
 define "SizeIsNull": Size(null as Interval<Integer>) // null
@@ -4669,8 +4399,7 @@ define "SizeIsNull": Size(null as Interval<Integer>) // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 start of(argument Interval<T>) T
 ```
 
@@ -4686,8 +4415,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Start# operator:
 
-[source,cql]
-```
+``` cql
 define "StartOfInterval": start of Interval[1, 5] // 1
 define "StartIsNull": start of (null as Interval<Integer>)
 ```
@@ -4696,8 +4424,7 @@ define "StartIsNull": start of (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -4713,8 +4440,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#starts# operator:
 
-[source,cql]
-```
+``` cql
 define "StartsIsTrue": Interval[0, 5] starts Interval[0, 7]
 define "StartsIsFalse": Interval[0, 7] starts Interval[0, 6]
 define "StartsIsNull": Interval[1, 5] starts null
@@ -4724,8 +4450,7 @@ define "StartsIsNull": Interval[1, 5] starts null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 union(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -4737,8 +4462,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#union# operator:
 
-[source,cql]
-```
+``` cql
 define "Union": Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
 define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 ```
@@ -4747,8 +4471,7 @@ define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 width of(argument Interval<T>) T
 ```
 
@@ -4762,8 +4485,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#width# operator:
 
-[source,cql]
-```
+``` cql
 define "Width": width of Interval[3, 7] // 4
 define "WidthIsNull": width of (null as Interval<Integer>) // null
 define "NullInterval": width of Interval[0, null) //null
@@ -4779,8 +4501,7 @@ Note that the operators in this section may all be invoked with singleton argume
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 contains(argument List<T>, element T) Boolean
 ```
 
@@ -4792,8 +4513,7 @@ If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second 
 
 The following examples illustrate the behavior of the [.kw]#contains# operator:
 
-[source,cql]
-```
+``` cql
 define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5
 define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4
 define "ContainsIsAlsoFalse": null contains 4
@@ -4804,8 +4524,7 @@ define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 distinct(argument List<T>) List<T>
 ```
 
@@ -4819,8 +4538,7 @@ The operator uses equality comparison semantics as defined in the Equal operator
 
 The following examples illustrate the behavior of the [.kw]#distinct# operator:
 
-[source,cql]
-```
+``` cql
 define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
 define "DistinctIsNull": distinct null // null
 ```
@@ -4830,8 +4548,7 @@ define "DistinctIsNull": distinct null // null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 =(left List<T>, right List<T>) Boolean
 ```
 
@@ -4843,8 +4560,7 @@ If either argument is [.kw]#null#, or contains null elements, the result is [.kw
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "EqualIsTrue": { 1, 3, 5, 7 } = { 1, 3, 5, 7 }
 define "EqualIsFalse": { 1, 3, 5, 7 } = { 1, 3, 5 }
 define "EqualIsNull": { 1, 3, 5, 7 } = null
@@ -4855,8 +4571,7 @@ define "EqualIsNull": { 1, 3, 5, 7 } = null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ~(left List<T>, right List<T>) Boolean
 ```
 
@@ -4866,8 +4581,7 @@ The _equivalent_ ([.sym]#~#) operator for lists returns [.kw]#true# if and only 
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "EquivalentIsTrue": { 1, 3, 5, 7 } ~ { 1, 3, 5, 7 }
 define "EquivalentIsAlsoTrue": { 1, 3, 5, null } ~ { 1, 3, 5, null }
 define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
@@ -4878,8 +4592,7 @@ define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 except(left List<T>, right List<T>) List<T>
 ```
 
@@ -4895,8 +4608,7 @@ If the first argument is [.kw]#null#, the result is [.kw]#null#. If the second a
 
 The following examples illustrate the behavior of the [.kw]#except# operator:
 
-[source,cql]
-```
+``` cql
 define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
 define "ExceptLeft": { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
 define "ExceptWithNull": { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
@@ -4907,8 +4619,7 @@ define "ExceptIsNull": null except { 1, 3, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 exists(argument List<T>) Boolean
 ```
 
@@ -4920,8 +4631,7 @@ If the argument is [.kw]#null#, the result is [.kw]#false#.
 
 The following examples illustrate the behavior of the [.kw]#exists# operator:
 
-[source,cql]
-```
+``` cql
 define "ExistsIsTrue": exists { 1, 3, 5, 7 }
 define "ExistsIsFalse": exists { }
 define "ExistsIsAlsoFalse": exists { null }
@@ -4932,8 +4642,7 @@ define "ExistsIsAlsoAlsoFalse": exists null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 flatten(argument List<List<T>>) List<T>
 ```
 
@@ -4945,8 +4654,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#flatten# operator:
 
-[source,cql]
-```
+``` cql
 define "Flatten": flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }
 define "FlattenIsNull": flatten null
 ```
@@ -4955,8 +4663,7 @@ define "FlattenIsNull": flatten null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 First(argument List<T>) T
 ```
 
@@ -4968,8 +4675,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#First# operator:
 
-[source,cql]
-```
+``` cql
 define "First1": First({ 1, 2, 5 }) // 1
 define "FirstIsNull": First(null)
 ```
@@ -4979,8 +4685,7 @@ define "FirstIsNull": First(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 in(element T, argument List<T>) Boolean
 ```
 
@@ -4992,8 +4697,7 @@ If the first argument is [.kw]#null#, the result is [.kw]#true# if the list cont
 
 The following examples illustrate the behavior of the [.kw]#in# operator:
 
-[source,cql]
-```
+``` cql
 define "InIsTrue": 5 in { 1, 3, 5, 7 }
 define "InIsFalse": 5 in { 1, 3 }
 define "InIsAlsoFalse": 5 in null
@@ -5005,8 +4709,7 @@ define "NullInIsTrue": null in { 1, 3, 5, null }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 includes(left List<T>, right List<T>) Boolean
 includes(left List<T>, right T) Boolean
 ```
@@ -5023,8 +4726,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the [.kw]#includes# operator:
 
-[source,cql]
-```
+``` cql
 define "IncludesIsTrue": { 1, 3, 5, 7 } includes 5
 define "IncludesIsNull": { 1, 3, 5, null } includes null
 define "IncludesIsFalse": { 1, 3 } includes { 1, 3, 5 }
@@ -5036,8 +4738,7 @@ define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 included in(left List<T>, right list<T>) Boolean
 included in(left T, right list<T>) Boolean
 ```
@@ -5054,8 +4755,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the [.kw]#included in# operator:
 
-[source,cql]
-```
+``` cql
 define "IncludedInIsTrue": 5 included in { 1, 3, 5, 7 }
 define "IncludedInIsNull": null included in { 1, 3, 5 }
 define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }
@@ -5067,8 +4767,7 @@ define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 [](argument List<T>, index Integer) T
 ```
 
@@ -5084,8 +4783,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the _indexer_ operator:
 
-[source,cql]
-```
+``` cql
 define "Indexer": { 1, 3, 5, 7 }[1] // 3
 define "IndexerIsNull": { 1, 3, 5 }[-1]
 define "IndexerIsAlsoNull": (null as List<Integer>)[0]
@@ -5095,8 +4793,7 @@ define "IndexerIsAlsoNull": (null as List<Integer>)[0]
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 IndexOf(argument List<T>, element T) Integer
 ```
 
@@ -5110,8 +4807,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#IndexOf# operator:
 
-[source,cql]
-```
+``` cql
 define "IndexOfFound": IndexOf({ 1, 3, 5, 7 }, 5) // 2
 define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1
 define "IndexOfIsNull": IndexOf(null, 4)
@@ -5122,8 +4818,7 @@ define "IndexOfIsNull": IndexOf(null, 4)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 intersect(left List<T>, right List<T>) List<T>
 ```
 
@@ -5139,8 +4834,7 @@ If either argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#intersect# operator:
 
-[source,cql]
-```
+``` cql
 define "Intersect": { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
 define "IntersectWithNull": { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
 define "IntersectIsNull": { 1, 3, 5 } intersect null
@@ -5150,8 +4844,7 @@ define "IntersectIsNull": { 1, 3, 5 } intersect null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Last(argument List<T>) T
 ```
 
@@ -5163,8 +4856,7 @@ If the argument is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Last# operator:
 
-[source,cql]
-```
+``` cql
 define "Last5": Last({ 1, 3, 5 }) // 5
 define "LastIsNull": Last(null)
 ```
@@ -5174,8 +4866,7 @@ define "LastIsNull": Last(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Length(argument List<T>) Integer
 ```
 
@@ -5187,8 +4878,7 @@ If the argument is [.kw]#null#, the result is [.kw]#0#.
 
 The following examples illustrate the behavior of the [.id]#Length# operator:
 
-[source,cql]
-```
+``` cql
 define "Length3": Length({ 1, 3, 5 }) // 3
 define "Length0": Length(null as List<Integer>)
 ```
@@ -5198,8 +4888,7 @@ define "Length0": Length(null as List<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !=(left List<T>, right List<T>) Boolean
 ```
 
@@ -5211,8 +4900,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation ([.kw
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "NotEqualIsFalse": { 1, 3, 5, 7 } != { 1, 3, 5, 7 }
 define "NotEqualIsTrue": { 1, 3, 5, 7 } != { 1, 3, 5 }
 define "NotEqualIsNull": { 1, 3, 5, 7 } != null
@@ -5223,8 +4911,7 @@ define "NotEqualIsNull": { 1, 3, 5, 7 } != null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 !~(left List<T>, right List<T>) Boolean
 ```
 
@@ -5236,8 +4923,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "NotEquivalentIsFalse": { 1, 3, 5, 7 } !~ { 1, 3, 5, 7 }
 define "NotEquivalentIsAlsoFalse": { 1, 3, 5, null } !~ { 1, 3, 5, null }
 define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
@@ -5248,8 +4934,7 @@ define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 properly includes(left List<T>, right List<T>) Boolean
 properly includes(left T, right List<T>) Boolean
 ```
@@ -5268,8 +4953,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the [.kw]#properly includes# operator:
 
-[source,cql]
-```
+``` cql
 define "ProperlyIncludesIsTrue": { 1, 3, 5, 7 } properly includes { 1, 3, 5 }
 define "ProperlyIncludesIsAlsoTrue": { 1, 3, 5, null } properly includes null
 define "ProperlyIncludesIsFalse": { 1, 3, 5 } properly includes { 1, 3, 5 }
@@ -5281,8 +4965,7 @@ define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 properly included in(left List<T>, right list<T>) Boolean
 ```
 
@@ -5300,8 +4983,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the [.kw]#properly included in# operator:
 
-[source,cql]
-```
+``` cql
 define "ProperlyIncludedInIsTrue": { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
 define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5 }
 define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
@@ -5312,8 +4994,7 @@ define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in n
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 singleton from(argument List<T>) T
 ```
 
@@ -5325,8 +5006,7 @@ If the source list is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.kw]#singleton from# operator:
 
-[source,cql]
-```
+``` cql
 define "SingletonFrom": singleton from { 1 } // 1
 define "SingletonFromError": singleton from { 1, 3, 5 }
 define "SingletonFromIsNull": singleton from (null as List<Integer>)
@@ -5336,8 +5016,7 @@ define "SingletonFromIsNull": singleton from (null as List<Integer>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Skip(argument List<T>, number Integer) List<T>
 ```
 
@@ -5353,8 +5032,7 @@ If the number of elements is less than zero, the result is an empty list.
 
 The following examples illustrate the behavior of the [.id]#Skip# operator:
 
-[source,cql]
-```
+``` cql
 define "Skip2": Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }
 define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
 define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
@@ -5365,8 +5043,7 @@ define "SkipIsNull": Skip(null, 2)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Tail(argument List<T>) List<T>
 ```
 
@@ -5378,8 +5055,7 @@ If the source list is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Tail# operator:
 
-[source,cql]
-```
+``` cql
 define "Tail234": Tail({ 1, 2, 3, 4 }) // { 2, 3, 4 }
 define "TailEmpty": Tail({ }) // { }
 define "TailIsNull": Tail(null)
@@ -5389,8 +5065,7 @@ define "TailIsNull": Tail(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Take(argument List<T>, number Integer) List<T>
 ```
 
@@ -5404,8 +5079,7 @@ If number is [.kw]#null#, or [.lit]#0# or less, the result is an empty list.
 
 The following examples illustrate the behavior of the [.id]#Take# operator:
 
-[source,cql]
-```
+``` cql
 define "Take2": Take({ 1, 2, 3, 4 }, 2) // { 1, 2 }
 define "TakeTooMany": Take({ 1, 2 }, 3) // { 1, 2 }
 define "TakeEmpty": Take({ 1, 2, 3, 4 }, null) // { }
@@ -5417,8 +5091,7 @@ define "TakeIsNull": Take(null, 2)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 union(left List<T>, right List<T>) List<T>
 ```
 
@@ -5436,8 +5109,7 @@ Note that the union operator can also be invoked with the symbolic operator ([.s
 
 The following examples illustrate the behavior of the [.kw]#union# operator:
 
-[source,cql]
-```
+``` cql
 define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionAlternateSyntax": { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
@@ -5449,8 +5121,7 @@ define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 AllTrue(argument List<Boolean>) Boolean
 ```
 
@@ -5464,8 +5135,7 @@ If the source is [.kw]#null#, the result is [.kw]#true#.
 
 The following examples illustrate the behavior of the [.id]#AllTrue# operator:
 
-[source,cql]
-```
+``` cql
 define "AllTrueIsTrue": AllTrue({ true, null, true })
 define "AllTrueIsAlsoTrue": AllTrue({ null, null, null })
 define "AllTrueIsTrueWhenNull": AllTrue(null)
@@ -5476,8 +5146,7 @@ define "AllTrueIsFalse": AllTrue({ true, false, null })
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 AnyTrue(argument List<Boolean>) Boolean
 ```
 
@@ -5491,8 +5160,7 @@ If the source is [.kw]#null#, the result is [.kw]#false#.
 
 The following examples illustrate the behavior of the [.id]#AnyTrue# operator:
 
-[source,cql]
-```
+``` cql
 define "AnyTrueIsTrue": AnyTrue({ true, false, null })
 define "AnyTrueIsFalse": AnyTrue({ false, false, null })
 define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })
@@ -5503,8 +5171,7 @@ define "AnyTrueIsFalseWhenNull": AnyTrue(null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Avg(argument List<Decimal>) Decimal
 Avg(argument List<Quantity>) Quantity
 ```
@@ -5519,8 +5186,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Avg# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalAvg": Avg({ 5.5, 4.7, 4.8 }) // 5.0
 define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
 define "AvgIsNull": Avg(null as List<Decimal>)
@@ -5530,8 +5196,7 @@ define "AvgIsNull": Avg(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Count(argument List<T>) Integer
 ```
 
@@ -5541,8 +5206,7 @@ The [.id]#Count# operator returns the number of non-null elements in the source.
 
 The following examples illustrate the behavior of the [.id]#Count# operator:
 
-[source,cql]
-```
+``` cql
 define "Count5": Count({ 1, 2, 3, 4, 5 }) // 5
 define "Count0": Count({ null, null, null }) // 0
 define "CountNull0": Count(null as List<Decimal>) // 0
@@ -5552,8 +5216,7 @@ define "CountNull0": Count(null as List<Decimal>) // 0
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 GeometricMean(argument List<Decimal>) Decimal
 ```
 
@@ -5561,8 +5224,7 @@ GeometricMean(argument List<Decimal>) Decimal
 
 The [.id]#GeometricMean# operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N^th^ root of the geometric product of the elements. In other words:
 
-[source,cql]
-```
+``` cql
 GeometricMean(X) = Power(Product(X), 1 / Count(X))
 ```
 
@@ -5572,8 +5234,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#GeometricMean# operator:
 
-[source,cql]
-```
+``` cql
 define "GeometricMean4": GeometricMean({ 2.0, 8.0 }) // 4.0
 define "GeometricMeanIsNull": GeometricMean({ null, null, null })
 define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
@@ -5583,8 +5244,7 @@ define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Max(argument List<Integer>) Integer
 Max(argument List<Long>) Long
 Max(argument List<Decimal>) Decimal
@@ -5608,8 +5268,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Max# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerMax": Max({ 2, 4, 8, 6 }) // 8
 define "LongMax": Max({ 2L, 4L, 8L, 6L }) // 8L
 define "DateMax": Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
@@ -5621,8 +5280,7 @@ define "MaxIsAlsoNull": Max(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Min(argument List<Integer>) Integer
 Min(argument List<Long>) Long
 Min(argument List<Decimal>) Decimal
@@ -5643,8 +5301,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Min# operator:
 
-[source,cql]
-```
+``` cql
 define "IntegerMin": Min({ 2, 4, 8, 6 }) // 2
 define "LongMin": Min({ 2L, 4L, 8L, 6L }) // 2L
 define "DateMin": Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
@@ -5656,8 +5313,7 @@ define "MinIsAlsoNull": Min(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Median(argument List<Decimal>) Decimal
 Median(argument List<Quantity>) Quantity
 ```
@@ -5672,8 +5328,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Median# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
 define "QuantityMedian": Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
 define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quantity })
@@ -5684,8 +5339,7 @@ define "MedianIsAlsoNull": Median(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Mode(argument List<T>) T
 ```
 
@@ -5699,8 +5353,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Mode# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalMode": Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
 define "QuantityMode": Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
 define "ModeIsNull": Mode({ null as Quantity, null as Quantity, null as Quantity })
@@ -5711,8 +5364,7 @@ define "ModeIsAlsoNull": Mode(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 PopulationStdDev(argument List<Decimal>) Decimal
 PopulationStdDev(argument List<Quantity>) Quantity
 ```
@@ -5727,8 +5379,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#PopulationStdDev# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalPopulationStdDev": PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.41421356
 define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'
 define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
@@ -5739,8 +5390,7 @@ define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 PopulationVariance(argument List<Decimal>) Decimal
 PopulationVariance(argument List<Quantity>) Quantity
 ```
@@ -5755,8 +5405,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#PopulationVariance# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalPopulationVariance": PopulationVariance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0
 define "QuantityPopulationVariance": PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'
 define "PopulationVarianceIsNull": PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })
@@ -5767,8 +5416,7 @@ define "PopulationVarianceIsAlsoNull": PopulationVariance(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Product(argument List<Integer>) Integer
 Product(argument List<Long>) Long
 Product(argument List<Decimal>) Decimal
@@ -5788,8 +5436,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Product# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalProduct": Product({ 1.0, 2.0, 3.0, 4.0 }) // 24.0
 define "QuantityProduct": Product({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg' }) // 24.0 'mg'
 define "ProductIsNull": Product({ null as Quantity, null as Quantity, null as Quantity })
@@ -5800,8 +5447,7 @@ define "ProductIsAlsoNull": Product(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 StdDev(argument List<Decimal>) Decimal
 StdDev(argument List<Quantity>) Quantity
 ```
@@ -5816,8 +5462,7 @@ If the list is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#StdDev# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalStdDev": StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
 define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
 define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })
@@ -5828,8 +5473,7 @@ define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Sum(argument List<Integer>) Integer
 Sum(argument List<Long>) Long
 Sum(argument List<Decimal>) Decimal
@@ -5849,8 +5493,7 @@ If the list is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Sum# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
 define "QuantitySum": Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
 define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity })
@@ -5861,8 +5504,7 @@ define "SumIsAlsoNull": Sum(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Variance(argument List<Decimal>) Decimal
 Variance(argument List<Quantity>) Quantity
 ```
@@ -5877,8 +5519,7 @@ If the source is [.kw]#null#, the result is [.kw]#null#.
 
 The following examples illustrate the behavior of the [.id]#Variance# operator:
 
-[source,cql]
-```
+``` cql
 define "DecimalVariance": Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
 define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
 define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })
@@ -5892,8 +5533,7 @@ define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 AgeInYears() Integer
 AgeInMonths() Integer
 AgeInWeeks() Integer
@@ -5919,8 +5559,7 @@ These operators are shorthand for the equivalent AgeInXXXAt operator, passing To
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 AgeInYearsAt(asOf Date) Integer
 AgeInYearsAt(asOf DateTime) Integer
 AgeInMonthsAt(asOf Date) Integer
@@ -5948,8 +5587,7 @@ These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, p
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 CalculateAgeInYears(birthDate Date) Integer
 CalculateAgeInYears(birthDate DateTime) Integer
 CalculateAgeInMonths(birthDate Date) Integer
@@ -5977,8 +5615,7 @@ These operators are shorthand for the equivalent CalculateAgeInXXXAt, passing th
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 CalculateAgeInYearsAt(birthDate Date, asOf Date) Integer
 CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInMonthsAt(birthDate Date, asOf Date) Integer
@@ -6002,8 +5639,7 @@ The [.id]#CalculateAgeAt# operators are defined in terms of a datetime duration 
 
 The following examples illustrate the behavior of the [.id]#CalculateAgeAt# operator:
 
-[source,cql]
-```
+``` cql
 define "CalculateAgeAt": CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
 define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 ```
@@ -6013,8 +5649,7 @@ define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 =(left Code, right Code) Boolean
 =(left Concept, right Concept) Boolean
 ```
@@ -6027,8 +5662,7 @@ If either argument is [.kw]#null#, or has different components specified, the re
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-[source,cql]
-```
+``` cql
 define "Code1": Code { system: 'http://loinc.org', code: '8480-6', version: '1.0', display: 'Systolic blood pressure' }
 define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
 define "Concept2": Concept { codes: { Code1 }, display: 'More Concepts' }
@@ -6042,8 +5676,7 @@ define "EqualIsNull": Code1 = null
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 ~(left Code, right Code) Boolean
 ~(left Concept, right Concept) Boolean
 ~(left Code, right Concept) Boolean
@@ -6063,8 +5696,7 @@ Note that this operator will always return [.kw]#true# or [.kw]#false#, even if 
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-[source,cql]
-```
+``` cql
 define "Code1": Code { system: 'http://loinc.org', code: '8480-6', display: 'Systolic blood pressure' }
 define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
 define "Concept2": Concept { codes: { null }, display: 'More Concepts' }
@@ -6080,8 +5712,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 in(code String, codesystem CodeSystemRef) Boolean
 in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
@@ -6108,8 +5739,7 @@ If the [.id]#code# system reference cannot be resolved, a run-time error is thro
 
 The following examples illustrate the behavior of the [.kw]#in# (Codesystem) operator:
 
-[source,cql]
-```
+``` cql
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
 define "StringInCodesystem": '12345678' in "SNOMED:2014"
 define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
@@ -6126,8 +5756,7 @@ define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 {: .note-info}
 
 *Signature:*
-[source,cql]
-```
+``` cql
 ExpandValueSet(ValueSet) List<Code>
 ```
 
@@ -6143,8 +5772,7 @@ If the argument is null, the result is null.
 
 The following example illustrates use of the ExpandValueSet function:
 
-[source,cql]
-```
+``` cql
 valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
@@ -6154,8 +5782,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 in(code String, valueset ValueSetRef) Boolean
 in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
@@ -6182,8 +5809,7 @@ If the value set reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the [.kw]#in# (Valueset) operator:
 
-[source,cql]
-```
+``` cql
 valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
 define "StringInValueset": '12345678' in "Acute Pharyngitis"
 define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
@@ -6199,8 +5825,7 @@ define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
 
 *Signature:*
 
-[source,cql]
-```
+``` cql
 Message(source T, condition Boolean, code String, severity String, message String) T
 ```
 
@@ -6230,8 +5855,7 @@ The message is the content of the actual message that is sent to the calling env
 
 The following examples illustrate the behavior of the [.id]#Message# operator:
 
-[source,cql]
-```
+``` cql
 parameter Numerator Integer default 1
 parameter Denominator Integer default 0
 define "ErrorMessage": Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')
