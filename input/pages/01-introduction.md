@@ -1,7 +1,6 @@
 [[introduction]]
 # 1. Introduction
-:page-layout: dev
-:backend: xhtml
+
 :sectnums:
 :sectanchors:
 :toc:

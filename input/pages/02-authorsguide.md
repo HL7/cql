@@ -1,7 +1,6 @@
 [[authors-guide]]
 # 2. Author’s Guide
-:page-layout: dev
-:backend: xhtml
+
 :sectnums:
 :sectanchors:
 :toc:

@@ -1,7 +1,8 @@
-= Clinical Quality Language Tests
-:page-layout: dev
-:backend: xhtml
-:page-standards-status: informative
+---
+standards-status: informative
+---
+
+# Clinical Quality Language Tests
 
 The following contains a zip file that contains a set of unit tests for Clinical Quality Language functionality.
 
