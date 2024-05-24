@@ -4070,7 +4070,9 @@ ToString : UnaryExpression
 The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type
 
 [width="50%"]
-|====
+
+| Datatype | String Representation
+|-|-
 |Boolean |true\|false
 |Integer |*(-)?#0*
 |Long |*(-)?#0*
@@ -4080,7 +4082,7 @@ The ToString operator converts the value of its argument to a String value. The 
 |DateTime |*YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm*
 |Time	|*hh:mm:ss.fff*
 |Ratio |*<quantity>:<quantity>*
-|====
+{: .grid .table .table-striped}
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
