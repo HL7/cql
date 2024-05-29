@@ -1,0 +1,91 @@
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="index.html" class="dropdown-toggle">Documentation</a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="01-introduction.html">Chapter 1 - Introduction</a>
+      </li>
+      <li>
+        <a href="02-authorsguide.html">Chapter 2 - Author's Guide</a>
+      </li>
+      <li>
+        <a href="03-developersguide.html">Chapter 3 - Developer's Guide</a>
+      </li>
+      <li>
+        <a href="04-logicalspecification.html">Chapter 4 - Logical Specification</a>
+      </li>
+      <li>
+        <a href="05-languagesemantics.html">Chapter 5 - Language Semantics</a>
+      </li>
+      <li>
+        <a href="06-translationsemantics.html">Chapter 6 - Translation Semantics</a>
+      </li>
+      <li>
+        <a href="07-physicalrepresentation.html">Chapter 7 - Physical Representation</a>
+      </li>
+      <li>
+        <a href="08-a-cqlsyntax.html">Appendix A - CQL Syntax</a>
+      </li>
+      <li>
+        <a href="09-b-cqlreference.html">Appendix B - CQL Reference</a>
+      </li>
+      <li>
+        <a href="10-c-referenceimplementations.html">Appendix C - Reference Implementations</a>
+      </li>
+      <li>
+        <a href="11-d-references.html">Appendix D - References</a>
+      </li>
+      <li>
+        <a href="12-e-acronyms.html">Appendix E - Acronyms</a>
+      </li>
+      <li>
+        <a href="13-f-glossary.html">Appendix F - Glossary</a>
+      </li>
+      <li>
+        <a href="14-g-formattingconventions.html">Appendix G - Formatting Conventions</a>
+      </li>
+      <li>
+        <a href="15-h-timeintervalcalculations.html">Appendix H - Time Interval Calculations</a>
+      </li>
+      <li>
+        <a href="16-i-fhirpathtranslation.html">Appendix I - FHIRPath Translation</a>
+      </li>
+      <li>
+        <a href="17-j-listoftables.html">Appendix J - List Of Tables</a>
+      </li>
+      <li>
+        <a href="18-k-listoffigures.html">Appendix K - List Of Figures</a>
+      </li>
+      <li>
+        <a href="19-l-cqlsyntaxdiagrams.html">Appendix L - CQL Syntax Diagrams</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="02-authorsguide.html">Author's Guide</a>
+  </li>
+  <li>
+    <a href="03-developersguide.html">Developer's Guide</a>
+  </li>
+  <li>
+    <a href="09-b-cqlreference.html">CQL Reference</a>
+  </li>
+  <li>
+    <a href="grammar.html">Grammar</a>
+  </li>
+  <li>
+    <a href="elm.html">ELM</a>
+  </li>
+  <li>
+    <a href="Examples.html">Examples</a>
+  </li>
+  <li>
+    <a href="tests.html">Tests</a>
+  </li>
+  <li>
+    <a href="downloads.html">Downloads</a>
+  </li>
+  <li>
+    <a href="http://cql.hl7.org/history.html">Version History</a>
+  </li>
+</ul>

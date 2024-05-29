@@ -1,6 +1,9 @@
 output/
 qa/
 temp/
+template/
+input-cache/
 /.idea
 /*.iml
 .DS_Store
+.vscode/
