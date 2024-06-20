@@ -5498,9 +5498,9 @@ The following examples illustrate the behavior of the [.kw]#properly includes# o
 [source,cql]
 ----
 define "ProperlyIncludesIsTrue": { 1, 3, 5, 7 } properly includes { 1, 3, 5 }
-define "ProperlyIncludesIsAlsoTrue": { 1, 3, 5, null } properly includes null
+define "ProperlyIncludesIsNull": { 1, 3, 5, null } properly includes null
 define "ProperlyIncludesIsFalse": { 1, 3, 5 } properly includes { 1, 3, 5 }
-define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
+define "ProperlyIncludesIsAlsoNull": null properly includes { 1, 3, 5 }
 ----
 
 [[properly-included-in-1]]
@@ -5531,9 +5531,9 @@ The following examples illustrate the behavior of the [.kw]#properly included in
 [source,cql]
 ----
 define "ProperlyIncludedInIsTrue": { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
-define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5 }
+define "ProperlyIncludedInIsNull": null properly included in { 1, 3, 5 }
 define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
-define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in null
+define "ProperlyIncludedInIsAlsoNull": { 1, 3, 5, null } properly included in null
 ----
 
 [[singleton-from]]
