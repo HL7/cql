@@ -5510,7 +5510,8 @@ define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 
 [source,cql]
 ----
-properly included in(left List<T>, right list<T>) Boolean
+properly included in(left List<T>, right List<T>) Boolean
+properly included in(left T, right List<T>) Boolean
 ----
 
 *Description:*
