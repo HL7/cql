@@ -1,11 +1,4 @@
-[[language-semantics]]
-# 5. Language Semantics
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 This section contains more detailed information relating to the intended semantics of the Clinical Quality Language. These topics are specifically relevant for readers interested in building translation, semantic validation, or evaluation applications for CQL.
 
@@ -52,7 +45,7 @@ For example, consider the following retrieve element:
 </operand>
 ```
 
-In this example, the data type is specified as "[.id]#quick:Condition#", indicating that the result of the retrieve is a list of Condition instances. In addition, each instance must conform to the profile defined by the identifier "[.id]#qicore-condition#".
+In this example, the data type is specified as "<span class="id">quick:Condition</span>", indicating that the result of the retrieve is a list of Condition instances. In addition, each instance must conform to the profile defined by the identifier "<span class="id">qicore-condition</span>".
 
 To help communicate validity of an artifact for a specific use, this specification defines two conformance levels related to this use of templates:
 
@@ -141,83 +134,83 @@ To help implementers correctly support version differences and backwards (and to
 
 ##### Context Support
 
-In the initial version of CQL, the name [.id]#Population# was used to describe an unspecified, or unfiltered context. Beginning in 1.4, the context name was changed to [.id]#Unfiltered#. Note that the ballot version was [.id]#Unspecified#. As a result, implementations may choose to support all three names as synonyms for the Unfiltered context.
+In the initial version of CQL, the name <span class="id">Population</span> was used to describe an unspecified, or unfiltered context. Beginning in 1.4, the context name was changed to <span class="id">Unfiltered</span>. Note that the ballot version was <span class="id">Unspecified</span>. As a result, implementations may choose to support all three names as synonyms for the Unfiltered context.
 
 ##### CalculateAge Functions
 
-With the introduction of the [.id]#Date# type in 1.3, [.id]#Date# overloads of the CalculateAge and CalculateAgeAt operators were introduced.
+With the introduction of the <span class="id">Date</span> type in 1.3, <span class="id">Date</span> overloads of the CalculateAge and CalculateAgeAt operators were introduced.
 
 ##### Comparisons
 
-In 1.3, [.id]#Date#, [.id]#Time#, and [.id]#DateTime# comparison operator semantics were changed to return null only if the comparands have different precisions and the comparison cannot be resolved within the precision specified for both comparands.
+In 1.3, <span class="id">Date</span>, <span class="id">Time</span>, and <span class="id">DateTime</span> comparison operator semantics were changed to return null only if the comparands have different precisions and the comparison cannot be resolved within the precision specified for both comparands.
 
 ##### Conversions
 
-In 1.3, the implicit conversion from [.kw]#List#[.sym]#<#[.id]#Code#[.sym]#># to [.id]#Concept# was changed to be explicit.
+In 1.3, the implicit conversion from <span class="kw">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> to <span class="id">Concept</span> was changed to be explicit.
 
-In 1.3, implicit conversions from [.id]#Integer# and [.id]#Decimal# to [.id]#Quantity# were added.
+In 1.3, implicit conversions from <span class="id">Integer</span> and <span class="id">Decimal</span> to <span class="id">Quantity</span> were added.
 
-In 1.3, [.id]#Date# and [.id]#Ratio# overloads of [.id]#ToString# were added.
+In 1.3, <span class="id">Date</span> and <span class="id">Ratio</span> overloads of <span class="id">ToString</span> were added.
 
 In 1.4, unit conversion was added for quantities.
 
-In 1.4, the [.id]#ToDateTime#([.id]#Date#) function was changed to leave the time components unspecified in the resulting [.id]#DateTime# value, rather than setting the time components to zero.
+In 1.4, the <span class="id">ToDateTime</span>(<span class="id">Date</span>) function was changed to leave the time components unspecified in the resulting <span class="id">DateTime</span> value, rather than setting the time components to zero.
 
-In 1.4, a [.id]#Ratio# overload of [.id]#ToQuantity# was added.
+In 1.4, a <span class="id">Ratio</span> overload of <span class="id">ToQuantity</span> was added.
 
-In 1.4, the [.id]#ConvertQuantity# operator now throws an exception if the requested unit conversion is not supported by the implementation.
+In 1.4, the <span class="id">ConvertQuantity</span> operator now throws an exception if the requested unit conversion is not supported by the implementation.
 
-In 1.5, a [.id]#Long# overload of [.id]#ToString# was added
+In 1.5, a <span class="id">Long</span> overload of <span class="id">ToString</span> was added
 
 ##### Collapse and Expand Operators
 
-In 1.3, a [.kw]#per# clause was added to the [.id]#Collapse# operator.
+In 1.3, a <span class="kw">per</span> clause was added to the <span class="id">Collapse</span> operator.
 
-In 1.5, an [.id]#Interval# overload was added to the [.id]#Expand# operator
+In 1.5, an <span class="id">Interval</span> overload was added to the <span class="id">Expand</span> operator
 
 ##### Equality Semantics
 
-In 1.3, [.id]#Tuple# equality semantics were changed to return [.kw]#null# only if the comparands have different elements specified.
+In 1.3, <span class="id">Tuple</span> equality semantics were changed to return <span class="kw">null</span> only if the comparands have different elements specified.
 
-In 1.3, [.id]#Date#, [.id]#Time#, and [.id]#DateTime# equality semantics were changed to return null only if the comparands have different precisions and equality cannot be resolved within the precision specified for both comparands.
+In 1.3, <span class="id">Date</span>, <span class="id">Time</span>, and <span class="id">DateTime</span> equality semantics were changed to return null only if the comparands have different precisions and equality cannot be resolved within the precision specified for both comparands.
 
 ##### Equivalence Semantics
 
-In 1.3, a [.id]#Concept# overload was added to the [.id]#Equivalence# operator ([.kw]#~#).
+In 1.3, a <span class="id">Concept</span> overload was added to the <span class="id">Equivalence</span> operator (<span class="kw">~</span>).
 
 ##### Exists Operator
 
-In 1.3, the [.kw]#exists# operator was changed to ignore [.kw]#null# elements in the input (i.e. a list with only [.kw]#null# elements is considered empty).
+In 1.3, the <span class="kw">exists</span> operator was changed to ignore <span class="kw">null</span> elements in the input (i.e. a list with only <span class="kw">null</span> elements is considered empty).
 
 ##### List Membership and Duplicate Detection
 
-In 1.3, List membership (i.e. [.kw]#in# and [.kw]#contains#) and duplicate detection (e.g. via the [.kw]#distinct# operator) were changed to use equality semantics, rather than equivalence semantics.
+In 1.3, List membership (i.e. <span class="kw">in</span> and <span class="kw">contains</span>) and duplicate detection (e.g. via the <span class="kw">distinct</span> operator) were changed to use equality semantics, rather than equivalence semantics.
 
-In 1.3, a [.id]#List#[.sym]#<#[.id]#Code#[.sym]#># overload was added to the [.kw]#in# operator.
+In 1.3, a <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> overload was added to the <span class="kw">in</span> operator.
 
-In 1.3, singleton overloads were added for the [.kw]#includes# and [.kw]#included in# operators.
+In 1.3, singleton overloads were added for the <span class="kw">includes</span> and <span class="kw">included in</span> operators.
 
-In 1.4, List operators were changed to treat [.kw]#null# elements as equal for the purposes of membership determination.
+In 1.4, List operators were changed to treat <span class="kw">null</span> elements as equal for the purposes of membership determination.
 
 ##### Media Types
 
-In 1.5, media types for CQL identifiers ([.id]#text/cql-identifier#) and expressions ([.id]#text/cql-expression#) were added. Note that these were introduced as [.id]#text/cql.identifier# and [.id]#text/cql.expression# in the ballot, so implementations may choose to accept both forms as valid to support backwards compatibility with the ballot specifiers. However, only the dash versions are officially registered IANA media types.
+In 1.5, media types for CQL identifiers (<span class="id">text/cql-identifier</span>) and expressions (<span class="id">text/cql-expression</span>) were added. Note that these were introduced as <span class="id">text/cql.identifier</span> and <span class="id">text/cql.expression</span> in the ballot, so implementations may choose to accept both forms as valid to support backwards compatibility with the ballot specifiers. However, only the dash versions are officially registered IANA media types.
 
 ##### Query Construct
 
-In 1.5, an [.kw]#aggregate# clause was introduced into the query construct.
+In 1.5, an <span class="kw">aggregate</span> clause was introduced into the query construct.
 
 ##### Quantity Arithmetic
 
-In 1.4, [.id]#Quantity# overloads of the [.kw]#div# and [.kw]#mod# operators were added.
+In 1.4, <span class="id">Quantity</span> overloads of the <span class="kw">div</span> and <span class="kw">mod</span> operators were added.
 
 ##### Timezone Keyword
 
-In 1.4, the [.kw]#timezone# keyword was changed to [.kw]#timezoneoffset# and the [.kw]#timezone# element was removed from the [.id]#Time# type. However, to ensure backwards-compatibility of ELM, the [.kw]#timezone# element was retained in the ELM schema, allowing implementations to simultaneously support 1.4 and 1.3 ELM.
+In 1.4, the <span class="kw">timezone</span> keyword was changed to <span class="kw">timezoneoffset</span> and the <span class="kw">timezone</span> element was removed from the <span class="id">Time</span> type. However, to ensure backwards-compatibility of ELM, the <span class="kw">timezone</span> element was retained in the ELM schema, allowing implementations to simultaneously support 1.4 and 1.3 ELM.
 
 ##### Vocabulary Types
 
-In 1.5, a [.id]#Vocabulary# abstract type with two subtypes, [.id]#CodeSystem# and [.id]#ValueSet#, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from [.id]#List#[.sym]#<#[.id]#Code#[.sym]#># to [.id]#ValueSet#. To ensure this is not a backwards-incompatible change, 1.5 also introduced an [.id]#ExpandValueSet# function to support explicit expansion of value sets, and an implicit conversion from [.id]#ValueSet# to [.id]#List#[.sym]#<#[.id]#Code#[.sym]#>#. In the ELM, the [.id]#preserve# attribute was added to the [.id]#ValueSetRef# node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a [.id]#ValueSetRef# should be expanded or not.
+In 1.5, a <span class="id">Vocabulary</span> abstract type with two subtypes, <span class="id">CodeSystem</span> and <span class="id">ValueSet</span>, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> to <span class="id">ValueSet</span>. To ensure this is not a backwards-incompatible change, 1.5 also introduced an <span class="id">ExpandValueSet</span> function to support explicit expansion of value sets, and an implicit conversion from <span class="id">ValueSet</span> to <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span>. In the ELM, the <span class="id">preserve</span> attribute was added to the <span class="id">ValueSetRef</span> node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a <span class="id">ValueSetRef</span> should be expanded or not.
 
 ### Artifact Data Requirements
 
@@ -411,7 +404,7 @@ Because the language is pure functional, every expression and operator is define
 
 Once an expression has been semantically validated, its return type is known. This means that the expression is guaranteed to return either a value of that type, or a _null_, indicating the evaluation did not result in a value.
 
-In general, operations are defined to result in null if any of their arguments are null. For example, the result of evaluating 2 [.sym]#+# null is null. In this way, missing information results in an unknown result. There are exceptions to this rule, notably the logical operators, and the null-handling operators. The behavior for these operators (and others that do not follow this rule) are described in detail in the documentation for each operator.
+In general, operations are defined to result in null if any of their arguments are null. For example, the result of evaluating 2 <span class="sym">+</span> null is null. In this way, missing information results in an unknown result. There are exceptions to this rule, notably the logical operators, and the null-handling operators. The behavior for these operators (and others that do not follow this rule) are described in detail in the documentation for each operator.
 
 Evaluation takes place within an execution model that provides access to the data and parameters provided to the evaluation. Data is provided to the evaluation as a set of lists of structured values representing the clinical information. In order to be represented in this data set, a given structured value must be a _cacheable_ item. A cacheable item must have the following:
 
@@ -591,7 +584,7 @@ Unless otherwise specified, the term designates a calendar year in the Gregorian
 |*Leap year* |Calendar year in the Gregorian calendar that has 366 calendar days. |
 |===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑G - Definitions for the terms involved in dealing with [.kw]#Date# and [.kw]#Time# values
+Table 5‑G - Definitions for the terms involved in dealing with <span class="kw">Date</span> and <span class="kw">Time</span> values
 
 ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date and time values using the following components:
 
@@ -609,7 +602,7 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 |*Timezone Offset* |Real |[-13.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
 |======================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑H - The components used to represent [.kw]#Date# and [.kw]#Time# values in CQL
+Table 5‑H - The components used to represent <span class="kw">Date</span> and <span class="kw">Time</span> values in CQL
 
 [[datetime-arithmetic-1]]
 ### Date and Time Arithmetic
@@ -630,7 +623,7 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 |*Millisecond* |Integer |[0, 999] |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |========================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-Table 5‑I - The [.kw]#Quantities# and their precision that can be used for [.kw]#Date# and [.kw]#Time# calculations in CQL
+Table 5‑I - The <span class="kw">Quantities</span> and their precision that can be used for <span class="kw">Date</span> and <span class="kw">Time</span> calculations in CQL
 
 ## Precision-Based Timing
 
@@ -638,7 +631,7 @@ One of the most complex aspects of quality expression logic is dealing with timi
 
 The core issue being addressed is the proper handling of temporal comparisons in the presence of varying degrees of certainty about the time at which events occur. For example, a measure is looking for the occurrence of a particular procedure within two years of the measurement start date, but an EHR records that a qualifying procedure occurred in a given year, not the month or day of the occurrence. In this scenario, the EHR must be allowed to provide as much information as it accurately has, but must not be required to provide information that is not known. This requirement means that the record will contain a date and time value, but specified only to the year precision. If the semantics for timing comparison do not take this possibility into account, the resulting comparisons may yield incorrect results.
 
-In general, the approach taken by CQL formally defines the notion of _uncertainty_ to specify the semantics for date and time comparisons, and all the operations that rely on them. In particular, the approach described here applies to operators defined for the [.id]#Date#, [.id]#DateTime#, and [.id]#Time# types, the only difference between them being the precisions that must be considered. Note that the concept of uncertainty is not exposed directly in CQL or in ELM, but is defined as an implementation detail. This approach is deliberate and is taken to achieve the intuitively correct semantics without exposing the complexity involved to CQL authors and developers.
+In general, the approach taken by CQL formally defines the notion of _uncertainty_ to specify the semantics for date and time comparisons, and all the operations that rely on them. In particular, the approach described here applies to operators defined for the <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> types, the only difference between them being the precisions that must be considered. Note that the concept of uncertainty is not exposed directly in CQL or in ELM, but is defined as an implementation detail. This approach is deliberate and is taken to achieve the intuitively correct semantics without exposing the complexity involved to CQL authors and developers.
 
 The discussion here begins by formally defining uncertainty and the semantics of operations involving uncertainty. The calculation of duration between imprecise dates is then discussed in terms of uncertainty, and then the CQL timing phrases are all defined in terms of either date and time comparison, or duration calculation. The discussion concludes with some notes on implementation of these semantics within an engine or translated environment.
 
@@ -783,7 +776,7 @@ case
 end
 ```
 
-Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A [.sym]#=# B or A [.sym]#<# B_ is _not_ equivalent to _A [.sym]#\<=# B_ because of the uncertainty.
+Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A <span class="sym">=</span> B or A <span class="sym"><</span> B_ is _not_ equivalent to _A <span class="sym">\<=</span> B_ because of the uncertainty.
 
 [[arithmetic-operators-2]]
 #### Arithmetic Operators
@@ -796,7 +789,7 @@ uncertainty[17, 44] + uncertainty[5, 10] // returns uncertainty[22, 54]
 
 The above expression can be read:
 
-_some value between 17 and 44_ [.sym]#+# _some value between 5 and 10_
+_some value between 17 and 44_ <span class="sym">+</span> _some value between 5 and 10_
 
 The result of this calculation simply adds the respective boundaries to determine what the range of possible values of this calculation would be, in this case _some value between 22 and 54_.
 
@@ -900,7 +893,7 @@ Note that uncertainty calculations, just like date and time comparison calculati
 hours between @2012-01-01T01:00:00 and @2012-01-01T02:00:00.0
 ```
 
-The above example results in [.sym]#1#, even though the second argument is specified to milliseconds and the first argument is only specified to seconds.
+The above example results in <span class="sym">1</span>, even though the second argument is specified to milliseconds and the first argument is only specified to seconds.
 
 ### Timing Phrases
 
@@ -1005,7 +998,7 @@ Note that as with the before and after transformations, a null test is required 
 [[interval-operators-1]]
 #### Interval Operators
 
-In general, interval comparisons are already defined in terms of the fundamental comparison operators ([.sym]#=#, [.sym]#>#, [.sym]#<#, [.sym]#>=#, [.sym]#\<=#, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
+In general, interval comparisons are already defined in terms of the fundamental comparison operators (<span class="sym">=</span>, <span class="sym">></span>, <span class="sym"><</span>, <span class="sym">>=</span>, <span class="sym">\<=</span>, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
 
 Note that open null boundaries of intervals are treaterd as uncertainties for the purposes of interval computation. For example:
 
@@ -1025,7 +1018,7 @@ This results in an interval that begins at 5, and ends at some value between 5 a
 Implementation of these semantics can be simplified by recognizing that all the date and time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:
 
 * Support for run-time operations on integer-based uncertainties, including:
-** [.sym]#=#, [.sym]#<#, [.sym]#>#, [.sym]#\<=#, [.sym]#>=#, [.sym]#+#, [.sym]#-#, [.sym]#unary +/-#, [.sym]#*#, [.sym]#/#
+** <span class="sym">=</span>, <span class="sym"><</span>, <span class="sym">></span>, <span class="sym">\<=</span>, <span class="sym">>=</span>, <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">unary +/-</span>, <span class="sym">*</span>, <span class="sym">/</span>
 ** implicit conversion between integer point values and uncertainties
 * Precision-based duration and difference between dates and times
 

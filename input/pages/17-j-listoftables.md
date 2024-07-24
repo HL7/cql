@@ -1,11 +1,4 @@
-[[appendix-j-list-of-tables]]
-# Appendix J - List Of Tables
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: informative
+{% include styles.html %}
 
 ## Introduction
 
@@ -25,9 +18,9 @@
 
 5.  <<02-authorsguide.adoc#table-2-e,Table 2-E>> : Types of simple values that CQL supports
 
-6.  <<02-authorsguide.adoc#table-2-f,Table 2-F>> : Elements that make up a [.kw]#code# type
+6.  <<02-authorsguide.adoc#table-2-f,Table 2-F>> : Elements that make up a <span class="kw">code</span> type
 
-7.  <<02-authorsguide.adoc#table-2-g,Table 2-G>> : Elements that make up a [.kw]#Concept# type
+7.  <<02-authorsguide.adoc#table-2-g,Table 2-G>> : Elements that make up a <span class="kw">Concept</span> type
 
 8.  <<02-authorsguide.adoc#table-2-h,Table 2-H>> : The built-in comparison operators that CQL provides
 
@@ -35,17 +28,17 @@
 
 10.  <<02-authorsguide.adoc#table-2-j,Table 2-J>> : Arithmetic operations that CQL provides
 
-11.  <<02-authorsguide.adoc#table-2-k,Table 2-K>> : The arguments that the [.kw]#DateTime# operator takes
+11.  <<02-authorsguide.adoc#table-2-k,Table 2-K>> : The arguments that the <span class="kw">DateTime</span> operator takes
 
-12.  <<02-authorsguide.adoc#table-2-l,Table 2-L>> : The arguments that the [.kw]#Time# operator takes
+12.  <<02-authorsguide.adoc#table-2-l,Table 2-L>> : The arguments that the <span class="kw">Time</span> operator takes
 
 13.  <<02-authorsguide.adoc#table-2-m,Table 2-M>> : The operators that CQL supports for retrieving the current date and time
 
-14.  <<02-authorsguide.adoc#table-2-n,Table 2-N>> : The precision-based comparison operators for [.kw]#Date# and [.kw]#Time# comparisons
+14.  <<02-authorsguide.adoc#table-2-n,Table 2-N>> : The precision-based comparison operators for <span class="kw">Date</span> and <span class="kw">Time</span> comparisons
 
-15.  <<02-authorsguide.adoc#table-2-o,Table 2-O>> : The valid extraction components for extracting [.kw]#Date# and [.kw]#Time# components
+15.  <<02-authorsguide.adoc#table-2-o,Table 2-O>> : The valid extraction components for extracting <span class="kw">Date</span> and <span class="kw">Time</span> components
 
-16.  <<02-authorsguide.adoc#table-2-p,Table 2-P>> : The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
+16.  <<02-authorsguide.adoc#table-2-p,Table 2-P>> : The ISO8601 calendar semantics that should be used for calculations involving <span class="kw">Date</span> and <span class="kw">Time</span>
 
 17.  <<02-authorsguide.adoc#table-2-q,Table 2-Q>> : Comparison of two interval values using a complete set of operations
 
@@ -97,11 +90,11 @@
 
 6.  <<05-languagesemantics.adoc#table-5-f,Table 5-F>> : The operations within the expression language are defined with a scope, and the stack to represent this scope
 
-7.  <<05-languagesemantics.adoc#table-5-g,Table 5-G>> : Definitions for the terms involved in dealing with [.kw]#Date# and [.kw]#Time# values
+7.  <<05-languagesemantics.adoc#table-5-g,Table 5-G>> : Definitions for the terms involved in dealing with <span class="kw">Date</span> and <span class="kw">Time</span> values
 
-8.  <<05-languagesemantics.adoc#table-5-h,Table 5-H>> : The components used to represent [.kw]#Date# and [.kw]#Time# values in CQL
+8.  <<05-languagesemantics.adoc#table-5-h,Table 5-H>> : The components used to represent <span class="kw">Date</span> and <span class="kw">Time</span> values in CQL
 
-9.  <<05-languagesemantics.adoc#table-5-i,Table 5-I>> : The [.kw]#Quantities# and their precision that can be used for [.kw]#Date# and [.kw]#Time# calculations in CQL
+9.  <<05-languagesemantics.adoc#table-5-i,Table 5-I>> : The <span class="kw">Quantities</span> and their precision that can be used for <span class="kw">Date</span> and <span class="kw">Time</span> calculations in CQL
 
 ## Translation Semantics
 
@@ -121,13 +114,13 @@
 
 8.  <<06-translationsemantics.adoc#table-6-h,Table 6-H>> : The ELM equivalent for each CQL arithmetic operator
 
-9.  <<06-translationsemantics.adoc#table-6-i,Table 6-I>> : The ELM equivalent for each CQL [.kw]#String# operator
+9.  <<06-translationsemantics.adoc#table-6-i,Table 6-I>> : The ELM equivalent for each CQL <span class="kw">String</span> operator
 
-10.  <<06-translationsemantics.adoc#table-6-j,Table 6-J>> : The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operator
+10.  <<06-translationsemantics.adoc#table-6-j,Table 6-J>> : The ELM equivalent for each CQL <span class="kw">Date</span> and <span class="kw">Time</span> operator
 
-11.  <<06-translationsemantics.adoc#table-6-k,Table 6-K>> : The ELM equivalent for each CQL [.kw]#Interval# operator
+11.  <<06-translationsemantics.adoc#table-6-k,Table 6-K>> : The ELM equivalent for each CQL <span class="kw">Interval</span> operator
 
-12.  <<06-translationsemantics.adoc#table-6-l,Table 6-L>> : The ELM equivalent for each CQL [.kw]#List# operator
+12.  <<06-translationsemantics.adoc#table-6-l,Table 6-L>> : The ELM equivalent for each CQL <span class="kw">List</span> operator
 
 13.  <<06-translationsemantics.adoc#table-6-m,Table 6-M>> : The ELM equivalent for each CQL aggegrate operator
 
@@ -146,15 +139,15 @@
 [[appendix-b-cql-reference]]
 ## Appendix B - CQL Reference
 
-1.  <<09-b-cqlreference.adoc#table-9-a,Table 9-A>> : The truth table for the [.kw]#And# operator
+1.  <<09-b-cqlreference.adoc#table-9-a,Table 9-A>> : The truth table for the <span class="kw">And</span> operator
 
-2.  <<09-b-cqlreference.adoc#table-9-a1,Table 9-A1>> : The truth table for the [.kw]#Implies# operator
+2.  <<09-b-cqlreference.adoc#table-9-a1,Table 9-A1>> : The truth table for the <span class="kw">Implies</span> operator
 
-3.  <<09-b-cqlreference.adoc#table-9-b,Table 9-B>> : The truth table for the [.kw]#Not# operator
+3.  <<09-b-cqlreference.adoc#table-9-b,Table 9-B>> : The truth table for the <span class="kw">Not</span> operator
 
-4.  <<09-b-cqlreference.adoc#table-9-c,Table 9-C>> : The truth table for the [.kw]#Or# operator
+4.  <<09-b-cqlreference.adoc#table-9-c,Table 9-C>> : The truth table for the <span class="kw">Or</span> operator
 
-5.  <<09-b-cqlreference.adoc#table-9-d,Table 9-D>> : The truth table for the [.kw]#Xor# operator
+5.  <<09-b-cqlreference.adoc#table-9-d,Table 9-D>> : The truth table for the <span class="kw">Xor</span> operator
 
 6.  <<09-b-cqlreference.adoc#table-9-e,Table 9-E>> : The conversions supported in CQL
 

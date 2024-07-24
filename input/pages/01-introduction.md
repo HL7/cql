@@ -1,10 +1,4 @@
-[[introduction]]
-# 1. Introduction
-
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 The Clinical Quality Language Specification footnote:[Note that CQL is unrelated to the Cassandra Query Language (see: http://cassandra.apache.org/doc/latest/cql/)] defines a representation for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains. Although several standards exist for the expression of clinical quality logic, these standards are not widely adopted and present various barriers to point-to-point sharing of clinical knowledge artifacts such as lack of tooling, complexity of implementation, or insufficient expressivity.footnote:[As of the time of this publication, Clinical Quality Language has been adopted by the Centers for Medicare and Medicaid Services (CMS) for use in distributing electronic Clinical Quality Measure (eCQM) specifications, and is being investigated by multiple organizations for use in the representation and sharing of decision support. In addition, the language has been implemented in multiple commercial products and open source projects. See the [Reference Implementations](10-c-referenceimplementations.html) topic for more information on the adoption of Clinical Quality Language.]
 

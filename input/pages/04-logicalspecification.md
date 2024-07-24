@@ -1,17 +1,10 @@
-[[logical-specification]]
-# 4. Logical Specification
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 This chapter describes the Expression Logical Model (ELM) and how it is used to represent clinical knowledge within a quality artifact.
 
 The ELM defines a mechanism for representing artifact logic independent of syntax and special-purpose constructs introduced at the syntactic level. ELM is equivalent to CQL syntax in terms of expressive power: every possible expression in CQL has an equivalent canonical-form expression in ELM. Higher-level constructs such as timing phrases and implicit conversions are represented in terms of the more primitive operators in ELM. This takes the burden of interpretation of higher-level constructs off of implementers, allowing them to focus on the implementation of a more primitive set of functionality.
 
-Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 [.sym]#+# 2 can be represented as instances of the appropriate classes:
+Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 <span class="sym">+</span> 2 can be represented as instances of the appropriate classes:
 
 <a name="figure-4-a"></a>
 ![extracted-media/media/image10](extracted-media/media/image10.png){: width=107; height=99; }
@@ -59,7 +52,7 @@ The _Tuple_ class represents construction of a new structured value, with the va
 
 To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some usages, such as within a _Filter_ expression, the source is implicit. If used outside such a usage, a source must be provided.
 
-The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers ([.sym]#.#) as well as indexers ([.sym]#[x]#) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
+The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
 
 ### Tuple
 
@@ -76,7 +69,7 @@ The following example illustrates the construction of a tuple using the _Tuple_ 
 <a name="figure-4-h"></a>
 ![extracted-media/media/image17](extracted-media/media/image17.png){: width=190; height=157; }
 
-Figure 4‑H - A diagram to explain how ELM represents the construction of a [.kw]#Tuple#
+Figure 4‑H - A diagram to explain how ELM represents the construction of a <span class="kw">Tuple</span>
 
 ### Instance
 
@@ -95,7 +88,7 @@ The following example illustrates the construction of a structured value using t
 <a name="figure-4-i"></a>
 ![extracted-media/media/image18](extracted-media/media/image18.png){: width=184; height=152; }
 
-Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the [.kw]#Instance# class
+Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the <span class="kw">Instance</span> class
 
 ### Property
 
@@ -1177,9 +1170,9 @@ Greater : BinaryExpression
 
 The Greater operator returns true if the first argument is greater than the second argument.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1198,9 +1191,9 @@ GreaterOrEqual : BinaryExpression
 
 The GreaterOrEqual operator returns true if the first argument is greater than or equal to the second argument.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1219,9 +1212,9 @@ Less : BinaryExpression
 
 The Less operator returns true if the first argument is less than the second argument.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1240,9 +1233,9 @@ LessOrEqual : BinaryExpression
 
 The LessOrEqual operator returns true if the first argument is less than or equal to the second argument.
 
-For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a [.kw]#null#. When a quantity has no units specified, it is treated as a quantity with the default unit ([.lit]#'1'#).
+For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in [.kw]#null#.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1286,7 +1279,7 @@ The following example illustrates a simple _And_ expression:
 <a name="figure-4-c"></a>
 ![extracted-media/media/image12](extracted-media/media/image12.png){: width=138; height=217; }
 
-Figure 4‑C - A diagram to explain how ELM represents a simple [.kw]#And# expression
+Figure 4‑C - A diagram to explain how ELM represents a simple <span class="kw">And</span> expression
 
 ### Implies
 
@@ -1401,14 +1394,14 @@ The following example illustrates a more complex multi-conditional _Case_ expres
 <a name="figure-4-e"></a>
 ![extracted-media/media/image14](extracted-media/media/image14.png){: width=230; height=397; }
 
-Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional [.kw]#Case# expression
+Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional <span class="kw">Case</span> expression
 
 And finally, an equivalent comparand-based _Case_ expression:
 
 <a name="figure-4-f"></a>
 ![extracted-media/media/image15](extracted-media/media/image15.png){: width=184; height=286; }
 
-Figure 4‑F - A diagram to explain how ELM represents a comparand-base [.kw]#Case# expression
+Figure 4‑F - A diagram to explain how ELM represents a comparand-base <span class="kw">Case</span> expression
 
 ### If
 
@@ -1429,7 +1422,7 @@ The following examples illustrates a simple _If_ expression (i.e. if / then / el
 <a name="figure-4-d"></a>
 ![extracted-media/media/image13](extracted-media/media/image13.png){: width=143; height=193; }
 
-Figure 4‑D - A diagram to explain how ELM represents a simple [.kw]#If# expression
+Figure 4‑D - A diagram to explain how ELM represents a simple <span class="kw">If</span> expression
 
 ## Arithmetic Operators
 
@@ -1492,7 +1485,7 @@ The following example illustrates a simple _Add_ expression:
 <a name="figure-4-g"></a>
 ![extracted-media/media/image16](extracted-media/media/image16.png){: width=102; height=94; }
 
-Figure 4‑G - A diagram to explain how ELM represents a simple [.kw]#Add# expression
+Figure 4‑G - A diagram to explain how ELM represents a simple <span class="kw">Add</span> expression
 
 ### Ceiling
 
@@ -1839,23 +1832,23 @@ If the result of the operation cannot be represented, the result is null.
 Successor : UnaryExpression
 ```
 
-The [.id]#Successor# operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+The <span class="id">Successor</span> operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
 
-The [.id]#Successor# operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
+The <span class="id">Successor</span> operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
-For [.id]#Integer#, [.id]#Successor# is equivalent to adding 1.
+For <span class="id">Integer</span>, <span class="id">Successor</span> is equivalent to adding 1.
 
-For [.id]#Long#, [.id]#Successor# is equivalent to adding 1L.
+For <span class="id">Long</span>, <span class="id">Successor</span> is equivalent to adding 1L.
 
-For [.id]#Decimal#, [.id]#Successor# is equivalent to adding the minimum precision value for the [.id]#Decimal# type, or 10^-08.
+For <span class="id">Decimal</span>, <span class="id">Successor</span> is equivalent to adding the minimum precision value for the <span class="id">Decimal</span> type, or 10^-08.
 
-For [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values, [.id]#Successor# is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the [.id]#DateTime# is fully specified, [.id]#Successor# is equivalent to adding 1 millisecond; if the [.id]#DateTime# is specified to the second, [.id]#Successor# is equivalent to adding one second, etc.
+For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="id">Successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="id">Successor</span> is equivalent to adding 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="id">Successor</span> is equivalent to adding one second, etc.
 
-For [.id]#Quantity# values, [.id]#Successor# is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the [.id]#Decimal# type if the quantity is a decimal. The units are unchanged.
+For <span class="id">Quantity</span> values, <span class="id">Successor</span> is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the <span class="id">Decimal</span> type if the quantity is a decimal. The units are unchanged.
 
-If the argument is [.kw]#null#, the result is [.kw]#null#.
+If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-If the result of the operation cannot be represented, the result is [.kw]#null#.
+If the result of the operation cannot be represented, the result is <span class="kw">null</span>.
 
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
@@ -2196,9 +2189,9 @@ The DateTime operator constructs a DateTime value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
 
-If all the arguments are [.kw]#null#, the result is [.kw]#null#, as opposed to a [.id]#DateTime# with no components specified.
+If all the arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>, as opposed to a <span class="id">DateTime</span> with no components specified.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
 
@@ -2381,7 +2374,7 @@ The Time operator constructs a time value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, minute may be null, but if it is, second, and millisecond must all be null as well.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 ### TimeFrom
 
@@ -2659,7 +2652,7 @@ There are two overloads of this operator:
 1. T, List : The type of T must be the same as the element type of the list.
 2. T, Interval : The type of T must be the same as the point type of the interval.
 
-For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics, with the exception that [.kw]#null# elements are considered equal. If the first argument is null, the result is true if the list contains any null elements, and false otherwise. If the second argument is null, the result is false.
+For the T, List overload, this operator returns true if the given element is in the given list, using equality semantics, with the exception that <span class="kw">null</span> elements are considered equal. If the first argument is null, the result is true if the list contains any null elements, and false otherwise. If the second argument is null, the result is false.
 
 For the T, Interval overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is null. If the second argument is null, the result is false.
 
@@ -2849,9 +2842,9 @@ There are two overloads of this operator:
 	List, T: The type of T must be the same as the element type of the list.
 	Interval, T : The type of T must be the same as the point type of the interval.
 
-For the List, T overload, this operator returns [.kw]#true# if the given element is in the list, and it is not the only element in the list, using equality semantics, with the exception that [.kw]#null# elements are considered equal. If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#true# if the list contains any [.kw]#null# elements and at least one other element, and [.kw]#false# otherwise.
+For the List, T overload, this operator returns <span class="kw">true</span> if the given element is in the list, and it is not the only element in the list, using equality semantics, with the exception that <span class="kw">null</span> elements are considered equal. If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">true</span> if the list contains any <span class="kw">null</span> elements and at least one other element, and <span class="kw">false</span> otherwise.
 
-For the Interval, T overload, this operator returns [.kw]#true# if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the [.id]#Start# and [.id]#End# operators.  If precision is specified and the point type is a [.id]#Date#, [.id]#DateTime#, or [.id]#Time# type, comparisons used in the operation are performed at the specified precision. If the first argument is [.kw]#null#, the result is [.kw]#false#. If the second argument is [.kw]#null#, the result is [.kw]#null#.
+For the Interval, T overload, this operator returns <span class="kw">true</span> if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the <span class="id">Start</span> and <span class="id">End</span> operators.  If precision is specified and the point type is a <span class="id">Date</span>, <span class="id">DateTime</span>, or <span class="id">Time</span> type, comparisons used in the operation are performed at the specified precision. If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 [[proper-in]]
 ### ProperIn
@@ -3947,7 +3940,7 @@ If the argument is null, the result is null.
 ToDecimal : UnaryExpression
 ```
 
-The [.id]#ToDecimal# operator converts the value of its argument to a [.id]#Decimal# value. The operator accepts strings using the following format:
+The <span class="id">ToDecimal</span> operator converts the value of its argument to a <span class="id">Decimal</span> value. The operator accepts strings using the following format:
 
 *(+|-)?\#0(.0#)?*
 
@@ -3955,13 +3948,13 @@ Meaning an optional polarity indicator, followed by any number of digits (includ
 
 See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
 
-Note that the [.id]#Decimal# value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
+Note that the <span class="id">Decimal</span> value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
-If the input string is not formatted correctly, or cannot be interpreted as a valid [.id]#Decimal# value, the result is [.kw]#null#.
+If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Decimal</span> value, the result is <span class="kw">null</span>.
 
 If the input is Boolean, true will result in 1.0, false will result in 0.0.
 
-If the argument is [.kw]#null#, the result is [.kw]#null#.
+If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 ### ToInteger
 

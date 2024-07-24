@@ -1,0 +1,41 @@
+/* FHIR family-specific colors */
+:root {
+    --navbar-bg-color: #105EAB; /* 2. Header container color */
+    --footer-container-bg-color: #707070; /* 4. Footer container color */
+    --btn-hover-color: #0c23da;  /* 6. Menu button hover color */
+}
+
+.kw {
+    font-family: monospace;
+    color: blue;
+    background-color: inherit;
+}
+.sym {
+    font-family: monospace;
+    color: grey;
+    background-color: inherit;
+}
+.id {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.lit {
+    font-family: monospace;
+    color: maroon;
+    background-color: inherit;
+}
+.com {
+    font-family: monospace;
+    color: green;
+    background-color: inherit;
+}
+
+.stu {
+  padding-left: 3px;
+  padding-right: 3px;
+  border: 1px grey solid;
+  font-weight: bold;
+  color: black;
+  background-color: #fff5e6
+}

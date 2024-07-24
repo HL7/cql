@@ -1,6 +1,4 @@
-<table class="colsi"><tbody><tr><td id="wg"><a href="http://www.hl7.org/special/committees/dss/index.cfm" _target="blank">Clinical Decision Support</a> Work Group</td><td id="fmm"><a href="http://hl7.org/fhir/versions.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="http://hl7.org/fhir/versions.html#std-process">Standards Status</a>: <a style="padding-left: 3px; padding-right: 3px; color: black;" title="Unless otherwise specified explicitly, content on this page is informative.">Informative</a></td></tr></tbody></table>
-
-	<h1>CQL Structure Diagram (CQL.g4)</h1>
+<link href="assets/css/cql.css" rel="stylesheet"/>
 
   <p>These diagrams provide an alternative, visual representation of the CQL grammar. Note that the grammar represented here is simplified for the purposes of presentation. Some semantics such as operator precedence are encoded in the full grammar, but omitted here. As such, the contents of this page (and the railroad diagrams included in the rest of the specification) are strictly informative.</p>
 

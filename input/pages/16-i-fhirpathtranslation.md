@@ -1,11 +1,4 @@
-[[appendix-i-fhirpath-function-translation]]
-# Appendix I – FHIRPath Function Translation
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 

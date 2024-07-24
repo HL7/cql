@@ -1,7 +1,4 @@
-# Downloads
-:page-layout: dev
-:backend: xhtml
-:page-standards-status: informative
+{% include styles.html %}
 
 The following downloads are available for this specification:
 

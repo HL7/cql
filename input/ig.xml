@@ -3,7 +3,7 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
-  <version value="1.5.2"/>
+  <version value="1.5.3-cibuild"/>
   <name value="CQL"/>
   <title value="Clinical Quality Language Specification"/>
   <status value="active"/>
@@ -15,7 +15,7 @@
       <value value="http://www.hl7.org/Special/committees/dss/index.cfm"/>
     </telecom>
   </contact>
-  <packageId value="hl7.fhir.uv.cql"/>
+  <packageId value="hl7.cql"/>
   <fhirVersion value="4.0.1"/>
   <definition>
     <resource>
@@ -375,131 +375,317 @@
     </resource>
     <page>
       <nameUrl value="toc.html"/>
-      <title value="CQL Specification - table of contents"/>
+      <title value="Table of Contents"/>
       <generation value="html"/>
-
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="normative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N"/> 
+        </extension>
         <nameUrl value="index.html"/>
         <title value="CQL Specification"/>
         <generation value="markdown"/>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
+          <!-- This extension is ignored by the fhir-base-template
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+            <valueCode value="cds"/> 
+          </extension>
+          -->
           <nameUrl value="01-introduction.html"/>
-          <title value="Chapter 1 - Introduction"/>
+          <title value="Introduction"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="02-authorsguide.html"/>
           <title value="Author's Guide"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="03-developersguide.html"/>
           <title value="Developer's Guide"/>
           <generation value="markdown"/>
         </page>
-
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="04-logicalspecification.html"/>
-          <title value="Chapter 4 - Logical Specification"/>
+          <title value="Logical Specification"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="05-languagesemantics.html"/>
-          <title value="Chapter 5 - Language Semantics"/>
+          <title value="Language Semantics"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="06-translationsemantics.html"/>
-          <title value="Chapter 6 - Translation Semantics"/>
+          <title value="Translation Semantics"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="07-physicalrepresentation.html"/>
-          <title value="Chapter 7 - Physical Representation"/>
+          <title value="Physical Representation"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="08-a-cqlsyntax.html"/>
           <title value="Appendix A - CQL Syntax"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="09-b-cqlreference.html"/>
           <title value="Appendix B - CQL Reference"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="10-c-referenceimplementations.html"/>
           <title value="Appendix C - Reference Implementations"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="11-d-references.html"/>
           <title value="Appendix D - References"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="12-e-acronyms.html"/>
           <title value="Appendix E - Acronyms"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="13-f-glossary.html"/>
           <title value="Appendix F - Glossary"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="14-g-formattingconventions.html"/>
           <title value="Appendix G - Formatting Conventions"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="15-h-timeintervalcalculations.html"/>
           <title value="Appendix H - Time Interval Calculations"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="normative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N"/> 
+          </extension>
           <nameUrl value="16-i-fhirpathtranslation.html"/>
           <title value="Appendix I - FHIRPath Translation"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="17-j-listoftables.html"/>
           <title value="Appendix J - List Of Tables"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="18-k-listoffigures.html"/>
           <title value="Appendix K - List Of Figures"/>
           <generation value="markdown"/>
         </page>
         <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
           <nameUrl value="19-l-cqlsyntaxdiagrams.html"/>
           <title value="Appendix L - CQL Syntax Diagrams"/>
           <generation value="html"/>
         </page>
       </page>
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="normative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N"/> 
+        </extension>
+        <nameUrl value="title.html"/>
+        <title value="Title"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="informative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N/A"/> 
+        </extension>
+        <nameUrl value="license.html"/>
+        <title value="License"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="informative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N/A"/> 
+        </extension>
+        <nameUrl value="00-executivesummary.html"/>
+        <title value="Executive Summary"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="normative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N"/> 
+        </extension>
         <nameUrl value="grammar.html"/>
         <title value="Grammar"/>
         <generation value="markdown"/>
       </page>
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="normative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N"/> 
+        </extension>
         <nameUrl value="elm.html"/>
         <title value="ELM"/>
         <generation value="markdown"/>
       </page>
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="informative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N/A"/> 
+        </extension>
         <nameUrl value="examples.html"/>
         <title value="Examples"/>
         <generation value="markdown"/>
       </page>
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="informative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N/A"/> 
+        </extension>
         <nameUrl value="tests.html"/>
         <title value="Tests"/>
         <generation value="markdown"/>
       </page>
       <page>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="informative"/> 
+        </extension> 
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+          <valueString value="N/A"/> 
+        </extension>
         <nameUrl value="downloads.html"/>
         <title value="Downloads"/>
         <generation value="markdown"/>

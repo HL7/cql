@@ -1,24 +1,17 @@
-[[appendix-g-formatting-conventions]]
-# Appendix G – Conventions
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: informative
+{% include styles.html %}
 
 This guidance describes syntactic conventions and best practices for authoring statements and expressions of Clinical Quality Language (CQL) that encourage consistency, readability, maintainability, and reusability of the resulting CQL. Throughout the discussion, the following simplified syntax element definitions are used. Formal definitions of these elements can be found in the CQL Specification.
 
 * _Whitespace_ - Whitespace defines the separation between all tokens in the language (e.g. spaces, tabs, returns, etc.)
 * _Comment_ - Comments are ignored by the language, allowing for descriptive text to be included
 * _Literal_ - Literals allow basic values to be represented within the language
-* _Symbol_ - Symbols such as [.sym]#+#, [.sym]#-#, [.sym]#*#, and [.sym]#/#
-* _Keyword_ - Grammar-recognized keywords such as [.id]#define# and [.id]#where#
+* _Symbol_ - Symbols such as <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">*</span>, and <span class="sym">/</span>
+* _Keyword_ - Grammar-recognized keywords such as <span class="id">define</span> and <span class="id">where</span>
 * _Identifier_ - User-defined identifiers
 
 ## Case-Related Conventions
 
-CQL is a case-sensitive language, meaning that the grammar uses the case of letters when comparing identifiers and keywords. For example, the keyword [.id]#define# must be expressed with all lower case letters, [.id]#Define# is not recognized. This aspect of CQL encourages consistency and reduces the potential for naming clashes with keywords in the language.
+CQL is a case-sensitive language, meaning that the grammar uses the case of letters when comparing identifiers and keywords. For example, the keyword <span class="id">define</span> must be expressed with all lower case letters, <span class="id">Define</span> is not recognized. This aspect of CQL encourages consistency and reduces the potential for naming clashes with keywords in the language.
 
 This discussion defines the following terms to describe different approaches to casing:
 
@@ -54,7 +47,7 @@ To help maintain readability of CQL, lines should fit reasonably within standard
 [[operators-and-functions-1]]
 ## Operators and Functions
 
-CQL distinguishes between _operators_, which use symbols such as [.sym]#+#, [.sym]#*#, and and, [.id]#and# _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
+CQL distinguishes between _operators_, which use symbols such as <span class="sym">+</span>, <span class="sym">*</span>, and and, <span class="id">and</span> _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
 
 ### Operators
 
@@ -133,7 +126,7 @@ Always separate the contents of the tuple with a space:
 { name: 'Patrick', birthDate: @2014-01-01 }
 ```
 
-Do not put a space between the tuple element name and the value specifier ([.sym]#:#), but always put a space between the value specifier and the value.
+Do not put a space between the tuple element name and the value specifier (<span class="sym">:</span>), but always put a space between the value specifier and the value.
 
 The Tuple keyword is optional, but this means that the empty tuple has a special construct:
 

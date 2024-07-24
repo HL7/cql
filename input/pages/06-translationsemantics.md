@@ -1,11 +1,4 @@
-[[translation-semantics]]
-# 6. Translation Semantics
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 As discussed in the introductory section, this specification covers three levels of definition, the Conceptual or Author level, the Logical level, and the Physical level. The Conceptual level is concerned with the representation of logic in a format suitable for authoring and consumption by clinical experts; the Physical level is concerned with the representation of logic in a format suitable for processing and transferring by machines; and the Logical level is concerned with providing a mapping between the Conceptual and Physical levels in a way that preserves the semantics of the logic represented while also enabling integration and execution functionality.
 
@@ -28,14 +21,14 @@ The following table specifies the ELM equivalent for each CQL declaration:
 [cols=",",options="header",]
 |===============================
 |CQL Declaration |ELM Equivalent
-|[.kw]#library# |Library
-|[.kw]#using# |UsingDef
-|[.kw]#include# |IncludeDef
-|[.kw]#codesystem# |CodeSystemDef
-|[.kw]#valueset# |ValueSetDef
-|[.kw]#parameter# |ParameterDef
-|[.kw]#define# |ExpressionDef
-|[.kw]#function# |FunctionDef
+|<span class="kw">library</span> |Library
+|<span class="kw">using</span> |UsingDef
+|<span class="kw">include</span> |IncludeDef
+|<span class="kw">codesystem</span> |CodeSystemDef
+|<span class="kw">valueset</span> |ValueSetDef
+|<span class="kw">parameter</span> |ParameterDef
+|<span class="kw">define</span> |ExpressionDef
+|<span class="kw">function</span> |FunctionDef
 |===============================
 
 Table 6‑A - The ELM equivalent for each CQL declaration
@@ -69,7 +62,7 @@ The following table defines the mapping between the various CQL literals and the
 [cols=",",options="header",]
 |================================================
 |CQL Literal |ELM Equivalent
-|[.kw]#null# |Null
+|<span class="kw">null</span> |Null
 |*_boolean-literal_* |Boolean
 |*_integer-literal_* |Literal (valueType="Integer")
 |*_long-literal_* |Literal (valueType="Long")
@@ -99,11 +92,11 @@ Most of the functions and operations available in CQL have a direct counterpart 
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
-|[.kw]#and# |And
-|[.kw]#not# |Not
-|[.kw]#or# |Or
-|[.kw]#xor# |Xor
-|[.kw]#*implies*# |Implies
+|<span class="kw">and</span> |And
+|<span class="kw">not</span> |Not
+|<span class="kw">or</span> |Or
+|<span class="kw">xor</span> |Xor
+|<span class="kw">*implies*</span> |Implies
 |============================
 
 Table 6‑D - The ELM equivalent for each CQL logical operator
@@ -114,11 +107,11 @@ Table 6‑D - The ELM equivalent for each CQL logical operator
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
-|[.kw]#as# |As
-|[.kw]#convert# |Convert
-|[.kw]#is# |Is
-|[.id]#Children# |Children
-|[.id]#Descendents# |Descendents
+|<span class="kw">as</span> |As
+|<span class="kw">convert</span> |Convert
+|<span class="kw">is</span> |Is
+|<span class="id">Children</span> |Children
+|<span class="id">Descendents</span> |Descendents
 |============================
 
 Table 6‑E - The ELM equivalent for each CQL type operator
@@ -138,10 +131,10 @@ Note also that when translating to ELM, an implementation could emit all implici
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
-|[.id]#Coalesce# |Coalesce
-|[.kw]#is null# |IsNull
-|[.kw]#is false# |IsFalse
-|[.kw]#is true# |IsTrue
+|<span class="id">Coalesce</span> |Coalesce
+|<span class="kw">is null</span> |IsNull
+|<span class="kw">is false</span> |IsFalse
+|<span class="kw">is true</span> |IsTrue
 |============================
 
 Table 6‑F - The ELM equivalent for each CQL nullological operator
@@ -153,15 +146,15 @@ Table 6‑F - The ELM equivalent for each CQL nullological operator
 [cols=",",options="header",]
 |================================================================================
 |CQL Operator |ELM Equivalent
-|[.kw]#between# |And of comparisons (for point types) or IncludedIn (for Interval types)
-|[.sym]#=# |Equal
-|[.sym]#># |Greater
-|[.sym]#>=# |GreaterOrEqual
-|[.sym]#<# |Less
-|[.sym]#\<=# |LessOrEqual
-|[.sym]#~# |Equivalent
-|[.sym]#!=# |NotEqual
-|[.sym]#!~# |Not of Equivalent
+|<span class="kw">between</span> |And of comparisons (for point types) or IncludedIn (for Interval types)
+|<span class="sym">=</span> |Equal
+|<span class="sym">></span> |Greater
+|<span class="sym">>=</span> |GreaterOrEqual
+|<span class="sym"><</span> |Less
+|<span class="sym">\<=</span> |LessOrEqual
+|<span class="sym">~</span> |Equivalent
+|<span class="sym">!=</span> |NotEqual
+|<span class="sym">!~</span> |Not of Equivalent
 |================================================================================
 
 Table 6‑G - The ELM equivalent for each CQL comparison operator
@@ -173,26 +166,26 @@ Table 6‑G - The ELM equivalent for each CQL comparison operator
 [cols=",",options="header",]
 |============================
 |CQL Operator |ELM Equivalent
-|[.id]#Abs# |Abs
-|[.sym]#+# |Add
-|[.id]#Ceiling# |Ceiling
-|[.sym]#/# |Divide
-|[.id]#Floor# |Floor
-|[.id]#Exp# |Exp
-|[.id]#Log# |Log
-|[.id]#Ln# |Ln
-|[.kw]#maximum# |MaxValue
-|[.kw]#minimum# |MinValue
-|[.kw]#mod# |Modulo
-|[.sym]#*# |Multiply
-|[.sym]#-# *(unary minus)* |Negate
-|[.kw]#predecessor# |Predecessor
-|[.sym]#^# |Power
-|[.id]#Round# |Round
-|[.sym]#-# |Subtract
-|[.kw]#successor# |Successor
-|[.id]#Truncate# |Truncate
-|[.kw]#div# |TruncatedDivide
+|<span class="id">Abs</span> |Abs
+|<span class="sym">+</span> |Add
+|<span class="id">Ceiling</span> |Ceiling
+|<span class="sym">/</span> |Divide
+|<span class="id">Floor</span> |Floor
+|<span class="id">Exp</span> |Exp
+|<span class="id">Log</span> |Log
+|<span class="id">Ln</span> |Ln
+|<span class="kw">maximum</span> |MaxValue
+|<span class="kw">minimum</span> |MinValue
+|<span class="kw">mod</span> |Modulo
+|<span class="sym">*</span> |Multiply
+|<span class="sym">-</span> *(unary minus)* |Negate
+|<span class="kw">predecessor</span> |Predecessor
+|<span class="sym">^</span> |Power
+|<span class="id">Round</span> |Round
+|<span class="sym">-</span> |Subtract
+|<span class="kw">successor</span> |Successor
+|<span class="id">Truncate</span> |Truncate
+|<span class="kw">div</span> |TruncatedDivide
 |============================
 
 Table 6‑H - The ELM equivalent for each CQL arithmetic operator
@@ -204,23 +197,23 @@ Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 [cols=",",options="header",]
 |===============================================================================
 |CQL Operator |ELM Equivalent
-|[.id]#Combine# |Combine
-|[.sym]#+#, [.sym]#&# |Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
-|[.id]#EndsWith# |EndsWith
-|[.sym]#[]# |Indexer
-|[.id]#*LastPositionOf*# |LastPositionOf
-|[.id]#Length# |Length
-|[.id]#Lower# |Lower
-|[.id]#Matches# |Matches
-|[.id]#PositionOf# |PositionOf
-|[.id]#ReplaceMatches# |ReplaceMatches
-|[.id]#Split# |Split
-|[.id]#StartsWith# |StartsWith
-|[.id]#Substring# |Substring
-|[.id]#Upper# |Upper
+|<span class="id">Combine</span> |Combine
+|<span class="sym">+</span>, <span class="sym">&</span> |Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
+|<span class="id">EndsWith</span> |EndsWith
+|<span class="sym">[]</span> |Indexer
+|<span class="id">*LastPositionOf*</span> |LastPositionOf
+|<span class="id">Length</span> |Length
+|<span class="id">Lower</span> |Lower
+|<span class="id">Matches</span> |Matches
+|<span class="id">PositionOf</span> |PositionOf
+|<span class="id">ReplaceMatches</span> |ReplaceMatches
+|<span class="id">Split</span> |Split
+|<span class="id">StartsWith</span> |StartsWith
+|<span class="id">Substring</span> |Substring
+|<span class="id">Upper</span> |Upper
 |===============================================================================
 
-Table 6‑I - The ELM equivalent for each CQL [.kw]#String# operator
+Table 6‑I - The ELM equivalent for each CQL <span class="kw">String</span> operator
 
 [[datetime-operators-1]]
 #### Date and Time Operators
@@ -229,25 +222,25 @@ Table 6‑I - The ELM equivalent for each CQL [.kw]#String# operator
 [cols=",",options="header",]
 |=======================================
 |CQL Operator |ELM Equivalent
-|[.sym]#+# |Add
-|[.kw]#after# |After
-|[.kw]#before# |Before
-|[.id]#Date# |Date
-|[.id]#DateTime# |DateTime
-|*_component_* [.kw]#from# |DateTimeComponentFrom
-|[.kw]#difference#..[.kw]#between# |DifferenceBetween
-|[.kw]#duration#..[.kw]#between# |DurationBetween
-|[.id]#Now# |Now
-|[.kw]#same as# |SameAs
-|[.kw]#same or after# |SameOrAfter
-|[.kw]#same or before# |SameOrBefore
-|[.sym]#-# |Subtract
-|[.id]#Time# |Time
-|[.id]#TimeOfDay# |TimeOfDay
-|[.id]#Today# |Today
+|<span class="sym">+</span> |Add
+|<span class="kw">after</span> |After
+|<span class="kw">before</span> |Before
+|<span class="id">Date</span> |Date
+|<span class="id">DateTime</span> |DateTime
+|*_component_* <span class="kw">from</span> |DateTimeComponentFrom
+|<span class="kw">difference</span>..<span class="kw">between</span> |DifferenceBetween
+|<span class="kw">duration</span>..<span class="kw">between</span> |DurationBetween
+|<span class="id">Now</span> |Now
+|<span class="kw">same as</span> |SameAs
+|<span class="kw">same or after</span> |SameOrAfter
+|<span class="kw">same or before</span> |SameOrBefore
+|<span class="sym">-</span> |Subtract
+|<span class="id">Time</span> |Time
+|<span class="id">TimeOfDay</span> |TimeOfDay
+|<span class="id">Today</span> |Today
 |=======================================
 
-Table 6‑J - The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operator
+Table 6‑J - The ELM equivalent for each CQL <span class="kw">Date</span> and <span class="kw">Time</span> operator
 
 [[interval-operators-2]]
 #### Interval Operators
@@ -256,41 +249,41 @@ Table 6‑J - The ELM equivalent for each CQL [.kw]#Date# and [.kw]#Time# operat
 [cols=",",options="header",]
 |========================================
 |CQL Operator |ELM Equivalent
-|[.kw]#after# |After
-|[.kw]#before# |Before
-|[.kw]#collapse# |Collapse
-|[.kw]#contains# |Contains
-|[.kw]#end of# |End
-|[.kw]#ends# |Ends
-|[.sym]#=# |Equal
-|[.kw]#except# |Except
-|[.kw]#in# |In
-|[.kw]#includes# |Includes
-|[.kw]#during# |IncludedIn
-|[.kw]#included in# |IncludedIn
-|[.kw]#intersect# |Intersect
-|[.sym]#~# |Equivalent
-|[.kw]#meets# |Meets
-|[.kw]#meets after# |MeetsAfter
-|[.kw]#meets before# |MeetsBefore
-|[.sym]#!=# |NotEqual
-|[.sym]#!~# |Not of Equivalent
-|[.kw]#overlaps# |Overlaps
-|[.kw]#on or after# |SameOrAfter
-|[.kw]#on or before# |SameOrBefore
-|[.kw]#overlaps after# |OverlapsAfter
-|[.kw]#overlaps before# |OverlapsBefore
-|[.kw]#point from# |PointFrom
-|[.kw]#properly includes# |ProperlyIncludes
-|[.kw]#properly included in# |ProperlyIncludedIn
-|[.kw]#properly during# |ProperlyIncludedIn
-|[.kw]#start of# |Start
-|[.kw]#starts# |Starts
-|[.kw]#union# |Union
-|[.kw]#width of# |Width
+|<span class="kw">after</span> |After
+|<span class="kw">before</span> |Before
+|<span class="kw">collapse</span> |Collapse
+|<span class="kw">contains</span> |Contains
+|<span class="kw">end of</span> |End
+|<span class="kw">ends</span> |Ends
+|<span class="sym">=</span> |Equal
+|<span class="kw">except</span> |Except
+|<span class="kw">in</span> |In
+|<span class="kw">includes</span> |Includes
+|<span class="kw">during</span> |IncludedIn
+|<span class="kw">included in</span> |IncludedIn
+|<span class="kw">intersect</span> |Intersect
+|<span class="sym">~</span> |Equivalent
+|<span class="kw">meets</span> |Meets
+|<span class="kw">meets after</span> |MeetsAfter
+|<span class="kw">meets before</span> |MeetsBefore
+|<span class="sym">!=</span> |NotEqual
+|<span class="sym">!~</span> |Not of Equivalent
+|<span class="kw">overlaps</span> |Overlaps
+|<span class="kw">on or after</span> |SameOrAfter
+|<span class="kw">on or before</span> |SameOrBefore
+|<span class="kw">overlaps after</span> |OverlapsAfter
+|<span class="kw">overlaps before</span> |OverlapsBefore
+|<span class="kw">point from</span> |PointFrom
+|<span class="kw">properly includes</span> |ProperlyIncludes
+|<span class="kw">properly included in</span> |ProperlyIncludedIn
+|<span class="kw">properly during</span> |ProperlyIncludedIn
+|<span class="kw">start of</span> |Start
+|<span class="kw">starts</span> |Starts
+|<span class="kw">union</span> |Union
+|<span class="kw">width of</span> |Width
 |========================================
 
-Table 6‑K - The ELM equivalent for each CQL [.kw]#Interval# operator
+Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> operator
 
 [[list-operators-1]]
 #### List Operators
@@ -299,34 +292,34 @@ Table 6‑K - The ELM equivalent for each CQL [.kw]#Interval# operator
 [cols=",",options="header",]
 |========================================
 |CQL Operator |ELM Equivalent
-|[.kw]#contains# |Contains
-|[.kw]#distinct# |Distinct
-|[.sym]#=# |Equal
-|[.kw]#except# |Except
-|[.kw]#exists# |Exists
-|[.kw]#flatten# |Flatten
-|[.id]#First# |First
-|[.kw]#in# |In
-|[.kw]#includes# |Includes
-|[.kw]#included in# |IncludedIn
-|[.sym]#[]# |Indexer
-|[.id]#IndexOf# |IndexOf
-|[.kw]#intersect# |Intersect
-|[.id]#Last# |Last
-|[.id]#Length# |Length
-|[.sym]#~# |Equivalent
-|[.sym]#!=# |NotEqual
-|[.sym]#!~# |Not of Equivalent
-|[.kw]#properly includes# |ProperlyIncludes
-|[.kw]#properly included in# |ProperlyIncludedIn
-|[.kw]#singleton from# |SingletonFrom
-|[.id]#Skip(n)# |Slice(n, null)
-|[.id]#Tail# |Slice(1, null)
-|[.id]#Take(n)# |Slice(0, n)
-|[.kw]#union# |Union
+|<span class="kw">contains</span> |Contains
+|<span class="kw">distinct</span> |Distinct
+|<span class="sym">=</span> |Equal
+|<span class="kw">except</span> |Except
+|<span class="kw">exists</span> |Exists
+|<span class="kw">flatten</span> |Flatten
+|<span class="id">First</span> |First
+|<span class="kw">in</span> |In
+|<span class="kw">includes</span> |Includes
+|<span class="kw">included in</span> |IncludedIn
+|<span class="sym">[]</span> |Indexer
+|<span class="id">IndexOf</span> |IndexOf
+|<span class="kw">intersect</span> |Intersect
+|<span class="id">Last</span> |Last
+|<span class="id">Length</span> |Length
+|<span class="sym">~</span> |Equivalent
+|<span class="sym">!=</span> |NotEqual
+|<span class="sym">!~</span> |Not of Equivalent
+|<span class="kw">properly includes</span> |ProperlyIncludes
+|<span class="kw">properly included in</span> |ProperlyIncludedIn
+|<span class="kw">singleton from</span> |SingletonFrom
+|<span class="id">Skip(n)</span> |Slice(n, null)
+|<span class="id">Tail</span> |Slice(1, null)
+|<span class="id">Take(n)</span> |Slice(0, n)
+|<span class="kw">union</span> |Union
 |========================================
 
-Table 6‑L - The ELM equivalent for each CQL [.kw]#List# operator
+Table 6‑L - The ELM equivalent for each CQL <span class="kw">List</span> operator
 
 [[aggregate-operators-2]]
 #### Aggregate Operators
@@ -335,21 +328,21 @@ Table 6‑L - The ELM equivalent for each CQL [.kw]#List# operator
 [cols=",",options="header",]
 |======================================
 |CQL Operator |ELM Equivalent
-|[.id]#AllTrue# |AllTrue
-|[.id]#AnyTrue# |AnyTrue
-|[.id]#Avg# |Avg
-|[.id]#Count# |Count
-|[.id]#GeometricMean# |GeometricMean
-|[.id]#Max# |Max
-|[.id]#Min# |Min
-|[.id]#Median# |Median
-|[.id]#Mode# |Mode
-|[.id]#PopulationStdDev# |PopulationStdDev
-|[.id]#PopulationVariance# |PopulationVariance
-|[.id]#Product# |Product
-|[.id]#StdDev# |StdDev
-|[.id]#Sum# |Sum
-|[.id]#Variance# |Variance
+|<span class="id">AllTrue</span> |AllTrue
+|<span class="id">AnyTrue</span> |AnyTrue
+|<span class="id">Avg</span> |Avg
+|<span class="id">Count</span> |Count
+|<span class="id">GeometricMean</span> |GeometricMean
+|<span class="id">Max</span> |Max
+|<span class="id">Min</span> |Min
+|<span class="id">Median</span> |Median
+|<span class="id">Mode</span> |Mode
+|<span class="id">PopulationStdDev</span> |PopulationStdDev
+|<span class="id">PopulationVariance</span> |PopulationVariance
+|<span class="id">Product</span> |Product
+|<span class="id">StdDev</span> |StdDev
+|<span class="id">Sum</span> |Sum
+|<span class="id">Variance</span> |Variance
 |======================================
 
 Table 6‑M - The ELM equivalent for each CQL aggegrate operator
@@ -361,14 +354,14 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 [cols=",",options="header",]
 |==================================================================================
 |CQL Operator |ELM Equivalent
-|[.id]#AgeIn#*__-precision__* |CalculateAge (with patient birthdate reference supplied)
-|[.id]#AgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt (with patient birthdate reference supplied)
-|[.id]#CalculateAgeIn#*__-precision__* |CalculateAge
-|[.id]#CalculateAgeIn#*__-precision-__*[.id]#At# |CalculateAgeAt
-|[.sym]#=# |Equal
-|[.sym]#~# |Equivalent
-|[.kw]#in# *(Codesystem)* |InCodeSystem
-|[.kw]#in# *(Valueset)* |InValueSet
+|<span class="id">AgeIn</span>*__-precision__* |CalculateAge (with patient birthdate reference supplied)
+|<span class="id">AgeIn</span>*__-precision-__*<span class="id">At</span> |CalculateAgeAt (with patient birthdate reference supplied)
+|<span class="id">CalculateAgeIn</span>*__-precision__* |CalculateAge
+|<span class="id">CalculateAgeIn</span>*__-precision-__*<span class="id">At</span> |CalculateAgeAt
+|<span class="sym">=</span> |Equal
+|<span class="sym">~</span> |Equivalent
+|<span class="kw">in</span> *(Codesystem)* |InCodeSystem
+|<span class="kw">in</span> *(Valueset)* |InValueSet
 |==================================================================================
 
 Table 6‑N - The ELM equivalent for each CQL clinical operator
@@ -411,7 +404,7 @@ There are several points throughout the specification that introduce optionality
 
 #### Disable List Promotion and Demotion
 
-List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the [.kw]#singleton from# operator) and vice-versa (by invoking the [.id]#ToList# function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see [List Promotion and Demotion](03-developersguide.html#promotion-and-demotion).
+List promotion and demotion are a special case of implicit conversions and enable list-valued expressions to be passed to singleton parameters (by invoking the <span class="kw">singleton from</span> operator) and vice-versa (by invoking the <span class="id">ToList</span> function). These conversions are useful for writing expressions against models with deeply nested hierarchies and variable cardinality elements, but can sometimes result in surprising overload selections and conversion choices. As a result, implementations may choose to enable or disable this language feature using the _disable-list-promotion_ and _disable-list-demotion_ options. For a more detailed discussion, see [List Promotion and Demotion](03-developersguide.html#promotion-and-demotion).
 
 #### Disable List Traversal
 
@@ -426,7 +419,7 @@ To support FHIRPath as the base expression language for CQL, beginning with 1.3,
 
 #### Require From Keyword
 
-To encourage consistent use of the [.kw]#from# keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See [Query Syntax Options](03-developersguide.html#query-syntax-options) for more discussion.
+To encourage consistent use of the <span class="kw">from</span> keyword to being queries, implementations may provide support for the _require-from-keyword_ option. See [Query Syntax Options](03-developersguide.html#query-syntax-options) for more discussion.
 
 ## ELM-to-CQL
 

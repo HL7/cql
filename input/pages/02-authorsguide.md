@@ -1,18 +1,12 @@
-[[authors-guide]]
-# 2. Author’s Guide
-
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
-The syntax, or structure, of CQL is built from several basic elements that are all classified as _tokens_. There are four different types of tokens present in CQL: _symbols_, such as [.sym]#+# and [.sym]#*#, _keywords_, such as [.kw]#define# and [.kw]#from#, _literals_, such as [.lit]#5# and [.lit]#'active'#, and _identifiers_, such as [.id]#Person# and [.id]#"Inpatient Encounters"#.
+The syntax, or structure, of CQL is built from several basic elements that are all classified as _tokens_. There are four different types of tokens present in CQL: _symbols_, such as <span class="sym">+</span> and <span class="sym">*</span>, _keywords_, such as <span class="kw">define</span> and <span class="kw">from</span>, _literals_, such as <span class="lit">5</span> and <span class="lit">'active'</span>, and _identifiers_, such as <span class="id">Person</span> and <span class="id">"Inpatient Encounters"</span>.
 
 Statements of CQL are built up by combining these basic elements, separated by _whitespace_ (spaces, tabs, and returns), to produce language elements. The most basic of these language elements is an _expression_, which is any statement of CQL that returns a value.
 
-Expressions are made up of _terms_ (literals or identifiers) combined using _operators_. Operators can be symbolic, such as [.sym]#+# and [.sym]#-#, phrases such as [.kw]#and# and [.kw]#exists#, or named operators called _functions_, such as [.id]#First()# and [.id]#AgeInYears()#.
+Expressions are made up of _terms_ (literals or identifiers) combined using _operators_. Operators can be symbolic, such as <span class="sym">+</span> and <span class="sym">-</span>, phrases such as <span class="kw">and</span> and <span class="kw">exists</span>, or named operators called _functions_, such as <span class="id">First()</span> and <span class="id">AgeInYears()</span>.
 
 At the highest level, CQL is organized around the concept of a _library_, which can be thought of as a container for artifact logic. Libraries contain _declarations_ which specify the items the library contains. The most important of these declarations is the _named expression_, which is the basic unit of logic definition in CQL.
 
@@ -57,7 +51,7 @@ The following sections discuss these constructs in more detail.
 
 ### Library
 
-The [.kw]#library# declaration specifies both the name of the library and an optional version for the library. The library name is used as an identifier to reference the library from other CQL libraries, as well as eCQM and CDS artifacts. A library can have at most one library declaration.
+The <span class="kw">library</span> declaration specifies both the name of the library and an optional version for the library. The library name is used as an identifier to reference the library from other CQL libraries, as well as eCQM and CDS artifacts. A library can have at most one library declaration.
 
 The following example illustrates the library declaration:
 
@@ -65,13 +59,13 @@ The following example illustrates the library declaration:
 library CMS153_CQM version '2'
 ```
 
-The above declaration names the library with the identifier [.id]#CMS153_CQM# and specifies the version [.lit]#'2'#.
+The above declaration names the library with the identifier <span class="id">CMS153_CQM</span> and specifies the version <span class="lit">'2'</span>.
 
-A syntax diagram of the [.kw]#library# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
+A syntax diagram of the <span class="kw">library</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
 
 ### Data Models
 
-A CQL library can reference zero or more data models with [.kw]#using# declarations. These data models define the structures that can be used within retrieve expressions in the library.
+A CQL library can reference zero or more data models with <span class="kw">using</span> declarations. These data models define the structures that can be used within retrieve expressions in the library.
 
 For more information on how these data models are used, see the <<Retrieve>> section.
 
@@ -81,7 +75,7 @@ The following example illustrates the using declaration:
 using QUICK
 ```
 
-The above declaration specifies that the [.id]#QUICK# model will be used as the data model within the library. The http://hl7.org/fhir/us/qicore/quick/QUICK-index.html[QUICK data model] will be used for the examples in this section unless specified otherwise.
+The above declaration specifies that the <span class="id">QUICK</span> model will be used as the data model within the library. The http://hl7.org/fhir/us/qicore/quick/QUICK-index.html[QUICK data model] will be used for the examples in this section unless specified otherwise.
 
 If necessary, a version specifier can be provided to indicate which version of the data model should be used as shown below:
 
@@ -89,11 +83,11 @@ If necessary, a version specifier can be provided to indicate which version of t
 using QUICK version '0.3.0'
 ```
 
-A syntax diagram of the [.kw]#using# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
+A syntax diagram of the <span class="kw">using</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
 
 ### Libraries
 
-A CQL library can reference zero or more other CQL libraries with [.kw]#include# declarations. Components defined within these included libraries can then be referenced within the library by name.
+A CQL library can reference zero or more other CQL libraries with <span class="kw">include</span> declarations. Components defined within these included libraries can then be referenced within the library by name.
 
 ``` cql
 include CMS153_Common
@@ -107,13 +101,13 @@ define "SexuallyActive":
     or exists (CMS153_Common."LaboratoryTestsIndicatingSexualActivity")
 ```
 
-This expression references [.id]#ConditionsIndicatingSexualActivity# and [.id]#LaboratoryTestsIndicatingSexualActivity# defined in the [.id]#CMS153_Common# library.
+This expression references <span class="id">ConditionsIndicatingSexualActivity</span> and <span class="id">LaboratoryTestsIndicatingSexualActivity</span> defined in the <span class="id">CMS153_Common</span> library.
 
-The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, [.id]#CMS153_Common#, and the identifier, [.id]#ConditionsIndicatingSexualActivity#, separated by a dot ([.sym]#.#).
+The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, <span class="id">CMS153_Common</span>, and the identifier, <span class="id">ConditionsIndicatingSexualActivity</span>, separated by a dot (<span class="sym">.</span>).
 
 For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
 
-The [.kw]#include# declaration may optionally specify a version, meaning that a specific version of the library must be used:
+The <span class="kw">include</span> declaration may optionally specify a version, meaning that a specific version of the library must be used:
 
 ``` cql
 include CMS153_Common version '2'
@@ -121,13 +115,13 @@ include CMS153_Common version '2'
 
 A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
 
-In addition, the [.kw]#include# declaration may optionally specify an assigned name using the [.kw]#called# clause:
+In addition, the <span class="kw">include</span> declaration may optionally specify an assigned name using the <span class="kw">called</span> clause:
 
 ``` cql
 include CMS153_Common version '2' called Common
 ```
 
-Components defined in the [.id]#CMS153_Common# library, version 2, can now be referenced using the assigned name of [.id]#Common#. For example:
+Components defined in the <span class="id">CMS153_Common</span> library, version 2, can now be referenced using the assigned name of <span class="id">Common</span>. For example:
 
 ``` cql
 define "SexuallyActive":
@@ -135,11 +129,11 @@ define "SexuallyActive":
     or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 ```
 
-A syntax diagram of the [.kw]#include# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
+A syntax diagram of the <span class="kw">include</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
 
 ### Terminology
 
-A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the [.kw]#codesystem#, [.kw]#valueset#, [.kw]#code#, and [.kw]#concept# declarations.
+A CQL library may contain zero or more named terminology declarations, including codesystems, valuesets, codes, and concepts, using the <span class="kw">codesystem</span>, <span class="kw">valueset</span>, <span class="kw">code</span>, and <span class="kw">concept</span> declarations.
 
 These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library where the terminology is expected.
 
@@ -151,7 +145,7 @@ Consider the following valueset declaration:
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ```
 
-This definition establishes the local name [.id]#"Female Administrative Sex"# as a reference to the external identifier for the valueset, more specifically, an Object Identifier (OID) in this particular case: [.lit]#'urn:oid:2.16.840.1.113883.3.560.100.2'#. The external identifier need not be an OID; instead, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
+This definition establishes the local name <span class="id">"Female Administrative Sex"</span> as a reference to the external identifier for the valueset, more specifically, an Object Identifier (OID) in this particular case: <span class="lit">'urn:oid:2.16.840.1.113883.3.560.100.2'</span>. The external identifier need not be an OID; instead, it may be a uniform resource identifier (URI), or any other identification system. CQL does not interpret the external id, it only specifies that the external identifier be a string that can be used to uniquely identify the valueset within the implementation environment.
 
 This valueset definition can then be used within the library wherever a valueset can be used:
 
@@ -159,7 +153,7 @@ This valueset definition can then be used within the library wherever a valueset
 define "PatientIsFemale": Patient.gender in "Female Administrative Sex"
 ```
 
-The above example defines the [.id]#PatientIsFemale# expression as [.kw]#true# for patients whose gender is a code in the valueset identified by [.id]#"Female Administrative Sex"#.
+The above example defines the <span class="id">PatientIsFemale</span> expression as <span class="kw">true</span> for patients whose gender is a code in the valueset identified by <span class="id">"Female Administrative Sex"</span>.
 
 Note that the name of the valueset uses double quotes, unlike the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
 
@@ -192,7 +186,7 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 
 Table 2‑B - Elements that define a parameter
 
-A syntax diagram of the [.kw]#parameter# can be seen [here](19-l-cqlsyntaxdiagrams.html#parameterDefinition).
+A syntax diagram of the <span class="kw">parameter</span> can be seen [here](19-l-cqlsyntaxdiagrams.html#parameterDefinition).
 
 The parameters defined in a library may be referenced by name in any expression within the library. When expressions in a CQL library are evaluated, the values for parameters are provided by the environment. For example, a library that defines criteria for a quality measure may define a parameter to represent the measurement period:
 
@@ -210,7 +204,7 @@ define "Patient16To23":
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ```
 
-The above example defines the [.id]#Patient16To23# expression as patients whose age at the start of the MeasurementPeriod was at least 16 and less than 24.
+The above example defines the <span class="id">Patient16To23</span> expression as patients whose age at the start of the MeasurementPeriod was at least 16 and less than 24.
 
 The default value for a parameter is optional, but if no default is provided, the parameter must include a type specifier:
 
@@ -218,7 +212,7 @@ The default value for a parameter is optional, but if no default is provided, th
 parameter MeasurementPeriod Interval<DateTime>
 ```
 
-If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be [.kw]#null#.
+If a parameter definition does not indicate a default value, a parameter value may be supplied by the evaluation environment, typically as part of the evaluation request. If the evaluation environment does not supply a parameter value, the parameter will be <span class="kw">null</span>.
 
 In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
 
@@ -232,7 +226,7 @@ In other words, the value for the default of a parameter must be able to be calc
 
 ### Context
 
-The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named [.id]#Unfiltered# that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
+The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named <span class="id">Unfiltered</span> that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
 
 <a name="figure-2-a"></a>
 ![extracted-media/media/patient-practitioner-model](extracted-media/media/patient-practitioner-model.png)
@@ -254,11 +248,11 @@ The following table lists some typical contexts:
 
 Table 2‑C - Typical contexts for CQL
 
-A syntax diagram of the [.kw]#context# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#contextDefinition).
+A syntax diagram of the <span class="kw">context</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#contextDefinition).
 
 Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
-When no context is specified in the library, and the model has not declared a default context, the default context is [.id]#Unfiltered#.
+When no context is specified in the library, and the model has not declared a default context, the default context is <span class="id">Unfiltered</span>.
 
 ``` cql
 context Patient
@@ -269,13 +263,13 @@ define "Patient16To23AndFemale":
     and Patient.gender in "Female Administrative Sex"
 ```
 
-Because the context has been established as Patient, the expression has access to patient-specific concepts such as the [.id]#AgeInYearsAt()# operator and the [.id]#Patient.gender# attribute. Note that the attributes available in the Patient context are defined by the data model in use.
+Because the context has been established as Patient, the expression has access to patient-specific concepts such as the <span class="id">AgeInYearsAt()</span> operator and the <span class="id">Patient.gender</span> attribute. Note that the attributes available in the Patient context are defined by the data model in use.
 
 A library may contain zero or more context statements, with each context statement establishing the context for subsequent statements in the library.
 
-Effectively, the statement [.kw]#context# [.id]#Patient# defines an expression named [.id]#Patient# that returns the patient data for the current patient, as well as restricts the information that will be returned from a retrieve to a single patient, as opposed to all patients.
+Effectively, the statement <span class="kw">context</span> <span class="id">Patient</span> defines an expression named <span class="id">Patient</span> that returns the patient data for the current patient, as well as restricts the information that will be returned from a retrieve to a single patient, as opposed to all patients.
 
-As another example, consider a [.id]#Practitioner# context:
+As another example, consider a <span class="id">Practitioner</span> context:
 
 ``` cql
 context Practitioner
@@ -288,7 +282,7 @@ The above definition results in all the encounters for a particular practitioner
 
 ### Statements
 
-A CQL Library can contain zero or more [.kw]#define# statements describing named expressions that can be referenced either from other expressions within the same library or by containing quality and decision support artifacts.
+A CQL Library can contain zero or more <span class="kw">define</span> statements describing named expressions that can be referenced either from other expressions within the same library or by containing quality and decision support artifacts.
 
 The following example illustrates a simple define statement:
 
@@ -299,19 +293,19 @@ define "InpatientEncounters":
       and E.period ends during MeasurementPeriod
 ```
 
-This example defines the [.id]#InpatientEncounters# expression as [.id]#Encounter# events whose code is in the [.id]#"Inpatient"# valueset, whose length is less than or equal to 120 days, and whose period ended (i.e. patient was discharged) during MeasurementPeriod.
+This example defines the <span class="id">InpatientEncounters</span> expression as <span class="id">Encounter</span> events whose code is in the <span class="id">"Inpatient"</span> valueset, whose length is less than or equal to 120 days, and whose period ended (i.e. patient was discharged) during MeasurementPeriod.
 
-Note that the use of terms like [.id]#Encounter#, [.id]#length#, and [.id]#period#, as well as which code attribute is used to compare with the valueset, are defined by the data model being used within the library; they are not defined by CQL.
+Note that the use of terms like <span class="id">Encounter</span>, <span class="id">length</span>, and <span class="id">period</span>, as well as which code attribute is used to compare with the valueset, are defined by the data model being used within the library; they are not defined by CQL.
 
 For more information on the use of define statements, refer to the <<Using Define Statements>> section.
 
 ## Retrieve
 
-The _retrieve_ expression is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as [.id]#Patient#, [.id]#Practitioner#, or [.id]#Unfiltered#) in which the retrieve is evaluated.
+The _retrieve_ expression is the central construct for accessing clinical information within CQL. The result of a retrieve is always a list of some type of clinical data, based on the type described by the retrieve and the context (such as <span class="id">Patient</span>, <span class="id">Practitioner</span>, or <span class="id">Unfiltered</span>) in which the retrieve is evaluated.
 
 The retrieve in CQL has two main parts: first, the _type_ part, which identifies the type of data that is to be retrieved; and second, the _filter_ part, which optionally provides filtering information based on specific types of filters common to most clinical data.
 
-A syntax diagram of the [.kw]#retrieve# expression can be seen [here](19-l-cqlsyntaxdiagrams.html#retrieve).
+A syntax diagram of the <span class="kw">retrieve</span> expression can be seen [here](19-l-cqlsyntaxdiagrams.html#retrieve).
 
 Note that the retrieve only introduces data into an expression; operations for further filtering, shaping, computation, and sorting will be discussed in later sections.
 
@@ -327,7 +321,7 @@ In the simplest case, a retrieve specifies only the type of data to be retrieved
 [Encounter]
 ```
 
-Assuming the default context of [.id]#Patient#, this example retrieves all [.id]#Encounter# statements for a patient.
+Assuming the default context of <span class="id">Patient</span>, this example retrieves all <span class="id">Encounter</span> statements for a patient.
 
 ### Filtering with Terminology
 
@@ -337,7 +331,7 @@ In addition to describing the type of clinical statements, the retrieve expressi
 [Condition: "Acute Pharyngitis"]
 ```
 
-This example requests only those [.id]#Conditions# whose primary code attribute is a code from the valueset identified by [.id]#"Acute Pharyngitis"#. The attribute used as the primary code attribute is defined by the data model being used.
+This example requests only those <span class="id">Conditions</span> whose primary code attribute is a code from the valueset identified by <span class="id">"Acute Pharyngitis"</span>. The attribute used as the primary code attribute is defined by the data model being used.
 
 In addition, the retrieve expression allows the filtering attribute name to be specified:
 
@@ -345,9 +339,9 @@ In addition, the retrieve expression allows the filtering attribute name to be s
 [Condition: severity in "Acute Severity"]
 ```
 
-This requests clinical statements that assert the presence of a condition with a severity in the [.id]#"Acute Severity"# valueset.
+This requests clinical statements that assert the presence of a condition with a severity in the <span class="id">"Acute Severity"</span> valueset.
 
-Note that the terminology reference [.id]#"Acute Severity"# in the above examples is a valueset, but it could also be a code system, a concept, or a specific code:
+Note that the terminology reference <span class="id">"Acute Severity"</span> in the above examples is a valueset, but it could also be a code system, a concept, or a specific code:
 
 ``` cql
 codesystem "SNOMED": 'http://snomed.info/sct'
@@ -361,9 +355,9 @@ define "Get Condition from CodeSystem Declaration":
   [Condition: "SNOMED"]
 ```
 
-The [.id]#"Get Condition from Code Declaration"# expression returns conditions for the patient where the code is equivalent to the [.id]#"Acute Pharyngitis Code"# code. The [.id]#"Get Condition from CodeSystem Declaration"# expression returns conditions for the patient where the code is some code in the [.id]#"SNOMED"# code system.
+The <span class="id">"Get Condition from Code Declaration"</span> expression returns conditions for the patient where the code is equivalent to the <span class="id">"Acute Pharyngitis Code"</span> code. The <span class="id">"Get Condition from CodeSystem Declaration"</span> expression returns conditions for the patient where the code is some code in the <span class="id">"SNOMED"</span> code system.
 
-When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses the _membership_ operator ([.kw]#in#) if the terminology target is a valueset or code system, and the _equivalent_ operator ([.sym]#~#) otherwise. For more information about using the equivalent operator with terminology, refer to the <<Code>> section. For more information about using the membership oeprator with terminology, refer to the <<Terminology Operators>> section.
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses the _membership_ operator (<span class="kw">in</span>) if the terminology target is a valueset or code system, and the _equivalent_ operator (<span class="sym">~</span>) otherwise. For more information about using the equivalent operator with terminology, refer to the <<Code>> section. For more information about using the membership oeprator with terminology, refer to the <<Terminology Operators>> section.
 
 When the code path is specified, the code comparison operation can be specified as well:
 
@@ -382,19 +376,19 @@ define "Get Condition from Exact Match To Code":
   [Condition: code = "Acute Pharyngitis Code"]
 ```
 
-Note the last example here is using the _equality_ operator ([.sym#=#]) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
+Note the last example here is using the _equality_ operator (<span class="sym">=</span>) to indicate the terminology match should be exact (meaning that it will consider code system version and display as well as the code and system). Equality, equivalence, and membership are the only allowed terminology comparison operators within a retrieve.
 
 ### Retrieve Context
 
-Within the [.id]#Patient# context, the results of any given retrieve will always be scoped to a single patient, as determined by the environment. For example, in a quality measure evaluation environment, the [.id]#Patient# context may be the current patient being considered. In a clinical decision support environment, the [.id]#Patient# context would be the patient for which guidance is being sought.
+Within the <span class="id">Patient</span> context, the results of any given retrieve will always be scoped to a single patient, as determined by the environment. For example, in a quality measure evaluation environment, the <span class="id">Patient</span> context may be the current patient being considered. In a clinical decision support environment, the <span class="id">Patient</span> context would be the patient for which guidance is being sought.
 
-By contrast, if the [.id]#Unfiltered# context is used, the results of any given retrieve will not be limited to a particular context. For example:
+By contrast, if the <span class="id">Unfiltered</span> context is used, the results of any given retrieve will not be limited to a particular context. For example:
 
 ``` cql
 [Condition: "Acute Pharyngitis"] C where C.onsetDateTime during MeasurementPeriod
 ```
 
-When evaluated within the [.id]#Patient# context, the above example returns [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod# for the current patient only. In the [.id]#Unfiltered# context, this example returns all [.id]#"Acute Pharyngitis"# conditions that onset during [.id]#MeasurementPeriod#, regardless of patient.
+When evaluated within the <span class="id">Patient</span> context, the above example returns <span class="id">"Acute Pharyngitis"</span> conditions that onset during <span class="id">MeasurementPeriod</span> for the current patient only. In the <span class="id">Unfiltered</span> context, this example returns all <span class="id">"Acute Pharyngitis"</span> conditions that onset during <span class="id">MeasurementPeriod</span>, regardless of patient.
 
 As another example, consider the set of encounters:
 
@@ -404,8 +398,8 @@ As another example, consider the set of encounters:
 
 Depending on the context the retrieve above will return:
 
-* [.id]#Unfiltered# - all the encounters in the underlying system.
-* [.id]#Patient# - only encounters for the _current_ patient (e.g. PAT-100)
+* <span class="id">Unfiltered</span> - all the encounters in the underlying system.
+* <span class="id">Patient</span> - only encounters for the _current_ patient (e.g. PAT-100)
 
 Consider the figure below:
 
@@ -414,13 +408,13 @@ Consider the figure below:
 
 Figure 2‑B - Unfiltered vs Patient context
 
-Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the [.id]#Unfiltered# context and vice versa. Best practice is for each library to have expressions in only one context, and for that context declaration to be the first declaration in the library.
+Because context is associated with each declaration, it is possible for expressions defined in a particular context to reference expressions defined in the <span class="id">Unfiltered</span> context and vice versa. Best practice is for each library to have expressions in only one context, and for that context declaration to be the first declaration in the library.
 
-Note that it is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the [.id]#Unfiltered# context, or through the use of a cross-context retrieve.
+Note that it is not legal for an expression in one specified context to reference an expression in another specified context. This is because there must be a way to relate cross-context queries, which is only possible in the <span class="id">Unfiltered</span> context, or through the use of a cross-context retrieve.
 
-In an [.id]#Unfiltered# context, a reference to a specified context expression (such as [.id]#Patient#) results in the execution of that expression for each patient in the unfiltered context, and the implementation environment combines the results.
+In an <span class="id">Unfiltered</span> context, a reference to a specified context expression (such as <span class="id">Patient</span>) results in the execution of that expression for each patient in the unfiltered context, and the implementation environment combines the results.
 
-If the result type of an expression in a specific context is not a list, the result of accessing it from an [.id]#Unfiltered# context will be a list with elements of the type of the  expression. For example:
+If the result type of an expression in a specific context is not a list, the result of accessing it from an <span class="id">Unfiltered</span> context will be a list with elements of the type of the  expression. For example:
 
 ``` cql
 context Patient
@@ -434,11 +428,11 @@ define "InitialPopulationCount":
   Count(InInitialPopulation IP where IP is true)
 ```
 
-In the above example, the [.id]#InitialPopulationCount# expression returns the number of patients for which the [.id]#InInitialPopulation# expression evaluated to [.kw]#true#.
+In the above example, the <span class="id">InitialPopulationCount</span> expression returns the number of patients for which the <span class="id">InInitialPopulation</span> expression evaluated to <span class="kw">true</span>.
 
-If the result type of the [.id]#Patient# context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the unfiltered context flattened into a single list.
+If the result type of the <span class="id">Patient</span> context expression is a list, the result will be a list of the same type, but with the results of the evaluation for each patient in the unfiltered context flattened into a single list.
 
-In a specific context (such as [.id]#Patient#), a reference to an [.id]#Unfiltered# context expression results in the evaluation of the [.id]#Unfiltered# context expression, and the result type is unaffected.
+In a specific context (such as <span class="id">Patient</span>), a reference to an <span class="id">Unfiltered</span> context expression results in the evaluation of the <span class="id">Unfiltered</span> context expression, and the result type is unaffected.
 
 > In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
 {: .note-info}
@@ -471,9 +465,9 @@ A query construct begins by introducing an _alias_ for the primary source:
 [Encounter: "Inpatient"] E
 ```
 
-The primary source for this query is the retrieve expression +++[+++[.id]#Encounter#: [.id]#"Inpatient"#], and the alias is [.id]#E#. Subsequent clauses in the query must reference elements of this source by using this alias.
+The primary source for this query is the retrieve expression +++[+++<span class="id">Encounter</span>: <span class="id">"Inpatient"</span>], and the alias is <span class="id">E</span>. Subsequent clauses in the query must reference elements of this source by using this alias.
 
-Although the alias in this example is a single-letter abbreviation, [.id]#E#, it could also be a longer abbreviation:
+Although the alias in this example is a single-letter abbreviation, <span class="id">E</span>, it could also be a longer abbreviation:
 
 ``` cql
 [Encounter: "Inpatient"] Enc
@@ -483,9 +477,9 @@ Note that alias names, as with all language constructs, may be the subject of la
 
 ### Filtering
 
-The [.kw]#where# clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to [.kw]#true# for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
+The <span class="kw">where</span> clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to <span class="kw">true</span> for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
 
-A syntax diagram of a [.kw]#where# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#whereClause).
+A syntax diagram of a <span class="kw">where</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#whereClause).
 
 For example:
 
@@ -494,9 +488,9 @@ For example:
   where duration in days of E.period >= 120
 ```
 
-The alias [.id]#E# is used to access the period attribute of each encounter in the primary source. The filter condition tests whether the duration of that range is at least 120 days.
+The alias <span class="id">E</span> is used to access the period attribute of each encounter in the primary source. The filter condition tests whether the duration of that range is at least 120 days.
 
-The condition of a [.kw]#where# clause is allowed to contain any arbitrary combination of operations of CQL, so long as the overall result of the condition is boolean-valued. For example, the following where clause includes multiple conditions on different attributes of the source:
+The condition of a <span class="kw">where</span> clause is allowed to contain any arbitrary combination of operations of CQL, so long as the overall result of the condition is boolean-valued. For example, the following where clause includes multiple conditions on different attributes of the source:
 
 ``` cql
 [CommunicationRequest] C
@@ -506,13 +500,13 @@ The condition of a [.kw]#where# clause is allowed to contain any arbitrary combi
     and C.indication in "Fever"
 ```
 
-Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ ([.kw]#null#). For example, if the list of inpatient encounters from the first example contains some elements whose [.id]#period# attribute is [.kw]#null#, the result of the condition for that element will not be [.kw]#false#, but [.kw]#null#, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to [.kw]#true# are included in the result, effectively ignoring the entries for which the logical expression evaluates to [.kw]#null#.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
+Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
 
 ### Shaping
 
-The [.kw]#return# clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The [.kw]#return# clause enables this type of query.
+The <span class="kw">return</span> clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The <span class="kw">return</span> clause enables this type of query.
 
-A syntax diagram of a [.kw]#return# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#returnClause).
+A syntax diagram of a <span class="kw">return</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#returnClause).
 
 For example:
 
@@ -521,16 +515,16 @@ For example:
   return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
 ```
 
-This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the [.id]#id# of the encounter as well as a [.id]#lengthOfStay# element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
+This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the <span class="id">id</span> of the encounter as well as a <span class="id">lengthOfStay</span> element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
 
-By default, a query returns a list of distinct results, suppressing duplicates. To include duplicates, use the [.kw]#all# keyword in the [.kw]#return# clause. For example, the following will return a list of the lengths of stay for each Encounter:
+By default, a query returns a list of distinct results, suppressing duplicates. To include duplicates, use the <span class="kw">all</span> keyword in the <span class="kw">return</span> clause. For example, the following will return a list of the lengths of stay for each Encounter:
 
 ``` cql
 [Encounter: "Inpatient"] E
   return E.lengthOfStay
 ```
 
-If two encounters have the same value for [.id]#lengthOfStay#, that value will only appear once in the result unless the [.kw]#all# keyword is used:
+If two encounters have the same value for <span class="id">lengthOfStay</span>, that value will only appear once in the result unless the <span class="kw">all</span> keyword is used:
 
 ``` cql
 [Encounter: "Inpatient"] E
@@ -539,9 +533,9 @@ If two encounters have the same value for [.id]#lengthOfStay#, that value will o
 
 ### Sorting
 
-CQL queries can sort results in any order using the [.kw]#sort by# clause.
+CQL queries can sort results in any order using the <span class="kw">sort by</span> clause.
 
-A syntax diagram of a [.kw]#sort# clause can be seen [here](19-l-cqlsyntaxdiagrams.html#sortClause).
+A syntax diagram of a <span class="kw">sort</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#sortClause).
 
 For example:
 
@@ -551,7 +545,7 @@ For example:
 
 This example returns inpatient encounters, sorted by the start of the encounter period.
 
-Results can be sorted ascending or descending using the [.kw]#asc# (ascending) or [.kw]#desc# (descending) keywords:
+Results can be sorted ascending or descending using the <span class="kw">asc</span> (ascending) or <span class="kw">desc</span> (descending) keywords:
 
 ``` cql
 [Encounter: "Inpatient"] E sort by start of period desc
@@ -567,27 +561,27 @@ Calculated values can also be used to determine the sort:
     sort by lengthOfStay
 ```
 
-Note that the properties that can be specified within the [.kw]#sort# clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the [.kw]#return# clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
+Note that the properties that can be specified within the <span class="kw">sort</span> clause are determined by the result type of the query. In the above example, [id]#lengthOfStay# can be referenced because it is introduced in the <span class="kw">return</span> clause. Because the sort applies after the query results have been determined, alias references are neither required nor allowed in the sort.
 
-If no [.kw]#sort# clause is provided, the order of the result is unprescribed and is implementation specific.
+If no <span class="kw">sort</span> clause is provided, the order of the result is unprescribed and is implementation specific.
 
-The [.kw]#sort# clause may include multiple attributes, each with their own sort order:
+The <span class="kw">sort</span> clause may include multiple attributes, each with their own sort order:
 
 ``` cql
 [Encounter: "Inpatient"] E sort by start of period desc, identifier asc
 ```
 
-Sorting is performed in the order in which the attributes are defined in the [.kw]#sort# clause, so this example sorts by period descending, then by [.id]#identifier# ascending.
+Sorting is performed in the order in which the attributes are defined in the <span class="kw">sort</span> clause, so this example sorts by period descending, then by <span class="id">identifier</span> ascending.
 
 When the sort elements do not provide a unique ordering (i.e. there is a possibility of duplicate sort values in the result), the order of duplicates is unspecified.
 
-A query may only contain a single [.kw]#sort# clause, and it must always appear last in the query.
+A query may only contain a single <span class="kw">sort</span> clause, and it must always appear last in the query.
 
-When the data being sorted includes [.kw]#nulls#, they are considered lower than any non-null value, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
+When the data being sorted includes <span class="kw">nulls</span>, they are considered lower than any non-null value, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
 
 ### Relationships
 
-In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL [.kw]#with# and [.kw]#without# clauses provide this capability. For the examples in this section, consider the following simple information model:
+In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL <span class="kw">with</span> and <span class="kw">without</span> clauses provide this capability. For the examples in this section, consider the following simple information model:
 
 <a name="figure-2-c"></a>
 ![extracted-media/media/patient-model](extracted-media/media/patient-model.png)
@@ -601,9 +595,9 @@ Figure 2‑C - Simple patient information model
       and P.abatementDate after end of E.period
 ```
 
-This query returns [.id]#"Ambulatory/ED Visit"# encounters performed where the patient also has a condition of [.id]#"Acute Pharyngitis"# that overlaps after the period of the encounter.
+This query returns <span class="id">"Ambulatory/ED Visit"</span> encounters performed where the patient also has a condition of <span class="id">"Acute Pharyngitis"</span> that overlaps after the period of the encounter.
 
-The [.kw]#without# clause returns only those elements from the primary source that do not have a specific relationship to another source. For example:
+The <span class="kw">without</span> clause returns only those elements from the primary source that do not have a specific relationship to another source. For example:
 
 ``` cql
 [Encounter: "Ambulatory/ED Visit"] E
@@ -612,13 +606,13 @@ The [.kw]#without# clause returns only those elements from the primary source th
       and P.abatementDate after end of E.period
 ```
 
-This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of [.id]#"Acute Pharyngitis"# are returned. In other words, if the _such that_ condition evaluates to [.kw]#true# (if the Encounter has an overlapping Condition of [.id]#Acute Pharyngitis# in this case), then that Encounter is not included in the result.
+This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of <span class="id">"Acute Pharyngitis"</span> are returned. In other words, if the _such that_ condition evaluates to <span class="kw">true</span> (if the Encounter has an overlapping Condition of <span class="id">Acute Pharyngitis</span> in this case), then that Encounter is not included in the result.
 
 A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withClause) clause and [without](19-l-cqlsyntaxdiagrams.html#withoutClause) clause.
 
-A given query may include any number of [.kw]#with# and [.kw]#without# clauses in any order, but they must all come before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
+A given query may include any number of <span class="kw">with</span> and <span class="kw">without</span> clauses in any order, but they must all come before any <span class="kw">where</span>, <span class="kw">return</span>, or <span class="kw">sort</span> clauses.
 
-The [.kw]#such that# conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
+The <span class="kw">such that</span> conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 ``` cql
 [MedicationDispense: "Warfarin"] D
@@ -626,9 +620,9 @@ The [.kw]#such that# conditions in the examples above used <<Timing Relationship
     such that P.status = 'active'
       and P.identifier = D.authorizingPrescription.identifier
 ```
-This example retrieves all dispense records for active prescriptions of [.id]#Warfarin#.
+This example retrieves all dispense records for active prescriptions of <span class="id">Warfarin</span>.
 
-When multiple [.kw]#with# or [.kw]#without# clauses appear in a single query, the result will only include elements that meet the [.kw]#such that# conditions for all the relationship clauses. For example:
+When multiple <span class="kw">with</span> or <span class="kw">without</span> clauses appear in a single query, the result will only include elements that meet the <span class="kw">such that</span> conditions for all the relationship clauses. For example:
 
 ``` cql
 MeasurementPeriodEncounters E
@@ -638,7 +632,7 @@ MeasurementPeriodEncounters E
   with Antibiotics A such that A.dateWritten 3 days or less after start of E.period
 ```
 
-This example retrieves all the elements returned by the expression [.id]#MeasurementPeriodEncounters# that have both a related [.id]#Pharyngitis# and [.id]#Antibiotics# result.
+This example retrieves all the elements returned by the expression <span class="id">MeasurementPeriodEncounters</span> that have both a related <span class="id">Pharyngitis</span> and <span class="id">Antibiotics</span> result.
 
 ### Full Query
 
@@ -654,13 +648,13 @@ The clauses described in the previous section must appear in the correct order i
 
 A query must contain an aliased primary source, but this is the only required clause.
 
-A query may contain zero or more [.kw]#with# or [.kw]#without# clauses, but they must all appear before any [.kw]#where#, [.kw]#return#, or [.kw]#sort# clauses.
+A query may contain zero or more <span class="kw">with</span> or <span class="kw">without</span> clauses, but they must all appear before any <span class="kw">where</span>, <span class="kw">return</span>, or <span class="kw">sort</span> clauses.
 
-A query may contain at most one [.kw]#where# clause, and it must appear after any [.kw]#with# or [.kw]#without# clauses, and before any [.kw]#return# or [.kw]#sort# clauses.
+A query may contain at most one <span class="kw">where</span> clause, and it must appear after any <span class="kw">with</span> or <span class="kw">without</span> clauses, and before any <span class="kw">return</span> or <span class="kw">sort</span> clauses.
 
-A query may contain at most one [.kw]#return# clause, and it must appear after any [.kw]#with# or [.kw]#without# or [.kw]#where# clauses, and before any [.kw]#sort# clause.
+A query may contain at most one <span class="kw">return</span> clause, and it must appear after any <span class="kw">with</span> or <span class="kw">without</span> or <span class="kw">where</span> clauses, and before any <span class="kw">sort</span> clause.
 
-A query may contain at most one [.kw]#sort# clause, and it must be the last clause in the query.
+A query may contain at most one <span class="kw">sort</span> clause, and it must be the last clause in the query.
 
 For example:
 
@@ -674,9 +668,9 @@ For example:
   sort by lengthOfStay desc
 ```
 
-This query returns all [.id]#"Inpatient"# encounter events that have an overlapping condition of [.id]#"Acute Pharyngitis"# and a duration of at least 120 days. For each such event, the result will include the [.id]#id# of the event and the duration in days, and the results will be ordered by that duration descending.
+This query returns all <span class="id">"Inpatient"</span> encounter events that have an overlapping condition of <span class="id">"Acute Pharyngitis"</span> and a duration of at least 120 days. For each such event, the result will include the <span class="id">id</span> of the event and the duration in days, and the results will be ordered by that duration descending.
 
-As another example, consider a query with multiple [.kw]#without# clauses:
+As another example, consider a query with multiple <span class="kw">without</span> clauses:
 
 ``` cql
 SingleLiveBirthEncounter E
@@ -689,7 +683,7 @@ SingleLiveBirthEncounter E
   )
 ```
 
-Even though this example has multiple [.kw]#without# clauses, there is still only a single [.kw]#where# clause for the query.
+Even though this example has multiple <span class="kw">without</span> clauses, there is still only a single <span class="kw">where</span> clause for the query.
 
 Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
 
@@ -703,7 +697,7 @@ CQL supports several categories of values:
 * Lists, which can contain any number of elements of the same type
 * Intervals, which define ranges of ordered values, such as numbers or dates
 
-The result of evaluating any expression in CQL is a value of some type. For example, the expression [.lit]#5# results in the value [.lit]#5# of type [.id]#Integer#. CQL is a _strongly-typed_ language, meaning that every value is of some type, and that every operation expects arguments of a particular type.
+The result of evaluating any expression in CQL is a value of some type. For example, the expression <span class="lit">5</span> results in the value <span class="lit">5</span> of type <span class="id">Integer</span>. CQL is a _strongly-typed_ language, meaning that every value is of some type, and that every operation expects arguments of a particular type.
 
 As a result, any given expression of CQL can be verified as meaningful or be determined meaningless, at least in terms of the operations performed. For example, consider the following expression:
 
@@ -711,13 +705,13 @@ As a result, any given expression of CQL can be verified as meaningful or be det
 6 + 6
 ```
 
-The expression involves the addition of values of type [.id]#Integer#, and so is a meaningful expression of CQL. By contrast:
+The expression involves the addition of values of type <span class="id">Integer</span>, and so is a meaningful expression of CQL. By contrast:
 
 ``` cql
 6 + 'active'
 ```
 
-This expression involves the addition of a value of type [.id]#Integer#, [.lit]#6#, to a value of type [.id]#String#, [.lit]#'active'#. This expression is meaningless since CQL does not define addition for values of type [.id]#Integer# and [.id]#String#.
+This expression involves the addition of a value of type <span class="id">Integer</span>, <span class="lit">6</span>, to a value of type <span class="id">String</span>, <span class="lit">'active'</span>. This expression is meaningless since CQL does not define addition for values of type <span class="id">Integer</span> and <span class="id">String</span>.
 
 However, there are cases where an expression is meaningful, even if the types do not match exactly. For example, consider the following addition:
 
@@ -725,9 +719,9 @@ However, there are cases where an expression is meaningful, even if the types do
 6 + 6.0
 ```
 
-This expression involves the addition of a value of type [.id]#Integer#, and a value of type [.id]#Decimal#. This is meaningful, but in order to infer the correct result type, the [.id]#Integer# value will be implicitly converted to a value of type [.id]#Decimal#, and the [.id]#Decimal# addition operator will be used, resulting in a value of type [.id]#Decimal#.
+This expression involves the addition of a value of type <span class="id">Integer</span>, and a value of type <span class="id">Decimal</span>. This is meaningful, but in order to infer the correct result type, the <span class="id">Integer</span> value will be implicitly converted to a value of type <span class="id">Decimal</span>, and the <span class="id">Decimal</span> addition operator will be used, resulting in a value of type <span class="id">Decimal</span>.
 
-To ensure there can never be a loss of information, this implicit conversion will only happen from [.id]#Integer# to [.id]#Decimal#, never from [.id]#Decimal# to [.id]#Integer#.
+To ensure there can never be a loss of information, this implicit conversion will only happen from <span class="id">Integer</span> to <span class="id">Decimal</span>, never from <span class="id">Decimal</span> to <span class="id">Integer</span>.
 
 In the sections that follow, the various categories of values that can be represented in CQL will be considered in more detail.
 
@@ -739,18 +733,18 @@ CQL supports several types of simple values:
 [cols=",",options="header",]
 |=======================================
 |Value |Examples
-|*Boolean* |[.kw]#true#, [.kw]#false#, [.kw]#null#
-|*Integer* |[.lit]#16#, [.lit]#-28#
-|*Decimal* |[.lit]#100.015#
-|*String* |[.lit]#'pending'#, [.lit]#'active'#, [.lit]#'complete'#
-|*Date* |[.lit]#@2014-01-25#
-|*DateTime* |[.lit]#@2014-01-25T14:30:14.559#
+|*Boolean* |<span class="kw">true</span>, <span class="kw">false</span>, <span class="kw">null</span>
+|*Integer* |<span class="lit">16</span>, <span class="lit">-28</span>
+|*Decimal* |<span class="lit">100.015</span>
+|*String* |<span class="lit">'pending'</span>, <span class="lit">'active'</span>, <span class="lit">'complete'</span>
+|*Date* |<span class="lit">@2014-01-25</span>
+|*DateTime* |<span class="lit">@2014-01-25T14:30:14.559</span>
 
-[.lit]#@2014-01T#
+<span class="lit">@2014-01T</span>
 
-|*Time* |[.lit]#@T12:00#
+|*Time* |<span class="lit">@T12:00</span>
 
-[.lit]#@T14:30:14.559#
+<span class="lit">@T14:30:14.559</span>
 
 |=======================================
 
@@ -758,21 +752,21 @@ Table 2‑E - Types of simple values that CQL supports
 
 #### Boolean
 
-The [.id]#Boolean# type in CQL supports the logical values [.kw]#true#, [.kw]#false#, and [.kw]#null# (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
+The <span class="id">Boolean</span> type in CQL supports the logical values <span class="kw">true</span>, <span class="kw">false</span>, and <span class="kw">null</span> (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
 
 #### Integer
 
-The [.id]#Integer# type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
+The <span class="id">Integer</span> type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
 
-In addition, any operation involving [.id]#Decimal# values can be used with values of type [.id]#Integer# because [.id]#Integer# values can always be implicitly converted to [.id]#Decimal# values.
+In addition, any operation involving <span class="id">Decimal</span> values can be used with values of type <span class="id">Integer</span> because <span class="id">Integer</span> values can always be implicitly converted to <span class="id">Decimal</span> values.
 
 #### Decimal
 
-The [.id]#Decimal# type in CQL supports the representation of real numbers, positive and negative. As with [.id]#Integer# values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
+The <span class="id">Decimal</span> type in CQL supports the representation of real numbers, positive and negative. As with <span class="id">Integer</span> values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
 
 #### String
 
-[.id]#String# values within CQL are represented using single-quotes:
+<span class="id">String</span> values within CQL are represented using single-quotes:
 
 ``` cql
 'active'
@@ -784,7 +778,7 @@ Note that if the value you are attempting to represent contains a single-quote, 
 'patient\'s condition is normal'
 ```
 
-Comparison of [.id]#String# values in CQL is case-sensitive, meaning that the strings 'patient' and 'Patient' are not equal:
+Comparison of <span class="id">String</span> values in CQL is case-sensitive, meaning that the strings 'patient' and 'Patient' are not equal:
 
 ``` cql
 'Patient' = 'Patient'
@@ -792,46 +786,46 @@ Comparison of [.id]#String# values in CQL is case-sensitive, meaning that the st
 'Patient' ~ 'patient'
 ```
 
-For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent ([.sym]#~#) operator. Note that string equivalence will also "normalize whitespace", meaning that all whitespace characters are treated as equivalent.
+For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent (<span class="sym">~</span>) operator. Note that string equivalence will also "normalize whitespace", meaning that all whitespace characters are treated as equivalent.
 
 [[date-datetime-and-time]]
 #### Date, DateTime, and Time
 
-CQL supports the representation of [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values.
+CQL supports the representation of <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values.
 
-A syntax diagram of a [.id]#Date, DateTime and Time# format can be seen [here](19-l-cqlsyntaxdiagrams.html#DATETIME).
+A syntax diagram of a <span class="id">Date, DateTime and Time</span> format can be seen [here](19-l-cqlsyntaxdiagrams.html#DATETIME).
 
-[.id]#DateTime# values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. [.id]#DateTime# values are specified using an at-symbol ([.sym]#@#) followed by an ISO-8601 textual representation of the [.id]#DateTime# value:
+<span class="id">DateTime</span> values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. <span class="id">DateTime</span> values are specified using an at-symbol (<span class="sym">@</span>) followed by an ISO-8601 textual representation of the <span class="id">DateTime</span> value:
 
 ``` cql
 @2014-01-25T14:30
 @2014-01-25T14:30:14.559
 ```
 
-[.id]#Date# values are used to represent only dates on a calendar, irrespective of the time of day. [.id]#Date# values are specified using an at-symbol ([.sym]#@#) followed by an ISO-8601 textual representation of the [.id]#Date# value:
+<span class="id">Date</span> values are used to represent only dates on a calendar, irrespective of the time of day. <span class="id">Date</span> values are specified using an at-symbol (<span class="sym">@</span>) followed by an ISO-8601 textual representation of the <span class="id">Date</span> value:
 
 ``` cql
 @2014-01-25
 ```
 
-Note that the [.id]#Date# value literal format is identical to the date value portion of the [.id]#DateTime# literal format.
+Note that the <span class="id">Date</span> value literal format is identical to the date value portion of the <span class="id">DateTime</span> literal format.
 
-[.id]#Time# values are used to represent a time of day, independent of the date. [.id]#Time# value must be known to at least the hour precision, and potentially to the millisecond precision. [.id]#Time# values are specified using an at-symbol with a capital T ([.sym]#@T#) followed by an ISO-8601 textual representation of the [.id]#Time# value:
+<span class="id">Time</span> values are used to represent a time of day, independent of the date. <span class="id">Time</span> value must be known to at least the hour precision, and potentially to the millisecond precision. <span class="id">Time</span> values are specified using an at-symbol with a capital T (<span class="sym">@T</span>) followed by an ISO-8601 textual representation of the <span class="id">Time</span> value:
 
 ``` cql
 @T12:00
 @T14:30:14.559
 ```
 
-Note that the [.id]#Time# value literal format is identical to the time value portion of the [.id]#DateTime# literal format.
+Note that the <span class="id">Time</span> value literal format is identical to the time value portion of the <span class="id">DateTime</span> literal format.
 
-Only [.id]#DateTime# values may specify a timezone offset, either as UTC ([.sym]#Z#), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
+Only <span class="id">DateTime</span> values may specify a timezone offset, either as UTC (<span class="sym">Z</span>), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
-For both [.id]#DateTime# and [.id]#Time# values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a [.id]#Decimal# for the purposes of comparison.
+For both <span class="id">DateTime</span> and <span class="id">Time</span> values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 For more information on the use of date and time values within CQL, refer to the <<Date and Time Operators>> section.
 
-Specifically, because [.id]#Date#, [.id]#DateTime#, and [.id]#Time# values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in [.kw]#null#, rather than the [.kw]#true# or [.kw]#false# that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
+Specifically, because <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in <span class="kw">null</span>, rather than the <span class="kw">true</span> or <span class="kw">false</span> that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
 
 ### Clinical Values
 
@@ -847,7 +841,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ```
 
-The number portion of a quantity can be an [.id]#Integer# or [.id]#Decimal#, and the unit portion is a (single-quoted) [.id]#String# representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -900,23 +894,23 @@ For a discussion of the operations available for ratios, see the <<Ratio Operato
 
 #### Code
 
-The use of codes to specify meaning within clinical data is ubiquitous. CQL therefore supports a top-level construct for dealing with codes using a structure called [.id]#Code# that is consistent with the way terminologies are typically represented.
+The use of codes to specify meaning within clinical data is ubiquitous. CQL therefore supports a top-level construct for dealing with codes using a structure called <span class="id">Code</span> that is consistent with the way terminologies are typically represented.
 
-The [.id]#Code# type has the following elements:
+The <span class="id">Code</span> type has the following elements:
 
 <a name="table-2-f"></a>
 [cols=",,",options="header",]
 |==================================================
 |Name |Type |Description
-|*code* |[.id]#String# |The actual code within the code system.
-|*display* |[.id]#String# |A description of the code.
-|*system* |[.id]#String# |The identifier of the code system.
-|*version* |[.id]#String# |The version of the code system.
+|*code* |<span class="id">String</span> |The actual code within the code system.
+|*display* |<span class="id">String</span> |A description of the code.
+|*system* |<span class="id">String</span> |The identifier of the code system.
+|*version* |<span class="id">String</span> |The version of the code system.
 |==================================================
 
-Table 2‑F - Elements that make up a [.kw]#code# type
+Table 2‑F - Elements that make up a <span class="kw">code</span> type
 
-A syntax diagram of a [.id]#Code# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#codeDefinition).
+A syntax diagram of a <span class="id">Code</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#codeDefinition).
 
 The following examples illustrate the code declaration:
 
@@ -930,9 +924,9 @@ code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood 
 
 The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
-A syntax diagram of a [.id]#Code# referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeSelector).
+A syntax diagram of a <span class="id">Code</span> referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeSelector).
 
-In addition, CQL provides a [.id]#Code# literal that can be used to reference an existing code from a specific code system.
+In addition, CQL provides a <span class="id">Code</span> literal that can be used to reference an existing code from a specific code system.
 
 For example
 
@@ -940,7 +934,7 @@ For example
 Code '66071002' from "SNOMED-CT" display 'Type B viral hepatitis'
 ```
 
-The example specifies the code [.lit]#'66071002'# from a previously defined [.id]#"SNOMED-CT:2014"# codesystem, which specifies both the [.id]#system# and [.id]#version# of the resulting code. Note that the [.kw]#display# clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
+The example specifies the code <span class="lit">'66071002'</span> from a previously defined <span class="id">"SNOMED-CT:2014"</span> codesystem, which specifies both the <span class="id">system</span> and <span class="id">version</span> of the resulting code. Note that the <span class="kw">display</span> clause is optional. Note that code literals are allowed in CQL for completeness. In general, authors should use code declarations rather than code literals when using codes directly.
 
 This use of code declarations to reference a single code in a CQL expression is referred to as a _direct reference code_:
 
@@ -962,21 +956,21 @@ When using direct reference codes, authors should use the name of the code as de
 
 #### Concept
 
-Within clinical information, multiple terminologies can often be used to code for the same concept. As such, CQL defines a top-level construct called [.id]#Concept# that allows for multiple codes to be specified.
+Within clinical information, multiple terminologies can often be used to code for the same concept. As such, CQL defines a top-level construct called <span class="id">Concept</span> that allows for multiple codes to be specified.
 
-The [.id]#Concept# type has the following elements:
+The <span class="id">Concept</span> type has the following elements:
 
 <a name="table-2-g"></a>
 [cols=",,",options="header",]
 |=========================================================================
 |Name |Type |Description
-|*codes* |[.id]#List<Code># |The list of semantically equivalent codes representing the concept.
-|*display* |[.id]#String# |A description of the concept.
+|*codes* |<span class="id">List<Code></span> |The list of semantically equivalent codes representing the concept.
+|*display* |<span class="id">String</span> |A description of the concept.
 |=========================================================================
 
-Table 2‑G - Elements that make up a [.kw]#Concept# type
+Table 2‑G - Elements that make up a <span class="kw">Concept</span> type
 
-> Note that the semantics of [.id]#Concept# are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
+> Note that the semantics of <span class="id">Concept</span> are such that the codes within a given concept should be semantically _about_ the same concept (e.g. the same concept represented in different code systems, or the same concept from the same code system represented at different levels of detail), but CQL itself will make no attempt to ensure that is the case. Concepts should never be used as a surrogate for proper valueset definition.
 {: .note-warning}
 
 The following example illustrates the concept declaration:
@@ -993,11 +987,11 @@ concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (IC
 
 The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
 
-A syntax diagram of a [.id]#Concept# declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
+A syntax diagram of a <span class="id">Concept</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
 
 As with codes, local names for concept declarations should be consistent with external declarations to avoid introducing any confusion of meaning.
 
-The following example illustrates the use of a [.id]#Concept# literal:
+The following example illustrates the use of a <span class="id">Concept</span> literal:
 
 ``` cql
 Concept {
@@ -1006,13 +1000,13 @@ Concept {
 } display 'Type B viral hepatitis'
 ```
 
-This example constructs a [.id]#Concept# with display [.lit]#'Type B viral hepatitis'# and code of [.lit]#'66071002'#.
+This example constructs a <span class="id">Concept</span> with display <span class="lit">'Type B viral hepatitis'</span> and code of <span class="lit">'66071002'</span>.
 
-A syntax diagram of a [.id]#Concept# literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptSelector).
+A syntax diagram of a <span class="id">Concept</span> literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptSelector).
 
 #### Valuesets
 
-As a value, a valueset is simply a list of [.id]#Code# values. However, CQL allows valuesets to be used without reference to the codes involved by declaring valuesets as a special type of value within the language.
+As a value, a valueset is simply a list of <span class="id">Code</span> values. However, CQL allows valuesets to be used without reference to the codes involved by declaring valuesets as a special type of value within the language.
 
 A syntax diagram of a valueset declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#valuesetDefinition).
 
@@ -1032,7 +1026,7 @@ These valueset identifiers can then be used throughout the library. For example:
 define "Pharyngitis": [Condition: "Acute Pharyngitis"]
 ```
 
-This example defines [.id]#Pharyngitis# as any Condition where the code is in the [.id]#"Acute Pharyngitis"# valueset.
+This example defines <span class="id">Pharyngitis</span> as any Condition where the code is in the <span class="id">"Acute Pharyngitis"</span> valueset.
 
 Whenever a valueset reference is actually evaluated, the resulting _expansion set_, or list of codes, depends on the _binding_ specified by the valueset declaration. By default, all valueset bindings are _dynamic_, meaning that the expansion set should be constructed using the most current published version of the valueset.
 
@@ -1086,14 +1080,14 @@ See the <<Terminology Operators>> section for more information on the use of cod
 
 Structured values, or _tuples_, are values that contain named elements, each having a value of some type. Clinical information such as a Medication, a Condition, or an Encounter is represented using tuples.
 
-For example, the following expression retrieves the first Condition with a code in the [.id]#"Acute Pharyngitis"# valueset for a patient:
+For example, the following expression retrieves the first Condition with a code in the <span class="id">"Acute Pharyngitis"</span> valueset for a patient:
 
 ``` cql
 define "FirstPharyngitis":
   First([Condition: "Acute Pharyngitis"] C sort by onsetDateTime desc)
 ```
 
-The values of the elements of a tuple can be accessed using a dot qualifier ([.sym]#.#) followed by the name of the element:
+The values of the elements of a tuple can be accessed using a dot qualifier (<span class="sym">.</span>) followed by the name of the element:
 
 ``` cql
 define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
@@ -1115,7 +1109,7 @@ If the tuple is of a specific type, the name of the type can be used instead of 
 define "PatientExpression": Patient { Name: 'Patrick', DOB: @2014-01-01 }
 ```
 
-If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be [.kw]#null#.
+If the name of the type is specified, the tuple selector may only contain elements that are defined on the type, and the expressions for each element must evaluate to a value of the defined type for the element. Any elements defined in the class but not present in the selector will be <span class="kw">null</span>.
 
 Note that tuples can contain other tuples, as well as lists:
 
@@ -1135,13 +1129,13 @@ Accordingly, element access can nest as deeply as necessary:
 Info.Address.City
 ```
 
-This accesses the [.id]#City# element of the [.id]#Address# element of [.id]#Info#. Lists can be traversed within element accessors using the list indexer ([.sym]#[]#):
+This accesses the <span class="id">City</span> element of the <span class="id">Address</span> element of <span class="id">Info</span>. Lists can be traversed within element accessors using the list indexer (<span class="sym">[]</span>):
 
 ``` cql
 Info.Phones[0].Number
 ```
 
-This accesses the [.id]#Number# element of the first element of the [.id]#Phones# list within [.id]#Info#.
+This accesses the <span class="id">Number</span> element of the first element of the <span class="id">Phones</span> list within <span class="id">Info</span>.
 
 In addition, to simplify path traversal for models that make extensive use of list-valued attributes, the indexer can be omitted:
 
@@ -1149,19 +1143,19 @@ In addition, to simplify path traversal for models that make extensive use of li
 Info.Phones.Number
 ```
 
-The result of this invocation is a list containing the [.id]#Number# elements of all the [.id]#Phones# within [.id]#Info#.
+The result of this invocation is a list containing the <span class="id">Number</span> elements of all the <span class="id">Phones</span> within <span class="id">Info</span>.
 
 #### Missing Information
 
-Because clinical information is often incomplete, CQL provides a special construct, [.kw]#null#, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the [.id]#admissionDate# element of the Encounter tuple is [.kw]#null#.
+Because clinical information is often incomplete, CQL provides a special construct, <span class="kw">null</span>, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the <span class="id">admissionDate</span> element of the Encounter tuple is <span class="kw">null</span>.
 
-In order to provide consistent behavior in the presence of missing information, CQL defines [.kw]#null# behavior for all operations. For example, consider the following expression:
+In order to provide consistent behavior in the presence of missing information, CQL defines <span class="kw">null</span> behavior for all operations. For example, consider the following expression:
 
 ``` cql
 define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 ```
 
-If the onsetDateTime is not present, the result of this expression is [.kw]#null#. Furthermore, nulls will in general _propagate_, meaning that if the result of [.id]#FirstPharyngitis# is [.kw]#null#, the result of accessing the [.id]#onsetDateTime# element is also [.kw]#null#.
+If the onsetDateTime is not present, the result of this expression is <span class="kw">null</span>. Furthermore, nulls will in general _propagate_, meaning that if the result of <span class="id">FirstPharyngitis</span> is <span class="kw">null</span>, the result of accessing the <span class="id">onsetDateTime</span> element is also <span class="kw">null</span>.
 
 For more information on missing information, see the <<03-developersguide.adoc#nullological-operators,Nullological Operators>> section.
 
@@ -1191,7 +1185,7 @@ Lists in CQL use zero-based indexes, meaning that the first element in a list ha
 
 The first element is 6 and has index 0, the second element is 7 and has index 1, and so on.
 
-Note that in general, clinical data may be expected to contain various types of collections such as sets, bags, lists, and arrays. For simplicity, CQL deals with all collections using the same collection type, the _list_, and provides operations to enable dealing with different collection types. For example, a set is a list where each element is unique, and any given list can be converted to a set using the [.kw]#distinct# operator.
+Note that in general, clinical data may be expected to contain various types of collections such as sets, bags, lists, and arrays. For simplicity, CQL deals with all collections using the same collection type, the _list_, and provides operations to enable dealing with different collection types. For example, a set is a list where each element is unique, and any given list can be converted to a set using the <span class="kw">distinct</span> operator.
 
 For a description of the distinct operator, as well as other operations that can be performed with lists, refer to the <<List Operators>> section.
 
@@ -1199,9 +1193,9 @@ For a description of the distinct operator, as well as other operations that can
 
 CQL supports the representation of intervals, or ranges, of values of various types. In particular, intervals of date and time values, and ranges of integers and reals.
 
-Intervals in CQL are represented by specifying the low and high points of the [.id]#Interval# and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses.
+Intervals in CQL are represented by specifying the low and high points of the <span class="id">Interval</span> and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses.
 
-A syntax diagram of an [.id]#Interval# construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalSelector).
+A syntax diagram of an <span class="id">Interval</span> construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalSelector).
 
 For example:
 
@@ -1209,13 +1203,13 @@ For example:
 Interval[3, 5)
 ```
 
-This expression results in an [.id]#Interval# that contains the integers 3 and 4, but not 5.
+This expression results in an <span class="id">Interval</span> that contains the integers 3 and 4, but not 5.
 
 ``` cql
 Interval[3.0, 5.0)
 ```
 
-This expression results in an [.id]#Interval# that contains all the real numbers [.sym]#>=# 3.0 and [.sym]#<# 5.0.
+This expression results in an <span class="id">Interval</span> that contains all the real numbers <span class="sym">>=</span> 3.0 and <span class="sym"><</span> 5.0.
 
 Intervals can be constructed based on any type that supports unique and ordered comparison. For example:
 
@@ -1223,7 +1217,7 @@ Intervals can be constructed based on any type that supports unique and ordered 
 Interval[@2014-01-01T00:00:00.0, @2015-01-01T00:00:00.0)
 ```
 
-This expression results in an [.id]#Interval# that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
+This expression results in an <span class="id">Interval</span> that begins at midnight on January 1, 2014, ends just before midnight on December 31, 2014 and is equivalent to the following interval:
 
 ``` cql
 Interval[@2014-01-01T00:00:00.0, @2014-12-31T23:59:59.999]
@@ -1235,26 +1229,26 @@ Furthermore, take the following example:
 Interval[@2014-01-01, @2015-01-01)
 ```
 
-This expression results in an [.id]#Interval# that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
+This expression results in an <span class="id">Interval</span> that begins on January 1, 2014 at an undefined time, ends at an undefined time on December 31, 2014 and is equivalent to the following interval:
 
 ``` cql
 Interval[@2014-01-01, @2014-12-31]
 ```
 
-Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid [.id]#Interval# will result in a run-time error. For example:
+Note that the ending boundary must be greater than or equal to the starting boundary to construct a valid interval. Attempting to specify an invalid <span class="id">Interval</span> will result in a run-time error. For example:
 
 ``` cql
 Interval[1, -1] // Invalid interval, this will result in an error
 ```
 
-It is valid to construct an [.id]#Interval# with the same start and end boundary, so long as the boundaries are inclusive:
+It is valid to construct an <span class="id">Interval</span> with the same start and end boundary, so long as the boundaries are inclusive:
 
 ``` cql
 Interval[1, 1] // Unit interval containing only the point 1
 Interval[1, 1) // Invalid interval, conflicting to say it both includes and excludes 1
 ```
 
-Such an [.id]#Interval# contains only a single point and can be called a _unit interval_. For unit intervals, the [.kw]#point from# operator can be used to extract the single point from the interval. Attempting to use [.kw]#point from# on a non-unit-interval will result in a run-time error.
+Such an <span class="id">Interval</span> contains only a single point and can be called a _unit interval_. For unit intervals, the <span class="kw">point from</span> operator can be used to extract the single point from the interval. Attempting to use <span class="kw">point from</span> on a non-unit-interval will result in a run-time error.
 
 ``` cql
 point from Interval[1, 1] // Results in 1
@@ -1263,7 +1257,7 @@ point from Interval[1, 5] // Invalid extractor, this will result in an error
 
 ## Operations
 
-In addition to retrieving clinical information about a patient or set of patients, the expression of clinical knowledge artifacts often involves the use of various operations such as comparison, logical operations such as [.kw]#and# and [.kw]#or#, computation, and so on. To ensure that the language can effectively express a broad range of knowledge artifacts, CQL includes a comprehensive set of operations. In general, these operations are all _expressions_ in that they can be evaluated to return a value of some type, and the type of that return value can be determined by examining the types of values and operations involved in the expression.
+In addition to retrieving clinical information about a patient or set of patients, the expression of clinical knowledge artifacts often involves the use of various operations such as comparison, logical operations such as <span class="kw">and</span> and <span class="kw">or</span>, computation, and so on. To ensure that the language can effectively express a broad range of knowledge artifacts, CQL includes a comprehensive set of operations. In general, these operations are all _expressions_ in that they can be evaluated to return a value of some type, and the type of that return value can be determined by examining the types of values and operations involved in the expression.
 
 This means that for each operation, CQL defines the number and type of each input (_argument_) to the operation and the type of the result, given the types of each argument.
 
@@ -1271,7 +1265,7 @@ The following sections define the operations that can be used within CQL, divide
 
 ### Comparison Operators
 
-For all the comparison operators, the result type of the operation is [.id]#Boolean#, meaning they may result in [.kw]#true#, [.kw]#false#, or [.kw]#null# (meaning _unknown_). In general, if either or both of the values being compared is [.kw]#null#, the result of the comparison is [.kw]#null#.
+For all the comparison operators, the result type of the operation is <span class="id">Boolean</span>, meaning they may result in <span class="kw">true</span>, <span class="kw">false</span>, or <span class="kw">null</span> (meaning _unknown_). In general, if either or both of the values being compared is <span class="kw">null</span>, the result of the comparison is <span class="kw">null</span>.
 
 The most basic operation in CQL involves comparison of two values. This is accomplished with the built-in comparison operators:
 
@@ -1279,20 +1273,20 @@ The most basic operation in CQL involves comparison of two values. This is accom
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
-|*=* |Equality |Returns [.kw]#true# if the arguments are the same value. Returns [.kw]#false# if arguments are not the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*!=* |Inequality |Returns [.kw]#true# if the arguments are not the same value. Returns [.kw]#false# if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*>* |Greater than |Returns [.kw]#true# if the left argument is greater than the right argument. Returns [.kw]#false# if the left argument is less than the right argument, or if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*<* |Less than |Returns [.kw]#true# if the left argument is less than the right argument. Returns [.kw]#false# if the left argument is greater than the right argument, or if the arguments are the same value. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*>=* |Greater than or equal |Returns [.kw]#true# if the left argument is greater than or equal to the right argument. Returns [.kw]#false# if the left argument is less than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*\<=* |Less than or equal |Returns [.kw]#true# if the left argument is less than or equal to the right argument. Returns [.kw]#false# if the left argument is greater than the right argument. Returns [.kw]#null# if either or both arguments are [.kw]#null#
-|*between* | |Returns [.kw]#true# if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns [.kw]#false# if the first argument is less than the second argument or greater than the third argument. Returns [.kw]#null# if any or all arguments are [.kw]#null#.
-|*~* |Equivalent |Returns [.kw]#true# if the arguments are equivalent in value, or are both [.kw]#null#; otherwise [.kw]#false#
-|*!~* |Inequivalent |Returns [.kw]#true# if the arguments are not equivalent and [.kw]#false# otherwise.
+|*=* |Equality |Returns <span class="kw">true</span> if the arguments are the same value. Returns <span class="kw">false</span> if arguments are not the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*!=* |Inequality |Returns <span class="kw">true</span> if the arguments are not the same value. Returns <span class="kw">false</span> if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*>* |Greater than |Returns <span class="kw">true</span> if the left argument is greater than the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*<* |Less than |Returns <span class="kw">true</span> if the left argument is less than the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*>=* |Greater than or equal |Returns <span class="kw">true</span> if the left argument is greater than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*\<=* |Less than or equal |Returns <span class="kw">true</span> if the left argument is less than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|*between* | |Returns <span class="kw">true</span> if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns <span class="kw">false</span> if the first argument is less than the second argument or greater than the third argument. Returns <span class="kw">null</span> if any or all arguments are <span class="kw">null</span>.
+|*~* |Equivalent |Returns <span class="kw">true</span> if the arguments are equivalent in value, or are both <span class="kw">null</span>; otherwise <span class="kw">false</span>
+|*!~* |Inequivalent |Returns <span class="kw">true</span> if the arguments are not equivalent and <span class="kw">false</span> otherwise.
 |===========================================================================================================================================
 
 Table 2‑H - The built-in comparison operators that CQL provides
 
-In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns [.kw]#true#:
+In general, the equality and inequality operators can be used on any type of value within CQL, but both arguments must be the same type. For example, the following equality comparison is legal, and returns <span class="kw">true</span>:
 
 ``` cql
 5 = 5
@@ -1304,19 +1298,19 @@ However, the following equality comparison is invalid because numbers and string
 5 = 'completed'
 ```
 
-Attempting to compare numbers and strings as in this example will result in an error message indicating that there is no equality ([.sym]#=#) operator available to compare numbers and strings.
+Attempting to compare numbers and strings as in this example will result in an error message indicating that there is no equality (<span class="sym">=</span>) operator available to compare numbers and strings.
 
-For [.id]#Decimal# values, equality is defined to ignore trailing zeroes.
+For <span class="id">Decimal</span> values, equality is defined to ignore trailing zeroes.
 
-For [.id]#Date# and [.id]#Time# values, equality is defined to account for the possibility that the [.id]#Date# and [.id]#Time# values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
+For <span class="id">Date</span> and <span class="id">Time</span> values, equality is defined to account for the possibility that the <span class="id">Date</span> and <span class="id">Time</span> values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
 
-For structured values, equality returns [.kw]#true# if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns [.kw]#true#:
+For structured values, equality returns <span class="kw">true</span> if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns <span class="kw">true</span>:
 
 ``` cql
 Tuple { id: 'ABC-001', name: 'John Smith' } = Tuple { id: 'ABC-001', name: 'John Smith' }
 ```
 
-For lists, equality returns [.kw]#true# if the lists contain the same elements in the same order. For example, the following lists are equal:
+For lists, equality returns <span class="kw">true</span> if the lists contain the same elements in the same order. For example, the following lists are equal:
 
 ``` cql
 { 1, 2, 3, 4, 5 } = { 1, 2, 3, 4, 5 }
@@ -1328,19 +1322,19 @@ And the following lists are not equal:
 { 1, 2, 3, 4, 5 } != { 5, 4, 3, 2, 1 }
 ```
 
-Note that in the above example, if the second list was sorted ascending prior to the comparison, the result would be [.kw]#true#.
+Note that in the above example, if the second list was sorted ascending prior to the comparison, the result would be <span class="kw">true</span>.
 
-For intervals, equality returns [.kw]#true# if the intervals use the same point type and cover the same range. For example:
+For intervals, equality returns <span class="kw">true</span> if the intervals use the same point type and cover the same range. For example:
 
 ``` cql
 Interval[1,5] = Interval[1,6)
 ```
 
-This returns [.kw]#true# because the intervals cover the same set of points, 1 through 5.
+This returns <span class="kw">true</span> because the intervals cover the same set of points, 1 through 5.
 
-The relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) can be used on types of values that have a natural ordering such as numbers, strings, and dates.
+The relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym"><</span>, <span class="sym">\<=</span>) can be used on types of values that have a natural ordering such as numbers, strings, and dates.
 
-The [.kw]#between# operator is shorthand for comparison of an expression against an upper and lower bound. For example:
+The <span class="kw">between</span> operator is shorthand for comparison of an expression against an upper and lower bound. For example:
 
 ``` cql
 4 between 2 and 8
@@ -1352,24 +1346,24 @@ This expression is equivalent to:
 4 >= 2 and 4 <= 8
 ```
 
-For all the comparison operators, the result type of the operation is [.id]#Boolean#. Note that because CQL uses three-valued logic, if either or both of the arguments is [.kw]#null#, the result of the comparison is [.kw]#null# (meaning _unknown_). This is true for all the comparison operators except equivalent ([.sym]#~#) and not equivalent ([.sym]#!~#). The equivalent operator is generally the same as equality, except that it returns [.kw]#true# if both of the arguments are [.kw]#null#, and [.kw]#false# if one argument is [.kw]#null# and the other is not:
+For all the comparison operators, the result type of the operation is <span class="id">Boolean</span>. Note that because CQL uses three-valued logic, if either or both of the arguments is <span class="kw">null</span>, the result of the comparison is <span class="kw">null</span> (meaning _unknown_). This is true for all the comparison operators except equivalent (<span class="sym">~</span>) and not equivalent (<span class="sym">!~</span>). The equivalent operator is generally the same as equality, except that it returns <span class="kw">true</span> if both of the arguments are <span class="kw">null</span>, and <span class="kw">false</span> if one argument is <span class="kw">null</span> and the other is not:
 
 ``` cql
 define "NullEqualityTest": 1 = null
 define "NullEquivalenceTest": 1 ~ null
 ```
 
-The expression [.id]#NullEqualityTest# results in [.kw]#null#, whereas the expression [.id]#NullEquivalenceTest# results in [.kw]#false#.
+The expression <span class="id">NullEqualityTest</span> results in <span class="kw">null</span>, whereas the expression <span class="id">NullEquivalenceTest</span> results in <span class="kw">false</span>.
 
 In addition, equivalence is defined more loosely than equality for some types:
 
-* For [.id]#String# values, equivalence ignores case, locale, and whitespace.
-* For [.id]#Decimal# values, equivalence means the values are the same to the precision of the least precise value being compared.
-* For [.id]#Quantity# values, equivalence means the values are the same, allowing for unit conversion.
-* For [.id]#Ratio# values, equivalence means the values represent the same ratio.
-* For [.id]#DateTime#, [.id]#Date#, and [.id]#Time# values, equivalence is the same as equality except it will return [.kw]#false# instead of [.kw]#null# if the values being compared have differing precisions.
-* For [.id]#Code# values, equivalence means the values have the same system and code.
-* For [.id]#Concept# values, equivalence means the values have at least one equivalent code.
+* For <span class="id">String</span> values, equivalence ignores case, locale, and whitespace.
+* For <span class="id">Decimal</span> values, equivalence means the values are the same to the precision of the least precise value being compared.
+* For <span class="id">Quantity</span> values, equivalence means the values are the same, allowing for unit conversion.
+* For <span class="id">Ratio</span> values, equivalence means the values represent the same ratio.
+* For <span class="id">DateTime</span>, <span class="id">Date</span>, and <span class="id">Time</span> values, equivalence is the same as equality except it will return <span class="kw">false</span> instead of <span class="kw">null</span> if the values being compared have differing precisions.
+* For <span class="id">Code</span> values, equivalence means the values have the same system and code.
+* For <span class="id">Concept</span> values, equivalence means the values have at least one equivalent code.
 
 For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> and <<09-b-cqlreference.adoc#equivalent,Equivalent>> in the CQL reference.
 
@@ -1396,14 +1390,14 @@ AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
 ```
 
-Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard [.id]#Boolean# (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
+Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard <span class="id">Boolean</span> (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
-> To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the [.kw]#if# or [.kw]#case# expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
+> To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the <span class="kw">if</span> or <span class="kw">case</span> expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
 {: .note-info}
 
 ### Arithmetic Operators
 
-The expression of clinical logic often involves numeric computation, and CQL provides a complete set of arithmetic operations for expressing computational logic. In general, these operators have the standard semantics for arithmetic operators, with the general caveat that unless otherwise stated in the documentation for a specific operation, if any argument to an operation is [.kw]#null#, the result is [.kw]#null#. In addition, calculations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in [.kw]#null#, rather than a run-time error.
+The expression of clinical logic often involves numeric computation, and CQL provides a complete set of arithmetic operations for expressing computational logic. In general, these operators have the standard semantics for arithmetic operators, with the general caveat that unless otherwise stated in the documentation for a specific operation, if any argument to an operation is <span class="kw">null</span>, the result is <span class="kw">null</span>. In addition, calculations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in <span class="kw">null</span>, rather than a run-time error.
 
 The following table lists the arithmetic operations available in CQL:
 
@@ -1436,44 +1430,44 @@ Table 2‑J - Arithmetic operations that CQL provides
 
 Operations on date and time data are an essential component of expressing clinical knowledge, and CQL provides a complete set of date and time operators. These operators broadly fall into five categories:
 
-* Construction – Building or selecting specific [.id]#Date# and [.id]#Time# values
-* Comparison – Comparing [.id]#Date# and [.id]#Time# values
-* Extraction – Extracting specific components from [.id]#Date# and [.id]#Time# values
-* Arithmetic – Performing [.id]#Date# and [.id]#Time# arithmetic
-* Duration – Computing durations between [.id]#Date# and [.id]#Time# values
-* Difference - Computing the difference between [.id]#Date# and [.id]#Time# values
+* Construction – Building or selecting specific <span class="id">Date</span> and <span class="id">Time</span> values
+* Comparison – Comparing <span class="id">Date</span> and <span class="id">Time</span> values
+* Extraction – Extracting specific components from <span class="id">Date</span> and <span class="id">Time</span> values
+* Arithmetic – Performing <span class="id">Date</span> and <span class="id">Time</span> arithmetic
+* Duration – Computing durations between <span class="id">Date</span> and <span class="id">Time</span> values
+* Difference - Computing the difference between <span class="id">Date</span> and <span class="id">Time</span> values
 
 [[constructing-datetime-values]]
 #### Constructing Date and Time Values
 
-In addition to the literals described in the Date, DateTime, and Time section, the [.id]#Date#, [.id]#DateTime#, and [.id]#Time# operators allow for the construction of specific [.id]#Date# and [.id]#Time# values based on the values for their components. For example:
+In addition to the literals described in the Date, DateTime, and Time section, the <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> operators allow for the construction of specific <span class="id">Date</span> and <span class="id">Time</span> values based on the values for their components. For example:
 
 ``` cql
 Date(2014, 7, 5)
 DateTime(2014, 7, 5, 4, 0, 0, 0, -7)
 ```
 
-The first example constructs the [.id]#Date# July 5, 2014. The second example constructs a [.id]#DateTime# of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
+The first example constructs the <span class="id">Date</span> July 5, 2014. The second example constructs a <span class="id">DateTime</span> of July 5, 2014, 04:00:00.0 UTC-07:00 (Mountain Standard Time).
 
-The [.id]#DateTime# operator takes the following arguments:
+The <span class="id">DateTime</span> operator takes the following arguments:
 
 <a name="table-2-k"></a>
 [cols=",,",options="header",]
 |==================================================================================
 |Name |Type |Description
-|*Year* |[.id]#Integer# |The year component of the [.id]#DateTime#
-|*Month* |[.id]#Integer# |The month component of the [.id]#DateTime#
-|*Day* |[.id]#Integer# |The day component of the [.id]#DateTime#
-|*Hour* |[.id]#Integer# |The hour component of the [.id]#DateTime#
-|*Minute* |[.id]#Integer# |The minute component of the [.id]#DateTime#
-|*Second* |[.id]#Integer# |The second component of the [.id]#DateTime#
-|*Millisecond* |[.id]#Integer# |The millisecond component of the [.id]#DateTime#
-|*Timezone Offset* |[.id]#Decimal# |The timezone offset component of the [.id]#DateTime# (in hours)
+|*Year* |<span class="id">Integer</span> |The year component of the <span class="id">DateTime</span>
+|*Month* |<span class="id">Integer</span> |The month component of the <span class="id">DateTime</span>
+|*Day* |<span class="id">Integer</span> |The day component of the <span class="id">DateTime</span>
+|*Hour* |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
+|*Minute* |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
+|*Second* |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
+|*Millisecond* |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
+|*Timezone Offset* |<span class="id">Decimal</span> |The timezone offset component of the <span class="id">DateTime</span> (in hours)
 |==================================================================================
 
-Table 2‑K - The arguments that the [.kw]#DateTime# operator takes
+Table 2‑K - The arguments that the <span class="kw">DateTime</span> operator takes
 
-The [.id]#Date# operator takes only the first three arguments: Year, Month, and Day.
+The <span class="id">Date</span> operator takes only the first three arguments: Year, Month, and Day.
 
 At least one component other than timezone offset must be provided, and for any particular component that is provided, all the components of broader precision must be provided. For example:
 
@@ -1488,21 +1482,21 @@ The first three expressions above are valid, constructing dates with a specified
 
 The only component that is ever defaulted is the timezone offset component. If no timezone offset component is supplied, the timezone offset component is defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
-The [.id]#Time# operator takes the following arguments:
+The <span class="id">Time</span> operator takes the following arguments:
 
 <a name="table-2-l"></a>
 [cols=",,",options="header",]
 |=======================================================================
 |Name |Type |Description
-|*Hour* |[.id]#Integer# |The hour component of the [.id]#DateTime#
-|*Minute* |[.id]#Integer# |The minute component of the [.id]#DateTime#
-|*Second* |[.id]#Integer# |The second component of the [.id]#DateTime#
-|*Millisecond* |[.id]#Integer# |The millisecond component of the [.id]#DateTime#
+|*Hour* |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
+|*Minute* |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
+|*Second* |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
+|*Millisecond* |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
 |=======================================================================
 
-Table 2‑L - The arguments that the [.kw]#Time# operator takes
+Table 2‑L - The arguments that the <span class="kw">Time</span> operator takes
 
-As with the [.id]#Date# and [.id]#DateTime# operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For [.id]#DateTime#, if timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
+As with the <span class="id">Date</span> and <span class="id">DateTime</span> operators, at least the first component must be supplied, and for any particular component that is provided, all components of broader precision must be provided. For <span class="id">DateTime</span>, if timezone offset is not supplied, it will be defaulted to the timezone offset of the timestamp associated with the evaluation request.
 
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
@@ -1522,9 +1516,9 @@ The current date and time operators are defined based on the timestamp of the ev
 1.  The operations will always return the same value during any given evaluation request, ensuring that the result of an expression containing Now(), Today(), or TimeOfDay() will always return the same result within the same evaluation (determinism).
 2.  The operations are based on the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone information as the data delivered with the evaluation request.
 
-By defining the [.id]#DateTime# construction operators in this way, most clinical logic can ignore timezone offset information, and the logic will be evaluated with the expected semantics. However, if timezone offset information is relevant to a particular calculation, it can still be accessed as a component of each [.id]#DateTime# value.
+By defining the <span class="id">DateTime</span> construction operators in this way, most clinical logic can ignore timezone offset information, and the logic will be evaluated with the expected semantics. However, if timezone offset information is relevant to a particular calculation, it can still be accessed as a component of each <span class="id">DateTime</span> value.
 
-In addition, all operations on [.id]#DateTime# values are defined to take timezone offset information into account, ensuring that [.id]#DateTime# operations perform correctly and consistently.
+In addition, all operations on <span class="id">DateTime</span> values are defined to take timezone offset information into account, ensuring that <span class="id">DateTime</span> operations perform correctly and consistently.
 
 As discussed in the <<Quantities>> section above, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
@@ -1565,52 +1559,52 @@ For comparisons involving time durations (where no anchor to a calendar is avail
 
 #### Comparing Dates and Times
 
-CQL supports comparison of [.id]#Date# and [.id]#Time# values using the expected comparison operators. Note however, that when [.id]#Date# and [.id]#Time# values are not specified completely, the result may be [.kw]#null#, depending on whether there is enough information to make an accurate determination. In general, CQL treats [.id]#Date# and [.id]#Time# values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
+CQL supports comparison of <span class="id">Date</span> and <span class="id">Time</span> values using the expected comparison operators. Note however, that when <span class="id">Date</span> and <span class="id">Time</span> values are not specified completely, the result may be <span class="kw">null</span>, depending on whether there is enough information to make an accurate determination. In general, CQL treats <span class="id">Date</span> and <span class="id">Time</span> values that are only known to some specific precision as an uncertainty over the range at the first unspecified precision. For example:
 
 ``` cql
 Date(2014)
 ```
 
-This value can be read as “some date within the year 2014”, because only the year component is known. Applying these semantics yields the intuitively correct result when comparing [.id]#Date# and [.id]#Time# values with varying levels of precision.
+This value can be read as “some date within the year 2014”, because only the year component is known. Applying these semantics yields the intuitively correct result when comparing <span class="id">Date</span> and <span class="id">Time</span> values with varying levels of precision.
 
 ``` cql
 Date(2012) < Date(2014, 2, 15)
 ```
 
-This example returns [.kw]#true# because even though the month and day of the first date are unknown, the year, 2012, is known to be less than the year of the second date, 2014. By contrast:
+This example returns <span class="kw">true</span> because even though the month and day of the first date are unknown, the year, 2012, is known to be less than the year of the second date, 2014. By contrast:
 
 ``` cql
 Date(2015) < Date(2014, 2, 15)
 ```
 
-The result in this example is [.kw]#false# because the year, 2015, is not less than the year of the second date. And finally:
+The result in this example is <span class="kw">false</span> because the year, 2015, is not less than the year of the second date. And finally:
 
 ``` cql
 Date(2014) < Date(2014, 2, 15)
 ```
 
-The result in this example is [.kw]#null# because the first date could be any date within the year 2014, so it could be less than the second date, but it could be greater.
+The result in this example is <span class="kw">null</span> because the first date could be any date within the year 2014, so it could be less than the second date, but it could be greater.
 
-Note that due to variability in the way week numbers are calculated, weeks are not valid for [.id]#Date# or [.id]#DateTime# comparisons and will result in an error.
+Note that due to variability in the way week numbers are calculated, weeks are not valid for <span class="id">Date</span> or <span class="id">DateTime</span> comparisons and will result in an error.
 
-When comparing [.id]#DateTime# values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing <span class="id">DateTime</span> values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
-Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a [.id]#Decimal#. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be [.kw]#null#, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
+Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a <span class="id">Decimal</span>. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be <span class="kw">null</span>, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 <a name="table-2-n"></a>
 [cols=",",options="header",]
 |==================================
 |Operator |Precision-based Operator
-|*=* |[.kw]#same as#
-|*<* |[.kw]#before#
-|*>* |[.kw]#after#
-|*\<=* |[.kw]#same or before#
-|*>=* |[.kw]#same or after#
+|*=* |<span class="kw">same as</span>
+|*<* |<span class="kw">before</span>
+|*>* |<span class="kw">after</span>
+|*\<=* |<span class="kw">same or before</span>
+|*>=* |<span class="kw">same or after</span>
 |==================================
 
-Table 2‑N - The precision-based comparison operators for [.kw]#Date# and [.kw]#Time# comparisons
+Table 2‑N - The precision-based comparison operators for <span class="kw">Date</span> and <span class="kw">Time</span> comparisons
 
-If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for [.id]#Time# values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
+If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for <span class="id">Time</span> values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
 
 ``` cql
 Date(2014) same year as Date(2014, 7, 11)
@@ -1618,11 +1612,11 @@ Date(2014, 7) same month as Date(2014, 7, 11)
 DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
-Each of these expressions returns [.kw]#true# because the [.id]#Date# and [.id]#Time# values are equal at the specified level of precision and above. For example, [.kw]#same month as# means the same year _and_ the same month.
+Each of these expressions returns <span class="kw">true</span> because the <span class="id">Date</span> and <span class="id">Time</span> values are equal at the specified level of precision and above. For example, <span class="kw">same month as</span> means the same year _and_ the same month.
 
 Note: To compare a specific component of two dates, use the extraction operators covered in the next section.
 
-For relative comparisons involving equality, the [.kw]#same as# operator is suffixed with [.kw]#before# or [.kw]#after#:
+For relative comparisons involving equality, the <span class="kw">same as</span> operator is suffixed with <span class="kw">before</span> or <span class="kw">after</span>:
 
 ``` cql
 Date(2015) same year or after Date(2014, 7, 11)
@@ -1630,7 +1624,7 @@ Date(2014, 4) same month or before Date(2014, 7, 11)
 DateTime(2014, 7, 15) same day or after DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
-Each of these expressions also returns [.kw]#true#. And finally, for the relative inequalities ([.sym]#<# and [.sym]#>#):
+Each of these expressions also returns <span class="kw">true</span>. And finally, for the relative inequalities (<span class="sym"><</span> and <span class="sym">></span>):
 
 ``` cql
 Date(2015) after year of Date(2014, 7, 11)
@@ -1638,19 +1632,19 @@ Date(2014, 4) before month of Date(2014, 7, 11)
 DateTime(2014, 7, 15) after day of DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
-Each of these expressions also returns [.kw]#true#.
+Each of these expressions also returns <span class="kw">true</span>.
 
-Note that these operators may still return [.kw]#null# if the [.id]#Date# and [.id]#Time# values involved have unspecified components at or above the specified comparison precision. For example:
+Note that these operators may still return <span class="kw">null</span> if the <span class="id">Date</span> and <span class="id">Time</span> values involved have unspecified components at or above the specified comparison precision. For example:
 
 ``` cql
 Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
-The result in this example is [.kw]#null# because the first date has no _hour_ component.
+The result in this example is <span class="kw">null</span> because the first date has no _hour_ component.
 
 #### Extracting Date and Time Components
 
-Given a [.id]#Date# and [.id]#Time# value, CQL supports extraction of any of the components. For example:
+Given a <span class="id">Date</span> and <span class="id">Time</span> value, CQL supports extraction of any of the components. For example:
 
 ``` cql
 date from X
@@ -1664,38 +1658,38 @@ These examples extract the date from X, the year from X, and the minute from X. 
 [cols=",,",options="header",]
 |==================================================================================
 |Component |Description |Result Type
-|*date from X* |Extracts the date of its argument (with no time components) |[.id]#Date#
-|*time from X* |Extracts the time of its argument |[.id]#Time#
-|*year from X* |Extracts the year component its argument |[.id]#Integer#
-|*month from X* |Extracts the month component of its argument |[.id]#Integer#
-|*day from X* |Extracts the day component of its argument |[.id]#Integer#
-|*hour from X* |Extracts the hour component of its argument |[.id]#Integer#
-|*minute from X* |Extracts the minute component of its argument |[.id]#Integer#
-|*second from X* |Extracts the second component of its argument |[.id]#Integer#
-|*millisecond from X* |Extracts the millisecond component of its argument |[.id]#Integer#
-|*timezoneoffset from X* |Extracts the timezone offset component of its argument |[.id]#Decimal#
+|*date from X* |Extracts the date of its argument (with no time components) |<span class="id">Date</span>
+|*time from X* |Extracts the time of its argument |<span class="id">Time</span>
+|*year from X* |Extracts the year component its argument |<span class="id">Integer</span>
+|*month from X* |Extracts the month component of its argument |<span class="id">Integer</span>
+|*day from X* |Extracts the day component of its argument |<span class="id">Integer</span>
+|*hour from X* |Extracts the hour component of its argument |<span class="id">Integer</span>
+|*minute from X* |Extracts the minute component of its argument |<span class="id">Integer</span>
+|*second from X* |Extracts the second component of its argument |<span class="id">Integer</span>
+|*millisecond from X* |Extracts the millisecond component of its argument |<span class="id">Integer</span>
+|*timezoneoffset from X* |Extracts the timezone offset component of its argument |<span class="id">Decimal</span>
 |==================================================================================
 
-Table 2‑O - The valid extraction components for extracting [.kw]#Date# and [.kw]#Time# components
+Table 2‑O - The valid extraction components for extracting <span class="kw">Date</span> and <span class="kw">Time</span> components
 
 Note specifically that `week from X` is not valid; due to variability in the way week numbers are determined, the calculation of week number is not prescribed.
 
-Note that if X is [.kw]#null#, the result is [.kw]#null#. If a date and time value does not have a particular component specified, extracting that component will result in [.kw]#null#. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not [.kw]#null#.
+Note that if X is <span class="kw">null</span>, the result is <span class="kw">null</span>. If a date and time value does not have a particular component specified, extracting that component will result in <span class="kw">null</span>. Note also that if the timezone offset component for a particular date and time value was not provided as part of the constructor, because the value is defaulted to the timezone offset of the evaluation request, the result of extracting the timezone offset component will be the timezone offset of the evaluation request, not <span class="kw">null</span>.
 
-When extracting the [.id]#Time# from a [.id]#DateTime# value, implementations should normalize to the timezone offset of the evaluation request timestamp.
+When extracting the <span class="id">Time</span> from a <span class="id">DateTime</span> value, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
 [[datetime-arithmetic]]
 #### Date and Time Arithmetic
 
-By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols ([.sym]#+# and [.sym]#-#) are used for this purpose. For example:
+By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols (<span class="sym">+</span> and <span class="sym">-</span>) are used for this purpose. For example:
 
 ``` cql
 Today() - 1 year
 ```
 
-The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any [.id]#Date# and [.id]#Time# value.
+The above expression computes the date one year before today, taking into account variable length years and months. Any valid time duration can be added to or subtracted from any <span class="id">Date</span> and <span class="id">Time</span> value.
 
-Note that as with the numeric arithmetic operators, if either or both arguments are [.kw]#null#, the result of the operation is [.kw]#null#.
+Note that as with the numeric arithmetic operators, if either or both arguments are <span class="kw">null</span>, the result of the operation is <span class="kw">null</span>.
 
 For partial date/time values where the time-valued quantity is more precise than the partial date/time, the operation is performed by converting the time-based quantity to the most precise value specified in the first argument (truncating any resulting decimal portion) and then adding it to (or subtracting it from) the first argument. For example, consider the following addition:
 
@@ -1703,7 +1697,7 @@ For partial date/time values where the time-valued quantity is more precise than
 DateTime(2014) + 24 months
 ```
 
-This example results in the value [.id]#DateTime(2016)# even though the [.id]#DateTime# value is not specified to the level of precision of the time-valued quantity.
+This example results in the value <span class="id">DateTime(2016)</span> even though the <span class="id">DateTime</span> value is not specified to the level of precision of the time-valued quantity.
 
 Note also that this means that if decimals appear in the time-valued quantities, the fractional component will be ignored. For example:
 
@@ -1711,7 +1705,7 @@ Note also that this means that if decimals appear in the time-valued quantities,
 @2016-01-01 – 1.1 years
 ```
 
-Will result in the value [.lit]#@2015-01-01#, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning should be issued by the translator.
+Will result in the value <span class="lit">@2015-01-01</span>, the decimal component is truncated. When this decimal truncation occurs, run-time implementations should issue a warning. When it’s possible to determine at compile-time that this truncation will occur, a warning should be issued by the translator.
 
 To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above days (and weeks) in a date/time arithmetic calculation will result in a run-time error.
 
@@ -1731,14 +1725,14 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
 |===
 
-Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving [.kw]#Date# and [.kw]#Time#
+Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving <span class="kw">Date</span> and <span class="kw">Time</span>
 
 > Although the CQL specification does not support arithmetic with definite quantity durations above days (and weeks), data models that use UCUM for all quantities may support implicit conversion from UCUM definite durations to calendar durations. See [Use of FHIR Quantity](http://hl7.org/fhir/fhirpath.html#quantity) for an example.
 {: .note-warning}
 
 #### Computing Durations and Differences
 
-In addition to constructing durations, CQL supports the ability to compute duration and difference between two [.id]#DateTimes#. For duration, the calculation is performed based on the calendar duration for the precision. For difference, the calculation is performed by counting the number of boundaries of the specific precision crossed between the two dates.
+In addition to constructing durations, CQL supports the ability to compute duration and difference between two <span class="id">DateTimes</span>. For duration, the calculation is performed based on the calendar duration for the precision. For difference, the calculation is performed by counting the number of boundaries of the specific precision crossed between the two dates.
 
 ``` cql
 months between X and Y
@@ -1792,11 +1786,11 @@ If the first argument is after the second, the result will be negative.
 
 For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be seven (7) days.
 
-In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in [.kw]#null# rather than [.kw]#true# or [.kw]#false#. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
+In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in <span class="kw">null</span> rather than <span class="kw">true</span> or <span class="kw">false</span>. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
 
-When computing duration or difference between [.id]#DateTime# values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When computing duration or difference between <span class="id">DateTime</span> values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
-If either or both arguments are [.kw]#null#, the result is [.kw]#null#.
+If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 For a detailed set of examples of calculating time intervals, please refer to [Appendix H - Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
@@ -1817,16 +1811,16 @@ General interval operators in CQL provide basic operations for dealing with inte
 
 Interval values can be constructed using the _interval selector_, as discussed in <<Interval Values>> above.
 
-Membership testing for intervals can be done using the [.kw]#in# and [.kw]#contains# operators. For example:
+Membership testing for intervals can be done using the <span class="kw">in</span> and <span class="kw">contains</span> operators. For example:
 
 ``` cql
 Interval[3, 5) contains 4
 4 in Interval[3, 5)
 ```
 
-These two expressions are equivalent (inverse of each other) and both return [.kw]#true#.
+These two expressions are equivalent (inverse of each other) and both return <span class="kw">true</span>.
 
-The starting and ending points for an interval can be determined using the [.kw]#start of# and [.kw]#end of# operators:
+The starting and ending points for an interval can be determined using the <span class="kw">start of</span> and <span class="kw">end of</span> operators:
 
 ``` cql
 start of Interval[3, 5)
@@ -1844,7 +1838,7 @@ Interval[3, 5).highClosed
 
 The first expression above returns 5, and the second expression returns false.
 
-To extract a point from an interval, the [.kw]#point from# operator is used:
+To extract a point from an interval, the <span class="kw">point from</span> operator is used:
 
 ``` cql
 point from Interval[3, 3]
@@ -1853,23 +1847,23 @@ point from Interval[3, 4)
 
 The two expressions are equivalent and both return 3.
 
-Note that the [.kw]#point from# operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a point from an interval with a size greater than one will result in a run-time error.
+Note that the <span class="kw">point from</span> operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a point from an interval with a size greater than one will result in a run-time error.
 
-The starting and ending point of an interval may be [.kw]#null#, the meaning of which depends on whether the interval is closed (inclusive) or open (exclusive). If a boundary point is [.kw]#null# and the boundary is exclusive, the boundary is considered unknown, and represents an uncertainty between the boundary and the minimum or maximum value for the point type of the interval. In this case, operations involving that point may return [.kw]#null#. For example:
+The starting and ending point of an interval may be <span class="kw">null</span>, the meaning of which depends on whether the interval is closed (inclusive) or open (exclusive). If a boundary point is <span class="kw">null</span> and the boundary is exclusive, the boundary is considered unknown, and represents an uncertainty between the boundary and the minimum or maximum value for the point type of the interval. In this case, operations involving that point may return <span class="kw">null</span>. For example:
 
 ``` cql
 Interval[3, null) contains 5
 ```
 
-This expression results in [.kw]#null#. However, if the point is [.kw]#null# and the interval boundary is inclusive, the boundary is interpreted as the beginning or ending of the range of the point type. For example:
+This expression results in <span class="kw">null</span>. However, if the point is <span class="kw">null</span> and the interval boundary is inclusive, the boundary is interpreted as the beginning or ending of the range of the point type. For example:
 
 ``` cql
 Interval[3, null] contains 5
 ```
 
-This expression returns [.kw]#true# because the [.kw]#null# ending boundary is inclusive and is therefore interpreted as extending to the end of the range of possible values for the point type of the interval.
+This expression returns <span class="kw">true</span> because the <span class="kw">null</span> ending boundary is inclusive and is therefore interpreted as extending to the end of the range of possible values for the point type of the interval.
 
-For numeric intervals, CQL defines a [.kw]#width# operator, which returns the ending boundary minus the starting boundary:
+For numeric intervals, CQL defines a <span class="kw">width</span> operator, which returns the ending boundary minus the starting boundary:
 
 ``` cql
 width of Interval[3, 5)
@@ -1878,7 +1872,7 @@ width of Interval[3, 5]
 
 The first expression returns 1 (ending boundary of 4, minus the starting boundary of 3), while the second expression returns 2 (ending boundary of 5, minus the starting boundary of 3).
 
-For date and time intervals, CQL defines a [.kw]#duration of# operator as well as a [.kw]#difference of# operator, both of which are defined in the same way as the date and time duration and difference operators, respectively. For example:
+For date and time intervals, CQL defines a <span class="kw">duration of</span> operator as well as a <span class="kw">difference of</span> operator, both of which are defined in the same way as the date and time duration and difference operators, respectively. For example:
 
 ``` cql
 duration in days of X
@@ -1903,9 +1897,9 @@ CQL supports comparison of two interval values using a complete set of operation
 
 Table 2‑Q - Comparison of two interval values using a complete set of operations
 
-Each of these operators returns [.kw]#true# if the intervals X and Y are in the given relationship to each other. If either or both arguments are [.kw]#null#, the result is [.kw]#null#. Otherwise, the result is [.kw]#false#.
+Each of these operators returns <span class="kw">true</span> if the intervals X and Y are in the given relationship to each other. If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>. Otherwise, the result is <span class="kw">false</span>.
 
-In addition, CQL allows [.kw]#meets# and [.kw]#overlaps# to be invoked without the [.kw]#before# or [.kw]#after# suffix, indicating that either relationship should return [.kw]#true#. In other words, X [.kw]#meets# Y is equivalent to X [.kw]#meets before# Y or X [.kw]#meets after# Y, and similarly for the [.kw]#overlaps# operator.
+In addition, CQL allows <span class="kw">meets</span> and <span class="kw">overlaps</span> to be invoked without the <span class="kw">before</span> or <span class="kw">after</span> suffix, indicating that either relationship should return <span class="kw">true</span>. In other words, X <span class="kw">meets</span> Y is equivalent to X <span class="kw">meets before</span> Y or X <span class="kw">meets after</span> Y, and similarly for the <span class="kw">overlaps</span> operator.
 
 Note that to use these operators, the intervals must be of the same point type. For example, it is invalid to compare an interval of dates or times with an interval of numbers.
 
@@ -1917,7 +1911,7 @@ In addition to the interval comparison operators described above, CQL allows var
 X starts before start Y
 ```
 
-This expression returns [.kw]#true# if the start of X is before the start of Y.
+This expression returns <span class="kw">true</span> if the start of X is before the start of Y.
 
 In addition, timing phrases allow the use of time durations to offset the relationship. For example:
 
@@ -1925,7 +1919,7 @@ In addition, timing phrases allow the use of time durations to offset the relati
 X starts 3 days before start Y
 ```
 
-This returns [.kw]#true# if the start of X is equal to three days before the start of Y. Timing phrases can also include [.kw]#less than#, [.kw]#more than#, [.kw]#or less# and [.kw]#or more# to determine how the time duration is interpreted. For example:
+This returns <span class="kw">true</span> if the start of X is equal to three days before the start of Y. Timing phrases can also include <span class="kw">less than</span>, <span class="kw">more than</span>, <span class="kw">or less</span> and <span class="kw">or more</span> to determine how the time duration is interpreted. For example:
 
 ``` cql
 X starts 3 days or less before start Y
@@ -1934,28 +1928,28 @@ X starts 3 days or more before start Y
 X starts more than 3 days before start Y
 ```
 
-The first expression returns [.kw]#true# if the start of X is within the interval beginning three days before the start of Y and ending just before the start of Y. The second expression returns [.kw]#true# if the start of X is within the interval beginning just after three days before the start of Y and ending just before the start of Y. The third expression returns [.kw]#true# if the start of X is three days or more before the start of Y. And the fourth expression returns [.kw]#true# if the start of X is more than three days before the start of Y.
+The first expression returns <span class="kw">true</span> if the start of X is within the interval beginning three days before the start of Y and ending just before the start of Y. The second expression returns <span class="kw">true</span> if the start of X is within the interval beginning just after three days before the start of Y and ending just before the start of Y. The third expression returns <span class="kw">true</span> if the start of X is three days or more before the start of Y. And the fourth expression returns <span class="kw">true</span> if the start of X is more than three days before the start of Y.
 
-Timing phrases can also support inclusive comparisons using [.kw]#on or# and [.kw]#or on# syntax. For example:
+Timing phrases can also support inclusive comparisons using <span class="kw">on or</span> and <span class="kw">or on</span> syntax. For example:
 
 ``` cql
 X starts 3 days or less before or on start Y
 X starts less than 3 days on or after end Y
 ```
 
-The first expression returns [.kw]#true# if the start of X is within the interval beginning three days before the start of Y and ending exactly on the start of Y. The second expression returns [.kw]#true# if the start of X is within the interval beginning exactly on the end of Y and ending less than 3 days after the end of Y.
+The first expression returns <span class="kw">true</span> if the start of X is within the interval beginning three days before the start of Y and ending exactly on the start of Y. The second expression returns <span class="kw">true</span> if the start of X is within the interval beginning exactly on the end of Y and ending less than 3 days after the end of Y.
 
-Note that [.kw]#on or# and [.kw]#or on# can be used with both [.kw]#before# and [.kw]#after#. This flexibility is to allow for natural phrasing.
+Note that <span class="kw">on or</span> and <span class="kw">or on</span> can be used with both <span class="kw">before</span> and <span class="kw">after</span>. This flexibility is to allow for natural phrasing.
 
-Timing phrases also allow the use of [.kw]#within# to establish a range for comparison:
+Timing phrases also allow the use of <span class="kw">within</span> to establish a range for comparison:
 
 ``` cql
 X starts within 3 days of start Y
 ```
 
-This expression returns [.kw]#true# if the start of X is in the interval beginning three days before the start of Y and ending 3 days after the start of Y.
+This expression returns <span class="kw">true</span> if the start of X is in the interval beginning three days before the start of Y and ending 3 days after the start of Y.
 
-In addition, if either comparand is a [.id]#Date# or [.id]#Time# value, rather than an interval, it can be used in any of the timing phrases without the boundary access modifiers:
+In addition, if either comparand is a <span class="id">Date</span> or <span class="id">Time</span> value, rather than an interval, it can be used in any of the timing phrases without the boundary access modifiers:
 
 ``` cql
 dateTimeX within 3 days of dateTimeY
@@ -1980,27 +1974,27 @@ Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
 
 Table 2‑R - The operators that can be used to construct timing phrases
 
-A yes in the Beginning Boundary column indicates that the operator can be preceded by [.kw]#starts# or [.kw]#ends# if the left comparand is an interval.
+A yes in the Beginning Boundary column indicates that the operator can be preceded by <span class="kw">starts</span> or <span class="kw">ends</span> if the left comparand is an interval.
 
-A yes in the Ending Boundary column indicates that the timing phrase can be succeeded by a [.kw]#start# or [.kw]#end# if the right comparand is an interval.
+A yes in the Ending Boundary column indicates that the timing phrase can be succeeded by a <span class="kw">start</span> or <span class="kw">end</span> if the right comparand is an interval.
 
 A yes in the duration offset column indicates that the timing phrase may include a duration offset.
 
-A yes in the Or Less/OrMore column indicates that the timing phrase may include an [.kw]#or less/or more# modifier.
+A yes in the Or Less/OrMore column indicates that the timing phrase may include an <span class="kw">or less/or more</span> modifier.
 
-A yes in the Or Before/Or After column indicates that the timing phrase may include an [.kw]#or before/or after# modifier.
+A yes in the Or Before/Or After column indicates that the timing phrase may include an <span class="kw">or before/or after</span> modifier.
 
-A yes in the Less Than/More Than column indicates that the timing phrase may include a [.kw]#less than/more than# modifier.
+A yes in the Less Than/More Than column indicates that the timing phrase may include a <span class="kw">less than/more than</span> modifier.
 
-And finally, a yes in the Or On/On Or column indicates that the timing phrase may include a [.kw]#on or/or on# modifier.
+And finally, a yes in the Or On/On Or column indicates that the timing phrase may include a <span class="kw">on or/or on</span> modifier.
 
-In addition, to support more natural-language phrasing of timing operations, the keyword [.kw]#occurs# may appear anywhere that [.kw]#starts# or [.kw]#ends# can appear in the timing phrase. For example:
+In addition, to support more natural-language phrasing of timing operations, the keyword <span class="kw">occurs</span> may appear anywhere that <span class="kw">starts</span> or <span class="kw">ends</span> can appear in the timing phrase. For example:
 
 ``` cql
 X occurs within 3 days of start Y
 ```
 
-The [.kw]#occurs# keyword is both optional and ignored by CQL. It is only provided to enable more natural phrasing.
+The <span class="kw">occurs</span> keyword is both optional and ignored by CQL. It is only provided to enable more natural phrasing.
 
 #### Computing Intervals
 
@@ -2010,25 +2004,25 @@ CQL provides several operators that can be used to combine existing intervals in
 Interval[1, 3] union Interval[3, 6]
 ```
 
-This expression returns the interval [.lit]#[1, 6]#. Note that interval [.kw]#union# is only defined if the arguments overlap or meet.
+This expression returns the interval <span class="lit">[1, 6]</span>. Note that interval <span class="kw">union</span> is only defined if the arguments overlap or meet.
 
-Interval [.kw]#intersect# results in the overlapping portion of two intervals:
+Interval <span class="kw">intersect</span> results in the overlapping portion of two intervals:
 
 ``` cql
 Interval[1, 4] intersect Interval[3, 6]
 ```
 
-This expression results in the interval [.lit]#[3, 4]#.
+This expression results in the interval <span class="lit">[3, 4]</span>.
 
-Interval [.kw]#except# computes the difference between two intervals. In other words, the result is points in the left operand that are not in the right operand. For example:
+Interval <span class="kw">except</span> computes the difference between two intervals. In other words, the result is points in the left operand that are not in the right operand. For example:
 
 ``` cql
 Interval[1, 4] except Interval[3, 6]
 ```
 
-This expression results in the interval [.lit]#[1, 2]#. Note that [.kw]#except# is only defined for cases that result in a well-formed interval. For example, if either argument properly includes the other and does not start or end it, the result of subtracting one interval from the other would be two intervals, and the result is thus not defined and results in [.kw]#null#.
+This expression results in the interval <span class="lit">[1, 2]</span>. Note that <span class="kw">except</span> is only defined for cases that result in a well-formed interval. For example, if either argument properly includes the other and does not start or end it, the result of subtracting one interval from the other would be two intervals, and the result is thus not defined and results in <span class="kw">null</span>.
 
-The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators for intervals:
+The following diagrams depict the <span class="kw">union</span>, <span class="kw">intersect</span>, and <span class="kw">except</span> operators for intervals:
 
 <a name="figure-2-d"></a>
 ![extracted-media/media/image6](extracted-media/media/image6.png){: width=626; height=128; }
@@ -2070,7 +2064,7 @@ Clinical information is almost always stored, collected, and presented in terms 
 
 Although the most common source of lists in CQL is the retrieve expression, lists can also be constructed directly using the _list selector_ discussed in List Values.
 
-The elements of a list can be accessed using the _indexer_ ([.sym]#[]#) operator. For example:
+The elements of a list can be accessed using the _indexer_ (<span class="sym">[]</span>) operator. For example:
 
 ``` cql
 X[0]
@@ -2078,48 +2072,48 @@ X[0]
 
 This expression accesses the first element of the list X.
 
-If a list contains a single element, [.kw]#the singleton# from operator can be used to extract it:
+If a list contains a single element, <span class="kw">the singleton</span> from operator can be used to extract it:
 
 ``` cql
 singleton from { 1 }
 singleton from { 1, 2, 3 }
 ```
 
-Using [.kw]#singleton from# on a list with multiple elements will result in a run-time error.
+Using <span class="kw">singleton from</span> on a list with multiple elements will result in a run-time error.
 
-The index of an element e in a list X can be obtained using the [.id]#IndexOf# operator. For example:
+The index of an element e in a list X can be obtained using the <span class="id">IndexOf</span> operator. For example:
 
 ``` cql
 IndexOf({'a', 'b', 'c' }, 'b') // returns 1
 ```
 
-If the element is not found in the list, [.id]#IndexOf# returns -1.
+If the element is not found in the list, <span class="id">IndexOf</span> returns -1.
 
-In addition, the number of elements in a list can be determined using the [.id]#Count# operator. For example:
+In addition, the number of elements in a list can be determined using the <span class="id">Count</span> operator. For example:
 
 ``` cql
 Count({ 1, 2, 3, 4, 5 })
 ```
 
-This expression returns the value [.lit]#5#.
+This expression returns the value <span class="lit">5</span>.
 
-Membership in lists can be determined using the [.kw]#in# operator and its inverse, [.kw]#contains#:
+Membership in lists can be determined using the <span class="kw">in</span> operator and its inverse, <span class="kw">contains</span>:
 
 ``` cql
 { 1, 2, 3, 4, 5 } contains 4
 4 in { 1, 2, 3, 4, 5 }
 ```
 
-The [.kw]#exists# operator can be used to test whether a list contains any elements:
+The <span class="kw">exists</span> operator can be used to test whether a list contains any elements:
 
 ``` cql
 exists ( { 1, 2, 3, 4, 5 } )
 exists ( { } )
 ```
 
-The first expression returns [.kw]#true#, while the second expression returns [.kw]#false#. This is most often used in queries to determine whether a query returns any results.
+The first expression returns <span class="kw">true</span>, while the second expression returns <span class="kw">false</span>. This is most often used in queries to determine whether a query returns any results.
 
-The [.id]#First# and [.id]#Last# operators can be used to retrieve the first and last elements of a list. For example:
+The <span class="id">First</span> and <span class="id">Last</span> operators can be used to retrieve the first and last elements of a list. For example:
 
 ``` cql
 First({ 1, 2, 3, 4, 5 })
@@ -2128,9 +2122,9 @@ First({})
 Last({})
 ```
 
-In the above examples, the first expression returns [.lit]#1#, and the second expression returns [.lit]#5#. The last two expressions both return [.kw]#null# since there is no first or last element of an empty list. Note that the [.id]#First# and [.id]#Last# operators refer to the position of an element in the list, not the temporal relationship between elements. In order to extract the _earliest_ or _latest_ elements of a list, the list would first need to be sorted appropriately.
+In the above examples, the first expression returns <span class="lit">1</span>, and the second expression returns <span class="lit">5</span>. The last two expressions both return <span class="kw">null</span> since there is no first or last element of an empty list. Note that the <span class="id">First</span> and <span class="id">Last</span> operators refer to the position of an element in the list, not the temporal relationship between elements. In order to extract the _earliest_ or _latest_ elements of a list, the list would first need to be sorted appropriately.
 
-In addition, to provide consistent and intuitive semantics when dealing with lists, whenever an operation needs to determine whether or not a given list contains an element (including list operations discussed later such as [.kw]#intersect#, [.kw]#except#, and [.kw]#distinct#), CQL uses equality semantics.
+In addition, to provide consistent and intuitive semantics when dealing with lists, whenever an operation needs to determine whether or not a given list contains an element (including list operations discussed later such as <span class="kw">intersect</span>, <span class="kw">except</span>, and <span class="kw">distinct</span>), CQL uses equality semantics.
 
 #### Comparing Lists
 
@@ -2140,10 +2134,10 @@ In addition to list equality, already discussed in <<Comparison Operators>>, lis
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
-|*X [.kw]#includes# Y* |Returns [.kw]#true# if every element in list Y is also in list X, using equality semantics
-|*X [.kw]#properly includes# Y* |Returns [.kw]#true# if every element in list Y is also in list X and list X has more elements than list Y
-|*X [.kw]#included in# Y* |Returns [.kw]#true# if every element in list X is also in list Y, using equality semantics
-|*X [.kw]#properly included in# Y* |Returns [.kw]#true# if every element in list X is also in list Y, and list Y has more elements than list X
+|*X <span class="kw">includes</span> Y* |Returns <span class="kw">true</span> if every element in list Y is also in list X, using equality semantics
+|*X <span class="kw">properly includes</span> Y* |Returns <span class="kw">true</span> if every element in list Y is also in list X and list X has more elements than list Y
+|*X <span class="kw">included in</span> Y* |Returns <span class="kw">true</span> if every element in list X is also in list Y, using equality semantics
+|*X <span class="kw">properly included in</span> Y* |Returns <span class="kw">true</span> if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
 Table 2‑S - The operators that can be used for list comparisons
@@ -2155,7 +2149,7 @@ Table 2‑S - The operators that can be used for list comparisons
 { 4, 5, 6 } included in { 1, 2, 3, 4, 5 }
 ```
 
-In the above examples, the first two expressions are [.kw]#true#, but the last two expressions are [.kw]#false#.
+In the above examples, the first two expressions are <span class="kw">true</span>, but the last two expressions are <span class="kw">false</span>.
 
 The properly modifier ensures that the lists are not the same list. For example:
 
@@ -2168,15 +2162,15 @@ The properly modifier ensures that the lists are not the same list. For example:
 { 2, 3, 4 } properly included in { 1, 2, 3, 4, 5 }
 ```
 
-In the above examples, the first two expressions are [.kw]#true#, but the next two expressions are [.kw]#false#, because although each element is in the other list, the properly requires that one list be strictly larger than the other, as in the last two expressions.
+In the above examples, the first two expressions are <span class="kw">true</span>, but the next two expressions are <span class="kw">false</span>, because although each element is in the other list, the properly requires that one list be strictly larger than the other, as in the last two expressions.
 
-Note that [.kw]#during# is a synonym for [.kw]#included in# and can be used anywhere included in is allowed. The syntax allows for both keywords to enable more natural phrasing of time-based relationships depending on context.
+Note that <span class="kw">during</span> is a synonym for <span class="kw">included in</span> and can be used anywhere included in is allowed. The syntax allows for both keywords to enable more natural phrasing of time-based relationships depending on context.
 
 #### Computing Lists
 
 CQL provides several operators for computing new lists from existing ones.
 
-To eliminate duplicates from a list, use the [.kw]#distinct# operator:
+To eliminate duplicates from a list, use the <span class="kw">distinct</span> operator:
 
 ``` cql
 distinct { 1, 1, 2, 2, 3, 4, 5 }
@@ -2188,9 +2182,9 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ```
 
-Note that the distinct operator uses equality semantics ([.sym]#~#) to detect duplicates. Because equality is defined for all types, this means that [.kw]#distinct# can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equality (i.e. tuples are equal if they have the same type and value (or no value) for each element of the same name).
+Note that the distinct operator uses equality semantics (<span class="sym">~</span>) to detect duplicates. Because equality is defined for all types, this means that <span class="kw">distinct</span> can be used on lists with elements of any type. In particular, duplicates can be eliminated from lists of tuples, and the operation will use tuple equality (i.e. tuples are equal if they have the same type and value (or no value) for each element of the same name).
 
-To combine all the elements from multiple lists, use the [.kw]#union# operator:
+To combine all the elements from multiple lists, use the <span class="kw">union</span> operator:
 
 ``` cql
 { 1, 2, 3 } union { 3, 4, 5 }
@@ -2202,9 +2196,9 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ```
 
-Note that duplicates are eliminated in the result of a [.kw]#union#.
+Note that duplicates are eliminated in the result of a <span class="kw">union</span>.
 
-To compute only the common elements from multiple lists, use the [.kw]#intersect# operator:
+To compute only the common elements from multiple lists, use the <span class="kw">intersect</span> operator:
 
 ``` cql
 { 1, 2, 3 } intersect { 3, 4, 5 }
@@ -2216,7 +2210,7 @@ This example returns:
 { 3 }
 ```
 
-To remove the elements in one list from another list, use the [.kw]#except# operator:
+To remove the elements in one list from another list, use the <span class="kw">except</span> operator:
 
 ``` cql
 { 1, 2, 3 } except { 3, 4, 5 }
@@ -2228,16 +2222,16 @@ This example returns:
 { 1, 2 }
 ```
 
-The following diagrams depict the [.kw]#union#, [.kw]#intersect#, and [.kw]#except# operators:
+The following diagrams depict the <span class="kw">union</span>, <span class="kw">intersect</span>, and <span class="kw">except</span> operators:
 
 <a name="figure-2-e"></a>
 ![extracted-media/media/image7](extracted-media/media/image7.png){: width=626; height=176; }
 
 Figure 2‑E - The union, intersect, and except operators for lists
 
-As with the [.kw]#distinct# operator, the [.kw]#intersect#, and [.kw]#except# operators use the equality operator to determine when two elements are the same. In particular, this means that nulls in the input to a [.kw]#distinct# will be preserved in the output.
+As with the <span class="kw">distinct</span> operator, the <span class="kw">intersect</span>, and <span class="kw">except</span> operators use the equality operator to determine when two elements are the same. In particular, this means that nulls in the input to a <span class="kw">distinct</span> will be preserved in the output.
 
-Because lists may contain lists, CQL provides a [.kw]#flatten# operation that can flatten lists of lists:
+Because lists may contain lists, CQL provides a <span class="kw">flatten</span> operation that can flatten lists of lists:
 
 ``` cql
 flatten { { 1, 2, 3 }, { 3, 4, 5 } }
@@ -2249,7 +2243,7 @@ This example returns:
 { 1, 2, 3, 3, 4, 5 }
 ```
 
-Note that unlike the [.kw]#union# operator, duplicate elements are retained in the result.
+Note that unlike the <span class="kw">union</span> operator, duplicate elements are retained in the result.
 
 Note also that flatten only flattens one level, it is not recursive.
 
@@ -2257,25 +2251,25 @@ Although the examples in this section primarily use lists of integers, these ope
 
 #### Lists of Intervals
 
-Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a [.kw]#collapse# operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
+Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a <span class="kw">collapse</span> operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
 <a name="figure-2-f"></a>
 ![extracted-media/media/image8](extracted-media/media/image8.png){: width=353; height=75; }
 
-Figure 2‑F - Example input intervals to illustrate the behavior of the the [.kw]#collapse# operator
+Figure 2‑F - Example input intervals to illustrate the behavior of the the <span class="kw">collapse</span> operator
 
-If we want to determine the total duration _covered_ by these intervals, we cannot simply use the [.kw]#distinct# operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate [.kw]#union# of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
+If we want to determine the total duration _covered_ by these intervals, we cannot simply use the <span class="kw">distinct</span> operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate <span class="kw">union</span> of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
-The solution is the [.kw]#collapse# operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
+The solution is the <span class="kw">collapse</span> operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
 <a name="figure-2-g"></a>
 ![extracted-media/media/image9](extracted-media/media/image9.png){: width=348; height=56; }
 
-Figure 2‑G - Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
+Figure 2‑G - Example output intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
 Now, when we take the Sum of the durations of the intervals, we are guaranteed not to overcount any particular point in the ranges that may have been included in multiple intervals in the original set.
 
-In addition, CQL supports an [.kw]#expand# operator that determines the list of intervals of size _per_ from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition [.id]#EffectivePeriods# contains the list of intervals corresponding to prescription periods:
+In addition, CQL supports an <span class="kw">expand</span> operator that determines the list of intervals of size _per_ from a given list of intervals. This operator is important for calculations involving sets of intervals, in particular for performing calculations such as average daily dose in a given timeframe. Part of this calculation involves determining the dosage on each day. For example, assuming a definition <span class="id">EffectivePeriods</span> contains the list of intervals corresponding to prescription periods:
 
 ``` cql
 expand EffectivePeriods per day
@@ -2293,21 +2287,21 @@ Aggregate operators are defined to work on lists of values. For example, the Cou
 Count([Encounter])
 ```
 
-This expression returns the number of [.id]#Encounter# events.
+This expression returns the number of <span class="id">Encounter</span> events.
 
-The [.id]#Sum# operator, however, works only on lists of numbers or lists of quantities:
+The <span class="id">Sum</span> operator, however, works only on lists of numbers or lists of quantities:
 
 ``` cql
 Sum({ 1, 2, 3, 4, 5 })
 ```
 
-This example results in the sum [.lit]#15#. To sum the results of a list of [.id]#Observation# values, for example, a query is used to extract the values to be summed:
+This example results in the sum <span class="lit">15</span>. To sum the results of a list of <span class="id">Observation</span> values, for example, a query is used to extract the values to be summed:
 
 ``` cql
 Sum([Observation] R return R.result)
 ```
 
-In general, [.kw]#nulls# encountered during aggregation are ignored, and with the exception of [.id]#Count#, [.id]#AllTrue#, and [.id]#AnyTrue#, the result of the invocation of an aggregate on an empty list is [.kw]#null#. [.id]#Count# is defined to return [.lit]#0# for an empty list. [.id]#AllTrue# is defined to return [.kw]#true# for an empty list, and [.id]#AnyTrue# is defined to return [.kw]#false# for an empty list. In addition, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in [.kw]#null#, rather than a run-time error.
+In general, <span class="kw">nulls</span> encountered during aggregation are ignored, and with the exception of <span class="id">Count</span>, <span class="id">AllTrue</span>, and <span class="id">AnyTrue</span>, the result of the invocation of an aggregate on an empty list is <span class="kw">null</span>. <span class="id">Count</span> is defined to return <span class="lit">0</span> for an empty list. <span class="id">AllTrue</span> is defined to return <span class="kw">true</span> for an empty list, and <span class="id">AnyTrue</span> is defined to return <span class="kw">false</span> for an empty list. In addition, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in <span class="kw">null</span>, rather than a run-time error.
 
 The following table lists the aggregate operators available in CQL:
 
@@ -2326,8 +2320,8 @@ The following table lists the aggregate operators available in CQL:
 |*PopStdDev* |Returns the population standard deviation (square root of the population variance) of the elements in the list
 |*Variance* |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
 |*PopVariance* |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
-|*AllTrue* |Returns [.kw]#true# if all the elements in the list are [.kw]#true#, [.kw]#false# otherwise
-|*AnyTrue* |Returns [.kw]#true# if any of the elements in the list are [.kw]#true#, [.kw]#false# otherwise
+|*AllTrue* |Returns <span class="kw">true</span> if all the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
+|*AnyTrue* |Returns <span class="kw">true</span> if any of the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
 |*GeometricMean*| Return the geometric mean of the non-null elements in the list
 |*Product*| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
@@ -2352,11 +2346,11 @@ However, because CQL supports operations on quantities directly, this expression
 define "IsTall": height > 2 'm'
 ```
 
-This formulation also has the advantage of allowing for the case that the actual value of [.id]#height# is expressed in inches.
+This formulation also has the advantage of allowing for the case that the actual value of <span class="id">height</span> is expressed in inches.
 
-CQL supports the standard comparison operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~# [.sym]#<# [.sym]#\<=# [.sym]#># [.sym]#>=#) and the standard arithmetic operators ([.sym]#+# [.sym]#-# [.sym]#*# [.sym]#/#) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as [.id]#Min#, [.id]#Max#, [.id]#Sum#, etc.
+CQL supports the standard comparison operators (<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span> <span class="sym"><</span> <span class="sym">\<=</span> <span class="sym">></span> <span class="sym">>=</span>) and the standard arithmetic operators (<span class="sym">+</span> <span class="sym">-</span> <span class="sym">*</span> <span class="sym">/</span>) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as <span class="id">Min</span>, <span class="id">Max</span>, <span class="id">Sum</span>, etc.
 
-> Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return [.kw]#null# if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
+> Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return <span class="kw">null</span> if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
 {: .note-warning}
 
 #### Ratio Operators
@@ -2368,7 +2362,7 @@ define "TitreRatio": 1:128
 define "TitreNumerator": TitreRatio.numerator // 1
 ```
 
-CQL supports the equality operators ([.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
+CQL supports the equality operators (<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span>) for ratios, as well as conversion from strings to ratios using the ToString and ToRatio functions. Other operations on ratios must be specified by accessing the numerator or denominator components. For equality, ratios are considered equal if they have the same value for the numerator and denominator, using quantity equality semantics. Two ratios are considered equivalent if they represent the same ratio:
 
 ``` cql
 define "RatioEqualTrue": 1:100 = 1:100
@@ -2376,7 +2370,7 @@ define "RatioEqualFalse": 1:100 = 10:1000
 define "RatioEquivalentTrue": 1:100 ~ 10:1000
 ```
 
-> Note that the relative comparison operators ([.sym]#>#, [.sym]#>=#, [.sym]#<#, [.sym]#\<=#) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the [.id]#numerator# and [.id]#denominator# components of the ratio directly, or by using the [.id]#ToQuantity# operator to convert the ratio to a decimal quantity.
+> Note that the relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym"><</span>, <span class="sym">\<=</span>) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the <span class="id">numerator</span> and <span class="id">denominator</span> components of the ratio directly, or by using the <span class="id">ToQuantity</span> operator to convert the ratio to a decimal quantity.
 {: .note-warning}
 
 #### Terminology Operators
@@ -2388,12 +2382,12 @@ valueset "Acute Pharyngitis": 'urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011'
 define "InPharyngitis": SomeCodeValue in "Acute Pharyngitis"
 ```
 
-These statements define the [.id]#InPharyngitis# expression as [.kw]#true# if the Code-valued expression [.id]#SomeCodeValue# is in the [.id]#"Acute Pharyngitis"# valueset.
+These statements define the <span class="id">InPharyngitis</span> expression as <span class="kw">true</span> if the Code-valued expression <span class="id">SomeCodeValue</span> is in the <span class="id">"Acute Pharyngitis"</span> valueset.
 
 > Note that valueset membership is based strictly on the definition of equivalence (i.e. two codes are the same if they have the same value for the code and system elements, ignoring display and version). CQL explicitly forbids the notion of _terminological_ _equivalence_ among codes being used in this context.
 {: .note-info}
 
-Note that this operator can be invoked with a code argument of type [.id]#String#, [.id]#Code#, and [.id]#Concept#. When invoked with a Concept, the result is [.kw]#true# if any Code in the Concept is a member of the given valueset.
+Note that this operator can be invoked with a code argument of type <span class="id">String</span>, <span class="id">Code</span>, and <span class="id">Concept</span>. When invoked with a Concept, the result is <span class="kw">true</span> if any Code in the Concept is a member of the given valueset.
 
 A common terminological operation involves determining whether a given concept is _implied_, or _subsumed_ by another. This operation is generally referred to as _subsumption_ and although useful, is deliberately omitted from this specification. The reason for this omission different terminology systems generally provide different mechanisms for defining and interpreting subsumption relationships. As a result, specifying how that occurs is beyond the scope of CQL at this time. This is not to say that a specific library of subsumption operators could not be provided and broadly adopted and used, only that the CQL specification does not prescribe the semantics of that operation.
 
@@ -2524,7 +2518,7 @@ For the age criteria, CQL defines an AgeInYearsAt operator that returns the age 
 AgeInYearsAt(@2013-01-01) >= 16 and AgeInYearsAt(@2013-01-01) < 24
 ```
 
-In order to use the [.id]#AgeInYearsAt# operator, we must be in the [.id]#Patient# context:
+In order to use the <span class="id">AgeInYearsAt</span> operator, we must be in the <span class="id">Patient</span> context:
 
 ``` cql
 context Patient
@@ -2546,7 +2540,7 @@ define "MeasurementPeriod": Interval[
 )
 ```
 
-This establishes [.id]#MeasurementPeriod# as the interval beginning precisely at midnight on January 1^st^, 2013, and ending immediately before midnight on January 1^st^, 2014. We can now use this in the age criteria:
+This establishes <span class="id">MeasurementPeriod</span> as the interval beginning precisely at midnight on January 1^st^, 2013, and ending immediately before midnight on January 1^st^, 2014. We can now use this in the age criteria:
 
 ``` cql
 define "InInitialPopulation":
@@ -2554,7 +2548,7 @@ define "InInitialPopulation":
     and AgeInYearsAt(start of MeasurementPeriod) < 24
 ```
 
-Even more useful would be to define [.id]#MeasurementPeriod# as a _parameter_ that can be provided when the quality measure is evaluated. This allows us to use the same logic to evaluate the quality measure for different years. So instead of using a [.kw]#define# statement, we have:
+Even more useful would be to define <span class="id">MeasurementPeriod</span> as a _parameter_ that can be provided when the quality measure is evaluated. This allows us to use the same logic to evaluate the quality measure for different years. So instead of using a <span class="kw">define</span> statement, we have:
 
 ``` cql
 parameter MeasurementPeriod default Interval[
@@ -2563,15 +2557,15 @@ parameter MeasurementPeriod default Interval[
 )
 ```
 
-The [.id]#InInitialPopulation# expression remains the same, but it now accesses the value of the parameter instead of the define statement.
+The <span class="id">InInitialPopulation</span> expression remains the same, but it now accesses the value of the parameter instead of the define statement.
 
-Since we are in the [.id]#Patient# context and have access to the attributes of the Patient (as defined by the data model in use), the gender criteria can be expressed as follows:
+Since we are in the <span class="id">Patient</span> context and have access to the attributes of the Patient (as defined by the data model in use), the gender criteria can be expressed as follows:
 
 ``` cql
 Patient.gender in "Female Administrative Sex"
 ```
 
-This criteria requires that the gender attribute of a Patient be a code that is in the valueset identified by [.id]#"Female Administrative Sex"#. Of course, this requires the valueset definition:
+This criteria requires that the gender attribute of a Patient be a code that is in the valueset identified by <span class="id">"Female Administrative Sex"</span>. Of course, this requires the valueset definition:
 
 ``` cql
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
@@ -2619,9 +2613,9 @@ Using the mapping to QUICK, the equivalent retrieve in CQL is:
   where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod
 ```
 
-This query retrieves all [.id]#Condition# events for the patient with a code in the [.id]#"Other Female Reproductive Conditions"# valueset that overlap the measurement period. Note that in order to use the [.kw]#overlaps# operator, we had to construct an interval from the [.id]#onsetDateTime# and [.id]#abatementDate# elements. If the model had an interval-valued “effective time” element, we could have used that directly, rather than having to construct an interval.
+This query retrieves all <span class="id">Condition</span> events for the patient with a code in the <span class="id">"Other Female Reproductive Conditions"</span> valueset that overlap the measurement period. Note that in order to use the <span class="kw">overlaps</span> operator, we had to construct an interval from the <span class="id">onsetDateTime</span> and <span class="id">abatementDate</span> elements. If the model had an interval-valued “effective time” element, we could have used that directly, rather than having to construct an interval.
 
-The result of the query is a list of conditions. However, this isn’t quite what the QDM statement is actually saying. In QDM, the statement can be read loosely as “include patients in the initial population that have at least one active diagnosis from the Other Female Reproductive Conditions valueset.” To express this in CQL, what we really need to ask is whether the equivalent retrieve above returns any results, which is accomplished with the [.kw]#exists# operator:
+The result of the query is a list of conditions. However, this isn’t quite what the QDM statement is actually saying. In QDM, the statement can be read loosely as “include patients in the initial population that have at least one active diagnosis from the Other Female Reproductive Conditions valueset.” To express this in CQL, what we really need to ask is whether the equivalent retrieve above returns any results, which is accomplished with the <span class="kw">exists</span> operator:
 
 ``` cql
 exists ([Condition: "Other Female Reproductive Conditions"] C
@@ -2661,7 +2655,7 @@ exists ([DiagnosticOrder: "Pregnancy Test"] O
     during MeasurementPeriod)
 ```
 
-This query is retrieving pregnancy tests that were completed within the measurement period. Because diagnostic orders do not have a top-level completion date, the date must be retrieved with a nested query on the events associated with the diagnostic orders. The nested query returns the set of completed events ordered by their completion date, the [.id]#Last# invocation returns the most recent of those events, and the [.id]#.date# accessor retrieves the value of the [.id]#date# element of that event.
+This query is retrieving pregnancy tests that were completed within the measurement period. Because diagnostic orders do not have a top-level completion date, the date must be retrieved with a nested query on the events associated with the diagnostic orders. The nested query returns the set of completed events ordered by their completion date, the <span class="id">Last</span> invocation returns the most recent of those events, and the <span class="id">.date</span> accessor retrieves the value of the <span class="id">date</span> element of that event.
 
 And finally, translating the rest of the statements allows us to express the entire initial population as:
 
@@ -2688,7 +2682,7 @@ define "InInitialPopulation":
 
 ### Using Define Statements
 
-Because CQL allows any number of [.kw]#define# statements with any identifiers, we can structure the logic of the measure to communicate more meaning to readers of the logic. For example, if we look at the description of the quality measure:
+Because CQL allows any number of <span class="kw">define</span> statements with any identifiers, we can structure the logic of the measure to communicate more meaning to readers of the logic. For example, if we look at the description of the quality measure:
 
 __________________________________________________________________________________________________________________________________________________________
 _Percentage of women 16-24 years of age who were identified as sexually active and who had at least one test for chlamydia during the measurement period._
@@ -2696,7 +2690,7 @@ ________________________________________________________________________________
 
 it becomes clear that the intent of the Diagnosis, Active and Laboratory Test, Order QDM criteria is to attempt to determine whether or not the patient is sexually active. Of course, we’re dealing with a simplified measure and so much of the nuance of the original measure is lost; the intent here is not to determine whether this is in fact a good way in practice to determine whether or not a patient is sexually active, but rather to show how CQL can be used to help communicate aspects of the meaning of quality logic that would otherwise be lost or obscured.
 
-With this in mind, rather than expressing the entire initial population as a single [.kw]#define#, we can break it up into several more understandable and more meaningful expressions:
+With this in mind, rather than expressing the entire initial population as a single <span class="kw">define</span>, we can break it up into several more understandable and more meaningful expressions:
 
 ``` cql
 define "Patient16To23AndFemale":
@@ -2723,7 +2717,7 @@ define "InInitialPopulation":
 
 Restructuring the logic in this way not only simplifies the expressions involved and makes them more understandable, but it clearly communicates the intent of each group of criteria.
 
-Note that the [.id]#InInitialPopulation# expression is returning a boolean value indicating whether or not the patient should be included in the initial population.
+Note that the <span class="id">InInitialPopulation</span> expression is returning a boolean value indicating whether or not the patient should be included in the initial population.
 
 The next population to define is the denominator, which in our simplified expression of the measure is the same as the initial population. Because the intent of the CQL library for a quality measure is only to define the logic involved in defining the populations, it is assumed that the larger context (such as an HQMF artifact definition) is providing the overall structure, including the meaning of the various populations involved. As such, each population definition with the CQL library should include only those aspects that are unique to that population.
 
@@ -2745,13 +2739,13 @@ define "InNumerator":
   where R.issued during MeasurementPeriod and R.result is not null)
 ```
 
-Note that the [.id]#R.result# [.kw]#is not null# condition is required because the original QDM statement involves a test for the presence of an attribute:
+Note that the <span class="id">R.result</span> <span class="kw">is not null</span> condition is required because the original QDM statement involves a test for the presence of an attribute:
 
 ``` cql
 "Laboratory Test, Result: Chlamydia Screening (result)" during "Measurement Period"
 ```
 
-The [.id]#(result)# syntax indicates that the item should only be included if there is some value present for the result attribute. The equivalent expression in CQL is the [.kw]#null# test.
+The <span class="id">(result)</span> syntax indicates that the item should only be included if there is some value present for the result attribute. The equivalent expression in CQL is the <span class="kw">null</span> test.
 
 Finally, putting it all together, we have a complete, albeit simplified, definition of the logic involved in defining the population criteria for a measure:
 
@@ -2832,9 +2826,9 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 context Patient
 ```
 
-Note that we are not using the [.id]#MeasurementPeriod# parameter. There are other potential uses for parameters within the point-of-care intervention (for example, to specify a threshold for how far back to look for a Chlamydia screening), but we are ignoring those aspects for the purposes of this walkthrough.
+Note that we are not using the <span class="id">MeasurementPeriod</span> parameter. There are other potential uses for parameters within the point-of-care intervention (for example, to specify a threshold for how far back to look for a Chlamydia screening), but we are ignoring those aspects for the purposes of this walkthrough.
 
-For the [.id]#Patient16To23AndFemale# criteria, we are then simply concerned with female patients between the ages of 16 and 24, so we change the criteria to use the [.id]#AgeInYears#, rather than the [.id]#AgeInYearsAt# operator, to determine the patient’s age as of today:
+For the <span class="id">Patient16To23AndFemale</span> criteria, we are then simply concerned with female patients between the ages of 16 and 24, so we change the criteria to use the <span class="id">AgeInYears</span>, rather than the <span class="id">AgeInYearsAt</span> operator, to determine the patient’s age as of today:
 
 ``` cql
 define "Patient16To23AndFemale":
@@ -2842,7 +2836,7 @@ define "Patient16To23AndFemale":
     and Patient.gender in "Female Administrative Sex"
 ```
 
-Similarly for the [.id]#SexuallyActive# criteria, we remove the relationship to the measurement period:
+Similarly for the <span class="id">SexuallyActive</span> criteria, we remove the relationship to the measurement period:
 
 ``` cql
 define "SexuallyActive":
@@ -2875,7 +2869,7 @@ And to ensure that there is not a reason for not performing a Chlamydia screenin
 not exists ([Observation: "Reason for not performing Chlamydia Screening"])
 ```
 
-We combine those into a [.id]#NoScreening# criteria:
+We combine those into a <span class="id">NoScreening</span> criteria:
 
 ``` cql
 define "NoScreening":
@@ -2893,7 +2887,7 @@ And finally, we provide an overall condition that indicates whether or not this 
 define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
 ```
 
-Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the [.id]#NeedScreening# expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
+Now, this library can be referenced by a CDS knowledge artifact, and the condition can reference the <span class="id">NeedScreening</span> expression, which loosely reads: the patient needs screening if they are in the appropriate demographic, have indicators of sexual activity, and do not have screening.
 
 In addition, this library should include the proposal aspect of the intervention. In general, the overall artifact definition (such as a CDS KAS artifact) would define what actions should be performed when the condition is satisfied. Portions of that action definition may reference other expressions within a CQL library, just as the HQMF for a quality measure may reference multiple expressions within CQL to identify the various populations in the measure. In this case, the intervention may construct a proposal for a Chlamydia Screening:
 
@@ -2917,7 +2911,7 @@ We start by identifying the aspects that are identical between the two:
 1.  SexuallyActive criteria, without the timing relationship
 2.  ChlamydiaScreening test, without the timing relationship
 
-With these in mind, we can create a new library, [.id]#CMS153_Common#, that will contain the common elements:
+With these in mind, we can create a new library, <span class="id">CMS153_Common</span>, that will contain the common elements:
 
 ``` cql
 library CMS153_Common version '2'
@@ -2981,7 +2975,7 @@ define "InNumerator":
     where S.issued during MeasurementPeriod)
 ```
 
-Note: The keyword [.kw]#called# was chosen to avoid confusion with the keyword [.kw]#as#, which is used for type-casting. We also don't use [.kw]#as# for aliasing like many SQL dialects do, for the same reason. We mean [.kw]#called# here in the sense that the library is "called a name" within this context, not that we intend to "call it by this name".
+Note: The keyword <span class="kw">called</span> was chosen to avoid confusion with the keyword <span class="kw">as</span>, which is used for type-casting. We also don't use <span class="kw">as</span> for aliasing like many SQL dialects do, for the same reason. We mean <span class="kw">called</span> here in the sense that the library is "called a name" within this context, not that we intend to "call it by this name".
 
 And similarly for the CDS artifact:
 

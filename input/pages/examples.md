@@ -1,10 +1,5 @@
-# Examples
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:page-standards-status: informative
-  
+{% include styles.html %}
+
 The examples provided here illustrate the use of Clinical Quality Language to express the logic involved in decision support and quality measurement artifacts. The examples are intended for educational and demonstration purposes only and should not be considered endorsed or production ready.
 
 ## Chlamydia Screening Examples

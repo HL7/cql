@@ -1,11 +1,4 @@
-[[appendix-k-list-of-figures]]
-# Appendix K - List Of Figures
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: informative
+{% include styles.html %}
 
 ## Introduction
 
@@ -27,9 +20,9 @@
 
 5.  <<02-authorsguide.adoc#figure-2-e,Figure 2-E>> : The union, intersect, and except operators for lists
 
-6.  <<02-authorsguide.adoc#figure-2-f,Figure 2-F>> : Example input intervals to illustrate the behavior of the [.kw]#collapse# operator
+6.  <<02-authorsguide.adoc#figure-2-f,Figure 2-F>> : Example input intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
-7.  <<02-authorsguide.adoc#figure-2-g,Figure 2-G>> : Example output intervals to illustrate the behavior of the [.kw]#collapse# operator
+7.  <<02-authorsguide.adoc#figure-2-g,Figure 2-G>> : Example output intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
 ## Logical Specification
 
@@ -37,16 +30,16 @@
 
 2.  <<04-logicalspecification.adoc#figure-4-b,Figure 4-B>> : A diagram to explain how ELM represents an equal comparison
 
-3.  <<04-logicalspecification.adoc#figure-4-c,Figure 4-C>> : A diagram to explain how ELM represents a simple [.kw]#And# expression
+3.  <<04-logicalspecification.adoc#figure-4-c,Figure 4-C>> : A diagram to explain how ELM represents a simple <span class="kw">And</span> expression
 
-4.  <<04-logicalspecification.adoc#figure-4-d,Figure 4-D>> : A diagram to explain how ELM represents a simple [.kw]#If# expression
+4.  <<04-logicalspecification.adoc#figure-4-d,Figure 4-D>> : A diagram to explain how ELM represents a simple <span class="kw">If</span> expression
 
-5.  <<04-logicalspecification.adoc#figure-4-e,Figure 4-E>> : A diagram to explain how ELM represents a complex multi-conditional [.kw]#Case# expression
+5.  <<04-logicalspecification.adoc#figure-4-e,Figure 4-E>> : A diagram to explain how ELM represents a complex multi-conditional <span class="kw">Case</span> expression
 
-6.  <<04-logicalspecification.adoc#figure-4-f,Figure 4-F>> : A diagram to explain how ELM represents a comparand-base [.kw]#Case# expression
+6.  <<04-logicalspecification.adoc#figure-4-f,Figure 4-F>> : A diagram to explain how ELM represents a comparand-base <span class="kw">Case</span> expression
 
-7.  <<04-logicalspecification.adoc#figure-4-g,Figure 4-G>> : A diagram to explain how ELM represents a simple [.kw]#Add# expression
+7.  <<04-logicalspecification.adoc#figure-4-g,Figure 4-G>> : A diagram to explain how ELM represents a simple <span class="kw">Add</span> expression
 
-8.  <<04-logicalspecification.adoc#figure-4-h,Figure 4-H>> : A diagram to explain how ELM represents the construction of a [.kw]#Tuple#
+8.  <<04-logicalspecification.adoc#figure-4-h,Figure 4-H>> : A diagram to explain how ELM represents the construction of a <span class="kw">Tuple</span>
 
-9.  <<04-logicalspecification.adoc#figure-4-i,Figure 4-I>> : A diagram to explain how ELM represents the construction of a structured value using the [.kw]#Instance# class
+9.  <<04-logicalspecification.adoc#figure-4-i,Figure 4-I>> : A diagram to explain how ELM represents the construction of a structured value using the <span class="kw">Instance</span> class

@@ -1,11 +1,4 @@
-[[appendix-e-acronyms]]
-# Appendix E – Acronyms
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: informative
+{% include styles.html %}
 
 <a name="table-12-a"></a>
 [cols=",",options="header",]

@@ -1,11 +1,4 @@
-[[developers-guide]]
-# 3. Developer’s Guide
-:page-layout: dev
-:backend: xhtml
-:sectnums:
-:sectanchors:
-:toc:
-:page-standards-status: normative
+{% include styles.html %}
 
 This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the [Author’s Guide](02-authorsguide.html) in the discussions that follow.
 
@@ -24,7 +17,7 @@ CQL defines the following basic lexical elements:
 |*Whitespace* |Whitespace defines the separation between all tokens in the language
 |*Comment* |Comments are ignored by the language, allowing for descriptive text
 |*Literal* |Literals allow basic values to be represented within the language
-|*Symbol* |Symbols such as [.sym]#+#, [.sym]#-#, [.sym]#*#, and [.sym]#/#
+|*Symbol* |Symbols such as <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">*</span>, and <span class="sym">/</span>
 |*Keyword* |Grammar-recognized keywords such as define and where
 |*Identifier* |User-defined identifiers
 |================================================================================
@@ -95,17 +88,17 @@ Literals provide for the representation of basic values within CQL. The followin
 [cols=",",options="header",]
 |============================================================================================================
 |Literal |Description
-|*Null* |The null literal ([.kw]#null#)
-|*Boolean* |The boolean literals ([.kw]#true# and [.kw]#false#)
+|*Null* |The null literal (<span class="kw">null</span>)
+|*Boolean* |The boolean literals (<span class="kw">true</span> and <span class="kw">false</span>)
 |*Integer* |Sequences of digits in the range 0..2^31^-1
 |*Long* |Sequences of digits in the range 0..2^63^-1
 |*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
-|*String* |Strings of any character enclosed within single-ticks ([.lit]#'#)
-|*Date* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a date
-|*DateTime* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a datetime
-|*Time* |The at-symbol ([.sym]#@#) followed by an ISO-8601 compliant representation of a time
+|*String* |Strings of any character enclosed within single-ticks (<span class="lit">'</span>)
+|*Date* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a date
+|*DateTime* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a datetime
+|*Time* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a time
 |*Quantity* |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
-|*Ratio* |A ratio of two quantities, separated by a colon ([.sym]#:#)
+|*Ratio* |A ratio of two quantities, separated by a colon (<span class="sym">:</span>)
 |============================================================================================================
 
 Table 3‑B - The types of literals supported in CQL
@@ -364,7 +357,7 @@ year
 years
 ```
 
-Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, [.kw]#exists# is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
+Note that most reserved words may still be used as identifiers if the usage is unambiguous. For example, <span class="kw">exists</span> is a reserved word, but because the use of parentheses is required for function invocation, it can still be distinguished as a function identifier.
 
 In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
@@ -390,14 +383,14 @@ Note also that these are all unique identifiers. By convention, simple identifie
 
 In particular, the use of identifiers that differ only in case should be avoided.
 
-A delimited identifier is any sequence of characters enclosed in backticks ([.sym]#`#):
+A delimited identifier is any sequence of characters enclosed in backticks (<span class="sym">`</span>):
 
 ``` cql
 `Encounter, Performed`
 `Diagnosis`
 ```
 
-A quoted identifier is any sequence of characters enclosed in double-quotes ([.sym]#"#):
+A quoted identifier is any sequence of characters enclosed in double-quotes (<span class="sym">"</span>):
 
 ``` cql
 "Encounter, Performed"
@@ -408,7 +401,7 @@ The use of double-quotes and backticks allows identifiers to contain spaces, com
 
 A syntax diagram of quoted identifier can be seen [here](19-l-cqlsyntaxdiagrams.html#QUOTEDIDENTIFIER).
 
-To specify a quoted or delimited identifier that includes a double-quote ([.sym]#"#) or backtick ([.sym]#`#), use a backslash to escape the delimiter:
+To specify a quoted or delimited identifier that includes a double-quote (<span class="sym">"</span>) or backtick (<span class="sym">`</span>), use a backslash to escape the delimiter:
 
 ``` cql
 "Encounter \"Inpatient\""
@@ -437,7 +430,7 @@ Table 3‑E - The escape sequences for identifiers in CQL
 
 #### Qualified Identifiers
 
-Identifiers can be combined using the _qualifier_ operator ([.sym]#.#), resulting in a _qualified identifier_. For example [.id]#Common.ConditionsIndicatingSexualActivity#. An identifier with no qualifiers is an _unqualified identifier_.
+Identifiers can be combined using the _qualifier_ operator (<span class="sym">.</span>), resulting in a _qualified identifier_. For example <span class="id">Common.ConditionsIndicatingSexualActivity</span>. An identifier with no qualifiers is an _unqualified identifier_.
 
 A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier).
 
@@ -449,37 +442,37 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 [cols=",",options="header",]
 |==============================================================
 |Category |Operators
-|*Primary* |[.sym]#.# [.sym]#[]# [.sym]#()#
-|*Conversion Phrase* |[.kw]#convert#..[.kw]#to#
-|*Unary Arithmetic* |unary [.sym]#+/-#
-|*Extractor* |[.kw]#start# [.kw]#end# [.kw]#difference# [.kw]#duration# [.kw]#width# [.kw]#successor# [.kw]#predecessor of# +
-_component_ [.kw]#singleton from#
-|*Exponentiation* |[.sym]#^#
-|*Multiplicative* |[.sym]#*# [.sym]#/# [.kw]#div mod#
-|*Additive* |[.sym]#+# [.sym]#-# [.sym]#&#
-|*Conditional* |[.kw]#if#..[.kw]#then#..[.kw]#else# +
-[.kw]#case#..[.kw]#else#..[.kw]#end#
-|*Unary List* |[.kw]#distinct# [.kw]#collapse# [.kw]#flatten# [.kw]#expand#
-|*Unary Test* |[.kw]#is null# [.kw]#true# [.kw]#false#
-|*Type Operators* |[.kw]#is as cast#..[.kw]#as#
-|*Unary Logical* |[.kw]#not exists#
-|*Between* |[.kw]#between# +
-_precision_ [.kw]#between# +
-[.kw]#duration in# _precision_ [.kw]#between# +
-[.kw]#difference in# _precision_ [.kw]#between#
-|*Comparison* |[.sym]#\<=# [.sym]#<# [.sym]#># [.sym]#>=#
-|*Timing Phrase* |[.kw]#same as# +
-[.kw]#includes# +
-[.kw]#during# +
-[.kw]#before/after# +
-[.kw]#within#
-|*Interval Operators* |[.kw]#meets overlaps starts ends#
-|*Equality* |[.sym]#=# [.sym]#!=# [.sym]#~# [.sym]#!~#
-|*Membership* |[.kw]#in contains#
-|*Conjunction* |[.kw]#and#
-|*Disjunction* |[.kw]#or xor#
-|*Implication* |[.kw]#implies#
-|*Binary List* |[.kw]#union intersect except#
+|*Primary* |<span class="sym">.</span> <span class="sym">[]</span> <span class="sym">()</span>
+|*Conversion Phrase* |<span class="kw">convert</span>..<span class="kw">to</span>
+|*Unary Arithmetic* |unary <span class="sym">+/-</span>
+|*Extractor* |<span class="kw">start</span> <span class="kw">end</span> <span class="kw">difference</span> <span class="kw">duration</span> <span class="kw">width</span> <span class="kw">successor</span> <span class="kw">predecessor of</span> +
+_component_ <span class="kw">singleton from</span>
+|*Exponentiation* |<span class="sym">^</span>
+|*Multiplicative* |<span class="sym">*</span> <span class="sym">/</span> <span class="kw">div mod</span>
+|*Additive* |<span class="sym">+</span> <span class="sym">-</span> <span class="sym">&</span>
+|*Conditional* |<span class="kw">if</span>..<span class="kw">then</span>..<span class="kw">else</span> +
+<span class="kw">case</span>..<span class="kw">else</span>..<span class="kw">end</span>
+|*Unary List* |<span class="kw">distinct</span> <span class="kw">collapse</span> <span class="kw">flatten</span> <span class="kw">expand</span>
+|*Unary Test* |<span class="kw">is null</span> <span class="kw">true</span> <span class="kw">false</span>
+|*Type Operators* |<span class="kw">is as cast</span>..<span class="kw">as</span>
+|*Unary Logical* |<span class="kw">not exists</span>
+|*Between* |<span class="kw">between</span> +
+_precision_ <span class="kw">between</span> +
+<span class="kw">duration in</span> _precision_ <span class="kw">between</span> +
+<span class="kw">difference in</span> _precision_ <span class="kw">between</span>
+|*Comparison* |<span class="sym">\<=</span> <span class="sym"><</span> <span class="sym">></span> <span class="sym">>=</span>
+|*Timing Phrase* |<span class="kw">same as</span> +
+<span class="kw">includes</span> +
+<span class="kw">during</span> +
+<span class="kw">before/after</span> +
+<span class="kw">within</span>
+|*Interval Operators* |<span class="kw">meets overlaps starts ends</span>
+|*Equality* |<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span>
+|*Membership* |<span class="kw">in contains</span>
+|*Conjunction* |<span class="kw">and</span>
+|*Disjunction* |<span class="kw">or xor</span>
+|*Implication* |<span class="kw">implies</span>
+|*Binary List* |<span class="kw">union intersect except</span>
 |==============================================================
 
 Table 3‑F - The order of operator precedence in CQL
@@ -496,7 +489,7 @@ To encourage consistency and reduce potential confusion, CQL is a case-sensitive
 Define "Foo": 1 + 1
 ```
 
-The declaration is illegal because the parser will not recognize [.kw]#Define# as a keyword.
+The declaration is illegal because the parser will not recognize <span class="kw">Define</span> as a keyword.
 
 [[libraries-1]]
 ## Libraries
@@ -511,9 +504,9 @@ A syntax diagram of a library construct can be seen [here](19-l-cqlsyntaxdiagram
 
 Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a <<04-logicalspecification.adoc#library,library>> contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> for an example of how namespaces are specified in ELM.
 
-When including a library, use the fully qualified identifier for the library. If the [.kw]#called# clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
+When including a library, use the fully qualified identifier for the library. If the <span class="kw">called</span> clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
 
-Because the library identifier and its qualifiers are CQL identifiers, they may be either a simple identifier, or a delimited-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library. For example, assume a library identified as [.id]#Global.Common#:
+Because the library identifier and its qualifiers are CQL identifiers, they may be either a simple identifier, or a delimited-identifier, which may actually be a uniform resource identifier (URI), an object identifier (OID), or any other identifier system. It is up to the implementation and environment what interpretation, if any, is given to the identifier of a library. For example, assume a library identified as <span class="id">Global.Common</span>:
 
 ``` cql
 library Global.Common
@@ -522,7 +515,7 @@ define function "Foo"(A Integer, B Integer):
   A + B
 ```
 
-When including this library, the [.kw]#called# clause may be omitted:
+When including this library, the <span class="kw">called</span> clause may be omitted:
 
 ``` cql
 library UsingCommon
@@ -555,7 +548,7 @@ In addition, library references are not transitive, meaning that in order to ref
 
 ### Access Modifiers
 
-Each component of a library may have an access modifier applied, either [.kw]#public# or [.kw]#private#. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
+Each component of a library may have an access modifier applied, either <span class="kw">public</span> or <span class="kw">private</span>. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
 
 A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessModifier).
 
@@ -598,7 +591,7 @@ In this example, QDM is used as the data model. Note the use of quoted attribute
 
 ### Multiple Data Models
 
-Because CQL allows multiple [.kw]#using# declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name [.id]#Encounter#. In general, the resolution process for class names within CQL proceeds as follows:
+Because CQL allows multiple <span class="kw">using</span> declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name <span class="id">Encounter</span>. In general, the resolution process for class names within CQL proceeds as follows:
 
 * If the class name has no qualifier, then each model used in the current library is searched for an exact match.
 ** If an exact match is found in more than one model, the reference is considered ambiguous and an error is thrown that the class reference is ambiguous among the matches found.
@@ -679,7 +672,7 @@ The _named type specifier_ is simply the name of the type. For example:
 parameter Threshold Integer
 ```
 
-This example declares a parameter named [.id]#Threshold# of type [.id]#Integer#.
+This example declares a parameter named <span class="id">Threshold</span> of type <span class="id">Integer</span>.
 
 A syntax diagram of a _named type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier).
 
@@ -723,7 +716,7 @@ CQL supports the ability to test whether or not a value is of a given type. For 
 5 is Integer
 ```
 
-returns [.kw]#true# because [.lit]#5# is an [.id]#Integer#.
+returns <span class="kw">true</span> because <span class="lit">5</span> is an <span class="id">Integer</span>.
 
 In general, the _is_ relationship determines whether or not a given type is derived from another type. Given a type T and a type T' derived from type T, the following definitions hold:
 
@@ -745,19 +738,19 @@ For structured types, the supertype is specified as part of the definition of th
 
 ### Choice Types
 
-CQL also supports the notion of a _choice type_, a type that is defined by a list of component types. For example, an element of a tuple type may be a choice of [.id]#Integer# or [.id]#String#, meaning that the element may contain a value that is either an [.id]#Integer#, or a [.id]#String#.
+CQL also supports the notion of a _choice type_, a type that is defined by a list of component types. For example, an element of a tuple type may be a choice of <span class="id">Integer</span> or <span class="id">String</span>, meaning that the element may contain a value that is either an <span class="id">Integer</span>, or a <span class="id">String</span>.
 
-In addition, choice types can be used to indicate the type of a list of mixed elements, such as the result of a [.kw]#union#:
+In addition, choice types can be used to indicate the type of a list of mixed elements, such as the result of a <span class="kw">union</span>:
 
 ``` cql
 [Procedure] union [Encounter]
 ```
 
-This example results in a list that contains both Procedures and Encounters, and the resulting type is [.id]#Choice<Procedure#, [.id]#Encounter>#.
+This example results in a list that contains both Procedures and Encounters, and the resulting type is <span class="id">Choice<Procedure</span>, <span class="id">Encounter></span>.
 
 An expression of a choice type can be used anywhere that a value of any of its component types is expected, and an implicit cast will be used to restrict the choice type to the correct component type.
 
-For example, given an [.id]#Observation# type with an element [.id]#value# of type [.id]#Choice<String#, [.id]#Code#, [.id]#Integer#, [.id]#Decimal#, [.id]#Quantity>#, the following expressions are all valid:
+For example, given an <span class="id">Observation</span> type with an element <span class="id">value</span> of type <span class="id">Choice<String</span>, <span class="id">Code</span>, <span class="id">Integer</span>, <span class="id">Decimal</span>, <span class="id">Quantity></span>, the following expressions are all valid:
 
 ``` cql
 Observation.value + 12
@@ -775,17 +768,17 @@ These expressions will result in an implicit cast being applied as follows:
 (Observation.value as Quantity) < 5 'mg'
 ```
 
-The semantics for casting will result in a [.kw]#null# if the run-time value of the element is not of the appropriate type.
+The semantics for casting will result in a <span class="kw">null</span> if the run-time value of the element is not of the appropriate type.
 
 When accessing an element of a choice type with structured types as components, any element can be accessed. Note, however, that if the element being accessed is present in multiple components, the resulting expression may be a choice type if the elements have different types.
 
-In addition, the choice type enables the set operations, [.kw]#union#, [.kw]#intersect#, and [.kw]#except# to be generalized to work on lists of different types.
+In addition, the choice type enables the set operations, <span class="kw">union</span>, <span class="kw">intersect</span>, and <span class="kw">except</span> to be generalized to work on lists of different types.
 
-For [.kw]#union#, this means that the inputs can be lists of different types of elements, and the type of the result is now a choice type with components of each of the input types. If the input types are the same, the result is a choice with a single component which degenerates to the component type.
+For <span class="kw">union</span>, this means that the inputs can be lists of different types of elements, and the type of the result is now a choice type with components of each of the input types. If the input types are the same, the result is a choice with a single component which degenerates to the component type.
 
-For [.kw]#intersect#, this means the inputs can be lists of different types of elements, and the type of the result is a choice with only the types that are common between the input types. Again, if this results in a choice with a single component, it degenerates to the component type.
+For <span class="kw">intersect</span>, this means the inputs can be lists of different types of elements, and the type of the result is a choice with only the types that are common between the input types. Again, if this results in a choice with a single component, it degenerates to the component type.
 
-For [.kw]#except#, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
+For <span class="kw">except</span>, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
 
 ### Type Inference
 
@@ -795,7 +788,7 @@ The type inference rules for the various categories of language constructs are g
 
 #### Literals and Selectors
 
-The type of a literal is trivial for the primitive types and selectors: [.id]#Boolean#, [.id]#String#, [.id]#Integer#, [.id]#Long#, [.id]#Decimal#, [.id]#Date#, [.id]#DateTime#, [.id]#Time#, [.id]#Quantity#, and [.id]#Ratio#.
+The type of a literal is trivial for the primitive types and selectors: <span class="id">Boolean</span>, <span class="id">String</span>, <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Decimal</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, <span class="id">Time</span>, <span class="id">Quantity</span>, and <span class="id">Ratio</span>.
 
 The type of the null selector is Any.
 
@@ -852,19 +845,19 @@ Conversion is the operation of turning a value from one type into another. For e
 
 #### Explicit Conversion
 
-The explicit [.kw]#convert# can be used to convert a value from one type to another. For example, to convert the string representation of a datetime to a [.id]#DateTime# value:
+The explicit <span class="kw">convert</span> can be used to convert a value from one type to another. For example, to convert the string representation of a datetime to a <span class="id">DateTime</span> value:
 
 ``` cql
 convert '2014-01-01T12:00:00.0-06:00' to DateTime
 ```
 
-If the conversion cannot be performed, the result is [.kw]#null#. For example:
+If the conversion cannot be performed, the result is <span class="kw">null</span>. For example:
 
 ``` cql
 convert 'Foo' to Integer
 ```
 
-will result in [.kw]#null#. The convert syntax is equivalent to invoking one of the defined conversion operators:
+will result in <span class="kw">null</span>. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
 <a name="table-3-i"></a>
 [cols=",",options="header",]
@@ -876,20 +869,20 @@ will result in [.kw]#null#. The convert syntax is equivalent to invoking one of 
 |*ToBoolean(String)* |Converts the string representation of a boolean value to a Boolean value
 |*ToInteger(Boolean)* |Converts a boolean to an integer value, true results in `1`, false results in `0`
 |*ToInteger(Long)* |Converts a Long value to an equivalent Integer value
-|*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format ([.sym]#+\|-#)d*
+|*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format (<span class="sym">+\|-</span>)d*
 |*ToLong(Boolean)* |Converts a boolean value to an equivalent Long value, true results in `1L`, false results in `0L`
 |*ToLong(Integer)* |Converts an Integer value to an equivalent Long value
-|*ToLong(String)* |Converts the string representation of a long value to a Long value using the format ([.sym]#+\|-#)d*
+|*ToLong(String)* |Converts the string representation of a long value to a Long value using the format (<span class="sym">+\|-</span>)d*
 |*ToDecimal(Boolean)* |Converts a Boolean value to an equivalent Decimal value, true results in `1.0`, false results in `0.0`
 |*ToDecimal(Integer)* |Converts an Integer value to an equivalent Decimal value
 |*ToDecimal(Long)* |Converts a Long value to an equivalent Decimal value
-|*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format ([.sym]#+\|-#)d*.d*
+|*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format (<span class="sym">+\|-</span>)d*.d*
 |*ToQuantity(Decimal)* |Converts a Decimal value to a Quantity with a default unit ('1')
 |*ToQuantity(Integer)* |Converts an Integer value to a Quantity with a default unit ('1')
-|*ToQuantity(String)* |Converts the string representation of a quantity value to a Quantity value using the format ([.sym]#+\|-#)d*.d*'units'
+|*ToQuantity(String)* |Converts the string representation of a quantity value to a Quantity value using the format (<span class="sym">+\|-</span>)d*.d*'units'
 |*ToRatio(String)* |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
 |*ToDate(String)* |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
-|*ToDate(DateTime)* |Converts a DateTime to a Date. This is equivalent to invoking [.kw]#date from# on the DateTime value
+|*ToDate(DateTime)* |Converts a DateTime to a Date. This is equivalent to invoking <span class="kw">date from</span> on the DateTime value
 |*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components unspecified and the timezone offset of the request
 |*ToDateTime(String)* |Converts the string representation of a datetime value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
 |*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
@@ -912,14 +905,14 @@ For a complete description of these conversion operators, refer to the <<09-b-cq
 
 #### Quantity Conversions
 
-In addition to type conversions, CQL supports _quantity conversion_, converting a quantity from one unit to another unit using the same [.kw]#convert# keyword:
+In addition to type conversions, CQL supports _quantity conversion_, converting a quantity from one unit to another unit using the same <span class="kw">convert</span> keyword:
 
 ``` cql
 convert 5000 'g' to 'kg'
 convert 28 days to weeks
 ```
 
-If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is [.kw]#null#.
+If the unit conversion is valid, the expression results in a quantity with the target units. If the unit conversion is invalid, the result is <span class="kw">null</span>.
 
 > Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 {: .note-warning}
@@ -958,9 +951,9 @@ Although implicit conversions can be performed using the explicit convert, the l
 define "MixedMultiply": 1 * 1.0
 ```
 
-The type of the literal [.lit]#1# is [.id]#Integer#, and the type of the literal [.lit]#1.0# is [.id]#Decimal#. To infer the type of the expression correctly, the language will implicitly convert the type of the [.lit]#1# to [.id]#Decimal# by inserting a [.id]#ToDecimal# invocation. The multiplication is then performed on two [.id]#Decimals#, and the result type is [.id]#Decimal#.
+The type of the literal <span class="lit">1</span> is <span class="id">Integer</span>, and the type of the literal <span class="lit">1.0</span> is <span class="id">Decimal</span>. To infer the type of the expression correctly, the language will implicitly convert the type of the <span class="lit">1</span> to <span class="id">Decimal</span> by inserting a <span class="id">ToDecimal</span> invocation. The multiplication is then performed on two <span class="id">Decimals</span>, and the result type is <span class="id">Decimal</span>.
 
-In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type [.id]#Person# with elements [.id]#Name# of type [.id]#String# and [.id]#DOB# of type [.id]#DateTime#, the following comparison is valid:
+In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type <span class="id">Person</span> with elements <span class="id">Name</span> of type <span class="id">String</span> and <span class="id">DOB</span> of type <span class="id">DateTime</span>, the following comparison is valid:
 
 ``` cql
 define "TupleComparison": Person { Name: 'Joe', DOB: @1970-01-01 } = Tuple { Name: 'Joe', DOB: @1970-01-01 }
@@ -979,7 +972,7 @@ The conversion from a tuple to a structured type requires that the set of elemen
 
 ### Casting
 
-Casting is the operation of treating a value of some base type as a more specific type at run-time. The [.kw]#as# operator provides this functionality. For example, given a model that defines an [.id]#ImagingProcedure# as a specialization of a [.id]#Procedure#, in the following example:
+Casting is the operation of treating a value of some base type as a more specific type at run-time. The <span class="kw">as</span> operator provides this functionality. For example, given a model that defines an <span class="id">ImagingProcedure</span> as a specialization of a <span class="id">Procedure</span>, in the following example:
 
 ``` cql
 define "AllProcedures": [Procedure]
@@ -989,11 +982,11 @@ define "ImagingProcedures":
     return P as ImagingProcedure
 ```
 
-the [.id]#ImagingProcedures# expression returns all procedures that are instances of [.id]#ImagingProcedure# as instances of [.id]#ImagingProcedure#. This means that attributes that are specific to [.id]#ImagingProcedure# can be accessed.
+the <span class="id">ImagingProcedures</span> expression returns all procedures that are instances of <span class="id">ImagingProcedure</span> as instances of <span class="id">ImagingProcedure</span>. This means that attributes that are specific to <span class="id">ImagingProcedure</span> can be accessed.
 
-If the run-time type of the value is not of the type specified in the [.kw]#as# operator, the result is [.kw]#null#.
+If the run-time type of the value is not of the type specified in the <span class="kw">as</span> operator, the result is <span class="kw">null</span>.
 
-In addition, CQL supports a _strict_ cast, which has the same semantics as casting, except that if the run-time type of the value is not of the type specified, a run-time error is thrown. The keyword [.kw]#cast# is used to indicate a strict cast:
+In addition, CQL supports a _strict_ cast, which has the same semantics as casting, except that if the run-time type of the value is not of the type specified, a run-time error is thrown. The keyword <span class="kw">cast</span> is used to indicate a strict cast:
 
 ``` cql
 define "StrictCast": cast First(Procedures) as ImagingProcedure
@@ -1001,19 +994,19 @@ define "StrictCast": cast First(Procedures) as ImagingProcedure
 
 #### Implicit Casting
 
-CQL also supports the notion of _implicit casting_ to prevent the need to cast a [.kw]#null# literal to a specific type. For example, consider the following expression:
+CQL also supports the notion of _implicit casting_ to prevent the need to cast a <span class="kw">null</span> literal to a specific type. For example, consider the following expression:
 
 ``` cql
 define "ImplicitCast": 5 * null
 ```
 
-The type of the first argument to the multiplication is [.id]#Integer#, and the type of the second argument is [.id]#Any#, an untyped [.kw]#null# literal. But multipication of [.id]#Integer# and [.id]#Any# is not defined and [.id]#Any# is a supertype of [.id]#Integer#, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
+The type of the first argument to the multiplication is <span class="id">Integer</span>, and the type of the second argument is <span class="id">Any</span>, an untyped <span class="kw">null</span> literal. But multipication of <span class="id">Integer</span> and <span class="id">Any</span> is not defined and <span class="id">Any</span> is a supertype of <span class="id">Integer</span>, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
 ``` cql
 define "ImplicitCast": 5 * (null as Integer)
 ```
 
-To avoid the need for this explicit cast, CQL implicitly casts the [.id]#Any# to [.id]#Integer#.
+To avoid the need for this explicit cast, CQL implicitly casts the <span class="id">Any</span> to <span class="id">Integer</span>.
 
 ### Promotion and Demotion
 
@@ -1021,13 +1014,13 @@ To simplify the expression of logic involving lists and intervals, CQL defines _
 
 Promotion is used to implicitly convert a value to a list of values of that type. Whenever an operation that expects a list-valued argument is passed a single value, the single value may be promoted to a list of the same type containing the single value as its only element.
 
-Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenever an operation that expects a singleton is passed a list, the list may be demoted to a singleton using [.kw]#singleton from#.
+Demotion is the opposite, used to implicitly extract a single value from a list of values. Whenever an operation that expects a singleton is passed a list, the list may be demoted to a singleton using <span class="kw">singleton from</span>.
 
-For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using [.kw]#point from#.
+For intervals, promotion is performed by creating an interval with the single value as the start and end of the interval, and demotion is performed using <span class="kw">point from</span>.
 
-Note that the use of demotion has the potential to result in a run-time error if [.kw]#singleton from# is invoked on a list with multiple elements, or if [.kw]#point from# is invoked on an interval wider than a single point. In addition, promotion and demotion can sometimes result in unexpected behavior. As such, environments may choose whether or not to support these features of the language.
+Note that the use of demotion has the potential to result in a run-time error if <span class="kw">singleton from</span> is invoked on a list with multiple elements, or if <span class="kw">point from</span> is invoked on an interval wider than a single point. In addition, promotion and demotion can sometimes result in unexpected behavior. As such, environments may choose whether or not to support these features of the language.
 
-Whether or not promotion and demotion should be used depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, interval promotion is used only to enable mixed-type signatures for the [.kw]#same or after# and [.kw]#same or before# operators, and interval demotion is not used.
+Whether or not promotion and demotion should be used depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, interval promotion is used only to enable mixed-type signatures for the <span class="kw">same or after</span> and <span class="kw">same or before</span> operators, and interval demotion is not used.
 
 ### Conversion Precedence
 
@@ -1048,7 +1041,7 @@ These conversion precedences can be viewed as ordered from _least converting_ to
 
 ## Conditional Expressions
 
-To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the [.kw]#if# expression, and the [.kw]#case# expression.
+To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the <span class="kw">if</span> expression, and the <span class="kw">case</span> expression.
 
 The if expression allows a single condition to select between two expressions:
 
@@ -1056,11 +1049,11 @@ The if expression allows a single condition to select between two expressions:
 if Count(X) > 0 then X[1] else 0
 ```
 
-This expression checks the count of X and returns the first element if it is greater than [.lit]#0#; otherwise, the expression returns [.lit]#0#. Note that if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#.
+This expression checks the count of X and returns the first element if it is greater than <span class="lit">0</span>; otherwise, the expression returns <span class="lit">0</span>. Note that if the condition evaluates to <span class="kw">null</span>, it is interpreted as <span class="kw">false</span>.
 
-The [.kw]#case# expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
+The <span class="kw">case</span> expression allows multiple conditions to be tested, and comes in two flavors: standard case, and selected case.
 
-A standard case allows any number of conditions, each with a corresponding expression that will be the result of the [.kw]#case# if the associated condition evaluates to [.kw]#true#. Note that as with the if expression, if the condition evaluates to [.kw]#null#, it is interpreted as [.kw]#false#. If none of the conditions evaluate to [.kw]#true#, the [.kw]#else# expression is the result:
+A standard case allows any number of conditions, each with a corresponding expression that will be the result of the <span class="kw">case</span> if the associated condition evaluates to <span class="kw">true</span>. Note that as with the if expression, if the condition evaluates to <span class="kw">null</span>, it is interpreted as <span class="kw">false</span>. If none of the conditions evaluate to <span class="kw">true</span>, the <span class="kw">else</span> expression is the result:
 
 ``` cql
 case
@@ -1080,7 +1073,7 @@ case X
 end
 ```
 
-Note that if the source expression in a selected case is [.kw]#null#, no condition will compare equal and the result will be the else expression. If any case item is [.kw]#null#, it will not compare equal to the comparand.
+Note that if the source expression in a selected case is <span class="kw">null</span>, no condition will compare equal and the result will be the else expression. If any case item is <span class="kw">null</span>, it will not compare equal to the comparand.
 
 Both of these conditional expression constructs require run-time conditional evaluation. This is sometimes referred to as short-circuit evaluation for conditional expressions. For implementations, this means delaying evaluation of the arguments. Revisiting the first example in this section:
 
@@ -1088,32 +1081,32 @@ Both of these conditional expression constructs require run-time conditional eva
 if Count(X) > 0 then X[1] else 0
 ```
 
-Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to [.kw]#true#. This is in contrast to the logical operators [.kw]#and# and [.kw]#or#, where short-circuit evaluation is not required.
+Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to <span class="kw">true</span>. This is in contrast to the logical operators <span class="kw">and</span> and <span class="kw">or</span>, where short-circuit evaluation is not required.
 
 ## Nullological Operators
 
 To provide complete support for missing information, CQL supports several operators for testing for and dealing with null results.
 
-To provide a null result, use the [.kw]#null# keyword:
+To provide a null result, use the <span class="kw">null</span> keyword:
 
 ``` cql
 null
 ```
 
-To test whether an expression is [.kw]#null#, use the _null test_:
+To test whether an expression is <span class="kw">null</span>, use the _null test_:
 
 ``` cql
 X is null
 X is not null
 ```
 
-To replace a null with the result of an expression, use a simple [.kw]#if# expression:
+To replace a null with the result of an expression, use a simple <span class="kw">if</span> expression:
 
 ``` cql
 if X is null then Y else X
 ```
 
-To return the first non-null expression among two or more expressions, use the [.id]#Coalesce# operator:
+To return the first non-null expression among two or more expressions, use the <span class="id">Coalesce</span> operator:
 
 ``` cql
 Coalesce(X, Y, Z)
@@ -1129,14 +1122,14 @@ case
 end
 ```
 
-In addition, CQL supports the boolean-test operators [.kw]#is [not] true# and [.kw]#is [not] false#. These operators, like the null-test operator, only return [.kw]#true# and [.kw]#false#, they will not propagate a [.kw]#null# result.
+In addition, CQL supports the boolean-test operators <span class="kw">is [not] true</span> and <span class="kw">is [not] false</span>. These operators, like the null-test operator, only return <span class="kw">true</span> and <span class="kw">false</span>, they will not propagate a <span class="kw">null</span> result.
 
 ``` cql
 X is true
 X is not false
 ```
 
-The first example will return [.kw]#true# if X evaluates to [.kw]#true#, [.kw]#false# if X evaluates to [.kw]#false# or [.kw]#null#. The second example will return [.kw]#true# if X evaluates to [.kw]#true# or [.kw]#null#, [.kw]#false# if X evaluates to [.kw]#false#. Note in particular that these operators are _not_ equivalent to comparison of [.id]#Boolean# results using equality or inequality.
+The first example will return <span class="kw">true</span> if X evaluates to <span class="kw">true</span>, <span class="kw">false</span> if X evaluates to <span class="kw">false</span> or <span class="kw">null</span>. The second example will return <span class="kw">true</span> if X evaluates to <span class="kw">true</span> or <span class="kw">null</span>, <span class="kw">false</span> if X evaluates to <span class="kw">false</span>. Note in particular that these operators are _not_ equivalent to comparison of <span class="id">Boolean</span> results using equality or inequality.
 
 ## String Operators
 
@@ -1148,41 +1141,41 @@ Like lists, strings are 0-based in CQL. To index into a string, use the _indexer
 X[0]
 ```
 
-To determine the length of string, use the [.id]#Length# operator:
+To determine the length of string, use the <span class="id">Length</span> operator:
 
 ``` cql
 Length(X)
 ```
 
-To determine the position of a given pattern within a string, use the [.id]#PositionOf# operator:
+To determine the position of a given pattern within a string, use the <span class="id">PositionOf</span> operator:
 
 ``` cql
 PositionOf('cde', 'abcdefg')
 ```
 
-The [.id]#PositionOf()# operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, [.id]#PositionOf()# returns [.lit]#-1# to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use [.id]#LastPositionOf()#, and to find patterns at the beginning and end of a string, use [.id]#StartsWith()# and [.id]#EndsWith()#. Regular expression matching can be performed with the [.id]#Matches()# and [.id]#ReplaceMatches()# operators.
+The <span class="id">PositionOf()</span> operator returns the index of the starting character of the first argument in the second argument, if the first argument can be located in the second argument. Otherwise, <span class="id">PositionOf()</span> returns <span class="lit">-1</span> to indicate the pattern was not found in the string. To find the last appearance of a given pattern, use <span class="id">LastPositionOf()</span>, and to find patterns at the beginning and end of a string, use <span class="id">StartsWith()</span> and <span class="id">EndsWith()</span>. Regular expression matching can be performed with the <span class="id">Matches()</span> and <span class="id">ReplaceMatches()</span> operators.
 
-To return a substring from a given string, use the [.id]#Substring# operator:
+To return a substring from a given string, use the <span class="id">Substring</span> operator:
 
 ``` cql
 Substring('abcdefg', 0, 3)
 ```
 
-This example returns the string [.lit]#'abc'#. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is [.kw]#null#. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
+This example returns the string <span class="lit">'abc'</span>. The second argument is the starting index of the substring to be returned, and the third argument is the length of the substring to be returned. If the length is greater than the number of characters present in the string from the starting index on, the result includes only the remaining characters. If the starting index is less than 0, or greater than the length of the string, the result is <span class="kw">null</span>. The third argument is optional; if it is not provided, the substring is taken from the starting index to the end of the string.
 
-To concatenate strings, use the [.sym]#+# operator:
+To concatenate strings, use the <span class="sym">+</span> operator:
 
 ``` cql
 'abc' + 'defg'
 ```
 
-Note that when using [.sym]#+# with string values, if either argument is [.kw]#null#, the result will be [.kw]#null#. To treat [.kw]#null# as the empty string ([.sym]#''#), use the [.sym]#&# operator:
+Note that when using <span class="sym">+</span> with string values, if either argument is <span class="kw">null</span>, the result will be <span class="kw">null</span>. To treat <span class="kw">null</span> as the empty string (<span class="sym">''</span>), use the <span class="sym">&</span> operator:
 
 ``` cql
 'abc' & 'defg'
 ```
 
-To combine a list of strings, use the [.id]#Combine# operator:
+To combine a list of strings, use the <span class="id">Combine</span> operator:
 
 ``` cql
 Combine({ 'ab', 'cd', 'ef' })
@@ -1194,7 +1187,7 @@ The result of this expression is:
 'abcdef'
 ```
 
-To combine a list with a separator, provide the separator argument to the [.id]#Combine# operator:
+To combine a list with a separator, provide the separator argument to the <span class="id">Combine</span> operator:
 
 ``` cql
 Combine({ 'completed', 'refused', 'pending' }, ';')
@@ -1206,7 +1199,7 @@ The result of this expression is:
 'completed;refused;pending'
 ```
 
-To split a string into a list of strings based on a specific separator, use the [.id]#Split# operator:
+To split a string into a list of strings based on a specific separator, use the <span class="id">Split</span> operator:
 
 ``` cql
 Split('completed;refused;pending', ';')
@@ -1218,7 +1211,7 @@ The result of this expression is:
 { 'completed', 'refused', 'pending' }
 ```
 
-Use the [.id]#Upper# and [.id]#Lower# operators to return strings with upper or lowercase letters for all characters in the argument.
+Use the <span class="id">Upper</span> and <span class="id">Lower</span> operators to return strings with upper or lowercase letters for all characters in the argument.
 
 [[introducing-context-in-queries]]
 ## Introducing Scoped Definitions in Queries
@@ -1254,9 +1247,9 @@ The CQL query construct provides for the ability to introduce named expressions 
       }
 ```
 
-In this query, the same logic defined by the [.id]#dailyDose# expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
+In this query, the same logic defined by the <span class="id">dailyDose</span> expression can be reused multiple times in the where clause, avoiding the need to repeat the calculation and making the intended meaning of the logic much more clear.
 
-Note also the ability to reference a previously defined let in the same scope, as in the use of [.id]#adjustedDoseQuantity# in the definition of [.id]#dailyDose#.
+Note also the ability to reference a previously defined let in the same scope, as in the use of <span class="id">adjustedDoseQuantity</span> in the definition of <span class="id">dailyDose</span>.
 
 ## Multi-Source Queries
 
@@ -1277,7 +1270,7 @@ define "Warfarin Therapy": [MedicationAdministration: "Warfarin"]
 define "Parenteral Therapy": [MedicationAdministration: "Parenteral Anticoagulation"]
 ```
 
-First, we establish that the encounter had both warfarin and parenteral anticoagulation therapies. This is easy enough to accomplish using [.kw]#with# clauses:
+First, we establish that the encounter had both warfarin and parenteral anticoagulation therapies. This is easy enough to accomplish using <span class="kw">with</span> clauses:
 
 ``` cql
 define "Encounters with Warfarin and Parenteral Therapies":
@@ -1286,7 +1279,7 @@ define "Encounters with Warfarin and Parenteral Therapies":
     with "Parenteral Therapy" P such that P.effectiveTime starts during E.period
 ```
 
-However, the next step involves calculating the duration of overlap between the warfarin and parenteral therapies, and a with clause only filters by a relationship, it does not introduce any data from the related source. To allow queries like this to be easily expressed, CQL allows a [.kw]#from# clause to be used to start a query:
+However, the next step involves calculating the duration of overlap between the warfarin and parenteral therapies, and a with clause only filters by a relationship, it does not introduce any data from the related source. To allow queries like this to be easily expressed, CQL allows a <span class="kw">from</span> clause to be used to start a query:
 
 ``` cql
 define "Encounters with Warfarin and Parenteral Therapies":
@@ -1313,7 +1306,7 @@ define "Encounters with overlapping Warfarin and Parenteral Therapies":
 
 This gives us the first condition, namely that a patient was on overlapping warfarin and parenteral therapies for at least 5 days, and the ending INR result associated with the parenteral therapy is greater than or equal to 2.
 
-Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a [.kw]#let# clause to be used to introduce an intermediate computational result within a query:
+Next, we need to build criteria for the other cases, but these cases involve the same calculations, just compared against different values, or in different ways. Rather than having to restate the calculations multiple times, CQL allows a <span class="kw">let</span> clause to be used to introduce an intermediate computational result within a query:
 
 ``` cql
 define "Encounters with overlapping Warfarin and Parenteral Therapies":
@@ -1352,18 +1345,18 @@ List<Tuple { E Encounter, M MedicationStatement }>
 
 The result will be a list of tuples containing the cartesian product of all Encounters and Medication Statements.
 
-In addition, the default for return clauses is [.kw]#distinct#, as opposed to [.kw]#all#, so if no return clause is specified, duplicates will be eliminated from the result.
+In addition, the default for return clauses is <span class="kw">distinct</span>, as opposed to <span class="kw">all</span>, so if no return clause is specified, duplicates will be eliminated from the result.
 
 ### Query Syntax Options
 
-Note that the grammar for CQL queries allows for the [.kw]#from# keyword to be used for single- and multi-source queries. For example, the following is valid CQL:
+Note that the grammar for CQL queries allows for the <span class="kw">from</span> keyword to be used for single- and multi-source queries. For example, the following is valid CQL:
 
 ``` cql
 from [Encounter] E
   where E.effectiveTime starts after Today() - 1 year
 ```
 
-Moreover, parsing the grammar can be simplified by requiring that all queries start with the [.kw]#from# keyword. To support a change to the language to enable this simplification, environments may require that all queries begin with the [.kw]#from# keyword.
+Moreover, parsing the grammar can be simplified by requiring that all queries start with the <span class="kw">from</span> keyword. To support a change to the language to enable this simplification, environments may require that all queries begin with the <span class="kw">from</span> keyword.
 
 ## Non-Retrieve Queries
 
@@ -1373,7 +1366,7 @@ In addition to the query examples already discussed, it is possible to use any a
 ({ 1, 2, 3, 4, 5 }) L return L * 2
 ```
 
-This query results in [.sym]#{# [.lit]#2#, [.lit]#4#, [.lit]#6#, [.lit]#8#, [.lit]#10# [.sym]#}#. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
+This query results in <span class="sym">{</span> <span class="lit">2</span>, <span class="lit">4</span>, <span class="lit">6</span>, <span class="lit">8</span>, <span class="lit">10</span> <span class="sym">}</span>. Note that the parentheses are required for arbitrary expressions. A query source is either a retrieve, a qualified identifier, or a parenthesized expression.
 
 The above example also illustrates that queries need not be based on lists of tuples. In fact, they need not be based on lists at all. The following example illustrates the use of a query to redefine a single tuple:
 
@@ -1419,9 +1412,9 @@ define "Gestational Age in Days at Birth":
   (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
 ```
 
-Note the use of the [.id]#"Mother"# expression within the retrieve: [.id]#["Mother" \-> "Observation": "Estimated Due Date Exam"]#. This syntax ([.sym]#\->#) indicates that the retrieve should be performed in the context returned by the [.id]#"Mother"# expression. The [.id]#"Mother"# expression in this case will be evaluated in the [.id]#"Patient"# context, and result in a [.id]#RelatedPerson# from the infant's record with the relationship type of [.id]#"Mother Relationship"#. The [.id]#RelatedPerson# will then be used as the context for the retrieve.
+Note the use of the <span class="id">"Mother"</span> expression within the retrieve: <span class="id">["Mother" \-> "Observation": "Estimated Due Date Exam"]</span>. This syntax (<span class="sym">\-></span>) indicates that the retrieve should be performed in the context returned by the <span class="id">"Mother"</span> expression. The <span class="id">"Mother"</span> expression in this case will be evaluated in the <span class="id">"Patient"</span> context, and result in a <span class="id">RelatedPerson</span> from the infant's record with the relationship type of <span class="id">"Mother Relationship"</span>. The <span class="id">RelatedPerson</span> will then be used as the context for the retrieve.
 
-If the expression being defined (such as "Mother" in the previous example) is [.kw]#null#, the related context retrieve would be evaluated with [.id]#id# [.sym]#= null#, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a [.id]#RelatedPerson#), the model information is used to determine the attribute of the class that contains the value for the context id ([.id]#linkedPatientId# in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
+If the expression being defined (such as "Mother" in the previous example) is <span class="kw">null</span>, the related context retrieve would be evaluated with <span class="id">id</span> <span class="sym">= null</span>, which would result in unknown and an empty list would be the result. If the expression returns a class instance (as in this case, an instance of a <span class="id">RelatedPerson</span>), the model information is used to determine the attribute of the class that contains the value for the context id (<span class="id">linkedPatientId</span> in this case). And finally, the expression is not allowed to return a list, it must evaluate to a single class or primitive value.
 
 > As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
 >
@@ -1480,7 +1473,7 @@ define FactorialOfFive:
     aggregate Result: Coalesce(Result, 1) * Num
 ```
 
-In this example, since the starting clause is omitted, Result is initially [.kw]#null#, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
+In this example, since the starting clause is omitted, Result is initially <span class="kw">null</span>, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
 
 ## Defining Functions
 
@@ -1495,7 +1488,7 @@ define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ```
 
-This statement defines a function named [.id]#CumulativeDuration# that takes a single argument named [.id]#Intervals# of type [.kw]#List<Interval<DateTime>>#. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
+This statement defines a function named <span class="id">CumulativeDuration</span> that takes a single argument named <span class="id">Intervals</span> of type <span class="kw">List<Interval<DateTime>></span>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
 
 ``` cql
 define "Encounters": [Encounter: "Inpatient Visit"]
@@ -1504,14 +1497,14 @@ define "CD": CumulativeDuration(Encounters E return E.period)
 
 These statements establish an expression named CD that computes the cumulative duration of inpatient encounters for a patient.
 
-Within the library in which it is defined, a function can be invoked directly by name. When a function is defined in a referenced library, the local library alias must be used to invoke the function. For example, assuming a library with the above function definition and referenced with the local alias [.id]#Core#:
+Within the library in which it is defined, a function can be invoked directly by name. When a function is defined in a referenced library, the local library alias must be used to invoke the function. For example, assuming a library with the above function definition and referenced with the local alias <span class="id">Core</span>:
 
 ``` cql
 define "Encounters": [Encounter: "Inpatient Visit"]
 define "CD": Core.CumulativeDuration(Encounters E return E.period)
 ```
 
-In this example, the [.id]#CumulativeDuration# function must be invoked using the local library alias [.id]#Core#.
+In this example, the <span class="id">CumulativeDuration</span> function must be invoked using the local library alias <span class="id">Core</span>.
 
 A syntax diagram of defining a function can be seen [here](19-l-cqlsyntaxdiagrams.html#function).
 
@@ -1519,7 +1512,7 @@ Functions can be defined that reference other functions anywhere within any libr
 
 ### Operator Functions
 
-Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator ([.sym]#+#) is implemented by the [.id]#Add# function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the <<06-translationsemantics.adoc#functions,Functions>> topic in the Translation Semantics chapter.
+Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the <<06-translationsemantics.adoc#functions,Functions>> topic in the Translation Semantics chapter.
 
 A consequence of having these system function definitions is that operators can also be invoked directly as functions. For example:
 
@@ -1539,7 +1532,7 @@ Equal(X, Y)
 
 > Fluent functions are a new feature of CQL 1.5, and are trial-use.
 {: .note-info}
-Functions can be defined as _fluent_ by including the [.kw]#fluent# keyword as part of the function definition:
+Functions can be defined as _fluent_ by including the <span class="kw">fluent</span> keyword as part of the function definition:
 
 ``` cql
 define fluent function "confirmed"(Conditions List<Condition>):
@@ -1573,7 +1566,7 @@ define "Confirmed and Active or Recurring Diabetes Conditions":
   activeOrRecurring(confirmed(Conditions))
 ```
 
-In other words, all the Condition elements returned from the [.id]#Diabetes Conditions# expression, where those conditions have a [.id]#verificationStatus# of [.id]#Condition Confirmed#, and a [.id]#clinicalStatus# of [.id]#Condition Active#, [.id]#Condition Recurrence#, or [.id]#Condition Relpase#.
+In other words, all the Condition elements returned from the <span class="id">Diabetes Conditions</span> expression, where those conditions have a <span class="id">verificationStatus</span> of <span class="id">Condition Confirmed</span>, and a <span class="id">clinicalStatus</span> of <span class="id">Condition Active</span>, <span class="id">Condition Recurrence</span>, or <span class="id">Condition Relpase</span>.
 
 A _fluent_ function may also take multiple arguments where the first argument to the function will be provided by the value of the left-side of the dot-invocation at that point and the second argument can still be passed in. For example:
 
@@ -1593,7 +1586,7 @@ define "Active Diabetes Conditions":
   byClinicalStatus("Diabetes Conditions", "Condition Active")
 ```
 
-In other words, all the Condition elements returned from the [.id]#Diabetes Conditions# expression, where those conditions have a [.id]#clinicalStatus# of [.id]#Condition Active#.
+In other words, all the Condition elements returned from the <span class="id">Diabetes Conditions</span> expression, where those conditions have a <span class="id">clinicalStatus</span> of <span class="id">Condition Active</span>.
 
 > Note that the examples in this section are adapted from the [CDS Connect FHIR Commons](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178) library.
 {: .note-info}
@@ -1622,7 +1615,7 @@ Paths in FHIRPath are constructed by concatenating labels using a dot qualifier:
 
 Patient.name.given
 
-In this case, the path begins at the [.id]#Patient# expression and accesses the [.id]#name# property, followed by the [.id]#given# property of each [.id]#name#. Because the [.id]#given# path invocation is targeting the list of names, the property access is invoked for each name in the list, resulting in a list of all the given elements for every name in the Patient.
+In this case, the path begins at the <span class="id">Patient</span> expression and accesses the <span class="id">name</span> property, followed by the <span class="id">given</span> property of each <span class="id">name</span>. Because the <span class="id">given</span> path invocation is targeting the list of names, the property access is invoked for each name in the list, resulting in a list of all the given elements for every name in the Patient.
 
 However, because property access on a list may actually be the result of mistakenly expecting the property to be singular, this behavior can be disabled with the _disable-list-traversal_ option.
 
@@ -1630,13 +1623,13 @@ However, because property access on a list may actually be the result of mistake
 
 In FHIRPath, all operations are defined to return collections, and operations that expect singleton values are defined to throw an error when they are invoked with collections containing multiple elements. In CQL, this behavior is implemented using list promotion and demotion.
 
-Wherever an operator is defined to take a non-list-valued type as a parameter, list demotion allows the arguments to be list-valued and are implicitly converted to a singleton value using the [.kw]#singleton from# operator:
+Wherever an operator is defined to take a non-list-valued type as a parameter, list demotion allows the arguments to be list-valued and are implicitly converted to a singleton value using the <span class="kw">singleton from</span> operator:
 
 ``` cql
 Patient.name.given + ' ' + Patient.name.family
 ```
 
-The _disable-demotion_ option controls whether or not this expression is valid. With the option enabled, the expression can be compiled, and will evaluate, so long as the run-time values of [.id]#given# and [.id]#family# contain only a single element. With the option disabled, this expression will no longer compile, and the list-valued arguments must be converted to a single value:
+The _disable-demotion_ option controls whether or not this expression is valid. With the option enabled, the expression can be compiled, and will evaluate, so long as the run-time values of <span class="id">given</span> and <span class="id">family</span> contain only a single element. With the option disabled, this expression will no longer compile, and the list-valued arguments must be converted to a single value:
 
 ``` cql
 Patient.name.given.single() + ' ' + Patient.name.family.single()
@@ -1648,11 +1641,11 @@ See the <<Promotion and Demotion>> topic for more discussion on how CQL supports
 
 ### Missing Information
 
-FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection ([.sym]#\{ }#) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
+FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
 
 ### Type Resolution
 
-The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as [.id]#.children()# and [.id]#.descendents()#. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
+The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as <span class="id">.children()</span> and <span class="id">.descendents()</span>. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
 
 For example, consider the following FHIRPath:
 
@@ -1660,13 +1653,13 @@ For example, consider the following FHIRPath:
 Patient.children().name
 ```
 
-This expression returns a list of the name elements of all the children of the Patient instance. To accomplish this in CQL, the result of [.id]#.children()# is a list of elements of choice types, where the types in the choice are the distinct set of types of child elements.
+This expression returns a list of the name elements of all the children of the Patient instance. To accomplish this in CQL, the result of <span class="id">.children()</span> is a list of elements of choice types, where the types in the choice are the distinct set of types of child elements.
 
 This approach enables the flexibility of FHIRPath expressions but still maintains compile-time type resolution.
 
 ### Method Invocation
 
-The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as [.id]#$this# that can be addressed in the body of the method.
+The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as <span class="id">$this</span> that can be addressed in the body of the method.
 
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the [FHIRPath Function Translation Appendix](16-i-fhirpathtranslation.html).
 

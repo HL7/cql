@@ -1,7 +1,4 @@
-# Expression Logical Model (ELM)
-:page-layout: dev
-:backend: xhtml
-:page-standards-status: normative
+{% include styles.html %}
 
 Expression Logical Model Schema Files are available here:
 

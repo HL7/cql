@@ -1,7 +1,6 @@
-# Clinical Quality Language (CQL)
-:page-layout: dev
-:backend: xhtml
-:page-standards-status: normative
+{% include styles.html %}
+
+**Clinical Quality Language (CQL)**
 
 ![extracted-media/media/image1](extracted-media/media/image1.png){: width=144; height=148; }
 
@@ -11,13 +10,14 @@
 
 *HL7 Mixed Normative/Trial-Use Specification*
 
-image:dist/ansi-approved.gif[]
+![ANSI Approved Logo](assets/images/ansi-approved.gif)
 
 |===
 |Formal Name: |HL7 Cross-Paradigm Specification: Clinical Quality Language, Release 1
 |ANSI Designation: |ANSI/HL7 CQLANG, R1-2020
 |Date of Approval: |2020-12-01
 |===
+{: .grid .table .table-striped}
 
 CQL is an ANSI Normative Standard. ANSI has certificated that the portions of this specification marked Normative have met its requirements for development of a formal standard.
 
@@ -31,7 +31,7 @@ ________________________________________________________________________________
 
 Copyright © 2014+ Health Level Seven International ® ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher. HL7 and Health Level Seven are registered trademarks of Health Level Seven International. Reg. U.S. Pat & TM Off**.**
 
-Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?ref=nav[*IP Compliance Policy*].
+Use of this material is governed by HL7's [*IP Compliance Policy*](http://www.hl7.org/legal/ippolicy.cfm?ref=nav).
 
 *Identifying Information for Specification:*
 
@@ -45,91 +45,27 @@ Use of this material is governed by HL7's http://www.hl7.org/legal/ippolicy.cfm?
 
 *Specification Date:* Dec 2020
 
-[cols=",",]
 |==================================================================
-|Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD +
-University of Utah Health Care +
-guilherme.delfiol@utah.edu
-|Co-Chair (CDS): |Robert Jenders, MD, MS +
-jenders@ucla.edu
-|Co-Chair (CDS): |Kensaku Kawamoto, MD, PhD +
-University of Utah Health Care +
-kensaku.kawamoto@utah.edu
-|Co-Chair (CDS): |Howard Strasberg +
-Walters Kluwer Health +
-howard.strasberg@wolterskluwer.com
-|Co-Chair (CQI): |Patricia Craig +
-The Joint Commission +
-pcraig@jointcommission.org
-|Co-Chair (CQI): |Floyd Eisenberg +
-iParsimony LLC +
-FEisenberg@iParsimony.com
-|Co-Chair (CQI): |Chris Millet +
-chris@thelazycompany.com
-|Co-Chair (CQI): |Walter Suarez, MD, MPH +
-Kaiser Permanente +
-walter.q.suarez@kp.org
-|Co-Chair (CQI): a|
-Kanwarpreet Sethi
-
-Lantana Consulting Group
-
-kp.sethi@lantanagroup.com
-
-|Co-Chair (ITS): |Paul Knapp +
-Knapp Consulting Inc. +
-pknapp@pknapp.com
-|Co-Chair (ITS): a|
-Dale Nelson
-
-Lantana Consulting Group
-
-dale.nelson@squaretrends.com
-
-|Co-Chair (ITS): a|
-Andy Stechishin +
-HL7 Canada
-
-andy.stechishin@gmail.com
-
-|Co-Author: a|
-Bryn Rhodes
-
-Database Consulting Group
-
-bryn@databaseconsultinggroup.com
-
-|Co-Author: a|
-Chris Moesel
-
-The MITRE Corporation +
-cmoesel@mitre.org
-
-|Co-Author: a|
-Marc Hadley
-
-The MITRE Corporation
-
-mhadley@mitre.org
-
-|Co-Author: a|
-Mark Kramer
-
-The MITRE Corporation
-
-mkramer@mitre.org
-
-|Co-Author: a|
-Robert Dingwell
-
-The MITRE Corporation
-
-bobd@mitre.org
-
-|Co-Editor: |Aziz Boxwala, PhD +
-Meliorix +
-aziz.boxwala@meliorix.com
+|Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD <br/>University of Utah Health Care <br/>guilherme.delfiol@utah.edu
+|Co-Chair (CDS): |Robert Jenders, MD, MS <br/>jenders@ucla.edu
+|Co-Chair (CDS): |Kensaku Kawamoto, MD, PhD <br/>University of Utah Health Care <br/>kensaku.kawamoto@utah.edu
+|Co-Chair (CDS): |Howard Strasberg <br/>Walters Kluwer Health <br/>howard.strasberg@wolterskluwer.com
+|Co-Chair (CQI): |Patricia Craig <br/>The Joint Commission <br/>pcraig@jointcommission.org
+|Co-Chair (CQI): |Floyd Eisenberg <br/>iParsimony LLC <br/>FEisenberg@iParsimony.com
+|Co-Chair (CQI): |Chris Millet <br/>chris@thelazycompany.com
+|Co-Chair (CQI): |Walter Suarez, MD, MPH <br/>Kaiser Permanente <br/>walter.q.suarez@kp.org
+|Co-Chair (CQI): |Kanwarpreet Sethi<br/>Lantana Consulting Group<br/>kp.sethi@lantanagroup.com
+|Co-Chair (ITS): |Paul Knapp <br/>Knapp Consulting Inc. <br/>pknapp@pknapp.com
+|Co-Chair (ITS): |Dale Nelson<br/>Lantana Consulting Group<br/>dale.nelson@squaretrends.com
+|Co-Chair (ITS): |Andy Stechishin <br/>HL7 Canada<br/>andy.stechishin@gmail.com
+|Co-Author: |Bryn Rhodes<br/>Database Consulting Group<br/>bryn@databaseconsultinggroup.com
+|Co-Author: |Chris Moesel<br/>The MITRE Corporation <br/>cmoesel@mitre.org
+|Co-Author: |Marc Hadley<br/>The MITRE Corporation<br/>mhadley@mitre.org
+|Co-Author: |Mark Kramer<br/>The MITRE Corporation<br/>mkramer@mitre.org
+|Co-Author: |Robert Dingwell<br/>The MITRE Corporation<br/>bobd@mitre.org
+|Co-Editor: |Aziz Boxwala, PhD <br/>Meliorix <br/>aziz.boxwala@meliorix.com
 |==================================================================
+{: .grid .table .table-striped}
 
 Acknowledgments
 
