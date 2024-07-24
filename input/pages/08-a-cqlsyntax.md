@@ -1,12 +1,12 @@
 {% include styles.html %}
 
-The formal specification for the CQL syntax is defined using the ANTLR4 grammar framework. This framework is a general purpose cross-platform technology for describing computer languages. For more information on this framework, refer to the ANTLR website <http://www.antlr.org/>.
+The formal specification for the CQL syntax is defined using the ANTLR4 grammar framework. This framework is a general purpose cross-platform technology for describing computer languages. For more information on this framework, refer to the [ANTLR website](http://www.antlr.org/).
 
 The material in this section is necessarily technical and assumes familiarity with language definition in general, and ANTLR4 grammars in particular. In addition, the g4 presented here is somewhat simplified for ease of reference and is provided for informative use only. For the complete, normative g4 definition, refer to the [CQL.g4](grammar.html#cql) and [fhirpath.g4](grammar.html#fhirpath) files included with the specification package.
 
 For a visual representation of the syntax of CQL, refer to [Appendix L - CQL Syntax Diagrams](19-l-cqlsyntaxdiagrams.html).
 
-[[declarations-2]]
+{: #declarations-2}
 ## Declarations
 
 The CQL grammar is defined in an ANTLR4 grammar file, CQL.g4. The root production rule is _library_, which specifies the overall structure for a library file:
@@ -151,7 +151,7 @@ choiceTypeSpecifier
 ```
 
 
-[[statements-1]]
+{: #statements-1}
 ## Statements
 
 The main body of the library then consists of any number of statements, defined by the _statement_ production rule:
@@ -186,7 +186,7 @@ functionBody
     ;
 ```
 
-[[queries-4]]
+{: #queries-4}
 ## Queries
 
 The _query_ production rule defines the syntax for queries within CQL:
@@ -316,7 +316,7 @@ simpleLiteral
 
 ```
 
-[[expressions-1]]
+{: #expressions-1}
 ## Expressions
 
 The _expression_ production rule defines the syntax for all expressions within CQL:

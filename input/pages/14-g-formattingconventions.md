@@ -44,7 +44,7 @@ Never use a space before or after a period. The period in CQL is a qualifier, an
 
 To help maintain readability of CQL, lines should fit reasonably within standard view screens. Around 100 characters per line is a good rule of thumb.
 
-[[operators-and-functions-1]]
+{: #operators-and-functions-1}
 ## Operators and Functions
 
 CQL distinguishes between _operators_, which use symbols such as <span class="sym">+</span>, <span class="sym">*</span>, and and, <span class="id">and</span> _functions_, which use identifiers followed by parentheses to provide the arguments to the function.
@@ -59,7 +59,7 @@ Unary operators (operators with one argument) are always prefix.
 
 Always use a space before and after operators.
 
-[[functions-1]]
+{: #functions-1}
 ### Functions
 
 When defining a function, always use a PascalCase identifier.
@@ -76,12 +76,12 @@ If necessary, an argument list can be continued across multiple lines, but keep 
 
 When continuing an argument list, do not attempt to right-align indented content, as this leads to unnecessary maintenance to preserve the alignment.
 
-[[literals-1]]
+{: #literals-1}
 ## Literals
 
 Literals in CQL allow for the expression of values of each of the system-defined types.
 
-[[quantities-1]]
+{: #quantities-1}
 ### Quantities
 
 For Quantities, always put a space between the numerical value and the unit:
@@ -135,7 +135,7 @@ The Tuple keyword is optional, but this means that the empty tuple has a special
 { : } // empty Tuple
 ```
 
-[[queries-5]]
+{: #queries-5}
 ## Queries
 
 The central expression construct of CQL is the query. The query construct in CQL is clause-based:

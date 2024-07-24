@@ -369,7 +369,7 @@ ChoiceTypeSpecifier : TypeSpecifier
 
 ChoiceTypeSpecifier defines the possible types of a choice type.
 
-[[libraries-2]]
+{: #libraries-2}
 ## Libraries
 
 ELM defines the notion of a library as the basic container for logic constructs. Libraries consist of sets of declarations including data model references, library references, valueset definitions, parameters, functions, and named expressions. The _Library_ class defines this unit and defines properties for each of these types of declarations.
@@ -657,7 +657,7 @@ The _ExpressionDef_ class is used to define a named expression that can then be 
 
 Note that circular expression references are not allowed, but that named expressions can be defined in any order, so long as the actual references do not result in a cycle.
 
-The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unfiltered. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the <<External Data>> section.
+The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unfiltered. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the [External Data](#external-data) section.
 
 ### ExpressionDef
 
@@ -731,7 +731,7 @@ The OperandRef expression allows the value of an operand to be referenced as par
 
 ELM provides a mechanism for expressing the structure of a query.
 
-For more information on query semantics, refer to the <<02-authorsguide.adoc#queries,Queries>> section of the [Author’s Guide](02-authorsguide.html), as well as the <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>> and <<03-developersguide.adoc#non-retrieve-queries,Non-Retrieve Queries>> sections of the [Developer’s Guide](03-developersguide.html).
+For more information on query semantics, refer to the [Queries](02-authorsguide.adoc#queries) section of the [Author’s Guide](02-authorsguide.html), as well as the [Multi-Source Queries](03-developersguide.adoc#multi-source-queries) and [Non-Retrieve Queries](03-developersguide.adoc#non-retrieve-queries) sections of the [Developer’s Guide](03-developersguide.html).
 
 ### Query
 
@@ -1084,12 +1084,12 @@ The relatedSearch attribute specifies the name of the search path to use for sea
 
 The isReverse attribute indicates that the include is reverse, i.e. that the relatedDataType is referencing the data being retrieved, rather than the retrieved data referencing the relatedDataType.
 
-[[comparison-operators-1]]
+{: #comparison-operators-1}
 ## Comparison Operators
 
 ELM defines a standard set of comparison operators for use with simple values. Each comparison operator takes two arguments of the same type, and returns a boolean indicating the result of the comparison. Note that for comparison operators, if either or both operands evaluate to null, the result of the comparison is _null_, not false.
 
-For more information on the semantics of the various comparison operators, see the <<09-b-cqlreference.adoc#comparison-operators-4,Comparison Operators>> section of the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of the various comparison operators, see the [Comparison Operators](09-b-cqlreference.adoc#comparison-operators-4) section of the [CQL Reference](09-b-cqlreference.html).
 
 ### Equal
 
@@ -1180,7 +1180,7 @@ If either argument is null, the result is null.
 
 The Greater operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### GreaterOrEqual
@@ -1201,7 +1201,7 @@ If either argument is null, the result is null.
 
 The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### Less
@@ -1222,7 +1222,7 @@ If either argument is null, the result is null.
 
 The Less operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### LessOrEqual
@@ -1243,10 +1243,10 @@ If either argument is null, the result is null.
 
 The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
-[[not-equal]]
+{: #not-equal}
 ### NotEqual
 
 ``` elm
@@ -1257,14 +1257,14 @@ The NotEqual operator returns true if its arguments are not the same value.
 
 The NotEqual operator is a shorthand for invocation of logical negation of the Equal operator.
 
-[[logical-operators-1]]
+{: #logical-operators-1}
 ## Logical Operators
 
 ELM defines logical operators that can be used to combine the results of logical expressions. _And_ and _Or_ can be used to combine any number of results, and _Not_ can be used to invert the result of any expression.
 
 Note that these operators are defined with 3-valued logic semantics, allowing the operators to deal consistently with missing information.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Logical Operators](09-b-cqlreference.adoc#logical-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### And
 
@@ -1319,7 +1319,7 @@ The Xor operator returns the exclusive or of its arguments. Note that this opera
 
 ELM defines several nullological operators that are useful for dealing with potentially missing information. These are _Null, IsNull_, _IsTrue_, _IsFalse_, and _Coalesce_.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#nullological-operators-3,Nullological Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Nullological Operators](09-b-cqlreference.adoc#nullological-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Null
 
@@ -1432,7 +1432,7 @@ Note that if an operand evaluates to null, the result of the operation is define
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#arithmetic-operators-4,Arithmetic Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Arithmetic Operators](09-b-cqlreference.adoc#arithmetic-operators-4) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Abs
 
@@ -1887,7 +1887,7 @@ Indexes within strings are defined to be 0-based.
 
 Note that except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#string-operators-3,String Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [String Operators](09-b-cqlreference.adoc#string-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Combine
 
@@ -1927,11 +1927,11 @@ If either argument is null, the result is null.
 
 ### Equal
 
-Refer to the <<equal,Equal section>> in the Comparison Operators.
+Refer to the [Equal section](#equal) in the Comparison Operators.
 
 ### Equivalent
 
-Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
+Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Indexer
 
@@ -2003,7 +2003,7 @@ Platforms will typically use native regular expression implementations. These ar
 
 ### Not Equal
 
-Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
+Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### PositionOf
 
@@ -2115,27 +2115,27 @@ ELM defines several operators for representing the manipulation of date and time
 
 Except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#datetime-operators-2,Date, DateTime, and Time Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Date, DateTime, and Time Operators](09-b-cqlreference.adoc#datetime-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Add
 
-Refer to the <<add,Add section>> in the Arithmetic Operators.
+Refer to the [Add section](#add) in the Arithmetic Operators.
 
 ### After
 
-Refer to the <<after-1,After section>> in the Interval Operators.
+Refer to the [After section](#after-1) in the Interval Operators.
 
 ### Before
 
-Refer to the <<before-1,Before section>> in the Interval Operators.
+Refer to the [Before section](#before-1) in the Interval Operators.
 
 ### Equal
 
-Refer to the <<equal,Equal section>> in the Comparison Operators.
+Refer to the [Equal section](#equal) in the Comparison Operators.
 
 ### Equivalent
 
-Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
+Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Date
 
@@ -2255,7 +2255,7 @@ Note that this operator can be implemented using Uncertainty as described in the
 
 ### Not Equal
 
-Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
+Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### Now
 
@@ -2354,7 +2354,7 @@ If either argument is null, the result is null.
 
 ### Subtract
 
-Refer to the <<subtract,Subtract section>> in the Arithmetic Operators.
+Refer to the [Subtract section](#subtract) in the Arithmetic Operators.
 
 ### Time
 
@@ -2428,7 +2428,7 @@ In addition, the language supports operators for combining and manipulating inte
 
 Note that ELM does not include a definition for During because it is synonymous with IncludedIn.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#interval-operators-3,Interval Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Interval Operators](09-b-cqlreference.adoc#interval-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Interval
 
@@ -2464,7 +2464,7 @@ If the high bound of the interval is null and open, the high bound of the interv
 
 If the high bound of the interval is null and closed, the interval is interpreted to end at the maximum value of the point type, and computations involving the high boundary will be performed with that interpretation.
 
-[[after-1]]
+{: #after-1}
 ### After
 
 ``` elm
@@ -2493,7 +2493,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either argument is null, the result is null.
 
-[[before-1]]
+{: #before-1}
 ### Before
 
 ``` elm
@@ -2592,11 +2592,11 @@ If either argument is null, the result is null.
 
 ### Equal
 
-Refer to the <<equal,Equal section>> in the Comparison Operators.
+Refer to the [Equal section](#equal) in the Comparison Operators.
 
 ### Equivalent
 
-Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
+Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Except
 
@@ -2678,7 +2678,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-[[included-in]]
+{: #included-in}
 ### IncludedIn
 
 ``` elm
@@ -2769,7 +2769,7 @@ If either argument is null, the result is null.
 
 ### Not Equal
 
-Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
+Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### Overlaps
 
@@ -2827,7 +2827,7 @@ PointFrom : UnaryExpression
 
 The PointFrom expression extracts the single point from the source interval. The source interval must be a unit interval (meaning an interval with the same starting and ending boundary), otherwise, a run-time error is thrown. If the source interval is null, the result is null.
 
-[[proper-contains]]
+{: #proper-contains}
 ### ProperContains
 
 ``` elm
@@ -2846,7 +2846,7 @@ For the List, T overload, this operator returns <span class="kw">true</span> if 
 
 For the Interval, T overload, this operator returns <span class="kw">true</span> if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the <span class="id">Start</span> and <span class="id">End</span> operators.  If precision is specified and the point type is a <span class="id">Date</span>, <span class="id">DateTime</span>, or <span class="id">Time</span> type, comparisons used in the operation are performed at the specified precision. If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-[[proper-in]]
+{: #proper-in}
 ### ProperIn
 
 ``` elm
@@ -2865,7 +2865,7 @@ For the T, List overload, this operator returns if the given element is in the g
 
 For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is null. If the second argument is null the result is false.
 
-[[proper-includes]]
+{: #proper-includes}
 ### ProperIncludes
 
 ``` elm
@@ -2888,7 +2888,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-[[proper-included-in]]
+{: #proper-included-in}
 ### ProperIncludedIn
 
 ``` elm
@@ -2995,7 +2995,7 @@ The use of the scope attribute allows for more complex expressions such as corre
 
 ELM also supports a flattening operator, _Flatten_ to construct a single list from a list of lists.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#list-operators-2,List Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [List Operators](09-b-cqlreference.adoc#list-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### List
 
@@ -3015,7 +3015,7 @@ If any argument is null, the resulting list will have null for that element.
 
 ### Contains
 
-Refer to the <<contains,Contains section>> in the Interval Operators.
+Refer to the [Contains section](#contains) in the Interval Operators.
 
 ### Current
 
@@ -3043,15 +3043,15 @@ If the source argument is null, the result is null.
 
 ### Equal
 
-Refer to the <<equal,Equal section>> in the Comparison Operators.
+Refer to the [Equal section](#equal) in the Comparison Operators.
 
 ### Equivalent
 
-Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
+Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Except
 
-Refer to the <<except,Except section>> in the Interval Operators.
+Refer to the [Except section](#except) in the Interval Operators.
 
 ### Exists
 
@@ -3123,15 +3123,15 @@ If the element argument evaluates to null for some item in the source list, the 
 
 ### In
 
-Refer to the <<in,In section>> in the Interval Operators.
+Refer to the [In section](#in) in the Interval Operators.
 
 ### Includes
 
-Refer to the <<includes,Includes section>> in the Interval Operators.
+Refer to the [Includes section](#includes) in the Interval Operators.
 
 ### IncludedIn
 
-Refer to the <<included-in,IncludedIn section>> in the Interval Operators.
+Refer to the [IncludedIn section](#included-in) in the Interval Operators.
 
 ### IndexOf
 
@@ -3153,7 +3153,7 @@ If either argument is null, the result is null.
 
 ### Intersect
 
-Refer to the <<intersect,Intersect section>> in the Interval Operators.
+Refer to the [Intersect section](#intersect) in the Interval Operators.
 
 ### Last
 
@@ -3171,23 +3171,23 @@ If the argument is null, the result is null.
 
 ### Not Equal
 
-Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
+Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### ProperContains
 
-Refer to the <<proper-contains,ProperContains section>> in the Interval Operators.
+Refer to the [ProperContains section](#proper-contains) in the Interval Operators.
 
 ### ProperIn
 
-Refer to the <<proper-in,ProperIn section>> in the Interval Operators.
+Refer to the [ProperIn section](#proper-in) in the Interval Operators.
 
 ### ProperIncludes
 
-Refer to the <<proper-includes,ProperIncludes section>> in the Interval Operators.
+Refer to the [ProperIncludes section](#proper-includes) in the Interval Operators.
 
 ### ProperIncludedIn
 
-Refer to the <<proper-included-in,ProperIncludedIn section>> in the Interval Operators.
+Refer to the [ProperIncludedIn section](#proper-included-in) in the Interval Operators.
 
 ### Repeat
 
@@ -3267,7 +3267,7 @@ If either argument is null, the result is null.
 
 ### Union
 
-Refer to the <<union,Union section>> in the Interval Operators.
+Refer to the [Union section](#union) in the Interval Operators.
 
 ## Aggregate Operators
 
@@ -3277,7 +3277,7 @@ Unless noted in the documentation for each operator, aggregate operators deal wi
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#aggregate-functions,Aggregate Functions>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Aggregate Functions](09-b-cqlreference.adoc#aggregate-functions) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### AllTrue
 
@@ -3491,7 +3491,7 @@ If the source is null, the result is null.
 
 ## Type Operators
 
-For more information on the semantics of these operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Type Operators](09-b-cqlreference.adoc#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### As
 
@@ -3533,7 +3533,7 @@ Between Concept and List<Code>
 
 Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: *YYYY-MM-DDThh:mm:ss(+|-)hh:mm*.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 ### CanConvertQuantity
 
@@ -3589,7 +3589,7 @@ Between Concept and List<Code>
 
 Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 ### ConvertQuantity
 
@@ -3633,7 +3633,7 @@ For String values, The operator expects the string to be formatted using the ISO
 
 *YYYY-MM-DD*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3657,7 +3657,7 @@ For String values, the operator expects the string to be formatted using the ISO
 
 *YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3679,7 +3679,7 @@ The ConvertsToDecimal operator returns true if the value of its argument is or c
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input value must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
@@ -3701,7 +3701,7 @@ The ConvertsToLong operator returns true if the value of its argument is or can 
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input must be a valid value in the range representable for Long values in CQL.
 
@@ -3723,7 +3723,7 @@ The ConvertsToInteger operator returns true if the value of its argument is or c
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input must be a valid value in the range representable for Integer values in CQL.
 
@@ -3747,7 +3747,7 @@ For String values, the operator accepts strings using the following format:
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
@@ -3808,7 +3808,7 @@ For String values, the operator expects the string to be formatted using ISO-860
 
 *hh:mm:ss.fff*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -3896,7 +3896,7 @@ For String values, the operator expects the string to be formatted using the ISO
 
 *YYYY-MM-DD*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3922,7 +3922,7 @@ For String values, the operator expects the string to be formatted using the ISO
 
 *YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3946,7 +3946,7 @@ The <span class="id">ToDecimal</span> operator converts the value of its argumen
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the <span class="id">Decimal</span> value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
@@ -3968,7 +3968,7 @@ The ToInteger operator converts the value of its argument to an Integer value. T
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
@@ -4004,7 +4004,7 @@ The ToLong operator converts the value of its argument to a Long value. The oper
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
@@ -4020,7 +4020,7 @@ If the argument is null, the result is null.
 ToQuantity : UnaryExpression
 ```
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the [ConvertQuantity](#convertquantity) operator.
 
 For String values, the operator accepts strings using the following format:
 
@@ -4077,7 +4077,7 @@ The ToString operator converts the value of its argument to a String value. The 
 |Ratio |*<quantity>:<quantity>*
 {: .grid .table .table-striped}
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 If the argument is null, the result is null.
 
@@ -4093,7 +4093,7 @@ For String values, the operator expects the string to be formatted using ISO-860
 
 *hh:mm:ss.fff*
 
-See <<09-b-cqlreference.adoc#formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -4185,11 +4185,11 @@ For the DateTime overload, the result is the number of whole calendar periods th
 
 ### Equal
 
-Refer to the <<equal,Equal section>> in the Comparison Operators.
+Refer to the [Equal section](#equal) in the Comparison Operators.
 
 ### Equivalent
 
-Refer to the <<equivalent,Equivalent section>> in the Comparison Operators.
+Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### InCodeSystem
 
@@ -4245,7 +4245,7 @@ If the argument is null, the result is null.
 
 ### Not Equal
 
-Refer to the <<not-equal,Not Equal section>> in the Comparison Operators.
+Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### SubsumedBy
 

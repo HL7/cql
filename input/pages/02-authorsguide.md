@@ -67,7 +67,7 @@ A syntax diagram of the <span class="kw">library</span> declaration can be seen 
 
 A CQL library can reference zero or more data models with <span class="kw">using</span> declarations. These data models define the structures that can be used within retrieve expressions in the library.
 
-For more information on how these data models are used, see the <<Retrieve>> section.
+For more information on how these data models are used, see the [Retrieve](#Retrieve) section.
 
 The following example illustrates the using declaration:
 
@@ -105,7 +105,7 @@ This expression references <span class="id">ConditionsIndicatingSexualActivity</
 
 The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, <span class="id">CMS153_Common</span>, and the identifier, <span class="id">ConditionsIndicatingSexualActivity</span>, separated by a dot (<span class="sym">.</span>).
 
-For more information on libraries, refer to the <<Using Libraries to Share Logic>> section.
+For more information on libraries, refer to the [Using Libraries to Share Logic](#Using Libraries to Share Logic) section.
 
 The <span class="kw">include</span> declaration may optionally specify a version, meaning that a specific version of the library must be used:
 
@@ -113,7 +113,7 @@ The <span class="kw">include</span> declaration may optionally specify a version
 include CMS153_Common version '2'
 ```
 
-A more in-depth discussion of library versioning is provided in the <<03-developersguide.adoc#libraries-1,Libraries>> section of the Developers guide.
+A more in-depth discussion of library versioning is provided in the [Libraries](03-developersguide.adoc#libraries-1) section of the Developers guide.
 
 In addition, the <span class="kw">include</span> declaration may optionally specify an assigned name using the <span class="kw">called</span> clause:
 
@@ -169,7 +169,7 @@ code "Screening for Chlamydia trachomatis (procedure)":
 
 This codesystem declaration in this example establishes the local name "SNOMED" as a reference to the external identifier for the codesystem, the URI "http://snomed.info/sct". The code declaration in this example establishes the local name "Screening for Chlamydia trachomatis (procedure)" as a reference to the code '442487003' from the "SNOMED" code system already defined.
 
-For more information about terminologies as values within CQL, refer to the <<Clinical Values>> section.
+For more information about terminologies as values within CQL, refer to the [Clinical Values](#Clinical Values) section.
 
 ### Parameters
 
@@ -194,7 +194,7 @@ The parameters defined in a library may be referenced by name in any expression 
 parameter MeasurementPeriod default Interval[@2013-01-01, @2014-01-01)
 ```
 
-Note the syntax for the default here is called an _interval selector_ and will be discussed in more detail in the section on <<Interval Values>>.
+Note the syntax for the default here is called an _interval selector_ and will be discussed in more detail in the section on [Interval Values](#Interval Values).
 
 This parameter definition can now be referenced anywhere within the CQL library:
 
@@ -219,7 +219,7 @@ In addition, because parameter defaults are part of the declaration, the express
 . Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
 . Parameter defaults cannot reference expressions or functions defined in the current library
 . Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the <<Terminology Operators>> section.
+. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the [Terminology Operators](#Terminology Operators) section.
 . Parameter defaults cannot reference other parameters
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
@@ -278,7 +278,7 @@ define "Encounters":
   ["Encounter": "Inpatient Encounter"]
 ```
 
-The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the <<Retrieve Context>> discussion below.
+The above definition results in all the encounters for a particular practitioner. For more information on context, refer to the [Retrieve Context](#Retrieve Context) discussion below.
 
 ### Statements
 
@@ -297,7 +297,7 @@ This example defines the <span class="id">InpatientEncounters</span> expression 
 
 Note that the use of terms like <span class="id">Encounter</span>, <span class="id">length</span>, and <span class="id">period</span>, as well as which code attribute is used to compare with the valueset, are defined by the data model being used within the library; they are not defined by CQL.
 
-For more information on the use of define statements, refer to the <<Using Define Statements>> section.
+For more information on the use of define statements, refer to the [Using Define Statements](#Using Define Statements) section.
 
 ## Retrieve
 
@@ -357,7 +357,7 @@ define "Get Condition from CodeSystem Declaration":
 
 The <span class="id">"Get Condition from Code Declaration"</span> expression returns conditions for the patient where the code is equivalent to the <span class="id">"Acute Pharyngitis Code"</span> code. The <span class="id">"Get Condition from CodeSystem Declaration"</span> expression returns conditions for the patient where the code is some code in the <span class="id">"SNOMED"</span> code system.
 
-When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses the _membership_ operator (<span class="kw">in</span>) if the terminology target is a valueset or code system, and the _equivalent_ operator (<span class="sym">~</span>) otherwise. For more information about using the equivalent operator with terminology, refer to the <<Code>> section. For more information about using the membership oeprator with terminology, refer to the <<Terminology Operators>> section.
+When the primary code attribute is used (i.e. no filtering attribute name is specified in the retrieve), the retrieve uses the _membership_ operator (<span class="kw">in</span>) if the terminology target is a valueset or code system, and the _equivalent_ operator (<span class="sym">~</span>) otherwise. For more information about using the equivalent operator with terminology, refer to the [Code](#code) section. For more information about using the membership oeprator with terminology, refer to the [Terminology Operators](#terminology-operators) section.
 
 When the code path is specified, the code comparison operation can be specified as well:
 
@@ -434,14 +434,14 @@ If the result type of the <span class="id">Patient</span> context expression is 
 
 In a specific context (such as <span class="id">Patient</span>), a reference to an <span class="id">Unfiltered</span> context expression results in the evaluation of the <span class="id">Unfiltered</span> context expression, and the result type is unaffected.
 
-> In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to <<03-developersguide.adoc#related-context-retrieves,Related Context Retrieves>>.
+> In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to [Related Context Retrieves](03-developersguide.adoc#related-context-retrieves).
 {: .note-info}
 
 ## Queries
 
 Beyond the retrieve expression, CQL provides a _query_ construct that allows the results of retrieves to be further filtered, shaped, and extended to enable the expression of arbitrary clinical logic that can be used in quality and decision support artifacts.
 
-Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to <<05-languagesemantics.adoc#clinical-data-retrieval-in-quality-artifacts,Clinical Data Retrieval in Quality Artifacts>>.
+Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to [Clinical Data Retrieval in Quality Artifacts](05-languagesemantics.adoc#clinical-data-retrieval-in-quality-artifacts).
 
 The query construct has a _primary source_ and four main _clauses_ that each allow for different types of operations to be performed:
 
@@ -500,7 +500,7 @@ The condition of a <span class="kw">where</span> clause is allowed to contain an
     and C.indication in "Fever"
 ```
 
-Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide.
+Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on [Missing Information>> in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.adoc#nullological-operators) in the Developer's guide.
 
 ### Shaping
 
@@ -515,7 +515,7 @@ For example:
   return Tuple { id: E.identifier, lengthOfStay: duration in days of E.period }
 ```
 
-This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the <span class="id">id</span> of the encounter as well as a <span class="id">lengthOfStay</span> element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see <<Structured Values (Tuples)>>.
+This example returns a list of tuples (structured values), one for each inpatient encounter performed, where each tuple consists of the <span class="id">id</span> of the encounter as well as a <span class="id">lengthOfStay</span> element, whose value is calculated by taking the duration of the period for the encounter. Tuples are discussed in detail in later sections. For more information on Tuples, see [Structured Values (Tuples)](#Structured Values (Tuples)).
 
 By default, a query returns a list of distinct results, suppressing duplicates. To include duplicates, use the <span class="kw">all</span> keyword in the <span class="kw">return</span> clause. For example, the following will return a list of the lengths of stay for each Encounter:
 
@@ -612,7 +612,7 @@ A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withClause) clause and 
 
 A given query may include any number of <span class="kw">with</span> and <span class="kw">without</span> clauses in any order, but they must all come before any <span class="kw">where</span>, <span class="kw">return</span>, or <span class="kw">sort</span> clauses.
 
-The <span class="kw">such that</span> conditions in the examples above used <<Timing Relationships>> (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
+The <span class="kw">such that</span> conditions in the examples above used [Timing Relationships](#Timing Relationships) (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 ``` cql
 [MedicationDispense: "Warfarin"] D
@@ -685,7 +685,7 @@ SingleLiveBirthEncounter E
 
 Even though this example has multiple <span class="kw">without</span> clauses, there is still only a single <span class="kw">where</span> clause for the query.
 
-Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to <<03-developersguide.adoc#introducing-context-in-queries,Introducing Scoped Definitions In Queries>> and <<03-developersguide.adoc#multi-source-queries,Multi-Source Queries>>.
+Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to [Introducing Scoped Definitions In Queries](03-developersguide.adoc#introducing-context-in-queries) and [Multi-Source Queries](03-developersguide.adoc#multi-source-queries).
 
 ## Values
 
@@ -752,17 +752,17 @@ Table 2‑E - Types of simple values that CQL supports
 
 #### Boolean
 
-The <span class="id">Boolean</span> type in CQL supports the logical values <span class="kw">true</span>, <span class="kw">false</span>, and <span class="kw">null</span> (meaning unknown). These values are most often encountered as the result of <<Comparison Operators>>, and can be combined with other boolean-valued expressions using <<Logical Operators>>. Note that CQL supports three-valued logic, see the section on <<Missing Information>> in the Author's Guide, as well as the section on <<03-developersguide.adoc#nullological-operators,Nullological Operators>> in the Developer's guide for more information.
+The <span class="id">Boolean</span> type in CQL supports the logical values <span class="kw">true</span>, <span class="kw">false</span>, and <span class="kw">null</span> (meaning unknown). These values are most often encountered as the result of [Comparison Operators](#comparison-operators), and can be combined with other boolean-valued expressions using [Logical Operators](#logical-operators). Note that CQL supports three-valued logic, see the section on [Missing Information](#missing-information) in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.adoc#nullological-operators) in the Developer's guide for more information.
 
 #### Integer
 
-The <span class="id">Integer</span> type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of <<Arithmetic Operators>> for performing computations involving whole numbers.
+The <span class="id">Integer</span> type in CQL supports the representation of whole numbers, positive and negative. CQL supports a full set of [Arithmetic Operators](#Arithmetic Operators) for performing computations involving whole numbers.
 
 In addition, any operation involving <span class="id">Decimal</span> values can be used with values of type <span class="id">Integer</span> because <span class="id">Integer</span> values can always be implicitly converted to <span class="id">Decimal</span> values.
 
 #### Decimal
 
-The <span class="id">Decimal</span> type in CQL supports the representation of real numbers, positive and negative. As with <span class="id">Integer</span> values, CQL supports a full set of <<Arithmetic Operators>> for performing computations involving real numbers.
+The <span class="id">Decimal</span> type in CQL supports the representation of real numbers, positive and negative. As with <span class="id">Integer</span> values, CQL supports a full set of [Arithmetic Operators](#Arithmetic Operators) for performing computations involving real numbers.
 
 #### String
 
@@ -788,7 +788,7 @@ Comparison of <span class="id">String</span> values in CQL is case-sensitive, me
 
 For case- and locale-insensitive comparison, locale-insensitive meaning that an operator will behave identically for all users, regardless of their system locale settings, use the equivalent (<span class="sym">~</span>) operator. Note that string equivalence will also "normalize whitespace", meaning that all whitespace characters are treated as equivalent.
 
-[[date-datetime-and-time]]
+{: #date-datetime-and-time}
 #### Date, DateTime, and Time
 
 CQL supports the representation of <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values.
@@ -823,9 +823,9 @@ Only <span class="id">DateTime</span> values may specify a timezone offset, eith
 
 For both <span class="id">DateTime</span> and <span class="id">Time</span> values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
-For more information on the use of date and time values within CQL, refer to the <<Date and Time Operators>> section.
+For more information on the use of date and time values within CQL, refer to the [Date and Time Operators](#Date and Time Operators) section.
 
-Specifically, because <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in <span class="kw">null</span>, rather than the <span class="kw">true</span> or <span class="kw">false</span> that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the <<Comparing Dates and Times>> section.
+Specifically, because <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in <span class="kw">null</span>, rather than the <span class="kw">true</span> or <span class="kw">false</span> that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the [Comparing Dates and Times](#Comparing Dates and Times) section.
 
 ### Clinical Values
 
@@ -879,7 +879,7 @@ The table above defines the equality/equivalence relationship between calendar a
 > For all but years and months, calendar durations are both equal and equivalent to the corresponding UCUM definite-time duration unit. Note that due to the possibility of leap seconds, this is not totally accurate, however, for practical reasons, implementations typically ignore leap seconds when performing date/time arithmetic.
 {: .note-info}
 
-For a discussion of the operations available for quantities, see the <<Quantity Operators>> section.
+For a discussion of the operations available for quantities, see the [Quantity Operators](#Quantity Operators) section.
 
 #### Ratios
 
@@ -890,7 +890,7 @@ A ratio is a relationship between two quantities, expressed in CQL using standar
 5 'mg' : 10 'mL'
 ```
 
-For a discussion of the operations available for ratios, see the <<Ratio Operators>> section.
+For a discussion of the operations available for ratios, see the [Ratio Operators](#Ratio Operators) section.
 
 #### Code
 
@@ -922,7 +922,7 @@ code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pr
 code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 ```
 
-The above declarations can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+The above declarations can be referenced directly or within a [retrieve expression](#filtering-with-terminology).
 
 A syntax diagram of a <span class="id">Code</span> referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeSelector).
 
@@ -985,7 +985,7 @@ code "Hepatitis Type B (ICD-10)": 'B18.1' from "ICD-10-CM" display 'Chronic vira
 concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (ICD-10)" } display 'Type B Hepatitis'
 ```
 
-The above declaration can be referenced directly or within a <<filtering-with-terminology,retrieve expression>>.
+The above declaration can be referenced directly or within a [retrieve expression](#filtering-with-terminology).
 
 A syntax diagram of a <span class="id">Concept</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
 
@@ -1057,11 +1057,11 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001' version 
 ```
 
 When using value set declarations, authors should use the name of the value set as defined externally to avoid introducing any potential confusion of meaning. One exception to this is when different value sets are defined with the same name in an external repository, in which case some additional aspect is required to ensure uniqueness of the names within the CQL library.
-See the <<Terminology Operators>> section for more information on the use of valuesets within CQL.
+See the [Terminology Operators](#Terminology Operators) section for more information on the use of valuesets within CQL.
 
 #### Codesystems
 
-In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the <<Valuesets>> section for an example of a codesystem declaration.
+In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the [Valuesets](#Valuesets) section for an example of a codesystem declaration.
 
 For example:
 
@@ -1073,9 +1073,9 @@ define "LOINC Observations": [Observation: "LOINC"]
 
 The above example retrieves all observations coded using LOINC codes.
 
-See the <<Terminology Operators>> section for more information on the use of codesystems within CQL.
+See the [Terminology Operators](#Terminology Operators) section for more information on the use of codesystems within CQL.
 
-[[structured-values-tuples]]
+{: #structured-values-tuples}
 ### Structured Values (Tuples)
 
 Structured values, or _tuples_, are values that contain named elements, each having a value of some type. Clinical information such as a Medication, a Condition, or an Encounter is represented using tuples.
@@ -1157,7 +1157,7 @@ define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 
 If the onsetDateTime is not present, the result of this expression is <span class="kw">null</span>. Furthermore, nulls will in general _propagate_, meaning that if the result of <span class="id">FirstPharyngitis</span> is <span class="kw">null</span>, the result of accessing the <span class="id">onsetDateTime</span> element is also <span class="kw">null</span>.
 
-For more information on missing information, see the <<03-developersguide.adoc#nullological-operators,Nullological Operators>> section.
+For more information on missing information, see the [Nullological Operators](03-developersguide.adoc#nullological-operators) section.
 
 ### List Values
 
@@ -1187,7 +1187,7 @@ The first element is 6 and has index 0, the second element is 7 and has index 1,
 
 Note that in general, clinical data may be expected to contain various types of collections such as sets, bags, lists, and arrays. For simplicity, CQL deals with all collections using the same collection type, the _list_, and provides operations to enable dealing with different collection types. For example, a set is a list where each element is unique, and any given list can be converted to a set using the <span class="kw">distinct</span> operator.
 
-For a description of the distinct operator, as well as other operations that can be performed with lists, refer to the <<List Operators>> section.
+For a description of the distinct operator, as well as other operations that can be performed with lists, refer to the [List Operators](#List Operators) section.
 
 ### Interval Values
 
@@ -1302,7 +1302,7 @@ Attempting to compare numbers and strings as in this example will result in an e
 
 For <span class="id">Decimal</span> values, equality is defined to ignore trailing zeroes.
 
-For <span class="id">Date</span> and <span class="id">Time</span> values, equality is defined to account for the possibility that the <span class="id">Date</span> and <span class="id">Time</span> values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to <<Comparing Dates and Times>>.
+For <span class="id">Date</span> and <span class="id">Time</span> values, equality is defined to account for the possibility that the <span class="id">Date</span> and <span class="id">Time</span> values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to [Comparing Dates and Times](#Comparing Dates and Times).
 
 For structured values, equality returns <span class="kw">true</span> if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns <span class="kw">true</span>:
 
@@ -1365,7 +1365,7 @@ In addition, equivalence is defined more loosely than equality for some types:
 * For <span class="id">Code</span> values, equivalence means the values have the same system and code.
 * For <span class="id">Concept</span> values, equivalence means the values have at least one equivalent code.
 
-For more detail, see the definitions of <<09-b-cqlreference.adoc#equal,Equal>> and <<09-b-cqlreference.adoc#equivalent,Equivalent>> in the CQL reference.
+For more detail, see the definitions of [Equal](09-b-cqlreference.adoc#equal) and [Equivalent](09-b-cqlreference.adoc#equivalent) in the CQL reference.
 
 ### Logical Operators
 
@@ -1390,7 +1390,7 @@ AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
 ```
 
-Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard <span class="id">Boolean</span> (two-valued) logic also hold. The complete semantics for each operator are described in the <<09-b-cqlreference.adoc#logical-operators-3,Logical Operators>> section of [Appendix B – CQL Reference](09-b-cqlreference.html).
+Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard <span class="id">Boolean</span> (two-valued) logic also hold. The complete semantics for each operator are described in the [Logical Operators](09-b-cqlreference.adoc#logical-operators-3) section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
 > To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the <span class="kw">if</span> or <span class="kw">case</span> expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
 {: .note-info}
@@ -1437,7 +1437,7 @@ Operations on date and time data are an essential component of expressing clinic
 * Duration – Computing durations between <span class="id">Date</span> and <span class="id">Time</span> values
 * Difference - Computing the difference between <span class="id">Date</span> and <span class="id">Time</span> values
 
-[[constructing-datetime-values]]
+{: #constructing-datetime-values}
 #### Constructing Date and Time Values
 
 In addition to the literals described in the Date, DateTime, and Time section, the <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> operators allow for the construction of specific <span class="id">Date</span> and <span class="id">Time</span> values based on the values for their components. For example:
@@ -1520,7 +1520,7 @@ By defining the <span class="id">DateTime</span> construction operators in this 
 
 In addition, all operations on <span class="id">DateTime</span> values are defined to take timezone offset information into account, ensuring that <span class="id">DateTime</span> operations perform correctly and consistently.
 
-As discussed in the <<Quantities>> section above, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
+As discussed in the [Quantities](#Quantities) section above, CQL supports the construction of time durations using the name of the precision as the unit for a quantity. For example:
 
 ``` cql
 3 months
@@ -1551,7 +1551,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
-As noted in the <<Quantities>> section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the <<Date and Time Arithmetic>> section for more detailed discussion.
+As noted in the [Quantities](#quantities) section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the [Date and Time Arithmetic](#date-and-time-arithmetic) section for more detailed discussion.
 
 For a detailed discussion of calendar calculation semantics, refer to [Appendix H – Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
@@ -1678,7 +1678,7 @@ Note that if X is <span class="kw">null</span>, the result is <span class="kw">n
 
 When extracting the <span class="id">Time</span> from a <span class="id">DateTime</span> value, implementations should normalize to the timezone offset of the evaluation request timestamp.
 
-[[datetime-arithmetic]]
+{: #datetime-arithmetic}
 #### Date and Time Arithmetic
 
 By using quantities of time durations, CQL supports the ability to perform calendar arithmetic with the expected semantics for durations with variable numbers of days such as months and years. The arithmetic addition and subtraction symbols (<span class="sym">+</span> and <span class="sym">-</span>) are used for this purpose. For example:
@@ -1786,7 +1786,7 @@ If the first argument is after the second, the result will be negative.
 
 For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be seven (7) days.
 
-In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in <span class="kw">null</span> rather than <span class="kw">true</span> or <span class="kw">false</span>. For a detailed discussion of the behavior of uncertainties, refer to the <<05-languagesemantics.adoc#uncertainty,Uncertainty>> section.
+In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in <span class="kw">null</span> rather than <span class="kw">true</span> or <span class="kw">false</span>. For a detailed discussion of the behavior of uncertainties, refer to the [Uncertainty](05-languagesemantics.adoc#uncertainty) section.
 
 When computing duration or difference between <span class="id">DateTime</span> values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -1809,7 +1809,7 @@ These interval operations can be broadly categorized as follows:
 
 General interval operators in CQL provide basic operations for dealing with interval values, including construction, extraction, and membership.
 
-Interval values can be constructed using the _interval selector_, as discussed in <<Interval Values>> above.
+Interval values can be constructed using the _interval selector_, as discussed in [Interval Values](#Interval Values) above.
 
 Membership testing for intervals can be done using the <span class="kw">in</span> and <span class="kw">contains</span> operators. For example:
 
@@ -2128,7 +2128,7 @@ In addition, to provide consistent and intuitive semantics when dealing with lis
 
 #### Comparing Lists
 
-In addition to list equality, already discussed in <<Comparison Operators>>, lists can be compared using the following operators:
+In addition to list equality, already discussed in [Comparison Operators](#Comparison Operators), lists can be compared using the following operators:
 
 <a name="table-2-s"></a>
 [cols=",",options="header",]

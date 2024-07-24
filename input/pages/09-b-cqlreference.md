@@ -16,7 +16,7 @@ Even though <span class="kw">and</span> is an infix operator and would be invoke
 InDemographic and NeedsScreening
 ```
 
-[[formatting-strings]]
+{: #formatting-strings}
 In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a DateTime value. The following symbols are used to describe format strings:
 
 * *0* - Any digit must appear at this location in the format string
@@ -37,7 +37,7 @@ Any other character in a format string indicates that that character must appear
 
 These formatting patterns are set in bold to distinguish them typographically from literals or code and to make clear that they are not intended to be formally interpreted as regex patterns.
 
-[[types-2]]
+{: #types-2}
 ## Types
 
 ### Any
@@ -52,7 +52,7 @@ simple type Any
 
 The <span class="id">Any</span> type is the maximal supertype in the CQL type system, meaning that all types derive from <span class="id">Any</span>, including list, interval, and structured types. In addition, the type of a <span class="kw">null</span> result is <span class="id">Any</span>.
 
-[[boolean-1]]
+{: #boolean-1}
 ### Boolean
 
 *Definition:*
@@ -65,9 +65,9 @@ simple type Boolean
 
 The <span class="id">Boolean</span> type represents the logical boolean values <span class="kw">true</span> and <span class="kw">false</span>. The result of logical operations within CQL use the <span class="id">Boolean</span> type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the <span class="id">Boolean</span> type.
 
-For more information, see the <<Logical Operators>> section.
+For more information, see the [Logical Operators](#Logical Operators) section.
 
-[[code-1]]
+{: #code-1}
 ### Code
 
 *Definition:*
@@ -108,7 +108,7 @@ The <span class="id">CodeSystem</span> type represents code system references wi
 
 The <span class="id">name</span> element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
-[[concept-1]]
+{: #concept-1}
 ### Concept
 
 *Definition:*
@@ -159,7 +159,7 @@ CQL also supports partial datetime values. For example, the datetime <span class
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
-[[decimal-1]]
+{: #decimal-1}
 ### Decimal
 
 *Definition:*
@@ -179,7 +179,7 @@ The <span class="id">Decimal</span> type represents real values within CQL.
 CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10^28^ + 1)/10^8^ to (10^28^-1)/10^-8^ with a step size of 10^-8^.
 
 
-[[long-1]]
+{: #long-1}
 ### Long
 
 > The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
@@ -197,7 +197,7 @@ The <span class="id">Long</span> type represents large whole number values withi
 
 CQL supports long values in the range -2^63^ to 2^63^-1 with a step size of 1.
 
-[[integer-1]]
+{: #integer-1}
 ### Integer
 
 *Definition:*
@@ -244,7 +244,7 @@ structured type Ratio
 
 The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
 
-[[string-1]]
+{: #string-1}
 ### String
 
 *Definition:*
@@ -341,7 +341,7 @@ The <span class="id">Vocabulary</span> type is _not_ a definitional type, it is 
 
 The <span class="id">name</span> element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
-[[logical-operators-3]]
+{: #logical-operators-3}
 ## Logical Operators
 
 ### And
@@ -525,7 +525,7 @@ define "IsFalse": true xor true
 define "IsNull": true xor null
 ```
 
-[[type-operators-1]]
+{: #type-operators-1}
 ## Type Operators
 
 ### As
@@ -626,7 +626,7 @@ For example, the following are valid string representations for date and time va
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
 ```
 
-For specific semantics for each conversion, refer to the <<03-developersguide.adoc#explicit-conversion,explicit conversion>> operator documentation.
+For specific semantics for each conversion, refer to the [explicit conversion](03-developersguide.adoc#explicit-conversion) operator documentation.
 
 ### Descendents
 
@@ -711,7 +711,7 @@ ConvertsToBoolean(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToBoolean</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Boolean</span> value. See the <span class="id"><<ToBoolean>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToBoolean</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Boolean</span> value. See the <span class="id">[ToBoolean](#ToBoolean)</span> operator for a description of the supported conversions.
 
 If the input cannot be interpreted as a valid <span class="id">Boolean</span> value, the result is <span class="kw">false</span>.
 
@@ -727,7 +727,7 @@ ConvertsToDate(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToDate</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Date</span> value. See the <span class="id"><<ToDate>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToDate</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Date</span> value. See the <span class="id">[ToDate](#ToDate)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is <span class="kw">false</span>.
 
@@ -745,7 +745,7 @@ ConvertsToDateTime(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToDateTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">DateTime</span> value. See the <span class="id"><<ToDateTime>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToDateTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">DateTime</span> value. See the <span class="id">[ToDateTime](#ToDateTime)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is <span class="kw">false</span>.
 
@@ -763,7 +763,7 @@ ConvertsToDecimal(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ToDecimal</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Decimal</span> value. See the <span class="id"><<ToDecimal>></span> operator for a description of the supported conversions.
+The <span class="id">ToDecimal</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Decimal</span> value. See the <span class="id">[ToDecimal](#ToDecimal)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Decimal</span> value, the result is <span class="kw">false</span>.
 
@@ -782,7 +782,7 @@ ConvertsToLong(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToLong</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Long</span> value. See the <span class="id"><<ToLong>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToLong</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Long</span> value. See the <span class="id">[ToLong](#ToLong)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Long</span> value, the result is <span class="kw">false</span>.
 
@@ -799,7 +799,7 @@ ConvertsToInteger(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToInteger</span> operator returns <span class="kw">true</span> if its argument is or can be converted to an <span class="id">Integer</span> value. See the <span class="id"><<ToInteger>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToInteger</span> operator returns <span class="kw">true</span> if its argument is or can be converted to an <span class="id">Integer</span> value. See the <span class="id">[ToInteger](#ToInteger)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Integer</span> value, the result is <span class="kw">false</span>.
 
@@ -815,7 +815,7 @@ ConvertsToQuantity(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToQuantity</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Quantity</span> value. See the <span class="id"><<ToQuantity>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToQuantity</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Quantity</span> value. See the <span class="id">[ToQuantity](#ToQuantity)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Quantity</span> value, the result is <span class="kw">false</span>.
 
@@ -831,7 +831,7 @@ ConvertsToRatio(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToRatio</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Ratio</span> value. See the <span class="id"><<ToRatio>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToRatio</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Ratio</span> value. See the <span class="id">[ToRatio](#ToRatio)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Ratio</span> value, the result is <span class="kw">false</span>.
 
@@ -850,7 +850,7 @@ ConvertsToString(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToString</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">String</span> value. See the <span class="id"><<ToString>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToString</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">String</span> value. See the <span class="id">[ToString](#ToString)</span> operator for a description of the supported conversions.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -864,7 +864,7 @@ ConvertsToTime(argument Any) Boolean
 
 *Description:*
 
-The <span class="id">ConvertsToTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Time</span> value. See the <span class="id"><<ToTime>></span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Time</span> value. See the <span class="id">[ToTime](#ToTime)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is <span class="kw">false</span>.
 
@@ -956,7 +956,7 @@ For the string overload, the operator expects the string to be formatted using t
 
 *YYYY-MM-DD*
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -993,7 +993,7 @@ For the string overload, the operator expects the string to be formatted using t
 
 *YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -1030,7 +1030,7 @@ The <span class="id">ToDecimal</span> operator converts the value of its argumen
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the <span class="id">Decimal</span> value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
@@ -1068,7 +1068,7 @@ The <span class="id">ToLong</span> operator converts the value of its argument t
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the long value returned by this operator must be a valid value in the range representable for <span class="id">Long</span> values in CQL.
 
@@ -1104,7 +1104,7 @@ The <span class="id">ToInteger</span> operator converts the value of its argumen
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for <span class="id">Integer</span> values in CQL.
 
@@ -1136,7 +1136,7 @@ ToQuantity(argument String) Quantity
 
 *Description:*
 
-The <span class="id">ToQuantity</span> operator converts the value of its argument to a <span class="id">Quantity</span> value. The operation does not perform any unit conversion, that capability is supported by the <<convertquantity,ConvertQuantity>> operator.
+The <span class="id">ToQuantity</span> operator converts the value of its argument to a <span class="id">Quantity</span> value. The operation does not perform any unit conversion, that capability is supported by the [ConvertQuantity](#convertquantity) operator.
 
 For the <span class="id">String</span> overload, the operator accepts strings using the following format:
 
@@ -1144,7 +1144,7 @@ For the <span class="id">String</span> overload, the operator accepts strings us
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for <span class="id">Decimal</span> values in CQL.
 
@@ -1232,7 +1232,7 @@ The <span class="id">ToString</span> operator converts the value of its argument
 
 Table 9‑G - The string representations that the ToString operator uses for each data type
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 The result of any ToString must be round-trippable back to the source value.
 
@@ -1267,7 +1267,7 @@ The <span class="id">ToTime</span> operator converts the value of its argument t
 
 *hh:mm:ss.fff*
 
-See <<formatting-strings,Formatting Strings>> for a description of the formatting strings used in this specification.
+See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -1283,7 +1283,7 @@ As with time-of-day literals, time-of-day values may be specified to any precisi
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-[[nullological-operators-3]]
+{: #nullological-operators-3}
 ## Nullological Operators
 
 ### Coalesce
@@ -1369,7 +1369,7 @@ define "IsTrueIsTrue": true is true
 define "IsTrueIsFalse": false is true
 ```
 
-[[comparison-operators-4]]
+{: #comparison-operators-4}
 ## Comparison Operators
 
 ### Between
@@ -1409,7 +1409,7 @@ For integer and decimal values, standard ordinal semantics apply.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
-When the first argument to a between is an interval, the operator is a synonym for the <<included-in,during (or included in)>> operator, using the first argument and an inclusive interval constructed from the second and third arguments. For example:
+When the first argument to a between is an interval, the operator is a synonym for the [during (or included in)](#included-in) operator, using the first argument and an inclusive interval constructed from the second and third arguments. For example:
 
 ``` cql
 define "Retinal Exam in Measurement Period or Year Prior":
@@ -1622,7 +1622,7 @@ define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
 define "NullGreaterIsNull": null > 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 
@@ -1674,7 +1674,7 @@ define "QuantityGreaterOrEqualIsNull": 3.6 'cm2' >= 3.5 'cm'
 define "NullGreaterOrEqualIsNull": null >= 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### Less
@@ -1726,7 +1726,7 @@ define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 define "NullLessIsNull": null < 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### Less Or Equal
@@ -1777,7 +1777,7 @@ define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'
 define "NullLessOrEqualIsNull": null <= 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in <<02-authorsguide.adoc#ratio-operators,Ratio Operators>> for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
 {: .note-info}
 
 ### Not Equal
@@ -1834,7 +1834,7 @@ define "DateTimeNotEquivalentIsTrue": @2012-01-01 !~ @2012-01-01T12
 define "NullNotEquivalentIsFalse": null !~ null
 ```
 
-[[arithmetic-operators-4]]
+{: #arithmetic-operators-4}
 ## Arithmetic Operators
 
 The arithmetic operators provide a complete set of operations for performing arithmetic calculations in CQL. In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
@@ -2625,7 +2625,7 @@ define "DecimalTruncatedDivide": 4.14 div 2.06 // 2
 define "TruncatedDivideIsNull": 3 div null
 ```
 
-[[string-operators-3]]
+{: #string-operators-3}
 ## String Operators
 
 ### Combine
@@ -2988,10 +2988,10 @@ define "UpperCQL": Upper('abcde') // 'ABCDE'
 define "UpperIsNull": Upper(null) // null
 ```
 
-[[datetime-operators-2]]
+{: #datetime-operators-2}
 ## Date and Time Operators
 
-[[add-1]]
+{: #add-1}
 ### Add
 
 *Signature:*
@@ -3054,7 +3054,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3069,7 +3069,7 @@ define "AfterUncertainIsNull": @2012-01-01 after month of @2012
 define "AfterIsNull": @2012-01-01 after month of null
 ```
 
-This operator is also defined for intervals, see the <<after-1,After (Intervals)>> operator for more information.
+This operator is also defined for intervals, see the [After (Intervals)](#after-1) operator for more information.
 
 ### Before
 
@@ -3095,7 +3095,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3110,9 +3110,9 @@ define "BeforeUncertainIsNull": @2012 before month of @2012-02-01
 define "BeforeIsNull": @2012-01-01 before month of null
 ```
 
-This operator is also defined for intervals, see the <<before-1,Before (Intervals)>> operator for more information.
+This operator is also defined for intervals, see the [Before (Intervals)](#before-1) operator for more information.
 
-[[date-1]]
+{: #date-1}
 ### Date
 
 *Signature:*
@@ -3136,7 +3136,7 @@ define "DateValid": Date(2012, 1, 1)
 define "DateInvalid": Date(2012, null, 1)
 ```
 
-[[datetime-1]]
+{: #datetime-1}
 ### DateTime
 
 *Signature:*
@@ -3177,7 +3177,7 @@ define "DateValid": DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
 define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ```
 
-[[datetime-component-from]]
+{: #datetime-component-from}
 ### Date and Time Component From
 
 *Signature:*
@@ -3239,7 +3239,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When computing the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3273,7 +3273,7 @@ For <span class="id">DateTime</span> values, _duration_ must be one of: <span cl
 
 For <span class="id">Time</span> values, _duration_ must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When computing the duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3302,7 +3302,7 @@ The <span class="id">Now</span> operator returns the date and time of the start 
 1.  The operation will always return the same value within any given evaluation, ensuring that the result of an expression containing Now will always return the same result.
 2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
 
-[[on-or-after-1]]
+{: #on-or-after-1}
 ### On Or After
 
 *Signature:*
@@ -3315,13 +3315,13 @@ on or after _precision_ (left Time, right Time) Boolean
 
 *Description:*
 
-The <span class="kw">on or after</span> operator for Date, DateTime, and Time values is a synonym for the <span class="kw">same or after</span> operator and is supported to enable natural phrasing. See the description of the <<same-or-after-1,Same Or After (Date, DateTime, or Time)>> operator.
+The <span class="kw">on or after</span> operator for Date, DateTime, and Time values is a synonym for the <span class="kw">same or after</span> operator and is supported to enable natural phrasing. See the description of the [Same Or After (Date, DateTime, or Time)](#same-or-after-1) operator.
 
 Note that this operator can be invoked using either the <span class="kw">on or after</span> or the <span class="kw">after or on</span> syntax.
 
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
-[[on-or-before-1]]
+{: #on-or-before-1}
 ### On Or Before
 
 *Signature:*
@@ -3334,13 +3334,13 @@ on or before _precision_ (left Time, right Time) Boolean
 
 *Description:*
 
-The <span class="kw">on or before</span> operator for Date, DateTime, and Time values is a synonym for the <span class="kw">same or before</span> operator and is supported to enable natural phrasing. See the description of the <<same-or-before-1,Same Or Before (Date, DateTime, or Time)>> operator.
+The <span class="kw">on or before</span> operator for Date, DateTime, and Time values is a synonym for the <span class="kw">same or before</span> operator and is supported to enable natural phrasing. See the description of the [Same Or Before (Date, DateTime, or Time)](#same-or-before-1) operator.
 
 Note that this operator can be invoked using either the <span class="kw">on or before</span> or the <span class="kw">before or on</span> syntax.
 
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
-[[same-as-1]]
+{: #same-as-1}
 ### Same As
 
 *Signature:*
@@ -3365,7 +3365,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3380,9 +3380,9 @@ define "UncertainSameAsIsNull": @2012-01-01 same day as @2012-01
 define "SameAsIsNull": @2012-01-01 same day as null
 ```
 
-This operator is also defined for intervals, see the <<same-as-2,Same As (Intervals)>> operator for more information.
+This operator is also defined for intervals, see the [Same As (Intervals)](#same-as-2) operator for more information.
 
-[[same-or-after-1]]
+{: #same-or-after-1}
 ### Same Or After
 
 *Signature:*
@@ -3407,7 +3407,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3424,9 +3424,9 @@ define "UncertainSameOrAfterIsNull": @2012-01-02 same day or after @2012-01
 define "SameOrAfterIsNull": @2012-01-01 same day or after null
 ```
 
-This operator is also defined for intervals, see the <<same-or-after-2,Same Or After (Intervals)>> operator for more information.
+This operator is also defined for intervals, see the [Same Or After (Intervals)](#same-or-after-2) operator for more information.
 
-[[same-or-before-1]]
+{: #same-or-before-1}
 ### Same Or Before
 
 *Signature:*
@@ -3451,7 +3451,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3468,9 +3468,9 @@ define "UncertainSameOrBeforeIsNull": @2012-01-02 same day or before @2012-01
 define "SameOrBeforeIsNull": @2012-01-01 same day or before null
 ```
 
-This operator is also defined for intervals, see the <<same-or-before-2,Same Or Before (Intervals)>> operator for more information.
+This operator is also defined for intervals, see the [Same Or Before (Intervals)](#same-or-before-2) operator for more information.
 
-[[subtract-1]]
+{: #subtract-1}
 ### Subtract
 
 *Signature:*
@@ -3509,7 +3509,7 @@ This example results in the value <span class="id">DateTime(2013)</span>
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-[[time-1]]
+{: #time-1}
 ### Time
 
 *Signature:*
@@ -3546,7 +3546,7 @@ TimeOfDay() Time
 
 *Description:*
 
-The <span class="id">TimeOfDay</span> operator returns the time of day of the start timestamp associated with the evaluation request. See the <span class="id"><<Now>></span> operator for more information on the rationale for defining the <span class="id">TimeOfDay</span> operator in this way.
+The <span class="id">TimeOfDay</span> operator returns the time of day of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">TimeOfDay</span> operator in this way.
 
 ### Today
 
@@ -3558,12 +3558,12 @@ Today() Date
 
 *Description:*
 
-The <span class="id">Today</span> operator returns the date of the start timestamp associated with the evaluation request. See the <span class="id"><<Now>></span> operator for more information on the rationale for defining the <span class="id">Today</span> operator in this way.
+The <span class="id">Today</span> operator returns the date of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">Today</span> operator in this way.
 
-[[interval-operators-3]]
+{: #interval-operators-3}
 ## Interval Operators
 
-[[after-1]]
+{: #after-1}
 ### After
 
 *Signature:*
@@ -3582,7 +3582,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval starts after the given point.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3596,7 +3596,7 @@ define "AfterIsFalse": Interval[1, 4] after 5
 define "AfterIsNull": Interval[1, 4] after null
 ```
 
-[[before-1]]
+{: #before-1}
 ### Before
 
 *Signature:*
@@ -3615,7 +3615,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval ends before the given point.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3747,7 +3747,7 @@ ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">ends</span> operator returns <span class="kw">true</span> if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
-This operator uses the semantics described in the <span class="kw"><<start>></span> and <span class="kw"><<end>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3761,7 +3761,7 @@ define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]
 define "EndsIsNull": Interval[1, 5] ends null
 ```
 
-[[equal-1]]
+{: #equal-1}
 ### Equal
 
 *Signature:*
@@ -3772,7 +3772,7 @@ define "EndsIsNull": Interval[1, 5] ends null
 
 *Description:*
 
-The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators.
+The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3784,7 +3784,7 @@ define "EqualIsFalse": Interval[-1, 7] = Interval[0, 7]
 define "EqualIsNull": Interval[1, 5] = null
 ```
 
-[[equivalent-1]]
+{: #equivalent-1}
 ### Equivalent
 
 *Signature:*
@@ -3795,7 +3795,7 @@ define "EqualIsNull": Interval[1, 5] = null
 
 *Description:*
 
-The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators are equivalent.
+The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators are equivalent.
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
@@ -3952,11 +3952,11 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for intervals returns <span class="kw">true</span> if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the <span class="kw"><<contains,contains>></span> operator.
+For the point overload, this operator is a synonym for the <span class="kw">[contains](#contains)</span> operator.
 
 For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3981,11 +3981,11 @@ included in _precision_ (left T, right Interval<T>) Boolean
 
 The <span class="kw">included in</span> operator for intervals returns <span class="kw">true</span> if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the <span class="kw"><<in,in>></span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the point overload, this operator is a synonym for the <span class="kw">[in](#in)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
 
 For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4036,7 +4036,7 @@ The <span class="kw">meets</span> operator returns <span class="kw">true</span> 
 
 The <span class="kw">meets before</span> operator returns <span class="kw">true</span> if the first interval ends immediately before the second interval starts, while the <span class="kw">meets after</span> operator returns <span class="kw">true</span> if the first interval starts immediately after the second interval ends.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4059,7 +4059,7 @@ define "MeetsAfterIsFalse": Interval[6, 10] meets after Interval[0, 7]
 define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
 ```
 
-[[not-equal-1]]
+{: #not-equal-1}
 ### Not Equal
 
 *Signature:*
@@ -4082,7 +4082,7 @@ define "NotEqualIsTrue": Interval[-1, 7] != Interval[0, 7]
 define "NotEqualIsNull": Interval[1, 5] != null
 ```
 
-[[not-equivalent-1]]
+{: #not-equivalent-1}
 ### Not Equivalent
 
 *Signature:*
@@ -4105,7 +4105,7 @@ define "NotEquivalentIsAlsoFalse": Interval[1, null] !~ Interval[1, null]
 define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
 ```
 
-[[on-or-after-2]]
+{: #on-or-after-2}
 ### On Or After
 
 *Signature:*
@@ -4118,13 +4118,13 @@ on or after _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The <span class="kw">on or after</span> operator for intervals is a synonym for the <span class="kw">same or after</span> operator and is supported to enable natural phrasing. See the description of the <<same-or-after-2,Same Or After (Intervals)>> operator.
+The <span class="kw">on or after</span> operator for intervals is a synonym for the <span class="kw">same or after</span> operator and is supported to enable natural phrasing. See the description of the [Same Or After (Intervals)](#same-or-after-2) operator.
 
 Note that this operator can be invoked using either the <span class="kw">on or after</span> or the <span class="kw">after or on</span> syntax.
 
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
-[[on-or-before-2]]
+{: #on-or-before-2}
 ### On Or Before
 
 *Signature:*
@@ -4137,7 +4137,7 @@ on or before _precision_ (left Interval<T>, right T) Boolean
 
 *Description:*
 
-The <span class="kw">on or before</span> operator for Date-, DateTime-, or Time-based intervals is a synonym for the <span class="kw">same or before</span> operator and is supported to enable natural phrasing. See the description of the <<same-or-before-2,Same Or Before (Intervals)>> operator.
+The <span class="kw">on or before</span> operator for Date-, DateTime-, or Time-based intervals is a synonym for the <span class="kw">same or before</span> operator and is supported to enable natural phrasing. See the description of the [Same Or Before (Intervals)](#same-or-before-2) operator.
 
 Note that this operator can be invoked using either the <span class="kw">on or before</span> or the <span class="kw">before or on</span> syntax.
 
@@ -4159,7 +4159,7 @@ The <span class="kw">overlaps</span> operator returns <span class="kw">true</spa
 
 The operator <span class="kw">overlaps before</span> returns <span class="kw">true</span> if the first interval overlaps the second and starts before it, while the <span class="kw">overlaps after</span> operator returns <span class="kw">true</span> if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4214,7 +4214,7 @@ The <span class="kw">properly includes</span> operator for intervals returns <sp
 
 For the point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4243,7 +4243,7 @@ The <span class="kw">properly included in</span> operator for intervals returns 
 
 For the point overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4259,7 +4259,7 @@ define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7
 define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
 ```
 
-[[same-as-2]]
+{: #same-as-2}
 ### Same As
 
 *Signature:*
@@ -4270,7 +4270,7 @@ same _precision_ as(left Interval<T>, right Interval<T>) Boolean
 
 *Description:*
 
-The <span class="kw">same</span>__-precision-__<span class="kw">as</span> operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the <span class="id"><<Same As>></span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>__-precision-__<span class="kw">as</span> operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the <span class="id">[Same As](#Same As)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4282,7 +4282,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -4290,7 +4290,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-[[same-or-after-2]]
+{: #same-or-after-2}
 ### Same Or After
 
 *Signature:*
@@ -4303,7 +4303,7 @@ same _precision_ or after(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or after</span> operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id"><<same-or-after-1,Same or After (Date, DateTime, or Time)>></span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>__-precision-__<span class="kw">or after</span> operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or After (Date, DateTime, or Time)](#same-or-after-1)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4315,7 +4315,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>-based and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>-based and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
@@ -4327,7 +4327,7 @@ If either or both arguments are <span class="kw">null</span>, the result is <spa
 
 Note that in timing phrases, the keyword <span class="kw">on</span> may be used as a synonym for <span class="kw">same</span> for this operator.
 
-[[same-or-before-2]]
+{: #same-or-before-2}
 ### Same Or Before
 
 *Signature:*
@@ -4340,7 +4340,7 @@ same _precision_ or before(left Interval<T>, right T) Boolean
 
 *Description:*
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or before</span> operator returns true if the first interval ends on or before the second one starts, using the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id"><<same-or-before-1,Same or Before (Date, DateTime, or Time)>></span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>__-precision-__<span class="kw">or before</span> operator returns true if the first interval ends on or before the second one starts, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or Before (Date, DateTime, or Time)](#same-or-before-1)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4352,7 +4352,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id"><<ToDateTime>></span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
@@ -4425,7 +4425,7 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">starts</span> operator returns <span class="kw">true</span> if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the <span class="id"><<Start>></span> and <span class="id"><<End>></span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4484,12 +4484,12 @@ define "WidthIsNull": width of (null as Interval<Integer>) // null
 define "NullInterval": width of Interval[0, null) //null
 ```
 
-[[list-operators-2]]
+{: #list-operators-2}
 ## List Operators
 
-Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the <<03-developersguide.adoc#promotion-and-demotion,Promotion and Demotion>> section for more information.
+Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the [Promotion and Demotion](03-developersguide.adoc#promotion-and-demotion) section for more information.
 
-[[contains-1]]
+{: #contains-1}
 ### Contains
 
 *Signature:*
@@ -4536,7 +4536,7 @@ define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
 define "DistinctIsNull": distinct null // null
 ```
 
-[[equal-2]]
+{: #equal-2}
 ### Equal
 
 *Signature:*
@@ -4559,7 +4559,7 @@ define "EqualIsFalse": { 1, 3, 5, 7 } = { 1, 3, 5 }
 define "EqualIsNull": { 1, 3, 5, 7 } = null
 ```
 
-[[equivalent-2]]
+{: #equivalent-2}
 ### Equivalent
 
 *Signature:*
@@ -4580,7 +4580,7 @@ define "EquivalentIsAlsoTrue": { 1, 3, 5, null } ~ { 1, 3, 5, null }
 define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 ```
 
-[[except-1]]
+{: #except-1}
 ### Except
 
 *Signature:*
@@ -4673,7 +4673,7 @@ define "First1": First({ 1, 2, 5 }) // 1
 define "FirstIsNull": First(null)
 ```
 
-[[in-1]]
+{: #in-1}
 ### In
 
 *Signature:*
@@ -4697,7 +4697,7 @@ define "InIsAlsoFalse": 5 in null
 define "NullInIsTrue": null in { 1, 3, 5, null }
 ```
 
-[[includes-1]]
+{: #includes-1}
 ### Includes
 
 *Signature:*
@@ -4711,7 +4711,7 @@ includes(left List<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list using equality semantics, with the exception that <span class="kw">null</span> elements are considered equal.
 
-For the singleton overload, this operator is a synonym for the <span class="kw"><<contains-1,contains>></span> operator.
+For the singleton overload, this operator is a synonym for the <span class="kw">[contains](#contains-1)</span> operator.
 
 For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4726,7 +4726,7 @@ define "IncludesIsFalse": { 1, 3 } includes { 1, 3, 5 }
 define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
 ```
 
-[[included-in-1]]
+{: #included-in-1}
 ### Included In
 
 *Signature:*
@@ -4740,7 +4740,7 @@ included in(left T, right list<T>) Boolean
 
 The <span class="kw">included in</span> operator for lists returns <span class="kw">true</span> if every element of the first list is in the second list using equality semantics.
 
-For the singleton overload, this operator is a synonym for the <span class="kw"><<in-1,in>></span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the singleton overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
 
 For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4755,7 +4755,7 @@ define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }
 define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 ```
 
-[[indexer-1]]
+{: #indexer-1}
 ### Indexer
 
 *Signature:*
@@ -4806,7 +4806,7 @@ define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1
 define "IndexOfIsNull": IndexOf(null, 4)
 ```
 
-[[intersect-1]]
+{: #intersect-1}
 ### Intersect
 
 *Signature:*
@@ -4854,7 +4854,7 @@ define "Last5": Last({ 1, 3, 5 }) // 5
 define "LastIsNull": Last(null)
 ```
 
-[[length-1]]
+{: #length-1}
 ### Length
 
 *Signature:*
@@ -4876,7 +4876,7 @@ define "Length3": Length({ 1, 3, 5 }) // 3
 define "Length0": Length(null as List<Integer>)
 ```
 
-[[not-equal-2]]
+{: #not-equal-2}
 ### Not Equal
 
 *Signature:*
@@ -4899,7 +4899,7 @@ define "NotEqualIsTrue": { 1, 3, 5, 7 } != { 1, 3, 5 }
 define "NotEqualIsNull": { 1, 3, 5, 7 } != null
 ```
 
-[[not-equivalent-2]]
+{: #not-equivalent-2}
 ### Not Equivalent
 
 *Signature:*
@@ -4922,7 +4922,7 @@ define "NotEquivalentIsAlsoFalse": { 1, 3, 5, null } !~ { 1, 3, 5, null }
 define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 ```
 
-[[properly-includes-1]]
+{: #properly-includes-1}
 ### Properly Includes
 
 *Signature:*
@@ -4953,7 +4953,7 @@ define "ProperlyIncludesIsFalse": { 1, 3, 5 } properly includes { 1, 3, 5 }
 define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 ```
 
-[[properly-included-in-1]]
+{: #properly-included-in-1}
 ### Properly Included In
 
 *Signature:*
@@ -5079,7 +5079,7 @@ define "TakeEmpty": Take({ 1, 2, 3, 4 }, null) // { }
 define "TakeIsNull": Take(null, 2)
 ```
 
-[[union-1]]
+{: #union-1}
 ### Union
 
 *Signature:*
@@ -5253,7 +5253,7 @@ Max(argument List<String>) String
 
 *Description:*
 
-The <span class="id">Max</span> operator returns the maximum element in the source. Comparison semantics are defined by the <<Comparison Operators>> for the type of value being aggregated.
+The <span class="id">Max</span> operator returns the maximum element in the source. Comparison semantics are defined by the [Comparison Operators](#Comparison Operators) for the type of value being aggregated.
 
 If the source contains no non-null elements, <span class="kw">null</span> is returned.
 
@@ -5286,7 +5286,7 @@ Min(argument List<String>) String
 
 *Description:*
 
-The <span class="id">Min</span> operator returns the minimum element in the source. Comparison semantics are defined by the <<Comparison Operators>> for the type of value being aggregated.
+The <span class="id">Min</span> operator returns the minimum element in the source. Comparison semantics are defined by the [Comparison Operators](#Comparison Operators) for the type of value being aggregated.
 
 If the source contains no non-null elements, <span class="kw">null</span> is returned.
 
@@ -5519,7 +5519,7 @@ define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as 
 define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
 ```
 
-[[clinical-operators-3]]
+{: #clinical-operators-3}
 ## Clinical Operators
 
 ### Age
@@ -5637,7 +5637,7 @@ define "CalculateAgeAt": CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
 define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 ```
 
-[[equal-3]]
+{: #equal-3}
 ### Equal
 
 *Signature:*
@@ -5664,7 +5664,7 @@ define "EqualIsFalse": Concept1 = Concept2
 define "EqualIsNull": Code1 = null
 ```
 
-[[equivalent-3]]
+{: #equivalent-3}
 ### Equivalent
 
 *Signature:*
@@ -5742,7 +5742,7 @@ define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-[[expandvalueset]]
+{: #expandvalueset}
 ### ExpandValueSet (ValueSet)
 
 > The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.

@@ -25,13 +25,12 @@ Clinical Decision Support and Clinical Quality Measurement are closely related, 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
 
 <a name="table-1-a"></a>
-[cols=",,,,",options="header"]
-|========================================================================================================================================================================================
-| | Model Type | Quality Information | Computable Expression Logic | Metadata
-| *Clinical Decision Support (CDS)* |<<Approach, Physical and Logical>> |https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338[Virtual Medical Record (vMR)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337[CDS Knowledge Artifact Specification] / http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12[Decision Support Service]
-1.2+| *Electronic Clinical Quality Measurement (eCQM)* |<<Approach, Physical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35[Quality Reporting Document Architecture (QRDA)] |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>> |<<Health Quality Measure Format (HQMF),Health Quality Measure Format (HQMF)>>
-1.1+|<<Approach, Logical>> |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)] |http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346[Quality Data Model (QDM)]|
-|========================================================================================================================================================================================
+| | Model Type | Quality Information | Computable Expression Logic | Metadata |
+|----|----|----|----|----|
+| *Clinical Decision Support (CDS)* |[Physical and Logical](#approach) |[Virtual Medical Record (vMR)](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338) |[CDS Knowledge Artifact Specification](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337) |[CDS Knowledge Artifact Specification](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337) / [Decision Support Service](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12) |
+| *Electronic Clinical Quality Measurement (eCQM)* |[Physical](#approach) |[Quality Reporting Document Architecture (QRDA)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35) |[Health Quality Measure Format (HQMF)](#health-quality-measure-format-hqmf) |[Health Quality Measure Format (HQMF)](#health-quality-measure-format-hqmf) |
+|[Logical](#approach) |[Quality Data Model (QDM)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346) |[Quality Data Model (QDM)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346)| |
+{: .grid .table .table-striped}
 Table 1‑A - Relationship of the current specifications to each component
 
 The discrepancy shown here between standards used in the different domains introduces burdens on both vendors and providers in electronic healthcare quality domains, including:
@@ -42,9 +41,9 @@ The discrepancy shown here between standards used in the different domains intro
 
 Using the framework of metadata, data model, and expression logic, the following diagram depicts the overall target specification areas involved in clinical quality artifact representation:
 
-image:extracted-media/media/image2.jpeg[CQF Value Statement Pic 20140410.jpg,width=720,height=400]
-
 <a name="figure-1-a"></a>
+<img src="extracted-media/media/image2.jpeg" alt="CQF Value Statement Pic 20140410.jpg" width=720 height=400/>
+
 Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
 
 Following this overall structure, this specification focuses on the common representation of expression logic that CQM and CDS-specific artifact standards can then reference. Separate specifications address metadata and data model. A harmonized data model specification is being developed for use with quality improvement applications called Quality Improvement Core (QI-Core), an HL7 FHIR implementation guide. The QI-Core profiles include a mapping from QDM to QI-Core for the use of FHIR-based data models for quality improvement use cases. The mappings are available at [QI-Core Implementation Guide - QDM -> QI-Core Mapping](http://hl7.org/fhir/us/qicore/qdm-to-qicore.html).
@@ -57,7 +56,7 @@ The Clinical Quality Framework (CQF) was initially a collaborative community of 
 
 ## Approach
 
-As discussed in <<Background, Section 1>>, one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the [References](11-d-references.html) section. These requirements form the basis for the reasoning capabilities that this specification provides.
+As discussed in [Section 1](#background), one key principle underlying the current harmonization efforts is the separation of responsibilities within an artifact into _metadata_, _clinical information_, and _expression logic_. Focusing on the expression logic component and identifying the requirements common to both quality measurement and decision support, the Clinical Decision Support HL7 Work Group produced a harmonized conceptual requirements document: _HL7 Domain Analysis Model: Harmonization of Health Quality Artifact Reasoning and Expression Logic._ To view this document, refer to the [References](11-d-references.html) section. These requirements form the basis for the reasoning capabilities that this specification provides.
 
 Building on those conceptual requirements, this specification defines the logical and physical layers necessary to achieve the goal of a unified specification for expression logic for use by both the clinical quality and decision support domains.
 

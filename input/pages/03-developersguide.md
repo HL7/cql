@@ -491,18 +491,18 @@ Define "Foo": 1 + 1
 
 The declaration is illegal because the parser will not recognize <span class="kw">Define</span> as a keyword.
 
-[[libraries-1]]
+{: #libraries-1}
 ## Libraries
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
-* The local <<identifiers,identifier>> for a referenced library must be <<qualified-identifiers,unqualified>> and unique within the artifact.
+* The local [identifier](#identifiers) for a referenced library must be [unqualified](#qualified-identifiers) and unique within the artifact.
 * Circular library references are not allowed.
 * Library references are not transitive.
 
 A syntax diagram of a library construct can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
 
-Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a <<04-logicalspecification.adoc#library,library>> contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> for an example of how namespaces are specified in ELM.
+Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a [library](04-logicalspecification.adoc#library) contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the [Mother Infant Measure](examples.adoc#mother-infant-measure) for an example of how namespaces are specified in ELM.
 
 When including a library, use the fully qualified identifier for the library. If the <span class="kw">called</span> clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
 
@@ -566,7 +566,7 @@ If a library name is provided, only that library will be searched for a resoluti
 
 As with expressions, CQL supports forward declarations for functions, so long as the reference does not result in a cycle.
 
-[[data-models-1]]
+{: #data-models-1}
 ## Data Models
 
 CQL allows any number of data models to be included in a given library, subject to the following constraints:
@@ -636,7 +636,7 @@ All the system-defined types derive directly from System.Any. The primitive type
 
 Table 3‑G - The primitive types and their ranges supported in CQL
 
-Note that CQL supports three-valued logic, see the section on <<02-authorsguide.adoc#missing-information,Missing Information>> in the Author's Guide, as well as the section on <<Missing Information>> in the Developer's guide for more.
+Note that CQL supports three-valued logic, see the section on [Missing Information](02-authorsguide.adoc#missing-information) in the Author's Guide, as well as the section on [Missing Information](#missing-information) in the Developer's guide for more.
 
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
@@ -652,7 +652,7 @@ In addition, CQL defines several structured types to facilitate representation a
 
 Table 3‑H - The structured types to facilitate representation and manipulation of clinical information
 
-For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on <<09-b-cqlreference.adoc#types-2,Types>>.
+For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on [Types](09-b-cqlreference.adoc#types-2).
 
 ### Specifying Types
 
@@ -826,7 +826,7 @@ The CQL Reference appendix gives the signatures and declared return types for al
 
 In addition to special cases for operators such as conditionals and Coalesce, CQL defines implicit conversion, casting, and promotion and demotion to provide more flexible type checking rules. These special cases are described in subsequent sections.
 
-[[queries-1]]
+{: #queries-1}
 #### Queries
 
 For queries, the type inference rules are based on the clauses used, beginning with single-source queries:
@@ -901,7 +901,7 @@ will result in <span class="kw">null</span>. The convert syntax is equivalent to
 
 Table 3‑I - The defined type conversion operators in CQL
 
-For a complete description of these conversion operators, refer to the <<09-b-cqlreference.adoc#type-operators-1,Type Operators>> section in the [CQL Reference](09-b-cqlreference.html).
+For a complete description of these conversion operators, refer to the [Type Operators](09-b-cqlreference.adoc#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
 #### Quantity Conversions
 
@@ -1213,7 +1213,7 @@ The result of this expression is:
 
 Use the <span class="id">Upper</span> and <span class="id">Lower</span> operators to return strings with upper or lowercase letters for all characters in the argument.
 
-[[introducing-context-in-queries]]
+{: #introducing-context-in-queries}
 ## Introducing Scoped Definitions in Queries
 
 The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the scope of a single query. For example:
@@ -1418,7 +1418,7 @@ If the expression being defined (such as "Mother" in the previous example) is <s
 
 > As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
 >
-> See the <<examples.adoc#mother-infant-measure,Mother Infant Measure>> example for a detailed illustration of this functionality.
+> See the [Mother Infant Measure](examples.adoc#mother-infant-measure) example for a detailed illustration of this functionality.
 {: .note-danger}
 
 ## Aggregate Queries
@@ -1512,7 +1512,7 @@ Functions can be defined that reference other functions anywhere within any libr
 
 ### Operator Functions
 
-Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the <<06-translationsemantics.adoc#functions,Functions>> topic in the Translation Semantics chapter.
+Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the [Functions](06-translationsemantics.adoc#functions) topic in the Translation Semantics chapter.
 
 A consequence of having these system function definitions is that operators can also be invoked directly as functions. For example:
 
@@ -1637,7 +1637,7 @@ Patient.name.given.single() + ' ' + Patient.name.family.single()
 
 This allows the compiler to help the author determine whether a singular value is expected and appropriate, or if the author mistakenly assumed the attribute was singular, when in fact the data model allows multiple values.
 
-See the <<Promotion and Demotion>> topic for more discussion on how CQL supports list promotion and demotion.
+See the [Promotion and Demotion](#promotion-and-demotion) topic for more discussion on how CQL supports list promotion and demotion.
 
 ### Missing Information
 

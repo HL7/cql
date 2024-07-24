@@ -102,7 +102,7 @@ Date 1: 2012-*02*-29 10:18:56 +
 Date 2: 2014-*02*-28 19:02:34 +
 Duration = year (date 2) - year (date 1) = 2014 - 2012 = *2 years*
 
-*Note:* Because there is no February 29 in 2014, per the <<05-languagesemantics.adoc#datetime-arithmetic-1,Date and Time Arithmetic>> section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + *1 year* = 2013-02-28)
+*Note:* Because there is no February 29 in 2014, per the [Date and Time Arithmetic](#05-languagesemantics.adoc#datetime-arithmetic-1) section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + *1 year* = 2013-02-28)
 
 ### Negative Examples
 
@@ -154,7 +154,7 @@ Duration = year (date 2) - year (date 1) = 2013 - 2015 = *-2 years*
 
 ## Calculating Duration in Months
 
-[[definition-1]]
+{: #definition-1}
 ### Definition
 
 A month in CQL is defined as the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at:
@@ -164,7 +164,7 @@ A month in CQL is defined as the duration of any time interval which starts at a
 
 *Notes:* When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 
-[[examples-1]]
+{: #examples-1}
 ### Examples
 
 #### Scenario 1
@@ -193,7 +193,7 @@ Date 2: 2013-01-*09* 07:19:33 +
 Duration = (year (date 2) - year (date 1)) * 12 + (month (date 2) - month (date 1)) - 1 +
 # (2013 - 2012) * 12 + (1 - 3) - 1 = 12 - 2 - 1 = *9 months*
 
-[[negative-exapmles-1]]
+{: #negative-exapmles-1}
 ### Negative Examples
 
 #### Scenario 3
@@ -224,12 +224,12 @@ Duration (months) = (year (date 2) - year (date 1)) * 12 + (month (date 2) - mon
 
 ## Calculating Duration in Weeks
 
-[[definition-2]]
+{: #definition-2}
 ### Definition
 
 In CQL, a week is defined as a duration of any time interval which starts at a certain time of day at a certain calendar day at a certain calendar week and ends at the same time of day at the same calendar day of the ending calendar week. In other words, a complete week is always seven days long.
 
-[[examples-2]]
+{: #examples-2}
 ### Examples
 
 Duration = +++[+++date 2 - date 1 (days)+++]+++ / 7
@@ -248,14 +248,14 @@ Duration = +++[+++# days (month (date 1)) - day (date 1) + # days (month (date 1
 
 ## Calculating Duration in Days
 
-[[definition-3]]
+{: #definition-3}
 ### Definition
 
 In CQL, a day is defined as a duration of any time interval which starts at a certain calendar day and ends at the next calendar day (1 second to 23 hours, 59 minutes, and 59 seconds).
 
 The duration in days between two dates will generally be given by subtracting the start calendar date from the end calendar date, respecting the time of day between the two dates.
 
-[[examples-3]]
+{: #examples-3}
 ### Examples
 
 #### Scenario 1
@@ -276,7 +276,7 @@ Date 1: 2012-01-31 *12:30:00* +
 Date 2: 2012-02-01 *14:00:00* +
 Duration = 02-01 - 01-31 = *1 day*
 
-[[negative-examples-2]]
+{: #negative-examples-2}
 ### Negative Examples
 
 #### Scenario 3
@@ -301,12 +301,12 @@ Duration = 12-04 - 12-05 = *-1 day*
 
 ## Calculating Duration in Hours
 
-[[definition-4]]
+{: #definition-4}
 ### Definition
 
 In CQL, an hour is defined as 60 minutes. The duration in hours between two dates is the number of minutes between the two dates, divided by 60. The result is truncated to the unit.
 
-[[examples-4]]
+{: #examples-4}
 ### Examples
 
 *Example 1:* +
@@ -324,7 +324,7 @@ Date 1: 2012-03-01 03:10 +
 Date 2: 2012-03-01 04:00 +
 Duration = *0 hours*
 
-[[negative-examples-3]]
+{: #negative-examples-3}
 ### Negative Examples
 
 *Example 4:* +
@@ -344,12 +344,12 @@ Duration = *0 hours*
 
 ## Calculating Duration in Minutes
 
-[[definition-5]]
+{: #definition-5}
 ### Definition
 
 In CQL, a minute is defined as 60 seconds. The duration in minutes between two dates is the number of seconds between the two dates, divided by 60. The result is truncated to the unit.
 
-[[examples-5]]
+{: #examples-5}
 ### Examples
 
 *Example 1:* +
@@ -362,7 +362,7 @@ Date 1: 2012-02-29 23:10:00 +
 Date 2: 2012-03-01 00:20:00 +
 Duration = *70 minutes*
 
-[[negative-examples-4]]
+{: #negative-examples-4}
 ### Negative Examples
 
 *Example 3:* +
@@ -385,7 +385,7 @@ To support the expected results in all cases, normalization of datetime values m
 
 When difference is calculated for hours or finer units, timezone offsets should be normalized prior to truncation to correctly consider real (actual elapsed) time. When difference is calculated for days or coarser units, however, the time components (including timezone offset) should be truncated without normalization to correctly reflect the difference in calendar days, months, and years.
 
-[[examples-6]]
+{: #examples-6}
 ### Examples
 
 *Example 1:* +
@@ -444,7 +444,7 @@ In some cases, normalization prior to truncation may give unexpected results. Co
 With normalization prior to truncation, the second date would become 11:00pm EST on the same day as the first date. +
 The difference in days would be 0, which is not the expected result.
 
-[[negative-examples-5]]
+{: #negative-examples-5}
 ### Negative Examples
 
 *Example 8:* +

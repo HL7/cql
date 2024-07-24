@@ -8,7 +8,7 @@ To achieve these goals, the Logical level establishes a semantically complete bi
 
 Every statement of CQL has a semantically equivalent representation in ELM. As such, it is possible to programmatically translate any statement of CQL into its equivalent ELM representation. The following sections define the mappings between the language elements of CQL and their equivalent ELM representations, as well as providing a sketch for how these mappings could be used to translate from CQL to ELM.
 
-[[declarations-1]]
+{: #declarations-1}
 ### Declarations
 
 In both CQL and ELM, the basic container for all declarations is the _Library_. In CQL, a library corresponds to a single source document, usually represented as a text file. In ELM, a library is represented as a single instance of the _Library_ class which contains all the declarations for the library.
@@ -33,7 +33,7 @@ The following table specifies the ELM equivalent for each CQL declaration:
 
 Table 6‑A - The ELM equivalent for each CQL declaration
 
-[[types-1]]
+{: #types-1}
 ### Types
 
 To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivalent TypeSpecifier abstract class is defined, with appropriate subclasses to represent the various types of specifiers, as detailed in the following table:
@@ -53,7 +53,7 @@ Table 6‑B - The ELM equivalent for each CQL type-specifier
 
 Note that for named type specifiers, the name of the type is a qualified identifier, with the qualifier representing the name of the data model that defines the type. For example, the system-defined integer type in CQL is named System.Integer, with System as the name of the data model, and Integer as the name of the type.
 
-[[literals-and-selectors-1]]
+{: #literals-and-selectors-1}
 ### Literals and Selectors
 
 The following table defines the mapping between the various CQL literals and their equivalent representation in ELM:
@@ -85,7 +85,7 @@ Table 6‑C - The ELM equivalent for each CQL Literal
 
 Most of the functions and operations available in CQL have a direct counterpart in ELM. For ease of reference, the operations and functions are grouped the same way they are in the CQL Reference.
 
-[[logical-operators-2]]
+{: #logical-operators-2}
 #### Logical Operators
 
 <a name="table-6-d"></a>
@@ -124,7 +124,7 @@ Rather than emitting a _Convert_, an implementation could emit a _ToString_ whic
 
 Note also that when translating to ELM, an implementation could emit all implicit conversions directly, avoiding the need for an ELM translator or execution engine to deal with implicit conversion.
 
-[[nullological-operators-2]]
+{: #nullological-operators-2}
 #### Nullological Operators
 
 <a name="table-6-f"></a>
@@ -139,7 +139,7 @@ Note also that when translating to ELM, an implementation could emit all implici
 
 Table 6‑F - The ELM equivalent for each CQL nullological operator
 
-[[comparison-operators-3]]
+{: #comparison-operators-3}
 #### Comparison Operators
 
 <a name="table-6-g"></a>
@@ -159,7 +159,7 @@ Table 6‑F - The ELM equivalent for each CQL nullological operator
 
 Table 6‑G - The ELM equivalent for each CQL comparison operator
 
-[[arithmetic-operators-3]]
+{: #arithmetic-operators-3}
 #### Arithmetic Operators
 
 <a name="table-6-h"></a>
@@ -190,7 +190,7 @@ Table 6‑G - The ELM equivalent for each CQL comparison operator
 
 Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 
-[[string-operators-2]]
+{: #string-operators-2}
 #### String Operators
 
 <a name="table-6-i"></a>
@@ -215,7 +215,7 @@ Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 
 Table 6‑I - The ELM equivalent for each CQL <span class="kw">String</span> operator
 
-[[datetime-operators-1]]
+{: #datetime-operators-1}
 #### Date and Time Operators
 
 <a name="table-6-j"></a>
@@ -242,7 +242,7 @@ Table 6‑I - The ELM equivalent for each CQL <span class="kw">String</span> ope
 
 Table 6‑J - The ELM equivalent for each CQL <span class="kw">Date</span> and <span class="kw">Time</span> operator
 
-[[interval-operators-2]]
+{: #interval-operators-2}
 #### Interval Operators
 
 <a name="table-6-k"></a>
@@ -285,7 +285,7 @@ Table 6‑J - The ELM equivalent for each CQL <span class="kw">Date</span> and <
 
 Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> operator
 
-[[list-operators-1]]
+{: #list-operators-1}
 #### List Operators
 
 <a name="table-6-l"></a>
@@ -321,7 +321,7 @@ Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> o
 
 Table 6‑L - The ELM equivalent for each CQL <span class="kw">List</span> operator
 
-[[aggregate-operators-2]]
+{: #aggregate-operators-2}
 #### Aggregate Operators
 
 <a name="table-6-m"></a>
@@ -347,7 +347,7 @@ Table 6‑L - The ELM equivalent for each CQL <span class="kw">List</span> opera
 
 Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 
-[[clinical-operators-2]]
+{: #clinical-operators-2}
 #### Clinical Operators
 
 <a name="table-6-n"></a>
@@ -366,12 +366,12 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 
 Table 6‑N - The ELM equivalent for each CQL clinical operator
 
-[[phrases]]
+{: #phrases}
 ### Phrases
 
-In general, the various phrases of CQL do not have a direct representation in ELM, but rather result in operator and function invocations which then do have representations. For more information, see the <<05-languagesemantics.adoc#timing-phrases,Timing Phrases>> section.
+In general, the various phrases of CQL do not have a direct representation in ELM, but rather result in operator and function invocations which then do have representations. For more information, see the [Timing Phrases](05-languagesemantics.adoc#timing-phrases) section.
 
-[[queries-3]]
+{: #queries-3}
 ### Queries
 
 The CQL query construct has a direct representation in ELM, as shown by the following table:
@@ -393,7 +393,7 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 
 Table 6‑O - The ELM equivalent for each CQL construct
 
-Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the <<05-languagesemantics.adoc#implementing-query-evaluation,Implementing Query Evaluation>> section for more information on how to transform any given CQL query into an equivalent representation using these operators.
+Although these elements can be used to directly represent the _query_ construct of CQL, it is also possible to represent queries using a series of equivalent operations that simplify implementation. ELM defines simplified operations specifically for this purpose. See the [Implementing Query Evaluation](05-languagesemantics.adoc#implementing-query-evaluation) section for more information on how to transform any given CQL query into an equivalent representation using these operators.
 
 ### Translation Options
 
@@ -558,7 +558,7 @@ Again, although no direct counterpart in CQL exists, the _where_ clause of the _
 List1 A where A.X = 1
 ```
 
-[[sort-1]]
+{: #sort-1}
 ### Sort
 
 The _Sort_ operator in ELM sorts the contents of a list. For example:

@@ -26,7 +26,7 @@ X.all(<condition>) === AllTrue(X $this let a: <condition> where a return a)
 X.allFalse() === AllTrue(X A return not A)
 ```
 
-[[alltrue-1]]
+{: #alltrue-1}
 ## .allTrue()
 
 ``` cql
@@ -39,7 +39,7 @@ X.allTrue() === AllTrue(X)
 X.anyFalse() === AnyTrue(X A return not A)
 ```
 
-[[anytrue-1]]
+{: #anytrue-1}
 ## .anyTrue()
 
 ``` cql
@@ -60,14 +60,14 @@ Note that the type argument T is expected to be a literal string and must resolv
 X.ceiling() === Ceiling(X)
 ```
 
-[[children-1]]
+{: #children-1}
 ## .children()
 
 ``` cql
 .children(X) === Children(X)
 ```
 
-[[combine-1]]
+{: #combine-1}
 ## .combine()
 
 ``` cql
@@ -82,7 +82,7 @@ X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
 
 Note that this mapping relies on an external library, FHIRSupport to provide conformance validation checking.
 
-[[contains-2]]
+{: #contains-2}
 ## .contains()
 
 ``` cql
@@ -131,21 +131,21 @@ X.convertsToQuantity() === ConvertsToQuantity(X)
 X.convertsToTime() === ConvertsToTime(X)
 ```
 
-[[count-1]]
+{: #count-1}
 ## .count()
 
 ``` cql
 X.count() === Count(X)
 ```
 
-[[descendents-1]]
+{: #descendents-1}
 ## .descendents()
 
 ``` cql
 .descendents(X) === Descendents(X)
 ```
 
-[[distinct-1]]
+{: #distinct-1}
 ## .distinct()
 
 ``` cql
@@ -158,7 +158,7 @@ X.distinct() === distinct X
 X.empty() === not exists X
 ```
 
-[[endswith-1]]
+{: #endswith-1}
 ## .endsWith()
 
 ``` cql
@@ -171,7 +171,7 @@ X.endsWith(Y) === EndsWith(X, Y)
 X.exclude(Y) === X except Y
 ```
 
-[[exists-1]]
+{: #exists-1}
 ## .exists()
 
 ``` cql
@@ -186,7 +186,7 @@ X.exists(<condition>) === exists (X $this where <condition>)
 X.exp() === Exp(X)
 ```
 
-[[first-1]]
+{: #first-1}
 ## .first()
 
 ``` cql
@@ -213,7 +213,7 @@ iif(X, Y) === if X then Y else null
 iif(X, Y, Z) === if X then Y else Z
 ```
 
-[[indexof-1]]
+{: #indexof-1}
 ## .indexOf()
 
 ``` cql
@@ -240,7 +240,7 @@ Note that the argument T is expected to be a literal string and must resolve to 
 X.isDistinct() === Count(X) = Count(distinct X)
 ```
 
-[[last-1]]
+{: #last-1}
 ## .last()
 
 ``` cql
@@ -253,7 +253,7 @@ X.last() === Last(X)
 X.lastIndexOf(Y) === LastPositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
 ```
 
-[[length-2]]
+{: #length-2}
 ## .length()
 
 ``` cql
@@ -278,7 +278,7 @@ X.log(B) === Log(X, B)
 X.lower() === Lower(X)
 ```
 
-[[matches-1]]
+{: #matches-1}
 ## .matches()
 
 ``` cql
@@ -299,14 +299,14 @@ X.ofType(T) === X $this where $this is T return $this as T
 
 Note that the argument T is required to be a literal string, and is interpreted as the name of a type. For non-named-types, type specifier syntax applies.
 
-[[not-1]]
+{: #not-1}
 ## .not()
 
 ``` cql
 X.not() === not X
 ```
 
-[[now-1]]
+{: #now-1}
 ## .now()
 
 ``` cql
@@ -337,7 +337,7 @@ X.select(<element>).select(<element>)
 X.replace(Y, Z) === Replace(X, Y, Z)
 ```
 
-[[replacematches-1]]
+{: #replacematches-1}
 ## .replaceMatches()
 
 ``` cql
@@ -371,7 +371,7 @@ X.select(<element>) === Flatten(X $this let a: <element> where a is not null ret
 X.single() === singleton from X
 ```
 
-[[skip-1]]
+{: #skip-1}
 ## .skip()
 
 ``` cql
@@ -384,7 +384,7 @@ X.skip(Y) === Slice(X, Y, null)
 X.sqrt() === Power(X, 0.5)
 ```
 
-[[startswith-1]]
+{: #startswith-1}
 ## .startsWith()
 
 ``` cql
@@ -397,7 +397,7 @@ X.startsWith(Y) === StartsWith(X, Y)
 X.subsetOf(Y) === X included in Y
 ```
 
-[[substring-1]]
+{: #substring-1}
 ## .substring()
 
 ``` cql
@@ -424,14 +424,14 @@ X.subsumedBy(Y) === SubsumedBy(X, Y)
 X.supersetOf(Y) === X includes Y
 ```
 
-[[tail-1]]
+{: #tail-1}
 ## .tail()
 
 ``` cql
 X.tail() === Slice(X, 1, null)
 ```
 
-[[take-1]]
+{: #take-1}
 ## .take()
 
 ``` cql
@@ -444,7 +444,7 @@ X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
 timeOfDay() === TimeOfDay()
 ```
 
-[[toboolean-1]]
+{: #toboolean-1}
 ## .toBoolean()
 
 ``` cql
@@ -457,35 +457,35 @@ X.toBoolean() === ToBoolean(X)
 X.toChars() === ToChars(X)
 ```
 
-[[todate-1]]
+{: #todate-1}
 ## .toDate()
 
 ``` cql
 X.toDate() === ToDate(X)
 ```
 
-[[todatetime-1]]
+{: #todatetime-1}
 ## .toDateTime()
 
 ``` cql
 X.toDateTime() === ToDateTime(X)
 ```
 
-[[today-1]]
+{: #today-1}
 ## .today()
 
 ``` cql
 today() === Today()
 ```
 
-[[todecimal-1]]
+{: #todecimal-1}
 ## .toDecimal()
 
 ``` cql
 X.toDecimal() === ToDecimal(X)
 ```
 
-[[tointeger-1]]
+{: #tointeger-1}
 ## .toInteger()
 
 ``` cql
@@ -498,14 +498,14 @@ X.toInteger() === ToInteger(X)
 X.toQuantity() === ToQuantity(X)
 ```
 
-[[tostring-1]]
+{: #tostring-1}
 ## .toString()
 
 ``` cql
 X.toString() === ToString(X)
 ```
 
-[[totime-1]]
+{: #totime-1}
 ## .toTime()
 
 ``` cql

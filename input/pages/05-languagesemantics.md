@@ -302,14 +302,14 @@ To allow searching by component codes, consider further that this data model def
 
 In order to completely specify the semantics of the expression logic defined by CQL, the intended execution model for expressions must be clearly defined. The following sections discuss the conceptual components of the expression language, and how these components are defined to operate.
 
-[[data-model-1]]
+{: #data-model-1}
 ### Data Model
 
 The data model for CQL provides the overall structure and definition for the types of operations and capabilities that can be represented within the language. Note that the schema itself is layered into a core expression schema, and a more specific, clinical expression schema. The expression schema deals with defining the core operations that are available without respect to any specific model. The clinical expression schema then extends those operations to include references to clinical data.
 
 Note that although the expression language deals with various categories of types, these are only conceptually defined within the expression language schema. There is no expectation within the core expression language that any particular data model be used, only that whatever concrete data model is actually used can be concretely mapped to the type categories defined within CQL. Because these type categories are extremely broad, this allows the CQL expression language component to be used with a large class of concrete data models without modifying the underlying specification.
 
-[[values-1]]
+{: #values-1}
 #### Values
 
 A _value_ within CQL represents some piece of data. All values are of some _type_, which designates what operations can be performed on the value. There are four categories of types within CQL:
@@ -389,13 +389,13 @@ Operator* |Generally, the type of the node is determined by resolving the type o
 
 Table 5‑C - The categories of nodes and the process for determining the type of each category
 
-During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of scope-sensitive operators such as Current and Property to be determined. Refer to the <<Execution Model>> (5.2.4) section for a description of the evaluation-time stack.
+During validation, the implementation must maintain a stack of symbols that track the types of the objects currently in scope. This allows the type of scope-sensitive operators such as Current and Property to be determined. Refer to the [Execution Model](#Execution Model) (5.2.4) section for a description of the evaluation-time stack.
 
 Details for the specifics of type determination for each operator are provided with the documentation for those operators.
 
 ### Execution Model
 
-All logic in CQL is represented as _expressions_. The language is pure functional, meaning no operations are allowed to have side effects of any kind. An expression may consist of any number of other expressions and operations, so long as they are all combined according to the semantic rules for each operation as described in the <<Semantic Validation>> (5.2.3) section.
+All logic in CQL is represented as _expressions_. The language is pure functional, meaning no operations are allowed to have side effects of any kind. An expression may consist of any number of other expressions and operations, so long as they are all combined according to the semantic rules for each operation as described in the [Semantic Validation](#Semantic Validation) (5.2.3) section.
 
 Because the language is pure functional, every expression and operator is defined to return the same value on every evaluation within the same artifact evaluation. In particular this means:
 
@@ -423,7 +423,7 @@ Note that the "must have" here is referring to the fact that structures to be tr
 
 Note that the _context_ associated with each ExpressionDef is important here, as it provides a filter on the set of data returned as described by the model. For example, in the `Patient` context, only data for a specific patient should be returned, and the unique id of that patient must be provided by the evaluation environment. This means in particular that the relationship of data elements in the model to the context must be understood and managed by the implementation so that only data related to the current context is provided through the data access layer.
 
-Evaluation consists of two phases, a _pre-processing_ phase, and an _evaluation_ phase. The pre-processing phase is used to determine the initial data requirements for a rule. During this phase any retrieve expressions in the rule are analyzed to determine what data must be provided to the evaluation in order to successfully complete a rule evaluation. This set of data descriptors is produced using the method described in the <<Artifact Data Requirements>> (5.1.3) section. This means in particular that only retrieves whose Codes and DateRange expressions are compile-time evaluable should be considered to determine initial data requirements. This means that these expressions may not reference any clinical information, though they are allowed to reference parameter values.
+Evaluation consists of two phases, a _pre-processing_ phase, and an _evaluation_ phase. The pre-processing phase is used to determine the initial data requirements for a rule. During this phase any retrieve expressions in the rule are analyzed to determine what data must be provided to the evaluation in order to successfully complete a rule evaluation. This set of data descriptors is produced using the method described in the [Artifact Data Requirements](#Artifact Data Requirements) (5.1.3) section. This means in particular that only retrieves whose Codes and DateRange expressions are compile-time evaluable should be considered to determine initial data requirements. This means that these expressions may not reference any clinical information, though they are allowed to reference parameter values.
 
 During the evaluation phase, the result of the expression is determined. Conceptually, evaluation proceeds as follows:
 
@@ -604,7 +604,7 @@ ISO 8601 postulates that duration can be expressed by a combination of component
 
 Table 5‑H - The components used to represent <span class="kw">Date</span> and <span class="kw">Time</span> values in CQL
 
-[[datetime-arithmetic-1]]
+{: #datetime-arithmetic-1}
 ### Date and Time Arithmetic
 
 CQL allows time durations, represented as Quantities, to be added to or subtracted from date or time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
@@ -651,7 +651,7 @@ uncertainty[1, 1]
 
 Must be treated as equivalent to the point value, 1 in this case.
 
-[[comparison-operators-2]]
+{: #comparison-operators-2}
 #### Comparison Operators
 
 Comparison semantics for uncertainty are defined to result in the intuitively expected behavior. For example, when comparing two uncertainties for equality:
@@ -778,7 +778,7 @@ end
 
 Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A <span class="sym">=</span> B or A <span class="sym"><</span> B_ is _not_ equivalent to _A <span class="sym">\<=</span> B_ because of the uncertainty.
 
-[[arithmetic-operators-2]]
+{: #arithmetic-operators-2}
 #### Arithmetic Operators
 
 In addition to comparison operators, the basic arithmetic operators are defined for uncertainty, again based on the intuitively expected semantics. For example:
@@ -995,7 +995,7 @@ start of A in [start of B - 3 days, start of B + 3 days] and B is not null
 
 Note that as with the before and after transformations, a null test is required here because if B is null, then the constructed interval would be incorrectly interpreted as continuing to the beginning or end of time (depending on whether the null appears as the starting or ending boundary of the interval).
 
-[[interval-operators-1]]
+{: #interval-operators-1}
 #### Interval Operators
 
 In general, interval comparisons are already defined in terms of the fundamental comparison operators (<span class="sym">=</span>, <span class="sym">></span>, <span class="sym"><</span>, <span class="sym">>=</span>, <span class="sym">\<=</span>, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
