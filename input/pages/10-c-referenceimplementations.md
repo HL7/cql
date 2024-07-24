@@ -6,7 +6,7 @@ As part of the Clinical Quality Framework effort, reference implementations of a
 
 The CQL-to-ELM Translator is a reference implementation for the translation of text-based CQL library documents into an XML or JSON representation using the ELM. In addition to being developed and used as part of CQF pilots, the translator has been integrated into production authoring environments for both Clinical Decision Support and Clinical Quality Measurement. The implementation can also be used as the first step in a process to enable distribution, translation, execution, and integration of CQL-based quality artifacts.
 
-The CQL-to-ELM Translator is licensed under the open source http://www.apache.org/licenses/LICENSE-2.0[Apache Version 2.0] license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/clinical_quality_language, as well as a https://search.maven.org/search?q=g:info.cqframework[Maven Package] (https://oss.sonatype.org/content/repositories/snapshots/info/cqframework/[Snapshots]).
+The CQL-to-ELM Translator is licensed under the open source [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/clinical_quality_language, as well as a [Maven Package](https://search.maven.org/search?q=g:info.cqframework) ([Snapshots](https://oss.sonatype.org/content/repositories/snapshots/info/cqframework/)).
 
 For an overview of the project, along with current status, refer to the following document:
 

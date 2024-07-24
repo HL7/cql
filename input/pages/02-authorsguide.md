@@ -75,7 +75,7 @@ The following example illustrates the using declaration:
 using QUICK
 ```
 
-The above declaration specifies that the <span class="id">QUICK</span> model will be used as the data model within the library. The http://hl7.org/fhir/us/qicore/quick/QUICK-index.html[QUICK data model] will be used for the examples in this section unless specified otherwise.
+The above declaration specifies that the <span class="id">QUICK</span> model will be used as the data model within the library. The [QUICK data model](http://hl7.org/fhir/us/qicore/quick/QUICK-index.html) will be used for the examples in this section unless specified otherwise.
 
 If necessary, a version specifier can be provided to indicate which version of the data model should be used as shown below:
 
@@ -841,7 +841,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ```
 
-The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid http://unitsofmeasure.org/ucum.html[Unified Code for Units of Measure (UCUM)] unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](http://unitsofmeasure.org/ucum.html) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -1551,7 +1551,7 @@ milliseconds
 
 Note that CQL supports both plural and singular duration units to allow for the most natural expression, but that no attempt is made to enforce singular or plural usage.
 
-As noted in the [Quantities](#quantities) section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the [Date and Time Arithmetic](#date-and-time-arithmetic) section for more detailed discussion.
+As noted in the [Quantities](#quantities) section, UCUM time-period units can be used to express definite-duration quantities. However, definite-duration time-period units above days (and weeks) cannot appear in date and time arithmetic calculations. See the [Date and Time Arithmetic](#datetime-arithmetic) section for more detailed discussion.
 
 For a detailed discussion of calendar calculation semantics, refer to [Appendix H – Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
@@ -1709,7 +1709,7 @@ Will result in the value <span class="lit">@2015-01-01</span>, the decimal compo
 
 To avoid the potential confusion of calendar-based date/time arithmetic with definite duration date/time arithmetic, CQL defines definite-duration date/time arithmetic for seconds and below, and calendar-based date/time arithmetic for seconds and above. At the second, calendar-based and definite-duration-based date/time arithmetic are identical. Using a definite-quantity duration above days (and weeks) in a date/time arithmetic calculation will result in a run-time error.
 
-Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in https://www.iso.org/iso-8601-date-and-time-format.html[ISO8601]. Specifically:
+Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html). Specifically:
 
 <a name="table-2-p"></a>
 [cols=",",options="header",]
