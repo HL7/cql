@@ -25,12 +25,41 @@ Clinical Decision Support and Clinical Quality Measurement are closely related, 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
 
 <a name="table-1-a"></a>
-| | Model Type | Quality Information | Computable Expression Logic | Metadata |
-|----|----|----|----|----|
-| *Clinical Decision Support (CDS)* |[Physical and Logical](#approach) |[Virtual Medical Record (vMR)](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338) |[CDS Knowledge Artifact Specification](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337) |[CDS Knowledge Artifact Specification](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337) / [Decision Support Service](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12) |
-| *Electronic Clinical Quality Measurement (eCQM)* |[Physical](#approach) |[Quality Reporting Document Architecture (QRDA)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35) |[Health Quality Measure Format (HQMF)](#health-quality-measure-format-hqmf) |[Health Quality Measure Format (HQMF)](#health-quality-measure-format-hqmf) |
-|[Logical](#approach) |[Quality Data Model (QDM)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346) |[Quality Data Model (QDM)](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346)| |
-{: .grid .table .table-striped}
+
+<table class="grid table table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Model Type</th>
+      <th>Quality Information</th>
+      <th>Computable Expression Logic</th>
+      <th>Metadata</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Clinical Decision Support (CDS)</em></td>
+      <td><a href="#approach">Physical and Logical</a></td>
+      <td><a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=338">Virtual Medical Record (vMR)</a></td>
+      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337">CDS Knowledge Artifact Specification</a></td>
+      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337">CDS Knowledge Artifact Specification</a> / <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=12">Decision Support Service</a></td>
+    </tr>
+    <tr>
+      <td rowspan="2"><em>Electronic Clinical Quality Measurement (eCQM)</em></td>
+      <td><a href="#approach">Physical</a></td>
+      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35">Quality Reporting Document Architecture (QRDA)</a></td>
+      <td><a href="#health-quality-measure-format-hqmf">Health Quality Measure Format (HQMF)</a></td>
+      <td><a href="#health-quality-measure-format-hqmf">Health Quality Measure Format (HQMF)</a></td>
+    </tr>
+    <tr>
+      <td><a href="#approach">Logical</a></td>
+      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">Quality Data Model (QDM)</a></td>
+      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">Quality Data Model (QDM)</a></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
 Table 1‑A - Relationship of the current specifications to each component
 
 The discrepancy shown here between standards used in the different domains introduces burdens on both vendors and providers in electronic healthcare quality domains, including:
@@ -106,15 +135,14 @@ The audience for this specification includes stakeholders and interested parties
 The specification is written with the following major roles in mind:
 
 <a name="table-1-b"></a>
-[cols=",",options="header"]
-|====================================================================================================================================================================================================================================
-|Role |Description
-|*Author* |A clinical domain expert or clinical artifact author intending to use the Clinical Quality Language specification to author or understand quality artifacts
-|*Developer* |A developer interested in building more complex clinical quality artifacts as well as shared libraries for use by authors
-|*Integrator*  |A health IT professional interested in integrating quality artifacts based on the Clinical Quality Language specification into a health quality system
-|*Implementer* |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
-|====================================================================================================================================================================================================================================
 
+|Role |Description
+|---|---
+|**Author** |A clinical domain expert or clinical artifact author intending to use the Clinical Quality Language specification to author or understand quality artifacts
+|**Developer** |A developer interested in building more complex clinical quality artifacts as well as shared libraries for use by authors
+|**Integrator**  |A health IT professional interested in integrating quality artifacts based on the Clinical Quality Language specification into a health quality system
+|**Implementer** |A systems analyst, architect, or developer interested in building language processing applications for artifacts based on the Clinical Quality Language specification, such as translators, interpreters, tooling, etc.
+{: .grid .table .table-striped}
 Table 1‑B - Major roles that this specification was written for
 
 Note that although the [Author's Guide (Chapter 2)](02-authorsguide.html) is intended for a non-technical audience, the material is still somewhat technical in nature, and that readers will benefit from some familiarity with and/or training in basic computer language and database language topics.

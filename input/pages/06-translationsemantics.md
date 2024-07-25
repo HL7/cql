@@ -42,11 +42,11 @@ To represent types, CQL uses the _type-specifier_ construct. In ELM, an equivale
 [cols=",",options="header",]
 |================================================
 |CQL Specifier |ELM Equivalent
-|*_named-type-specifier_* |NamedTypeSpecifier
-|*_interval-type-specifier_* |IntervalTypeSpecifier
-|*_list-type-specifier_* |ListTypeSpecifier
-|*_tuple-type-specifier_* |TupleTypeSpecifier
-|*_choice-type-specifier_* |ChoiceTypeSpecifier
+|**_named-type-specifier_** |NamedTypeSpecifier
+|**_interval-type-specifier_** |IntervalTypeSpecifier
+|**_list-type-specifier_** |ListTypeSpecifier
+|**_tuple-type-specifier_** |TupleTypeSpecifier
+|**_choice-type-specifier_** |ChoiceTypeSpecifier
 |================================================
 
 Table 6‑B - The ELM equivalent for each CQL type-specifier
@@ -63,20 +63,20 @@ The following table defines the mapping between the various CQL literals and the
 |================================================
 |CQL Literal |ELM Equivalent
 |<span class="kw">null</span> |Null
-|*_boolean-literal_* |Boolean
-|*_integer-literal_* |Literal (valueType="Integer")
-|*_long-literal_* |Literal (valueType="Long")
-|*_decimal-literal_* |Literal (valueType="Decimal")
-|*_quantity-literal_* |Quantity
-|*_ratio-literal_* |Ratio
-|*_string-literal_* |Literal (valueType="String")
-|*_date-literal_* |Date
-|*_date-time-literal_* |DateTime
-|*_time-literal_* |Time
-|*_interval-selector_* |Interval
-|*_list-selector_* |List
-|*_tuple-selector_* |Tuple
-|*_instance-selector_* |Instance
+|**_boolean-literal_** |Boolean
+|**_integer-literal_** |Literal (valueType="Integer")
+|**_long-literal_** |Literal (valueType="Long")
+|**_decimal-literal_** |Literal (valueType="Decimal")
+|**_quantity-literal_** |Quantity
+|**_ratio-literal_** |Ratio
+|**_string-literal_** |Literal (valueType="String")
+|**_date-literal_** |Date
+|**_date-time-literal_** |DateTime
+|**_time-literal_** |Time
+|**_interval-selector_** |Interval
+|**_list-selector_** |List
+|**_tuple-selector_** |Tuple
+|**_instance-selector_** |Instance
 |================================================
 
 Table 6‑C - The ELM equivalent for each CQL Literal
@@ -96,7 +96,7 @@ Most of the functions and operations available in CQL have a direct counterpart 
 |<span class="kw">not</span> |Not
 |<span class="kw">or</span> |Or
 |<span class="kw">xor</span> |Xor
-|<span class="kw">*implies*</span> |Implies
+|<span class="kw">implies</span> |Implies
 |============================
 
 Table 6‑D - The ELM equivalent for each CQL logical operator
@@ -178,7 +178,7 @@ Table 6‑G - The ELM equivalent for each CQL comparison operator
 |<span class="kw">minimum</span> |MinValue
 |<span class="kw">mod</span> |Modulo
 |<span class="sym">*</span> |Multiply
-|<span class="sym">-</span> *(unary minus)* |Negate
+|<span class="sym">-</span> **(unary minus)** |Negate
 |<span class="kw">predecessor</span> |Predecessor
 |<span class="sym">^</span> |Power
 |<span class="id">Round</span> |Round
@@ -201,7 +201,7 @@ Table 6‑H - The ELM equivalent for each CQL arithmetic operator
 |<span class="sym">+</span>, <span class="sym">&</span> |Concatenate (when & is used, a Coalesce(X, ‘’) is applied to each operand
 |<span class="id">EndsWith</span> |EndsWith
 |<span class="sym">[]</span> |Indexer
-|<span class="id">*LastPositionOf*</span> |LastPositionOf
+|<span class="id">LastPositionOf</span> |LastPositionOf
 |<span class="id">Length</span> |Length
 |<span class="id">Lower</span> |Lower
 |<span class="id">Matches</span> |Matches
@@ -227,7 +227,7 @@ Table 6‑I - The ELM equivalent for each CQL <span class="kw">String</span> ope
 |<span class="kw">before</span> |Before
 |<span class="id">Date</span> |Date
 |<span class="id">DateTime</span> |DateTime
-|*_component_* <span class="kw">from</span> |DateTimeComponentFrom
+|**_component_** <span class="kw">from</span> |DateTimeComponentFrom
 |<span class="kw">difference</span>..<span class="kw">between</span> |DifferenceBetween
 |<span class="kw">duration</span>..<span class="kw">between</span> |DurationBetween
 |<span class="id">Now</span> |Now
@@ -354,14 +354,14 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 [cols=",",options="header",]
 |==================================================================================
 |CQL Operator |ELM Equivalent
-|<span class="id">AgeIn</span>*__-precision__* |CalculateAge (with patient birthdate reference supplied)
-|<span class="id">AgeIn</span>*__-precision-__*<span class="id">At</span> |CalculateAgeAt (with patient birthdate reference supplied)
-|<span class="id">CalculateAgeIn</span>*__-precision__* |CalculateAge
-|<span class="id">CalculateAgeIn</span>*__-precision-__*<span class="id">At</span> |CalculateAgeAt
+|<span class="id">AgeIn</span>**__-precision__** |CalculateAge (with patient birthdate reference supplied)
+|<span class="id">AgeIn</span>**__-precision-__**<span class="id">At</span> |CalculateAgeAt (with patient birthdate reference supplied)
+|<span class="id">CalculateAgeIn</span>**__-precision__** |CalculateAge
+|<span class="id">CalculateAgeIn</span>**__-precision-__**<span class="id">At</span> |CalculateAgeAt
 |<span class="sym">=</span> |Equal
 |<span class="sym">~</span> |Equivalent
-|<span class="kw">in</span> *(Codesystem)* |InCodeSystem
-|<span class="kw">in</span> *(Valueset)* |InValueSet
+|<span class="kw">in</span> **(Codesystem)** |InCodeSystem
+|<span class="kw">in</span> **(Valueset)** |InValueSet
 |==================================================================================
 
 Table 6‑N - The ELM equivalent for each CQL clinical operator
@@ -380,15 +380,15 @@ The CQL query construct has a direct representation in ELM, as shown by the foll
 [cols=",",options="header",]
 |==========================================
 |CQL Construct |ELM Equivalent
-|*_query_* |Query
-|*_aliased-query-source_* |AliasedQuerySource
-|*_let-clause_* |LetClause
-|*_with-clause_* |With
-|*_without-clause_* |Without
-|*_where-clause_* |Query (where element)
-|*_return-clause_* |ReturnClause
-|*_aggregtate-clause_* |AggregateClause
-|*_sort-clause_* |SortClause
+|**_query_** |Query
+|**_aliased-query-source_** |AliasedQuerySource
+|**_let-clause_** |LetClause
+|**_with-clause_** |With
+|**_without-clause_** |Without
+|**_where-clause_** |Query (where element)
+|**_return-clause_** |ReturnClause
+|**_aggregtate-clause_** |AggregateClause
+|**_sort-clause_** |SortClause
 |==========================================
 
 Table 6‑O - The ELM equivalent for each CQL construct

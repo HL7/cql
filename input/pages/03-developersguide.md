@@ -14,12 +14,12 @@ CQL defines the following basic lexical elements:
 [cols=",",options="header",]
 |================================================================================
 |Element |Description
-|*Whitespace* |Whitespace defines the separation between all tokens in the language
-|*Comment* |Comments are ignored by the language, allowing for descriptive text
-|*Literal* |Literals allow basic values to be represented within the language
-|*Symbol* |Symbols such as <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">*</span>, and <span class="sym">/</span>
-|*Keyword* |Grammar-recognized keywords such as define and where
-|*Identifier* |User-defined identifiers
+|**Whitespace** |Whitespace defines the separation between all tokens in the language
+|**Comment** |Comments are ignored by the language, allowing for descriptive text
+|**Literal** |Literals allow basic values to be represented within the language
+|**Symbol** |Symbols such as <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">*</span>, and <span class="sym">/</span>
+|**Keyword** |Grammar-recognized keywords such as define and where
+|**Identifier** |User-defined identifiers
 |================================================================================
 
 Table 3‑A - The basic lexical elements defined in CQL
@@ -88,17 +88,17 @@ Literals provide for the representation of basic values within CQL. The followin
 [cols=",",options="header",]
 |============================================================================================================
 |Literal |Description
-|*Null* |The null literal (<span class="kw">null</span>)
-|*Boolean* |The boolean literals (<span class="kw">true</span> and <span class="kw">false</span>)
-|*Integer* |Sequences of digits in the range 0..2^31^-1
-|*Long* |Sequences of digits in the range 0..2^63^-1
-|*Decimal* |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
-|*String* |Strings of any character enclosed within single-ticks (<span class="lit">'</span>)
-|*Date* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a date
-|*DateTime* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a datetime
-|*Time* |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a time
-|*Quantity* |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
-|*Ratio* |A ratio of two quantities, separated by a colon (<span class="sym">:</span>)
+|**Null** |The null literal (<span class="kw">null</span>)
+|**Boolean** |The boolean literals (<span class="kw">true</span> and <span class="kw">false</span>)
+|**Integer** |Sequences of digits in the range 0..2^31^-1
+|**Long** |Sequences of digits in the range 0..2^63^-1
+|**Decimal** |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
+|**String** |Strings of any character enclosed within single-ticks (<span class="lit">'</span>)
+|**Date** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a date
+|**DateTime** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a datetime
+|**Time** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a time
+|**Quantity** |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
+|**Ratio** |A ratio of two quantities, separated by a colon (<span class="sym">:</span>)
 |============================================================================================================
 
 Table 3‑B - The types of literals supported in CQL
@@ -134,15 +134,15 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 [cols=",",options="header",]
 |===============================================================================================
 |Symbol |Description
-|*:* |Definition operator, typically read as “defined as”. Also used to separate the numerator from denominator in Ratio literals
-|*()* |Parentheses for delimiting groups, as well as specifying and passing function parameters
-|*[]* |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
-|*{}* |Braces for delimiting lists and tuples
-|*<>* |Angle-brackets for delimiting generic types within type specifiers
-|*.* |Period for qualifiers and accessors
-|*,* |Comma for delimiting items in a syntactic list
-|*= != \<= < > >=* |Comparison operators for comparing values
-|*+ - * / ^* |Arithmetic operators for performing calculations
+|**:** |Definition operator, typically read as “defined as”. Also used to separate the numerator from denominator in Ratio literals
+|**()** |Parentheses for delimiting groups, as well as specifying and passing function parameters
+|**[]** |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
+|**{}** |Braces for delimiting lists and tuples
+|**<>** |Angle-brackets for delimiting generic types within type specifiers
+|**.** |Period for qualifiers and accessors
+|**,** |Comma for delimiting items in a syntactic list
+|**= != \<= < > >=** |Comparison operators for comparing values
+|**+ - ** / ^* |Arithmetic operators for performing calculations
 |===============================================================================================
 
 Table 3‑D - The symbols supported by CQL to provide structure to the grammar and allow symbolic invocation of common operators such as addition
@@ -415,15 +415,15 @@ CQL escape sequences for strings also work for identifiers:
 [cols=",",options="header",]
 |========================================================================================
 |Escape |Character
-|*\'* |Single-quote
-|*\"* |Double-quote
-|*\`* |Backtick
-|*\r* |Carriage Return
-|*\n* |Line Feed
-|*\t* |Tab
-|*\f* |Form Feed
-|*\\* |Backslash
-|*\uXXXX* |Unicode character, where XXXX is the hexadecimal representation of the character
+|**\'** |Single-quote
+|**\"** |Double-quote
+|**\`** |Backtick
+|**\r** |Carriage Return
+|**\n** |Line Feed
+|**\t** |Tab
+|**\f** |Form Feed
+|**\\** |Backslash
+|**\uXXXX** |Unicode character, where XXXX is the hexadecimal representation of the character
 |========================================================================================
 
 Table 3‑E - The escape sequences for identifiers in CQL
@@ -442,37 +442,37 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 [cols=",",options="header",]
 |==============================================================
 |Category |Operators
-|*Primary* |<span class="sym">.</span> <span class="sym">[]</span> <span class="sym">()</span>
-|*Conversion Phrase* |<span class="kw">convert</span>..<span class="kw">to</span>
-|*Unary Arithmetic* |unary <span class="sym">+/-</span>
-|*Extractor* |<span class="kw">start</span> <span class="kw">end</span> <span class="kw">difference</span> <span class="kw">duration</span> <span class="kw">width</span> <span class="kw">successor</span> <span class="kw">predecessor of</span> +
+|**Primary** |<span class="sym">.</span> <span class="sym">[]</span> <span class="sym">()</span>
+|**Conversion Phrase** |<span class="kw">convert</span>..<span class="kw">to</span>
+|**Unary Arithmetic** |unary <span class="sym">+/-</span>
+|**Extractor** |<span class="kw">start</span> <span class="kw">end</span> <span class="kw">difference</span> <span class="kw">duration</span> <span class="kw">width</span> <span class="kw">successor</span> <span class="kw">predecessor of</span> +
 _component_ <span class="kw">singleton from</span>
-|*Exponentiation* |<span class="sym">^</span>
-|*Multiplicative* |<span class="sym">*</span> <span class="sym">/</span> <span class="kw">div mod</span>
-|*Additive* |<span class="sym">+</span> <span class="sym">-</span> <span class="sym">&</span>
-|*Conditional* |<span class="kw">if</span>..<span class="kw">then</span>..<span class="kw">else</span> +
+|**Exponentiation** |<span class="sym">^</span>
+|**Multiplicative** |<span class="sym">*</span> <span class="sym">/</span> <span class="kw">div mod</span>
+|**Additive** |<span class="sym">+</span> <span class="sym">-</span> <span class="sym">&</span>
+|**Conditional** |<span class="kw">if</span>..<span class="kw">then</span>..<span class="kw">else</span> +
 <span class="kw">case</span>..<span class="kw">else</span>..<span class="kw">end</span>
-|*Unary List* |<span class="kw">distinct</span> <span class="kw">collapse</span> <span class="kw">flatten</span> <span class="kw">expand</span>
-|*Unary Test* |<span class="kw">is null</span> <span class="kw">true</span> <span class="kw">false</span>
-|*Type Operators* |<span class="kw">is as cast</span>..<span class="kw">as</span>
-|*Unary Logical* |<span class="kw">not exists</span>
-|*Between* |<span class="kw">between</span> +
+|**Unary List** |<span class="kw">distinct</span> <span class="kw">collapse</span> <span class="kw">flatten</span> <span class="kw">expand</span>
+|**Unary Test** |<span class="kw">is null</span> <span class="kw">true</span> <span class="kw">false</span>
+|**Type Operators** |<span class="kw">is as cast</span>..<span class="kw">as</span>
+|**Unary Logical** |<span class="kw">not exists</span>
+|**Between** |<span class="kw">between</span> +
 _precision_ <span class="kw">between</span> +
 <span class="kw">duration in</span> _precision_ <span class="kw">between</span> +
 <span class="kw">difference in</span> _precision_ <span class="kw">between</span>
-|*Comparison* |<span class="sym">\<=</span> <span class="sym"><</span> <span class="sym">></span> <span class="sym">>=</span>
-|*Timing Phrase* |<span class="kw">same as</span> +
+|**Comparison** |<span class="sym">\<=</span> <span class="sym"><</span> <span class="sym">></span> <span class="sym">>=</span>
+|**Timing Phrase** |<span class="kw">same as</span> +
 <span class="kw">includes</span> +
 <span class="kw">during</span> +
 <span class="kw">before/after</span> +
 <span class="kw">within</span>
-|*Interval Operators* |<span class="kw">meets overlaps starts ends</span>
-|*Equality* |<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span>
-|*Membership* |<span class="kw">in contains</span>
-|*Conjunction* |<span class="kw">and</span>
-|*Disjunction* |<span class="kw">or xor</span>
-|*Implication* |<span class="kw">implies</span>
-|*Binary List* |<span class="kw">union intersect except</span>
+|**Interval Operators** |<span class="kw">meets overlaps starts ends</span>
+|**Equality** |<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span>
+|**Membership** |<span class="kw">in contains</span>
+|**Conjunction** |<span class="kw">and</span>
+|**Disjunction** |<span class="kw">or xor</span>
+|**Implication** |<span class="kw">implies</span>
+|**Binary List** |<span class="kw">union intersect except</span>
 |==============================================================
 
 Table 3‑F - The order of operator precedence in CQL
@@ -624,14 +624,14 @@ All the system-defined types derive directly from System.Any. The primitive type
 [cols=",,",options="header",]
 |=========================================================================
 |Type |Range |Step Size
-|*Boolean* |false..true |N/A
-|*Integer* |-2^31^..2^31^–1 |1
-|*Long* |-2^63^..2^63^-1 |1
-|*Date* |@0001-01-01..@9999-12-31 |1 day
-|*DateTime* |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
-|*Decimal* |(-10^28^+1)/10^8^..(10^28^-1)/10^8^ |10^-8^
-|*String* |All strings of length 2^31^-1 or less. |N/A
-|*Time* |@T00:00:00.0..@T23:59:59.999 |1 millisecond
+|**Boolean** |false..true |N/A
+|**Integer** |-2^31^..2^31^–1 |1
+|**Long** |-2^63^..2^63^-1 |1
+|**Date** |@0001-01-01..@9999-12-31 |1 day
+|**DateTime** |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
+|**Decimal** |(-10^28^+1)/10^8^..(10^28^-1)/10^8^ |10^-8^
+|**String** |All strings of length 2^31^-1 or less. |N/A
+|**Time** |@T00:00:00.0..@T23:59:59.999 |1 millisecond
 |=========================================================================
 
 Table 3‑G - The primitive types and their ranges supported in CQL
@@ -644,10 +644,10 @@ In addition, CQL defines several structured types to facilitate representation a
 [cols=",",options="header",]
 |==========================================================================================================
 |Type |Description
-|*Code* |Represents a clinical terminology code, including the code identifier, system, version, and display.
-|*Concept* |Represents a single concept as a list of equivalent Codes.
-|*Quantity* |Represents a quantity with a dimension, specified in UCUM units.
-|*Ratio* |Represents a ratio between two quantities
+|**Code** |Represents a clinical terminology code, including the code identifier, system, version, and display.
+|**Concept** |Represents a single concept as a list of equivalent Codes.
+|**Quantity** |Represents a quantity with a dimension, specified in UCUM units.
+|**Ratio** |Represents a ratio between two quantities
 |==========================================================================================================
 
 Table 3‑H - The structured types to facilitate representation and manipulation of clinical information
@@ -863,40 +863,40 @@ will result in <span class="kw">null</span>. The convert syntax is equivalent to
 [cols=",",options="header",]
 |==============================================================================================================================================================================================================
 |Operator |Description
-|*ToBoolean(Decimal)* |Converts the decimal representation of a boolean value (`0.0` or `1.0`) to a Boolean value
-|*ToBoolean(Integer)* |Converts the integer representation of a boolean value (`0` or `1`) to a Boolean value
-|*ToBoolean(Long)* |Converts the long representation of a boolean value (`0L` or `1L`) to a Boolean value
-|*ToBoolean(String)* |Converts the string representation of a boolean value to a Boolean value
-|*ToInteger(Boolean)* |Converts a boolean to an integer value, true results in `1`, false results in `0`
-|*ToInteger(Long)* |Converts a Long value to an equivalent Integer value
-|*ToInteger(String)* |Converts the string representation of an integer value to an Integer value using the format (<span class="sym">+\|-</span>)d*
-|*ToLong(Boolean)* |Converts a boolean value to an equivalent Long value, true results in `1L`, false results in `0L`
-|*ToLong(Integer)* |Converts an Integer value to an equivalent Long value
-|*ToLong(String)* |Converts the string representation of a long value to a Long value using the format (<span class="sym">+\|-</span>)d*
-|*ToDecimal(Boolean)* |Converts a Boolean value to an equivalent Decimal value, true results in `1.0`, false results in `0.0`
-|*ToDecimal(Integer)* |Converts an Integer value to an equivalent Decimal value
-|*ToDecimal(Long)* |Converts a Long value to an equivalent Decimal value
-|*ToDecimal(String)* |Converts the string representation of a decimal value to a Decimal value using the format (<span class="sym">+\|-</span>)d*.d*
-|*ToQuantity(Decimal)* |Converts a Decimal value to a Quantity with a default unit ('1')
-|*ToQuantity(Integer)* |Converts an Integer value to a Quantity with a default unit ('1')
-|*ToQuantity(String)* |Converts the string representation of a quantity value to a Quantity value using the format (<span class="sym">+\|-</span>)d*.d*'units'
-|*ToRatio(String)* |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
-|*ToDate(String)* |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
-|*ToDate(DateTime)* |Converts a DateTime to a Date. This is equivalent to invoking <span class="kw">date from</span> on the DateTime value
-|*ToDateTime(Date)* |Converts a Date value to a DateTime with all time components unspecified and the timezone offset of the request
-|*ToDateTime(String)* |Converts the string representation of a datetime value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
-|*ToTime(String)* |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
-|*ToString(Boolean)* |Converts a Boolean value to its string representation (true\|false)
-|*ToString(Integer)* |Converts an Integer value to its string representation
-|*ToString(Long)* |Converts a Long value to its string representation
-|*ToString(Decimal)* |Converts a Decimal value to its string representation
-|*ToString(Quantity)* |Converts a Quantity value to its string representation
-|*ToString(Ratio)* |Converts a Ratio value to its string representation
-|*ToString(Date)* |Converts a Date value to its string representation
-|*ToString(DateTime)* |Converts a DateTime value to its string representation
-|*ToString(Time)* |Converts a Time value to its string representation
-|*ToConcept(Code)* |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
-|*ToConcept(List<Code>)* |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
+|**ToBoolean(Decimal)** |Converts the decimal representation of a boolean value (`0.0` or `1.0`) to a Boolean value
+|**ToBoolean(Integer)** |Converts the integer representation of a boolean value (`0` or `1`) to a Boolean value
+|**ToBoolean(Long)** |Converts the long representation of a boolean value (`0L` or `1L`) to a Boolean value
+|**ToBoolean(String)** |Converts the string representation of a boolean value to a Boolean value
+|**ToInteger(Boolean)** |Converts a boolean to an integer value, true results in `1`, false results in `0`
+|**ToInteger(Long)** |Converts a Long value to an equivalent Integer value
+|**ToInteger(String)** |Converts the string representation of an integer value to an Integer value using the format (<span class="sym">+\|-</span>)d*
+|**ToLong(Boolean)** |Converts a boolean value to an equivalent Long value, true results in `1L`, false results in `0L`
+|**ToLong(Integer)** |Converts an Integer value to an equivalent Long value
+|**ToLong(String)** |Converts the string representation of a long value to a Long value using the format (<span class="sym">+\|-</span>)d*
+|**ToDecimal(Boolean)** |Converts a Boolean value to an equivalent Decimal value, true results in `1.0`, false results in `0.0`
+|**ToDecimal(Integer)** |Converts an Integer value to an equivalent Decimal value
+|**ToDecimal(Long)** |Converts a Long value to an equivalent Decimal value
+|**ToDecimal(String)** |Converts the string representation of a decimal value to a Decimal value using the format (<span class="sym">+\|-</span>)d*.d*
+|**ToQuantity(Decimal)** |Converts a Decimal value to a Quantity with a default unit ('1')
+|**ToQuantity(Integer)** |Converts an Integer value to a Quantity with a default unit ('1')
+|**ToQuantity(String)** |Converts the string representation of a quantity value to a Quantity value using the format (<span class="sym">+\|-</span>)d*.d*'units'
+|**ToRatio(String)** |Converts the string representation of a ratio value to a Ratio value using the format <quantity>:<quantity>
+|**ToDate(String)** |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
+|**ToDate(DateTime)** |Converts a DateTime to a Date. This is equivalent to invoking <span class="kw">date from</span> on the DateTime value
+|**ToDateTime(Date)** |Converts a Date value to a DateTime with all time components unspecified and the timezone offset of the request
+|**ToDateTime(String)** |Converts the string representation of a datetime value to a DateTime value using ISO-8601 format: YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm
+|**ToTime(String)** |Converts the string representation of a time value to a Time value using ISO-8601 format: hh:mm:ss.fff
+|**ToString(Boolean)** |Converts a Boolean value to its string representation (true\|false)
+|**ToString(Integer)** |Converts an Integer value to its string representation
+|**ToString(Long)** |Converts a Long value to its string representation
+|**ToString(Decimal)** |Converts a Decimal value to its string representation
+|**ToString(Quantity)** |Converts a Quantity value to its string representation
+|**ToString(Ratio)** |Converts a Ratio value to its string representation
+|**ToString(Date)** |Converts a Date value to its string representation
+|**ToString(DateTime)** |Converts a DateTime value to its string representation
+|**ToString(Time)** |Converts a Time value to its string representation
+|**ToConcept(Code)** |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
+|**ToConcept(List<Code>)** |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
 |==============================================================================================================================================================================================================
 
 Table 3‑I - The defined type conversion operators in CQL
@@ -925,20 +925,20 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 [cols=",,,,,,,,,,,,,",options="header",]
 |===============================================================================================
 |From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code> |ValueSet
-|*Boolean* |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |- |-
-|*Integer* |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
-|*Long* |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |- |-
-|*Decimal* |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |- |-
-|*Quantity* |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |- |-
-|*Ratio* |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |- |-
-|*String* |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |- |-
-|*Date* |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |- |-
-|*DateTime* |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |- |-
-|*Time* |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |- |-
-|*Code* |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |- |-
-|*Concept* |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit |-
-|*List<Code>* |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A |-
-|*ValueSet* |- |- |- |- |- |- |- |- |- |- |- |- |Implicit |N/A
+|**Boolean** |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |- |-
+|**Integer** |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
+|**Long** |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |- |-
+|**Decimal** |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |- |-
+|**Quantity** |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |- |-
+|**Ratio** |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |- |-
+|**String** |Explicit |Explicit |Explicit |Explicit |Explicit |Explicit |N/A |Explicit |Explicit |Explicit |- |- |- |-
+|**Date** |- |- |- |- |- |- |Explicit |N/A |Implicit |- |- |- |- |-
+|**DateTime** |- |- |- |- |- |- |Explicit |Explicit |N/A |- |- |- |- |-
+|**Time** |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |- |-
+|**Code** |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |- |-
+|**Concept** |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit |-
+|**List<Code>** |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A |-
+|**ValueSet** |- |- |- |- |- |- |- |- |- |- |- |- |Implicit |N/A
 |===============================================================================================
 
 Table 3‑J - The explicit and implicit conversions supported in CQL

@@ -3531,7 +3531,7 @@ Between Date and DateTime +
 From Code to Concept +
 Between Concept and List<Code>
 
-Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: *YYYY-MM-DDThh:mm:ss(+|-)hh:mm*.
+Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: **YYYY-MM-DDThh:mm:ss(+|-)hh:mm**.
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3631,7 +3631,7 @@ The ConvertsToDate operator returns true if the value of its argument is or can 
 
 For String values, The operator expects the string to be formatted using the ISO-8601 date representation:
 
-*YYYY-MM-DD*
+**YYYY-MM-DD**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3655,7 +3655,7 @@ The ConvertsToDateTime operator returns true if the value of its argument is or 
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
+**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3675,7 +3675,7 @@ ConvertsToDecimal : UnaryExpression
 
 The ConvertsToDecimal operator returns true if the value of its argument is or can be converted to a Decimal value. The operator accepts strings using the following format:
 
-*(+|-)?\#0(.0#)?*
+**(+|-)?\#0(.0#)?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3697,7 +3697,7 @@ ConvertsToLong : UnaryExpression
 
 The ConvertsToLong operator returns true if the value of its argument is or can be converted to a Long value. The operator accepts strings using the following format:
 
-*(+|-)?#0*
+**(+|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3719,7 +3719,7 @@ ConvertsToInteger : UnaryExpression
 
 The ConvertsToInteger operator returns true if the value of its argument is or can be converted to an Integer value. The operator accepts strings using the following format:
 
-*(+|-)?#0*
+**(+|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -3743,7 +3743,7 @@ The ConvertsToQuantity operator returns true if the value of its argument is or 
 
 For String values, the operator accepts strings using the following format:
 
-*(+|-)?\#0(.0#)?('<unit>')?*
+**(+|-)?\#0(.0#)?('<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -3765,7 +3765,7 @@ ConvertsToRatio : UnaryExpression
 
 The ConvertsToRatio operator returns true if the value of its argument is or can be converted to a Ratio value. The operator accepts strings using the following format:
 
-*<quantity>:<quantity>*
+**<quantity>:<quantity>**
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -3806,7 +3806,7 @@ The ConvertsToTime operator returns true if the value of its argument is or can 
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-*hh:mm:ss.fff*
+**hh:mm:ss.fff**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3894,7 +3894,7 @@ The ToDate operator converts the value of its argument to a Date value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 date representation:
 
-*YYYY-MM-DD*
+**YYYY-MM-DD**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3920,7 +3920,7 @@ The ToDateTime operator converts the value of its argument to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-*YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))*
+**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -3942,7 +3942,7 @@ ToDecimal : UnaryExpression
 
 The <span class="id">ToDecimal</span> operator converts the value of its argument to a <span class="id">Decimal</span> value. The operator accepts strings using the following format:
 
-*(+|-)?\#0(.0#)?*
+**(+|-)?\#0(.0#)?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -3964,7 +3964,7 @@ ToInteger : UnaryExpression
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
-*(+|-)?#0*
+**(+|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -4000,7 +4000,7 @@ ToLong : UnaryExpression
 
 The ToLong operator converts the value of its argument to a Long value. The operator accepts strings using the following format:
 
-*(+|-)?#0*
+**(+|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -4024,7 +4024,7 @@ The ToQuantity operator converts the value of its argument to a Quantity value. 
 
 For String values, the operator accepts strings using the following format:
 
-*(+|-)?\#0(.0#)?('<unit>')?*
+**(+|-)?\#0(.0#)?('<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -4046,7 +4046,7 @@ ToRatio : UnaryExpression
 
 The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
 
-*<quantity>:<quantity>*
+**<quantity>:<quantity>**
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -4067,14 +4067,14 @@ The ToString operator converts the value of its argument to a String value. The 
 | Datatype | String Representation
 |-|-
 |Boolean |true\|false
-|Integer |*(-)?#0*
-|Long |*(-)?#0*
-|Decimal |*(-)?\#0.0#*
-|Quantity |*(-)?\#0.0# '<unit>'*
-|Date |*YYYY-MM-DD*
-|DateTime |*YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm*
-|Time	|*hh:mm:ss.fff*
-|Ratio |*<quantity>:<quantity>*
+|Integer |**(-)?#0**
+|Long |**(-)?#0**
+|Decimal |**(-)?\#0.0#**
+|Quantity |**(-)?\#0.0# '<unit>'**
+|Date |**YYYY-MM-DD**
+|DateTime |**YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm**
+|Time	|**hh:mm:ss.fff**
+|Ratio |**<quantity>:<quantity>**
 {: .grid .table .table-striped}
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
@@ -4091,7 +4091,7 @@ The ToTime operator converts the value of its argument to a Time value.
 
 For String values, the operator expects the string to be formatted using ISO-8601 time representation:
 
-*hh:mm:ss.fff*
+**hh:mm:ss.fff**
 
 See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
 

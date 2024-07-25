@@ -30,17 +30,17 @@ Libraries can contain any or all of the following constructs:
 [cols=",",options="header"]
 |====================================================================================================================================================================
 |Construct |Description
-|*library* |Header information for the library, including the name and version, if any.
-|*using* |Data model information, specifying that the library may access types from the referenced data model.
-|*include* |Referenced library information, specifying that the library may access constructs defined in the referenced library.
-|*codesystem* |Codesystem information, specifying that logic within the library may reference the specified codesystem by the given name.
-|*valueset* |Valueset information, specifying that logic within the library may reference the specified valueset by the given name.
-|*code* |Code information, specifying that logic within the library may reference the specified code by the given name.
-|*concept* |Concept information, specifying that logic within the library may reference the specified concept by the given name.
-|*parameter* |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
-|*context* |Specifies the overall context, such as Patient or Practitioner, to be used in the statements that are declared in the library. Note that a library may have multiple context declarations, and that each context declaration establishes the context for the statements that follow, until the next context declaration is encountered. However, best practice is that each library should only contain a single context declaration as the first statement in the library.
-|*define* |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
-|*function* |Libraries may also contain function definitions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. These are most often used as part of shared libraries.
+|**library** |Header information for the library, including the name and version, if any.
+|**using** |Data model information, specifying that the library may access types from the referenced data model.
+|**include** |Referenced library information, specifying that the library may access constructs defined in the referenced library.
+|**codesystem** |Codesystem information, specifying that logic within the library may reference the specified codesystem by the given name.
+|**valueset** |Valueset information, specifying that logic within the library may reference the specified valueset by the given name.
+|**code** |Code information, specifying that logic within the library may reference the specified code by the given name.
+|**concept** |Concept information, specifying that logic within the library may reference the specified concept by the given name.
+|**parameter** |Parameter information, specifying that the library expects parameters to be supplied by the evaluating environment.
+|**context** |Specifies the overall context, such as Patient or Practitioner, to be used in the statements that are declared in the library. Note that a library may have multiple context declarations, and that each context declaration establishes the context for the statements that follow, until the next context declaration is encountered. However, best practice is that each library should only contain a single context declaration as the first statement in the library.
+|**define** |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
+|**function** |Libraries may also contain function definitions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. These are most often used as part of shared libraries.
 |====================================================================================================================================================================
 
 Table 2‑A - Constructs that CQL libraries can contain
@@ -179,9 +179,9 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 [cols=",",options="header",]
 |=====================================================================================================================================================================================
 |Element |Description
-|*Name* |A unique identifier for the parameter within the library
-|*Type* |The type of the parameter – Note that the type is only required if no default value is provided. Otherwise, the type of the parameter is determined based on the default value.
-|*Default Value* |An optional default value for the parameter
+|**Name** |A unique identifier for the parameter within the library
+|**Type** |The type of the parameter – Note that the type is only required if no default value is provided. Otherwise, the type of the parameter is determined based on the default value.
+|**Default Value** |An optional default value for the parameter
 |=====================================================================================================================================================================================
 
 Table 2‑B - Elements that define a parameter
@@ -241,9 +241,9 @@ The following table lists some typical contexts:
 [cols=",",options="header",]
 |========================================================================================================================================
 |Context |Description
-|*Patient* |The Patient context specifies that expressions should be interpreted with reference to a single patient.
-|*Practitioner* |The Practitioner context specifies that expressions should be interpreted with reference to a single practitioner.
-|*Unfiltered* |The Unfiltered context indicates that expressions are not interpreted with reference to a particular context.
+|**Patient** |The Patient context specifies that expressions should be interpreted with reference to a single patient.
+|**Practitioner** |The Practitioner context specifies that expressions should be interpreted with reference to a single practitioner.
+|**Unfiltered** |The Unfiltered context indicates that expressions are not interpreted with reference to a particular context.
 |========================================================================================================================================
 
 Table 2‑C - Typical contexts for CQL
@@ -449,10 +449,10 @@ The query construct has a _primary source_ and four main _clauses_ that each all
 [cols=",",options="header",]
 |============================================================================================================================================
 |Clause |Operation
-|*Relationship (with/without)* |Allows relationships between the primary source and other clinical information to be used to filter the result.
-|*Where* |The where clause allows conditions to be expressed that filter the result to only the information that meets the condition.
-|*Return* |The return clause allows the result set to be shaped as needed, removing elements, or including new calculated values.
-|*Sort* |The sort clause allows the result set to be ordered according to any criteria as needed.
+|**Relationship (with/without)** |Allows relationships between the primary source and other clinical information to be used to filter the result.
+|**Where** |The where clause allows conditions to be expressed that filter the result to only the information that meets the condition.
+|**Return** |The return clause allows the result set to be shaped as needed, removing elements, or including new calculated values.
+|**Sort** |The sort clause allows the result set to be ordered according to any criteria as needed.
 |============================================================================================================================================
 
 Table 2‑D - Four main clauses for a query construct
@@ -733,16 +733,16 @@ CQL supports several types of simple values:
 [cols=",",options="header",]
 |=======================================
 |Value |Examples
-|*Boolean* |<span class="kw">true</span>, <span class="kw">false</span>, <span class="kw">null</span>
-|*Integer* |<span class="lit">16</span>, <span class="lit">-28</span>
-|*Decimal* |<span class="lit">100.015</span>
-|*String* |<span class="lit">'pending'</span>, <span class="lit">'active'</span>, <span class="lit">'complete'</span>
-|*Date* |<span class="lit">@2014-01-25</span>
-|*DateTime* |<span class="lit">@2014-01-25T14:30:14.559</span>
+|**Boolean** |<span class="kw">true</span>, <span class="kw">false</span>, <span class="kw">null</span>
+|**Integer** |<span class="lit">16</span>, <span class="lit">-28</span>
+|**Decimal** |<span class="lit">100.015</span>
+|**String** |<span class="lit">'pending'</span>, <span class="lit">'active'</span>, <span class="lit">'complete'</span>
+|**Date** |<span class="lit">@2014-01-25</span>
+|**DateTime** |<span class="lit">@2014-01-25T14:30:14.559</span>
 
 <span class="lit">@2014-01T</span>
 
-|*Time* |<span class="lit">@T12:00</span>
+|**Time** |<span class="lit">@T12:00</span>
 
 <span class="lit">@T14:30:14.559</span>
 
@@ -902,10 +902,10 @@ The <span class="id">Code</span> type has the following elements:
 [cols=",,",options="header",]
 |==================================================
 |Name |Type |Description
-|*code* |<span class="id">String</span> |The actual code within the code system.
-|*display* |<span class="id">String</span> |A description of the code.
-|*system* |<span class="id">String</span> |The identifier of the code system.
-|*version* |<span class="id">String</span> |The version of the code system.
+|**code** |<span class="id">String</span> |The actual code within the code system.
+|**display** |<span class="id">String</span> |A description of the code.
+|**system** |<span class="id">String</span> |The identifier of the code system.
+|**version** |<span class="id">String</span> |The version of the code system.
 |==================================================
 
 Table 2‑F - Elements that make up a <span class="kw">code</span> type
@@ -964,8 +964,8 @@ The <span class="id">Concept</span> type has the following elements:
 [cols=",,",options="header",]
 |=========================================================================
 |Name |Type |Description
-|*codes* |<span class="id">List<Code></span> |The list of semantically equivalent codes representing the concept.
-|*display* |<span class="id">String</span> |A description of the concept.
+|**codes** |<span class="id">List<Code></span> |The list of semantically equivalent codes representing the concept.
+|**display** |<span class="id">String</span> |A description of the concept.
 |=========================================================================
 
 Table 2‑G - Elements that make up a <span class="kw">Concept</span> type
@@ -1273,15 +1273,15 @@ The most basic operation in CQL involves comparison of two values. This is accom
 [cols=",,",options="header",]
 |===========================================================================================================================================
 |Operator |Name |Description
-|*=* |Equality |Returns <span class="kw">true</span> if the arguments are the same value. Returns <span class="kw">false</span> if arguments are not the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*!=* |Inequality |Returns <span class="kw">true</span> if the arguments are not the same value. Returns <span class="kw">false</span> if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*>* |Greater than |Returns <span class="kw">true</span> if the left argument is greater than the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*<* |Less than |Returns <span class="kw">true</span> if the left argument is less than the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*>=* |Greater than or equal |Returns <span class="kw">true</span> if the left argument is greater than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*\<=* |Less than or equal |Returns <span class="kw">true</span> if the left argument is less than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
-|*between* | |Returns <span class="kw">true</span> if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns <span class="kw">false</span> if the first argument is less than the second argument or greater than the third argument. Returns <span class="kw">null</span> if any or all arguments are <span class="kw">null</span>.
-|*~* |Equivalent |Returns <span class="kw">true</span> if the arguments are equivalent in value, or are both <span class="kw">null</span>; otherwise <span class="kw">false</span>
-|*!~* |Inequivalent |Returns <span class="kw">true</span> if the arguments are not equivalent and <span class="kw">false</span> otherwise.
+|**=** |Equality |Returns <span class="kw">true</span> if the arguments are the same value. Returns <span class="kw">false</span> if arguments are not the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**!=** |Inequality |Returns <span class="kw">true</span> if the arguments are not the same value. Returns <span class="kw">false</span> if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**>** |Greater than |Returns <span class="kw">true</span> if the left argument is greater than the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**<** |Less than |Returns <span class="kw">true</span> if the left argument is less than the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**>=** |Greater than or equal |Returns <span class="kw">true</span> if the left argument is greater than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**\<=** |Less than or equal |Returns <span class="kw">true</span> if the left argument is less than or equal to the right argument. Returns <span class="kw">false</span> if the left argument is greater than the right argument. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
+|**between** | |Returns <span class="kw">true</span> if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns <span class="kw">false</span> if the first argument is less than the second argument or greater than the third argument. Returns <span class="kw">null</span> if any or all arguments are <span class="kw">null</span>.
+|**~** |Equivalent |Returns <span class="kw">true</span> if the arguments are equivalent in value, or are both <span class="kw">null</span>; otherwise <span class="kw">false</span>
+|**!~** |Inequivalent |Returns <span class="kw">true</span> if the arguments are not equivalent and <span class="kw">false</span> otherwise.
 |===========================================================================================================================================
 
 Table 2‑H - The built-in comparison operators that CQL provides
@@ -1375,10 +1375,10 @@ Combining the results of comparisons and other boolean-valued expressions is ess
 [cols=",",options="header",]
 |==================================
 |Operator |Description
-|*and* |Logical conjunction
-|*or* |Logical disjunction
-|*xor* |Exclusive logical disjunction
-|*not* |Logical negation
+|**and** |Logical conjunction
+|**or** |Logical disjunction
+|**xor** |Exclusive logical disjunction
+|**not** |Logical negation
 |==================================
 
 Table 2‑I - Logical operations that CQL provides
@@ -1405,22 +1405,22 @@ The following table lists the arithmetic operations available in CQL:
 [cols=",,",options="header",]
 |===========================================================================================================================
 |Operator |Name |Description
-|*+* |addition |Performs numeric addition of its arguments
-|*-* |subtraction |Performs numeric subtraction of its arguments
-|*** |multiply |Performs numeric multiplication of its arguments
-|*/* |divide |Performs numeric division of its arguments
-|*div* |truncated divide |Performs integer division of its arguments
-|*mod* |modulo |Computes the remainder of the integer division of its arguments
-|*Ceiling* | |Returns the first integer greater than or equal to its argument
-|*Floor* | |Returns the first integer less than or equal to its argument
-|*Truncate* | |Returns the integer component of its argument
-|*Abs* | |Returns the absolute value of its argument
-|*-* |negate |Returns the negative value of its argument
-|*Round* | |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
-|*Ln* |natural logarithm |Computes the natural logarithm of its argument
-|*Log* |logarithm |Computes the logarithm of its first argument, using the second argument as the base
-|*Exp* |exponent |Raises e to the power given by its argument
-|*^* |exponentiation |Raises the first argument to the power given by the second argument
+|**+** |addition |Performs numeric addition of its arguments
+|**-** |subtraction |Performs numeric subtraction of its arguments
+|***** |multiply |Performs numeric multiplication of its arguments
+|**/** |divide |Performs numeric division of its arguments
+|**div** |truncated divide |Performs integer division of its arguments
+|**mod** |modulo |Computes the remainder of the integer division of its arguments
+|**Ceiling** | |Returns the first integer greater than or equal to its argument
+|**Floor** | |Returns the first integer less than or equal to its argument
+|**Truncate** | |Returns the integer component of its argument
+|**Abs** | |Returns the absolute value of its argument
+|**-** |negate |Returns the negative value of its argument
+|**Round** | |Returns the nearest numeric value to its argument, optionally specified to a number of decimal places for rounding
+|**Ln** |natural logarithm |Computes the natural logarithm of its argument
+|**Log** |logarithm |Computes the logarithm of its first argument, using the second argument as the base
+|**Exp** |exponent |Raises e to the power given by its argument
+|**^** |exponentiation |Raises the first argument to the power given by the second argument
 |===========================================================================================================================
 
 Table 2‑J - Arithmetic operations that CQL provides
@@ -1455,14 +1455,14 @@ The <span class="id">DateTime</span> operator takes the following arguments:
 [cols=",,",options="header",]
 |==================================================================================
 |Name |Type |Description
-|*Year* |<span class="id">Integer</span> |The year component of the <span class="id">DateTime</span>
-|*Month* |<span class="id">Integer</span> |The month component of the <span class="id">DateTime</span>
-|*Day* |<span class="id">Integer</span> |The day component of the <span class="id">DateTime</span>
-|*Hour* |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
-|*Minute* |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
-|*Second* |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
-|*Millisecond* |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
-|*Timezone Offset* |<span class="id">Decimal</span> |The timezone offset component of the <span class="id">DateTime</span> (in hours)
+|**Year** |<span class="id">Integer</span> |The year component of the <span class="id">DateTime</span>
+|**Month** |<span class="id">Integer</span> |The month component of the <span class="id">DateTime</span>
+|**Day** |<span class="id">Integer</span> |The day component of the <span class="id">DateTime</span>
+|**Hour** |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
+|**Minute** |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
+|**Second** |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
+|**Millisecond** |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
+|**Timezone Offset** |<span class="id">Decimal</span> |The timezone offset component of the <span class="id">DateTime</span> (in hours)
 |==================================================================================
 
 Table 2‑K - The arguments that the <span class="kw">DateTime</span> operator takes
@@ -1488,10 +1488,10 @@ The <span class="id">Time</span> operator takes the following arguments:
 [cols=",,",options="header",]
 |=======================================================================
 |Name |Type |Description
-|*Hour* |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
-|*Minute* |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
-|*Second* |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
-|*Millisecond* |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
+|**Hour** |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
+|**Minute** |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
+|**Second** |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
+|**Millisecond** |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
 |=======================================================================
 
 Table 2‑L - The arguments that the <span class="kw">Time</span> operator takes
@@ -1504,9 +1504,9 @@ In addition to the ability to construct specific dates and times using component
 [cols=",",options="header",]
 |===============================================================================================================
 |Operator |Description
-|*Now* |Returns the date and time of the start timestamp associated with the evaluation request
-|*Today* |Returns the date (with no time components) of the start timestamp associated with the evaluation request
-|*TimeOfDay* |Returns the time-of-day of the start timestamp associated with the evaluation request
+|**Now** |Returns the date and time of the start timestamp associated with the evaluation request
+|**Today** |Returns the date (with no time components) of the start timestamp associated with the evaluation request
+|**TimeOfDay** |Returns the time-of-day of the start timestamp associated with the evaluation request
 |===============================================================================================================
 
 Table 2‑M - The operators that CQL supports for retrieving the current date and time
@@ -1595,11 +1595,11 @@ Date and time comparisons are performed by comparing the values at each precisio
 [cols=",",options="header",]
 |==================================
 |Operator |Precision-based Operator
-|*=* |<span class="kw">same as</span>
-|*<* |<span class="kw">before</span>
-|*>* |<span class="kw">after</span>
-|*\<=* |<span class="kw">same or before</span>
-|*>=* |<span class="kw">same or after</span>
+|**=** |<span class="kw">same as</span>
+|**<** |<span class="kw">before</span>
+|**>** |<span class="kw">after</span>
+|**\<=** |<span class="kw">same or before</span>
+|**>=** |<span class="kw">same or after</span>
 |==================================
 
 Table 2‑N - The precision-based comparison operators for <span class="kw">Date</span> and <span class="kw">Time</span> comparisons
@@ -1658,16 +1658,16 @@ These examples extract the date from X, the year from X, and the minute from X. 
 [cols=",,",options="header",]
 |==================================================================================
 |Component |Description |Result Type
-|*date from X* |Extracts the date of its argument (with no time components) |<span class="id">Date</span>
-|*time from X* |Extracts the time of its argument |<span class="id">Time</span>
-|*year from X* |Extracts the year component its argument |<span class="id">Integer</span>
-|*month from X* |Extracts the month component of its argument |<span class="id">Integer</span>
-|*day from X* |Extracts the day component of its argument |<span class="id">Integer</span>
-|*hour from X* |Extracts the hour component of its argument |<span class="id">Integer</span>
-|*minute from X* |Extracts the minute component of its argument |<span class="id">Integer</span>
-|*second from X* |Extracts the second component of its argument |<span class="id">Integer</span>
-|*millisecond from X* |Extracts the millisecond component of its argument |<span class="id">Integer</span>
-|*timezoneoffset from X* |Extracts the timezone offset component of its argument |<span class="id">Decimal</span>
+|**date from X** |Extracts the date of its argument (with no time components) |<span class="id">Date</span>
+|**time from X** |Extracts the time of its argument |<span class="id">Time</span>
+|**year from X** |Extracts the year component its argument |<span class="id">Integer</span>
+|**month from X** |Extracts the month component of its argument |<span class="id">Integer</span>
+|**day from X** |Extracts the day component of its argument |<span class="id">Integer</span>
+|**hour from X** |Extracts the hour component of its argument |<span class="id">Integer</span>
+|**minute from X** |Extracts the minute component of its argument |<span class="id">Integer</span>
+|**second from X** |Extracts the second component of its argument |<span class="id">Integer</span>
+|**millisecond from X** |Extracts the millisecond component of its argument |<span class="id">Integer</span>
+|**timezoneoffset from X** |Extracts the timezone offset component of its argument |<span class="id">Decimal</span>
 |==================================================================================
 
 Table 2‑O - The valid extraction components for extracting <span class="kw">Date</span> and <span class="kw">Time</span> components
@@ -1964,12 +1964,12 @@ The following table describes the operators that can be used to construct timing
 |====================================================================================================
 |Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/ +
 Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
-|*same as* |yes |yes |no |no |yes |no |no
-|*before* |yes |yes |yes |yes |no |yes |yes
-|*after* |yes |yes |yes |yes |no |yes |yes
-|*within...of* |yes |yes |required |no |no |no |no
-|*during* |yes |no |no |no |no |no |no
-|*includes* |no |yes |no |no |no |no |no
+|**same as** |yes |yes |no |no |yes |no |no
+|**before** |yes |yes |yes |yes |no |yes |yes
+|**after** |yes |yes |yes |yes |no |yes |yes
+|**within...of** |yes |yes |required |no |no |no |no
+|**during** |yes |no |no |no |no |no |no
+|**includes** |no |yes |no |no |no |no |no
 |====================================================================================================
 
 Table 2‑R - The operators that can be used to construct timing phrases
@@ -2134,10 +2134,10 @@ In addition to list equality, already discussed in [Comparison Operators](#Compa
 [cols=",",options="header",]
 |=============================================================================================================================
 |Operator |Description
-|*X <span class="kw">includes</span> Y* |Returns <span class="kw">true</span> if every element in list Y is also in list X, using equality semantics
-|*X <span class="kw">properly includes</span> Y* |Returns <span class="kw">true</span> if every element in list Y is also in list X and list X has more elements than list Y
-|*X <span class="kw">included in</span> Y* |Returns <span class="kw">true</span> if every element in list X is also in list Y, using equality semantics
-|*X <span class="kw">properly included in</span> Y* |Returns <span class="kw">true</span> if every element in list X is also in list Y, and list Y has more elements than list X
+|**X <span class="kw">includes</span> Y** |Returns <span class="kw">true</span> if every element in list Y is also in list X, using equality semantics
+|**X <span class="kw">properly includes</span> Y** |Returns <span class="kw">true</span> if every element in list Y is also in list X and list X has more elements than list Y
+|**X <span class="kw">included in</span> Y** |Returns <span class="kw">true</span> if every element in list X is also in list Y, using equality semantics
+|**X <span class="kw">properly included in</span> Y** |Returns <span class="kw">true</span> if every element in list X is also in list Y, and list Y has more elements than list X
 |=============================================================================================================================
 
 Table 2‑S - The operators that can be used for list comparisons
@@ -2309,21 +2309,21 @@ The following table lists the aggregate operators available in CQL:
 [cols=",",options="header",]
 |=========================================================================================================================================================================================================================
 |Operator |Description
-|*Count* |Returns the number of elements in its argument
-|*Sum* |Returns the numeric sum of the elements in the list
-|*Min* |Returns the minimum value of any element in the list
-|*Max* |Returns the maximum value of any element in the list
-|*Avg* |Returns the numeric average (mean) of all elements in the list
-|*Median* |Returns the statistical median of all elements in the list
-|*Mode* |Returns the most frequently occurring value in the list
-|*StdDev* |Returns the sample standard deviation (square root of the sample variance) of the elements in the list
-|*PopStdDev* |Returns the population standard deviation (square root of the population variance) of the elements in the list
-|*Variance* |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
-|*PopVariance* |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
-|*AllTrue* |Returns <span class="kw">true</span> if all the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
-|*AnyTrue* |Returns <span class="kw">true</span> if any of the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
-|*GeometricMean*| Return the geometric mean of the non-null elements in the list
-|*Product*| Returns the geometric product of the elements in the list
+|**Count** |Returns the number of elements in its argument
+|**Sum** |Returns the numeric sum of the elements in the list
+|**Min** |Returns the minimum value of any element in the list
+|**Max** |Returns the maximum value of any element in the list
+|**Avg** |Returns the numeric average (mean) of all elements in the list
+|**Median** |Returns the statistical median of all elements in the list
+|**Mode** |Returns the most frequently occurring value in the list
+|**StdDev** |Returns the sample standard deviation (square root of the sample variance) of the elements in the list
+|**PopStdDev** |Returns the population standard deviation (square root of the population variance) of the elements in the list
+|**Variance** |Returns the sample variance (average distance of the data elements from the sample mean, corrected for bias by using N-1 as the denominator in the mean calculation, rather than N) of the elements in the list
+|**PopVariance** |Returns the population variance (average distance of the data elements from the population mean) of the elements in the list
+|**AllTrue** |Returns <span class="kw">true</span> if all the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
+|**AnyTrue** |Returns <span class="kw">true</span> if any of the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
+|**GeometricMean**| Return the geometric mean of the non-null elements in the list
+|**Product**| Returns the geometric product of the elements in the list
 |=========================================================================================================================================================================================================================
 
 Table 2‑T - The aggregate operators available in CQL
@@ -2399,26 +2399,26 @@ To support determination of patient age consistently throughout quality logic, C
 [cols=",",options="header",]
 |================================================================================================================================================
 |Operator |Description
-|*AgeInYearsAt(X)* |Determines the age of the patient in years as of the date or datetime X
-|*AgeInYears()* |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
-|*AgeInMonthsAt(X)* |Determines the age of the patient in months as of the date or datetime X
-|*AgeInMonths()* |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
-|*AgeInWeeksAt(X)* |Determines the age of the patient in weeks as of the date or datetime X
-|*AgeInWeeks()* |Determines the age of the patient in weeks as of now. Equivalent to AgeInWeeksAt(Now())
-|*AgeInDaysAt(X)* |Determines the age of the patient in days as of the date or datetime X
-|*AgeInDays()* |Determines the age of the patient in days as of now. Equivalent to AgeInDaysAt(Now())
-|*AgeInHoursAt(X)* |Determines the age of the patient in hours as of the datetime X
-|*AgeInHours()* |Determines the age of the patient in hours as of now. Equivalent to AgeInHoursAt(Now())
-|*CalculateAgeInYearsAt(D, X)* |Determines the age of a person with birth date or datetime D in years as of the date or datetime X
-|*CalculateAgeInYears(D)* |Determines the age of a person with birth date or datetime D in years as of today/now. Equivalent to CalculateAgeInYearsAt(D, Today()) or CalculateAgeInYearsAt(D, Now())
-|*CalculateAgeInMonthsAt(D, X)* |Determines the age of a person with birth date or datetime D in months as of the date or datetime X
-|*CalculateAgeInMonths(D)* |Determines the age of a person with birth date or datetime D in months as of today/now. Equivalent to CalculateAgeInMonthsAt(D, Today()) or CalculateAgeInMonthsAt(D, Now())
-|*CalculateAgeInWeeksAt(D, X)* |Determines the age of a person with birth date or datetime D in weeks as of the date or datetime X
-|*CalculateAgeInWeeks(D)* |Determines the age of a person with birth date or datetime D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Today()) or CalculateAgeInWeeksAt(D, Now())
-|*CalculateAgeInDaysAt(D, X)* |Determines the age of a person with birth date or datetime D in days as of the date or datetime X
-|*CalculateAgeInDays(D)* |Determines the age of a person with birth date or datetime D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
-|*CalculateAgeInHoursAt(D, X)* |Determines the age of a person with birth datetime D in hours as of the datetime X
-|*CalculateAgeInHours(D)* |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
+|**AgeInYearsAt(X)** |Determines the age of the patient in years as of the date or datetime X
+|**AgeInYears()** |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
+|**AgeInMonthsAt(X)** |Determines the age of the patient in months as of the date or datetime X
+|**AgeInMonths()** |Determines the age of the patient in months as of today. Equivalent to AgeInMonthsAt(Today())
+|**AgeInWeeksAt(X)** |Determines the age of the patient in weeks as of the date or datetime X
+|**AgeInWeeks()** |Determines the age of the patient in weeks as of now. Equivalent to AgeInWeeksAt(Now())
+|**AgeInDaysAt(X)** |Determines the age of the patient in days as of the date or datetime X
+|**AgeInDays()** |Determines the age of the patient in days as of now. Equivalent to AgeInDaysAt(Now())
+|**AgeInHoursAt(X)** |Determines the age of the patient in hours as of the datetime X
+|**AgeInHours()** |Determines the age of the patient in hours as of now. Equivalent to AgeInHoursAt(Now())
+|**CalculateAgeInYearsAt(D, X)** |Determines the age of a person with birth date or datetime D in years as of the date or datetime X
+|**CalculateAgeInYears(D)** |Determines the age of a person with birth date or datetime D in years as of today/now. Equivalent to CalculateAgeInYearsAt(D, Today()) or CalculateAgeInYearsAt(D, Now())
+|**CalculateAgeInMonthsAt(D, X)** |Determines the age of a person with birth date or datetime D in months as of the date or datetime X
+|**CalculateAgeInMonths(D)** |Determines the age of a person with birth date or datetime D in months as of today/now. Equivalent to CalculateAgeInMonthsAt(D, Today()) or CalculateAgeInMonthsAt(D, Now())
+|**CalculateAgeInWeeksAt(D, X)** |Determines the age of a person with birth date or datetime D in weeks as of the date or datetime X
+|**CalculateAgeInWeeks(D)** |Determines the age of a person with birth date or datetime D in weeks as of today. Equivalent to CalculateAgeInWeeksAt(D, Today()) or CalculateAgeInWeeksAt(D, Now())
+|**CalculateAgeInDaysAt(D, X)** |Determines the age of a person with birth date or datetime D in days as of the date or datetime X
+|**CalculateAgeInDays(D)** |Determines the age of a person with birth date or datetime D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
+|**CalculateAgeInHoursAt(D, X)** |Determines the age of a person with birth datetime D in hours as of the datetime X
+|**CalculateAgeInHours(D)** |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
 |================================================================================================================================================
 
 Table 2‑U - The age related operators available in CQL
@@ -2483,11 +2483,11 @@ The following table lists the QDM data elements involved and their mappings to t
 [cols=",",options="header",]
 |===================================================
 |QDM Data Element |QUICK Equivalent
-|*Patient Characteristic Birthdate* |Patient.birthDate
-|*Patient Characteristic Sex* |Patient.gender
-|*Diagnosis* |Condition
-|*Laboratory Test, Order* |DiagnosticOrder
-|*Laboratory Test, Result* |DiagnosticReport
+|**Patient Characteristic Birthdate** |Patient.birthDate
+|**Patient Characteristic Sex** |Patient.gender
+|**Diagnosis** |Condition
+|**Laboratory Test, Order** |DiagnosticOrder
+|**Laboratory Test, Result** |DiagnosticReport
 |===================================================
 
 Table 2‑V - QDM Data elements and their mapping to QUICK data structures
