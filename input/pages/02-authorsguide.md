@@ -27,9 +27,9 @@ Libraries in CQL provide the overall packaging for CQL definitions. Each library
 Libraries can contain any or all of the following constructs:
 
 <a name="table-2-a"></a>
-[cols=",",options="header"]
-|====================================================================================================================================================================
+
 |Construct |Description
+|----|----
 |**library** |Header information for the library, including the name and version, if any.
 |**using** |Data model information, specifying that the library may access types from the referenced data model.
 |**include** |Referenced library information, specifying that the library may access constructs defined in the referenced library.
@@ -41,7 +41,7 @@ Libraries can contain any or all of the following constructs:
 |**context** |Specifies the overall context, such as Patient or Practitioner, to be used in the statements that are declared in the library. Note that a library may have multiple context declarations, and that each context declaration establishes the context for the statements that follow, until the next context declaration is encountered. However, best practice is that each library should only contain a single context declaration as the first statement in the library.
 |**define** |The basic unit of logic within a library, a define statement introduces a named expression that can be referenced within the library, or by other libraries.
 |**function** |Libraries may also contain function definitions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. These are most often used as part of shared libraries.
-|====================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑A - Constructs that CQL libraries can contain
 
@@ -113,7 +113,7 @@ The <span class="kw">include</span> declaration may optionally specify a version
 include CMS153_Common version '2'
 ```
 
-A more in-depth discussion of library versioning is provided in the [Libraries](03-developersguide.adoc#libraries-1) section of the Developers guide.
+A more in-depth discussion of library versioning is provided in the [Libraries](03-developersguide.html#libraries-1) section of the Developers guide.
 
 In addition, the <span class="kw">include</span> declaration may optionally specify an assigned name using the <span class="kw">called</span> clause:
 
@@ -176,13 +176,13 @@ For more information about terminologies as values within CQL, refer to the [Cli
 A CQL library can define zero or more parameters. Each parameter is defined with the elements listed in the following table:
 
 <a name="table-2-b"></a>
-[cols=",",options="header",]
-|=====================================================================================================================================================================================
+
 |Element |Description
+|----|----
 |**Name** |A unique identifier for the parameter within the library
 |**Type** |The type of the parameter – Note that the type is only required if no default value is provided. Otherwise, the type of the parameter is determined based on the default value.
 |**Default Value** |An optional default value for the parameter
-|=====================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑B - Elements that define a parameter
 
@@ -229,7 +229,7 @@ In other words, the value for the default of a parameter must be able to be calc
 The context declaration defines the scope of data available to statements within the language. Models define the available contexts, including at least one context named <span class="id">Unfiltered</span> that indicates that statements are not restricted to a particular context. Consider the following simplified information model:
 
 <a name="figure-2-a"></a>
-![extracted-media/media/patient-practitioner-model](extracted-media/media/patient-practitioner-model.png)
+<div><img src="extracted-media/media/patient-practitioner-model.png" alt="extracted-media/media/patient-practitioner-model"/></div>
 
 Figure 2-A - Simplified patient/practitioner information model
 
@@ -238,13 +238,13 @@ A patient and practitioner may both have any number of encounters. From the pers
 The following table lists some typical contexts:
 
 <a name="table-2-c"></a>
-[cols=",",options="header",]
-|========================================================================================================================================
+
 |Context |Description
+|----|----
 |**Patient** |The Patient context specifies that expressions should be interpreted with reference to a single patient.
 |**Practitioner** |The Practitioner context specifies that expressions should be interpreted with reference to a single practitioner.
 |**Unfiltered** |The Unfiltered context indicates that expressions are not interpreted with reference to a particular context.
-|========================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑C - Typical contexts for CQL
 
@@ -404,7 +404,7 @@ Depending on the context the retrieve above will return:
 Consider the figure below:
 
 <a name="figure-2-b"></a>
-![extracted-media/media/context-diagram](extracted-media/media/context-diagram.png)
+<div><img src="extracted-media/media/context-diagram.png" alt="extracted-media/media/context-diagram"/></div>
 
 Figure 2‑B - Unfiltered vs Patient context
 
@@ -434,26 +434,26 @@ If the result type of the <span class="id">Patient</span> context expression is 
 
 In a specific context (such as <span class="id">Patient</span>), a reference to an <span class="id">Unfiltered</span> context expression results in the evaluation of the <span class="id">Unfiltered</span> context expression, and the result type is unaffected.
 
-> In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to [Related Context Retrieves](03-developersguide.adoc#related-context-retrieves).
+> In some cases, measures or decision support artifacts may need to access data for a related person, such as the mother’s record from an infant’s context. For information on how to do this in CQL, refer to [Related Context Retrieves](03-developersguide.html#related-context-retrieves).
 {: .note-info}
 
 ## Queries
 
 Beyond the retrieve expression, CQL provides a _query_ construct that allows the results of retrieves to be further filtered, shaped, and extended to enable the expression of arbitrary clinical logic that can be used in quality and decision support artifacts.
 
-Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to [Clinical Data Retrieval in Quality Artifacts](05-languagesemantics.adoc#clinical-data-retrieval-in-quality-artifacts).
+Although similar to a retrieve in that a query will typically result in a list of patient information, a query is a more general construct than a retrieve. Retrieves are by design restricted to a particular set of criteria that are commonly used when referencing clinical information, and specifically constructed to allow implementations to easily build data access layers suitable for use with CQL. For more information on the design of the retrieve construct, refer to [Clinical Data Retrieval in Quality Artifacts](05-languagesemantics.html#clinical-data-retrieval-in-quality-artifacts).
 
 The query construct has a _primary source_ and four main _clauses_ that each allow for different types of operations to be performed:
 
 <a name="table-2-d"></a>
-[cols=",",options="header",]
-|============================================================================================================================================
+
 |Clause |Operation
+|----|----
 |**Relationship (with/without)** |Allows relationships between the primary source and other clinical information to be used to filter the result.
 |**Where** |The where clause allows conditions to be expressed that filter the result to only the information that meets the condition.
 |**Return** |The return clause allows the result set to be shaped as needed, removing elements, or including new calculated values.
 |**Sort** |The sort clause allows the result set to be ordered according to any criteria as needed.
-|============================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑D - Four main clauses for a query construct
 
@@ -500,7 +500,7 @@ The condition of a <span class="kw">where</span> clause is allowed to contain an
     and C.indication in "Fever"
 ```
 
-Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on [Missing Information>> in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.adoc#nullological-operators) in the Developer's guide.
+Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on [Missing Information>> in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.html#nullological-operators) in the Developer's guide.
 
 ### Shaping
 
@@ -584,7 +584,7 @@ When the data being sorted includes <span class="kw">nulls</span>, they are cons
 In addition to filtering by conditions, some scenarios need to be able to filter based on relationships to other sources. The CQL <span class="kw">with</span> and <span class="kw">without</span> clauses provide this capability. For the examples in this section, consider the following simple information model:
 
 <a name="figure-2-c"></a>
-![extracted-media/media/patient-model](extracted-media/media/patient-model.png)
+<div><img src="extracted-media/media/patient-model.png" alt="extracted-media/media/patient-model"/></div>
 
 Figure 2‑C - Simple patient information model
 
@@ -685,7 +685,7 @@ SingleLiveBirthEncounter E
 
 Even though this example has multiple <span class="kw">without</span> clauses, there is still only a single <span class="kw">where</span> clause for the query.
 
-Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to [Introducing Scoped Definitions In Queries](03-developersguide.adoc#introducing-context-in-queries) and [Multi-Source Queries](03-developersguide.adoc#multi-source-queries).
+Note that the query construct in CQL supports other clauses that are not discussed here. For more information on these, refer to [Introducing Scoped Definitions In Queries](03-developersguide.html#introducing-context-in-queries) and [Multi-Source Queries](03-developersguide.html#multi-source-queries).
 
 ## Values
 
@@ -730,29 +730,23 @@ In the sections that follow, the various categories of values that can be repres
 CQL supports several types of simple values:
 
 <a name="table-2-e"></a>
-[cols=",",options="header",]
-|=======================================
+
 |Value |Examples
+|----|----
 |**Boolean** |<span class="kw">true</span>, <span class="kw">false</span>, <span class="kw">null</span>
 |**Integer** |<span class="lit">16</span>, <span class="lit">-28</span>
 |**Decimal** |<span class="lit">100.015</span>
 |**String** |<span class="lit">'pending'</span>, <span class="lit">'active'</span>, <span class="lit">'complete'</span>
 |**Date** |<span class="lit">@2014-01-25</span>
-|**DateTime** |<span class="lit">@2014-01-25T14:30:14.559</span>
-
-<span class="lit">@2014-01T</span>
-
-|**Time** |<span class="lit">@T12:00</span>
-
-<span class="lit">@T14:30:14.559</span>
-
-|=======================================
+|**DateTime** |<span class="lit">@2014-01-25T14:30:14.559</span><br/><span class="lit">@2014-01T</span>
+|**Time** |<span class="lit">@T12:00</span><br/><span class="lit">@T14:30:14.559</span>
+{: .grid .table .table-striped}
 
 Table 2‑E - Types of simple values that CQL supports
 
 #### Boolean
 
-The <span class="id">Boolean</span> type in CQL supports the logical values <span class="kw">true</span>, <span class="kw">false</span>, and <span class="kw">null</span> (meaning unknown). These values are most often encountered as the result of [Comparison Operators](#comparison-operators), and can be combined with other boolean-valued expressions using [Logical Operators](#logical-operators). Note that CQL supports three-valued logic, see the section on [Missing Information](#missing-information) in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.adoc#nullological-operators) in the Developer's guide for more information.
+The <span class="id">Boolean</span> type in CQL supports the logical values <span class="kw">true</span>, <span class="kw">false</span>, and <span class="kw">null</span> (meaning unknown). These values are most often encountered as the result of [Comparison Operators](#comparison-operators), and can be combined with other boolean-valued expressions using [Logical Operators](#logical-operators). Note that CQL supports three-valued logic, see the section on [Missing Information](#missing-information) in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.html#nullological-operators) in the Developer's guide for more information.
 
 #### Integer
 
@@ -845,9 +839,8 @@ The number portion of a quantity can be an <span class="id">Integer</span> or <s
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
-|===
 |Calendar Duration |Unit Representation |Relationship to Definite Duration UCUM Unit
-
+|----|----|----
 |`year`/`years` |`'year'` |`~ 1 'a'`
 |`month`/`months` |`'month'` |`~ 1 'mo'`
 |`week`/`weeks` |`'week'` |`= 1 'wk'`
@@ -856,7 +849,7 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 |`minute`/`minutes` |`'minute'` |`= 1 'min'`
 |`second`/`seconds` |`'second'` |`= 1 's'`
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
-|===
+{: .grid .table .table-striped}
 
 Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units.
 
@@ -899,14 +892,14 @@ The use of codes to specify meaning within clinical data is ubiquitous. CQL ther
 The <span class="id">Code</span> type has the following elements:
 
 <a name="table-2-f"></a>
-[cols=",,",options="header",]
-|==================================================
+
 |Name |Type |Description
+|----|----|----
 |**code** |<span class="id">String</span> |The actual code within the code system.
 |**display** |<span class="id">String</span> |A description of the code.
 |**system** |<span class="id">String</span> |The identifier of the code system.
 |**version** |<span class="id">String</span> |The version of the code system.
-|==================================================
+{: .grid .table .table-striped}
 
 Table 2‑F - Elements that make up a <span class="kw">code</span> type
 
@@ -961,12 +954,12 @@ Within clinical information, multiple terminologies can often be used to code fo
 The <span class="id">Concept</span> type has the following elements:
 
 <a name="table-2-g"></a>
-[cols=",,",options="header",]
-|=========================================================================
+
 |Name |Type |Description
-|**codes** |<span class="id">List<Code></span> |The list of semantically equivalent codes representing the concept.
+|----|----|----
+|**codes** |<span class="id">List\<Code></span> |The list of semantically equivalent codes representing the concept.
 |**display** |<span class="id">String</span> |A description of the concept.
-|=========================================================================
+{: .grid .table .table-striped}
 
 Table 2‑G - Elements that make up a <span class="kw">Concept</span> type
 
@@ -1157,7 +1150,7 @@ define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 
 If the onsetDateTime is not present, the result of this expression is <span class="kw">null</span>. Furthermore, nulls will in general _propagate_, meaning that if the result of <span class="id">FirstPharyngitis</span> is <span class="kw">null</span>, the result of accessing the <span class="id">onsetDateTime</span> element is also <span class="kw">null</span>.
 
-For more information on missing information, see the [Nullological Operators](03-developersguide.adoc#nullological-operators) section.
+For more information on missing information, see the [Nullological Operators](03-developersguide.html#nullological-operators) section.
 
 ### List Values
 
@@ -1209,7 +1202,7 @@ This expression results in an <span class="id">Interval</span> that contains the
 Interval[3.0, 5.0)
 ```
 
-This expression results in an <span class="id">Interval</span> that contains all the real numbers <span class="sym">>=</span> 3.0 and <span class="sym"><</span> 5.0.
+This expression results in an <span class="id">Interval</span> that contains all the real numbers <span class="sym">>=</span> 3.0 and <span class="sym">\<</span> 5.0.
 
 Intervals can be constructed based on any type that supports unique and ordered comparison. For example:
 
@@ -1270,9 +1263,9 @@ For all the comparison operators, the result type of the operation is <span clas
 The most basic operation in CQL involves comparison of two values. This is accomplished with the built-in comparison operators:
 
 <a name="table-2-h"></a>
-[cols=",,",options="header",]
-|===========================================================================================================================================
+
 |Operator |Name |Description
+|----|----|----
 |**=** |Equality |Returns <span class="kw">true</span> if the arguments are the same value. Returns <span class="kw">false</span> if arguments are not the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
 |**!=** |Inequality |Returns <span class="kw">true</span> if the arguments are not the same value. Returns <span class="kw">false</span> if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
 |**>** |Greater than |Returns <span class="kw">true</span> if the left argument is greater than the right argument. Returns <span class="kw">false</span> if the left argument is less than the right argument, or if the arguments are the same value. Returns <span class="kw">null</span> if either or both arguments are <span class="kw">null</span>
@@ -1282,7 +1275,7 @@ The most basic operation in CQL involves comparison of two values. This is accom
 |**between** | |Returns <span class="kw">true</span> if the first argument is greater than or equal to the second argument, and less than or equal to the third argument. Returns <span class="kw">false</span> if the first argument is less than the second argument or greater than the third argument. Returns <span class="kw">null</span> if any or all arguments are <span class="kw">null</span>.
 |**~** |Equivalent |Returns <span class="kw">true</span> if the arguments are equivalent in value, or are both <span class="kw">null</span>; otherwise <span class="kw">false</span>
 |**!~** |Inequivalent |Returns <span class="kw">true</span> if the arguments are not equivalent and <span class="kw">false</span> otherwise.
-|===========================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑H - The built-in comparison operators that CQL provides
 
@@ -1332,7 +1325,7 @@ Interval[1,5] = Interval[1,6)
 
 This returns <span class="kw">true</span> because the intervals cover the same set of points, 1 through 5.
 
-The relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym"><</span>, <span class="sym">\<=</span>) can be used on types of values that have a natural ordering such as numbers, strings, and dates.
+The relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym">\<</span>, <span class="sym">\<=</span>) can be used on types of values that have a natural ordering such as numbers, strings, and dates.
 
 The <span class="kw">between</span> operator is shorthand for comparison of an expression against an upper and lower bound. For example:
 
@@ -1365,21 +1358,21 @@ In addition, equivalence is defined more loosely than equality for some types:
 * For <span class="id">Code</span> values, equivalence means the values have the same system and code.
 * For <span class="id">Concept</span> values, equivalence means the values have at least one equivalent code.
 
-For more detail, see the definitions of [Equal](09-b-cqlreference.adoc#equal) and [Equivalent](09-b-cqlreference.adoc#equivalent) in the CQL reference.
+For more detail, see the definitions of [Equal](09-b-cqlreference.html#equal) and [Equivalent](09-b-cqlreference.html#equivalent) in the CQL reference.
 
 ### Logical Operators
 
 Combining the results of comparisons and other boolean-valued expressions is essential and is performed in CQL using the following logical operations:
 
 <a name="table-2-i"></a>
-[cols=",",options="header",]
-|==================================
+
 |Operator |Description
+|----|----
 |**and** |Logical conjunction
 |**or** |Logical disjunction
 |**xor** |Exclusive logical disjunction
 |**not** |Logical negation
-|==================================
+{: .grid .table .table-striped}
 
 Table 2‑I - Logical operations that CQL provides
 
@@ -1390,7 +1383,7 @@ AgeInYears() >= 18 and AgeInYears() < 24
 INRResult > 5 or DischargedOnOverlapTherapy
 ```
 
-Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard <span class="id">Boolean</span> (two-valued) logic also hold. The complete semantics for each operator are described in the [Logical Operators](09-b-cqlreference.adoc#logical-operators-3) section of [Appendix B – CQL Reference](09-b-cqlreference.html).
+Note that all these operators are defined using three-valued logic, which is defined specifically to ensure that certain well-established relationships that hold in standard <span class="id">Boolean</span> (two-valued) logic also hold. The complete semantics for each operator are described in the [Logical Operators](09-b-cqlreference.html#logical-operators-3) section of [Appendix B – CQL Reference](09-b-cqlreference.html).
 
 > To ensure that CQL expressions can be freely rewritten by underlying implementations, there is no expectation that an implementation respect short-circuit evaluation, short circuit evaluation meaning that an expression stops being evaluated once the outcome is determined. With regard to performance, implementations may use short-circuit evaluation to reduce computation, but authors should not rely on such behavior, and implementations must not change semantics with short-circuit evaluation. If a condition is needed to ensure correct evaluation of a subsequent expression, the <span class="kw">if</span> or <span class="kw">case</span> expressions should be used to guarantee that the condition determines whether evaluation of an expression will occur at run-time.
 {: .note-info}
@@ -1402,12 +1395,12 @@ The expression of clinical logic often involves numeric computation, and CQL pro
 The following table lists the arithmetic operations available in CQL:
 
 <a name="table-2-j"></a>
-[cols=",,",options="header",]
-|===========================================================================================================================
+
 |Operator |Name |Description
+|----|----|----
 |**+** |addition |Performs numeric addition of its arguments
 |**-** |subtraction |Performs numeric subtraction of its arguments
-|***** |multiply |Performs numeric multiplication of its arguments
+|**\*** |multiply |Performs numeric multiplication of its arguments
 |**/** |divide |Performs numeric division of its arguments
 |**div** |truncated divide |Performs integer division of its arguments
 |**mod** |modulo |Computes the remainder of the integer division of its arguments
@@ -1421,7 +1414,7 @@ The following table lists the arithmetic operations available in CQL:
 |**Log** |logarithm |Computes the logarithm of its first argument, using the second argument as the base
 |**Exp** |exponent |Raises e to the power given by its argument
 |**^** |exponentiation |Raises the first argument to the power given by the second argument
-|===========================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑J - Arithmetic operations that CQL provides
 
@@ -1452,9 +1445,9 @@ The first example constructs the <span class="id">Date</span> July 5, 2014. The 
 The <span class="id">DateTime</span> operator takes the following arguments:
 
 <a name="table-2-k"></a>
-[cols=",,",options="header",]
-|==================================================================================
+
 |Name |Type |Description
+|----|----|----
 |**Year** |<span class="id">Integer</span> |The year component of the <span class="id">DateTime</span>
 |**Month** |<span class="id">Integer</span> |The month component of the <span class="id">DateTime</span>
 |**Day** |<span class="id">Integer</span> |The day component of the <span class="id">DateTime</span>
@@ -1463,7 +1456,7 @@ The <span class="id">DateTime</span> operator takes the following arguments:
 |**Second** |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
 |**Millisecond** |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
 |**Timezone Offset** |<span class="id">Decimal</span> |The timezone offset component of the <span class="id">DateTime</span> (in hours)
-|==================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑K - The arguments that the <span class="kw">DateTime</span> operator takes
 
@@ -1485,14 +1478,14 @@ The only component that is ever defaulted is the timezone offset component. If n
 The <span class="id">Time</span> operator takes the following arguments:
 
 <a name="table-2-l"></a>
-[cols=",,",options="header",]
-|=======================================================================
+
 |Name |Type |Description
+|----|----|----
 |**Hour** |<span class="id">Integer</span> |The hour component of the <span class="id">DateTime</span>
 |**Minute** |<span class="id">Integer</span> |The minute component of the <span class="id">DateTime</span>
 |**Second** |<span class="id">Integer</span> |The second component of the <span class="id">DateTime</span>
 |**Millisecond** |<span class="id">Integer</span> |The millisecond component of the <span class="id">DateTime</span>
-|=======================================================================
+{: .grid .table .table-striped}
 
 Table 2‑L - The arguments that the <span class="kw">Time</span> operator takes
 
@@ -1501,13 +1494,13 @@ As with the <span class="id">Date</span> and <span class="id">DateTime</span> op
 In addition to the ability to construct specific dates and times using components, CQL supports three operators for retrieving the current date and time:
 
 <a name="table-2-m"></a>
-[cols=",",options="header",]
-|===============================================================================================================
+
 |Operator |Description
+|----|----
 |**Now** |Returns the date and time of the start timestamp associated with the evaluation request
 |**Today** |Returns the date (with no time components) of the start timestamp associated with the evaluation request
 |**TimeOfDay** |Returns the time-of-day of the start timestamp associated with the evaluation request
-|===============================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑M - The operators that CQL supports for retrieving the current date and time
 
@@ -1592,15 +1585,15 @@ When comparing <span class="id">DateTime</span> values with different timezone o
 Date and time comparisons are performed by comparing the values at each precision, beginning with years, and proceeding to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a <span class="id">Decimal</span>. This means that if one date or time is specified to a different level of precision than the other, the result of the comparison may be <span class="kw">null</span>, or _unknown_. However, it is often the case that comparisons should only be carried to a specific level of precision. To enable this, CQL provides precision-based versions of the comparison operators:
 
 <a name="table-2-n"></a>
-[cols=",",options="header",]
-|==================================
+
 |Operator |Precision-based Operator
+|----|----
 |**=** |<span class="kw">same as</span>
 |**<** |<span class="kw">before</span>
 |**>** |<span class="kw">after</span>
 |**\<=** |<span class="kw">same or before</span>
 |**>=** |<span class="kw">same or after</span>
-|==================================
+{: .grid .table .table-striped}
 
 Table 2‑N - The precision-based comparison operators for <span class="kw">Date</span> and <span class="kw">Time</span> comparisons
 
@@ -1624,7 +1617,7 @@ Date(2014, 4) same month or before Date(2014, 7, 11)
 DateTime(2014, 7, 15) same day or after DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
-Each of these expressions also returns <span class="kw">true</span>. And finally, for the relative inequalities (<span class="sym"><</span> and <span class="sym">></span>):
+Each of these expressions also returns <span class="kw">true</span>. And finally, for the relative inequalities (<span class="sym">\<</span> and <span class="sym">></span>):
 
 ``` cql
 Date(2015) after year of Date(2014, 7, 11)
@@ -1655,9 +1648,9 @@ minute from X
 These examples extract the date from X, the year from X, and the minute from X. The following table lists the valid extraction components and their resulting types:
 
 <a name="table-2-o"></a>
-[cols=",,",options="header",]
-|==================================================================================
+
 |Component |Description |Result Type
+|----|----|----
 |**date from X** |Extracts the date of its argument (with no time components) |<span class="id">Date</span>
 |**time from X** |Extracts the time of its argument |<span class="id">Time</span>
 |**year from X** |Extracts the year component its argument |<span class="id">Integer</span>
@@ -1668,7 +1661,7 @@ These examples extract the date from X, the year from X, and the minute from X. 
 |**second from X** |Extracts the second component of its argument |<span class="id">Integer</span>
 |**millisecond from X** |Extracts the millisecond component of its argument |<span class="id">Integer</span>
 |**timezoneoffset from X** |Extracts the timezone offset component of its argument |<span class="id">Decimal</span>
-|==================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑O - The valid extraction components for extracting <span class="kw">Date</span> and <span class="kw">Time</span> components
 
@@ -1712,9 +1705,9 @@ To avoid the potential confusion of calendar-based date/time arithmetic with def
 Within CQL, calculations involving date/times and calendar durations shall use calendar semantics as specified in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html). Specifically:
 
 <a name="table-2-p"></a>
-[cols=",",options="header",]
-|===
+
 |Date/Time Precision |Calendar Semantic Description
+|----|----
 |year |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used.
 |month |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used.
 |week |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths.
@@ -1723,7 +1716,7 @@ Within CQL, calculations involving date/times and calendar durations shall use c
 |minute |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
 |second |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
 |millisecond |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
-|===
+{: .grid .table .table-striped}
 
 Table 2‑P - The ISO8601 calendar semantics that should be used for calculations involving <span class="kw">Date</span> and <span class="kw">Time</span>
 
@@ -1786,7 +1779,7 @@ If the first argument is after the second, the result will be negative.
 
 For calculations involving weeks, Sunday is considered the first of the week for the purposes of determining boundaries, and the duration of a week is always considered to be seven (7) days.
 
-In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in <span class="kw">null</span> rather than <span class="kw">true</span> or <span class="kw">false</span>. For a detailed discussion of the behavior of uncertainties, refer to the [Uncertainty](05-languagesemantics.adoc#uncertainty) section.
+In addition, if either date or time value involved is not specified to the level of precision for the duration or difference being calculated, the result will be an _uncertainty_ covering the range of possible values for the duration. Subsequent comparisons using this uncertainty may result in <span class="kw">null</span> rather than <span class="kw">true</span> or <span class="kw">false</span>. For a detailed discussion of the behavior of uncertainties, refer to the [Uncertainty](05-languagesemantics.html#uncertainty) section.
 
 When computing duration or difference between <span class="id">DateTime</span> values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -1893,7 +1886,7 @@ The first expression returns the number of whole days between the starting and e
 CQL supports comparison of two interval values using a complete set of operations. The following table describes these operators with a diagram showing the relationship between two intervals that is characterized by each operation:
 
 <a name="table-2-q"></a>
-![extracted-media/media/image5](extracted-media/media/image5.png){: width=626; height=394; }
+<div><img src="extracted-media/media/image5.png" alt="extracted-media/media/image5" width="626" height="394"/></div>
 
 Table 2‑Q - Comparison of two interval values using a complete set of operations
 
@@ -1960,17 +1953,16 @@ In other words, the timing phrases in general compare two quantities, either of 
 The following table describes the operators that can be used to construct timing phrases:
 
 <a name="table-2-r"></a>
-[cols=",,,,,,,",options="header",]
-|====================================================================================================
-|Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/ +
-Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
+
+|Operator |Beginning Boundary (starts/ends) |Ending Boundary (start/end) |Duration Offset |Or Less/<br/>Or More |Or Before/ Or After |Less Than/ More Than |Or On/ On Or
+|----|----|----|----|----|----|----|----
 |**same as** |yes |yes |no |no |yes |no |no
 |**before** |yes |yes |yes |yes |no |yes |yes
 |**after** |yes |yes |yes |yes |no |yes |yes
 |**within...of** |yes |yes |required |no |no |no |no
 |**during** |yes |no |no |no |no |no |no
 |**includes** |no |yes |no |no |no |no |no
-|====================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑R - The operators that can be used to construct timing phrases
 
@@ -2025,14 +2017,14 @@ This expression results in the interval <span class="lit">[1, 2]</span>. Note th
 The following diagrams depict the <span class="kw">union</span>, <span class="kw">intersect</span>, and <span class="kw">except</span> operators for intervals:
 
 <a name="figure-2-d"></a>
-![extracted-media/media/image6](extracted-media/media/image6.png){: width=626; height=128; }
+<div><img src="extracted-media/media/image6.png" alt="extracted-media/media/image6" width="626" height="128"/></div>
 
 Figure 2‑D - The union, intersect, and except operators for intervals
 
 <a name="datetime-intervals"></a>
 #### Date and Time Intervals
 
-Because CQL supports date and time values with varying levels of precision, intervals of dates and times can potentially involve imprecise date and time values. To ensure well-defined intervals and consistent semantics, date and time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1^st^, 2014, and ending at midnight on January 1^st^, 2015:
+Because CQL supports date and time values with varying levels of precision, intervals of dates and times can potentially involve imprecise date and time values. To ensure well-defined intervals and consistent semantics, date and time intervals are always considered to contain the full set of values contained by the boundaries of the interval. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning at midnight on January 1<sup>st</sup>, 2014, and ending at midnight on January 1<sup>st</sup>, 2015:
 
 ``` cql
 Interval[DateTime(2014, 1, 1, 0, 0, 0, 0), DateTime(2015, 1, 1, 0, 0, 0, 0)]
@@ -2046,7 +2038,7 @@ Interval[Date(2014), Date(2015)]
 
 When calculating the duration of the interval, this imprecision will in general result in an _uncertainty_, just as it does when calculating the duration between two imprecise date or time values.
 
-In addition, the boundaries may even be specified to different levels of precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime on January 1^st^, 2015:
+In addition, the boundaries may even be specified to different levels of precision. For example, the following interval expression contains all the instants of time, to the millisecond precision, beginning sometime in the year 2014, and ending sometime on January 1<sup>st</sup>, 2015:
 
 ``` cql
 Interval[Date(2014), Date(2015, 1, 1)]
@@ -2131,14 +2123,14 @@ In addition, to provide consistent and intuitive semantics when dealing with lis
 In addition to list equality, already discussed in [Comparison Operators](#Comparison Operators), lists can be compared using the following operators:
 
 <a name="table-2-s"></a>
-[cols=",",options="header",]
-|=============================================================================================================================
+
 |Operator |Description
+|----|----
 |**X <span class="kw">includes</span> Y** |Returns <span class="kw">true</span> if every element in list Y is also in list X, using equality semantics
 |**X <span class="kw">properly includes</span> Y** |Returns <span class="kw">true</span> if every element in list Y is also in list X and list X has more elements than list Y
 |**X <span class="kw">included in</span> Y** |Returns <span class="kw">true</span> if every element in list X is also in list Y, using equality semantics
 |**X <span class="kw">properly included in</span> Y** |Returns <span class="kw">true</span> if every element in list X is also in list Y, and list Y has more elements than list X
-|=============================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑S - The operators that can be used for list comparisons
 
@@ -2225,7 +2217,7 @@ This example returns:
 The following diagrams depict the <span class="kw">union</span>, <span class="kw">intersect</span>, and <span class="kw">except</span> operators:
 
 <a name="figure-2-e"></a>
-![extracted-media/media/image7](extracted-media/media/image7.png){: width=626; height=176; }
+<div><img src="extracted-media/media/image7.png" alt="extracted-media/media/image7" width="626" height="176"/></div>
 
 Figure 2‑E - The union, intersect, and except operators for lists
 
@@ -2254,7 +2246,7 @@ Although the examples in this section primarily use lists of integers, these ope
 Most list operators in CQL operate on lists of any type, but for lists of intervals, CQL supports a <span class="kw">collapse</span> operator that determines the list of _unique_ intervals from a given list of intervals. Consider the following intervals:
 
 <a name="figure-2-f"></a>
-![extracted-media/media/image8](extracted-media/media/image8.png){: width=353; height=75; }
+<div><img src="extracted-media/media/image8.png" alt="extracted-media/media/image8" width="353" height="75"/></div>
 
 Figure 2‑F - Example input intervals to illustrate the behavior of the the <span class="kw">collapse</span> operator
 
@@ -2263,7 +2255,7 @@ If we want to determine the total duration _covered_ by these intervals, we cann
 The solution is the <span class="kw">collapse</span> operator which returns the set of intervals that _completely cover_ the ranges covered by the inputs:
 
 <a name="figure-2-g"></a>
-![extracted-media/media/image9](extracted-media/media/image9.png){: width=348; height=56; }
+<div><img src="extracted-media/media/image9.png" alt="extracted-media/media/image9" width="348" height="56"/></div>
 
 Figure 2‑G - Example output intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
@@ -2306,9 +2298,9 @@ In general, <span class="kw">nulls</span> encountered during aggregation are ign
 The following table lists the aggregate operators available in CQL:
 
 <a name="table-2-t"></a>
-[cols=",",options="header",]
-|=========================================================================================================================================================================================================================
+
 |Operator |Description
+|----|----
 |**Count** |Returns the number of elements in its argument
 |**Sum** |Returns the numeric sum of the elements in the list
 |**Min** |Returns the minimum value of any element in the list
@@ -2324,7 +2316,7 @@ The following table lists the aggregate operators available in CQL:
 |**AnyTrue** |Returns <span class="kw">true</span> if any of the elements in the list are <span class="kw">true</span>, <span class="kw">false</span> otherwise
 |**GeometricMean**| Return the geometric mean of the non-null elements in the list
 |**Product**| Returns the geometric product of the elements in the list
-|=========================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑T - The aggregate operators available in CQL
 
@@ -2348,7 +2340,7 @@ define "IsTall": height > 2 'm'
 
 This formulation also has the advantage of allowing for the case that the actual value of <span class="id">height</span> is expressed in inches.
 
-CQL supports the standard comparison operators (<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span> <span class="sym"><</span> <span class="sym">\<=</span> <span class="sym">></span> <span class="sym">>=</span>) and the standard arithmetic operators (<span class="sym">+</span> <span class="sym">-</span> <span class="sym">*</span> <span class="sym">/</span>) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as <span class="id">Min</span>, <span class="id">Max</span>, <span class="id">Sum</span>, etc.
+CQL supports the standard comparison operators (<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span> <span class="sym">\<</span> <span class="sym">\<=</span> <span class="sym">></span> <span class="sym">>=</span>) and the standard arithmetic operators (<span class="sym">+</span> <span class="sym">-</span> <span class="sym">*</span> <span class="sym">/</span>) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as <span class="id">Min</span>, <span class="id">Max</span>, <span class="id">Sum</span>, etc.
 
 > Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return <span class="kw">null</span> if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
 {: .note-warning}
@@ -2370,7 +2362,7 @@ define "RatioEqualFalse": 1:100 = 10:1000
 define "RatioEquivalentTrue": 1:100 ~ 10:1000
 ```
 
-> Note that the relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym"><</span>, <span class="sym">\<=</span>) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the <span class="id">numerator</span> and <span class="id">denominator</span> components of the ratio directly, or by using the <span class="id">ToQuantity</span> operator to convert the ratio to a decimal quantity.
+> Note that the relative comparison operators (<span class="sym">></span>, <span class="sym">>=</span>, <span class="sym">\<</span>, <span class="sym">\<=</span>) are specifically not supported for ratios because in healthcare settings, it is often not possible to correctly interpret the meaning of a ratio without the relevant context, resulting in the risk of expressions involving ratio comparisons meaning the exact opposite of what the author intended. Relative comparisons may still be performed explicitly, either by accessing the <span class="id">numerator</span> and <span class="id">denominator</span> components of the ratio directly, or by using the <span class="id">ToQuantity</span> operator to convert the ratio to a decimal quantity.
 {: .note-warning}
 
 #### Terminology Operators
@@ -2396,9 +2388,9 @@ A common terminological operation involves determining whether a given concept i
 To support determination of patient age consistently throughout quality logic, CQL defines several age-related operators:
 
 <a name="table-2-u"></a>
-[cols=",",options="header",]
-|================================================================================================================================================
+
 |Operator |Description
+|----|----
 |**AgeInYearsAt(X)** |Determines the age of the patient in years as of the date or datetime X
 |**AgeInYears()** |Determines the age of the patient in years as of today. Equivalent to AgeInYearsAt(Today())
 |**AgeInMonthsAt(X)** |Determines the age of the patient in months as of the date or datetime X
@@ -2419,7 +2411,7 @@ To support determination of patient age consistently throughout quality logic, C
 |**CalculateAgeInDays(D)** |Determines the age of a person with birth date or datetime D in days as of now. Equivalent to CalculateAgeInDaysAt(D, Today()) or CalculateAgeInDaysAt(D, Now())
 |**CalculateAgeInHoursAt(D, X)** |Determines the age of a person with birth datetime D in hours as of the datetime X
 |**CalculateAgeInHours(D)** |Determines the age of a person with birth datetime D in hours as of now. Equivalent to CalculateAgeInHoursAt(D, Now())
-|================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 2‑U - The age related operators available in CQL
 
@@ -2446,32 +2438,32 @@ The running example for this walkthrough is a simplification of CMS153, version 
 This results in the following QDM:
 
 * *Initial Population =*
-** AND: "Patient Characteristic Birthdate: birth date" >= 16 year(s) starts before start of "Measurement Period"
-** AND: "Patient Characteristic Birthdate: birth date" < 24 year(s) starts before start of "Measurement Period"
-** AND: "Patient Characteristic Sex: Female"
-** AND:
-*** OR: "Diagnosis: Other Female Reproductive Conditions" overlaps with "Measurement Period"
-*** OR: "Diagnosis: Genital Herpes" overlaps with "Measurement Period"
-*** OR: "Diagnosis: Gonococcal Infections and Venereal Diseases" overlaps with "Measurement Period"
-*** OR: "Diagnosis: Inflammatory Diseases of Female Reproductive Organs" overlaps with "Measurement Period"
-*** OR: " Diagnosis: Chlamydia" overlaps with "Measurement Period"
-*** OR: "Diagnosis: HIV" overlaps with "Measurement Period"
-*** OR: "Diagnosis: Syphilis" overlaps with "Measurement Period"
-*** OR: "Diagnosis: Complications of Pregnancy, Childbirth and the Puerperium" overlaps with "Measurement Period"
-*** OR:
-**** OR: "Laboratory Test, Order: Pregnancy Test"
-**** OR: "Laboratory Test, Order: Pap Test"
-**** OR: "Laboratory Test, Order: Lab Tests During Pregnancy"
-**** OR: "Laboratory Test, Order: Lab Tests for Sexually Transmitted Infections"
-**** during "Measurement Period"
+    * AND: "Patient Characteristic Birthdate: birth date" >= 16 year(s) starts before start of "Measurement Period"
+    * AND: "Patient Characteristic Birthdate: birth date" < 24 year(s) starts before start of "Measurement Period"
+    * AND: "Patient Characteristic Sex: Female"
+    * AND:
+        * OR: "Diagnosis: Other Female Reproductive Conditions" overlaps with "Measurement Period"
+        * OR: "Diagnosis: Genital Herpes" overlaps with "Measurement Period"
+        * OR: "Diagnosis: Gonococcal Infections and Venereal Diseases" overlaps with "Measurement Period"
+        * OR: "Diagnosis: Inflammatory Diseases of Female Reproductive Organs" overlaps with "Measurement Period"
+        * OR: " Diagnosis: Chlamydia" overlaps with "Measurement Period"
+        * OR: "Diagnosis: HIV" overlaps with "Measurement Period"
+        * OR: "Diagnosis: Syphilis" overlaps with "Measurement Period"
+        * OR: "Diagnosis: Complications of Pregnancy, Childbirth and the Puerperium" overlaps with "Measurement Period"
+        * OR:
+            * OR: "Laboratory Test, Order: Pregnancy Test"
+            * OR: "Laboratory Test, Order: Pap Test"
+            * OR: "Laboratory Test, Order: Lab Tests During Pregnancy"
+            * OR: "Laboratory Test, Order: Lab Tests for Sexually Transmitted Infections"
+            * during "Measurement Period"
 * *Denominator =*
-** AND: "Initial Population"
+    * AND: "Initial Population"
 * *Denominator Exclusions =*
-** None
+    * None
 * *Numerator =*
-** AND: "Laboratory Test, Result: Chlamydia Screening (result)" during "Measurement Period"
+    * AND: "Laboratory Test, Result: Chlamydia Screening (result)" during "Measurement Period"
 * *Denominator Exceptions =*
-** None
+    * None
 
 Note that these simplifications result in a measure that is not clinically relevant, and the result of this walkthrough is in no way intended to be used in a production scenario. The walkthrough is intended only to demonstrate how CQL can be used to construct shareable clinical logic.
 
@@ -2480,15 +2472,15 @@ As an aside, one of the simplifications made to the QDM presented above is the r
 The following table lists the QDM data elements involved and their mappings to the QUICK data structures:
 
 <a name="table-2-v"></a>
-[cols=",",options="header",]
-|===================================================
+
 |QDM Data Element |QUICK Equivalent
+|----|----
 |**Patient Characteristic Birthdate** |Patient.birthDate
 |**Patient Characteristic Sex** |Patient.gender
 |**Diagnosis** |Condition
 |**Laboratory Test, Order** |DiagnosticOrder
 |**Laboratory Test, Result** |DiagnosticReport
-|===================================================
+{: .grid .table .table-striped}
 
 Table 2‑V - QDM Data elements and their mapping to QUICK data structures
 
@@ -2540,7 +2532,7 @@ define "MeasurementPeriod": Interval[
 )
 ```
 
-This establishes <span class="id">MeasurementPeriod</span> as the interval beginning precisely at midnight on January 1^st^, 2013, and ending immediately before midnight on January 1^st^, 2014. We can now use this in the age criteria:
+This establishes <span class="id">MeasurementPeriod</span> as the interval beginning precisely at midnight on January 1<sup>st</sup>, 2013, and ending immediately before midnight on January 1<sup>st</sup>, 2014. We can now use this in the age criteria:
 
 ``` cql
 define "InInitialPopulation":

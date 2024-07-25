@@ -61,67 +61,67 @@ A quality artifact can be said to be loosely conforming if the artifact referenc
 
 Because of the scope of CQL, and the various implementation options for different features of the language, implementations may find it useful to advertise the language capabilities they support. The following list is a summary of language capabilities of CQL:
 
-. Data Model and Type Support
-.. Decimal precision and scale
-.. Datetime precision and scale
-.. UCUM unit conversion support
-.. Regex dialect
-.. Supported data models
-. Compatibility Level
-.. 1.3
-... System.Ratio
-... System.Date
-... Expand operator
-... FHIRPath Support
-.. 1.4
-... Precision operators for Decimal and Date/Time types
-... Model-defined contexts
-... Library namespaces
-... Related-context retrieves
-... Unit conversion support
-.. 1.5
-... Modular arithmetic for quantities
-... Expand a single interval
-... Aggregate clause
-... Include retrieves
-... Searchpath retrieves
-... Id retrieves
-... System.Long
-... System.Vocabulary
-... System.CodeSystem
-... System.ValueSet
-. System Data Types
-. Operators
-.. Logical Operators
-.. Type Operators
-.. Nullological Operators
-.. Comparison Operators
-.. Arithmetic Operators
-.. String Operators
-.. Date and Time Operators
-.. Interval Operators
-.. List Operators
-.. Aggregate Functions
-.. Clinical Operators
-.. Diagnostic Operators
-. Queries
-.. Single source
-.. Relationships
-.. Let clause
-.. Where clause
-.. Return clause
-.. Aggregate clause
-.. Multi source
-. Retrieve
-.. Unfiltered context
-.. Terminology-based retrieve
-.. Valueset terminology target
-.. CodeSystem terminology target
-.. Code terminology target
-.. Searchpath retrieve
-.. Include retrieve
-.. Related-context retrieve
-.. Profile-based retrieve
+* Data Model and Type Support
+    * Decimal precision and scale
+    * Datetime precision and scale
+    * UCUM unit conversion support
+    * Regex dialect
+    * Supported data models
+* Compatibility Level
+    * 1.3
+        * System.Ratio
+        * System.Date
+        * Expand operator
+        * FHIRPath Support
+    * 1.4
+        * Precision operators for Decimal and Date/Time types
+        * Model-defined contexts
+        * Library namespaces
+        * Related-context retrieves
+        * Unit conversion support
+    * 1.5
+        * Modular arithmetic for quantities
+        * Expand a single interval
+        * Aggregate clause
+        * Include retrieves
+        * Searchpath retrieves
+        * Id retrieves
+        * System.Long
+        * System.Vocabulary
+        * System.CodeSystem
+        * System.ValueSet
+* System Data Types
+* Operators
+    * Logical Operators
+    * Type Operators
+    * Nullological Operators
+    * Comparison Operators
+    * Arithmetic Operators
+    * String Operators
+    * Date and Time Operators
+    * Interval Operators
+    * List Operators
+    * Aggregate Functions
+    * Clinical Operators
+    * Diagnostic Operators
+* Queries
+    * Single source
+    * Relationships
+    * Let clause
+    * Where clause
+    * Return clause
+    * Aggregate clause
+    * Multi source
+* Retrieve
+    * Unfiltered context
+    * Terminology-based retrieve
+    * Valueset terminology target
+    * CodeSystem terminology target
+    * Code terminology target
+    * Searchpath retrieve
+    * Include retrieve
+    * Related-context retrieve
+    * Profile-based retrieve
 
 Using these capabilities to advertise support, and enabling implementations to declare usage of these features within CQL, will allow authors and implementers to understand run-time implications of the CQL they are creating and using.
 
@@ -146,7 +146,7 @@ In 1.3, <span class="id">Date</span>, <span class="id">Time</span>, and <span cl
 
 ##### Conversions
 
-In 1.3, the implicit conversion from <span class="kw">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> to <span class="id">Concept</span> was changed to be explicit.
+In 1.3, the implicit conversion from <span class="kw">List</span><span class="sym">\<</span><span class="id">Code</span><span class="sym">></span> to <span class="id">Concept</span> was changed to be explicit.
 
 In 1.3, implicit conversions from <span class="id">Integer</span> and <span class="id">Decimal</span> to <span class="id">Quantity</span> were added.
 
@@ -186,7 +186,7 @@ In 1.3, the <span class="kw">exists</span> operator was changed to ignore <span 
 
 In 1.3, List membership (i.e. <span class="kw">in</span> and <span class="kw">contains</span>) and duplicate detection (e.g. via the <span class="kw">distinct</span> operator) were changed to use equality semantics, rather than equivalence semantics.
 
-In 1.3, a <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> overload was added to the <span class="kw">in</span> operator.
+In 1.3, a <span class="id">List</span><span class="sym">\<</span><span class="id">Code</span><span class="sym">></span> overload was added to the <span class="kw">in</span> operator.
 
 In 1.3, singleton overloads were added for the <span class="kw">includes</span> and <span class="kw">included in</span> operators.
 
@@ -210,23 +210,23 @@ In 1.4, the <span class="kw">timezone</span> keyword was changed to <span class=
 
 ##### Vocabulary Types
 
-In 1.5, a <span class="id">Vocabulary</span> abstract type with two subtypes, <span class="id">CodeSystem</span> and <span class="id">ValueSet</span>, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span> to <span class="id">ValueSet</span>. To ensure this is not a backwards-incompatible change, 1.5 also introduced an <span class="id">ExpandValueSet</span> function to support explicit expansion of value sets, and an implicit conversion from <span class="id">ValueSet</span> to <span class="id">List</span><span class="sym"><</span><span class="id">Code</span><span class="sym">></span>. In the ELM, the <span class="id">preserve</span> attribute was added to the <span class="id">ValueSetRef</span> node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a <span class="id">ValueSetRef</span> should be expanded or not.
+In 1.5, a <span class="id">Vocabulary</span> abstract type with two subtypes, <span class="id">CodeSystem</span> and <span class="id">ValueSet</span>, were introduced to support run-time representation of vocabulary references. In addition, the result type of a reference to a value set declaration was changed from <span class="id">List</span><span class="sym">\<</span><span class="id">Code</span><span class="sym">></span> to <span class="id">ValueSet</span>. To ensure this is not a backwards-incompatible change, 1.5 also introduced an <span class="id">ExpandValueSet</span> function to support explicit expansion of value sets, and an implicit conversion from <span class="id">ValueSet</span> to <span class="id">List</span><span class="sym">\<</span><span class="id">Code</span><span class="sym">></span>. In the ELM, the <span class="id">preserve</span> attribute was added to the <span class="id">ValueSetRef</span> node to enable implementations to support both 1.4 and 1.5 ELM by detecting whether a <span class="id">ValueSetRef</span> should be expanded or not.
 
 ### Artifact Data Requirements
 
 Because of the way data access is modeled within CQL, the data requirements of a particular artifact can be clearly and accurately defined by inspecting only the _Retrieve_ expressions defined within the artifact. The following table broadly describes the data defined by each retrieve:
 
 <a name="table-5-a"></a>
-[cols=",",options="header",]
-|===========================================================================================================================================================================================================================================
+
 |Item |Description
+|----|----
 |**Clinical Data Type** |The type of clinical data to be retrieved. This includes both the data type and the template identifier.
 |**Context** |The context type and value. Only clinical data matching the context (based on the context path) will be retrieved.
 |**Id** |Optionally, the id of the data to be retrieved (based on the id path).
 |**Codes** |The set of codes defining the clinical data. Only clinical data with matching codes (based on the code path of the retrieve, and the operation specified by the comparator) in the set will be retrieved. If no codes are specified, clinical data with any code will be retrieved. If a value set property is specified, it refers to a property of the clinical data that identifies a value set, and only clinical data matching the value set for the retrieve will be retrieved.
 |**Date Range** |The date range for clinical data. Only data within the specified date range (based on the date range path of the retrieve) will be retrieved. If no date range is specified, clinical data of any date will be retrieved.
 |**Includes** |Include elements for the clinical data. For data models that define relationships between data types, this element allows data matching the include relationships to be returned as part of the retrieve as well. Implementations that support this capability must ensure that included data returned is accessible via the related retrieve statements.
-|===========================================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑A - Description of the data defined by each retrieve
 
@@ -243,14 +243,14 @@ Once the date ranges for each code within each unique retrieve context are deter
 This process produces a set of clinical data descriptors with the following structure:
 
 <a name="table-5-b"></a>
-[cols=",",options="header",]
-|======================================================================================
+
 |Property |Description
+|----|----
 |**Clinical Data Type** |The type of clinical data required (including context type, template identifier, code path and date path)
 |**Codes** |The set of applicable codes, possibly empty (meaning all codes)
 |**Date Range** |The applicable date range, possibly empty (meaning all dates)
 |**Includes** |Any includes, specifying additional related data to be retrieved
-|======================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑B - The structure of clinical data descriptors
 
@@ -371,21 +371,20 @@ This process proceeds as follows:
 The graph of the expression being validated is traversed to determine the result type of each node. If the node has children (operands) the type of each child is determined in order to determine the type of the node. The following table defines the categories of nodes and the process for determining the type of each category:
 
 <a name="table-5-c"></a>
-[cols=",",options="header",]
-|============================================================================================================================================================================
+
 |Node Category |Type Determination
+|----|----
 |**Literal** |The type of the node is the type of the literal being represented.
 |**Property** |The type of the node is the declared type of the property being referenced.
 |**ParameterRef** |The type of the node is the parameterType of the parameter being referenced.
 |**ExpressionRef** |The type of the node is the type of the expression being referenced.
 |**Retrieve** |The type of the node is a list of the type of the data being requested.
-|**FunctionRef/** +
-**Operator** |Generally, the type of the node is determined by resolving the type of each operand, and then using that signature to determine the resulting type of the operator.
+|**FunctionRef/**<br/>**Operator** |Generally, the type of the node is determined by resolving the type of each operand, and then using that signature to determine the resulting type of the operator.
 |**ValueSetRef** |The type of the node is a list of codes.
 |**Query** |If the query has a return clause, the result is a list of the type of the return expression. If the query has an aggregate clause, the result is the type of the aggregate expression. Otherwise, the result type is determined by the source of the query.
 |**AliasRef** |The type of the node is the element type of the type of the query source referenced by the alias.
 |**QueryLetRef** |The type of the node is the type of the referenced expression defined within the query scope.
-|============================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑C - The categories of nodes and the process for determining the type of each category
 
@@ -409,13 +408,13 @@ In general, operations are defined to result in null if any of their arguments a
 Evaluation takes place within an execution model that provides access to the data and parameters provided to the evaluation. Data is provided to the evaluation as a set of lists of structured values representing the clinical information. In order to be represented in this data set, a given structured value must be a _cacheable_ item. A cacheable item must have the following:
 
 <a name="table-5-d"></a>
-[cols=",",options="header",]
-|=======================================================================================
+
 |Property |Description
+|----|----
 |**Identifier** |A property or set of properties that uniquely identify the item
 |**Codes** |A code or list of codes that identify the associated clinical codes for the item
 |**Date** |A date time defining the clinically relevant date and/or time of the item
-|=======================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑D - The required properties for a cacheable item
 
@@ -430,30 +429,30 @@ During the evaluation phase, the result of the expression is determined. Concept
 The graph of the expression being evaluated is traversed and the result of each node is calculated. If the node has children (operands), the result of each child is evaluated before the result of the node can be determined. The following table describes the general categories of nodes and the process of evaluation for each:
 
 <a name="table-5-e"></a>
-[cols=",",options="header",]
-|======================================================================================================================================================================================================================================================================================================================
+
 |Node Category |Evaluation
+|----|----
 |**Literal** |The result of the node is the value of the literal represented.
 |**FunctionRef/Operation** |The result of the node is the result of the operation described by the node given the results of the operand nodes of the expression.
 |**Retrieve** |The result of the node is the result of retrieving the data represented by the retrieve—i.e., a list of structured values of the type defined in the retrieve representing the clinical information being retrieved.
 |**ExpressionRef** |The result of the node is the result of evaluating the referenced expression.
 |**ParameterRef** |The result of the node is the value of the referenced parameter.
 |**ValueSetRef** |The result of the node is the expansion set of the referenced value set definition. Note that in the case of the InValueSet operator specifically, the expansion set need not be materialized; the membership test can be passed to a terminology service using only the valueset definition information.
-|======================================================================================================================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑E - The general categories of nodes and the process of evaluation for each
 
 During evaluation, the implementation must maintain a stack that is used to represent the value that is currently in scope. Certain operations within the expression language are defined with a scope, and these operations use the stack to represent this scope. The following table details these operations:
 
 <a name="table-5-f"></a>
-[cols=",",options="header",]
-|====================================================================================================================================================================
+
 |Operation |Stack Effect
+|----|----
 |**Query** |Query evaluation is discussed in detail below.
 |**Filter** |For each item in the _source_ operand, the item is pushed on to the stack, the _condition_ expression is evaluated, and the item is popped off of the stack.
 |**ForEach** |For each item in the _source_ operand, the item is pushed on to the stack, the _element_ expression is evaluated, and the item is popped off of the stack.
 |**Aggregate** |For each item in the _source_ operand, the item is pushed on to the stack, the _expression_ is evaluated, and the item is popped off of the stack.
-|====================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑F - The operations within the expression language are defined with a scope, and the stack to represent this scope
 
@@ -469,11 +468,11 @@ The outline of the process is:
 
 * Evaluate the sources
 * For each item in the source
-** evaluate any let clauses within the query
-** evaluate each with or without clause in the query
-** evaluate the where clause, if present
-** evaluate the return clause, if present
-** evaluate the aggregate clause, if present, storing the result as an accumulator available for reference in the next iteration
+    * evaluate any let clauses within the query
+    * evaluate each with or without clause in the query
+    * evaluate the where clause, if present
+    * evaluate the return clause, if present
+    * evaluate the aggregate clause, if present, storing the result as an accumulator available for reference in the next iteration
 * Sort the results if a sort clause is present
 
 The following sections discuss each of these steps in more detail.
@@ -551,9 +550,9 @@ This section discusses the precise semantics for the representation of date and 
 This section provides precise definitions for the terms involved in dealing with date and time values. These definitions are based on the ISO 8601:2004 standard for the representation of date and time values.
 
 <a name="table-5-g"></a>
-[cols=",,",options="header",]
-|===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
 |Term |Definition |Notes
+|----|----|----
 |**Date interval** |Part of the time axis bounded by two Date values. |A Date interval comprises all Date values between the two boundary Dates and, unless otherwise stated, the boundary Date values themselves.
 |**DateTime interval** |Part of the time axis bounded by two DateTime values. |A DateTime interval comprises all DateTime values between the two boundary DateTimes and, unless otherwise stated, the boundary DateTime values themselves.
 |**Duration** |Quantity attributed to a DateTime interval, the value of which is equal to the difference between the time points of the final instant and the initial instants of the time interval. |In case of discontinuities in the time scale, such as a leap second or the change from winter time to summer time and back, the computation of the duration requires the subtraction or addition of the change of duration of the discontinuity.
@@ -563,44 +562,33 @@ This section provides precise definitions for the terms involved in dealing with
 |**Minute** |Unit of time equal to 60 seconds. |
 |**Hour** |Unit of time equal to 60 minutes. |
 |**Day** |Unit of time equal to 24 hours. |
-|**Calendar day** |Time interval starting at midnight and ending at the next midnight, the latter being also the starting instant of the next calendar day. |
-A calendar day is often also referred to as a day.
-
-The duration of a calendar day is 24 hours, except if modified by:
-
-* The insertion or deletion of leap seconds, by decision of the International Earth Rotation Service (IERS), or
-* The insertion or deletion of other time intervals, as may be prescribed by local authorities to alter the time scale of local time.
-
+|**Calendar day** |Time interval starting at midnight and ending at the next midnight, the latter being also the starting instant of the next calendar day. |A calendar day is often also referred to as a day.<br/>The duration of a calendar day is 24 hours, except if modified by:<br/>* The insertion or deletion of leap seconds, by decision of the International Earth Rotation Service (IERS), or<br/>* The insertion or deletion of other time intervals, as may be prescribed by local authorities to alter the time scale of local time.
 |**Day** |Duration of a calendar day. |The term “day” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day and ends at the same time of day at the next calendar day.
 |**Calendar month** |Time interval resulting from the division of a calendar year into 12 time intervals, each with a specific name and containing a specific number of calendar days. |A calendar month is often referred to as a month.
 |**Month** |Duration of 28, 29, 30, or 31 calendar days, depending on the start and/or the end of the corresponding time interval within the specific calendar month. |The term “month” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at the same time of day at the same calendar day of the next calendar month, if it exists. In other cases, the ending calendar day has to be agreed on.
-|**Calendar year** |Cyclic time interval in a calendar which is required for one revolution of the Earth around the Sun and approximated to an integral number of calendar days. |
-A calendar year is also referred to as a year.
-
-Unless otherwise specified, the term designates a calendar year in the Gregorian calendar.
-
+|**Calendar year** |Cyclic time interval in a calendar which is required for one revolution of the Earth around the Sun and approximated to an integral number of calendar days. |A calendar year is also referred to as a year.<br/>Unless otherwise specified, the term designates a calendar year in the Gregorian calendar.
 |**Year** |Duration of 365 or 366 calendar days depending on the start and/or the end of the corresponding time interval within the specific calendar year. |The term “year” applies also to the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at the same time of day at the same calendar date of the next calendar year, if it exists. In other cases, the ending calendar day has to be agreed on.
 |**Common year** |Calendar year in the Gregorian calendar that has 365 calendar days. |
 |**Leap year** |Calendar year in the Gregorian calendar that has 366 calendar days. |
-|===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑G - Definitions for the terms involved in dealing with <span class="kw">Date</span> and <span class="kw">Time</span> values
 
 ISO 8601 postulates that duration can be expressed by a combination of components with accurate duration (hour, minute, and second) and components with nominal duration (year, month, week, and day). The standard allows for the omission of lower-level components for “reduced accuracy” applications. Following this guidance, CQL represents date and time values using the following components:
 
 <a name="table-5-h"></a>
-[cols=",,,",options="header",]
-|======================================================================================================================================================================================================================================================================================================================================================================
+
 |Component |Type |Range |Notes
+|----|----|----|----
 |**Year** |Integer |[0001, 9999] |A CQL environment must be able to represent the minimum year of 0001, and a maximum year of 9999. Environments may represent dates in years before or after these years, the range specified here is the minimum required.
 |**Month** |Integer |[1, 12] |Months are specified by their ordinal position (i.e. January = 1, February = 2, etc.)
-|**Day** |Integer |[1, 31] |If the day specified is not present in the month (i.e. February 30^th^), the day value is reduced by the number of days in the given month, and the month is incremented by 1.
+|**Day** |Integer |[1, 31] |If the day specified is not present in the month (i.e. February 30<sup>th</sup>), the day value is reduced by the number of days in the given month, and the month is incremented by 1.
 |**Hour** |Integer |[0, 23] |
 |**Minute** |Integer |[0, 59] |
 |**Second** |Integer |[0, 59] |
 |**Millisecond** |Integer |[0, 999] |999 milliseconds is the maximum required precision. Note that many operations require the ability to compute the “next” or “prior” instant, and these semantics depend on the step-size of 1 millisecond, so systems that support more than millisecond precision will need to quantize to the millisecond to achieve these semantics.
 |**Timezone Offset** |Real |[-13.00, 14.00] |The timezone offset is represented as a real with two digits of precision to account for timezones with partial hour differences. Note that the timezone offset is a decimal representation of the time offset, so an offset of +2:30 would be represented as +2.50.
-|======================================================================================================================================================================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑H - The components used to represent <span class="kw">Date</span> and <span class="kw">Time</span> values in CQL
 
@@ -610,9 +598,9 @@ Table 5‑H - The components used to represent <span class="kw">Date</span> and 
 CQL allows time durations, represented as Quantities, to be added to or subtracted from date or time values. The result of these operations take the calendar into account when determining the correct answer. In general, when the addition of a quantity exceeds the limit for that precision, it results in a corresponding increase to the most precise field specified. The following table describes these operations for each precision:
 
 <a name="table-5-i"></a>
-[cols=",,,",options="header",]
-|========================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
 |Precision |Type |Range |Semantics
+|----|----|----|----
 |**Year** |Integer |[0001, 9999] |The year, positive or negative, is added to the year component of the date or time value. If the resulting year is out of range, an error is thrown. If the month and day of the date or time value is not a valid date in the resulting year, the last day of the calendar month is used. For example, DateTime(2012, 2, 29, 0, 0) + 1 year = DateTime(2013, 2, 28, 0, 0). The resulting date or time value will have the same time components.
 |**Month** |Integer |[1, 12] |The month, positive or negative is divided by 12, and the integer portion of the result is added to the year component. The remaining portion of months is added to the month component. If the resulting date is not a valid date in the resulting year, the last day of the resulting calendar month is used. The resulting date or time value will have the same time components.
 |**Week** |Integer |[1, 52] |The week, positive or negative, is multiplied by 7, and the resulting value is added to the day component, respecting calendar month and calendar year lengths. The resulting date or time value will have the same time components.
@@ -621,7 +609,7 @@ CQL allows time durations, represented as Quantities, to be added to or subtract
 |**Minute** |Integer |[0, 59] |The minutes, positive or negative, are added to the minute component, with each 60 minute block counting as an hour, and respecting calendar month and calendar year lengths.
 |**Second** |Integer |[0, 59] |The seconds, positive or negative, are added to the second component, with each 60 second block counting as a minute, and respecting calendar month and calendar year lengths.
 |**Millisecond** |Integer |[0, 999] |The milliseconds, positive or negative, are added to the millisecond component, with each 1000 millisecond block counting as a second, and respecting calendar month and calendar year lengths.
-|========================================================================================================================================================================================================================================================================================================================================================================================================================================================
+{: .grid .table .table-striped}
 
 Table 5‑I - The <span class="kw">Quantities</span> and their precision that can be used for <span class="kw">Date</span> and <span class="kw">Time</span> calculations in CQL
 
@@ -688,7 +676,7 @@ Is _some value between 2 and 2_ equal to _some value between 2 and 2_?
 
 And the correct answer is, _Yes_.
 
-More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
+More precisely, given an uncertainty _A_ with range _A<sub>low</sub>_ to _A<sub>high</sub>_, and uncertainty _B_ with range _B<sub>low</sub>_ to _B<sub>high</sub>_, the comparison:
 
 ``` cql
 A = B
@@ -697,8 +685,8 @@ A = B
 Is equivalent to:
 
 ``` cql
-if A~low~ <= B~high~ and A~high~ >= B~low~
-  then if A~low~ = A~high~ and B~low~ = B~high~
+if A.low <= B.high and A.high >= B.low
+  then if A.low = A.high and B.low = B.high
     then true
     else null
   else false
@@ -732,7 +720,7 @@ _Is some value between 30 and 40 less than some value between 20 and 30?_
 
 And the correct answer is, _No_, because even though the ranges overlap (by width one at the lower boundary of the left-hand value), the result would still be false because 30 is not less than 30.
 
-More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
+More precisely, given an uncertainty _A_ with range _A<sub>low</sub>_ to _A<sub>high</sub>_, and uncertainty _B_ with range _B<sub>low</sub>_ to _B<sub>high</sub>_, the comparison:
 
 ``` cql
 A < B
@@ -742,8 +730,8 @@ Is equivalent to:
 
 ``` cql
 case
-  when A~high~ < B~low~ then true
-  when A~low~ >= B~high~ then false
+  when A.high < B.low then true
+  when A.low >= B.high then false
   else null
 end
 ```
@@ -760,7 +748,7 @@ _Is some value between 30 and 40 less than or equal to some value between 40 and
 
 And the correct answer is, _Yes_, because every possible value between 30 and 40 inclusive is either less than or equal to every possible value between 40 and 50 inclusive.
 
-More precisely, given an uncertainty _A_ with range _A~low~_ to _A~high~_, and uncertainty _B_ with range _B~low~_ to _B~high~_, the comparison:
+More precisely, given an uncertainty _A_ with range _A<sub>low</sub>_ to _A<sub>high</sub>_, and uncertainty _B_ with range _B<sub>low</sub>_ to _B<sub>high</sub>_, the comparison:
 
 ``` cql
 A <= B
@@ -770,13 +758,13 @@ Is equivalent to:
 
 ``` cql
 case
-  when A~high~ <= B~low~ then true
-  when A~low~ > B~high~ then false
+  when A.high <= B.low then true
+  when A.low > B.high then false
   else null
 end
 ```
 
-Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A <span class="sym">=</span> B or A <span class="sym"><</span> B_ is _not_ equivalent to _A <span class="sym">\<=</span> B_ because of the uncertainty.
+Note carefully that these semantics introduce some asymmetries into the comparison operators. In particular, _A <span class="sym">=</span> B or A <span class="sym">\<</span> B_ is _not_ equivalent to _A <span class="sym">\<=</span> B_ because of the uncertainty.
 
 {: #arithmetic-operators-2}
 #### Arithmetic Operators
@@ -846,7 +834,7 @@ days between Date(2014, 1, 15) and Date(2014, 2, 1) // 17 days
 days between Date(2014, 1, 15) and Date(2014, 2, 28) // 44 days
 ```
 
-Intuitively, what this means is that the number of days between January 15^th^, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
+Intuitively, what this means is that the number of days between January 15<sup>th</sup>, 2014 and some date in February, 2014, is no less than 17 days, but no more than 44. By incorporating this information into an uncertainty, CQL can support the intuitively expected semantics when performing timing comparisons. For example:
 
 ``` cql
 days between Date(2014, 1, 15) and Date(2014, 2) > 2
@@ -998,7 +986,7 @@ Note that as with the before and after transformations, a null test is required 
 {: #interval-operators-1}
 #### Interval Operators
 
-In general, interval comparisons are already defined in terms of the fundamental comparison operators (<span class="sym">=</span>, <span class="sym">></span>, <span class="sym"><</span>, <span class="sym">>=</span>, <span class="sym">\<=</span>, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
+In general, interval comparisons are already defined in terms of the fundamental comparison operators (<span class="sym">=</span>, <span class="sym">></span>, <span class="sym">\<</span>, <span class="sym">>=</span>, <span class="sym">\<=</span>, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
 
 Note that open null boundaries of intervals are treaterd as uncertainties for the purposes of interval computation. For example:
 
@@ -1018,7 +1006,7 @@ This results in an interval that begins at 5, and ends at some value between 5 a
 Implementation of these semantics can be simplified by recognizing that all the date and time comparisons can be expressed in terms of a difference calculation and a comparison of the resulting (potentially uncertain) values against 0. Combined with the timing phrase translations, this means that the implementation for precision-based timing can be isolated to:
 
 * Support for run-time operations on integer-based uncertainties, including:
-** <span class="sym">=</span>, <span class="sym"><</span>, <span class="sym">></span>, <span class="sym">\<=</span>, <span class="sym">>=</span>, <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">unary +/-</span>, <span class="sym">*</span>, <span class="sym">/</span>
+** <span class="sym">=</span>, <span class="sym">\<</span>, <span class="sym">></span>, <span class="sym">\<=</span>, <span class="sym">>=</span>, <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">unary +/-</span>, <span class="sym">*</span>, <span class="sym">/</span>
 ** implicit conversion between integer point values and uncertainties
 * Precision-based duration and difference between dates and times
 

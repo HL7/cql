@@ -173,14 +173,14 @@ Syntax highlighting is an important aspect of readability. In order to enable di
 * Keywords
 * Operators
 * Literals
-** Numbers
-** Strings
-** Dates and Times
+    * Numbers
+    * Strings
+    * Dates and Times
 * Comments
 * Identifiers
-** Type Identifiers
-** Variable Identifiers
-** Function Identifiers
+    * Type Identifiers
+    * Variable Identifiers
+    * Function Identifiers
 
 ## Best Practices
 

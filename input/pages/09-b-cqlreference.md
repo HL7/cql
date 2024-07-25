@@ -23,7 +23,7 @@ In addition, formatting strings are used throughout the reference to describe po
 * **#** - Any digit may appear at this location in the format string
 * **?** - The immediately preceding pattern is optional
 * **( )** - Used to group patterns
-* **|** - Used to combine choices of patterns (e.g. **\+|-** means a **+** or **-** may appear at this location)
+* **\|** - Used to combine choices of patterns (e.g. **+\|-** means a **+** or **-** may appear at this location)
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
@@ -176,7 +176,7 @@ simple type Decimal
 
 The <span class="id">Decimal</span> type represents real values within CQL.
 
-CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10^28^ + 1)/10^8^ to (10^28^-1)/10^-8^ with a step size of 10^-8^.
+CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10<sup>28</sup> + 1)/10<sup>8</sup> to (10<sup>28</sup>-1)/10<sup>-8</sup> with a step size of 10<sup>-8</sup>.
 
 
 {: #long-1}
@@ -195,7 +195,7 @@ simple type Long
 
 The <span class="id">Long</span> type represents large whole number values within CQL.
 
-CQL supports long values in the range -2^63^ to 2^63^-1 with a step size of 1.
+CQL supports long values in the range -2<sup>63</sup> to 2<sup>63</sup>-1 with a step size of 1.
 
 {: #integer-1}
 ### Integer
@@ -210,7 +210,7 @@ simple type Integer
 
 The <span class="id">Integer</span> type represents whole number values within CQL.
 
-CQL supports integer values in the range -2^31^ to 2^31^-1 with a step size of 1.
+CQL supports integer values in the range -2<sup>31</sup> to 2<sup>31</sup>-1 with a step size of 1.
 
 ### Quantity
 
@@ -257,13 +257,13 @@ simple type String
 
 The <span class="id">String</span> type represents string values within CQL.
 
-CQL supports string values up to 2^31^-1 characters in length.
+CQL supports string values up to 2<sup>31</sup>-1 characters in length.
 
 For string literals, CQL uses standard escape sequences:
 
-[cols=",",options="header",]
-|========================================================================================
+
 |Escape |Character
+|----|----
 |\' |Single-quote
 |\" |Double-quote
 |\r |Carriage Return
@@ -272,7 +272,7 @@ For string literals, CQL uses standard escape sequences:
 |\f |Form Feed
 |\\ |Backslash
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
-|========================================================================================
+{: .grid .table .table-striped}
 
 ### Time
 
@@ -359,13 +359,13 @@ The <span class="kw">and</span> operator returns true if both its arguments are 
 The following table defines the truth table for this operator:
 
 <a name="table-9-a"></a>
-[cols=",,,",options="header",]
-|==========================
+
 | |TRUE |FALSE |NULL
+|----|----|----|----
 |**TRUE**  |TRUE |FALSE |NULL
 |**FALSE** |FALSE |FALSE |FALSE
 |**NULL**  |NULL |FALSE |NULL
-|==========================
+{: .grid .table .table-striped}
 
 Table 9‑A - The truth table for the <span class="kw">And</span> operator
 
@@ -399,13 +399,13 @@ Note that implies may use short-circuit evaluation in the case that the first op
 The following table defines the truth table for this operator:
 
 <a name="table-9-a1"></a>
-[cols=",,,",options="header",]
-|=======================
+
 | |TRUE |FALSE |NULL
+|----|----|----|----
 |**TRUE** |**TRUE** |**FALSE** |**NULL**
 |**FALSE** |**TRUE** |**TRUE** |**TRUE**
 |**NULL** |**TRUE** |**NULL** |**NULL**
-|=======================
+{: .grid .table .table-striped}
 
 Table 9‑A1 - The truth table for the <span class="kw">Implies</span> operator
 
@@ -435,13 +435,13 @@ The <span class="kw">not</span> operator returns true if the argument is false a
 The following table defines the truth table for this operator:
 
 <a name="table-9-b"></a>
-[cols=",",options="header",]
-|===========
+
 |  |NOT
+|----|----
 |**TRUE** |**FALSE**
 |**FALSE** |**TRUE**
 |**NULL** |**NULL**
-|===========
+{: .grid .table .table-striped}
 
 Table 9‑B - The truth table for the <span class="kw">Not</span> operator
 
@@ -468,13 +468,13 @@ The <span class="kw">or</span> operator returns true if either of its arguments 
 The following table defines the truth table for this operator:
 
 <a name="table-9-c"></a>
-[cols=",,,",options="header",]
-|========================
+
 | |TRUE |FALSE |NULL
+|----|----|----|----
 |**TRUE** |**TRUE** |**TRUE** |**TRUE**
 |**FALSE** |**TRUE** |**FALSE** |**NULL**
 |**NULL** |**TRUE** |**NULL** |**NULL**
-|========================
+{: .grid .table .table-striped}
 
 Table 9‑C - The truth table for the <span class="kw">Or</span> operator
 
@@ -506,13 +506,13 @@ The <span class="kw">xor</span> (exclusive or) operator returns true if one argu
 The following table defines the truth table for this operator:
 
 <a name="table-9-d"></a>
-[cols=",,,",options="header",]
-|========================
+
 | |TRUE |FALSE |NULL
+|----|----|----|----
 |**TRUE** |**FALSE** |**TRUE** |**NULL**
 |**FALSE** |**TRUE** |**FALSE** |**NULL**
 |**NULL** |**NULL** |**NULL** |**NULL**
-|========================
+{: .grid .table .table-striped}
 
 Table 9‑D - The truth table for the <span class="kw">Xor</span> operator
 
@@ -593,9 +593,9 @@ The <span class="kw">convert</span> operator converts a value to a specific type
 The following table lists the conversions supported in CQL:
 
 <a name="table-9-e"></a>
-[cols=",,,,,,,,,,,,,",options="header",]
-|===============================================================================================
-|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code>
+
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List\<Code>
+|----|----|----|----|----|----|----|----|----|----|----|----|----
 |**Boolean** |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |-
 |**Integer** |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
 |**Long** |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
@@ -608,14 +608,14 @@ The following table lists the conversions supported in CQL:
 |**Time** |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |-
 |**Code** |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |-
 |**Concept** |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit
-|**List<Code>** |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
-|===============================================================================================
+|**List\<Code>** |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A
+{: .grid .table .table-striped}
 
 Table 9‑E - The conversions supported in CQL
 
 For conversions between dates, times, and string values, ISO-8601 standard format is used:
 
-**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
+**YYYY-MM-DDThh:mm:ss.fff(Z\|((+\|-)hh:mm))**
 
 For example, the following are valid string representations for date and time values:
 
@@ -626,7 +626,7 @@ For example, the following are valid string representations for date and time va
 'T14:30:00.0-07:00' // 2:30PM Mountain Standard (GMT-7:00)
 ```
 
-For specific semantics for each conversion, refer to the [explicit conversion](03-developersguide.adoc#explicit-conversion) operator documentation.
+For specific semantics for each conversion, refer to the [explicit conversion](03-developersguide.html#explicit-conversion) operator documentation.
 
 ### Descendents
 
@@ -886,12 +886,12 @@ ToBoolean(argument String) Boolean
 The <span class="id">ToBoolean</span> operator converts the value of its argument to a <span class="id">Boolean</span> value. The operator accepts the following string representations, ignoring case:
 
 <a name="table-9-f"></a>
-[cols=",",options="header",]
-|====================================
+
 |String Representation |Boolean Value
+|----|----
 |<span class="id">true t yes y 1</span> |<span class="kw">true</span>
 |<span class="id">false f no n 0</span> |<span class="kw">false</span>
-|====================================
+{: .grid .table .table-striped}
 
 Table 9‑F - The string representations that the ToBoolean operator accepts
 
@@ -991,7 +991,7 @@ The <span class="id">ToDateTime</span> operator converts the value of its argume
 
 For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
+**YYYY-MM-DDThh:mm:ss.fff(Z\|((+\|-)hh:mm))**
 
 See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
@@ -1026,7 +1026,7 @@ ToDecimal(argument String) Decimal
 
 The <span class="id">ToDecimal</span> operator converts the value of its argument to a <span class="id">Decimal</span> value. The operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?**
+**(+\|-)?\#0(.0#)?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
@@ -1064,7 +1064,7 @@ ToLong(argument String) Long
 
 The <span class="id">ToLong</span> operator converts the value of its argument to a <span class="id">Long</span> value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -1100,7 +1100,7 @@ ToInteger(argument Long) Integer
 
 The <span class="id">ToInteger</span> operator converts the value of its argument to an <span class="id">Integer</span> value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
@@ -1140,7 +1140,7 @@ The <span class="id">ToQuantity</span> operator converts the value of its argume
 
 For the <span class="id">String</span> overload, the operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?('<unit>')?**
+**(+\|-)?\#0(.0#)?('<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -1216,19 +1216,19 @@ ToString(argument Time) String
 The <span class="id">ToString</span> operator converts the value of its argument to a <span class="id">String</span> value. The operator uses the following string representations for each type
 
 <a name="table-9-g"></a>
-[cols=",",options="header",]
-|===========================================
+
 |Type |String Representation
+|----|----
 |<span class="id">Boolean</span> |**true\|false**
 |<span class="id">Integer</span> |**(-)?#0**
 |<span class="id">Long</span> |**(-)?#0**
 |<span class="id">Decimal</span> |**(-)?\#0.0#**
-|<span class="id">Quantity</span> |**(-)?\#0.0# '<unit>'**
-|<span class="id">Ratio</span> |**<quantity>:<quantity>**
+|<span class="id">Quantity</span> |**(-)?\#0.0# '\<unit>'**
+|<span class="id">Ratio</span> |**\<quantity>:\<quantity>**
 |<span class="id">Date</span> |**YYYY-MM-DD**
 |<span class="id">DateTime</span> |**YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm**
 |<span class="id">Time</span> |**hh:mm:ss.fff**
-|===========================================
+{: .grid .table .table-striped}
 
 Table 9‑G - The string representations that the ToString operator uses for each data type
 
@@ -1622,7 +1622,7 @@ define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
 define "NullGreaterIsNull": null > 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 
@@ -1674,7 +1674,7 @@ define "QuantityGreaterOrEqualIsNull": 3.6 'cm2' >= 3.5 'cm'
 define "NullGreaterOrEqualIsNull": null >= 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### Less
@@ -1697,7 +1697,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 
 **Description:**
 
-The _less_ (<span class="sym"><</span>) operator returns <span class="kw">true</span> if the first argument is less than the second argument.
+The _less_ (<span class="sym">\<</span>) operator returns <span class="kw">true</span> if the first argument is less than the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
@@ -1726,7 +1726,7 @@ define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 define "NullLessIsNull": null < 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### Less Or Equal
@@ -1777,7 +1777,7 @@ define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'
 define "NullLessOrEqualIsNull": null <= 5
 ```
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### Not Equal
@@ -2157,11 +2157,11 @@ The <span class="kw">maximum</span> operator returns the maximum representable v
 
 The <span class="kw">maximum</span> operator is defined for the <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Decimal</span>, <span class="id">Quantity</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> types.
 
-For <span class="id">Integer</span>, <span class="kw">maximum</span> returns the maximum signed 32-bit integer, 2^31^ - 1.
+For <span class="id">Integer</span>, <span class="kw">maximum</span> returns the maximum signed 32-bit integer, 2<sup>31</sup> - 1.
 
-For <span class="id">Long</span>, <span class="kw">maximum</span> returns the maximum signed 64-bit long, 2^63^ - 1.
+For <span class="id">Long</span>, <span class="kw">maximum</span> returns the maximum signed 64-bit long, 2<sup>63</sup> - 1.
 
-For <span class="id">Decimal</span>, <span class="kw">maximum</span> returns the maximum representable decimal value, (10^28^ – 1) / 10^8^ (99999999999999999999.99999999).
+For <span class="id">Decimal</span>, <span class="kw">maximum</span> returns the maximum representable decimal value, (10<sup>28</sup> – 1) / 10<sup>8</sup> (99999999999999999999.99999999).
 
 For <span class="id">Quantity</span>, <span class="kw">maximum</span> returns the maximum representable quantity, i.e. the maximum representable decimal value with a default unit (<span class="sym">1</span>).
 
@@ -2202,11 +2202,11 @@ The <span class="kw">minimum</span> operator returns the minimum representable v
 
 The <span class="kw">minimum</span> operator is defined for the <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Decimal</span>, <span class="id">Quantity</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> types.
 
-For <span class="id">Integer</span>, <span class="kw">minimum</span> returns the minimum signed 32-bit integer, -2^31^.
+For <span class="id">Integer</span>, <span class="kw">minimum</span> returns the minimum signed 32-bit integer, -2<sup>31</sup>.
 
-For <span class="id">Long</span>, <span class="kw">minimum</span> returns the minimum signed 64-bit long, -2^63^.
+For <span class="id">Long</span>, <span class="kw">minimum</span> returns the minimum signed 64-bit long, -2<sup>63</sup>.
 
-For <span class="id">Decimal</span>, <span class="kw">minimum</span> returns the minimum representable decimal value, (-10^28^ + 1) / 10^8^ (-99999999999999999999.99999999).
+For <span class="id">Decimal</span>, <span class="kw">minimum</span> returns the minimum representable decimal value, (-10<sup>28</sup> + 1) / 10<sup>8</sup> (-99999999999999999999.99999999).
 
 For <span class="id">Quantity</span>, <span class="kw">minimum</span> returns the minimum representable quantity, i.e. the minimum representable decimal value with a default unit (<span class="sym">1</span>).
 
@@ -2396,7 +2396,7 @@ For <span class="id">Integer</span>, <span class="kw">predecessor</span> is equi
 
 For <span class="id">Long</span>, <span class="kw">predecessor</span> is equivalent to subtracting 1L.
 
-For <span class="id">Decimal</span>, <span class="kw">predecessor</span> is equivalent to subtracting the minimum precision value for the <span class="id">Decimal</span> type, or 10^-08^.
+For <span class="id">Decimal</span>, <span class="kw">predecessor</span> is equivalent to subtracting the minimum precision value for the <span class="id">Decimal</span> type, or 10<sup>-08</sup>.
 
 For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="kw">predecessor</span> is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">predecessor</span> is equivalent to subtracting 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">predecessor</span> is equivalent to subtracting one second, etc.
 
@@ -2538,7 +2538,7 @@ For <span class="id">Integer</span>, <span class="kw">successor</span> is equiva
 
 For <span class="id">Long</span>, <span class="kw">successor</span> is equivalent to adding 1L.
 
-For <span class="id">Decimal</span>, <span class="kw">successor</span> is equivalent to adding the minimum precision value for the <span class="id">Decimal</span> type, or 10^-08^.
+For <span class="id">Decimal</span>, <span class="kw">successor</span> is equivalent to adding the minimum precision value for the <span class="id">Decimal</span> type, or 10<sup>-08</sup>.
 
 For <span class="id">Date</span>, <span class="id">DateTime</span> and <span class="id">Time</span> values, <span class="kw">successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">successor</span> is equivalent to adding 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">successor</span> is equivalent to adding one second, etc.
 
@@ -4487,7 +4487,7 @@ define "NullInterval": width of Interval[0, null) //null
 {: #list-operators-2}
 ## List Operators
 
-Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the [Promotion and Demotion](03-developersguide.adoc#promotion-and-demotion) section for more information.
+Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the [Promotion and Demotion](03-developersguide.html#promotion-and-demotion) section for more information.
 
 {: #contains-1}
 ### Contains
@@ -4766,7 +4766,7 @@ define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 
 **Description:**
 
-The _indexer_ (<span class="sym">[]</span>) operator returns the element at the <span class="id">index</span>^th^ position in a list.
+The _indexer_ (<span class="sym">[]</span>) operator returns the element at the <span class="id">index</span><sup>th</sup> position in a list.
 
 Indexes in lists are defined to be 0-based.
 
@@ -5215,7 +5215,7 @@ GeometricMean(argument List<Decimal>) Decimal
 
 **Description:**
 
-The <span class="id">GeometricMean</span> operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N^th^ root of the geometric product of the elements. In other words:
+The <span class="id">GeometricMean</span> operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N<sup>th</sup> root of the geometric product of the elements. In other words:
 
 ``` cql
 GeometricMean(X) = Power(Product(X), 1 / Count(X))
@@ -5724,7 +5724,7 @@ For the <span class="id">Code</span> overload, if the given code system contains
 
 For the <span class="id">Concept</span> overload, if the given code system contains a code equivalent to any code in the given concept, the result is <span class="kw">true</span>.
 
-For the <span class="id">List<Code></span> overload, if the given code system contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
+For the <span class="id">List\<Code></span> overload, if the given code system contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
 
 If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
@@ -5759,7 +5759,7 @@ The ExpandValueSet function returns the current expansion for the given value se
 
 The function expects a single argument of type <span class="id">ValueSet</span>. This may be a static reference to a value set (as shown in the example below), or a <span class="id">ValueSet</span> value to support dynamic value set usage.
 
-The function is used to provide implicit conversion from a <span class="id">ValueSet</span> reference to a <span class="id">List<Code></span>.
+The function is used to provide implicit conversion from a <span class="id">ValueSet</span> reference to a <span class="id">List\<Code></span>.
 
 If the argument is null, the result is null.
 
@@ -5794,7 +5794,7 @@ For the <span class="id">Code</span> overload, if the given valueset contains an
 
 For the <span class="id">Concept</span> overload, if the given valueset contains a code equivalent to any code in the given concept, the result is <span class="kw">true</span>.
 
-For the <span class="id">List<Code></span> overload, if the given valueset contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
+For the <span class="id">List\<Code></span> overload, if the given valueset contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
 
 If the code argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 

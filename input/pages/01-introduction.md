@@ -24,6 +24,7 @@ Clinical Decision Support and Clinical Quality Measurement are closely related, 
 
 Considering each of these components separately, the next step involves identifying the relationship of the current specifications to each component, as shown in the following table:
 
+<!-- NOTE: This table is expressed in HTML because it uses a rowspan which is not supported in markdown tables -->
 <a name="table-1-a"></a>
 
 <table class="grid table table-striped">
@@ -71,7 +72,9 @@ The discrepancy shown here between standards used in the different domains intro
 Using the framework of metadata, data model, and expression logic, the following diagram depicts the overall target specification areas involved in clinical quality artifact representation:
 
 <a name="figure-1-a"></a>
+<div>
 <img src="extracted-media/media/image2.jpeg" alt="CQF Value Statement Pic 20140410.jpg" width=720 height=400/>
+</div>
 
 Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
 
@@ -110,7 +113,9 @@ The logical perspective of the specification is concerned with complete and accu
 This perspective defines a Unified Modeling Language (UML) model called the Expression Logical Model (ELM) that defines a canonical representation of expression logic. This approach is intended to simplify implementation and machine processing by focusing on the content of an expression, rather than the syntax used to render it. The approach is based on and motivated by the concept of an Abstract Syntax Tree from traditional compiler implementation. The following diagram depicts the steps performed by a traditional compiler:
 
 <a name="figure-1-b"></a>
-![extracted-media/media/image3-1](extracted-media/media/image3-1.png){: width=626; height=430; }
+<div>
+<img src="extracted-media/media/image3-1.png" alt="extracted-media/media/image3-1" width="626" height="430"/>
+</div>
 
 Figure 1‑B - The steps performed by a traditional compiler
 
@@ -163,18 +168,20 @@ Note that syntax highlighting is used throughout the specification to make the e
 
 The specific requirements implemented within this specification focus on the structure, semantics, and encoding of expression logic representation within quality artifacts. These requirements are directly tied to the Clinical Quality Framework Artifact Sharing Use Case. Full material on this Use Case can be found here:
 
-https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery
+[https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery](https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery)
 
 In particular, this specification enables the sharing use case by defining a high-level syntax suitable for authors, a logical-level representation suitable for language processing applications, and a mechanism for translation between them. The following diagram depicts how these specifications will be used in the sharing use case:
 
 <a name="figure-1-c"></a>
-![extracted-media/media/image4](extracted-media/media/image4.png){: width=626; height=382; }
+<div>
+<img src="extracted-media/media/image4.png" alt="extracted-media/media/image4" width="626" height="382"/>
+</div>
 
 Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case
 
 ### Use Case Assumptions and Conditions
 
-It is important for implementers to clearly understand the underlying environmental assumptions, defined in https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery[Section 5 of the CQF Use Case document] referenced in the previous section, to ensure that these assumptions align to the implementation environment in which content will be exchanged using a knowledge artifact. Failure to meet any of these assumptions could impact implementation of the knowledge artifact.
+It is important for implementers to clearly understand the underlying environmental assumptions, defined in [Section 5 of the CQF Use Case document](https://oncprojectracking.healthit.gov/wiki/display/TechLabSC/CQF+Use+Cases+-+Discovery) referenced in the previous section, to ensure that these assumptions align to the implementation environment in which content will be exchanged using a knowledge artifact. Failure to meet any of these assumptions could impact implementation of the knowledge artifact.
 
 ## Relationship to Other HL7 Specifications
 

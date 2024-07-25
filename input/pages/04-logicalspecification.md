@@ -7,7 +7,7 @@ The ELM defines a mechanism for representing artifact logic independent of synta
 Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 <span class="sym">+</span> 2 can be represented as instances of the appropriate classes:
 
 <a name="figure-4-a"></a>
-![extracted-media/media/image10](extracted-media/media/image10.png){: width=107; height=99; }
+<div><img src="extracted-media/media/image10.png" alt="extracted-media/media/image10" width="107" height="99"/></div>
 
 Figure 4‑A - A diagram to explain how ELM represents addition of 2 literal values
 
@@ -34,7 +34,7 @@ Support for simple values is provided by the _Literal_ class. This class defines
 
 ### Literal
 
-``` elm
+```
 Literal : Expression
   ¦
   1..1 --> valueType
@@ -56,7 +56,7 @@ The path attribute specifies a property path relative to the source structured v
 
 ### Tuple
 
-``` elm
+```
 Tuple : Expression
   ¦
   0..* --> element : TupleElement
@@ -67,13 +67,13 @@ The Tuple expression allows tuples of any type to be built up as an expression. 
 The following example illustrates the construction of a tuple using the _Tuple_ class:
 
 <a name="figure-4-h"></a>
-![extracted-media/media/image17](extracted-media/media/image17.png){: width=190; height=157; }
+<div><img src="extracted-media/media/image17.png" alt="extracted-media/media/image17" width="190" height="157"/></div>
 
 Figure 4‑H - A diagram to explain how ELM represents the construction of a <span class="kw">Tuple</span>
 
 ### Instance
 
-``` elm
+```
 Instance : Expression
   ¦
   0..* --> element : InstanceElement
@@ -86,13 +86,13 @@ The Instance expression allows class instances of any type to be built up as an 
 The following example illustrates the construction of a structured value using the _Instance_ class:
 
 <a name="figure-4-i"></a>
-![extracted-media/media/image18](extracted-media/media/image18.png){: width=184; height=152; }
+<div><img src="extracted-media/media/image18.png" alt="extracted-media/media/image18" width="184" height="152"/></div>
 
 Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the <span class="kw">Instance</span> class
 
 ### Property
 
-``` elm
+```
 Property : Expression
   ¦
   0..1 --> source : Expression
@@ -120,7 +120,7 @@ The following represents clinical information in ELM.
 
 ### Code
 
-``` elm
+```
 Code : Expression
   ¦
   1..1 --> system : CodeSystemRef
@@ -134,7 +134,7 @@ The Code type represents a literal code selector.
 
 ### CodeDef
 
-``` elm
+```
 CodeDef : Element
   ¦
   0..1 --> codeSystem : CodeSystemRef <1>
@@ -154,7 +154,7 @@ The CodeDef type defines a code identifier that can then be used to reference si
 
 ### CodeRef
 
-``` elm
+```
 CodeRef : Expression
   ¦
   0..1 --> name
@@ -166,7 +166,7 @@ The CodeRef expression allows a previously defined code to be referenced within 
 
 ### CodeSystemDef
 
-``` elm
+```
 CodeSystemDef : Element
   ¦
   1..1 --> name
@@ -182,7 +182,7 @@ The CodeSystemDef type defines a code system identifier that can then be used to
 
 ### CodeSystemRef
 
-``` elm
+```
 CodeSystemRef : Expression
   ¦
   0..1 --> name
@@ -194,7 +194,7 @@ The CodeSystemRef expression allows a previously defined named code system to be
 
 ### Concept
 
-``` elm
+```
 Concept : Expression
   ¦
   1..* --> code : Code
@@ -206,7 +206,7 @@ The Concept type represents a literal concept selector.
 
 ### ConceptDef
 
-``` elm
+```
 ConceptDef : Element
   ¦
   1..* --> code : CodeRef <1>
@@ -224,7 +224,7 @@ The ConceptDef type defines a concept identifier that can then be used to refere
 
 ### ConceptRef
 
-``` elm
+```
 ConceptRef : Expression
   ¦
   0..1 --> name
@@ -236,7 +236,7 @@ The ConceptRef expression allows a previously defined concept to be referenced w
 
 ### Quantity
 
-``` elm
+```
 Quantity : Expression
   ¦
   0..1 --> value
@@ -248,7 +248,7 @@ The Quantity type defines a clinical quantity. For example, the quantity 10 days
 
 ### Ratio
 
-``` elm
+```
 Ratio : Expression
   ¦
   1..1 --> numerator : Quantity
@@ -260,7 +260,7 @@ The Ratio type defines a ratio between two quantities. For example, the titre 1:
 
 ### ValueSetDef
 
-``` elm
+```
 ValueSetDef : Element
   ¦
   0..* --> codeSystem : CodeSystemRef <1>
@@ -287,7 +287,7 @@ Note that the recommended approach to statically binding to an expansion set is 
 
 ### ValueSetRef
 
-``` elm
+```
 ValueSetRef : Expression
   ¦
   0..1 --> name
@@ -307,7 +307,7 @@ ELM provides the following elements for type specifiers.
 
 ### TypeSpecifier
 
-``` elm
+```
 TypeSpecifier : Element
 ```
 
@@ -316,7 +316,7 @@ TypeSpecifier is the abstract base type for all type specifiers.
 
 ### NamedTypeSpecifier
 
-``` elm
+```
 NamedTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> name
@@ -327,7 +327,7 @@ NamedTypeSpecifier defines a type identified by a name, such as Integer, String,
 
 ### IntervalTypeSpecifier
 
-``` elm
+```
 IntervalTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> pointType : TypeSpecifier
@@ -337,7 +337,7 @@ IntervalTypeSpecifier defines an interval type by specifying the point type. Any
 
 ### ListTypeSpecifier
 
-``` elm
+```
 ListTypeSpecifier : TypeSpecifier
   ¦
   1..1 --> elementType : TypeSpecifier
@@ -347,7 +347,7 @@ ListTypeSpecifier defines a list type by specifying the type of elements the lis
 
 ### TupleTypeSpecifier
 
-``` elm
+```
 TupleTypeSpecifier : TypeSpecifier
   ¦
   0..* --> element : TupleElementDefinition
@@ -357,7 +357,7 @@ TupleTypeSpecifier defines the possible elements of a tuple.
 
 ### ChoiceTypeSpecifier
 
-``` elm
+```
 ChoiceTypeSpecifier : TypeSpecifier
   ¦
   0..* --> type : TypeSpecifier <1>
@@ -378,7 +378,7 @@ Once defined, libraries can then be referenced by other libraries with the _Incl
 
 ### Library
 
-``` elm
+```
 Library : Element
   ¦
   1..1 --> identifier : VersionedIdentifier <1>
@@ -452,7 +452,7 @@ A Library is an instance of a CQL-ELM library.
 
 ### IncludeDef
 
-``` elm
+```
 IncludeDef : Element
   ¦
   1..1 --> localIdentifier
@@ -468,7 +468,7 @@ Includes a library for use within the artifact.
 
 ### VersionedIdentifier
 
-``` elm
+```
 VersionedIdentifier
   ¦
   0..1 --> id
@@ -487,7 +487,7 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
 
 ### ContextDef
 
-``` elm
+```
 ContextDef : Element
   ¦
   1..1 --> name <1>
@@ -505,7 +505,7 @@ The name of the model is an implementation-specific identifier that provides the
 
 ### UsingDef
 
-``` elm
+```
 UsingDef : Element
   ¦
   1..1 --> localIdentifier
@@ -525,7 +525,7 @@ Parameter values, if any, are expected to be provided as part of the evaluation 
 
 ### ParameterDef
 
-``` elm
+```
 ParameterDef : Element
   ¦
   0..1 --> default : Expression
@@ -551,7 +551,7 @@ Note that the expression specified in the default element must be able to be eva
 
 ### ParameterRef
 
-``` elm
+```
 ParameterRef : Expression
   ¦
   0..1 --> name
@@ -569,7 +569,7 @@ Every expression in ELM is represented as a descendant of the abstract base elem
 
 ### Expression
 
-``` elm
+```
 Expression : Element
 ```
 
@@ -577,7 +577,7 @@ The Expression type defines the abstract base type for all expressions used in t
 
 ### OperatorExpression
 
-``` elm
+```
 OperatorExpression : Expression
   ¦
   0..* --> signature : TypeSpecifier <1>
@@ -589,7 +589,7 @@ The Operator type defines the abstract base type for all built-in operators used
 
 ### UnaryExpression
 
-``` elm
+```
 UnaryExpression : OperatorExpression
   ¦
   1..1 --> operand : Expression
@@ -599,7 +599,7 @@ The UnaryExpression type defines the abstract base type for expressions that tak
 
 ### BinaryExpression
 
-``` elm
+```
 BinaryExpression : OperatorExpression
   ¦
   2..2 --> operand : Expression
@@ -609,7 +609,7 @@ The BinaryExpression type defines the abstract base type for expressions that ta
 
 ### TernaryExpression
 
-``` elm
+```
 TernaryExpression : OperatorExpression
   ¦
   3..3 --> operand : Expression
@@ -619,7 +619,7 @@ The TernaryExpression type defines the abstract base type for expressions that t
 
 ### NaryExpression
 
-``` elm
+```
 NaryExpression : OperatorExpression
   ¦
   0..* --> operand : Expression
@@ -629,7 +629,7 @@ The NaryExpression type defines an abstract base class for an expression that ta
 
 ### AggregateExpression
 
-``` elm
+```
 AggregateExpression : Expression
   ¦
   0..* --> signature : TypeSpecifier <1>
@@ -661,7 +661,7 @@ The _ExpressionDef_ class introduces the notion of _context_ which specifies the
 
 ### ExpressionDef
 
-``` elm
+```
 ExpressionDef : Element
   ¦
   0..1 --> expression : Expression
@@ -679,7 +679,7 @@ The context attribute specifies the context of the execution and is used by the 
 
 ### ExpressionRef
 
-``` elm
+```
 ExpressionRef : Expression
   ¦
   0..1 --> name
@@ -691,7 +691,7 @@ The ExpressionRef type defines an expression that references a previously define
 
 ### FunctionDef
 
-``` elm
+```
 FunctionDef : ExpressionDef
   ¦
   0..* --> operand : OperandDef
@@ -705,7 +705,7 @@ The FunctionDef type defines a named function that can be invoked by any express
 
 ### FunctionRef
 
-``` elm
+```
 FunctionRef : ExpressionRef
   ¦
   0..* --> signature : TypeSpecifier <1>
@@ -719,7 +719,7 @@ The FunctionRef type defines an expression that invokes a previously defined fun
 
 ### OperandRef
 
-``` elm
+```
 OperandRef : Expression
   ¦
   0..1 --> name
@@ -731,11 +731,11 @@ The OperandRef expression allows the value of an operand to be referenced as par
 
 ELM provides a mechanism for expressing the structure of a query.
 
-For more information on query semantics, refer to the [Queries](02-authorsguide.adoc#queries) section of the [Author’s Guide](02-authorsguide.html), as well as the [Multi-Source Queries](03-developersguide.adoc#multi-source-queries) and [Non-Retrieve Queries](03-developersguide.adoc#non-retrieve-queries) sections of the [Developer’s Guide](03-developersguide.html).
+For more information on query semantics, refer to the [Queries](02-authorsguide.html#queries) section of the [Author’s Guide](02-authorsguide.html), as well as the [Multi-Source Queries](03-developersguide.html#multi-source-queries) and [Non-Retrieve Queries](03-developersguide.html#non-retrieve-queries) sections of the [Developer’s Guide](03-developersguide.html).
 
 ### Query
 
-``` elm
+```
 Query : Expression
   ¦
   1..* --> source : AliasedQuerySource
@@ -757,7 +757,7 @@ The Query operator represents a clause-based query. The result of the query is d
 
 ### AliasedQuerySource
 
-``` elm
+```
 AliasedQuerySource : Element
   ¦
   1..1 --> expression : Expression
@@ -769,7 +769,7 @@ The AliasedQuerySource element defines a single source for inclusion in a query 
 
 ### AliasRef
 
-``` elm
+```
 AliasRef : Expression
   ¦
   0..1 --> name
@@ -779,7 +779,7 @@ The AliasRef expression allows for the reference of a specific source within the
 
 ### ByColumn
 
-``` elm
+```
 ByColumn : SortByItem
   ¦
   0..1 --> path
@@ -789,7 +789,7 @@ The ByColumn element specifies that the sort should be performed using the given
 
 ### ByDirection
 
-``` elm
+```
 ByDirection : SortByItem
 ```
 
@@ -797,7 +797,7 @@ The ByDirection element specifies that the sort should be performed using the gi
 
 ### ByExpression
 
-``` elm
+```
 ByExpression : SortByItem
   ¦
   1..1 --> expression : Expression
@@ -807,7 +807,7 @@ The ByExpression element specifies that the sort should be performed using the g
 
 ### IdentifierRef
 
-``` elm
+```
 IdentifierRef : Expression
   ¦
   1..1 --> name
@@ -819,7 +819,7 @@ The IdentifierRef type defines an expression that references an identifier that 
 
 ### LetClause
 
-``` elm
+```
 LetClause : Element
   ¦
   1..1 --> expression : Expression
@@ -831,7 +831,7 @@ The LetClause element allows any number of expression definitions to be introduc
 
 ### QueryLetRef
 
-``` elm
+```
 QueryLetRef : Expression
   ¦
   0..1 --> name
@@ -841,7 +841,7 @@ The QueryLetRef expression allows for the reference of a specific let definition
 
 ### RelationshipClause
 
-``` elm
+```
 RelationshipClause : AliasedQuerySource
   ¦
   1..1 --> suchThat : Expression
@@ -851,7 +851,7 @@ The RelationshipClause element allows related sources to be used to restrict the
 
 ### ReturnClause
 
-``` elm
+```
 ReturnClause : Element
   ¦
   1..1 --> expression : Expression
@@ -863,7 +863,7 @@ The ReturnClause element defines the shape of the result set of the query.
 
 ### AggregateClause
 
-``` elm
+```
 AggregateClause : Element
   ¦
   1..1 --> expression : Expression
@@ -879,7 +879,7 @@ The AggregateClause element defines the result of the query in terms of an aggre
 
 ### SortClause
 
-``` elm
+```
 SortClause : Element
   ¦
   1..* --> by : SortByItem
@@ -889,7 +889,7 @@ The SortClause element defines the sort order for the query.
 
 ### With
 
-``` elm
+```
 With : RelationshipClause
 ```
 
@@ -897,7 +897,7 @@ The With clause restricts the elements of a given source to only those elements 
 
 ### Without
 
-``` elm
+```
 Without : RelationshipClause
 ```
 
@@ -917,7 +917,7 @@ Note that because every expression is being evaluated within a context (such as 
 
 ### Retrieve
 
-``` elm
+```
 Retrieve : Expression
   ¦
   0..1 --> id : Expression
@@ -1054,7 +1054,7 @@ The dateSearch attribute specifies the name of the search path to use for search
 
 The IncludeElement type specifies include information for an include within a retrieve.
 
-``` elm
+```
 IncludeElement : Element
   ¦
   0..1 --> relatedDataType
@@ -1089,11 +1089,11 @@ The isReverse attribute indicates that the include is reverse, i.e. that the rel
 
 ELM defines a standard set of comparison operators for use with simple values. Each comparison operator takes two arguments of the same type, and returns a boolean indicating the result of the comparison. Note that for comparison operators, if either or both operands evaluate to null, the result of the comparison is _null_, not false.
 
-For more information on the semantics of the various comparison operators, see the [Comparison Operators](09-b-cqlreference.adoc#comparison-operators-4) section of the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of the various comparison operators, see the [Comparison Operators](09-b-cqlreference.html#comparison-operators-4) section of the [CQL Reference](09-b-cqlreference.html).
 
 ### Equal
 
-``` elm
+```
 Equal : BinaryExpression
 ```
 
@@ -1124,13 +1124,13 @@ If either argument is null, the result is null.
 The following example illustrates a simple _Equal_ comparison:
 
 <a name="figure-4-b"></a>
-![extracted-media/media/image11](extracted-media/media/image11.png){: width=109; height=102; }
+<div><img src="extracted-media/media/image11.png" alt="extracted-media/media/image11" width="109" height="102"/></div>
 
 Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 
 ### Equivalent
 
-``` elm
+```
 Equivalent : BinaryExpression
 ```
 
@@ -1164,7 +1164,7 @@ Note that this operator will always return true or false, even if either or both
 
 ### Greater
 
-``` elm
+```
 Greater : BinaryExpression
 ```
 
@@ -1180,12 +1180,12 @@ If either argument is null, the result is null.
 
 The Greater operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### GreaterOrEqual
 
-``` elm
+```
 GreaterOrEqual : BinaryExpression
 ```
 
@@ -1201,12 +1201,12 @@ If either argument is null, the result is null.
 
 The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### Less
 
-``` elm
+```
 Less : BinaryExpression
 ```
 
@@ -1222,12 +1222,12 @@ If either argument is null, the result is null.
 
 The Less operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 ### LessOrEqual
 
-``` elm
+```
 LessOrEqual : BinaryExpression
 ```
 
@@ -1243,13 +1243,13 @@ If either argument is null, the result is null.
 
 The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date, DateTime, Time, and Quantity types.
 
-> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.adoc#ratio-operators) for more information.
+> Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
 {: #not-equal}
 ### NotEqual
 
-``` elm
+```
 NotEqual : BinaryExpression
 ```
 
@@ -1264,11 +1264,11 @@ ELM defines logical operators that can be used to combine the results of logical
 
 Note that these operators are defined with 3-valued logic semantics, allowing the operators to deal consistently with missing information.
 
-For more information on the semantics of these operators, refer to the [Logical Operators](09-b-cqlreference.adoc#logical-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Logical Operators](09-b-cqlreference.html#logical-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### And
 
-``` elm
+```
 And : BinaryExpression
 ```
 
@@ -1277,13 +1277,13 @@ The And operator returns the logical conjunction of its arguments. Note that thi
 The following example illustrates a simple _And_ expression:
 
 <a name="figure-4-c"></a>
-![extracted-media/media/image12](extracted-media/media/image12.png){: width=138; height=217; }
+<div><img src="extracted-media/media/image12.png" alt="extracted-media/media/image12" width="138" height="217"/></div>
 
 Figure 4‑C - A diagram to explain how ELM represents a simple <span class="kw">And</span> expression
 
 ### Implies
 
-``` elm
+```
 Implies : BinaryExpression
 ```
 
@@ -1293,7 +1293,7 @@ Note that implies may use short-circuit evaluation in the case that the first op
 
 ### Not
 
-``` elm
+```
 Not : UnaryExpression
 ```
 
@@ -1301,7 +1301,7 @@ The Not operator returns the logical negation of its argument. If the argument i
 
 ### Or
 
-``` elm
+```
 Or : BinaryExpression
 ```
 
@@ -1309,7 +1309,7 @@ The Or operator returns the logical disjunction of its arguments. Note that this
 
 ### Xor
 
-``` elm
+```
 Xor : BinaryExpression
 ```
 
@@ -1319,11 +1319,11 @@ The Xor operator returns the exclusive or of its arguments. Note that this opera
 
 ELM defines several nullological operators that are useful for dealing with potentially missing information. These are _Null, IsNull_, _IsTrue_, _IsFalse_, and _Coalesce_.
 
-For more information on the semantics of these operators, refer to the [Nullological Operators](09-b-cqlreference.adoc#nullological-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Nullological Operators](09-b-cqlreference.html#nullological-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Null
 
-``` elm
+```
 Null : Expression
   ¦
   0..1 --> valueType
@@ -1333,7 +1333,7 @@ The Null operator returns a null, or missing information marker. To avoid the ne
 
 ### Coalesce
 
-``` elm
+```
 Coalesce : NaryExpression
 ```
 
@@ -1341,7 +1341,7 @@ The Coalesce operator returns the first non-null result in a list of arguments. 
 
 ### IsFalse
 
-``` elm
+```
 IsFalse : UnaryExpression
 ```
 
@@ -1349,7 +1349,7 @@ The IsFalse operator determines whether or not its argument evaluates to false. 
 
 ### IsNull
 
-``` elm
+```
 IsNull : UnaryExpression
 ```
 
@@ -1357,7 +1357,7 @@ The IsNull operator determines whether or not its argument evaluates to null. If
 
 ### IsTrue
 
-``` elm
+```
 IsTrue : UnaryExpression
 ```
 
@@ -1373,7 +1373,7 @@ The case expression has two varieties, one that is equivalent to repeated condit
 
 ### Case
 
-``` elm
+```
 Case : Expression
   ¦
   0..1 --> comparand : Expression
@@ -1392,20 +1392,20 @@ The static type of the then argument within the first caseItem determines the ty
 The following example illustrates a more complex multi-conditional _Case_ expression:
 
 <a name="figure-4-e"></a>
-![extracted-media/media/image14](extracted-media/media/image14.png){: width=230; height=397; }
+<div><img src="extracted-media/media/image14.png" alt="extracted-media/media/image14" width="230" height="397"/></div>
 
 Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional <span class="kw">Case</span> expression
 
 And finally, an equivalent comparand-based _Case_ expression:
 
 <a name="figure-4-f"></a>
-![extracted-media/media/image15](extracted-media/media/image15.png){: width=184; height=286; }
+<div><img src="extracted-media/media/image15.png" alt="extracted-media/media/image15" width="184" height="286"/></div>
 
 Figure 4‑F - A diagram to explain how ELM represents a comparand-base <span class="kw">Case</span> expression
 
 ### If
 
-``` elm
+```
 If : Expression
   ¦
   1..1 --> condition : Expression
@@ -1420,7 +1420,7 @@ The If operator evaluates a condition, and returns the then argument if the cond
 The following examples illustrates a simple _If_ expression (i.e. if / then / else):
 
 <a name="figure-4-d"></a>
-![extracted-media/media/image13](extracted-media/media/image13.png){: width=143; height=193; }
+<div><img src="extracted-media/media/image13.png" alt="extracted-media/media/image13" width="143" height="193"/></div>
 
 Figure 4‑D - A diagram to explain how ELM represents a simple <span class="kw">If</span> expression
 
@@ -1432,11 +1432,11 @@ Note that if an operand evaluates to null, the result of the operation is define
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the [Arithmetic Operators](09-b-cqlreference.adoc#arithmetic-operators-4) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Arithmetic Operators](09-b-cqlreference.html#arithmetic-operators-4) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Abs
 
-``` elm
+```
 Abs : UnaryExpression
 ```
 
@@ -1452,7 +1452,7 @@ The Abs operator is defined for the Integer, Long, Decimal, and Quantity types.
 
 ### Add
 
-``` elm
+```
 Add : BinaryExpression
 ```
 
@@ -1483,13 +1483,13 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 The following example illustrates a simple _Add_ expression:
 
 <a name="figure-4-g"></a>
-![extracted-media/media/image16](extracted-media/media/image16.png){: width=102; height=94; }
+<div><img src="extracted-media/media/image16.png" alt="extracted-media/media/image16" width="102" height="94"/></div>
 
 Figure 4‑G - A diagram to explain how ELM represents a simple <span class="kw">Add</span> expression
 
 ### Ceiling
 
-``` elm
+```
 Ceiling : UnaryExpression
 ```
 
@@ -1499,7 +1499,7 @@ If the argument is null, the result is null.
 
 ### Divide
 
-``` elm
+```
 Divide : BinaryExpression
 ```
 
@@ -1515,7 +1515,7 @@ The Divide operator is defined for the Decimal and Quantity types.
 
 ### Exp
 
-``` elm
+```
 Exp : UnaryExpression
 ```
 
@@ -1527,7 +1527,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### Floor
 
-``` elm
+```
 Floor : UnaryExpression
 ```
 
@@ -1537,7 +1537,7 @@ If the argument is null, the result is null.
 
 ### HighBoundary
 
-``` elm
+```
 HighBoundary : BinaryExpression
 ```
 
@@ -1560,7 +1560,7 @@ If the input value is null, the result is null.
 
 ### Log
 
-``` elm
+```
 Log : BinaryExpression
 ```
 
@@ -1572,7 +1572,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### LowBoundary
 
-``` elm
+```
 LowBoundary : BinaryExpression
 ```
 
@@ -1595,7 +1595,7 @@ If the input value is null, the result is null.
 
 ### Ln
 
-``` elm
+```
 Ln : UnaryExpression
 ```
 
@@ -1607,7 +1607,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### MaxValue
 
-``` elm
+```
 MaxValue : Expression
   ¦
   1..1 --> valueType
@@ -1617,11 +1617,11 @@ The MaxValue operator returns the maximum representable value for the given type
 
 The MaxValue operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
-For Integer, MaxValue returns the maximum signed 32-bit integer, 2^31 - 1.
+For Integer, MaxValue returns the maximum signed 32-bit integer, 2<sup>31</sup> - 1.
 
-For Long, MaxValue returns the maximum signed 64-bit integer, 2^63 - 1.
+For Long, MaxValue returns the maximum signed 64-bit integer, 2<sup>63</sup> - 1.
 
-For Decimal, MaxValue returns the maximum representable Decimal value, (10^28 - 1) / 10^8 (99999999999999999999.99999999).
+For Decimal, MaxValue returns the maximum representable Decimal value, (10<sup>28</sup> - 1) / 10<sup>8</sup> (99999999999999999999.99999999).
 
 For Quantity, MaxValue returns the maximum representable quantity, i.e. the maximum representable decimal value with a default unit (1).
 
@@ -1638,7 +1638,7 @@ For any other type, attempting to invoke MaxValue results in an error.
 
 ### MinValue
 
-``` elm
+```
 MinValue : Expression
   ¦
   1..1 --> valueType
@@ -1648,11 +1648,11 @@ The MinValue operator returns the minimum representable value for the given type
 
 The MinValue operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
-For Integer, MinValue returns the minimum signed 32-bit integer, -(2^31).
+For Integer, MinValue returns the minimum signed 32-bit integer, -(2<sup>31</sup>).
 
-For Long, MinValue returns the minimum signed 64-bit integer, -(2^63).
+For Long, MinValue returns the minimum signed 64-bit integer, -(2<sup>63</sup>).
 
-For Decimal, MinValue returns the minimum representable Decimal value, (-10^28 + 1) / 10^8 (-99999999999999999999.99999999).
+For Decimal, MinValue returns the minimum representable Decimal value, (-10<sup>28</sup> + 1) / 10<sup>8</sup> (-99999999999999999999.99999999).
 
 For Quantity, MinValue returns the minimum representable quantity, i.e. the minimum representable decimal value with a default unit (1).
 
@@ -1668,7 +1668,7 @@ For any other type, attempting to invoke MinValue results in an error.
 
 ### Modulo
 
-``` elm
+```
 Modulo : BinaryExpression
 ```
 
@@ -1684,7 +1684,7 @@ For Modulo operations involving quantities, the resulting quantity will have the
 
 ### Multiply
 
-``` elm
+```
 Multiply : BinaryExpression
 ```
 
@@ -1700,7 +1700,7 @@ The Multiply operator is defined for the Integer, Long, Decimal and Quantity typ
 
 ### Negate
 
-``` elm
+```
 Negate : UnaryExpression
 ```
 
@@ -1716,7 +1716,7 @@ The Negate operator is defined for the Integer, Long, Decimal, and Quantity type
 
 ### Power
 
-``` elm
+```
 Power : BinaryExpression
 ```
 
@@ -1728,7 +1728,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### Precision
 
-``` elm
+```
 Precision : UnaryExpression
 ```
 
@@ -1755,7 +1755,7 @@ If the argument is null, the result is null.
 
 ### Predecessor
 
-``` elm
+```
 Predecessor : UnaryExpression
 ```
 
@@ -1782,7 +1782,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### Round
 
-``` elm
+```
 Round : OperatorExpression
   ¦
   1..1 --> operand : Expression
@@ -1798,7 +1798,7 @@ Precision determines the decimal place at which the rounding will occur. If prec
 
 ### Subtract
 
-``` elm
+```
 Subtract : BinaryExpression
 ```
 
@@ -1828,7 +1828,7 @@ If the result of the operation cannot be represented, the result is null.
 
 ### Successor
 
-``` elm
+```
 Successor : UnaryExpression
 ```
 
@@ -1855,7 +1855,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 ### Truncate
 
-``` elm
+```
 Truncate : UnaryExpression
 ```
 
@@ -1865,7 +1865,7 @@ If the argument is null, the result is null.
 
 ### TruncatedDivide
 
-``` elm
+```
 TruncatedDivide : BinaryExpression
 ```
 
@@ -1887,11 +1887,11 @@ Indexes within strings are defined to be 0-based.
 
 Note that except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the [String Operators](09-b-cqlreference.adoc#string-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [String Operators](09-b-cqlreference.html#string-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Combine
 
-``` elm
+```
 Combine : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -1905,7 +1905,7 @@ If either argument is null, or any element in the source list of strings is null
 
 ### Concatenate
 
-``` elm
+```
 Concatenate : NaryExpression
 ```
 
@@ -1915,7 +1915,7 @@ If any argument is null, the result is null.
 
 ### EndsWith
 
-``` elm
+```
 EndsWith : BinaryExpression
 ```
 
@@ -1935,11 +1935,11 @@ Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Indexer
 
-``` elm
+```
 Indexer : BinaryExpression
 ```
 
-The Indexer operator returns the index^th^ element in a string or list.
+The Indexer operator returns the index<sup>th</sup> element in a string or list.
 
 Indexes in strings and lists are defined to be 0-based.
 
@@ -1949,7 +1949,7 @@ If either argument is null, the result is null.
 
 ### LastPositionOf
 
-``` elm
+```
 LastPositionOf : OperatorExpression
   ¦
   1..1 --> pattern : Expression
@@ -1965,7 +1965,7 @@ If either argument is null, the result is null.
 
 ### Length
 
-``` elm
+```
 Length : UnaryExpression
 ```
 
@@ -1979,7 +1979,7 @@ If the argument is null, the result is 0.
 
 ### Lower
 
-``` elm
+```
 Lower : UnaryExpression
 ```
 
@@ -1991,7 +1991,7 @@ If the argument is null, the result is null.
 
 ### Matches
 
-``` elm
+```
 Matches : BinaryExpression
 ```
 
@@ -2007,7 +2007,7 @@ Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### PositionOf
 
-``` elm
+```
 PositionOf : OperatorExpression
   ¦
   1..1 --> pattern : Expression
@@ -2023,7 +2023,7 @@ If either argument is null, the result is null.
 
 ### ReplaceMatches
 
-``` elm
+```
 ReplaceMatches : TernaryExpression
 ```
 
@@ -2035,7 +2035,7 @@ Platforms will typically use native regular expression implementations. These ar
 
 ### Split
 
-``` elm
+```
 Split : OperatorExpression
   ¦
   1..1 --> stringToSplit : Expression
@@ -2051,7 +2051,7 @@ If the stringToSplit argument does not contain any appearances of the separator,
 
 ### SplitOnMatches
 
-``` elm
+```
 SplitOnMatches : OperatorExpression
   ¦
   1..1 --> stringToSplit : Expression
@@ -2069,7 +2069,7 @@ If the stringToSplit argument does not contain any appearances of the separator 
 
 ### StartsWith
 
-``` elm
+```
 StartsWith : BinaryExpression
 ```
 
@@ -2081,7 +2081,7 @@ If either argument is null, the result is null.
 
 ### Substring
 
-``` elm
+```
 Substring : OperatorExpression
   ¦
   1..1 --> stringToSub : Expression
@@ -2099,7 +2099,7 @@ If stringToSub or startIndex is null, or startIndex is out of range, the result 
 
 ### Upper
 
-``` elm
+```
 Upper : UnaryExpression
 ```
 
@@ -2115,7 +2115,7 @@ ELM defines several operators for representing the manipulation of date and time
 
 Except as noted within the documentation for each operator, if any argument evaluates to null, the result of the operation is also defined to be null.
 
-For more information on the semantics of these operators, refer to the [Date, DateTime, and Time Operators](09-b-cqlreference.adoc#datetime-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Date, DateTime, and Time Operators](09-b-cqlreference.html#datetime-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Add
 
@@ -2139,7 +2139,7 @@ Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Date
 
-``` elm
+```
 Date : OperatorExpression
   ¦
   1..1 --> year : Expression
@@ -2155,7 +2155,7 @@ At least one component must be specified, and no component may be specified at a
 
 ### DateFrom
 
-``` elm
+```
 DateFrom : UnaryExpression
 ```
 
@@ -2165,7 +2165,7 @@ If the argument is null, the result is null.
 
 ### DateTime
 
-``` elm
+```
 DateTime : OperatorExpression
   ¦
   1..1 --> year : Expression
@@ -2197,7 +2197,7 @@ If timezoneOffset is not specified, it is defaulted to the timezone offset of th
 
 ### DateTimeComponentFrom
 
-``` elm
+```
 DateTimeComponentFrom : UnaryExpression
   ¦
   0..1 --> precision
@@ -2211,7 +2211,7 @@ The precision must be one of Year, Month, Day, Hour, Minute, Second, or Millisec
 
 ### DifferenceBetween
 
-``` elm
+```
 DifferenceBetween : BinaryExpression
   ¦
   0..1 --> precision
@@ -2233,7 +2233,7 @@ Note that this operator can be implemented using Uncertainty as described in the
 
 ### DurationBetween
 
-``` elm
+```
 DurationBetween : BinaryExpression
   ¦
   0..1 --> precision
@@ -2259,7 +2259,7 @@ Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### Now
 
-``` elm
+```
 Now : OperatorExpression
 ```
 
@@ -2270,7 +2270,7 @@ The Now operator returns the date and time of the start timestamp associated wit
 
 ### SameAs
 
-``` elm
+```
 SameAs : BinaryExpression
   ¦
   0..1 --> precision
@@ -2298,7 +2298,7 @@ If either argument is null, the result is null.
 
 ### SameOrBefore
 
-``` elm
+```
 SameOrBefore : BinaryExpression
   ¦
   0..1 --> precision
@@ -2326,7 +2326,7 @@ If either argument is null, the result is null.
 
 ### SameOrAfter
 
-``` elm
+```
 SameOrAfter : BinaryExpression
   ¦
   0..1 --> precision
@@ -2358,7 +2358,7 @@ Refer to the [Subtract section](#subtract) in the Arithmetic Operators.
 
 ### Time
 
-``` elm
+```
 Time : OperatorExpression
   ¦
   1..1 --> hour : Expression
@@ -2378,7 +2378,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 ### TimeFrom
 
-``` elm
+```
 TimeFrom : UnaryExpression
 ```
 
@@ -2390,7 +2390,7 @@ If the argument is null, the result is null.
 
 ### TimezoneOffsetFrom
 
-``` elm
+```
 TimezoneOffsetFrom : UnaryExpression
 ```
 
@@ -2400,7 +2400,7 @@ If the argument is null, the result is null.
 
 ### TimeOfDay
 
-``` elm
+```
 TimeOfDay : OperatorExpression
 ```
 
@@ -2408,7 +2408,7 @@ The TimeOfDay operator returns the time-of-day of the start timestamp associated
 
 ### Today
 
-``` elm
+```
 Today : OperatorExpression
 ```
 
@@ -2428,11 +2428,11 @@ In addition, the language supports operators for combining and manipulating inte
 
 Note that ELM does not include a definition for During because it is synonymous with IncludedIn.
 
-For more information on the semantics of these operators, refer to the [Interval Operators](09-b-cqlreference.adoc#interval-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Interval Operators](09-b-cqlreference.html#interval-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### Interval
 
-``` elm
+```
 Interval : Expression
   ¦
   0..1 --> low : Expression
@@ -2467,7 +2467,7 @@ If the high bound of the interval is null and closed, the interval is interprete
 {: #after-1}
 ### After
 
-``` elm
+```
 After : BinaryExpression
   ¦
   0..1 --> precision
@@ -2496,7 +2496,7 @@ If either argument is null, the result is null.
 {: #before-1}
 ### Before
 
-``` elm
+```
 Before : BinaryExpression
   ¦
   0..1 --> precision
@@ -2524,7 +2524,7 @@ If either argument is null, the result is null.
 
 ### Collapse
 
-``` elm
+```
 Collapse : BinaryExpression
 ```
 
@@ -2544,7 +2544,7 @@ If the source argument is null, the result is null.
 
 ### Contains
 
-``` elm
+```
 Contains : BinaryExpression
   ¦
   0..1 --> precision
@@ -2562,7 +2562,7 @@ For the Interval, T overload, this operator returns true if the given point is e
 
 ### End
 
-``` elm
+```
 End : UnaryExpression
 ```
 
@@ -2576,7 +2576,7 @@ If the argument is null, the result is null.
 
 ### Ends
 
-``` elm
+```
 Ends : BinaryExpression
   ¦
   0..1 --> precision
@@ -2600,7 +2600,7 @@ Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### Except
 
-``` elm
+```
 Except : NaryExpression
 ```
 
@@ -2618,7 +2618,7 @@ If the first argument is null, the result is null. If the second argument is nul
 
 ### Expand
 
-``` elm
+```
 Expand : BinaryExpression
 ```
 
@@ -2640,7 +2640,7 @@ If the source argument is null, the result is null.
 
 ### In
 
-``` elm
+```
 In : BinaryExpression
   ¦
   0..1 --> precision
@@ -2658,7 +2658,7 @@ For the T, Interval overload, this operator returns true if the given point is e
 
 ### Includes
 
-``` elm
+```
 Includes : BinaryExpression
   ¦
   0..1 --> precision
@@ -2681,7 +2681,7 @@ If either argument is null, the result is null.
 {: #included-in}
 ### IncludedIn
 
-``` elm
+```
 IncludedIn : BinaryExpression
   ¦
   0..1 --> precision
@@ -2703,7 +2703,7 @@ If either argument is null, the result is null.
 
 ### Intersect
 
-``` elm
+```
 Intersect : NaryExpression
 ```
 
@@ -2721,7 +2721,7 @@ If either argument is null, the result is null.
 
 ### Meets
 
-``` elm
+```
 Meets : BinaryExpression
   ¦
   0..1 --> precision
@@ -2737,7 +2737,7 @@ If either argument is null, the result is null.
 
 ### MeetsBefore
 
-``` elm
+```
 MeetsBefore : BinaryExpression
   ¦
   0..1 --> precision
@@ -2753,7 +2753,7 @@ If either argument is null, the result is null.
 
 ### MeetsAfter
 
-``` elm
+```
 MeetsAfter : BinaryExpression
   ¦
   0..1 --> precision
@@ -2773,7 +2773,7 @@ Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### Overlaps
 
-``` elm
+```
 Overlaps : BinaryExpression
   ¦
   0..1 --> precision
@@ -2789,7 +2789,7 @@ If either argument is null, the result is null.
 
 ### OverlapsBefore
 
-``` elm
+```
 OverlapsBefore : BinaryExpression
   ¦
   0..1 --> precision
@@ -2805,7 +2805,7 @@ If either argument is null, the result is null.
 
 ### OverlapsAfter
 
-``` elm
+```
 OverlapsAfter : BinaryExpression
   ¦
   0..1 --> precision
@@ -2821,7 +2821,7 @@ If either argument is null, the result is null.
 
 ### PointFrom
 
-``` elm
+```
 PointFrom : UnaryExpression
 ```
 
@@ -2830,7 +2830,7 @@ The PointFrom expression extracts the single point from the source interval. The
 {: #proper-contains}
 ### ProperContains
 
-``` elm
+```
 ProperContains : BinaryExpression
   ¦
   0..1 --> precision
@@ -2849,7 +2849,7 @@ For the Interval, T overload, this operator returns <span class="kw">true</span>
 {: #proper-in}
 ### ProperIn
 
-``` elm
+```
 ProperIn : BinaryExpression
   ¦
   0..1 --> precision
@@ -2868,7 +2868,7 @@ For the T, Interval overload, this operator returns true if the given point is g
 {: #proper-includes}
 ### ProperIncludes
 
-``` elm
+```
 ProperIncludes : BinaryExpression
   ¦
   0..1 --> precision
@@ -2891,7 +2891,7 @@ If either argument is null, the result is null.
 {: #proper-included-in}
 ### ProperIncludedIn
 
-``` elm
+```
 ProperIncludedIn : BinaryExpression
   ¦
   0..1 --> precision
@@ -2913,7 +2913,7 @@ If either argument is null, the result is null.
 
 ### Size
 
-``` elm
+```
 Size : UnaryExpression
 ```
 
@@ -2927,7 +2927,7 @@ If the argument is null, the result is null.
 
 ### Start
 
-``` elm
+```
 Start : UnaryExpression
 ```
 
@@ -2941,7 +2941,7 @@ If the argument is null, the result is null.
 
 ### Starts
 
-``` elm
+```
 Starts : BinaryExpression
   ¦
   0..1 --> precision
@@ -2957,7 +2957,7 @@ If either argument is null, the result is null.
 
 ### Union
 
-``` elm
+```
 Union : NaryExpression
 ```
 
@@ -2975,7 +2975,7 @@ If either argument is null, the operation is performed as though the argument wa
 
 ### Width
 
-``` elm
+```
 Width : UnaryExpression
 ```
 
@@ -2995,11 +2995,11 @@ The use of the scope attribute allows for more complex expressions such as corre
 
 ELM also supports a flattening operator, _Flatten_ to construct a single list from a list of lists.
 
-For more information on the semantics of these operators, refer to the [List Operators](09-b-cqlreference.adoc#list-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [List Operators](09-b-cqlreference.html#list-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### List
 
-``` elm
+```
 List : Expression
   ¦
   0..1 --> typeSpecifier : TypeSpecifier
@@ -3019,7 +3019,7 @@ Refer to the [Contains section](#contains) in the Interval Operators.
 
 ### Current
 
-``` elm
+```
 Current : Expression
   ¦
   0..1 --> scope
@@ -3031,7 +3031,7 @@ It is an error to invoke the Current operator outside the context of a scoped op
 
 ### Distinct
 
-``` elm
+```
 Distinct : UnaryExpression
 ```
 
@@ -3055,7 +3055,7 @@ Refer to the [Except section](#except) in the Interval Operators.
 
 ### Exists
 
-``` elm
+```
 Exists : UnaryExpression
 ```
 
@@ -3065,7 +3065,7 @@ If the argument is null, the result is false.
 
 ### Filter
 
-``` elm
+```
 Filter : Expression
   ¦
   1..1 --> source : Expression
@@ -3081,7 +3081,7 @@ If the source argument is null, the result is null.
 
 ### First
 
-``` elm
+```
 First : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3095,7 +3095,7 @@ If the argument is null, the result is null.
 
 ### Flatten
 
-``` elm
+```
 Flatten : UnaryExpression
 ```
 
@@ -3105,7 +3105,7 @@ If the argument is null, the result is null.
 
 ### ForEach
 
-``` elm
+```
 ForEach : Expression
   ¦
   1..1 --> source : Expression
@@ -3135,7 +3135,7 @@ Refer to the [IncludedIn section](#included-in) in the Interval Operators.
 
 ### IndexOf
 
-``` elm
+```
 IndexOf : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3157,7 +3157,7 @@ Refer to the [Intersect section](#intersect) in the Interval Operators.
 
 ### Last
 
-``` elm
+```
 Last : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3191,7 +3191,7 @@ Refer to the [ProperIncludedIn section](#proper-included-in) in the Interval Ope
 
 ### Repeat
 
-``` elm
+```
 Repeat : Expression
   ¦
   1..1 --> source : Expression
@@ -3211,7 +3211,7 @@ If the element argument evaluates to null for some item in the source list, the 
 
 ### SingletonFrom
 
-``` elm
+```
 SingletonFrom : UnaryExpression
 ```
 
@@ -3219,7 +3219,7 @@ The SingletonFrom expression extracts a single element from the source list. If 
 
 ### Slice
 
-``` elm
+```
 Slice : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3241,7 +3241,7 @@ If the startIndex or endIndex is less than 0, or if the endIndex is less than th
 
 ### Sort
 
-``` elm
+```
 Sort : Expression
   ¦
   1..1 --> source : Expression
@@ -3257,7 +3257,7 @@ If the argument is null, the result is null.
 
 ### Times
 
-``` elm
+```
 Times : BinaryExpression
 ```
 
@@ -3277,11 +3277,11 @@ Unless noted in the documentation for each operator, aggregate operators deal wi
 
 In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-For more information on the semantics of these operators, refer to the [Aggregate Functions](09-b-cqlreference.adoc#aggregate-functions) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Aggregate Functions](09-b-cqlreference.html#aggregate-functions) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### AllTrue
 
-``` elm
+```
 AllTrue : AggregateExpression
 ```
 
@@ -3295,7 +3295,7 @@ If the source is null, the result is true.
 
 ### AnyTrue
 
-``` elm
+```
 AnyTrue : AggregateExpression
 ```
 
@@ -3309,7 +3309,7 @@ If the source is null, the result is false.
 
 ### Avg
 
-``` elm
+```
 Avg : AggregateExpression
 ```
 
@@ -3323,7 +3323,7 @@ If the source is null, the result is null.
 
 ### Count
 
-``` elm
+```
 Count : AggregateExpression
 ```
 
@@ -3337,7 +3337,7 @@ If the list is null, the result is 0.
 
 ### GeometricMean
 
-``` elm
+```
 GeometricMean : AggregateExpression
 ```
 
@@ -3351,7 +3351,7 @@ If the source is null, the result is null.
 
 ### Product
 
-``` elm
+```
 Product : AggregateExpression
 ```
 
@@ -3365,7 +3365,7 @@ If the list is null, the result is null.
 
 ### Max
 
-``` elm
+```
 Max : AggregateExpression
 ```
 
@@ -3379,7 +3379,7 @@ If the source is null, the result is null.
 
 ### Median
 
-``` elm
+```
 Median : AggregateExpression
 ```
 
@@ -3393,7 +3393,7 @@ If the source is null, the result is null.
 
 ### Min
 
-``` elm
+```
 Min : AggregateExpression
 ```
 
@@ -3407,7 +3407,7 @@ If the source is null, the result is null.
 
 ### Mode
 
-``` elm
+```
 Mode : AggregateExpression
 ```
 
@@ -3421,7 +3421,7 @@ If the source is null, the result is null.
 
 ### PopulationVariance
 
-``` elm
+```
 PopulationVariance : AggregateExpression
 ```
 
@@ -3435,7 +3435,7 @@ If the source is null, the result is null.
 
 ### PopulationStdDev
 
-``` elm
+```
 PopulationStdDev : AggregateExpression
 ```
 
@@ -3449,7 +3449,7 @@ If the source is null, the result is null.
 
 ### Sum
 
-``` elm
+```
 Sum : AggregateExpression
 ```
 
@@ -3463,7 +3463,7 @@ If the list is null, the result is null.
 
 ### StdDev
 
-``` elm
+```
 StdDev : AggregateExpression
 ```
 
@@ -3477,7 +3477,7 @@ If the list is null, the result is null.
 
 ### Variance
 
-``` elm
+```
 Variance : AggregateExpression
 ```
 
@@ -3491,11 +3491,11 @@ If the source is null, the result is null.
 
 ## Type Operators
 
-For more information on the semantics of these operators, refer to the [Type Operators](09-b-cqlreference.adoc#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
+For more information on the semantics of these operators, refer to the [Type Operators](09-b-cqlreference.html#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
 ### As
 
-``` elm
+```
 As : UnaryExpression
   ¦
   0..1 --> asTypeSpecifier : TypeSpecifier
@@ -3509,7 +3509,7 @@ The As operator allows the result of an expression to be cast as a given target 
 
 ### CanConvert
 
-``` elm
+```
 CanConvert : UnaryExpression
   ¦
   0..1 --> toTypeSpecifier : TypeSpecifier
@@ -3525,19 +3525,19 @@ Between String and each of Boolean, Integer, Long, Decimal, Quantity, Ratio, Dat
 
 as well as:
 
-From Integer to Long, Decimal, or Quantity +
-From Decimal to Quantity +
-Between Date and DateTime +
-From Code to Concept +
-Between Concept and List<Code>
+From Integer to Long, Decimal, or Quantity <br/>
+From Decimal to Quantity <br/>
+Between Date and DateTime <br/>
+From Code to Concept <br/>
+Between Concept and List\<Code>
 
-Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: **YYYY-MM-DDThh:mm:ss(+|-)hh:mm**.
+Conversion between String and Date/DateTime/Time is checked using the ISO-8601 standard format: **YYYY-MM-DDThh:mm:ss(+\|-)hh:mm**.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 ### CanConvertQuantity
 
-``` elm
+```
 CanConvertQuantity : BinaryExpression
 ```
 
@@ -3549,7 +3549,7 @@ If either argument is null, the result is null.
 
 ### Children
 
-``` elm
+```
 Children : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3563,7 +3563,7 @@ If the source is null, the result is null.
 
 ### Convert
 
-``` elm
+```
 Convert : UnaryExpression
   ¦
   0..1 --> toTypeSpecifier : TypeSpecifier
@@ -3581,19 +3581,19 @@ Between String and each of Boolean, Integer, Long, Decimal, Quantity, Ratio, Dat
 
 as well as:
 
-From Integer to Long, Decimal, or Quantity +
-From Decimal to Quantity +
-Between Date and DateTime +
-From Code to Concept +
-Between Concept and List<Code>
+From Integer to Long, Decimal, or Quantity <br/>
+From Decimal to Quantity <br/>
+Between Date and DateTime <br/>
+From Code to Concept <br/>
+Between Concept and List\<Code>
 
-Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: YYYY-MM-DDThh:mm:ss(+|-)hh:mm.
+Conversion between String and Date/DateTime/Time is performed using the ISO-8601 standard format: **YYYY-MM-DDThh:mm:ss(+\|-)hh:mm**.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 ### ConvertQuantity
 
-``` elm
+```
 ConvertQuantity : BinaryExpression
 ```
 
@@ -3605,7 +3605,7 @@ If either argument is null, the result is null.
 
 ### ConvertsToBoolean
 
-``` elm
+```
 ConvertsToBoolean : UnaryExpression
 ```
 
@@ -3623,7 +3623,7 @@ If the argument is null the result is null.
 
 ### ConvertsToDate
 
-``` elm
+```
 ConvertsToDate : UnaryExpression
 ```
 
@@ -3633,7 +3633,7 @@ For String values, The operator expects the string to be formatted using the ISO
 
 **YYYY-MM-DD**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3647,7 +3647,7 @@ If the argument is null, the result is null.
 
 ### ConvertsToDateTime
 
-``` elm
+```
 ConvertsToDateTime : UnaryExpression
 ```
 
@@ -3655,9 +3655,9 @@ The ConvertsToDateTime operator returns true if the value of its argument is or 
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
+**YYYY-MM-DDThh:mm:ss.fff(Z\|((+\|-)hh:mm))**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3669,17 +3669,17 @@ If the argument is null, the result is null.
 
 ### ConvertsToDecimal
 
-``` elm
+```
 ConvertsToDecimal : UnaryExpression
 ```
 
 The ConvertsToDecimal operator returns true if the value of its argument is or can be converted to a Decimal value. The operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?**
+**(+\|-)?\#0(.0#)?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input value must be limited in precision and scale to the maximum precision and scale representable for Decimal values within CQL.
 
@@ -3691,17 +3691,17 @@ If the argument is null, the result is null.
 
 ### ConvertsToLong
 
-``` elm
+```
 ConvertsToLong : UnaryExpression
 ```
 
 The ConvertsToLong operator returns true if the value of its argument is or can be converted to a Long value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input must be a valid value in the range representable for Long values in CQL.
 
@@ -3713,17 +3713,17 @@ If the argument is null, the result is null.
 
 ### ConvertsToInteger
 
-``` elm
+```
 ConvertsToInteger : UnaryExpression
 ```
 
 The ConvertsToInteger operator returns true if the value of its argument is or can be converted to an Integer value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that for this operator to return true, the input must be a valid value in the range representable for Integer values in CQL.
 
@@ -3735,7 +3735,7 @@ If the argument is null, the result is null.
 
 ### ConvertsToQuantity
 
-``` elm
+```
 ConvertsToQuantity : UnaryExpression
 ```
 
@@ -3743,11 +3743,11 @@ The ConvertsToQuantity operator returns true if the value of its argument is or 
 
 For String values, the operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?('<unit>')?**
+**(+\|-)?\#0(.0#)?('\<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the decimal value of the quantity returned by this operator must be a valid value in the range representable for Decimal values in CQL.
 
@@ -3759,13 +3759,13 @@ If the argument is null, the result is null.
 
 ### ConvertsToRatio
 
-``` elm
+```
 ConvertsToRatio : UnaryExpression
 ```
 
 The ConvertsToRatio operator returns true if the value of its argument is or can be converted to a Ratio value. The operator accepts strings using the following format:
 
-**<quantity>:<quantity>**
+**\<quantity>:\<quantity>**
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -3775,7 +3775,7 @@ If the argument is null, the result is null.
 
 ### ConvertsToString
 
-``` elm
+```
 ConvertsToString : UnaryExpression
 ```
 
@@ -3783,22 +3783,22 @@ The ConvertsToString operator returns true if the value of its argument is or ca
 
 The operator returns true if the argument is any of the following types:
 
-Boolean +
-Integer +
-Long +
-Decimal +
-DateTime +
-Date +
-Time +
-Quantity +
-Ratio +
+Boolean <br/>
+Integer <br/>
+Long <br/>
+Decimal <br/>
+DateTime <br/>
+Date <br/>
+Time <br/>
+Quantity <br/>
+Ratio <br/>
 String
 
 If the argument is null, the result is null.
 
 ### ConvertsToTime
 
-``` elm
+```
 ConvertsToTime : UnaryExpression
 ```
 
@@ -3808,7 +3808,7 @@ For String values, the operator expects the string to be formatted using ISO-860
 
 **hh:mm:ss.fff**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -3820,7 +3820,7 @@ If the argument is null, the result is null.
 
 ### Descendents
 
-``` elm
+```
 Descendents : OperatorExpression
   ¦
   1..1 --> source : Expression
@@ -3834,7 +3834,7 @@ If the source is null, the result is null.
 
 ### Is
 
-``` elm
+```
 Is : UnaryExpression
   ¦
   0..1 --> isTypeSpecifier : TypeSpecifier
@@ -3846,7 +3846,7 @@ The Is operator allows the type of a result to be tested. The language must supp
 
 ### ToBoolean
 
-``` elm
+```
 ToBoolean : UnaryExpression
 ```
 
@@ -3864,7 +3864,7 @@ If the argument is null the result is null.
 
 ### ToChars
 
-``` elm
+```
 ToChars : UnaryExpression
 ```
 
@@ -3874,7 +3874,7 @@ If the argument is null, the result is null.
 
 ### ToConcept
 
-``` elm
+```
 ToConcept : UnaryExpression
 ```
 
@@ -3886,7 +3886,7 @@ If the argument is null, the result is null.
 
 ### ToDate
 
-``` elm
+```
 ToDate : UnaryExpression
 ```
 
@@ -3896,7 +3896,7 @@ For String values, the operator expects the string to be formatted using the ISO
 
 **YYYY-MM-DD**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid date value.
 
@@ -3912,7 +3912,7 @@ If the argument is null, the result is null.
 
 ### ToDateTime
 
-``` elm
+```
 ToDateTime : UnaryExpression
 ```
 
@@ -3920,9 +3920,9 @@ The ToDateTime operator converts the value of its argument to a DateTime value.
 
 For String values, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
-**YYYY-MM-DDThh:mm:ss.fff(Z|((+|-)hh:mm))**
+**YYYY-MM-DDThh:mm:ss.fff(Z\|((+\|-)hh:mm))**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid DateTime value.
 
@@ -3936,17 +3936,17 @@ If the argument is null, the result is null.
 
 ### ToDecimal
 
-``` elm
+```
 ToDecimal : UnaryExpression
 ```
 
 The <span class="id">ToDecimal</span> operator converts the value of its argument to a <span class="id">Decimal</span> value. The operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?**
+**(+\|-)?\#0(.0#)?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit, followed optionally by a decimal point, at least one digit, and any number of additional digits (including none).
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the <span class="id">Decimal</span> value returned by this operator will be limited in precision and scale to the maximum precision and scale representable by the implementation (at least 28 digits of precision, and 8 digits of scale).
 
@@ -3958,17 +3958,17 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 ### ToInteger
 
-``` elm
+```
 ToInteger : UnaryExpression
 ```
 
 The ToInteger operator converts the value of its argument to an Integer value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the integer value returned by this operator must be a valid value in the range representable for Integer values in CQL.
 
@@ -3980,7 +3980,7 @@ If the argument is null, the result is null.
 
 ### ToList
 
-``` elm
+```
 ToList : UnaryExpression
 ```
 
@@ -3994,17 +3994,17 @@ The operator is used to implement list promotion efficiently.
 
 ### ToLong
 
-``` elm
+```
 ToLong : UnaryExpression
 ```
 
 The ToLong operator converts the value of its argument to a Long value. The operator accepts strings using the following format:
 
-**(+|-)?#0**
+**(+\|-)?#0**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none), followed by at least one digit.
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 Note that the long value returned by this operator must be a valid value in the range representable for Long values in CQL.
 
@@ -4016,7 +4016,7 @@ If the argument is null, the result is null.
 
 ### ToQuantity
 
-``` elm
+```
 ToQuantity : UnaryExpression
 ```
 
@@ -4024,7 +4024,7 @@ The ToQuantity operator converts the value of its argument to a Quantity value. 
 
 For String values, the operator accepts strings using the following format:
 
-**(+|-)?\#0(.0#)?('<unit>')?**
+**(+\|-)?\#0(.0#)?('\<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -4040,13 +4040,13 @@ If the argument is null, the result is null.
 
 ### ToRatio
 
-``` elm
+```
 ToRatio : UnaryExpression
 ```
 
 The ToRatio operator converts the value of its argument to a Ratio value. The operator accepts strings using the following format:
 
-**<quantity>:<quantity>**
+**\<quantity>:\<quantity>**
 
 Meaning a quantity, followed by a colon (:), followed by another quantity. The operator accepts quantity strings using the same format as the ToQuantity operator.
 
@@ -4056,7 +4056,7 @@ If the argument is null, the result is null.
 
 ### ToString
 
-``` elm
+```
 ToString : UnaryExpression
 ```
 
@@ -4070,20 +4070,20 @@ The ToString operator converts the value of its argument to a String value. The 
 |Integer |**(-)?#0**
 |Long |**(-)?#0**
 |Decimal |**(-)?\#0.0#**
-|Quantity |**(-)?\#0.0# '<unit>'**
+|Quantity |**(-)?\#0.0# '\<unit>'**
 |Date |**YYYY-MM-DD**
 |DateTime |**YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm**
 |Time	|**hh:mm:ss.fff**
-|Ratio |**<quantity>:<quantity>**
+|Ratio |**\<quantity>:\<quantity>**
 {: .grid .table .table-striped}
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 If the argument is null, the result is null.
 
 ### ToTime
 
-``` elm
+```
 ToTime : UnaryExpression
 ```
 
@@ -4093,7 +4093,7 @@ For String values, the operator expects the string to be formatted using ISO-860
 
 **hh:mm:ss.fff**
 
-See [Formatting Strings](09-b-cqlreference.adoc#formatting-strings) for a description of the formatting strings used in this specification.
+See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
 In addition, the string must be interpretable as a valid time-of-day value.
 
@@ -4111,7 +4111,7 @@ For working with clinical data, ELM defines operators for terminology sets, quan
 
 ### AnyInCodeSystem
 
-``` elm
+```
 AnyInCodeSystem : OperatorExpression
   ¦
   1..1 --> codes : Expression
@@ -4131,7 +4131,7 @@ The third argument is expected to be of type CodeSystem, allowing references to 
 
 ### AnyInValueSet
 
-``` elm
+```
 AnyInValueSet : OperatorExpression
   ¦
   1..1 --> codes : Expression
@@ -4151,7 +4151,7 @@ The third argument is expected to be of type ValueSet, allowing references to va
 
 ### CalculateAge
 
-``` elm
+```
 CalculateAge : UnaryExpression
   ¦
   0..1 --> precision
@@ -4167,7 +4167,7 @@ For the DateTime overload, the calculation is performed using Now(), and the res
 
 ### CalculateAgeAt
 
-``` elm
+```
 CalculateAgeAt : BinaryExpression
   ¦
   0..1 --> precision
@@ -4193,7 +4193,7 @@ Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 ### InCodeSystem
 
-``` elm
+```
 InCodeSystem : OperatorExpression
   ¦
   1..1 --> code : Expression
@@ -4213,7 +4213,7 @@ The third argument is expected to be a CodeSystem, allowing references to code s
 
 ### InValueSet
 
-``` elm
+```
 InValueSet : OperatorExpression
   ¦
   1..1 --> code : Expression
@@ -4233,7 +4233,7 @@ The third argument is expected to be a ValueSet, allowing references to value se
 
 ### ExpandValueSet
 
-``` elm
+```
 ExpandValueSet : UnaryExpression
 ```
 
@@ -4249,7 +4249,7 @@ Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
 ### SubsumedBy
 
-``` elm
+```
 SubsumedBy : BinaryExpression
 ```
 
@@ -4261,7 +4261,7 @@ If either or both arguments are null, the result is null.
 
 ### Subsumes
 
-``` elm
+```
 Subsumes : BinaryExpression
 ```
 
@@ -4277,7 +4277,7 @@ ELM defines a utility operation that is useful for generating run-time messages,
 
 ### Message
 
-``` elm
+```
 Message : OperatorExpression
   ¦
   1..1 --> source : Expression

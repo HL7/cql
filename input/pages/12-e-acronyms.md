@@ -1,9 +1,9 @@
 {% include styles.html %}
 
 <a name="table-12-a"></a>
-[cols=",",options="header",]
-|==============================================================================
+
 |Acronym |Definition/Description
+|----|----
 |**AHRQ** |Agency for Healthcare Research and Quality
 |**ANTLR4** |ANother Tool for Language Recognition (version 4)
 |**CDA** |Clinical Document Architecture
@@ -62,7 +62,7 @@
 |**VSAC** |Value Set Authority Center
 |**XMI** |XML Metadata Interchange
 |**XML** |eXtended Markup Language
-|==============================================================================
+{: .grid .table .table-striped}
 
 Table 12‑A - Acronyms used in this specification
 

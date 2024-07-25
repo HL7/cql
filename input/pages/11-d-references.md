@@ -15,7 +15,7 @@
 13. _Object Constraint Language, OMG Available Specification Version 2.4._ http://www.omg.org/spec/OCL/2.4/
 14. _Foundations of Databases. Abiteboul, Hull, Vianu, 1995_
 15. _Temporal Data and The Relational Model. Date, Darwen, Lorentzos, 2003_
-16. _Databases, Types, and the Relational Model, 3^rd^ edition. Date, Darwen, 2007_
+16. _Databases, Types, and the Relational Model, 3<sup>rd</sup> edition. Date, Darwen, 2007_
 17. _Compilers: Principles, Techniques, and Tools. Aho, Sethi, Ullman, 1998_
 18. _Unicode Standard Annex #44: Unicode Character Database_ http://www.unicode.org/reports/tr44/
 19. _Common Terminology Services 2, Version 1.0._ http://www.omg.org/spec/CTS2/1.0/

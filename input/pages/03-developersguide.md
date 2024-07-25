@@ -11,16 +11,16 @@ As with any traditional computer language, CQL uses typical lexical elements suc
 CQL defines the following basic lexical elements:
 
 <a name="table-3-a"></a>
-[cols=",",options="header",]
-|================================================================================
+
 |Element |Description
+|----|----
 |**Whitespace** |Whitespace defines the separation between all tokens in the language
 |**Comment** |Comments are ignored by the language, allowing for descriptive text
 |**Literal** |Literals allow basic values to be represented within the language
 |**Symbol** |Symbols such as <span class="sym">+</span>, <span class="sym">-</span>, <span class="sym">*</span>, and <span class="sym">/</span>
 |**Keyword** |Grammar-recognized keywords such as define and where
 |**Identifier** |User-defined identifiers
-|================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑A - The basic lexical elements defined in CQL
 
@@ -85,21 +85,21 @@ define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
 Literals provide for the representation of basic values within CQL. The following types of literals are supported:
 
 <a name="table-3-b"></a>
-[cols=",",options="header",]
-|============================================================================================================
+
 |Literal |Description
+|----|----
 |**Null** |The null literal (<span class="kw">null</span>)
 |**Boolean** |The boolean literals (<span class="kw">true</span> and <span class="kw">false</span>)
-|**Integer** |Sequences of digits in the range 0..2^31^-1
-|**Long** |Sequences of digits in the range 0..2^63^-1
-|**Decimal** |Sequences of digits with a decimal point, in the range 0.0.. (10^28^-1)/10^8^
+|**Integer** |Sequences of digits in the range 0..2<sup>31</sup>-1
+|**Long** |Sequences of digits in the range 0..2<sup>63</sup>-1
+|**Decimal** |Sequences of digits with a decimal point, in the range 0.0.. (10<sup>28</sup>-1)/10<sup>8</sup>
 |**String** |Strings of any character enclosed within single-ticks (<span class="lit">'</span>)
 |**Date** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a date
 |**DateTime** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a datetime
 |**Time** |The at-symbol (<span class="sym">@</span>) followed by an ISO-8601 compliant representation of a time
 |**Quantity** |An integer or decimal literal followed by a datetime precision specifier, or a UCUM unit specifier
 |**Ratio** |A ratio of two quantities, separated by a colon (<span class="sym">:</span>)
-|============================================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑B - The types of literals supported in CQL
 
@@ -108,9 +108,9 @@ A syntax diagram of the types of literals supported can be seen [here](19-l-cqls
 CQL uses standard escape sequences for string literals:
 
 <a name="table-3-c"></a>
-[cols=",",options="header",]
-|========================================================================================
+
 |Escape |Character
+|----|----
 |\' |Single-quote
 |\" |Double-quote
 |\` |Backtick
@@ -120,7 +120,7 @@ CQL uses standard escape sequences for string literals:
 |\f |Form Feed
 |\\ |Backslash
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
-|========================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑C - The escape sequences for string literals in CQL
 
@@ -131,9 +131,9 @@ A syntax diagram of the standard escape sequences for string literals supported 
 Symbols provide structure to the grammar and allow symbolic invocation of common operators such as addition. CQL defines the following symbols:
 
 <a name="table-3-d"></a>
-[cols=",",options="header",]
-|===============================================================================================
+
 |Symbol |Description
+|----|----
 |**:** |Definition operator, typically read as “defined as”. Also used to separate the numerator from denominator in Ratio literals
 |**()** |Parentheses for delimiting groups, as well as specifying and passing function parameters
 |**[]** |Brackets for indexing into lists and strings, as well as delimiting the retrieve expression
@@ -143,7 +143,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 |**,** |Comma for delimiting items in a syntactic list
 |**= != \<= < > >=** |Comparison operators for comparing values
 |**+ - ** / ^* |Arithmetic operators for performing calculations
-|===============================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑D - The symbols supported by CQL to provide structure to the grammar and allow symbolic invocation of common operators such as addition
 
@@ -412,9 +412,9 @@ Note that double-quoted and delimited identifiers are still case-sensitive, and 
 CQL escape sequences for strings also work for identifiers:
 
 <a name="table-3-e"></a>
-[cols=",",options="header",]
-|========================================================================================
+
 |Escape |Character
+|----|----
 |**\'** |Single-quote
 |**\"** |Double-quote
 |**\`** |Backtick
@@ -424,7 +424,7 @@ CQL escape sequences for strings also work for identifiers:
 |**\f** |Form Feed
 |**\\** |Backslash
 |**\uXXXX** |Unicode character, where XXXX is the hexadecimal representation of the character
-|========================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑E - The escape sequences for identifiers in CQL
 
@@ -439,33 +439,24 @@ A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdi
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precedence in CQL from highest to lowest:
 
 <a name="table-3-f"></a>
-[cols=",",options="header",]
-|==============================================================
+
 |Category |Operators
+|----|----
 |**Primary** |<span class="sym">.</span> <span class="sym">[]</span> <span class="sym">()</span>
 |**Conversion Phrase** |<span class="kw">convert</span>..<span class="kw">to</span>
 |**Unary Arithmetic** |unary <span class="sym">+/-</span>
-|**Extractor** |<span class="kw">start</span> <span class="kw">end</span> <span class="kw">difference</span> <span class="kw">duration</span> <span class="kw">width</span> <span class="kw">successor</span> <span class="kw">predecessor of</span> +
-_component_ <span class="kw">singleton from</span>
+|**Extractor** |<span class="kw">start</span> <span class="kw">end</span> <span class="kw">difference</span> <span class="kw">duration</span> <span class="kw">width</span> <span class="kw">successor</span> <span class="kw">predecessor of</span><br/>_component_ <span class="kw">singleton from</span>
 |**Exponentiation** |<span class="sym">^</span>
 |**Multiplicative** |<span class="sym">*</span> <span class="sym">/</span> <span class="kw">div mod</span>
 |**Additive** |<span class="sym">+</span> <span class="sym">-</span> <span class="sym">&</span>
-|**Conditional** |<span class="kw">if</span>..<span class="kw">then</span>..<span class="kw">else</span> +
-<span class="kw">case</span>..<span class="kw">else</span>..<span class="kw">end</span>
+|**Conditional** |<span class="kw">if</span>..<span class="kw">then</span>..<span class="kw">else</span><br/><span class="kw">case</span>..<span class="kw">else</span>..<span class="kw">end</span>
 |**Unary List** |<span class="kw">distinct</span> <span class="kw">collapse</span> <span class="kw">flatten</span> <span class="kw">expand</span>
 |**Unary Test** |<span class="kw">is null</span> <span class="kw">true</span> <span class="kw">false</span>
 |**Type Operators** |<span class="kw">is as cast</span>..<span class="kw">as</span>
 |**Unary Logical** |<span class="kw">not exists</span>
-|**Between** |<span class="kw">between</span> +
-_precision_ <span class="kw">between</span> +
-<span class="kw">duration in</span> _precision_ <span class="kw">between</span> +
-<span class="kw">difference in</span> _precision_ <span class="kw">between</span>
-|**Comparison** |<span class="sym">\<=</span> <span class="sym"><</span> <span class="sym">></span> <span class="sym">>=</span>
-|**Timing Phrase** |<span class="kw">same as</span> +
-<span class="kw">includes</span> +
-<span class="kw">during</span> +
-<span class="kw">before/after</span> +
-<span class="kw">within</span>
+|**Between** |<span class="kw">between</span><br/>_precision_ <span class="kw">between</span><br/><span class="kw">duration in</span> _precision_ <span class="kw">between</span><br/><span class="kw">difference in</span> _precision_ <span class="kw">between</span>
+|**Comparison** |<span class="sym">\<=</span> <span class="sym">\<</span> <span class="sym">></span> <span class="sym">>=</span>
+|**Timing Phrase** |<span class="kw">same as</span><br/><span class="kw">includes</span><br/><span class="kw">during</span><br/><span class="kw">before/after</span><br/><span class="kw">within</span>
 |**Interval Operators** |<span class="kw">meets overlaps starts ends</span>
 |**Equality** |<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span>
 |**Membership** |<span class="kw">in contains</span>
@@ -473,7 +464,7 @@ _precision_ <span class="kw">between</span> +
 |**Disjunction** |<span class="kw">or xor</span>
 |**Implication** |<span class="kw">implies</span>
 |**Binary List** |<span class="kw">union intersect except</span>
-|==============================================================
+{: .grid .table .table-striped}
 
 Table 3‑F - The order of operator precedence in CQL
 
@@ -502,7 +493,7 @@ Libraries provide the basic unit of code organization for CQL. Each CQL file con
 
 A syntax diagram of a library construct can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
 
-Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a [library](04-logicalspecification.adoc#library) contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the [Mother Infant Measure](examples.adoc#mother-infant-measure) for an example of how namespaces are specified in ELM.
+Library identifiers may be qualified to any degree to allow libraries to be organized and shared. In addition, the ELM for a [library](04-logicalspecification.html#library) contains an identifier element with a namespace which provides a globally unique, stable identifier scope for the library. All the library identifiers within a given namespace must be unique, and the namespace is used by the implementation environment to resolve library identifiers to their actual library source. See the [Mother Infant Measure](examples.html#mother-infant-measure) for an example of how namespaces are specified in ELM.
 
 When including a library, use the fully qualified identifier for the library. If the <span class="kw">called</span> clause is omitted from the include declaration, the unqualified library identifier will be used as the local identifier for the library.
 
@@ -621,38 +612,38 @@ The maximal supertype is System.Any. All other types derive from System.Any, mea
 All the system-defined types derive directly from System.Any. The primitive types and their ranges are summarized here:
 
 <a name="table-3-g"></a>
-[cols=",,",options="header",]
-|=========================================================================
+
 |Type |Range |Step Size
+|----|----|----
 |**Boolean** |false..true |N/A
-|**Integer** |-2^31^..2^31^–1 |1
-|**Long** |-2^63^..2^63^-1 |1
+|**Integer** |-2<sup>31</sup>..2<sup>31</sup>–1 |1
+|**Long** |-2<sup>63</sup>..2<sup>63</sup>-1 |1
 |**Date** |@0001-01-01..@9999-12-31 |1 day
 |**DateTime** |@0001-01-01T00:00:00.0..@9999-12-31T23:59:59.999 |1 millisecond
-|**Decimal** |(-10^28^+1)/10^8^..(10^28^-1)/10^8^ |10^-8^
-|**String** |All strings of length 2^31^-1 or less. |N/A
+|**Decimal** |(-10<sup>28</sup>+1)/10<sup>8</sup>..(10<sup>28</sup>-1)/10<sup>8</sup> |10<sup>-8</sup>
+|**String** |All strings of length 2<sup>31</sup>-1 or less. |N/A
 |**Time** |@T00:00:00.0..@T23:59:59.999 |1 millisecond
-|=========================================================================
+{: .grid .table .table-striped}
 
 Table 3‑G - The primitive types and their ranges supported in CQL
 
-Note that CQL supports three-valued logic, see the section on [Missing Information](02-authorsguide.adoc#missing-information) in the Author's Guide, as well as the section on [Missing Information](#missing-information) in the Developer's guide for more.
+Note that CQL supports three-valued logic, see the section on [Missing Information](02-authorsguide.html#missing-information) in the Author's Guide, as well as the section on [Missing Information](#missing-information) in the Developer's guide for more.
 
 In addition, CQL defines several structured types to facilitate representation and manipulation of clinical information:
 
 <a name="table-3-h"></a>
-[cols=",",options="header",]
-|==========================================================================================================
+
 |Type |Description
+|----|----
 |**Code** |Represents a clinical terminology code, including the code identifier, system, version, and display.
 |**Concept** |Represents a single concept as a list of equivalent Codes.
 |**Quantity** |Represents a quantity with a dimension, specified in UCUM units.
 |**Ratio** |Represents a ratio between two quantities
-|==========================================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑H - The structured types to facilitate representation and manipulation of clinical information
 
-For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on [Types](09-b-cqlreference.adoc#types-2).
+For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on [Types](09-b-cqlreference.html#types-2).
 
 ### Specifying Types
 
@@ -729,7 +720,7 @@ For interval types, given a point type P, and a point type P' derived from type 
 
 For list types, given an element type E, and an element type E' derived from type E, list type List<E'> is a subtype of list type List<E>.
 
-For tuple types, given a tuple type T with elements E~1~, E~2~, ...E~n~, names N~1~, N~2~, ...N~n~­, and types T~1~, T~2~, ...T~n~, respectively, a tuple type T' with elements E'~1~, E'~2~, ...E'~n~, names N'~1~, N'~2~, ...N'~n~, and types T'~1~, T'~2~, ...T'~n~, type T' is a subtype of type T if and only if:
+For tuple types, given a tuple type T with elements E<sub>1</sub>, E<sub>2</sub>, ...E<sub>n</sub>, names N<sub>1</sub>, N<sub>2</sub>, ...N<sub>n</sub>­, and types T<sub>1</sub>, T<sub>2</sub>, ...T<sub>n</sub>, respectively, a tuple type T' with elements E'<sub>1</sub>, E'<sub>2</sub>, ...E'<sub>n</sub>, names N'<sub>1</sub>, N'<sub>2</sub>, ...N'<sub>n</sub>, and types T'<sub>1</sub>, T'<sub>2</sub>, ...T'<sub>n</sub>, type T' is a subtype of type T if and only if:
 
 * The number of elements in each type is the same: |E| = |E'|
 * For each element in T, there is one element in T' with the same name, and the type of the matching element in T' is a subtype of the type of the element in T.
@@ -746,11 +737,11 @@ In addition, choice types can be used to indicate the type of a list of mixed el
 [Procedure] union [Encounter]
 ```
 
-This example results in a list that contains both Procedures and Encounters, and the resulting type is <span class="id">Choice<Procedure</span>, <span class="id">Encounter></span>.
+This example results in a list that contains both Procedures and Encounters, and the resulting type is <span class="id">Choice\<Procedure, Encounter></span>.
 
 An expression of a choice type can be used anywhere that a value of any of its component types is expected, and an implicit cast will be used to restrict the choice type to the correct component type.
 
-For example, given an <span class="id">Observation</span> type with an element <span class="id">value</span> of type <span class="id">Choice<String</span>, <span class="id">Code</span>, <span class="id">Integer</span>, <span class="id">Decimal</span>, <span class="id">Quantity></span>, the following expressions are all valid:
+For example, given an <span class="id">Observation</span> type with an element <span class="id">value</span> of type <span class="id">Choice\<String, Code, Integer, Decimal, Quantity></span>, the following expressions are all valid:
 
 ``` cql
 Observation.value + 12
@@ -860,9 +851,9 @@ convert 'Foo' to Integer
 will result in <span class="kw">null</span>. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
 <a name="table-3-i"></a>
-[cols=",",options="header",]
-|==============================================================================================================================================================================================================
+
 |Operator |Description
+|----|----
 |**ToBoolean(Decimal)** |Converts the decimal representation of a boolean value (`0.0` or `1.0`) to a Boolean value
 |**ToBoolean(Integer)** |Converts the integer representation of a boolean value (`0` or `1`) to a Boolean value
 |**ToBoolean(Long)** |Converts the long representation of a boolean value (`0L` or `1L`) to a Boolean value
@@ -896,12 +887,12 @@ will result in <span class="kw">null</span>. The convert syntax is equivalent to
 |**ToString(DateTime)** |Converts a DateTime value to its string representation
 |**ToString(Time)** |Converts a Time value to its string representation
 |**ToConcept(Code)** |Converts a Code value to a Concept with the given Code as its primary and only Code. If the Code has a display value, the Concept will have the same display value.
-|**ToConcept(List<Code>)** |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
-|==============================================================================================================================================================================================================
+|**ToConcept(List\<Code>)** |Converts a list of Code values to a Concept with the first Code in the list as the primary Code. If the primary Code has a display value, the Concept will have the same display value.
+{: .grid .table .table-striped}
 
 Table 3‑I - The defined type conversion operators in CQL
 
-For a complete description of these conversion operators, refer to the [Type Operators](09-b-cqlreference.adoc#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
+For a complete description of these conversion operators, refer to the [Type Operators](09-b-cqlreference.html#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
 #### Quantity Conversions
 
@@ -922,9 +913,9 @@ If the unit conversion is valid, the expression results in a quantity with the t
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
 <a name="table-3-j"></a>
-[cols=",,,,,,,,,,,,,",options="header",]
-|===============================================================================================
-|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List<Code> |ValueSet
+
+|From\To   |Boolean |Integer |Long |Decimal |Quantity |Ratio |String |Date |DateTime |Time |Code |Concept |List\<Code> |ValueSet
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----
 |**Boolean** |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |- |-
 |**Integer** |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
 |**Long** |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |- |-
@@ -937,9 +928,9 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 |**Time** |- |- |- |- |- |- |Explicit |- |- |N/A |- |- |- |-
 |**Code** |- |- |- |- |- |- |- |- |- |- |N/A |Implicit |- |-
 |**Concept** |- |- |- |- |- |- |- |- |- |- |- |N/A |Explicit |-
-|**List<Code>** |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A |-
+|**List\<Code>** |- |- |- |- |- |- |- |- |- |- |- |Explicit |N/A |-
 |**ValueSet** |- |- |- |- |- |- |- |- |- |- |- |- |Implicit |N/A
-|===============================================================================================
+{: .grid .table .table-striped}
 
 Table 3‑J - The explicit and implicit conversions supported in CQL
 
@@ -1418,7 +1409,7 @@ If the expression being defined (such as "Mother" in the previous example) is <s
 
 > As with all healthcare-related data, there are privacy and security concerns associated with this feature. Implementations must ensure that use of this functionality does not violate any access, authorization, or use protocols in the systems being accessed with this feature.
 >
-> See the [Mother Infant Measure](examples.adoc#mother-infant-measure) example for a detailed illustration of this functionality.
+> See the [Mother Infant Measure](examples.html#mother-infant-measure) example for a detailed illustration of this functionality.
 {: .note-danger}
 
 ## Aggregate Queries
@@ -1488,7 +1479,7 @@ define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ```
 
-This statement defines a function named <span class="id">CumulativeDuration</span> that takes a single argument named <span class="id">Intervals</span> of type <span class="kw">List<Interval<DateTime>></span>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
+This statement defines a function named <span class="id">CumulativeDuration</span> that takes a single argument named <span class="id">Intervals</span> of type <span class="kw">List\<Interval\<DateTime>></span>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
 
 ``` cql
 define "Encounters": [Encounter: "Inpatient Visit"]
@@ -1512,7 +1503,7 @@ Functions can be defined that reference other functions anywhere within any libr
 
 ### Operator Functions
 
-Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the [Functions](06-translationsemantics.adoc#functions) topic in the Translation Semantics chapter.
+Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the [Functions](06-translationsemantics.html#functions) topic in the Translation Semantics chapter.
 
 A consequence of having these system function definitions is that operators can also be invoked directly as functions. For example:
 
