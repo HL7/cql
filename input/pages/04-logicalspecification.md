@@ -28,11 +28,11 @@ The documentation provided here serves only as a high-level structural reference
 
 Note that the semantics for the operations described here are defined both in the UML model as comments on the node for each operator, as well as the equivalent CQL operation as defined in [Appendix B – CQL Reference](09-b-cqlreference.html).
 
-## Simple Values
+### Simple Values
 
 Support for simple values is provided by the _Literal_ class. This class defines properties to represent the type of the value, as well as the value itself.
 
-### Literal
+#### Literal
 
 ```
 Literal : Expression
@@ -44,7 +44,7 @@ Literal : Expression
 
 The Literal type defines a single scalar value. For example, the literal 5, the boolean value true or the string "antithrombotic".
 
-## Structured Values
+### Structured Values
 
 Structured values in ELM are values with sets of named elements (tuples), each of which may have a value of any type. Structured values are most commonly used to represent clinical information such as encounters, problems, and procedures.
 
@@ -54,7 +54,7 @@ To access elements of a structured value, use the _Property_ expression. A prope
 
 The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
 
-### Tuple
+#### Tuple
 
 ```
 Tuple : Expression
@@ -71,7 +71,7 @@ The following example illustrates the construction of a tuple using the _Tuple_ 
 
 Figure 4‑H - A diagram to explain how ELM represents the construction of a <span class="kw">Tuple</span>
 
-### Instance
+#### Instance
 
 ```
 Instance : Expression
@@ -90,7 +90,7 @@ The following example illustrates the construction of a structured value using t
 
 Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the <span class="kw">Instance</span> class
 
-### Property
+#### Property
 
 ```
 Property : Expression
@@ -114,11 +114,11 @@ If a scope is specified, the name is used to resolve the scope in which the path
 
 Property expressions can also be used to access the individual points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed.
 
-## Clinical Values
+### Clinical Values
 
 The following represents clinical information in ELM.
 
-### Code
+#### Code
 
 ```
 Code : Expression
@@ -132,7 +132,7 @@ Code : Expression
 
 The Code type represents a literal code selector.
 
-### CodeDef
+#### CodeDef
 
 ```
 CodeDef : Element
@@ -152,7 +152,7 @@ CodeDef : Element
 
 The CodeDef type defines a code identifier that can then be used to reference single codes anywhere within an expression.
 
-### CodeRef
+#### CodeRef
 
 ```
 CodeRef : Expression
@@ -164,7 +164,7 @@ CodeRef : Expression
 
 The CodeRef expression allows a previously defined code to be referenced within an expression.
 
-### CodeSystemDef
+#### CodeSystemDef
 
 ```
 CodeSystemDef : Element
@@ -180,7 +180,7 @@ CodeSystemDef : Element
 
 The CodeSystemDef type defines a code system identifier that can then be used to identify code systems involved in value set definitions.
 
-### CodeSystemRef
+#### CodeSystemRef
 
 ```
 CodeSystemRef : Expression
@@ -192,7 +192,7 @@ CodeSystemRef : Expression
 
 The CodeSystemRef expression allows a previously defined named code system to be referenced within an expression. Conceptually, referencing a code system returns the set of codes in the code system. Note that this operation should almost never be performed in practice. Code system references are allowed in order to allow for testing of code membership in a particular code system.
 
-### Concept
+#### Concept
 
 ```
 Concept : Expression
@@ -204,7 +204,7 @@ Concept : Expression
 
 The Concept type represents a literal concept selector.
 
-### ConceptDef
+#### ConceptDef
 
 ```
 ConceptDef : Element
@@ -222,7 +222,7 @@ ConceptDef : Element
 
 The ConceptDef type defines a concept identifier that can then be used to reference single concepts anywhere within an expression.
 
-### ConceptRef
+#### ConceptRef
 
 ```
 ConceptRef : Expression
@@ -234,7 +234,7 @@ ConceptRef : Expression
 
 The ConceptRef expression allows a previously defined concept to be referenced within an expression.
 
-### Quantity
+#### Quantity
 
 ```
 Quantity : Expression
@@ -246,7 +246,7 @@ Quantity : Expression
 
 The Quantity type defines a clinical quantity. For example, the quantity 10 days or 30 mmHg. The value is a decimal, while the unit is expected to be a valid UCUM unit or calendar duration keyword, singular or plural.
 
-### Ratio
+#### Ratio
 
 ```
 Ratio : Expression
@@ -258,7 +258,7 @@ Ratio : Expression
 
 The Ratio type defines a ratio between two quantities. For example, the titre 1:128, or the concentration ratio 5 mg/10 mL. The numerator and denominator are both quantities.
 
-### ValueSetDef
+#### ValueSetDef
 
 ```
 ValueSetDef : Element
@@ -285,7 +285,7 @@ If version is specified, it will be used to resolve the version of the value set
 If codeSystems are specified, they will be used to resolve the code systems used within the value set definition to construct the expansion set.
 Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystemVersions attribute is provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.
 
-### ValueSetRef
+#### ValueSetRef
 
 ```
 ValueSetRef : Expression
@@ -301,11 +301,11 @@ The ValueSetRef expression allows a previously defined named value set to be ref
 
 The preserve attribute is trial-use in CQL 1.5.2 and was introduced to allow engines to determine whether or not to expand a ValueSetRef (the 1.4 behavior), ensuring that 1.5 engines can run 1.4 ELM.
 
-## Type Specifiers
+### Type Specifiers
 
 ELM provides the following elements for type specifiers.
 
-### TypeSpecifier
+#### TypeSpecifier
 
 ```
 TypeSpecifier : Element
@@ -314,7 +314,7 @@ TypeSpecifier : Element
 TypeSpecifier is the abstract base type for all type specifiers.
 
 
-### NamedTypeSpecifier
+#### NamedTypeSpecifier
 
 ```
 NamedTypeSpecifier : TypeSpecifier
@@ -325,7 +325,7 @@ NamedTypeSpecifier : TypeSpecifier
 NamedTypeSpecifier defines a type identified by a name, such as Integer, String, Patient, or Encounter.
 
 
-### IntervalTypeSpecifier
+#### IntervalTypeSpecifier
 
 ```
 IntervalTypeSpecifier : TypeSpecifier
@@ -335,7 +335,7 @@ IntervalTypeSpecifier : TypeSpecifier
 
 IntervalTypeSpecifier defines an interval type by specifying the point type. Any type can serve as the point type for an interval, so long as it supports comparison operators, minimum and maximum value determination, as well as predecessor and successor functions.
 
-### ListTypeSpecifier
+#### ListTypeSpecifier
 
 ```
 ListTypeSpecifier : TypeSpecifier
@@ -345,7 +345,7 @@ ListTypeSpecifier : TypeSpecifier
 
 ListTypeSpecifier defines a list type by specifying the type of elements the list may contain.
 
-### TupleTypeSpecifier
+#### TupleTypeSpecifier
 
 ```
 TupleTypeSpecifier : TypeSpecifier
@@ -355,7 +355,7 @@ TupleTypeSpecifier : TypeSpecifier
 
 TupleTypeSpecifier defines the possible elements of a tuple.
 
-### ChoiceTypeSpecifier
+#### ChoiceTypeSpecifier
 
 ```
 ChoiceTypeSpecifier : TypeSpecifier
@@ -370,13 +370,13 @@ ChoiceTypeSpecifier : TypeSpecifier
 ChoiceTypeSpecifier defines the possible types of a choice type.
 
 {: #libraries-2}
-## Libraries
+### Libraries
 
 ELM defines the notion of a library as the basic container for logic constructs. Libraries consist of sets of declarations including data model references, library references, valueset definitions, parameters, functions, and named expressions. The _Library_ class defines this unit and defines properties for each of these types of declarations.
 
 Once defined, libraries can then be referenced by other libraries with the _IncludeDef_ class, which defines properties for the name and version of the library being referenced, as well as a local name that is used to access components of the library.
 
-### Library
+#### Library
 
 ```
 Library : Element
@@ -450,7 +450,7 @@ Library : Element
 
 A Library is an instance of a CQL-ELM library.
 
-### IncludeDef
+#### IncludeDef
 
 ```
 IncludeDef : Element
@@ -466,7 +466,7 @@ IncludeDef : Element
 
 Includes a library for use within the artifact.
 
-### VersionedIdentifier
+#### VersionedIdentifier
 
 ```
 VersionedIdentifier
@@ -485,7 +485,7 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
   therefore points to an individual 'versioned' instance of a resource such as the third
   version of a library.
 
-### ContextDef
+#### ContextDef
 
 ```
 ContextDef : Element
@@ -497,13 +497,13 @@ ContextDef : Element
 
 The ContextDef type defines a context used within the library.
 
-## Data Model
+### Data Model
 
 ELM does not reference any specific data model, and so can be used to represent logic expressed against any data model. These data models are specified using the _UsingDef_ class. This class provides attributes for specifying the name and version of the data model. An ELM library can reference any number of models.
 
 The name of the model is an implementation-specific identifier that provides the environment with a mechanism for finding the model description. The details of how that model description is provided are part of the physical representation.
 
-### UsingDef
+#### UsingDef
 
 ```
 UsingDef : Element
@@ -517,13 +517,13 @@ UsingDef : Element
 
 Defines a data model that is available within the artifact.
 
-## Parameters
+### Parameters
 
 In addition to external data, ELM provides a mechanism for defining parameters to an artifact. A library can define any number of parameters, each of which has a name, and a defined type, as well as an optional default value.
 
 Parameter values, if any, are expected to be provided as part of the evaluation request, and can be accessed with a _ParameterRef_ expression in any expression throughout the library.
 
-### ParameterDef
+#### ParameterDef
 
 ```
 ParameterDef : Element
@@ -549,7 +549,7 @@ If no parameter or default is provided, the parameter is defined to be null.
 
 Note that the expression specified in the default element must be able to be evaluated at compile-time (i.e. without reference to any run-time capabilities such as data, terminology, and library references, both local and included).
 
-### ParameterRef
+#### ParameterRef
 
 ```
 ParameterRef : Expression
@@ -561,13 +561,13 @@ ParameterRef : Expression
 
 The ParameterRef expression allows the value of a parameter to be referenced as part of an expression.
 
-## Expressions
+### Expressions
 
 The ELM Expression component defines a mechanism for representing the structure of logic.
 
 Every expression in ELM is represented as a descendant of the abstract base element _Expression_. In addition, several abstract descendants are introduced to support the representation of unary, binary, ternary, and n-ary operators. Note that an expression need not descend from one of these descendants, it may descend from _Expression_ directly.
 
-### Expression
+#### Expression
 
 ```
 Expression : Element
@@ -575,7 +575,7 @@ Expression : Element
 
 The Expression type defines the abstract base type for all expressions used in the ELM expression language.
 
-### OperatorExpression
+#### OperatorExpression
 
 ```
 OperatorExpression : Expression
@@ -587,7 +587,7 @@ OperatorExpression : Expression
 
 The Operator type defines the abstract base type for all built-in operators used in the ELM expression language. This explicitly excludes FunctionRef, which is the concrete type for all function invocations.
 
-### UnaryExpression
+#### UnaryExpression
 
 ```
 UnaryExpression : OperatorExpression
@@ -597,7 +597,7 @@ UnaryExpression : OperatorExpression
 
 The UnaryExpression type defines the abstract base type for expressions that take a single argument.
 
-### BinaryExpression
+#### BinaryExpression
 
 ```
 BinaryExpression : OperatorExpression
@@ -607,7 +607,7 @@ BinaryExpression : OperatorExpression
 
 The BinaryExpression type defines the abstract base type for expressions that take two arguments.
 
-### TernaryExpression
+#### TernaryExpression
 
 ```
 TernaryExpression : OperatorExpression
@@ -617,7 +617,7 @@ TernaryExpression : OperatorExpression
 
 The TernaryExpression type defines the abstract base type for expressions that take three arguments.
 
-### NaryExpression
+#### NaryExpression
 
 ```
 NaryExpression : OperatorExpression
@@ -627,7 +627,7 @@ NaryExpression : OperatorExpression
 
 The NaryExpression type defines an abstract base class for an expression that takes any number of arguments, including zero.
 
-### AggregateExpression
+#### AggregateExpression
 
 ```
 AggregateExpression : Expression
@@ -647,7 +647,7 @@ Aggregate expressions deal with missing information by excluding missing values 
 
 An aggregate operation performed over an empty list is defined to return null, except as noted in the documentation for each operator (Count, AllTrue, and AnyTrue are the exceptions).
 
-## Reusing Logic
+### Reusing Logic
 
 ELM provides a mechanism for reusing expressions by declaring a named expression. This construct is similar to a function call with no parameters in a traditional imperative language, with the exception that since ELM is a pure-functional system, the result of the evaluation could be cached by an implementation to avoid performing the same computation multiple times.
 
@@ -659,7 +659,7 @@ Note that circular expression references are not allowed, but that named express
 
 The _ExpressionDef_ class introduces the notion of _context_ which specifies the name of a context defined by the model, such as Patient, Practitioner, or Unfiltered. This context defines how the contained expression is evaluated, either with respect to a single subject, defined by the evaluation environment, or with respect to the entire system. For more information about patient context, please refer to the [External Data](#external-data) section.
 
-### ExpressionDef
+#### ExpressionDef
 
 ```
 ExpressionDef : Element
@@ -677,7 +677,7 @@ The ExpressionDef type defines an expression and an associated name that can be 
 
 The context attribute specifies the context of the execution and is used by the environment to determine whether or not to filter the data returned from retrieves based on the current context.
 
-### ExpressionRef
+#### ExpressionRef
 
 ```
 ExpressionRef : Expression
@@ -689,7 +689,7 @@ ExpressionRef : Expression
 
 The ExpressionRef type defines an expression that references a previously defined NamedExpression. The result of evaluating an ExpressionReference is the result of evaluating the referenced NamedExpression.
 
-### FunctionDef
+#### FunctionDef
 
 ```
 FunctionDef : ExpressionDef
@@ -703,7 +703,7 @@ FunctionDef : ExpressionDef
 
 The FunctionDef type defines a named function that can be invoked by any expression in the artifact. Function names must be unique within the artifact. Functions may take any number of operands.
 
-### FunctionRef
+#### FunctionRef
 
 ```
 FunctionRef : ExpressionRef
@@ -717,7 +717,7 @@ FunctionRef : ExpressionRef
 
 The FunctionRef type defines an expression that invokes a previously defined function. The result of evaluating each operand is passed to the function.
 
-### OperandRef
+#### OperandRef
 
 ```
 OperandRef : Expression
@@ -727,13 +727,13 @@ OperandRef : Expression
 
 The OperandRef expression allows the value of an operand to be referenced as part of an expression within the body of a function definition.
 
-## Queries
+### Queries
 
 ELM provides a mechanism for expressing the structure of a query.
 
 For more information on query semantics, refer to the [Queries](02-authorsguide.html#queries) section of the [Author’s Guide](02-authorsguide.html), as well as the [Multi-Source Queries](03-developersguide.html#multi-source-queries) and [Non-Retrieve Queries](03-developersguide.html#non-retrieve-queries) sections of the [Developer’s Guide](03-developersguide.html).
 
-### Query
+#### Query
 
 ```
 Query : Expression
@@ -755,7 +755,7 @@ Query : Expression
 
 The Query operator represents a clause-based query. The result of the query is determined by the type of sources included, as well as the clauses used in the query.
 
-### AliasedQuerySource
+#### AliasedQuerySource
 
 ```
 AliasedQuerySource : Element
@@ -767,7 +767,7 @@ AliasedQuerySource : Element
 
 The AliasedQuerySource element defines a single source for inclusion in a query scope. The type of the source is determined by the expression element, and the source can be accessed within the query scope by the given alias.
 
-### AliasRef
+#### AliasRef
 
 ```
 AliasRef : Expression
@@ -777,7 +777,7 @@ AliasRef : Expression
 
 The AliasRef expression allows for the reference of a specific source within the scope of a query.
 
-### ByColumn
+#### ByColumn
 
 ```
 ByColumn : SortByItem
@@ -787,7 +787,7 @@ ByColumn : SortByItem
 
 The ByColumn element specifies that the sort should be performed using the given column and direction. This approach is used to specify the sort order for a query when the result is a list of tuples.
 
-### ByDirection
+#### ByDirection
 
 ```
 ByDirection : SortByItem
@@ -795,7 +795,7 @@ ByDirection : SortByItem
 
 The ByDirection element specifies that the sort should be performed using the given direction. This approach is used when the result of the query is a list of non-tuple elements and only the sort direction needs to be specified.
 
-### ByExpression
+#### ByExpression
 
 ```
 ByExpression : SortByItem
@@ -805,7 +805,7 @@ ByExpression : SortByItem
 
 The ByExpression element specifies that the sort should be performed using the given expression and direction. This approach is used to specify the sort order as a calculated expression.
 
-### IdentifierRef
+#### IdentifierRef
 
 ```
 IdentifierRef : Expression
@@ -817,7 +817,7 @@ IdentifierRef : Expression
 
 The IdentifierRef type defines an expression that references an identifier that is either unresolved, or has been resolved to an attribute in an unambiguous iteration scope such as a sort. Implementations should attempt to resolve the identifier, only throwing an error at compile-time (or run-time for an interpretive system) if the identifier reference cannot be resolved.
 
-### LetClause
+#### LetClause
 
 ```
 LetClause : Element
@@ -829,7 +829,7 @@ LetClause : Element
 
 The LetClause element allows any number of expression definitions to be introduced within a query scope. Defined expressions can be referenced by name within the query scope.
 
-### QueryLetRef
+#### QueryLetRef
 
 ```
 QueryLetRef : Expression
@@ -839,7 +839,7 @@ QueryLetRef : Expression
 
 The QueryLetRef expression allows for the reference of a specific let definition within the scope of a query.
 
-### RelationshipClause
+#### RelationshipClause
 
 ```
 RelationshipClause : AliasedQuerySource
@@ -849,7 +849,7 @@ RelationshipClause : AliasedQuerySource
 
 The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query scope. Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query scope.
 
-### ReturnClause
+#### ReturnClause
 
 ```
 ReturnClause : Element
@@ -861,7 +861,7 @@ ReturnClause : Element
 
 The ReturnClause element defines the shape of the result set of the query.
 
-### AggregateClause
+#### AggregateClause
 
 ```
 AggregateClause : Element
@@ -877,7 +877,7 @@ AggregateClause : Element
 
 The AggregateClause element defines the result of the query in terms of an aggregation expression performed for each item in the query.
 
-### SortClause
+#### SortClause
 
 ```
 SortClause : Element
@@ -887,7 +887,7 @@ SortClause : Element
 
 The SortClause element defines the sort order for the query.
 
-### With
+#### With
 
 ```
 With : RelationshipClause
@@ -895,7 +895,7 @@ With : RelationshipClause
 
 The With clause restricts the elements of a given source to only those elements that have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-join in database languages.
 
-### Without
+#### Without
 
 ```
 Without : RelationshipClause
@@ -903,7 +903,7 @@ Without : RelationshipClause
 
 The Without clause restricts the elements of a given source to only those elements that do not have elements in the related source that satisfy the suchThat condition. This operation is known as a semi-difference in database languages.
 
-## External Data
+### External Data
 
 All access to external data within ELM is represented by _Retrieve_ expressions.
 
@@ -915,7 +915,7 @@ In addition, the _Retrieve_ introduces the ability to specify optional criteria 
 
 Note that because every expression is being evaluated within a context (such as Patient, Practitioner, or Unfiltered) as defined by the containing _ExpressionDef_, the data returned by a retrieve depends on the context. For example, for the Patient context, the data is returned for a single patient only, as defined by the evaluation environment. Whereas for the Unfiltered context, the data is returned for the entire source.
 
-### Retrieve
+#### Retrieve
 
 ```
 Retrieve : Expression
@@ -961,59 +961,59 @@ Retrieve : Expression
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
 
-#### id
+##### id
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
 
-#### codes
+##### codes
 The codes element optionally specifies an expression that results in a List<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
 
-#### dateRange
+##### dateRange
 The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
 
-#### context
+##### context
 If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.
 
-#### include
+##### include
 Specifies a related data type to be included in the result as part of the retrieve.
 
-#### dataType
+##### dataType
 The dataType attribute specifies the type of data being requested.
 
-#### templateId
+##### templateId
 For data models that support templates (also called profiles), The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.
 
-#### idProperty
+##### idProperty
 The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### idSearch
+##### idSearch
 The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.
 
-#### contextProperty
+##### contextProperty
 The contextProperty attribute optionally specifies which property of the model contains the context value.
 
 Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
 
-#### contextSearch
+##### contextSearch
 The contextSearch attribute specifies the name of the search path to use for searching for the context values.
 
-#### codeProperty
+##### codeProperty
 The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement.
 
 Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### codeSearch
+##### codeSearch
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
 
-#### codeComparator
+##### codeComparator
 The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
-#### valueSetProperty
+##### valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
 
 This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity.
@@ -1022,7 +1022,7 @@ Note that implementers could also specify this information elsewhere as part of 
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### dateProperty
+##### dateProperty
 The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
 
 This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range.
@@ -1033,24 +1033,24 @@ Note that if the dateProperty is specified, the dateLowProperty and dateHighProp
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### dateLowProperty
+##### dateLowProperty
 The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### dateHighProperty
+##### dateHighProperty
 The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
 This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
-#### dateSearch
+##### dateSearch
 The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
 
-### IncludeElement
+#### IncludeElement
 
 The IncludeElement type specifies include information for an include within a retrieve.
 
@@ -1066,32 +1066,32 @@ IncludeElement : Element
   0..1 --> isReverse
 ```
 
-#### relatedDataType
+##### relatedDataType
 
 The relatedDataType attribute specifies the type of the related data being requested.
 
-#### relatedProperty
+##### relatedProperty
 
 The relatedProperty attribute specifies which property of the relatedDataType contains the relatedId for the clinical statement.
 
 This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
 
-#### relatedSearch
+##### relatedSearch
 
 The relatedSearch attribute specifies the name of the search path to use for searching for data of the relatedDataType.
 
-#### isReverse
+##### isReverse
 
 The isReverse attribute indicates that the include is reverse, i.e. that the relatedDataType is referencing the data being retrieved, rather than the retrieved data referencing the relatedDataType.
 
 {: #comparison-operators-1}
-## Comparison Operators
+### Comparison Operators
 
 ELM defines a standard set of comparison operators for use with simple values. Each comparison operator takes two arguments of the same type, and returns a boolean indicating the result of the comparison. Note that for comparison operators, if either or both operands evaluate to null, the result of the comparison is _null_, not false.
 
 For more information on the semantics of the various comparison operators, see the [Comparison Operators](09-b-cqlreference.html#comparison-operators-4) section of the [CQL Reference](09-b-cqlreference.html).
 
-### Equal
+#### Equal
 
 ```
 Equal : BinaryExpression
@@ -1128,7 +1128,7 @@ The following example illustrates a simple _Equal_ comparison:
 
 Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 
-### Equivalent
+#### Equivalent
 
 ```
 Equivalent : BinaryExpression
@@ -1162,7 +1162,7 @@ For Concept values, equivalence is defined as a non-empty intersection of the co
 
 Note that this operator will always return true or false, even if either or both of its arguments are null or contain null components.
 
-### Greater
+#### Greater
 
 ```
 Greater : BinaryExpression
@@ -1183,7 +1183,7 @@ The Greater operator is defined for the Integer, Long, Decimal, String, Date, Da
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### GreaterOrEqual
+#### GreaterOrEqual
 
 ```
 GreaterOrEqual : BinaryExpression
@@ -1204,7 +1204,7 @@ The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, D
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### Less
+#### Less
 
 ```
 Less : BinaryExpression
@@ -1225,7 +1225,7 @@ The Less operator is defined for the Integer, Long, Decimal, String, Date, DateT
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### LessOrEqual
+#### LessOrEqual
 
 ```
 LessOrEqual : BinaryExpression
@@ -1247,7 +1247,7 @@ The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date
 {: .note-info}
 
 {: #not-equal}
-### NotEqual
+#### NotEqual
 
 ```
 NotEqual : BinaryExpression
@@ -1258,7 +1258,7 @@ The NotEqual operator returns true if its arguments are not the same value.
 The NotEqual operator is a shorthand for invocation of logical negation of the Equal operator.
 
 {: #logical-operators-1}
-## Logical Operators
+### Logical Operators
 
 ELM defines logical operators that can be used to combine the results of logical expressions. _And_ and _Or_ can be used to combine any number of results, and _Not_ can be used to invert the result of any expression.
 
@@ -1266,7 +1266,7 @@ Note that these operators are defined with 3-valued logic semantics, allowing th
 
 For more information on the semantics of these operators, refer to the [Logical Operators](09-b-cqlreference.html#logical-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
-### And
+#### And
 
 ```
 And : BinaryExpression
@@ -1281,7 +1281,7 @@ The following example illustrates a simple _And_ expression:
 
 Figure 4‑C - A diagram to explain how ELM represents a simple <span class="kw">And</span> expression
 
-### Implies
+#### Implies
 
 ```
 Implies : BinaryExpression
@@ -1291,7 +1291,7 @@ The Implies operator returns the logical implication of its arguments. Note that
 
 Note that implies may use short-circuit evaluation in the case that the first operand evaluates to false.
 
-### Not
+#### Not
 
 ```
 Not : UnaryExpression
@@ -1299,7 +1299,7 @@ Not : UnaryExpression
 
 The Not operator returns the logical negation of its argument. If the argument is true, the result is false; if the argument is false, the result is true; otherwise, the result is null.
 
-### Or
+#### Or
 
 ```
 Or : BinaryExpression
@@ -1307,7 +1307,7 @@ Or : BinaryExpression
 
 The Or operator returns the logical disjunction of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that if either argument is true, the result is true; if both arguments are false, the result is false; otherwise, the result is null. Note also that ELM does not prescribe short-circuit evaluation.
 
-### Xor
+#### Xor
 
 ```
 Xor : BinaryExpression
@@ -1315,13 +1315,13 @@ Xor : BinaryExpression
 
 The Xor operator returns the exclusive or of its arguments. Note that this operator is defined using 3-valued logic semantics. This means that the result is true if and only if one argument is true and the other is false, and that the result is false if and only if both arguments are true or both arguments are false. If either or both arguments are null, the result is null.
 
-## Nullological Operators
+### Nullological Operators
 
 ELM defines several nullological operators that are useful for dealing with potentially missing information. These are _Null, IsNull_, _IsTrue_, _IsFalse_, and _Coalesce_.
 
 For more information on the semantics of these operators, refer to the [Nullological Operators](09-b-cqlreference.html#nullological-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
-### Null
+#### Null
 
 ```
 Null : Expression
@@ -1331,7 +1331,7 @@ Null : Expression
 
 The Null operator returns a null, or missing information marker. To avoid the need to cast this result, the operator is allowed to return a typed null.
 
-### Coalesce
+#### Coalesce
 
 ```
 Coalesce : NaryExpression
@@ -1339,7 +1339,7 @@ Coalesce : NaryExpression
 
 The Coalesce operator returns the first non-null result in a list of arguments. If all arguments evaluate to null, the result is null. The static type of the first argument determines the type of the result, and all subsequent arguments must be of that same type.
 
-### IsFalse
+#### IsFalse
 
 ```
 IsFalse : UnaryExpression
@@ -1347,7 +1347,7 @@ IsFalse : UnaryExpression
 
 The IsFalse operator determines whether or not its argument evaluates to false. If the argument evaluates to false, the result is true; if the argument evaluates to true or null, the result is false.
 
-### IsNull
+#### IsNull
 
 ```
 IsNull : UnaryExpression
@@ -1355,7 +1355,7 @@ IsNull : UnaryExpression
 
 The IsNull operator determines whether or not its argument evaluates to null. If the argument evaluates to null, the result is true; otherwise, the result is false.
 
-### IsTrue
+#### IsTrue
 
 ```
 IsTrue : UnaryExpression
@@ -1363,7 +1363,7 @@ IsTrue : UnaryExpression
 
 The IsTrue operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; if the argument evaluates to false or null, the result is false.
 
-## Conditional Operators
+### Conditional Operators
 
 ELM defines several conditional expressions that can be used to return different values based on a condition, or set of conditions. These are the _If_ (conditional) expression, and the _Case_ expression.
 
@@ -1371,7 +1371,7 @@ The conditional expression allows a simple condition to be used to decide betwee
 
 The case expression has two varieties, one that is equivalent to repeated conditionals, and one that allows a specific comparand to be identified and compared with each item to determine a result.
 
-### Case
+#### Case
 
 ```
 Case : Expression
@@ -1403,7 +1403,7 @@ And finally, an equivalent comparand-based _Case_ expression:
 
 Figure 4‑F - A diagram to explain how ELM represents a comparand-base <span class="kw">Case</span> expression
 
-### If
+#### If
 
 ```
 If : Expression
@@ -1424,7 +1424,7 @@ The following examples illustrates a simple _If_ expression (i.e. if / then / el
 
 Figure 4‑D - A diagram to explain how ELM represents a simple <span class="kw">If</span> expression
 
-## Arithmetic Operators
+### Arithmetic Operators
 
 ELM provides a complete set of arithmetic operators to allow for manipulation of integer and real values within artifacts. In general, these operators have the expected semantics for arithmetic operators.
 
@@ -1434,7 +1434,7 @@ In general, operations that cause arithmetic overflow or underflow, or otherwise
 
 For more information on the semantics of these operators, refer to the [Arithmetic Operators](09-b-cqlreference.html#arithmetic-operators-4) section in the [CQL Reference](09-b-cqlreference.html).
 
-### Abs
+#### Abs
 
 ```
 Abs : UnaryExpression
@@ -1450,7 +1450,7 @@ If the result of taking the absolute value of the input cannot be represented (e
 
 The Abs operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-### Add
+#### Add
 
 ```
 Add : BinaryExpression
@@ -1487,7 +1487,7 @@ The following example illustrates a simple _Add_ expression:
 
 Figure 4‑G - A diagram to explain how ELM represents a simple <span class="kw">Add</span> expression
 
-### Ceiling
+#### Ceiling
 
 ```
 Ceiling : UnaryExpression
@@ -1497,7 +1497,7 @@ The Ceiling operator returns the first integer greater than or equal to the argu
 
 If the argument is null, the result is null.
 
-### Divide
+#### Divide
 
 ```
 Divide : BinaryExpression
@@ -1513,7 +1513,7 @@ If the result of the division cannot be represented, or the right argument is 0,
 
 The Divide operator is defined for the Decimal and Quantity types.
 
-### Exp
+#### Exp
 
 ```
 Exp : UnaryExpression
@@ -1525,7 +1525,7 @@ If the argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-### Floor
+#### Floor
 
 ```
 Floor : UnaryExpression
@@ -1535,7 +1535,7 @@ The Floor operator returns the first integer less than or equal to the argument.
 
 If the argument is null, the result is null.
 
-### HighBoundary
+#### HighBoundary
 
 ```
 HighBoundary : BinaryExpression
@@ -1558,7 +1558,7 @@ HighBoundary(@T10:30, 9) // @T10:30:59.999
 
 If the input value is null, the result is null.
 
-### Log
+#### Log
 
 ```
 Log : BinaryExpression
@@ -1570,7 +1570,7 @@ If either argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-### LowBoundary
+#### LowBoundary
 
 ```
 LowBoundary : BinaryExpression
@@ -1593,7 +1593,7 @@ LowBoundary(@T10:30, 9) // @T10:30:00.000
 
 If the input value is null, the result is null.
 
-### Ln
+#### Ln
 
 ```
 Ln : UnaryExpression
@@ -1605,7 +1605,7 @@ If the argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-### MaxValue
+#### MaxValue
 
 ```
 MaxValue : Expression
@@ -1636,7 +1636,7 @@ For Time, MaxValue returns the maximum representable Time value, Time(23, 59, 59
 For any other type, attempting to invoke MaxValue results in an error.
 
 
-### MinValue
+#### MinValue
 
 ```
 MinValue : Expression
@@ -1666,7 +1666,7 @@ For Time, MinValue returns the minimum representable Time value, Time(0, 0, 0, 0
 
 For any other type, attempting to invoke MinValue results in an error.
 
-### Modulo
+#### Modulo
 
 ```
 Modulo : BinaryExpression
@@ -1682,7 +1682,7 @@ The Modulo operator is defined for the Integer, Long, Decimal, and Quantity type
 
 For Modulo operations involving quantities, the resulting quantity will have the appropriate unit.
 
-### Multiply
+#### Multiply
 
 ```
 Multiply : BinaryExpression
@@ -1698,7 +1698,7 @@ If the result of the operation cannot be represented, the result is null.
 
 The Multiply operator is defined for the Integer, Long, Decimal and Quantity types.
 
-### Negate
+#### Negate
 
 ```
 Negate : UnaryExpression
@@ -1714,7 +1714,7 @@ If the result of negating the argument cannot be represented (e.g. -(minimum Int
 
 The Negate operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-### Power
+#### Power
 
 ```
 Power : BinaryExpression
@@ -1726,7 +1726,7 @@ If either argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-### Precision
+#### Precision
 
 ```
 Precision : UnaryExpression
@@ -1753,7 +1753,7 @@ Precision(@T10:30:00.000) // 9
 
 If the argument is null, the result is null.
 
-### Predecessor
+#### Predecessor
 
 ```
 Predecessor : UnaryExpression
@@ -1780,7 +1780,7 @@ If the result of the operation cannot be represented, the result is null.
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
 
-### Round
+#### Round
 
 ```
 Round : OperatorExpression
@@ -1796,7 +1796,7 @@ If the argument is null, the result is null.
 
 Precision determines the decimal place at which the rounding will occur. If precision is not specified or null, 0 is assumed.
 
-### Subtract
+#### Subtract
 
 ```
 Subtract : BinaryExpression
@@ -1826,7 +1826,7 @@ If either argument is null, the result is null.
 
 If the result of the operation cannot be represented, the result is null.
 
-### Successor
+#### Successor
 
 ```
 Successor : UnaryExpression
@@ -1853,7 +1853,7 @@ If the result of the operation cannot be represented, the result is <span class=
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
 
-### Truncate
+#### Truncate
 
 ```
 Truncate : UnaryExpression
@@ -1863,7 +1863,7 @@ The Truncate operator returns the integer component of its argument.
 
 If the argument is null, the result is null.
 
-### TruncatedDivide
+#### TruncatedDivide
 
 ```
 TruncatedDivide : BinaryExpression
@@ -1879,7 +1879,7 @@ The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quan
 
 For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit.
 
-## String Operators
+### String Operators
 
 ELM defines a set of string operators to allow for manipulation of string values within artifact definitions.
 
@@ -1889,7 +1889,7 @@ Note that except as noted within the documentation for each operator, if any arg
 
 For more information on the semantics of these operators, refer to the [String Operators](09-b-cqlreference.html#string-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
-### Combine
+#### Combine
 
 ```
 Combine : OperatorExpression
@@ -1903,7 +1903,7 @@ The Combine operator combines a list of strings, optionally separating each stri
 
 If either argument is null, or any element in the source list of strings is null, the result is null.
 
-### Concatenate
+#### Concatenate
 
 ```
 Concatenate : NaryExpression
@@ -1913,7 +1913,7 @@ The Concatenate operator performs string concatenation of its arguments.
 
 If any argument is null, the result is null.
 
-### EndsWith
+#### EndsWith
 
 ```
 EndsWith : BinaryExpression
@@ -1925,15 +1925,15 @@ If the suffix is the empty string, the result is true.
 
 If either argument is null, the result is null.
 
-### Equal
+#### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
 
-### Equivalent
+#### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
-### Indexer
+#### Indexer
 
 ```
 Indexer : BinaryExpression
@@ -1947,7 +1947,7 @@ If the index is less than 0 or greater than the length of the string or list bei
 
 If either argument is null, the result is null.
 
-### LastPositionOf
+#### LastPositionOf
 
 ```
 LastPositionOf : OperatorExpression
@@ -1963,7 +1963,7 @@ If the pattern is not found, the result is -1.
 
 If either argument is null, the result is null.
 
-### Length
+#### Length
 
 ```
 Length : UnaryExpression
@@ -1977,7 +1977,7 @@ For lists, the length is the number of elements in the list.
 
 If the argument is null, the result is 0.
 
-### Lower
+#### Lower
 
 ```
 Lower : UnaryExpression
@@ -1989,7 +1989,7 @@ Note that the definition of lowercase for a given character is a locale-dependen
 
 If the argument is null, the result is null.
 
-### Matches
+#### Matches
 
 ```
 Matches : BinaryExpression
@@ -2001,11 +2001,11 @@ If either argument is null, the result is null.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
 
-### Not Equal
+#### Not Equal
 
 Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
-### PositionOf
+#### PositionOf
 
 ```
 PositionOf : OperatorExpression
@@ -2021,7 +2021,7 @@ If the pattern is not found, the result is -1.
 
 If either argument is null, the result is null.
 
-### ReplaceMatches
+#### ReplaceMatches
 
 ```
 ReplaceMatches : TernaryExpression
@@ -2033,7 +2033,7 @@ If any argument is null, the result is null.
 
 Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
 
-### Split
+#### Split
 
 ```
 Split : OperatorExpression
@@ -2049,7 +2049,7 @@ If the stringToSplit argument is null, the result is null.
 
 If the stringToSplit argument does not contain any appearances of the separator, the result is a list of strings containing one element that is the value of the stringToSplit argument.
 
-### SplitOnMatches
+#### SplitOnMatches
 
 ```
 SplitOnMatches : OperatorExpression
@@ -2067,7 +2067,7 @@ If the stringToSplit argument is null, the result is null.
 
 If the stringToSplit argument does not contain any appearances of the separator pattern, the result is a list of strings containing one element that is the input value of the stringToSplit argument.
 
-### StartsWith
+#### StartsWith
 
 ```
 StartsWith : BinaryExpression
@@ -2079,7 +2079,7 @@ If the prefix is the empty string, the result is true.
 
 If either argument is null, the result is null.
 
-### Substring
+#### Substring
 
 ```
 Substring : OperatorExpression
@@ -2097,7 +2097,7 @@ If length is omitted, the substring returned starts at startIndex and continues 
 
 If stringToSub or startIndex is null, or startIndex is out of range, the result is null.
 
-### Upper
+#### Upper
 
 ```
 Upper : UnaryExpression
@@ -2109,7 +2109,7 @@ Note that the definition of uppercase for a given character is a locale-dependen
 
 If the argument is null, the result is null.
 
-## Date and Time Operators
+### Date and Time Operators
 
 ELM defines several operators for representing the manipulation of date and time values. These operators are defined using a common precision type that allows the various precisions (e.g. day, month, week, hour, minute, second) of time to be manipulated.
 
@@ -2117,27 +2117,27 @@ Except as noted within the documentation for each operator, if any argument eval
 
 For more information on the semantics of these operators, refer to the [Date, DateTime, and Time Operators](09-b-cqlreference.html#datetime-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
-### Add
+#### Add
 
 Refer to the [Add section](#add) in the Arithmetic Operators.
 
-### After
+#### After
 
 Refer to the [After section](#after-1) in the Interval Operators.
 
-### Before
+#### Before
 
 Refer to the [Before section](#before-1) in the Interval Operators.
 
-### Equal
+#### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
 
-### Equivalent
+#### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
-### Date
+#### Date
 
 ```
 Date : OperatorExpression
@@ -2153,7 +2153,7 @@ The Date operator constructs a date value from the given components.
 
 At least one component must be specified, and no component may be specified at a precision below an unspecified precision. For example, month may be null, but if it is, day must be null as well.
 
-### DateFrom
+#### DateFrom
 
 ```
 DateFrom : UnaryExpression
@@ -2163,7 +2163,7 @@ The DateFrom operator returns the date (with no time components specified) of th
 
 If the argument is null, the result is null.
 
-### DateTime
+#### DateTime
 
 ```
 DateTime : OperatorExpression
@@ -2195,7 +2195,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
 
-### DateTimeComponentFrom
+#### DateTimeComponentFrom
 
 ```
 DateTimeComponentFrom : UnaryExpression
@@ -2209,7 +2209,7 @@ If the argument is null, the result is null.
 
 The precision must be one of Year, Month, Day, Hour, Minute, Second, or Millisecond. Note specifically that since there is variability how weeks are counted, Week precision is not supported, and will result in an error.
 
-### DifferenceBetween
+#### DifferenceBetween
 
 ```
 DifferenceBetween : BinaryExpression
@@ -2231,7 +2231,7 @@ If either argument is null, the result is null.
 
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
 
-### DurationBetween
+#### DurationBetween
 
 ```
 DurationBetween : BinaryExpression
@@ -2253,11 +2253,11 @@ If either argument is null, the result is null.
 
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
 
-### Not Equal
+#### Not Equal
 
 Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
-### Now
+#### Now
 
 ```
 Now : OperatorExpression
@@ -2268,7 +2268,7 @@ The Now operator returns the date and time of the start timestamp associated wit
 
 2) The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
 
-### SameAs
+#### SameAs
 
 ```
 SameAs : BinaryExpression
@@ -2296,7 +2296,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either argument is null, the result is null.
 
-### SameOrBefore
+#### SameOrBefore
 
 ```
 SameOrBefore : BinaryExpression
@@ -2324,7 +2324,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either argument is null, the result is null.
 
-### SameOrAfter
+#### SameOrAfter
 
 ```
 SameOrAfter : BinaryExpression
@@ -2352,11 +2352,11 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either argument is null, the result is null.
 
-### Subtract
+#### Subtract
 
 Refer to the [Subtract section](#subtract) in the Arithmetic Operators.
 
-### Time
+#### Time
 
 ```
 Time : OperatorExpression
@@ -2376,7 +2376,7 @@ At least one component other than timezoneOffset must be specified, and no compo
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
-### TimeFrom
+#### TimeFrom
 
 ```
 TimeFrom : UnaryExpression
@@ -2388,7 +2388,7 @@ When extracting the Time from a DateTime value, implementations should normalize
 
 If the argument is null, the result is null.
 
-### TimezoneOffsetFrom
+#### TimezoneOffsetFrom
 
 ```
 TimezoneOffsetFrom : UnaryExpression
@@ -2398,7 +2398,7 @@ The TimezoneOffsetFrom operator returns the timezone offset of the argument.
 
 If the argument is null, the result is null.
 
-### TimeOfDay
+#### TimeOfDay
 
 ```
 TimeOfDay : OperatorExpression
@@ -2406,7 +2406,7 @@ TimeOfDay : OperatorExpression
 
 The TimeOfDay operator returns the time-of-day of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the TimeOfDay operator in this way.
 
-### Today
+#### Today
 
 ```
 Today : OperatorExpression
@@ -2414,7 +2414,7 @@ Today : OperatorExpression
 
 The Today operator returns the date (with no time component) of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.
 
-## Interval Operators
+### Interval Operators
 
 ELM defines a complete set of operators for use in defining and manipulating interval values.
 
@@ -2430,7 +2430,7 @@ Note that ELM does not include a definition for During because it is synonymous 
 
 For more information on the semantics of these operators, refer to the [Interval Operators](09-b-cqlreference.html#interval-operators-3) section in the [CQL Reference](09-b-cqlreference.html).
 
-### Interval
+#### Interval
 
 ```
 Interval : Expression
@@ -2465,7 +2465,7 @@ If the high bound of the interval is null and open, the high bound of the interv
 If the high bound of the interval is null and closed, the interval is interpreted to end at the maximum value of the point type, and computations involving the high boundary will be performed with that interpretation.
 
 {: #after-1}
-### After
+#### After
 
 ```
 After : BinaryExpression
@@ -2494,7 +2494,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 If either argument is null, the result is null.
 
 {: #before-1}
-### Before
+#### Before
 
 ```
 Before : BinaryExpression
@@ -2522,7 +2522,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 
 If either argument is null, the result is null.
 
-### Collapse
+#### Collapse
 
 ```
 Collapse : BinaryExpression
@@ -2542,7 +2542,7 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the source argument is null, the result is null.
 
-### Contains
+#### Contains
 
 ```
 Contains : BinaryExpression
@@ -2560,7 +2560,7 @@ For the List, T overload, this operator returns true if the given element is in 
 
 For the Interval, T overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is false. If the second argument is null, the result is null.
 
-### End
+#### End
 
 ```
 End : UnaryExpression
@@ -2574,7 +2574,7 @@ If the high boundary of the interval is closed and the high value of the interva
 
 If the argument is null, the result is null.
 
-### Ends
+#### Ends
 
 ```
 Ends : BinaryExpression
@@ -2590,15 +2590,15 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### Equal
+#### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
 
-### Equivalent
+#### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
-### Except
+#### Except
 
 ```
 Except : NaryExpression
@@ -2616,7 +2616,7 @@ For the interval overload, this operator returns the portion of the first interv
 
 If the first argument is null, the result is null. If the second argument is null, the operation is performed as though the second argument was an empty list.
 
-### Expand
+#### Expand
 
 ```
 Expand : BinaryExpression
@@ -2638,7 +2638,7 @@ If the list of intervals is empty, the result is empty. If the list of intervals
 
 If the source argument is null, the result is null.
 
-### In
+#### In
 
 ```
 In : BinaryExpression
@@ -2656,7 +2656,7 @@ For the T, List overload, this operator returns true if the given element is in 
 
 For the T, Interval overload, this operator returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is null. If the second argument is null, the result is false.
 
-### Includes
+#### Includes
 
 ```
 Includes : BinaryExpression
@@ -2679,7 +2679,7 @@ This operator uses the semantics described in the Start and End operators to det
 If either argument is null, the result is null.
 
 {: #included-in}
-### IncludedIn
+#### IncludedIn
 
 ```
 IncludedIn : BinaryExpression
@@ -2701,7 +2701,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-### Intersect
+#### Intersect
 
 ```
 Intersect : NaryExpression
@@ -2719,7 +2719,7 @@ For the interval overload, this operator returns the interval that defines the o
 
 If either argument is null, the result is null.
 
-### Meets
+#### Meets
 
 ```
 Meets : BinaryExpression
@@ -2735,7 +2735,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### MeetsBefore
+#### MeetsBefore
 
 ```
 MeetsBefore : BinaryExpression
@@ -2751,7 +2751,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### MeetsAfter
+#### MeetsAfter
 
 ```
 MeetsAfter : BinaryExpression
@@ -2767,11 +2767,11 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### Not Equal
+#### Not Equal
 
 Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
-### Overlaps
+#### Overlaps
 
 ```
 Overlaps : BinaryExpression
@@ -2787,7 +2787,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### OverlapsBefore
+#### OverlapsBefore
 
 ```
 OverlapsBefore : BinaryExpression
@@ -2803,7 +2803,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### OverlapsAfter
+#### OverlapsAfter
 
 ```
 OverlapsAfter : BinaryExpression
@@ -2819,7 +2819,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### PointFrom
+#### PointFrom
 
 ```
 PointFrom : UnaryExpression
@@ -2828,7 +2828,7 @@ PointFrom : UnaryExpression
 The PointFrom expression extracts the single point from the source interval. The source interval must be a unit interval (meaning an interval with the same starting and ending boundary), otherwise, a run-time error is thrown. If the source interval is null, the result is null.
 
 {: #proper-contains}
-### ProperContains
+#### ProperContains
 
 ```
 ProperContains : BinaryExpression
@@ -2847,7 +2847,7 @@ For the List, T overload, this operator returns <span class="kw">true</span> if 
 For the Interval, T overload, this operator returns <span class="kw">true</span> if the given point is greater than the starting point of the interval, and less than the ending point of the interval, as determined by the <span class="id">Start</span> and <span class="id">End</span> operators.  If precision is specified and the point type is a <span class="id">Date</span>, <span class="id">DateTime</span>, or <span class="id">Time</span> type, comparisons used in the operation are performed at the specified precision. If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 {: #proper-in}
-### ProperIn
+#### ProperIn
 
 ```
 ProperIn : BinaryExpression
@@ -2866,7 +2866,7 @@ For the T, List overload, this operator returns if the given element is in the g
 For the T, Interval overload, this operator returns true if the given point is greater than the starting point, and less than the ending point of the interval, as determined by the Start and End operators. If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision. If the first argument is null, the result is null. If the second argument is null the result is false.
 
 {: #proper-includes}
-### ProperIncludes
+#### ProperIncludes
 
 ```
 ProperIncludes : BinaryExpression
@@ -2889,7 +2889,7 @@ This operator uses the semantics described in the Start and End operators to det
 If either argument is null, the result is null.
 
 {: #proper-included-in}
-### ProperIncludedIn
+#### ProperIncludedIn
 
 ```
 ProperIncludedIn : BinaryExpression
@@ -2911,7 +2911,7 @@ This operator uses the semantics described in the Start and End operators to det
 
 If either argument is null, the result is null.
 
-### Size
+#### Size
 
 ```
 Size : UnaryExpression
@@ -2925,7 +2925,7 @@ Note that this operator is not defined for intervals of type Date, DateTime, and
 
 If the argument is null, the result is null.
 
-### Start
+#### Start
 
 ```
 Start : UnaryExpression
@@ -2939,7 +2939,7 @@ If the low boundary of the interval is closed and the low value of the interval 
 
 If the argument is null, the result is null.
 
-### Starts
+#### Starts
 
 ```
 Starts : BinaryExpression
@@ -2955,7 +2955,7 @@ If precision is specified and the point type is a Date, DateTime, or Time type, 
 
 If either argument is null, the result is null.
 
-### Union
+#### Union
 
 ```
 Union : NaryExpression
@@ -2973,7 +2973,7 @@ For the interval overload, this operator returns the interval that starts at the
 
 If either argument is null, the operation is performed as though the argument was an empty list.
 
-### Width
+#### Width
 
 ```
 Width : UnaryExpression
@@ -2985,7 +2985,7 @@ Note that this operator is not defined for intervals of type Date, DateTime, and
 
 If the argument is null, the result is null.
 
-## List Operators
+### List Operators
 
 ELM allows for the expression and manipulation of lists of values of any type. The most basic list operation is the _List_ class, which represents a simple list selector.
 
@@ -2997,7 +2997,7 @@ ELM also supports a flattening operator, _Flatten_ to construct a single list fr
 
 For more information on the semantics of these operators, refer to the [List Operators](09-b-cqlreference.html#list-operators-2) section in the [CQL Reference](09-b-cqlreference.html).
 
-### List
+#### List
 
 ```
 List : Expression
@@ -3013,11 +3013,11 @@ If a typeSpecifier element is provided, the list is of that type. Otherwise, the
 
 If any argument is null, the resulting list will have null for that element.
 
-### Contains
+#### Contains
 
 Refer to the [Contains section](#contains) in the Interval Operators.
 
-### Current
+#### Current
 
 ```
 Current : Expression
@@ -3029,7 +3029,7 @@ The Current expression returns the value of the object currently in scope. For e
 
 It is an error to invoke the Current operator outside the context of a scoped operation.
 
-### Distinct
+#### Distinct
 
 ```
 Distinct : UnaryExpression
@@ -3041,19 +3041,19 @@ The operator uses equality comparison semantics as defined in the Equal operator
 
 If the source argument is null, the result is null.
 
-### Equal
+#### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
 
-### Equivalent
+#### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
-### Except
+#### Except
 
 Refer to the [Except section](#except) in the Interval Operators.
 
-### Exists
+#### Exists
 
 ```
 Exists : UnaryExpression
@@ -3063,7 +3063,7 @@ The Exists operator returns true if the list contains any non-null elements.
 
 If the argument is null, the result is false.
 
-### Filter
+#### Filter
 
 ```
 Filter : Expression
@@ -3079,7 +3079,7 @@ The Filter operator returns a list with only those elements in the source list f
 
 If the source argument is null, the result is null.
 
-### First
+#### First
 
 ```
 First : OperatorExpression
@@ -3093,7 +3093,7 @@ The First operator returns the first element in a list. If the order by attribut
 
 If the argument is null, the result is null.
 
-### Flatten
+#### Flatten
 
 ```
 Flatten : UnaryExpression
@@ -3103,7 +3103,7 @@ The Flatten operator flattens a list of lists into a single list.
 
 If the argument is null, the result is null.
 
-### ForEach
+#### ForEach
 
 ```
 ForEach : Expression
@@ -3121,19 +3121,19 @@ If the source argument is null, the result is null.
 
 If the element argument evaluates to null for some item in the source list, the resulting list will contain a null for that element.
 
-### In
+#### In
 
 Refer to the [In section](#in) in the Interval Operators.
 
-### Includes
+#### Includes
 
 Refer to the [Includes section](#includes) in the Interval Operators.
 
-### IncludedIn
+#### IncludedIn
 
 Refer to the [IncludedIn section](#included-in) in the Interval Operators.
 
-### IndexOf
+#### IndexOf
 
 ```
 IndexOf : OperatorExpression
@@ -3151,11 +3151,11 @@ If the list is empty, or no element is found, the result is -1.
 
 If either argument is null, the result is null.
 
-### Intersect
+#### Intersect
 
 Refer to the [Intersect section](#intersect) in the Interval Operators.
 
-### Last
+#### Last
 
 ```
 Last : OperatorExpression
@@ -3169,27 +3169,27 @@ The Last operator returns the last element in a list. If the order by attribute 
 
 If the argument is null, the result is null.
 
-### Not Equal
+#### Not Equal
 
 Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
-### ProperContains
+#### ProperContains
 
 Refer to the [ProperContains section](#proper-contains) in the Interval Operators.
 
-### ProperIn
+#### ProperIn
 
 Refer to the [ProperIn section](#proper-in) in the Interval Operators.
 
-### ProperIncludes
+#### ProperIncludes
 
 Refer to the [ProperIncludes section](#proper-includes) in the Interval Operators.
 
-### ProperIncludedIn
+#### ProperIncludedIn
 
 Refer to the [ProperIncludedIn section](#proper-included-in) in the Interval Operators.
 
-### Repeat
+#### Repeat
 
 ```
 Repeat : Expression
@@ -3209,7 +3209,7 @@ If the source argument is null, the result is null.
 
 If the element argument evaluates to null for some item in the source list, the resulting list will contain a null for that element.
 
-### SingletonFrom
+#### SingletonFrom
 
 ```
 SingletonFrom : UnaryExpression
@@ -3217,7 +3217,7 @@ SingletonFrom : UnaryExpression
 
 The SingletonFrom expression extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown. If the source list is null, the result is null.
 
-### Slice
+#### Slice
 
 ```
 Slice : OperatorExpression
@@ -3239,7 +3239,7 @@ If the endIndex is null, the slice continues to the last element of the list.
 
 If the startIndex or endIndex is less than 0, or if the endIndex is less than the startIndex, the result is an empty list.
 
-### Sort
+#### Sort
 
 ```
 Sort : Expression
@@ -3255,7 +3255,7 @@ When the sort elements do not provide a unique ordering (i.e. there is a possibi
 
 If the argument is null, the result is null.
 
-### Times
+#### Times
 
 ```
 Times : BinaryExpression
@@ -3265,11 +3265,11 @@ The Times operator performs the cartesian product of two lists of tuples. The re
 
 If either argument is null, the result is null.
 
-### Union
+#### Union
 
 Refer to the [Union section](#union) in the Interval Operators.
 
-## Aggregate Operators
+### Aggregate Operators
 
 For computing aggregate quantities, ELM defines several aggregate operators. These operators perform computations on lists of values, either on the elements of the list directly, or on a specific property of each element in the list.
 
@@ -3279,7 +3279,7 @@ In general, operations that cause arithmetic overflow or underflow, or otherwise
 
 For more information on the semantics of these operators, refer to the [Aggregate Functions](09-b-cqlreference.html#aggregate-functions) section in the [CQL Reference](09-b-cqlreference.html).
 
-### AllTrue
+#### AllTrue
 
 ```
 AllTrue : AggregateExpression
@@ -3293,7 +3293,7 @@ If the source contains no non-null elements, true is returned.
 
 If the source is null, the result is true.
 
-### AnyTrue
+#### AnyTrue
 
 ```
 AnyTrue : AggregateExpression
@@ -3307,7 +3307,7 @@ If the source contains no non-null elements, false is returned.
 
 If the source is null, the result is false.
 
-### Avg
+#### Avg
 
 ```
 Avg : AggregateExpression
@@ -3321,7 +3321,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Count
+#### Count
 
 ```
 Count : AggregateExpression
@@ -3335,7 +3335,7 @@ If the list is empty, the result is 0.
 
 If the list is null, the result is 0.
 
-### GeometricMean
+#### GeometricMean
 
 ```
 GeometricMean : AggregateExpression
@@ -3349,7 +3349,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Product
+#### Product
 
 ```
 Product : AggregateExpression
@@ -3363,7 +3363,7 @@ If the source contains no non-null elements, null is returned.
 
 If the list is null, the result is null.
 
-### Max
+#### Max
 
 ```
 Max : AggregateExpression
@@ -3377,7 +3377,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Median
+#### Median
 
 ```
 Median : AggregateExpression
@@ -3391,7 +3391,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Min
+#### Min
 
 ```
 Min : AggregateExpression
@@ -3405,7 +3405,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Mode
+#### Mode
 
 ```
 Mode : AggregateExpression
@@ -3419,7 +3419,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### PopulationVariance
+#### PopulationVariance
 
 ```
 PopulationVariance : AggregateExpression
@@ -3433,7 +3433,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### PopulationStdDev
+#### PopulationStdDev
 
 ```
 PopulationStdDev : AggregateExpression
@@ -3447,7 +3447,7 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-### Sum
+#### Sum
 
 ```
 Sum : AggregateExpression
@@ -3461,7 +3461,7 @@ If the source contains no non-null elements, null is returned.
 
 If the list is null, the result is null.
 
-### StdDev
+#### StdDev
 
 ```
 StdDev : AggregateExpression
@@ -3475,7 +3475,7 @@ If the source contains no non-null elements, null is returned.
 
 If the list is null, the result is null.
 
-### Variance
+#### Variance
 
 ```
 Variance : AggregateExpression
@@ -3489,11 +3489,11 @@ If the source contains no non-null elements, null is returned.
 
 If the source is null, the result is null.
 
-## Type Operators
+### Type Operators
 
 For more information on the semantics of these operators, refer to the [Type Operators](09-b-cqlreference.html#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
-### As
+#### As
 
 ```
 As : UnaryExpression
@@ -3507,7 +3507,7 @@ As : UnaryExpression
 
 The As operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument. If the argument is not of the specified type, and the strict attribute is false (the default), the result is null. If the argument is not of the specified type and the strict attribute is true, an exception is thrown.
 
-### CanConvert
+#### CanConvert
 
 ```
 CanConvert : UnaryExpression
@@ -3535,7 +3535,7 @@ Conversion between String and Date/DateTime/Time is checked using the ISO-8601 s
 
 See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
-### CanConvertQuantity
+#### CanConvertQuantity
 
 ```
 CanConvertQuantity : BinaryExpression
@@ -3547,7 +3547,7 @@ Note that implementations are not required to support quantity conversion, and s
 
 If either argument is null, the result is null.
 
-### Children
+#### Children
 
 ```
 Children : OperatorExpression
@@ -3561,7 +3561,7 @@ For list types, the result is the same as invoking Children on each element in t
 
 If the source is null, the result is null.
 
-### Convert
+#### Convert
 
 ```
 Convert : UnaryExpression
@@ -3591,7 +3591,7 @@ Conversion between String and Date/DateTime/Time is performed using the ISO-8601
 
 See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a description of the formatting strings used in this specification.
 
-### ConvertQuantity
+#### ConvertQuantity
 
 ```
 ConvertQuantity : BinaryExpression
@@ -3603,7 +3603,7 @@ Note that implementations are not required to support quantity conversion. Imple
 
 If either argument is null, the result is null.
 
-### ConvertsToBoolean
+#### ConvertsToBoolean
 
 ```
 ConvertsToBoolean : UnaryExpression
@@ -3621,7 +3621,7 @@ If the input is a Decimal, the result is true if the decimal is 1.0 or 0.0.
 
 If the argument is null the result is null.
 
-### ConvertsToDate
+#### ConvertsToDate
 
 ```
 ConvertsToDate : UnaryExpression
@@ -3645,7 +3645,7 @@ As with date literals, date values may be specified to any precision.
 
 If the argument is null, the result is null.
 
-### ConvertsToDateTime
+#### ConvertsToDateTime
 
 ```
 ConvertsToDateTime : UnaryExpression
@@ -3667,7 +3667,7 @@ As with Date and Time literals, DateTime values may be specified to any precisio
 
 If the argument is null, the result is null.
 
-### ConvertsToDecimal
+#### ConvertsToDecimal
 
 ```
 ConvertsToDecimal : UnaryExpression
@@ -3689,7 +3689,7 @@ If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.
 
-### ConvertsToLong
+#### ConvertsToLong
 
 ```
 ConvertsToLong : UnaryExpression
@@ -3711,7 +3711,7 @@ If the input is a Boolean, the result is true.
 
 If the argument is null, the result is null.
 
-### ConvertsToInteger
+#### ConvertsToInteger
 
 ```
 ConvertsToInteger : UnaryExpression
@@ -3733,7 +3733,7 @@ If the input is a Boolean, the result is true
 
 If the argument is null, the result is null.
 
-### ConvertsToQuantity
+#### ConvertsToQuantity
 
 ```
 ConvertsToQuantity : UnaryExpression
@@ -3757,7 +3757,7 @@ For Integer, Decimal, and Ratio values, the operator simply returns true.
 
 If the argument is null, the result is null.
 
-### ConvertsToRatio
+#### ConvertsToRatio
 
 ```
 ConvertsToRatio : UnaryExpression
@@ -3773,7 +3773,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is null, the result is null.
 
-### ConvertsToString
+#### ConvertsToString
 
 ```
 ConvertsToString : UnaryExpression
@@ -3796,7 +3796,7 @@ String
 
 If the argument is null, the result is null.
 
-### ConvertsToTime
+#### ConvertsToTime
 
 ```
 ConvertsToTime : UnaryExpression
@@ -3818,7 +3818,7 @@ As with time-of-day literals, time-of-day values may be specified to any precisi
 
 If the argument is null, the result is null.
 
-### Descendents
+#### Descendents
 
 ```
 Descendents : OperatorExpression
@@ -3832,7 +3832,7 @@ For list types, the result is the same as invoking Descendents on each element i
 
 If the source is null, the result is null.
 
-### Is
+#### Is
 
 ```
 Is : UnaryExpression
@@ -3844,7 +3844,7 @@ Is : UnaryExpression
 
 The Is operator allows the type of a result to be tested. The language must support the ability to test against any type. If the run-time type of the argument is of the type being tested, the result of the operator is true; otherwise, the result is false.
 
-### ToBoolean
+#### ToBoolean
 
 ```
 ToBoolean : UnaryExpression
@@ -3862,7 +3862,7 @@ If the input cannot be interpreted as a valid Boolean value, the result is null.
 
 If the argument is null the result is null.
 
-### ToChars
+#### ToChars
 
 ```
 ToChars : UnaryExpression
@@ -3872,7 +3872,7 @@ The ToChars operator takes a string and returns a list with one string for each 
 
 If the argument is null, the result is null.
 
-### ToConcept
+#### ToConcept
 
 ```
 ToConcept : UnaryExpression
@@ -3884,7 +3884,7 @@ If the input is a list of Codes, the resulting Concept will have all the input C
 
 If the argument is null, the result is null.
 
-### ToDate
+#### ToDate
 
 ```
 ToDate : UnaryExpression
@@ -3910,7 +3910,7 @@ For DateTime values, the result is equivalent to extracting the Date component o
 
 If the argument is null, the result is null.
 
-### ToDateTime
+#### ToDateTime
 
 ```
 ToDateTime : UnaryExpression
@@ -3934,7 +3934,7 @@ For Date values, the result is a DateTime with the time components unspecified, 
 
 If the argument is null, the result is null.
 
-### ToDecimal
+#### ToDecimal
 
 ```
 ToDecimal : UnaryExpression
@@ -3956,7 +3956,7 @@ If the input is Boolean, true will result in 1.0, false will result in 0.0.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ToInteger
+#### ToInteger
 
 ```
 ToInteger : UnaryExpression
@@ -3978,7 +3978,7 @@ If the input is Boolean, true will result in 1, false will result in 0.
 
 If the argument is null, the result is null.
 
-### ToList
+#### ToList
 
 ```
 ToList : UnaryExpression
@@ -3992,7 +3992,7 @@ The operator is effectively shorthand for "if operand is null then { } else { op
 
 The operator is used to implement list promotion efficiently.
 
-### ToLong
+#### ToLong
 
 ```
 ToLong : UnaryExpression
@@ -4014,7 +4014,7 @@ If the input is Boolean, true will result in 1, false will result in 0.
 
 If the argument is null, the result is null.
 
-### ToQuantity
+#### ToQuantity
 
 ```
 ToQuantity : UnaryExpression
@@ -4038,7 +4038,7 @@ For Ratio values, the operation is equivalent to the result of dividing the nume
 
 If the argument is null, the result is null.
 
-### ToRatio
+#### ToRatio
 
 ```
 ToRatio : UnaryExpression
@@ -4054,7 +4054,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is null, the result is null.
 
-### ToString
+#### ToString
 
 ```
 ToString : UnaryExpression
@@ -4081,7 +4081,7 @@ See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a descri
 
 If the argument is null, the result is null.
 
-### ToTime
+#### ToTime
 
 ```
 ToTime : UnaryExpression
@@ -4105,11 +4105,11 @@ For DateTime values, the result is the same as extracting the Time component fro
 
 If the argument is null, the result is null.
 
-## Clinical Operators
+### Clinical Operators
 
 For working with clinical data, ELM defines operators for terminology sets, quantities, and calculating age.
 
-### AnyInCodeSystem
+#### AnyInCodeSystem
 
 ```
 AnyInCodeSystem : OperatorExpression
@@ -4129,7 +4129,7 @@ The second argument is a CodeSystemRef. This allows for static analysis of code 
 
 The third argument is expected to be of type CodeSystem, allowing references to code systems to be preserved as references.
 
-### AnyInValueSet
+#### AnyInValueSet
 
 ```
 AnyInValueSet : OperatorExpression
@@ -4149,7 +4149,7 @@ The second argument is statically a ValueSetRef. This allows for both static ana
 
 The third argument is expected to be of type ValueSet, allowing references to value sets to be preserved as references.
 
-### CalculateAge
+#### CalculateAge
 
 ```
 CalculateAge : UnaryExpression
@@ -4165,7 +4165,7 @@ For the Date overload, the calculation is performed using Today(), the precision
 
 For the DateTime overload, the calculation is performed using Now(), and the result is the number of whole calendar periods that have elapsed between the given datetime and now.
 
-### CalculateAgeAt
+#### CalculateAgeAt
 
 ```
 CalculateAgeAt : BinaryExpression
@@ -4183,15 +4183,15 @@ For the Date overload, precision must be one of year, month, week, or day, and t
 
 For the DateTime overload, the result is the number of whole calendar periods that have elapsed between the first datetime and the second datetime.
 
-### Equal
+#### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
 
-### Equivalent
+#### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
-### InCodeSystem
+#### InCodeSystem
 
 ```
 InCodeSystem : OperatorExpression
@@ -4211,7 +4211,7 @@ The second argument is statically a CodeSystemRef. This This allows for both sta
 
 The third argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
 
-### InValueSet
+#### InValueSet
 
 ```
 InValueSet : OperatorExpression
@@ -4231,7 +4231,7 @@ The second argument is statically a ValueSetRef. This allows for both static ana
 
 The third argument is expected to be a ValueSet, allowing references to value sets to be preserved as references.
 
-### ExpandValueSet
+#### ExpandValueSet
 
 ```
 ExpandValueSet : UnaryExpression
@@ -4243,11 +4243,11 @@ The operation expects a single argument of type ValueSet. This may be a static r
 
 If the argument is null, the result is null.
 
-### Not Equal
+#### Not Equal
 
 Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 
-### SubsumedBy
+#### SubsumedBy
 
 ```
 SubsumedBy : BinaryExpression
@@ -4259,7 +4259,7 @@ For the Concept overload, this operator returns true if any code in the first co
 
 If either or both arguments are null, the result is null.
 
-### Subsumes
+#### Subsumes
 
 ```
 Subsumes : BinaryExpression
@@ -4271,11 +4271,11 @@ For the Concept overload, this operator returns true if any code in the first co
 
 If either or both arguments are null, the result is null.
 
-## Errors and Messages
+### Errors and Messages
 
 ELM defines a utility operation that is useful for generating run-time messages, warnings, traces, and errors. The operator is a single, general-purpose function intended to provide a single implementation point for messaging and run-time error functionality when those messages are generated from ELM logic.
 
-### Message
+#### Message
 
 ```
 Message : OperatorExpression

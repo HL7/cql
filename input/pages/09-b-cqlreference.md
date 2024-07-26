@@ -38,9 +38,9 @@ Any other character in a format string indicates that that character must appear
 These formatting patterns are set in bold to distinguish them typographically from literals or code and to make clear that they are not intended to be formally interpreted as regex patterns.
 
 {: #types-2}
-## Types
+### Types
 
-### Any
+#### Any
 
 **Definition:**
 
@@ -53,7 +53,7 @@ simple type Any
 The <span class="id">Any</span> type is the maximal supertype in the CQL type system, meaning that all types derive from <span class="id">Any</span>, including list, interval, and structured types. In addition, the type of a <span class="kw">null</span> result is <span class="id">Any</span>.
 
 {: #boolean-1}
-### Boolean
+#### Boolean
 
 **Definition:**
 
@@ -68,7 +68,7 @@ The <span class="id">Boolean</span> type represents the logical boolean values <
 For more information, see the [Logical Operators](#Logical Operators) section.
 
 {: #code-1}
-### Code
+#### Code
 
 **Definition:**
 
@@ -86,7 +86,7 @@ structured type Code
 
 The <span class="id">Code</span> type represents single terminology codes within CQL.
 
-### CodeSystem
+#### CodeSystem
 
 > The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -109,7 +109,7 @@ The <span class="id">CodeSystem</span> type represents code system references wi
 The <span class="id">name</span> element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
 {: #concept-1}
-### Concept
+#### Concept
 
 **Definition:**
 
@@ -125,7 +125,7 @@ structured type Concept
 
 The <span class="id">Concept</span> type represents a single terminological concept within CQL.
 
-### Date
+#### Date
 
 **Definition:**
 
@@ -141,7 +141,7 @@ CQL supports date values in the range @0001-01-01 to @9999-12-31 with a 1 day st
 
 CQL also supports partial date values. For example, the date <span class="lit">@2014</span> represents some day in the year 2014.
 
-### DateTime
+#### DateTime
 
 **Definition:**
 
@@ -160,7 +160,7 @@ CQL also supports partial datetime values. For example, the datetime <span class
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 {: #decimal-1}
-### Decimal
+#### Decimal
 
 **Definition:**
 
@@ -180,7 +180,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 
 {: #long-1}
-### Long
+#### Long
 
 > The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -198,7 +198,7 @@ The <span class="id">Long</span> type represents large whole number values withi
 CQL supports long values in the range -2<sup>63</sup> to 2<sup>63</sup>-1 with a step size of 1.
 
 {: #integer-1}
-### Integer
+#### Integer
 
 **Definition:**
 
@@ -212,7 +212,7 @@ The <span class="id">Integer</span> type represents whole number values within C
 
 CQL supports integer values in the range -2<sup>31</sup> to 2<sup>31</sup>-1 with a step size of 1.
 
-### Quantity
+#### Quantity
 
 **Definition:**
 
@@ -228,7 +228,7 @@ structured type Quantity
 
 The <span class="id">Quantity</span> type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
 
-### Ratio
+#### Ratio
 
 **Definition:**
 
@@ -245,7 +245,7 @@ structured type Ratio
 The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
 
 {: #string-1}
-### String
+#### String
 
 **Definition:**
 
@@ -274,7 +274,7 @@ For string literals, CQL uses standard escape sequences:
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
 {: .grid .table .table-striped}
 
-### Time
+#### Time
 
 **Definition:**
 
@@ -292,7 +292,7 @@ CQL also supports partial time values. For example, the time <span class="lit">@
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
-### ValueSet
+#### ValueSet
 
 > The ValueSet type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -317,7 +317,7 @@ The <span class="id">name</span> element is provided to support additional run-t
 
 The <span class="id">codesystems</span> element is used to capture code system version overrides as can be specified in a CQL ValueSet declaration. Any codesystem may be listed, but the codesystem is expected to be a codesystem used as part of the definition of the valueset being referenced. If a codesystem override is provided for a code system that is not used by the value set definition, it has no effect and will be ignored.
 
-### Vocabulary
+#### Vocabulary
 
 > The Vocabulary type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -342,9 +342,9 @@ The <span class="id">Vocabulary</span> type is _not_ a definitional type, it is 
 The <span class="id">name</span> element is provided to support additional run-time information for Vocabulary types, it is _not_ intended to participate in the identification or resolution of a terminology reference; only to provide additional user-friendly information at run-time for users.
 
 {: #logical-operators-3}
-## Logical Operators
+### Logical Operators
 
-### And
+#### And
 
 **Signature:**
 
@@ -382,7 +382,7 @@ define "IsNull": true and null
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
-### Implies
+#### Implies
 
 **Signature:**
 
@@ -420,7 +420,7 @@ define "IsFalse": true implies false
 define "IsNull": true implies null
 ```
 
-### Not
+#### Not
 
 **Signature:**
 
@@ -453,7 +453,7 @@ define "IsFalse": not true
 define "IsNull": not null
 ```
 
-### Or
+#### Or
 
 **Signature:**
 
@@ -491,7 +491,7 @@ define "IsNull": false or null
 
 Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
-### Xor
+#### Xor
 
 **Signature:**
 
@@ -526,9 +526,9 @@ define "IsNull": true xor null
 ```
 
 {: #type-operators-1}
-## Type Operators
+### Type Operators
 
-### As
+#### As
 
 **Signature:**
 
@@ -562,7 +562,7 @@ define "RuntimeError":
     return cast P as Observation
 ```
 
-### Children
+#### Children
 
 **Signature:**
 
@@ -578,7 +578,7 @@ For list types, the result is the same as invoking <span class="id">Children</sp
 
 If the source is null, the result is null.
 
-### Convert
+#### Convert
 
 **Signature:**
 
@@ -628,7 +628,7 @@ For example, the following are valid string representations for date and time va
 
 For specific semantics for each conversion, refer to the [explicit conversion](03-developersguide.html#explicit-conversion) operator documentation.
 
-### Descendents
+#### Descendents
 
 **Signature:**
 
@@ -644,7 +644,7 @@ For list types, the result is the same as invoking <span class="id">Descendents<
 
 If the source is null, the result is null.
 
-### Is
+#### Is
 
 **Signature:**
 
@@ -663,7 +663,7 @@ define "IsTrue": 5 is Integer
 define "IsFalse": '5' is Integer
 ```
 
-### CanConvertQuantity
+#### CanConvertQuantity
 
 **Signature:**
 
@@ -680,7 +680,7 @@ The CanConvertQuantity operator returns true if the Quantity can be converted to
 
 If either argument is null, the result is null.
 
-### ConvertQuantity
+#### ConvertQuantity
 
 **Signature:**
 
@@ -701,7 +701,7 @@ define "ConvertQuantity": ConvertQuantity(5 'mg', 'g')
 define "ConvertSyntax": convert 5 'mg' to 'g'
 ```
 
-### ConvertsToBoolean
+#### ConvertsToBoolean
 
 **Signature:**
 
@@ -717,7 +717,7 @@ If the input cannot be interpreted as a valid <span class="id">Boolean</span> va
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToDate
+#### ConvertsToDate
 
 **Signature:**
 
@@ -735,7 +735,7 @@ As with date literals, date values may be specified to any precision.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToDateTime
+#### ConvertsToDateTime
 
 **Signature:**
 
@@ -753,7 +753,7 @@ As with date and time literals, DateTime values may be specified to any precisio
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToDecimal
+#### ConvertsToDecimal
 
 **Signature:**
 
@@ -769,7 +769,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToLong
+#### ConvertsToLong
 
 > The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -786,7 +786,7 @@ The <span class="id">ConvertsToLong</span> operator returns <span class="kw">tru
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Long</span> value, the result is <span class="kw">false</span>.
 
-### ConvertsToInteger
+#### ConvertsToInteger
 
 **Signature:**
 
@@ -805,7 +805,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the input is a <span class="id">Long</span> value, the result is <span class="kw">true</span> if the value is within the range of an <span class="id">Integer</span>, otherwise, the result is <span class="kw">false</span>.
 
-### ConvertsToQuantity
+#### ConvertsToQuantity
 
 **Signature:**
 
@@ -821,7 +821,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-#### ConvertsToRatio
+##### ConvertsToRatio
 
 **Signature:**
 
@@ -837,7 +837,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToString
+#### ConvertsToString
 
 **Signature:**
 
@@ -854,7 +854,7 @@ The <span class="id">ConvertsToString</span> operator returns <span class="kw">t
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ConvertsToTime
+#### ConvertsToTime
 
 **Signature:**
 
@@ -870,7 +870,7 @@ If the input string is not formatted correctly, or does not represent a valid ti
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ToBoolean
+#### ToBoolean
 
 **Signature:**
 
@@ -913,7 +913,7 @@ define "IsFalse": ToBoolean('0')
 define "IsNull": ToBoolean('falsetto')
 ```
 
-### ToConcept
+#### ToConcept
 
 **Signature:**
 
@@ -937,7 +937,7 @@ define "IsValid": ToConcept(Code { system: 'http://loinc.org', code: '8480-6' })
 define "IsNull": ToConcept(null as Code)
 ```
 
-### ToDate
+#### ToDate
 
 **Signature:**
 
@@ -976,7 +976,7 @@ As with date literals, date values may be specified to any precision.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ToDateTime
+#### ToDateTime
 
 **Signature:**
 
@@ -1013,7 +1013,7 @@ For the <span class="id">Date</span> overload, the result will be a <span class=
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### ToDecimal
+#### ToDecimal
 
 **Signature:**
 
@@ -1047,7 +1047,7 @@ define "IsValid": ToDecimal('-0.1')
 define "IsNull": ToDecimal('+-0.1')
 ```
 
-### ToLong
+#### ToLong
 
 > The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -1083,7 +1083,7 @@ define "IsValid": ToLong('-1')
 define "IsNull": ToLong('one')
 ```
 
-### ToInteger
+#### ToInteger
 
 **Signature:**
 
@@ -1123,7 +1123,7 @@ define "IsValid": ToInteger('-1')
 define "IsNull": ToInteger('one')
 ```
 
-### ToQuantity
+#### ToQuantity
 
 **Signature:**
 
@@ -1165,7 +1165,7 @@ define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
 define "IsNull": ToQuantity('444 \'cm')
 ```
 
-#### ToRatio
+##### ToRatio
 
 **Signature:**
 
@@ -1192,7 +1192,7 @@ define "IsValid": ToRatio('1.0 \'mg\':2.0 \'mg\'')
 define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ```
 
-### ToString
+#### ToString
 
 **Signature:**
 
@@ -1253,7 +1253,7 @@ define "TimeOverload": ToString(@T12:30:00.000)
 define "IsNull": ToString(null as Integer)
 ```
 
-### ToTime
+#### ToTime
 
 **Signature:**
 
@@ -1284,9 +1284,9 @@ As with time-of-day literals, time-of-day values may be specified to any precisi
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 {: #nullological-operators-3}
-## Nullological Operators
+### Nullological Operators
 
-### Coalesce
+#### Coalesce
 
 **Signature:**
 
@@ -1312,7 +1312,7 @@ define "IsNull": Coalesce({ null, null, null })
 define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
 ```
 
-### IsNull
+#### IsNull
 
 **Signature:**
 
@@ -1331,7 +1331,7 @@ define "IsTrue": null is null
 define "IsFalse": true is null
 ```
 
-### IsFalse
+#### IsFalse
 
 **Signature:**
 
@@ -1350,7 +1350,7 @@ define "IsFalseIsTrue": false is false
 define "IsFalseIsFalse": null is false
 ```
 
-### IsTrue
+#### IsTrue
 
 **Signature:**
 
@@ -1370,9 +1370,9 @@ define "IsTrueIsFalse": false is true
 ```
 
 {: #comparison-operators-4}
-## Comparison Operators
+### Comparison Operators
 
-### Between
+#### Between
 
 **Signature:**
 
@@ -1436,7 +1436,7 @@ define "DecimalBetweenIsFalse": 3.5 between 3.6 and 4.8
 define "QuantityBetweenIsNull": 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 ```
 
-### Equal
+#### Equal
 
 **Signature:**
 
@@ -1496,7 +1496,7 @@ define "DateTimeEqualIsNull": @2012-01-01 = @2012-01-01T12
 define "NullEqualIsNull": null = null
 ```
 
-### Equivalent
+#### Equivalent
 
 **Signature:**
 
@@ -1572,7 +1572,7 @@ define "DateTimeEquivalentIsFalse": @2012-01-01 ~ @2012-01-01T12
 define "NullEquivalentIsTrue": null ~ null
 ```
 
-### Greater
+#### Greater
 
 **Signature:**
 
@@ -1626,7 +1626,7 @@ define "NullGreaterIsNull": null > 5
 {: .note-info}
 
 
-### Greater Or Equal
+#### Greater Or Equal
 
 **Signature:**
 
@@ -1677,7 +1677,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### Less
+#### Less
 
 **Signature:**
 
@@ -1729,7 +1729,7 @@ define "NullLessIsNull": null < 5
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### Less Or Equal
+#### Less Or Equal
 
 **Signature:**
 
@@ -1780,7 +1780,7 @@ define "NullLessOrEqualIsNull": null <= 5
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
 {: .note-info}
 
-### Not Equal
+#### Not Equal
 
 **Signature:**
 
@@ -1807,7 +1807,7 @@ define "DateTimeNotEqualIsNull": @2012-01-01 != @2012-01-01T12
 define "NullNotEqualIsNull": null != null
 ```
 
-### Not Equivalent
+#### Not Equivalent
 
 **Signature:**
 
@@ -1835,11 +1835,11 @@ define "NullNotEquivalentIsFalse": null !~ null
 ```
 
 {: #arithmetic-operators-4}
-## Arithmetic Operators
+### Arithmetic Operators
 
 The arithmetic operators provide a complete set of operations for performing arithmetic calculations in CQL. In general, operations that cause arithmetic overflow or underflow, or otherwise cannot be performed (such as division by 0) will result in null, rather than a run-time error.
 
-### Abs
+#### Abs
 
 **Signature:**
 
@@ -1873,7 +1873,7 @@ define "DecimalAbs": Abs(-5.5) // 5.5
 define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 ```
 
-### Add
+#### Add
 
 **Signature:**
 
@@ -1914,7 +1914,7 @@ define "QuantityAdd": -5.5 'mg' + 2 'mg' // -3.5 'mg'
 define "QuantityAddIsNull": -5.5 'cm' + 2 'cm2'
 ```
 
-### Ceiling
+#### Ceiling
 
 **Signature:**
 
@@ -1938,7 +1938,7 @@ define "DecimalCeiling": Ceiling(1.1) // 2
 define "QuantityCeilingIsNull": Ceiling(null as Decimal)
 ```
 
-### Divide
+#### Divide
 
 **Signature:**
 
@@ -1978,7 +1978,7 @@ define "DecimalDivideIsError": 2.2 / 0
 define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 ```
 
-### Floor
+#### Floor
 
 **Signature:**
 
@@ -2002,7 +2002,7 @@ define "DecimalFloor": Floor(2.1) // 2
 define "QuantityFloorIsNull": Floor(null as Decimal)
 ```
 
-### Exp
+#### Exp
 
 **Signature:**
 
@@ -2029,7 +2029,7 @@ define "DecimalExp": Exp(-0.0) // 1.0
 define "QuantityExpIsNull": Exp(null as Decimal)
 ```
 
-### HighBoundary
+#### HighBoundary
 
 **Signature:**
 
@@ -2059,7 +2059,7 @@ HighBoundary(@T10:30, 9) // @T10:30:59.999
 
 If the input value is null, the result is null.
 
-### Log
+#### Log
 
 **Signature:**
 
@@ -2086,7 +2086,7 @@ define "DecimalLog": Log(100.0, 10.0) // 2.0
 define "QuantityLogIsNull": Log(null, 10.0)
 ```
 
-### LowBoundary
+#### LowBoundary
 
 **Signature:**
 
@@ -2116,7 +2116,7 @@ LowBoundary(@T10:30, 9) // @T10:30:00.000
 
 If the input value is null, the result is null.
 
-### Ln
+#### Ln
 
 **Signature:**
 
@@ -2143,7 +2143,7 @@ define "DecimalLn": Ln(1.0) // 0.0
 define "QuantityLnIsNull": Ln(null as Decimal)
 ```
 
-### Maximum
+#### Maximum
 
 **Signature:**
 
@@ -2188,7 +2188,7 @@ define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999
 define "ErrorMaximum": maximum Quantity
 ```
 
-### Minimum
+#### Minimum
 
 **Signature:**
 
@@ -2233,7 +2233,7 @@ define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
 define "ErrorMinimum": minimum Quantity
 ```
 
-### Modulo
+#### Modulo
 
 **Signature:**
 
@@ -2273,7 +2273,7 @@ define "DecimalModulo": 2.5 mod 2 // 0.5
 define "ModuloIsNull": 2.5 mod null
 ```
 
-### Multiply
+#### Multiply
 
 **Signature:**
 
@@ -2310,7 +2310,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 If the result of the operation cannot be represented, the result is <span class="kw">null</span>.
 
-### Negate
+#### Negate
 
 **Signature:**
 
@@ -2344,7 +2344,7 @@ define "QuantityNegate": -3.3 'mg' // -3.3 'mg'
 define "NegateIsNull": -(null as Integer)
 ```
 
-### Precision
+#### Precision
 
 **Signature:**
 
@@ -2378,7 +2378,7 @@ Precision(@T10:30:00.000) // 9
 
 If the argument is null, the result is null.
 
-### Predecessor
+#### Predecessor
 
 **Signature:**
 
@@ -2419,7 +2419,7 @@ define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31
 define "PredecessorIsNull": predecessor of (null as Quantity)
 ```
 
-### Power
+#### Power
 
 **Signature:**
 
@@ -2454,7 +2454,7 @@ define "DecimalPower": 2.5^2.0 // 6.25
 define "NegateIsNull": 2.5^null
 ```
 
-### Round
+#### Round
 
 **Signature:**
 
@@ -2481,7 +2481,7 @@ define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null)
 ```
 
-### Subtract
+#### Subtract
 
 **Signature:**
 
@@ -2520,7 +2520,7 @@ define "QuantitySubtractError": 3.14 'cm' - 3.12 'cm2'
 define "SubtractIsNull": 3 - null
 ```
 
-### Successor
+#### Successor
 
 **Signature:**
 
@@ -2561,7 +2561,7 @@ define "DateSuccessor": successor of @2014-01-01 // @2014-01-02
 define "SuccessorIsNull": successor of (null as Quantity)
 ```
 
-### Truncate
+#### Truncate
 
 **Signature:**
 
@@ -2585,7 +2585,7 @@ define "DecimalTruncate": Truncate(1.00000001) // 1
 define "TruncateIsNull": Truncate(null)
 ```
 
-### Truncated Divide
+#### Truncated Divide
 
 **Signature:**
 
@@ -2626,9 +2626,9 @@ define "TruncatedDivideIsNull": 3 div null
 ```
 
 {: #string-operators-3}
-## String Operators
+### String Operators
 
-### Combine
+#### Combine
 
 **Signature:**
 
@@ -2653,7 +2653,7 @@ define "CombineWithSeparator": Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
 define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
 ```
 
-### Concatenate
+#### Concatenate
 
 **Signature:**
 
@@ -2679,7 +2679,7 @@ define "ConcatenateFunction": Concatenate('John', ' Doe') // 'John Doe'
 define "ConcatenateIsNull": 'John' + null + 'Doe' // null
 ```
 
-### EndsWith
+#### EndsWith
 
 **Signature:**
 
@@ -2703,7 +2703,7 @@ define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false
 define "EndsWithIsNull": EndsWith('ABC', null) // null
 ```
 
-### Indexer
+#### Indexer
 
 **Signature:**
 
@@ -2729,7 +2729,7 @@ define "IndexerIsNull": 'ABCDE'[14] // null
 define "IndexerIsAlsoNull": 'ABCDE'[null] // null
 ```
 
-### LastPositionOf
+#### LastPositionOf
 
 **Signature:**
 
@@ -2753,7 +2753,7 @@ define "LastPositionOfNotFound": LastPositionOf('XYZ', 'ABCDE') // -1
 define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
 ```
 
-### Length
+#### Length
 
 **Signature:**
 
@@ -2774,7 +2774,7 @@ define "Length14": Length('ABCDE') // 5
 define "LengthIsNull": Length(null as String) // null
 ```
 
-### Lower
+#### Lower
 
 **Signature:**
 
@@ -2798,7 +2798,7 @@ define "LowerCQL": Lower('ABCDE') // 'abcde'
 define "LowerIsNull": Lower(null) // null
 ```
 
-### Matches
+#### Matches
 
 **Signature:**
 
@@ -2823,7 +2823,7 @@ define "MatchesFalse": Matches('1,2three', '\\w+')
 define "MatchesIsNull": Matches('12three', null)
 ```
 
-### PositionOf
+#### PositionOf
 
 **Signature:**
 
@@ -2847,7 +2847,7 @@ define "PositionOfNotFound": PositionOf('Z', 'ABCDE') // -1
 define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
 ```
 
-### ReplaceMatches
+#### ReplaceMatches
 
 **Signature:**
 
@@ -2872,7 +2872,7 @@ define "ReplaceMatchesNotFound": ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE
 define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
 ```
 
-### Split
+#### Split
 
 **Signature:**
 
@@ -2896,7 +2896,7 @@ define "SplitNotFound": Split('A B C', ',') // { 'A B C' }
 define "SplitIsNull": Split(null, ' ') // null
 ```
 
-### SplitOnMatches
+#### SplitOnMatches
 
 **Signature:**
 
@@ -2914,7 +2914,7 @@ The <span class="id">separatorPattern</span> argument is interpreted with the sa
 
 If the <span class="id">stringToSplit</span> argument does not contain any matches for the <span class="id">separatorPattern</span>, the result is a list of strings containing one element that is the value of the <span class="id">stringToSplit</span> argument.
 
-### StartsWith
+#### StartsWith
 
 **Signature:**
 
@@ -2938,7 +2938,7 @@ define "StartsWithIsFalse": StartsWith('ABCDE', 'XYZ') // false
 define "StartsWithIsNull": StartsWith('ABCDE', null) // null
 ```
 
-### Substring
+#### Substring
 
 **Signature:**
 
@@ -2964,7 +2964,7 @@ define "SubstringIsNull": Substring('ABCDE', null) // null
 define "SubstringIsAlsoNull": Substring('ABCDE', 14) // null
 ```
 
-### Upper
+#### Upper
 
 **Signature:**
 
@@ -2989,10 +2989,10 @@ define "UpperIsNull": Upper(null) // null
 ```
 
 {: #datetime-operators-2}
-## Date and Time Operators
+### Date and Time Operators
 
 {: #add-1}
-### Add
+#### Add
 
 **Signature:**
 
@@ -3030,7 +3030,7 @@ This example results in the value <span class="id">DateTime(2015)</span>
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-### After
+#### After
 
 **Signature:**
 
@@ -3071,7 +3071,7 @@ define "AfterIsNull": @2012-01-01 after month of null
 
 This operator is also defined for intervals, see the [After (Intervals)](#after-1) operator for more information.
 
-### Before
+#### Before
 
 **Signature:**
 
@@ -3113,7 +3113,7 @@ define "BeforeIsNull": @2012-01-01 before month of null
 This operator is also defined for intervals, see the [Before (Intervals)](#before-1) operator for more information.
 
 {: #date-1}
-### Date
+#### Date
 
 **Signature:**
 
@@ -3137,7 +3137,7 @@ define "DateInvalid": Date(2012, null, 1)
 ```
 
 {: #datetime-1}
-### DateTime
+#### DateTime
 
 **Signature:**
 
@@ -3178,7 +3178,7 @@ define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ```
 
 {: #datetime-component-from}
-### Date and Time Component From
+#### Date and Time Component From
 
 **Signature:**
 
@@ -3217,7 +3217,7 @@ define "TimeFrom": time from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @T12:30:0
 define "MonthFromIsNull": month from DateTime(2012)
 ```
 
-### Difference
+#### Difference
 
 **Signature:**
 
@@ -3253,7 +3253,7 @@ define "UncertainDifferenceInMonths": difference in months between @2012-01-02 a
 define "DifferenceIsNull": difference in months between @2012-01-01 and null
 ```
 
-### Duration
+#### Duration
 
 **Signature:**
 
@@ -3287,7 +3287,7 @@ define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 
 define "DurationIsNull": months between @2012-01-01 and null
 ```
 
-### Now
+#### Now
 
 **Signature:**
 
@@ -3303,7 +3303,7 @@ The <span class="id">Now</span> operator returns the date and time of the start 
 2.  The operation will return the timestamp associated with the evaluation request, allowing the evaluation to be performed with the same timezone offset information as the data delivered with the evaluation request.
 
 {: #on-or-after-1}
-### On Or After
+#### On Or After
 
 **Signature:**
 
@@ -3322,7 +3322,7 @@ Note that this operator can be invoked using either the <span class="kw">on or a
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
 {: #on-or-before-1}
-### On Or Before
+#### On Or Before
 
 **Signature:**
 
@@ -3341,7 +3341,7 @@ Note that this operator can be invoked using either the <span class="kw">on or b
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
 {: #same-as-1}
-### Same As
+#### Same As
 
 **Signature:**
 
@@ -3383,7 +3383,7 @@ define "SameAsIsNull": @2012-01-01 same day as null
 This operator is also defined for intervals, see the [Same As (Intervals)](#same-as-2) operator for more information.
 
 {: #same-or-after-1}
-### Same Or After
+#### Same Or After
 
 **Signature:**
 
@@ -3427,7 +3427,7 @@ define "SameOrAfterIsNull": @2012-01-01 same day or after null
 This operator is also defined for intervals, see the [Same Or After (Intervals)](#same-or-after-2) operator for more information.
 
 {: #same-or-before-1}
-### Same Or Before
+#### Same Or Before
 
 **Signature:**
 
@@ -3471,7 +3471,7 @@ define "SameOrBeforeIsNull": @2012-01-01 same day or before null
 This operator is also defined for intervals, see the [Same Or Before (Intervals)](#same-or-before-2) operator for more information.
 
 {: #subtract-1}
-### Subtract
+#### Subtract
 
 **Signature:**
 
@@ -3510,7 +3510,7 @@ This example results in the value <span class="id">DateTime(2013)</span>
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 {: #time-1}
-### Time
+#### Time
 
 **Signature:**
 
@@ -3536,7 +3536,7 @@ define "TimeValid": Time(12, 30, 0, 0)
 define "TimeInvalid": Time(12, null, 0, 0)
 ```
 
-### TimeOfDay
+#### TimeOfDay
 
 **Signature:**
 
@@ -3548,7 +3548,7 @@ TimeOfDay() Time
 
 The <span class="id">TimeOfDay</span> operator returns the time of day of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">TimeOfDay</span> operator in this way.
 
-### Today
+#### Today
 
 **Signature:**
 
@@ -3561,10 +3561,10 @@ Today() Date
 The <span class="id">Today</span> operator returns the date of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">Today</span> operator in this way.
 
 {: #interval-operators-3}
-## Interval Operators
+### Interval Operators
 
 {: #after-1}
-### After
+#### After
 
 **Signature:**
 
@@ -3597,7 +3597,7 @@ define "AfterIsNull": Interval[1, 4] after null
 ```
 
 {: #before-1}
-### Before
+#### Before
 
 **Signature:**
 
@@ -3629,7 +3629,7 @@ define "BeforeIsFalse": Interval[1, 4] before 0
 define "BeforeIsNull": Interval[1, 4] before null
 ```
 
-### Collapse
+#### Collapse
 
 **Signature:**
 
@@ -3686,7 +3686,7 @@ for (n = 0; n < i.size; n++) {
 }
 ```
 
-### Contains
+#### Contains
 
 **Signature:**
 
@@ -3710,7 +3710,7 @@ define "ContainsIsFalse": Interval[1, 5] contains 6
 define "ContainsIsNull": Interval[1, 5] contains null
 ```
 
-### End
+#### End
 
 **Signature:**
 
@@ -3735,7 +3735,7 @@ define "EndOfInterval": end of Interval[1, 5] // 5
 define "EndIsNull": end of (null as Interval<Integer>)
 ```
 
-### Ends
+#### Ends
 
 **Signature:**
 
@@ -3762,7 +3762,7 @@ define "EndsIsNull": Interval[1, 5] ends null
 ```
 
 {: #equal-1}
-### Equal
+#### Equal
 
 **Signature:**
 
@@ -3785,7 +3785,7 @@ define "EqualIsNull": Interval[1, 5] = null
 ```
 
 {: #equivalent-1}
-### Equivalent
+#### Equivalent
 
 **Signature:**
 
@@ -3805,7 +3805,7 @@ define "EquivalentIsAlsoTrue": Interval[1, null] ~ Interval[1, null]
 define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
 ```
 
-### Except
+#### Except
 
 **Signature:**
 
@@ -3826,7 +3826,7 @@ define "Except": Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
 define "ExceptIsNull": null except Interval[-1, 7]
 ```
 
-### Expand
+#### Expand
 
 **Signature:**
 
@@ -3915,7 +3915,7 @@ If the list argument is <span class="kw">null</span>, the result is <span class=
 > For intervals with null boundaries (intervals with an undefined start or end date), if the boundary is open (e.g., Interval[0, null)), the interval will not contribute any results to the output. If the boundary is closed (e.g., Interval[0, null]), in theory the interval would contribute all intervals to the beginning or ending of the domain. In practice, because such an expansion is potentially too expensive to compute, and implementations are allowed to not return results for such an interval.
 {: .note-warning}
 
-### In
+#### In
 
 **Signature:**
 
@@ -3939,7 +3939,7 @@ define "InIsFalse": -1 in Interval[0, 7]
 define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 ```
 
-### Includes
+#### Includes
 
 **Signature:**
 
@@ -3968,7 +3968,7 @@ define "IncludesIsFalse": Interval[-1, 5] includes 6
 define "IncludesIsNull": Interval[-1, 5] includes null
 ```
 
-### Included In
+#### Included In
 
 **Signature:**
 
@@ -3999,7 +3999,7 @@ define "IncludedInIsFalse": -1 during Interval[0, 7]
 define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 ```
 
-### Intersect
+#### Intersect
 
 **Signature:**
 
@@ -4020,7 +4020,7 @@ define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
 define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 ```
 
-### Meets
+#### Meets
 
 **Signature:**
 
@@ -4060,7 +4060,7 @@ define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
 ```
 
 {: #not-equal-1}
-### Not Equal
+#### Not Equal
 
 **Signature:**
 
@@ -4083,7 +4083,7 @@ define "NotEqualIsNull": Interval[1, 5] != null
 ```
 
 {: #not-equivalent-1}
-### Not Equivalent
+#### Not Equivalent
 
 **Signature:**
 
@@ -4106,7 +4106,7 @@ define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
 ```
 
 {: #on-or-after-2}
-### On Or After
+#### On Or After
 
 **Signature:**
 
@@ -4125,7 +4125,7 @@ Note that this operator can be invoked using either the <span class="kw">on or a
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
 {: #on-or-before-2}
-### On Or Before
+#### On Or Before
 
 **Signature:**
 
@@ -4143,7 +4143,7 @@ Note that this operator can be invoked using either the <span class="kw">on or b
 
 In timing phrases, the keyword <span class="kw">same</span> is a synonym for <span class="kw">on</span>.
 
-### Overlaps
+#### Overlaps
 
 **Signature:**
 
@@ -4174,7 +4174,7 @@ define "OverlapsAfterIsFalse": Interval[0, 4] overlaps after Interval[1, 4]
 define "OverlapsIsNull": Interval[6, 10] overlaps (null as Interval<Integer>)
 ```
 
-### Point From
+#### Point From
 
 **Signature:**
 
@@ -4199,7 +4199,7 @@ define "PointFromIsNull": point from (null as Interval<Integer>)
 
 Note that the <span class="kw">point from</span> operator may only be used on a _unit interval_, or an interval containing a single point. Attempting to extract a point from an interval with a size greater than one, as in the <span class="id">PointFromError</span> example above, will result in a run-time error.
 
-### Properly Includes
+#### Properly Includes
 
 **Signature:**
 
@@ -4228,7 +4228,7 @@ define "ProperlyIncludesIsFalse": Interval[-1, 5] properly includes Interval[-1,
 define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
 ```
 
-### Properly Included In
+#### Properly Included In
 
 **Signature:**
 
@@ -4260,7 +4260,7 @@ define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as 
 ```
 
 {: #same-as-2}
-### Same As
+#### Same As
 
 **Signature:**
 
@@ -4291,7 +4291,7 @@ When comparing DateTime values with different timezone offsets, implementations 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 {: #same-or-after-2}
-### Same Or After
+#### Same Or After
 
 **Signature:**
 
@@ -4328,7 +4328,7 @@ If either or both arguments are <span class="kw">null</span>, the result is <spa
 Note that in timing phrases, the keyword <span class="kw">on</span> may be used as a synonym for <span class="kw">same</span> for this operator.
 
 {: #same-or-before-2}
-### Same Or Before
+#### Same Or Before
 
 **Signature:**
 
@@ -4364,7 +4364,7 @@ If either or both arguments are <span class="kw">null</span>, the result is null
 
 Note that in timing phrases, the keyword <span class="kw">on</span> may be used as a synonym for <span class="kw">same</span> for this operator.
 
-### Size
+#### Size
 
 **Signature:**
 
@@ -4388,7 +4388,7 @@ define "SizeTestEquivalent": Size(Interval[3, 8)) // 5, i.e. the interval contai
 define "SizeIsNull": Size(null as Interval<Integer>) // null
 ```
 
-### Start
+#### Start
 
 **Signature:**
 
@@ -4413,7 +4413,7 @@ define "StartOfInterval": start of Interval[1, 5] // 1
 define "StartIsNull": start of (null as Interval<Integer>)
 ```
 
-### Starts
+#### Starts
 
 **Signature:**
 
@@ -4439,7 +4439,7 @@ define "StartsIsFalse": Interval[0, 7] starts Interval[0, 6]
 define "StartsIsNull": Interval[1, 5] starts null
 ```
 
-### Union
+#### Union
 
 **Signature:**
 
@@ -4460,7 +4460,7 @@ define "Union": Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
 define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 ```
 
-### Width
+#### Width
 
 **Signature:**
 
@@ -4485,12 +4485,12 @@ define "NullInterval": width of Interval[0, null) //null
 ```
 
 {: #list-operators-2}
-## List Operators
+### List Operators
 
 Note that the operators in this section may all be invoked with singleton arguments if the _list promotion_ feature is enabled. See the [Promotion and Demotion](03-developersguide.html#promotion-and-demotion) section for more information.
 
 {: #contains-1}
-### Contains
+#### Contains
 
 **Signature:**
 
@@ -4513,7 +4513,7 @@ define "ContainsIsAlsoFalse": null contains 4
 define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null
 ```
 
-### Distinct
+#### Distinct
 
 **Signature:**
 
@@ -4537,7 +4537,7 @@ define "DistinctIsNull": distinct null // null
 ```
 
 {: #equal-2}
-### Equal
+#### Equal
 
 **Signature:**
 
@@ -4560,7 +4560,7 @@ define "EqualIsNull": { 1, 3, 5, 7 } = null
 ```
 
 {: #equivalent-2}
-### Equivalent
+#### Equivalent
 
 **Signature:**
 
@@ -4581,7 +4581,7 @@ define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 ```
 
 {: #except-1}
-### Except
+#### Except
 
 **Signature:**
 
@@ -4608,7 +4608,7 @@ define "ExceptWithNull": { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
 define "ExceptIsNull": null except { 1, 3, 5 }
 ```
 
-### Exists
+#### Exists
 
 **Signature:**
 
@@ -4631,7 +4631,7 @@ define "ExistsIsAlsoFalse": exists { null }
 define "ExistsIsAlsoAlsoFalse": exists null
 ```
 
-### Flatten
+#### Flatten
 
 **Signature:**
 
@@ -4652,7 +4652,7 @@ define "Flatten": flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }
 define "FlattenIsNull": flatten null
 ```
 
-### First
+#### First
 
 **Signature:**
 
@@ -4674,7 +4674,7 @@ define "FirstIsNull": First(null)
 ```
 
 {: #in-1}
-### In
+#### In
 
 **Signature:**
 
@@ -4698,7 +4698,7 @@ define "NullInIsTrue": null in { 1, 3, 5, null }
 ```
 
 {: #includes-1}
-### Includes
+#### Includes
 
 **Signature:**
 
@@ -4727,7 +4727,7 @@ define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
 ```
 
 {: #included-in-1}
-### Included In
+#### Included In
 
 **Signature:**
 
@@ -4756,7 +4756,7 @@ define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 ```
 
 {: #indexer-1}
-### Indexer
+#### Indexer
 
 **Signature:**
 
@@ -4782,7 +4782,7 @@ define "IndexerIsNull": { 1, 3, 5 }[-1]
 define "IndexerIsAlsoNull": (null as List<Integer>)[0]
 ```
 
-### IndexOf
+#### IndexOf
 
 **Signature:**
 
@@ -4807,7 +4807,7 @@ define "IndexOfIsNull": IndexOf(null, 4)
 ```
 
 {: #intersect-1}
-### Intersect
+#### Intersect
 
 **Signature:**
 
@@ -4833,7 +4833,7 @@ define "IntersectWithNull": { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { n
 define "IntersectIsNull": { 1, 3, 5 } intersect null
 ```
 
-### Last
+#### Last
 
 **Signature:**
 
@@ -4855,7 +4855,7 @@ define "LastIsNull": Last(null)
 ```
 
 {: #length-1}
-### Length
+#### Length
 
 **Signature:**
 
@@ -4877,7 +4877,7 @@ define "Length0": Length(null as List<Integer>)
 ```
 
 {: #not-equal-2}
-### Not Equal
+#### Not Equal
 
 **Signature:**
 
@@ -4900,7 +4900,7 @@ define "NotEqualIsNull": { 1, 3, 5, 7 } != null
 ```
 
 {: #not-equivalent-2}
-### Not Equivalent
+#### Not Equivalent
 
 **Signature:**
 
@@ -4923,7 +4923,7 @@ define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 ```
 
 {: #properly-includes-1}
-### Properly Includes
+#### Properly Includes
 
 **Signature:**
 
@@ -4954,7 +4954,7 @@ define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 ```
 
 {: #properly-included-in-1}
-### Properly Included In
+#### Properly Included In
 
 **Signature:**
 
@@ -4983,7 +4983,7 @@ define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
 define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in null
 ```
 
-### Singleton From
+#### Singleton From
 
 **Signature:**
 
@@ -5005,7 +5005,7 @@ define "SingletonFromError": singleton from { 1, 3, 5 }
 define "SingletonFromIsNull": singleton from (null as List<Integer>)
 ```
 
-### Skip
+#### Skip
 
 **Signature:**
 
@@ -5032,7 +5032,7 @@ define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
 define "SkipIsNull": Skip(null, 2)
 ```
 
-### Tail
+#### Tail
 
 **Signature:**
 
@@ -5054,7 +5054,7 @@ define "TailEmpty": Tail({ }) // { }
 define "TailIsNull": Tail(null)
 ```
 
-### Take
+#### Take
 
 **Signature:**
 
@@ -5080,7 +5080,7 @@ define "TakeIsNull": Take(null, 2)
 ```
 
 {: #union-1}
-### Union
+#### Union
 
 **Signature:**
 
@@ -5108,9 +5108,9 @@ define "UnionAlternateSyntax": { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
 ```
 
-## Aggregate Functions
+### Aggregate Functions
 
-### AllTrue
+#### AllTrue
 
 **Signature:**
 
@@ -5135,7 +5135,7 @@ define "AllTrueIsTrueWhenNull": AllTrue(null)
 define "AllTrueIsFalse": AllTrue({ true, false, null })
 ```
 
-### AnyTrue
+#### AnyTrue
 
 **Signature:**
 
@@ -5160,7 +5160,7 @@ define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })
 define "AnyTrueIsFalseWhenNull": AnyTrue(null)
 ```
 
-### Avg
+#### Avg
 
 **Signature:**
 
@@ -5185,7 +5185,7 @@ define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
 define "AvgIsNull": Avg(null as List<Decimal>)
 ```
 
-### Count
+#### Count
 
 **Signature:**
 
@@ -5205,7 +5205,7 @@ define "Count0": Count({ null, null, null }) // 0
 define "CountNull0": Count(null as List<Decimal>) // 0
 ```
 
-### GeometricMean
+#### GeometricMean
 
 **Signature:**
 
@@ -5233,7 +5233,7 @@ define "GeometricMeanIsNull": GeometricMean({ null, null, null })
 define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
 ```
 
-### Max
+#### Max
 
 **Signature:**
 
@@ -5269,7 +5269,7 @@ define "MaxIsNull": Max({ null as Quantity, null as Quantity, null as Quantity }
 define "MaxIsAlsoNull": Max(null as List<Decimal>)
 ```
 
-### Min
+#### Min
 
 **Signature:**
 
@@ -5302,7 +5302,7 @@ define "MinIsNull": Min({ null as Quantity, null as Quantity, null as Quantity }
 define "MinIsAlsoNull": Min(null as List<Decimal>)
 ```
 
-### Median
+#### Median
 
 **Signature:**
 
@@ -5328,7 +5328,7 @@ define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quan
 define "MedianIsAlsoNull": Median(null as List<Decimal>)
 ```
 
-### Mode
+#### Mode
 
 **Signature:**
 
@@ -5353,7 +5353,7 @@ define "ModeIsNull": Mode({ null as Quantity, null as Quantity, null as Quantity
 define "ModeIsAlsoNull": Mode(null as List<Decimal>)
 ```
 
-### Population StdDev
+#### Population StdDev
 
 **Signature:**
 
@@ -5379,7 +5379,7 @@ define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Qu
 define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)
 ```
 
-### Population Variance
+#### Population Variance
 
 **Signature:**
 
@@ -5405,7 +5405,7 @@ define "PopulationVarianceIsNull": PopulationVariance({ null as Quantity, null a
 define "PopulationVarianceIsAlsoNull": PopulationVariance(null as List<Decimal>)
 ```
 
-### Product
+#### Product
 
 **Signature:**
 
@@ -5436,7 +5436,7 @@ define "ProductIsNull": Product({ null as Quantity, null as Quantity, null as Qu
 define "ProductIsAlsoNull": Product(null as List<Decimal>)
 ```
 
-### StdDev
+#### StdDev
 
 **Signature:**
 
@@ -5462,7 +5462,7 @@ define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quan
 define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)
 ```
 
-### Sum
+#### Sum
 
 **Signature:**
 
@@ -5493,7 +5493,7 @@ define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity }
 define "SumIsAlsoNull": Sum(null as List<Decimal>)
 ```
 
-### Variance
+#### Variance
 
 **Signature:**
 
@@ -5520,9 +5520,9 @@ define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
 ```
 
 {: #clinical-operators-3}
-## Clinical Operators
+### Clinical Operators
 
-### Age
+#### Age
 
 **Signature:**
 
@@ -5548,7 +5548,7 @@ Note that for <span class="id">AgeInYears</span> and <span class="id">AgeInMonth
 
 These operators are shorthand for the equivalent AgeInXXXAt operator, passing Today() or Now() for the asOf argument.
 
-### AgeAt
+#### AgeAt
 
 **Signature:**
 
@@ -5576,7 +5576,7 @@ The <span class="id">AgeAt</span> operators are defined in terms of a datetime d
 
 These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, passing the birth date from the Patient context.
 
-### CalculateAge
+#### CalculateAge
 
 **Signature:**
 
@@ -5604,7 +5604,7 @@ The <span class="id">CalculateAge</span> operators are defined in terms of a dat
 
 These operators are shorthand for the equivalent CalculateAgeInXXXAt, passing the current date for the asOf argument.
 
-### CalculateAgeAt
+#### CalculateAgeAt
 
 **Signature:**
 
@@ -5638,7 +5638,7 @@ define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 ```
 
 {: #equal-3}
-### Equal
+#### Equal
 
 **Signature:**
 
@@ -5665,7 +5665,7 @@ define "EqualIsNull": Code1 = null
 ```
 
 {: #equivalent-3}
-### Equivalent
+#### Equivalent
 
 **Signature:**
 
@@ -5701,7 +5701,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 > Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
 {: .note-warning}
 
-### In (Codesystem)
+#### In (Codesystem)
 
 **Signature:**
 
@@ -5743,7 +5743,7 @@ define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 {: .note-warning}
 
 {: #expandvalueset}
-### ExpandValueSet (ValueSet)
+#### ExpandValueSet (ValueSet)
 
 > The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
@@ -5771,7 +5771,7 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
 
-### In (Valueset)
+#### In (Valueset)
 
 **Signature:**
 
@@ -5812,9 +5812,9 @@ define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-## Errors and Messaging
+### Errors and Messaging
 
-### Message
+#### Message
 
 **Signature:**
 

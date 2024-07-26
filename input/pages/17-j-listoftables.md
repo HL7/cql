@@ -1,12 +1,12 @@
 {% include styles.html %}
 
-## Introduction
+### Introduction
 
 1.  [Table 1-A](01-introduction.html#table-1-a) : Relationship of the current specifications to each component
 
 2.  [Table 1-B](01-introduction.html#table-1-b) : Major roles that this specification was written for
 
-## Author's Guide
+### Author's Guide
 
 1.  [Table 2-A](02-authorsguide.html#table-2-a) : Constructs that CQL libraries can contain
 
@@ -52,7 +52,7 @@
 
 22.  [Table 2-V](02-authorsguide.html#table-2-v) : QDM Data elements and their mapping to QUICK data structures
 
-## Developer's Guide
+### Developer's Guide
 
 1.  [Table 3-A](03-developersguide.html#table-3-a) : The basic lexical elements defined in CQL
 
@@ -74,9 +74,9 @@
 
 10. [Table 3-J](03-developersguide.html#table-3-j) : The explicit and implicit conversions supported in CQL
 
-## Logical Specification
+### Logical Specification
 
-## Language Semantics
+### Language Semantics
 
 1.  [Table 5-A](05-languagesemantics.html#table-5-a) : Description of the data defined by each retrieve
 
@@ -96,7 +96,7 @@
 
 9.  [Table 5-I](05-languagesemantics.html#table-5-i) : The <span class="kw">Quantities</span> and their precision that can be used for <span class="kw">Date</span> and <span class="kw">Time</span> calculations in CQL
 
-## Translation Semantics
+### Translation Semantics
 
 1.  [Table 6-A](06-translationsemantics.html#table-6-a) : The ELM equivalent for each CQL declaration
 
@@ -128,7 +128,7 @@
 
 15.  [Table 6-O](06-translationsemantics.html#table-6-o) : The ELM equivalent for each CQL construct
 
-## Physical Representation
+### Physical Representation
 
 1.  [Table 7-A](07-physicalrepresentation.html#table-7-a) : The schemata that defines the ELM physical representation
 
@@ -137,7 +137,7 @@
 3.  [Table 7-C](07-physicalrepresentation.html#table-7-c) : The required information for each type available in the data model
 
 {: #appendix-b-cql-reference}
-## Appendix B - CQL Reference
+### Appendix B - CQL Reference
 
 1.  [Table 9-A](09-b-cqlreference.html#table-9-a) : The truth table for the <span class="kw">And</span> operator
 
@@ -156,7 +156,7 @@
 8.  [Table 9-G](09-b-cqlreference.html#table-9-g) : The string representations that the ToString operator uses for each data type
 
 {: #appendix-e-acronyms}
-## Appendix E - Acronyms
+### Appendix E - Acronyms
 
 1.  [Table 12-A](12-e-acronyms.html#table-12-a) : Acronyms used in this specification
 

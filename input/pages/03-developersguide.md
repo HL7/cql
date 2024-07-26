@@ -2,7 +2,7 @@
 
 This chapter complements the Author’s Guide by providing more in-depth discussion of language elements, semantics, more complex query scenarios, and more advanced topics such as typing and function definition. Readers are expected to be familiar with the content of the [Author’s Guide](02-authorsguide.html) in the discussions that follow.
 
-## Lexical Elements
+### Lexical Elements
 
 CQL is intended to be an authoring language. As such, the syntax is designed to be intuitive and clear, both when writing and reading the language. Care has been taken to ensure that the language contains a simple and clear core set of language elements, and that they all interact in a consistent and predictable manner.
 
@@ -26,11 +26,11 @@ Table 3‑A - The basic lexical elements defined in CQL
 
 Every valid CQL document can be broken down into a set of tokens, each of which is one of these basic lexical elements. The following sections describe each of these elements in more detail.
 
-### Whitespace
+#### Whitespace
 
 CQL defines _tab_, _space_, and _return_ as _whitespace_, meaning they are only used to separate other tokens within the language. Any number of whitespace characters can appear, and the language does not use whitespace for anything other than delimiting tokens.
 
-### Comments
+#### Comments
 
 CQL defines two styles of comments, _single-line_, and _multi-line_. A single-line comment consists of two forward slashes, followed by any text up to the end of the line:
 
@@ -49,7 +49,7 @@ Any text enclosed within is ignored
 
 Note that nested multi-line comments are not supported.
 
-#### Tags
+##### Tags
 
 > Comment tags are a new feature of CQL 1.5, and are trial-use
 {: .note-info}
@@ -80,7 +80,7 @@ define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ```
 
-### Literals
+#### Literals
 
 Literals provide for the representation of basic values within CQL. The following types of literals are supported:
 
@@ -126,7 +126,7 @@ Table 3‑C - The escape sequences for string literals in CQL
 
 A syntax diagram of the standard escape sequences for string literals supported can be seen [here](19-l-cqlsyntaxdiagrams.html#ESC).
 
-### Symbols
+#### Symbols
 
 Symbols provide structure to the grammar and allow symbolic invocation of common operators such as addition. CQL defines the following symbols:
 
@@ -147,7 +147,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 
 Table 3‑D - The symbols supported by CQL to provide structure to the grammar and allow symbolic invocation of common operators such as addition
 
-### Keywords
+#### Keywords
 
 Keywords are words that are recognized by the parser and used to build the various language constructs. CQL defines the following keywords:
 
@@ -278,7 +278,7 @@ years
 
 A syntax diagram of the keywords supported can be seen [here](19-l-cqlsyntaxdiagrams.html#keyword).
 
-### Reserved Words
+#### Reserved Words
 
 When there is no possibility for ambiguity, keywords may also be used as identifiers. However, many keywords are considered _reserved_ words, meaning that it is illegal to use them as identifiers. If necessary, identifiers that clash with a reserved word can be double-quoted or surrounded by backticks (`` ` ``).
 
@@ -363,7 +363,7 @@ In addition, even though many keywords are allowed to appear as identifiers, thi
 
 A syntax diagram of the _reserved_ words supported can be seen [here](19-l-cqlsyntaxdiagrams.html#reservedWord).
 
-### Identifiers
+#### Identifiers
 
 Identifiers are used to name various elements within the language. There are three types of identifiers in CQL, simple, delimited, and quoted.
 
@@ -428,13 +428,13 @@ CQL escape sequences for strings also work for identifiers:
 
 Table 3‑E - The escape sequences for identifiers in CQL
 
-#### Qualified Identifiers
+##### Qualified Identifiers
 
 Identifiers can be combined using the _qualifier_ operator (<span class="sym">.</span>), resulting in a _qualified identifier_. For example <span class="id">Common.ConditionsIndicatingSexualActivity</span>. An identifier with no qualifiers is an _unqualified identifier_.
 
 A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier).
 
-### Operator Precedence
+#### Operator Precedence
 
 CQL uses standard in-fix operator notation for expressing computational logic. As a result, CQL also adopts the expected operator precedence to ensure consistent and predictable behavior of expressions written using CQL. The following table lists the order of operator precedence in CQL from highest to lowest:
 
@@ -472,7 +472,7 @@ As with most expression languages, parentheses can always be used to force order
 
 When multiple operators appear in a single category, precedence is determined by the order of appearance in the expression, left to right.
 
-### Case-Sensitivity
+#### Case-Sensitivity
 
 To encourage consistency and reduce potential confusion, CQL is a case-sensitive language. This means that case is considered when matching keywords and identifiers in the language. For example, the following CQL is invalid:
 
@@ -483,7 +483,7 @@ Define "Foo": 1 + 1
 The declaration is illegal because the parser will not recognize <span class="kw">Define</span> as a keyword.
 
 {: #libraries-1}
-## Libraries
+### Libraries
 
 Libraries provide the basic unit of code organization for CQL. Each CQL file contains a single library, and may include any number of libraries by reference, subject to the following constraints:
 
@@ -537,19 +537,19 @@ A library D may not reference both B and C, because it would result in two diffe
 
 In addition, library references are not transitive, meaning that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
 
-### Access Modifiers
+#### Access Modifiers
 
 Each component of a library may have an access modifier applied, either <span class="kw">public</span> or <span class="kw">private</span>. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
 
 A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessModifier).
 
-### Identifier Resolution
+#### Identifier Resolution
 
 For identifiers, if a library name is not provided, the identifier must refer to a locally or system defined component. If a library name is provided, it must be the local identifier for the library, and that library must contain the identifier being referenced.
 
 For named expressions, CQL supports forward declarations, so long as the resolution does not result in a circular definition.
 
-### Function Resolution
+#### Function Resolution
 
 For functions, if a library name is not provided, the invocation must refer to a locally defined function, or a CQL system function. Function resolution proceeds by attempting to match the _signature_ of the invocation, i.e. the number and type of each argument, to a defined signature for the function. Because the CQL type system supports subtyping, generics, and implicit conversion and casting, it is possible for an invocation signature to match multiple defined signatures. In these cases, the _least converting_ signature is chosen, meaning the signature with the fewest required conversions. If multiple signatures have the same number of required conversions, an ambiguous resolution error is thrown, and the author must provide an explicit cast or conversion to resolve the ambiguity.
 
@@ -558,7 +558,7 @@ If a library name is provided, only that library will be searched for a resoluti
 As with expressions, CQL supports forward declarations for functions, so long as the reference does not result in a cycle.
 
 {: #data-models-1}
-## Data Models
+### Data Models
 
 CQL allows any number of data models to be included in a given library, subject to the following constraints:
 
@@ -567,7 +567,7 @@ CQL allows any number of data models to be included in a given library, subject 
 
 As with library references, data model references may include a version specifier. If a version is specified, then the environment must ensure that the version specifier matches the version of the data model supplied. If no data model matching the requested version is present, an error is thrown.
 
-### Alternate Data Models
+#### Alternate Data Models
 
 Although the examples in this specification generally use the QUICK model (part of the Clinical Quality Framework), CQL itself does not require or depend on a specific data model. For example, the following sample is taken from the CMS146v2_using_QDM.cql file in the Examples section of the specification:
 
@@ -580,7 +580,7 @@ Although the examples in this specification generally use the QUICK model (part 
 
 In this example, QDM is used as the data model. Note the use of quoted attribute identifiers to allow for the spaces in the names of QDM attributes.
 
-### Multiple Data Models
+#### Multiple Data Models
 
 Because CQL allows multiple <span class="kw">using</span> declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name <span class="id">Encounter</span>. In general, the resolution process for class names within CQL proceeds as follows:
 
@@ -593,7 +593,7 @@ Because CQL allows multiple <span class="kw">using</span> declarations, the poss
 ** If an exact match is found in the referenced model, that class is used.
 ** If no exact match is found, an error is thrown that the qualified class name cannot be resolved.
 
-## Types
+### Types
 
 CQL is a statically typed language, meaning that it is possible to infer the type of any given expression, and for any given operator invocation, the type of the arguments must match the types of the operands. To provide complete support for the type system, CQL supports several constructs for dealing with types including _type specifiers_, as well as _conversion_, _casting_, and _type-testing_ operators.
 
@@ -603,7 +603,7 @@ CQL uses a single-inheritance type system, meaning that each type is derived fro
 * The type T' is a _subtype_ of type T.
 * A value of type T' may appear anywhere a value of type T is expected.
 
-### System-Defined Types
+#### System-Defined Types
 
 CQL defines several base types that provide the elements for constructing other types, as well as for defining the operations available within the language.
 
@@ -645,7 +645,7 @@ Table 3‑H - The structured types to facilitate representation and manipulation
 
 For more information about these types, refer to the [CQL Reference](09-b-cqlreference.html) section on [Types](09-b-cqlreference.html#types-2).
 
-### Specifying Types
+#### Specifying Types
 
 In various constructs, the type of a value must be specified. For example, when defining the type of a parameter, or when testing a value to determine whether it is of a specific type. CQL provides the _type specifier_ for this purpose. There are five categories of type-specifiers, corresponding to the four categories of values supported by CQL, plus a choice type category that allows for more flexible models and expressions:
 
@@ -699,7 +699,7 @@ parameter ChoiceValue Choice<Integer, String>
 
 A syntax diagram of a _choice type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#choiceTypeSpecifier).
 
-### Type Testing
+#### Type Testing
 
 CQL supports the ability to test whether or not a value is of a given type. For example:
 
@@ -727,7 +727,7 @@ For tuple types, given a tuple type T with elements E<sub>1</sub>, E<sub>2</sub>
 
 For structured types, the supertype is specified as part of the definition of the type. Subtypes inherit all the elements of the supertype and may define additional elements that are only present on the derived type.
 
-### Choice Types
+#### Choice Types
 
 CQL also supports the notion of a _choice type_, a type that is defined by a list of component types. For example, an element of a tuple type may be a choice of <span class="id">Integer</span> or <span class="id">String</span>, meaning that the element may contain a value that is either an <span class="id">Integer</span>, or a <span class="id">String</span>.
 
@@ -771,13 +771,13 @@ For <span class="kw">intersect</span>, this means the inputs can be lists of dif
 
 For <span class="kw">except</span>, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
 
-### Type Inference
+#### Type Inference
 
 Type inference is the process of determining the type of an expression based on the types of the values and operations involved in the expression. CQL is a strongly typed language, meaning that it is always possible to infer the type of an expression at compile-time (i.e. by static analysis).
 
 The type inference rules for the various categories of language constructs are given in the following sections.
 
-#### Literals and Selectors
+##### Literals and Selectors
 
 The type of a literal is trivial for the primitive types and selectors: <span class="id">Boolean</span>, <span class="id">String</span>, <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Decimal</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, <span class="id">Time</span>, <span class="id">Quantity</span>, and <span class="id">Ratio</span>.
 
@@ -805,7 +805,7 @@ For a tuple selector, the type is constructed from the elements in the tuple sel
 
 For an instance selector, the type is determined by the name of the type of the instance being constructed.
 
-#### Operators and Functions
+##### Operators and Functions
 
 In general, the result type of an operator or function is determined by the declared return type of the function. For example, the (Integer, Integer) overload of the Add operator returns an Integer value, so the type of an Add invocation is Integer:
 
@@ -818,7 +818,7 @@ The CQL Reference appendix gives the signatures and declared return types for al
 In addition to special cases for operators such as conditionals and Coalesce, CQL defines implicit conversion, casting, and promotion and demotion to provide more flexible type checking rules. These special cases are described in subsequent sections.
 
 {: #queries-1}
-#### Queries
+##### Queries
 
 For queries, the type inference rules are based on the clauses used, beginning with single-source queries:
 
@@ -830,11 +830,11 @@ For queries, the type inference rules are based on the clauses used, beginning w
 6.  The return clause determines the overall shape of the query result. If there is no return clause, the result type of the query is the same as the initial type of the query as determined based on the sources. If a return clause is used, the result type of the query is inferred based on the return expression. If the query is singular, the result type is the type of the return clause expression. If the query is plural, the result type is a list whose element types are the type of the return expression.
 7.  Similar to the return clause, an aggregate clause, if present, determines the overall result of the query. If an aggregate clause is used, the result type of the query is the result type of the aggregate expression, regardless of whether the query is singular or plural.
 
-### Conversion
+#### Conversion
 
 Conversion is the operation of turning a value from one type into another. For example, converting a number to a string, or vice-versa. CQL supports explicit conversion operators, as well as implicit conversion for some specific types.
 
-#### Explicit Conversion
+##### Explicit Conversion
 
 The explicit <span class="kw">convert</span> can be used to convert a value from one type to another. For example, to convert the string representation of a datetime to a <span class="id">DateTime</span> value:
 
@@ -894,7 +894,7 @@ Table 3‑I - The defined type conversion operators in CQL
 
 For a complete description of these conversion operators, refer to the [Type Operators](09-b-cqlreference.html#type-operators-1) section in the [CQL Reference](09-b-cqlreference.html).
 
-#### Quantity Conversions
+##### Quantity Conversions
 
 In addition to type conversions, CQL supports _quantity conversion_, converting a quantity from one unit to another unit using the same <span class="kw">convert</span> keyword:
 
@@ -908,7 +908,7 @@ If the unit conversion is valid, the expression results in a quantity with the t
 > Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 {: .note-warning}
 
-#### Implicit Conversions
+##### Implicit Conversions
 
 In addition to the explicit conversion operators discussed above, CQL supports implicit conversions for specific types to enable expressions to be built more easily. The following table lists the explicit and implicit conversions supported in CQL:
 
@@ -961,7 +961,7 @@ define "TupleConvert": convert TupleExpression to Person
 
 The conversion from a tuple to a structured type requires that the set of elements in the tuple type be the same set or a subset of the elements in the structured type.
 
-### Casting
+#### Casting
 
 Casting is the operation of treating a value of some base type as a more specific type at run-time. The <span class="kw">as</span> operator provides this functionality. For example, given a model that defines an <span class="id">ImagingProcedure</span> as a specialization of a <span class="id">Procedure</span>, in the following example:
 
@@ -983,7 +983,7 @@ In addition, CQL supports a _strict_ cast, which has the same semantics as casti
 define "StrictCast": cast First(Procedures) as ImagingProcedure
 ```
 
-#### Implicit Casting
+##### Implicit Casting
 
 CQL also supports the notion of _implicit casting_ to prevent the need to cast a <span class="kw">null</span> literal to a specific type. For example, consider the following expression:
 
@@ -999,7 +999,7 @@ define "ImplicitCast": 5 * (null as Integer)
 
 To avoid the need for this explicit cast, CQL implicitly casts the <span class="id">Any</span> to <span class="id">Integer</span>.
 
-### Promotion and Demotion
+#### Promotion and Demotion
 
 To simplify the expression of logic involving lists and intervals, CQL defines _promotion_ and _demotion_, which are a special class of implicit conversions.
 
@@ -1013,7 +1013,7 @@ Note that the use of demotion has the potential to result in a run-time error if
 
 Whether or not promotion and demotion should be used depends on the type-safety expectations for each use case. As such, promotion and demotion should only be used in environments where the consequences are well understood. By default, list promotion and demotion are appropriate to support the use of FHIRPath, interval promotion is used only to enable mixed-type signatures for the <span class="kw">same or after</span> and <span class="kw">same or before</span> operators, and interval demotion is not used.
 
-### Conversion Precedence
+#### Conversion Precedence
 
 Because of the possibility that a given invocation signature may be resolved to multiple overloads of an operator through the application of different conversions, CQL specifies a conversion precedence for resolving the ambiguity. When matching the invocation type of an argument to the declared type of the corresponding argument of an operator, the following precedence is applied:
 
@@ -1030,7 +1030,7 @@ Because of the possibility that a given invocation signature may be resolved to 
 
 These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path is used.
 
-## Conditional Expressions
+### Conditional Expressions
 
 To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the <span class="kw">if</span> expression, and the <span class="kw">case</span> expression.
 
@@ -1074,7 +1074,7 @@ if Count(X) > 0 then X[1] else 0
 
 Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to <span class="kw">true</span>. This is in contrast to the logical operators <span class="kw">and</span> and <span class="kw">or</span>, where short-circuit evaluation is not required.
 
-## Nullological Operators
+### Nullological Operators
 
 To provide complete support for missing information, CQL supports several operators for testing for and dealing with null results.
 
@@ -1122,7 +1122,7 @@ X is not false
 
 The first example will return <span class="kw">true</span> if X evaluates to <span class="kw">true</span>, <span class="kw">false</span> if X evaluates to <span class="kw">false</span> or <span class="kw">null</span>. The second example will return <span class="kw">true</span> if X evaluates to <span class="kw">true</span> or <span class="kw">null</span>, <span class="kw">false</span> if X evaluates to <span class="kw">false</span>. Note in particular that these operators are _not_ equivalent to comparison of <span class="id">Boolean</span> results using equality or inequality.
 
-## String Operators
+### String Operators
 
 Although less common in typical clinical logic, some use cases require string manipulation. As such, CQL supports a core set of string operators.
 
@@ -1205,7 +1205,7 @@ The result of this expression is:
 Use the <span class="id">Upper</span> and <span class="id">Lower</span> operators to return strings with upper or lowercase letters for all characters in the argument.
 
 {: #introducing-context-in-queries}
-## Introducing Scoped Definitions in Queries
+### Introducing Scoped Definitions in Queries
 
 The CQL query construct provides for the ability to introduce named expressions that only exist within the scope of a single query. The _let clause_ of queries allows any number of definitions to be provided. Each definition has access to all the available components of the query scope. This feature is extremely useful for simplifying query logic by allowing complex expressions to be defined and then reused within the scope of a single query. For example:
 
@@ -1242,7 +1242,7 @@ In this query, the same logic defined by the <span class="id">dailyDose</span> e
 
 Note also the ability to reference a previously defined let in the same scope, as in the use of <span class="id">adjustedDoseQuantity</span> in the definition of <span class="id">dailyDose</span>.
 
-## Multi-Source Queries
+### Multi-Source Queries
 
 In addition to the single-source queries discussed in the Author’s Guide, CQL provides multi-source queries to allow for the simple expression of complex relationships between sets of data. Consider the following excerpt from the numerator of a measure for appropriate warfarin and parenteral anticoagulation overlap therapy:
 
@@ -1338,7 +1338,7 @@ The result will be a list of tuples containing the cartesian product of all Enco
 
 In addition, the default for return clauses is <span class="kw">distinct</span>, as opposed to <span class="kw">all</span>, so if no return clause is specified, duplicates will be eliminated from the result.
 
-### Query Syntax Options
+#### Query Syntax Options
 
 Note that the grammar for CQL queries allows for the <span class="kw">from</span> keyword to be used for single- and multi-source queries. For example, the following is valid CQL:
 
@@ -1349,7 +1349,7 @@ from [Encounter] E
 
 Moreover, parsing the grammar can be simplified by requiring that all queries start with the <span class="kw">from</span> keyword. To support a change to the language to enable this simplification, environments may require that all queries begin with the <span class="kw">from</span> keyword.
 
-## Non-Retrieve Queries
+### Non-Retrieve Queries
 
 In addition to the query examples already discussed, it is possible to use any arbitrary expression as the source for a query. For example:
 
@@ -1381,7 +1381,7 @@ In addition, even if a given query is based on a list of tuples, the results are
   return duration in days of E.period
 ```
 
-## Related Context Retrieves
+### Related Context Retrieves
 
 > Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
 {: .note-info}
@@ -1412,7 +1412,7 @@ If the expression being defined (such as "Mother" in the previous example) is <s
 > See the [Mother Infant Measure](examples.html#mother-infant-measure) example for a detailed illustration of this functionality.
 {: .note-danger}
 
-## Aggregate Queries
+### Aggregate Queries
 
 > The aggregate clause is a new feature of CQL 1.5, and is trial-use.
 {: .note-info}
@@ -1466,7 +1466,7 @@ define FactorialOfFive:
 
 In this example, since the starting clause is omitted, Result is initially <span class="kw">null</span>, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
 
-## Defining Functions
+### Defining Functions
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type.
 
@@ -1501,7 +1501,7 @@ A syntax diagram of defining a function can be seen [here](19-l-cqlsyntaxdiagram
 
 Functions can be defined that reference other functions anywhere within any library and to any degree of nesting, so long as the reference does not result in a circular reference.
 
-### Operator Functions
+#### Operator Functions
 
 Operator functions are system functions defined to support the behavior of operators defined in the language. For example, the addition operator (<span class="sym">+</span>) is implemented by the <span class="id">Add</span> function. Each operator defined in the language has a corresponding system-defined function that surfaces directly in the ELM. For a complete listing of these operators and their ELM function names, refer to the [Functions](06-translationsemantics.html#functions) topic in the Translation Semantics chapter.
 
@@ -1519,7 +1519,7 @@ Exists(X)
 Equal(X, Y)
 ```
 
-### Fluent Functions
+#### Fluent Functions
 
 > Fluent functions are a new feature of CQL 1.5, and are trial-use.
 {: .note-info}
@@ -1582,7 +1582,7 @@ In other words, all the Condition elements returned from the <span class="id">Di
 > Note that the examples in this section are adapted from the [CDS Connect FHIR Commons](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY/blob/v0.3.2/src/cql/r4/CDS_Connect_Commons_for_FHIRv400.cql#L178) library.
 {: .note-info}
 
-### External Functions
+#### External Functions
 
 Functions can also be defined as _external_ to support the ability to import functionality defined in external libraries. If a function is defined external, the return type must be provided:
 
@@ -1594,13 +1594,13 @@ CQL does not prescribe the details for how external functions are resolved or im
 
 Take heed that although there may be use cases for which external functions are the best option, they are not without drawbacks. Chief among the drawbacks that arise when using external functions are the challenges associated with interoperability. Since external functions are implementation specific, CQL libraries that are authored relying on external functions are also implementation specific. Therefore, the use of external functions is discouraged because they hinder one of the foundational benefits of CQL, which is data exchange.
 
-## Using FHIRPath
+### Using FHIRPath
 
 FHIRPath is a general-purpose graph traversal language designed as a simple way to define paths on a hierarchical data model such as FHIR. The language is used within the FHIR specification to provide precise semantics for various items in the specification such as invariants and search parameter paths. Because of the general-purpose nature of FHIRPath, CQL uses the basic expression definition capabilities defined by FHIRPath for its core expression terms. In fact, the ANTLR grammar for CQL imports the FHIRPath grammar and relies on the semantics defined there to define the base expression functionality of CQL, in much the same way that XQuery utilizes XPath to define its expression capabilities. In other words, CQL is a superset of FHIRPath, meaning that any valid FHIRPath expression is also a valid CQL expression.
 
 However, FHIRPath has various implicit conversions defined to simplify expression of common path traversal scenarios. Because CQL is a type-safe language, some of this functionality can optionally be restricted within CQL through the use of several language options, as described in the following sections.
 
-### Path Traversal
+#### Path Traversal
 
 Paths in FHIRPath are constructed by concatenating labels using a dot qualifier:
 
@@ -1610,7 +1610,7 @@ In this case, the path begins at the <span class="id">Patient</span> expression 
 
 However, because property access on a list may actually be the result of mistakenly expecting the property to be singular, this behavior can be disabled with the _disable-list-traversal_ option.
 
-### List Promotion and Demotion
+#### List Promotion and Demotion
 
 In FHIRPath, all operations are defined to return collections, and operations that expect singleton values are defined to throw an error when they are invoked with collections containing multiple elements. In CQL, this behavior is implemented using list promotion and demotion.
 
@@ -1630,11 +1630,11 @@ This allows the compiler to help the author determine whether a singular value i
 
 See the [Promotion and Demotion](#promotion-and-demotion) topic for more discussion on how CQL supports list promotion and demotion.
 
-### Missing Information
+#### Missing Information
 
 FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
 
-### Type Resolution
+#### Type Resolution
 
 The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as <span class="id">.children()</span> and <span class="id">.descendents()</span>. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
 
@@ -1648,7 +1648,7 @@ This expression returns a list of the name elements of all the children of the P
 
 This approach enables the flexibility of FHIRPath expressions but still maintains compile-time type resolution.
 
-### Method Invocation
+#### Method Invocation
 
 The FHIRPath syntax is designed as a fluent API, meaning that operations are invoked using a dot-invocation syntax. This functionality is supported in CQL using a syntactic method construct, similar to a lambda function, that allows the invocation to be rewritten as an equivalent function call. The method definition is allowed to declare special variables such as <span class="id">$this</span> that can be addressed in the body of the method.
 

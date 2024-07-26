@@ -1,6 +1,6 @@
 {% include styles.html %}
 
-## Introduction
+### Introduction
 
 1.  [Figure 1-A](01-introduction.html#figure-1-a) : The overall target specification areas involved in clinical quality artifact representation
 
@@ -8,7 +8,7 @@
 
 3.  [Figure 1-C](01-introduction.html#figure-1-c) : How the CQL and ELM specifications will be used in the sharing use case
 
-## Author's Guide
+### Author's Guide
 
 1.  [Figure 2-A](02-authorsguide.html#figure-2-a) : Simplified patient/practitioner information model
 
@@ -24,7 +24,7 @@
 
 7.  [Figure 2-G](02-authorsguide.html#figure-2-g) : Example output intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
-## Logical Specification
+### Logical Specification
 
 1.  [Figure 4-A](04-logicalspecification.html#figure-4-a) : A diagram to explain how ELM represents addition of 2 literal values
 
