@@ -86,7 +86,7 @@ Literals in CQL allow for the expression of values of each of the system-defined
 
 For Quantities, always put a space between the numerical value and the unit:
 
-``` cql
+```cql
 45 'mg'
 28 'mm[Hg]'
 ```
@@ -97,7 +97,7 @@ Intervals can be expressed based on any type that supports ordered comparison (I
 
 Intervals use standard mathematical notation to indicate whether the boundaries are open or closed:
 
-``` cql
+```cql
 Interval[1, 5]
 Interval(1, 9)
 Interval[@2015-01-01T00:00:00.0Z, @2016-01-01T00:00:00.0Z)
@@ -113,7 +113,7 @@ Lists in CQL can contain elements of any type.
 
 Always separate the contents of the list with a space to help visually distinguish the braces from parentheses:
 
-``` cql
+```cql
 { 1, 2, 3 }
 Sum({ 1, 2, 3 })
 ```
@@ -122,7 +122,7 @@ Tuples in CQL contain named elements of any type.
 
 Always separate the contents of the tuple with a space:
 
-``` cql
+```cql
 { name: 'Patrick', birthDate: @2014-01-01 }
 ```
 
@@ -130,7 +130,7 @@ Do not put a space between the tuple element name and the value specifier (<span
 
 The Tuple keyword is optional, but this means that the empty tuple has a special construct:
 
-``` cql
+```cql
 { } // empty list
 { : } // empty Tuple
 ```
@@ -140,7 +140,7 @@ The Tuple keyword is optional, but this means that the empty tuple has a special
 
 The central expression construct of CQL is the query. The query construct in CQL is clause-based:
 
-``` cql
+```cql
 <primary source> <alias>
   <with or without clauses>
   <where clause>
@@ -150,13 +150,13 @@ The central expression construct of CQL is the query. The query construct in CQL
 
 In general, simple queries can fit on a single line:
 
-``` cql
+```cql
 ["Encounter, Performed": "Inpatient"] Encounter where duration in days of Encounter.period >= 120
 ```
 
 If a query, or a clause of a query, needs more than one line, continue the clauses indented beneath the query or clause:
 
-``` cql
+```cql
 "Pharyngitis Encounters with Antibiotics" Pharyngitis
   with ["Laboratory Test, Performed": "Group A Streptococcus Test"] Test
     such that Test.result is not null
@@ -192,7 +192,7 @@ Using "direct reference codes", involves declaring an identifier for a specific 
 
 When using direct reference codes, authors should use the name of the code as defined externally to avoid introducing any potential confusion of meaning:
 
-``` cql
+```cql
 code "Venous foot pump, device (physical object)": '442023007' from "SNOMED-CT"
 ```
 

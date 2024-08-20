@@ -150,7 +150,7 @@ Table 6‑F - The ELM equivalent for each CQL nullological operator
 |<span class="sym">=</span> |Equal
 |<span class="sym">></span> |Greater
 |<span class="sym">>=</span> |GreaterOrEqual
-|<span class="sym">\<</span> |Less
+|<span class="sym">&lt;</span> |Less
 |<span class="sym">\<=</span> |LessOrEqual
 |<span class="sym">~</span> |Equivalent
 |<span class="sym">!=</span> |NotEqual
@@ -354,10 +354,10 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 
 |CQL Operator |ELM Equivalent
 |----|----
-|<span class="id">AgeIn</span>**__-precision__** |CalculateAge (with patient birthdate reference supplied)
-|<span class="id">AgeIn</span>**__-precision-__**<span class="id">At</span> |CalculateAgeAt (with patient birthdate reference supplied)
-|<span class="id">CalculateAgeIn</span>**__-precision__** |CalculateAge
-|<span class="id">CalculateAgeIn</span>**__-precision-__**<span class="id">At</span> |CalculateAgeAt
+|<span class="id">AgeIn</span>**-precision** |CalculateAge (with patient birthdate reference supplied)
+|<span class="id">AgeIn</span>**-precision-**<span class="id">At</span> |CalculateAgeAt (with patient birthdate reference supplied)
+|<span class="id">CalculateAgeIn</span>**-precision** |CalculateAge
+|<span class="id">CalculateAgeIn</span>**-precision-**<span class="id">At</span> |CalculateAgeAt
 |<span class="sym">=</span> |Equal
 |<span class="sym">~</span> |Equivalent
 |<span class="kw">in</span> **(Codesystem)** |InCodeSystem
@@ -427,13 +427,13 @@ In addition to being able to translate CQL to ELM, any given expression of ELM c
 
 This bi-directionality means that a given expression of CQL could be translated to ELM, and then back again. However, because ELM is typically a more primitive representation, this process is not necessarily a “round-trip”. For example, consider the following CQL:
 
-``` cql
+```cql
 A starts within 3 days of start B
 ```
 
 This will actually result in the following ELM output:
 
-``` xml
+```xml
 <expression xsi:type="In">
   <operand xsi:type="DurationBetween" precision="Day">
     <operand xsi:type="Start">
@@ -452,7 +452,7 @@ This will actually result in the following ELM output:
 
 The above expression, rendered directly back to CQL would be:
 
-``` cql
+```cql
 days between start of A and start of B in [-3, 3]
 ```
 
@@ -462,7 +462,7 @@ In general, the mapping from ELM to CQL is simply the opposite of the mapping de
 
 The examples in the following section will make use of the following expression definitions:
 
-``` xml
+```xml
 <def name="List1">
   <expression xsi:type="List">
     <element xsi:type="Tuple">
@@ -507,7 +507,7 @@ The examples in the following section will make use of the following expression 
 
 The _ForEach_ operator in ELM takes an argument of type list and returns a list with an element for each source element that is the result of evaluating the _element_ expression. For example:
 
-``` xml
+```xml
 <expression xsi:type="ForEach">
   <source xsi:type="ExpressionRef" name="List1"/>
   <element xsi:type="Property" path="X"/>
@@ -516,7 +516,7 @@ The _ForEach_ operator in ELM takes an argument of type list and returns a list 
 
 This expression returns the list of integers from the List1 expression. Although there is no direct counterpart in CQL, this expression can be represented using the _query_ construct. The source for the _ForEach_ is used as the primary query source, and the _element_ expression is represented using the _return-clause_:
 
-``` cql
+```cql
 List1 A return A.X
 ```
 
@@ -524,7 +524,7 @@ List1 A return A.X
 
 The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, although there is no direct counterpart in CQL, the _query_ construct can be used to produce an equivalent result:
 
-``` xml
+```xml
 <expression xsi:type="Times">
   <source xsi:type="ExpressionRef" name="List1"/>
   <source xsi:type="ExpressionRef" name="List2"/>
@@ -533,7 +533,7 @@ The _Times_ operator in ELM computes the Cartesian-product of two lists. Again, 
 
 Assuming List1 and List2 are defined as specified above, the equivalent CQL is a multi-source query with a source for each operand in the _Times_, and a return clause that builds the resulting tuples:
 
-``` cql
+```cql
 from List1 A, List2 B
   return { X: A.X, Y: B.Y }
 ```
@@ -542,7 +542,7 @@ from List1 A, List2 B
 
 The _Filter_ operator in ELM filters the contents of a list, returning only those elements that satisfy the expression defined in the _condition_ element. For example:
 
-``` xml
+```xml
 <expression xsi:type="Filter">
   <source xsi:type="ExpressionRef" name="List1"/>
   <condition xsi:type="Equal">
@@ -554,7 +554,7 @@ The _Filter_ operator in ELM filters the contents of a list, returning only thos
 
 Again, although no direct counterpart in CQL exists, the _where_ clause of the _query_ construct provides the equivalent functionality:
 
-``` cql
+```cql
 List1 A where A.X = 1
 ```
 
@@ -563,7 +563,7 @@ List1 A where A.X = 1
 
 The _Sort_ operator in ELM sorts the contents of a list. For example:
 
-``` xml
+```xml
 <expression xsi:type="Sort">
   <source xsi:type="ExpressionRef" name="List1"/>
   <by xsi:type="ByColumn" path="X" direction="desc"/>
@@ -572,6 +572,6 @@ The _Sort_ operator in ELM sorts the contents of a list. For example:
 
 Again, the CQL query construct provides the equivalent functionality:
 
-``` cql
+```cql
 List1 A sort by X desc
 ```

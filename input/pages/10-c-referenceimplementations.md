@@ -24,7 +24,7 @@ https://github.com/cqframework/cql-execution/blob/master/OVERVIEW.md
 
 ### Other CQL-related Tools
 
-Other CQL-related tools such as a graphical CQL grammar parsetree viewer, a ModelInfo generator, and a CQL syntax highlighting plugin for https://atom.io/[Atom] are also available. The Clinical Quality Framework Initiative maintains a list of known Community Projects on the CQL Github Wiki:
+Other CQL-related tools such as a graphical CQL grammar parsetree viewer, a ModelInfo generator, and a CQL syntax highlighting plugin for [Atom](https://atom.io/) are also available. The Clinical Quality Framework Initiative maintains a list of known Community Projects on the CQL Github Wiki:
 
 https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects
 

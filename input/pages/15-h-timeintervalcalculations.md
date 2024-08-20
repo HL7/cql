@@ -490,20 +490,20 @@ Difference (minutes) = **-45 minutes**
 #### Same as
 To directly compare two date/time values, you can use the standard equality operators:
 
-``` cql
+```cql
 @2020-07-30 = @2020-07-30
 @2020-07-30 != @020-07-31
 ```
 
 However, CQL also supports a `same as` timing phrase to support precision-based comparison of date/time values:
 
-``` cql
+```cql
 @2020-07-30 same as @2020-07-30
 ```
 
 When used without a precision specifier as in the above example, the `same as` timing phrase is the same as equality. Precision specifiers can be used to compare date/time values to a specific precision:
 
-``` cql
+```cql
 @2020-07-30 same month as @2020-07-31
 ```
 
@@ -513,21 +513,21 @@ This returns true because the comparison only proceeds to the `month` precision.
 
 To determine whether a date/time value is before or after another, CQL supports relative comparisons. As with equality, the standard relative comparison operators can be used:
 
-``` cql
+```cql
 @2020-07-30 < @2020-07-31
 @2020-07-31 <= @2020-07-31
 ```
 
 These comparisons both return true because the date July 30th, 2020 is _before_ July 31st, 2020, and July 31st is _on or before_ July 31st. As with direct comparison, CQL supports the `before` and `after` keywords:
 
-``` cql
+```cql
 @2020-07-30 before @2020-07-31 // equivalent to @2020-07-30 < @2020-07-31
 @2020-07-31 on or before @2020-07-31 // equivalent to @2020-02-31 <= @2020-07-31
 ```
 
 When no precision specifier is provided, these phrases are equivalent to the standard relative comparison operators. To compare to a particular precision:
 
-``` cql
+```cql
 @2020-07-30 before month of @2020-07-31
 ```
 
@@ -537,19 +537,19 @@ This comparison returns false, because although July 30th is _before_ July 31st,
 
 Timing phrases for comparison can also include an _offset_, which allows a _duration_ to be considered as part of the comparison. For example:
 
-``` cql
+```cql
 @2020-07-01T09:30:00.0 1 hour before @2020-07-01T10:30:00.0
 ```
 
 This returns true because 9:30AM on July 1st is exactly 1 hour before 10:30AM on July 1st. Note that this usage is a _direct_ comparison, not a relative comparison, so:
 
-``` cql
+```cql
 @2020-07-01T08:30:00.0 1 hour before @2020-07-01T10:30:00.0
 ```
 
 This returns false because 8:30AM on July 1st is more than 1 hour before 10:30AM on July 1st. To support relative comparison with offsets, include the `or more` or `or less` keywords:
 
-``` cql
+```cql
 @2020-07-01T08:30:00.0 1 hour or more before @2020-07-01T10:30:00.0
 ```
 
@@ -559,32 +559,32 @@ The result of this comparison is true.
 
 When using `or less`, the comparison is evaluated by considering an interval:
 
-``` cql
+```cql
 @2020-07-01T09:30:00.0 1 hour or less on or before @2020-07-01T10:30:00.0
 ```
 
 The above comparison returns true because 9:30AM on July 1st, 2020 is 1 hour or less on or before 10:30AM on July 1st, 2020. This is equivalent to asking
 
-``` cql
+```cql
 @2020-07-01T09:30:00.0 >= (@2020-07-01T10:30:00.0 - 1 hour)
   and @2020-07-01T09:30:00.0 <= @2020-07-01T10:30:00.0
 ```
 
 Some further examples using this timing phrase:
 
-``` cql
+```cql
 @2020-07-01T09:29:59.999 1 hour or less on or before @2020-07-01T10:30:00.0
 ```
 
 This example returns false because 9:29:59.999AM on July 1st, 2020 is just barely more than 1 hour before 10:30AM on July 1st, 2020.
 
-``` cql
+```cql
 @2020-07-01T09:29:59.999 1 hour or less on or before hour of @2020-07-01T10:30:00.0
 ```
 
 However, the above example returns true because the comparison only proceeds to the hour, and the hour, 9, is 1 hour or less before the hour, 10.
 
-``` cql
+```cql
 @2020-07-01T08:31:00.0 1 hour or less on or before @2020-07-01T10:30:00.0
 ```
 
@@ -592,13 +592,13 @@ The above example returns false because 8:31AM is more than 1 hour before 10:30A
 
 To illustrate this point another way:
 
-``` cql
+```cql
 hours between @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 // true
 ```
 
 The above example returns true because the duration in hours between 8:31AM and 10:30 AM is less than or equal to 1 (even though there is 1 hour and 59 minutes between the two times, it's still less than or equal to 1 and the duration calculation is only looking for full hours).
 
-``` cql
+```cql
 difference in hours between @2020-07-01T08:31:00.0 and @2020-07-01T10:30:00.0 <= 1 // false
 ```
 
@@ -606,19 +606,19 @@ The above example returns false, because in using the `difference` calculation, 
 
 Looking at another example, this time using `after` and to the `day`:
 
-``` cql
+```cql
 @2020-07-12T10:00:00.0 1 day after day of @2020-07-11T10:00:00.0 // true
 ```
 
 The above example returns true because the comparison only proceeds to the day, and July 12th, 2020 is exactly 1 day after July 11th 2020.
 
-``` cql
+```cql
 @2020-07-11T23:59:59.999 1 day after day of @2020-07-11T10:00:00.0 // false
 ```
 
 The above example returns false, again because the comparison only proceeds to the day, and July 11th, 2020 is the same day as July 11th, 2020, not the day after.
 
-``` cql
+```cql
 @2020-07-13T00:00:00.0 1 day after day of @2020-07-11T10:00:00.0 // false
 ```
 
@@ -626,25 +626,25 @@ And finally, the above example returns false because July 13th is _more than_ 1 
 
 Looking at another example, this time using `or less before` and `weeks`:
 
-``` cql
+```cql
 @2019-09-23 42 weeks or less before @2020-07-13 // true
 ```
 
 The above example returns true because September 23rd, 2019 is 42 weeks or less before July 13th, 2020.
 
-``` cql
+```cql
 @2019-09-23T09:00:00.0 42 weeks or less before @2020-07-13T10:00:00.0 // false
 ```
 
 Adding time into the comparison, the above example returns false, because 9:00AM on September 23rd is more than 42 weeks before July 13th 2020. Only 1 hour more, but still more.
 
-``` cql
+```cql
 @2019-09-23T09:00:00.0 42 weeks or less before day of @2020-07-13T10:00:00.0 // true
 ```
 
 However, the above example returns true, because the comparison only proceeds to the day, September 23rd 2019 is 42 weeks before July 13th 2020, again because the time components are not considered in the comparison.
 
-``` cql
+```cql
 @2019-09-22T11:00:00.0 42 weeks or less before day of @2020-07-13T10:00:00.0 // false
 ```
 
@@ -707,7 +707,7 @@ Table H-D - Timing phrase interpretation summary
 
 #### During and includes
 
-``` cql
+```cql
 @2020-01-01T00:00:00.0 during Interval[@2020-01-01T00:00:00.0, @2020-01T10:30:00.00]
 @2020-01-01T10:30:00.0 during Interval[@2020-01-01T00:00:00.0, @2020-01T10:30:00.00]
 ```

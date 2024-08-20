@@ -7,7 +7,7 @@ The ELM defines a mechanism for representing artifact logic independent of synta
 Expressions within ELM are represented as Abstract Syntax Trees. ELM defines the base _Expression_ class, and all language elements and operators are then defined as descendants of the base _Expression_. For example, the _Add_ class descends from _BinaryExpression_, which introduces two operands, each of type _Expression_. The _Literal_ class descends from _Expression_ and allows primitive-typed values such as strings and integers to be represented directly. Using these classes, the expression 2 <span class="sym">+</span> 2 can be represented as instances of the appropriate classes:
 
 <a name="figure-4-a"></a>
-<div><img src="extracted-media/media/image10.png" alt="extracted-media/media/image10" width="107" height="99"/></div>
+<div><img src="assets/images/image10.png" alt="assets/images/image10" width="107" height="99"/></div>
 
 Figure 4‑A - A diagram to explain how ELM represents addition of 2 literal values
 
@@ -67,7 +67,7 @@ The Tuple expression allows tuples of any type to be built up as an expression. 
 The following example illustrates the construction of a tuple using the _Tuple_ class:
 
 <a name="figure-4-h"></a>
-<div><img src="extracted-media/media/image17.png" alt="extracted-media/media/image17" width="190" height="157"/></div>
+<div><img src="assets/images/image17.png" alt="assets/images/image17" width="190" height="157"/></div>
 
 Figure 4‑H - A diagram to explain how ELM represents the construction of a <span class="kw">Tuple</span>
 
@@ -86,7 +86,7 @@ The Instance expression allows class instances of any type to be built up as an 
 The following example illustrates the construction of a structured value using the _Instance_ class:
 
 <a name="figure-4-i"></a>
-<div><img src="extracted-media/media/image18.png" alt="extracted-media/media/image18" width="184" height="152"/></div>
+<div><img src="assets/images/image18.png" alt="assets/images/image18" width="184" height="152"/></div>
 
 Figure 4‑I - A diagram to explain how ELM represents the construction of a structured value using the <span class="kw">Instance</span> class
 
@@ -137,7 +137,7 @@ The Code type represents a literal code selector.
 ```
 CodeDef : Element
   ¦
-  0..1 --> codeSystem : CodeSystemRef <1>
+  0..1 --> codeSystem : CodeSystemRef (1)
   ¦
   1..1 --> name
   ¦
@@ -148,7 +148,7 @@ CodeDef : Element
   0..1 --> accessLevel
 ```
 
-<1> The code system that contains the code being referenced.
+1. The code system that contains the code being referenced.
 
 The CodeDef type defines a code identifier that can then be used to reference single codes anywhere within an expression.
 
@@ -209,7 +209,7 @@ The Concept type represents a literal concept selector.
 ```
 ConceptDef : Element
   ¦
-  1..* --> code : CodeRef <1>
+  1..* --> code : CodeRef (1)
   ¦
   1..1 --> name
   ¦
@@ -218,7 +218,7 @@ ConceptDef : Element
   0..1 --> accessLevel
 ```
 
-<1> A code that makes up the concept. All codes within a given concept must be synonyms.
+1. A code that makes up the concept. All codes within a given concept must be synonyms.
 
 The ConceptDef type defines a concept identifier that can then be used to reference single concepts anywhere within an expression.
 
@@ -263,7 +263,7 @@ The Ratio type defines a ratio between two quantities. For example, the titre 1:
 ```
 ValueSetDef : Element
   ¦
-  0..* --> codeSystem : CodeSystemRef <1>
+  0..* --> codeSystem : CodeSystemRef (1)
   ¦
   0..1 --> name
   ¦
@@ -274,7 +274,7 @@ ValueSetDef : Element
   0..1 --> accessLevel
 ```
 
-<1> The code system that should be used to construct the expansion set. Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystem elements are provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.
+1. The code system that should be used to construct the expansion set. Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystem elements are provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.
 
 The ValueSetDef type defines a value set identifier that can be referenced by name anywhere within an expression.
 
@@ -360,12 +360,12 @@ TupleTypeSpecifier defines the possible elements of a tuple.
 ```
 ChoiceTypeSpecifier : TypeSpecifier
   ¦
-  0..* --> type : TypeSpecifier <1>
+  0..* --> type : TypeSpecifier (1)
   ¦
   0..* --> choice : TypeSpecifier
 ```
 
-<1> This element is deprecated. New implementations should use the new choice element.
+1. This element is deprecated. New implementations should use the new choice element.
 
 ChoiceTypeSpecifier defines the possible types of a choice type.
 
@@ -381,72 +381,60 @@ Once defined, libraries can then be referenced by other libraries with the _Incl
 ```
 Library : Element
   ¦
-  1..1 --> identifier : VersionedIdentifier <1>
+  1..1 --> identifier : VersionedIdentifier (1)
   ¦
-  1..1 --> schemaIdentifier : VersionedIdentifier <2>
+  1..1 --> schemaIdentifier : VersionedIdentifier (2)
   ¦
-  0..1 --> usings <3>
+  0..1 --> usings (3)
   ¦        ¦
-  ¦        1..* --> def : UsingDef <4>
+  ¦        1..* --> def : UsingDef (4)
   ¦
-  0..1 --> includes <5>
+  0..1 --> includes (5)
   ¦        ¦
-  ¦        1..* --> def : IncludeDef <6>
+  ¦        1..* --> def : IncludeDef (6)
   ¦
-  0..1 --> parameters <7>
+  0..1 --> parameters (7)
   ¦        ¦
   ¦        0..* --> def : ParameterDef
   ¦
-  0..1 --> codeSystems <8>
+  0..1 --> codeSystems (8)
   ¦        ¦
   ¦        0..* --> def : CodeSystemDef
   ¦
-  0..1 --> valueSets <9>
+  0..1 --> valueSets (9)
   ¦        ¦
   ¦        0..* --> def : ValueSetDef
   ¦
-  0..1 --> codes <10>
+  0..1 --> codes (10)
   ¦        ¦
   ¦        0..* --> def : CodeDef
   ¦
-  0..1 --> concepts <11>
+  0..1 --> concepts (11)
   ¦        ¦
   ¦        0..* --> def : ConceptDef
   ¦
-  0..1 --> contexts <12>
+  0..1 --> contexts (12)
   ¦        ¦
   ¦        0..* --> def : ContextDef
   ¦
-  0..1 --> statements <13>
+  0..1 --> statements (13)
            ¦
            0..* --> def : ExpressionDef
 ```
 
-<1> The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
-
-<2> This is the identifier of the XML schema (and its version) which governs the structure of this Library.
-
-<3> Set of data models referenced in the Expression objects in this knowledge artifact.
-
-<4> A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
-
-<5> Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
-
-<6> A reference to a library whose components can be used within the artifact.
-
-<7> The parameters defined within this library.
-
-<8> The code systems defined within this library.
-
-<9> The value sets defined within this library.
-
-<10> The codes defined within this library.
-
-<11> The concepts defined within this library.
-
-<12> The contexts used within this library.
-
-<13> The statements section contains the expression and function definitions for the library.
+1. The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
+2. This is the identifier of the XML schema (and its version) which governs the structure of this Library.
+3. Set of data models referenced in the Expression objects in this knowledge artifact.
+4. A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
+5. Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
+6. A reference to a library whose components can be used within the artifact.
+7. The parameters defined within this library.
+8. The code systems defined within this library.
+9. The value sets defined within this library.
+10. The codes defined within this library.
+11. The concepts defined within this library.
+12. The contexts used within this library.
+13. The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -490,10 +478,10 @@ VersionedIdentifier is composed of three parts: (1) an optional system, or
 ```
 ContextDef : Element
   ¦
-  1..1 --> name <1>
+  1..1 --> name (1)
 ```
 
-<1> The name of the context
+1. The name of the context
 
 The ContextDef type defines a context used within the library.
 
@@ -580,10 +568,10 @@ The Expression type defines the abstract base type for all expressions used in t
 ```
 OperatorExpression : Expression
   ¦
-  0..* --> signature : TypeSpecifier <1>
+  0..* --> signature : TypeSpecifier (1)
 ```
 
-<1> Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
+1. Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
 The Operator type defines the abstract base type for all built-in operators used in the ELM expression language. This explicitly excludes FunctionRef, which is the concrete type for all function invocations.
 
@@ -632,14 +620,14 @@ The NaryExpression type defines an abstract base class for an expression that ta
 ```
 AggregateExpression : Expression
   ¦
-  0..* --> signature : TypeSpecifier <1>
+  0..* --> signature : TypeSpecifier (1)
   ¦
   1..1 --> source : Expression
   ¦
   0..1 --> path
 ```
 
-<1> Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
+1. Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
 Aggregate expressions perform operations on lists of data, either directly on a list of scalars, or indirectly on a list of objects, with a reference to a property present on each object in the list.
 
@@ -708,12 +696,12 @@ The FunctionDef type defines a named function that can be invoked by any express
 ```
 FunctionRef : ExpressionRef
   ¦
-  0..* --> signature : TypeSpecifier <1>
+  0..* --> signature : TypeSpecifier (1)
   ¦
   0..* --> operand : Expression
 ```
 
-<1> Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
+1. Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.
 
 The FunctionRef type defines an expression that invokes a previously defined function. The result of evaluating each operand is passed to the function.
 
@@ -965,10 +953,10 @@ The retrieve expression defines clinical data that will be used by the artifact.
 The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.
 
 ##### codes
-The codes element optionally specifies an expression that results in a List<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
+The codes element optionally specifies an expression that results in a List\<Code> to match against. Only those clinical statements that match at least one of the specified codes will be returned.
 
 ##### dateRange
-The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
+The dateRange element optionally specifies an expression that results in an Interval\<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.
 
 ##### context
 If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.
@@ -985,7 +973,7 @@ For data models that support templates (also called profiles), The templateId at
 ##### idProperty
 The idProperty attribute specifies which property of the model contains the Id for the clinical statement.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### idSearch
 The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.
@@ -1005,7 +993,7 @@ The codeProperty attribute optionally specifies which property of the model cont
 
 Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### codeSearch
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
@@ -1020,7 +1008,7 @@ This attribute is intended to address the case where systems representing negati
 
 Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### dateProperty
 The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
@@ -1031,21 +1019,21 @@ Instances with no value for the dateProperty will not be included in the result 
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. If specified, the dateLowProperty and dateHighProperty values will be used to construct an interval with inclusive boundaries for the date range.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### dateLowProperty
 The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### dateHighProperty
 The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
 
 Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present.
 
-This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.
+This property may be specified as a path, including qualifiers and constant indexers. The \<simplePath> production rule in the CQL grammar provides the formal semantics for this path.
 
 ##### dateSearch
 The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
@@ -1124,7 +1112,7 @@ If either argument is null, the result is null.
 The following example illustrates a simple _Equal_ comparison:
 
 <a name="figure-4-b"></a>
-<div><img src="extracted-media/media/image11.png" alt="extracted-media/media/image11" width="109" height="102"/></div>
+<div><img src="assets/images/image11.png" alt="assets/images/image11" width="109" height="102"/></div>
 
 Figure 4‑B - A diagram to explain how ELM represents an equal comparison
 
@@ -1277,7 +1265,7 @@ The And operator returns the logical conjunction of its arguments. Note that thi
 The following example illustrates a simple _And_ expression:
 
 <a name="figure-4-c"></a>
-<div><img src="extracted-media/media/image12.png" alt="extracted-media/media/image12" width="138" height="217"/></div>
+<div><img src="assets/images/image12.png" alt="assets/images/image12" width="138" height="217"/></div>
 
 Figure 4‑C - A diagram to explain how ELM represents a simple <span class="kw">And</span> expression
 
@@ -1392,14 +1380,14 @@ The static type of the then argument within the first caseItem determines the ty
 The following example illustrates a more complex multi-conditional _Case_ expression:
 
 <a name="figure-4-e"></a>
-<div><img src="extracted-media/media/image14.png" alt="extracted-media/media/image14" width="230" height="397"/></div>
+<div><img src="assets/images/image14.png" alt="assets/images/image14" width="230" height="397"/></div>
 
 Figure 4‑E - A diagram to explain how ELM represents a complex multi-conditional <span class="kw">Case</span> expression
 
 And finally, an equivalent comparand-based _Case_ expression:
 
 <a name="figure-4-f"></a>
-<div><img src="extracted-media/media/image15.png" alt="extracted-media/media/image15" width="184" height="286"/></div>
+<div><img src="assets/images/image15.png" alt="assets/images/image15" width="184" height="286"/></div>
 
 Figure 4‑F - A diagram to explain how ELM represents a comparand-base <span class="kw">Case</span> expression
 
@@ -1420,7 +1408,7 @@ The If operator evaluates a condition, and returns the then argument if the cond
 The following examples illustrates a simple _If_ expression (i.e. if / then / else):
 
 <a name="figure-4-d"></a>
-<div><img src="extracted-media/media/image13.png" alt="extracted-media/media/image13" width="143" height="193"/></div>
+<div><img src="assets/images/image13.png" alt="assets/images/image13" width="143" height="193"/></div>
 
 Figure 4‑D - A diagram to explain how ELM represents a simple <span class="kw">If</span> expression
 
@@ -1483,7 +1471,7 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 The following example illustrates a simple _Add_ expression:
 
 <a name="figure-4-g"></a>
-<div><img src="extracted-media/media/image16.png" alt="extracted-media/media/image16" width="102" height="94"/></div>
+<div><img src="assets/images/image16.png" alt="assets/images/image16" width="102" height="94"/></div>
 
 Figure 4‑G - A diagram to explain how ELM represents a simple <span class="kw">Add</span> expression
 
@@ -1549,7 +1537,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
-``` cql
+```cql
 HighBoundary(1.587, 8) // 1.58799999
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
@@ -1584,7 +1572,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The operator can be used with Decimal, Date, DateTime, and Time values.
 
-``` cql
+```cql
 LowBoundary(1.587, 8) // 1.58700000
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
@@ -1738,13 +1726,13 @@ The operator can be used with Decimal, Date, DateTime, and Time values.
 
 For Decimal values, the operator returns the number of digits of precision after the decimal place in the input value.
 
-``` cql
+```cql
 Precision(1.58700) // 5
 ```
 
 For Date and DateTime values, the operator returns the number of digits of precision in the input value.
 
-``` cql
+```cql
 Precision(@2014) // 4
 Precision(@2014-01-05T10:30:00.000) // 17
 Precision(@T10:30) // 4
@@ -4061,8 +4049,6 @@ ToString : UnaryExpression
 ```
 
 The ToString operator converts the value of its argument to a String value. The operator uses the following string representations for each type
-
-[width="50%"]
 
 | Datatype | String Representation
 |-|-

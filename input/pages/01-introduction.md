@@ -8,11 +8,11 @@ The canonical representation, the Expression Logical Model (ELM)[^3], is informe
 
 In addition, this specification introduces a high-level, domain-specific language, Clinical Quality Language (CQL), focused on clinical quality and targeted at measure and decision support artifact authors. This high-level syntax can then be rendered in the canonical representation provided by ELM.
 
-[^1]: Note that CQL is unrelated to the Cassandra Query Language (see: http://cassandra.apache.org/doc/latest/cql/).
+[^1]: Note that CQL is unrelated to the Cassandra Query Language (see: [http://cassandra.apache.org/doc/latest/cql/](http://cassandra.apache.org/doc/latest/cql/)).
 
 [^2]: As of the time of this publication, Clinical Quality Language has been adopted by the Centers for Medicare and Medicaid Services (CMS) for use in distributing electronic Clinical Quality Measure (eCQM) specifications, and is being investigated by multiple organizations for use in the representation and sharing of decision support. In addition, the language has been implemented in multiple commercial products and open source projects. See the [Reference Implementations](10-c-referenceimplementations.html) topic for more information on the adoption of Clinical Quality Language.
 
-[^3]: Note that ELM is unrelated to the similarly named _elm_ programming language (see http://elm-lang.org).
+[^3]: Note that ELM is unrelated to the similarly named _elm_ programming language (see [http://elm-lang.org](http://elm-lang.org)).
 
 ### Background
 
@@ -73,7 +73,7 @@ Using the framework of metadata, data model, and expression logic, the following
 
 <a name="figure-1-a"></a>
 <div>
-<img src="extracted-media/media/image2.jpeg" alt="CQF Value Statement Pic 20140410.jpg" width=720 height=400/>
+<img src="assets/images/image2.jpeg" alt="CQF Value Statement Pic 20140410.jpg" width=720 height=400/>
 </div>
 
 Figure 1‑A - The overall target specification areas involved in clinical quality artifact representation
@@ -114,7 +114,7 @@ This perspective defines a Unified Modeling Language (UML) model called the Expr
 
 <a name="figure-1-b"></a>
 <div>
-<img src="extracted-media/media/image3-1.png" alt="extracted-media/media/image3-1" width="626" height="430"/>
+<img src="assets/images/image3-1.png" alt="assets/images/image3-1" width="626" height="430"/>
 </div>
 
 Figure 1‑B - The steps performed by a traditional compiler
@@ -174,7 +174,7 @@ In particular, this specification enables the sharing use case by defining a hig
 
 <a name="figure-1-c"></a>
 <div>
-<img src="extracted-media/media/image4.png" alt="extracted-media/media/image4" width="626" height="382"/>
+<img src="assets/images/image4.png" alt="assets/images/image4" width="626" height="382"/>
 </div>
 
 Figure 1‑C - How the CQL and ELM specifications will be used in the sharing use case

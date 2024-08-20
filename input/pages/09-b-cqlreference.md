@@ -6,13 +6,13 @@ For each type, the definition and semantics are provided. Note that because CQL 
 
 For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the <span class="kw">and</span> operator is given as:
 
-``` cql
+```cql
 and(left Boolean, right Boolean) Boolean
 ```
 
 Even though <span class="kw">and</span> is an infix operator and would be invoked as in the following expression:
 
-``` cql
+```cql
 InDemographic and NeedsScreening
 ```
 
@@ -44,7 +44,7 @@ These formatting patterns are set in bold to distinguish them typographically fr
 
 **Definition:**
 
-``` cql
+```cql
 simple type Any
 ```
 
@@ -57,7 +57,7 @@ The <span class="id">Any</span> type is the maximal supertype in the CQL type sy
 
 **Definition:**
 
-``` cql
+```cql
 simple type Boolean
 ```
 
@@ -65,14 +65,14 @@ simple type Boolean
 
 The <span class="id">Boolean</span> type represents the logical boolean values <span class="kw">true</span> and <span class="kw">false</span>. The result of logical operations within CQL use the <span class="id">Boolean</span> type, and constructs within the language that expect a conditional result, such as a where clause or conditional expression, expect results of the <span class="id">Boolean</span> type.
 
-For more information, see the [Logical Operators](#Logical Operators) section.
+For more information, see the [Logical Operators](#logical-operators) section.
 
 {: #code-1}
 #### Code
 
 **Definition:**
 
-``` cql
+```cql
 structured type Code
 {
   code String,
@@ -93,7 +93,7 @@ The <span class="id">Code</span> type represents single terminology codes within
 
 **Definition:**
 
-``` cql
+```cql
 structured type CodeSystem : Vocabulary
 {
   id String, // inherited
@@ -113,7 +113,7 @@ The <span class="id">name</span> element is provided to support additional run-t
 
 **Definition:**
 
-``` cql
+```cql
 structured type Concept
 {
   codes List<Code>,
@@ -129,7 +129,7 @@ The <span class="id">Concept</span> type represents a single terminological conc
 
 **Definition:**
 
-``` cql
+```cql
 simple type Date
 ```
 
@@ -145,7 +145,7 @@ CQL also supports partial date values. For example, the date <span class="lit">@
 
 **Definition:**
 
-``` cql
+```cql
 simple type DateTime
 ```
 
@@ -164,7 +164,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 **Definition:**
 
-``` cql
+```cql
 simple type Decimal
 ```
 
@@ -187,7 +187,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 
 **Definition:**
 
-``` cql
+```cql
 simple type Long
 ```
 
@@ -202,7 +202,7 @@ CQL supports long values in the range -2<sup>63</sup> to 2<sup>63</sup>-1 with a
 
 **Definition:**
 
-``` cql
+```cql
 simple type Integer
 ```
 
@@ -216,7 +216,7 @@ CQL supports integer values in the range -2<sup>31</sup> to 2<sup>31</sup>-1 wit
 
 **Definition:**
 
-``` cql
+```cql
 structured type Quantity
 {
   value Decimal
@@ -232,7 +232,7 @@ The <span class="id">Quantity</span> type represents quantities with a specified
 
 **Definition:**
 
-``` cql
+```cql
 structured type Ratio
 {
   numerator Quantity
@@ -249,7 +249,7 @@ The <span class="id">Ratio</span> type represents a relationship between two qua
 
 **Definition:**
 
-``` cql
+```cql
 simple type String
 ```
 
@@ -264,13 +264,13 @@ For string literals, CQL uses standard escape sequences:
 
 |Escape |Character
 |----|----
-|\' |Single-quote
-|\" |Double-quote
+|\\' |Single-quote
+|\\" |Double-quote
 |\r |Carriage Return
 |\n |Line Feed
 |\t |Tab
 |\f |Form Feed
-|\\ |Backslash
+|\\\\ |Backslash
 |\uXXXX |Unicode character, where XXXX is the hexadecimal representation of the character
 {: .grid .table .table-striped}
 
@@ -278,7 +278,7 @@ For string literals, CQL uses standard escape sequences:
 
 **Definition:**
 
-``` cql
+```cql
 simple type Time
 ```
 
@@ -299,7 +299,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 **Definition:**
 
-``` cql
+```cql
 structured type ValueSet : Vocabulary
 {
   id String, // inherited
@@ -324,7 +324,7 @@ The <span class="id">codesystems</span> element is used to capture code system v
 
 **Definition:**
 
-``` cql
+```cql
 structured type Vocabulary
 {
   id String,
@@ -348,7 +348,7 @@ The <span class="id">name</span> element is provided to support additional run-t
 
 **Signature:**
 
-``` cql
+```cql
 and (left Boolean, right Boolean) Boolean
 ```
 
@@ -373,7 +373,7 @@ Table 9‑A - The truth table for the <span class="kw">And</span> operator
 
 The following examples illustrate the behavior of the <span class="kw">and</span> operator:
 
-``` cql
+```cql
 define "IsTrue": true and true
 define "IsFalse": true and false
 define "IsAlsoFalse": false and null
@@ -386,7 +386,7 @@ Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
 **Signature:**
 
-``` cql
+```cql
 implies (left Boolean, right Boolean) Boolean
 ```
 
@@ -413,7 +413,7 @@ Table 9‑A1 - The truth table for the <span class="kw">Implies</span> operator
 
 The following examples illustrate the behavior of the <span class="kw">implies</span> operator:
 
-``` cql
+```cql
 define "IsTrue": false implies false
 define "IsAlsoTrue": false implies null
 define "IsFalse": true implies false
@@ -424,7 +424,7 @@ define "IsNull": true implies null
 
 **Signature:**
 
-``` cql
+```cql
 not (argument Boolean) Boolean
 ```
 
@@ -447,7 +447,7 @@ Table 9‑B - The truth table for the <span class="kw">Not</span> operator
 
 The following examples illustrate the behavior of the <span class="kw">not</span> operator:
 
-``` cql
+```cql
 define "IsTrue": not false
 define "IsFalse": not true
 define "IsNull": not null
@@ -457,7 +457,7 @@ define "IsNull": not null
 
 **Signature:**
 
-``` cql
+```cql
 or (left Boolean, right Boolean) Boolean
 ```
 
@@ -482,7 +482,7 @@ Table 9‑C - The truth table for the <span class="kw">Or</span> operator
 
 The following examples illustrate the behavior of the <span class="kw">or</span> operator:
 
-``` cql
+```cql
 define "IsTrue": true or false
 define "IsAlsoTrue": true or null
 define "IsFalse": false or false
@@ -495,7 +495,7 @@ Note that CQL does not prescribe short-circuit evaluation of logical operators.
 
 **Signature:**
 
-``` cql
+```cql
 xor (left Boolean, right Boolean) Boolean
 ```
 
@@ -518,7 +518,7 @@ Table 9‑D - The truth table for the <span class="kw">Xor</span> operator
 
 The following examples illustrate the behavior of the <span class="kw">xor</span> operator:
 
-``` cql
+```cql
 define "IsTrue": true xor false
 define "IsAlsoTrue": false xor true
 define "IsFalse": true xor true
@@ -532,7 +532,7 @@ define "IsNull": true xor null
 
 **Signature:**
 
-``` cql
+```cql
 as<T>(argument Any) T
 cast as<T>(argument Any) T
 ```
@@ -549,7 +549,7 @@ The <span class="kw">cast</span> prefix indicates that if the argument is not of
 
 The following examples illustrate the use of the <span class="kw">as</span> operator.
 
-``` cql
+```cql
 define "AllProcedures": [Procedure]
 
 define "ImagingProcedures":
@@ -566,7 +566,7 @@ define "RuntimeError":
 
 **Signature:**
 
-``` cql
+```cql
 Children(argument Any) List<Any>
 ```
 
@@ -582,7 +582,7 @@ If the source is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 convert to<T>(argument Any) T
 ```
 
@@ -619,7 +619,7 @@ For conversions between dates, times, and string values, ISO-8601 standard forma
 
 For example, the following are valid string representations for date and time values:
 
-``` cql
+```cql
 '2014-01-01T14:30:00.0Z' // January 1st, 2014, 2:30PM UTC
 '2014-01-01T14:30:00.0-07:00' // January 1st, 2014, 2:30PM Mountain Standard (GMT-7:00)
 'T14:30:00.0Z' // 2:30PM UTC
@@ -632,7 +632,7 @@ For specific semantics for each conversion, refer to the [explicit conversion](0
 
 **Signature:**
 
-``` cql
+```cql
 Descendents(argument Any) List<Any>
 ```
 
@@ -648,7 +648,7 @@ If the source is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 is<T>(argument Any) Boolean
 ```
 
@@ -658,7 +658,7 @@ The <span class="kw">is</span> operator allows the type of a result to be tested
 
 The following examples illustrate the behavior of the <span class="kw">is</span> operator:
 
-``` cql
+```cql
 define "IsTrue": 5 is Integer
 define "IsFalse": '5' is Integer
 ```
@@ -667,7 +667,7 @@ define "IsFalse": '5' is Integer
 
 **Signature:**
 
-``` cql
+```cql
 CanConvertQuantity(argument Quantity, unit String)
 ```
 
@@ -684,7 +684,7 @@ If either argument is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 convert <quantity> to <unit>
 ConvertQuantity(argument Quantity, unit String)
 ```
@@ -696,7 +696,7 @@ The ConvertQuantity operator converts a Quantity to an equivalent Quantity with 
 
 If either argument is null, the result is null.
 
-``` cql
+```cql
 define "ConvertQuantity": ConvertQuantity(5 'mg', 'g')
 define "ConvertSyntax": convert 5 'mg' to 'g'
 ```
@@ -705,13 +705,13 @@ define "ConvertSyntax": convert 5 'mg' to 'g'
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToBoolean(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToBoolean</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Boolean</span> value. See the <span class="id">[ToBoolean](#ToBoolean)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToBoolean</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Boolean</span> value. See the <span class="id">[ToBoolean](#toboolean)</span> operator for a description of the supported conversions.
 
 If the input cannot be interpreted as a valid <span class="id">Boolean</span> value, the result is <span class="kw">false</span>.
 
@@ -721,13 +721,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToDate(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToDate</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Date</span> value. See the <span class="id">[ToDate](#ToDate)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToDate</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Date</span> value. See the <span class="id">[ToDate](#todate)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid date value, the result is <span class="kw">false</span>.
 
@@ -739,13 +739,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToDateTime(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToDateTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">DateTime</span> value. See the <span class="id">[ToDateTime](#ToDateTime)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToDateTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">DateTime</span> value. See the <span class="id">[ToDateTime](#todatetime)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid DateTime value, the result is <span class="kw">false</span>.
 
@@ -757,13 +757,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToDecimal(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ToDecimal</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Decimal</span> value. See the <span class="id">[ToDecimal](#ToDecimal)</span> operator for a description of the supported conversions.
+The <span class="id">ToDecimal</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Decimal</span> value. See the <span class="id">[ToDecimal](#todecimal)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Decimal</span> value, the result is <span class="kw">false</span>.
 
@@ -776,13 +776,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToLong(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToLong</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Long</span> value. See the <span class="id">[ToLong](#ToLong)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToLong</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Long</span> value. See the <span class="id">[ToLong](#tolong)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Long</span> value, the result is <span class="kw">false</span>.
 
@@ -790,7 +790,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToInteger(argument Any) Boolean
 ```
 
@@ -799,7 +799,7 @@ ConvertsToInteger(argument Any) Boolean
 
 **Description:**
 
-The <span class="id">ConvertsToInteger</span> operator returns <span class="kw">true</span> if its argument is or can be converted to an <span class="id">Integer</span> value. See the <span class="id">[ToInteger](#ToInteger)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToInteger</span> operator returns <span class="kw">true</span> if its argument is or can be converted to an <span class="id">Integer</span> value. See the <span class="id">[ToInteger](#tointeger)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Integer</span> value, the result is <span class="kw">false</span>.
 
@@ -809,13 +809,13 @@ If the input is a <span class="id">Long</span> value, the result is <span class=
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToQuantity(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToQuantity</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Quantity</span> value. See the <span class="id">[ToQuantity](#ToQuantity)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToQuantity</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Quantity</span> value. See the <span class="id">[ToQuantity](#toquantity)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Quantity</span> value, the result is <span class="kw">false</span>.
 
@@ -825,13 +825,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToRatio(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToRatio</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Ratio</span> value. See the <span class="id">[ToRatio](#ToRatio)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToRatio</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Ratio</span> value. See the <span class="id">[ToRatio](#toratio)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Ratio</span> value, the result is <span class="kw">false</span>.
 
@@ -841,7 +841,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToString(argument Any) Boolean
 ```
 
@@ -850,7 +850,7 @@ ConvertsToString(argument Any) Boolean
 
 **Description:**
 
-The <span class="id">ConvertsToString</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">String</span> value. See the <span class="id">[ToString](#ToString)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToString</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">String</span> value. See the <span class="id">[ToString](#tostring)</span> operator for a description of the supported conversions.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -858,13 +858,13 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ConvertsToTime(argument Any) Boolean
 ```
 
 **Description:**
 
-The <span class="id">ConvertsToTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Time</span> value. See the <span class="id">[ToTime](#ToTime)</span> operator for a description of the supported conversions.
+The <span class="id">ConvertsToTime</span> operator returns <span class="kw">true</span> if its argument is or can be converted to a <span class="id">Time</span> value. See the <span class="id">[ToTime](#totime)</span> operator for a description of the supported conversions.
 
 If the input string is not formatted correctly, or does not represent a valid time-of-day value, the result is <span class="kw">false</span>.
 
@@ -874,7 +874,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ToBoolean(argument Decimal) Boolean
 ToBoolean(argument Long) Boolean
 ToBoolean(argument Integer) Boolean
@@ -907,7 +907,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToBoolean</span> operator:
 
-``` cql
+```cql
 define "IsTrue": ToBoolean('y')
 define "IsFalse": ToBoolean('0')
 define "IsNull": ToBoolean('falsetto')
@@ -917,7 +917,7 @@ define "IsNull": ToBoolean('falsetto')
 
 **Signature:**
 
-``` cql
+```cql
 ToConcept(argument Code) Concept
 ToConcept(argument List<Code>) Concept
 ```
@@ -932,7 +932,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToConcept</span> operator:
 
-``` cql
+```cql
 define "IsValid": ToConcept(Code { system: 'http://loinc.org', code: '8480-6' }) // Concept { codes: { Code { system: 'http://loinc.org', code: '8480-6' } } }
 define "IsNull": ToConcept(null as Code)
 ```
@@ -941,7 +941,7 @@ define "IsNull": ToConcept(null as Code)
 
 **Signature:**
 
-``` cql
+```cql
 ToDate(argument DateTime) Date
 ToDate(argument String) Date
 ```
@@ -964,7 +964,7 @@ Note that the operator can take datetime formatted strings and will ignore the t
 
 For example, the following are valid string representations for date values:
 
-``` cql
+```cql
 '2014-01' // January, 2014
 '2014-01-01' // January 1st, 2014
 '2014-01-01T12:30:00' // Still January 1st, 2014, time portion will be ignored
@@ -980,7 +980,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ToDateTime(argument Date) DateTime
 ToDateTime(argument String) DateTime
 ```
@@ -999,7 +999,7 @@ In addition, the string must be interpretable as a valid DateTime value.
 
 For example, the following are valid string representations for DateTime values:
 
-``` cql
+```cql
 '2014-01-01' // January 1st, 2014
 '2014-01-01T14:30:00.0Z' // January 1st, 2014, 2:30PM UTC
 '2014-01-01T14:30:00.0-07:00' // January 1st, 2014, 2:30PM Mountain Standard (GMT-7:00)
@@ -1017,7 +1017,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 ToDecimal(argument Boolean) Decimal
 ToDecimal(argument String) Decimal
 ```
@@ -1042,7 +1042,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToDecimal</span> operator:
 
-``` cql
+```cql
 define "IsValid": ToDecimal('-0.1')
 define "IsNull": ToDecimal('+-0.1')
 ```
@@ -1054,7 +1054,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 **Signature:**
 
-``` cql
+```cql
 ToLong(argument Boolean) Long
 ToLong(argument Integer) Long
 ToLong(argument String) Long
@@ -1078,7 +1078,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToLong</span> operator:
 
-``` cql
+```cql
 define "IsValid": ToLong('-1')
 define "IsNull": ToLong('one')
 ```
@@ -1087,7 +1087,7 @@ define "IsNull": ToLong('one')
 
 **Signature:**
 
-``` cql
+```cql
 ToInteger(argument Boolean) Integer
 ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
@@ -1118,7 +1118,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToInteger</span> operator:
 
-``` cql
+```cql
 define "IsValid": ToInteger('-1')
 define "IsNull": ToInteger('one')
 ```
@@ -1127,7 +1127,7 @@ define "IsNull": ToInteger('one')
 
 **Signature:**
 
-``` cql
+```cql
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
 ToQuantity(argument Ratio) Quantity
@@ -1140,7 +1140,7 @@ The <span class="id">ToQuantity</span> operator converts the value of its argume
 
 For the <span class="id">String</span> overload, the operator accepts strings using the following format:
 
-**(+\|-)?\#0(.0#)?('<unit>')?**
+**(+\|-)?\#0(.0#)?('\<unit>')?**
 
 Meaning an optional polarity indicator, followed by any number of digits (including none) followed by at least one digit, optionally followed by a decimal point, at least one digit, and any number of additional digits, all optionally followed by a unit designator as a string literal specifying a valid, case-sensitive UCUM unit of measure or calendar duration keyword, singular or plural. Spaces are allowed between the quantity value and the unit designator.
 
@@ -1158,7 +1158,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToQuantity</span> operator:
 
-``` cql
+```cql
 define "DecimalOverload": ToQuantity(0.1) // 0.1 '1'
 define "IntegerOverload": ToQuantity(13) // 13 '1'
 define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
@@ -1169,7 +1169,7 @@ define "IsNull": ToQuantity('444 \'cm')
 
 **Signature:**
 
-``` cql
+```cql
 ToRatio(argument String) Ratio
 ```
 
@@ -1177,9 +1177,9 @@ ToRatio(argument String) Ratio
 
 The <span class="id">ToRatio</span> operator converts the value of its argument to a <span class="id">Ratio</span> value. The operator accepts strings using the following format:
 
-**<quantity>:<quantity>**
+**\<quantity>:\<quantity>**
 
-where <quantity> is the format used to by the <span class="id">ToQuantity</span> operator.
+where \<quantity> is the format used to by the <span class="id">ToQuantity</span> operator.
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Ratio</span> value, the result is <span class="kw">null</span>.
 
@@ -1187,7 +1187,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToRatio</span> operator:
 
-``` cql
+```cql
 define "IsValid": ToRatio('1.0 \'mg\':2.0 \'mg\'')
 define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 ```
@@ -1196,7 +1196,7 @@ define "IsNull": ToRatio('1.0 \'mg\';2.0 \'mg\'')
 
 **Signature:**
 
-``` cql
+```cql
 ToString(argument Boolean) String
 ToString(argument Integer) String
 ToString(argument Long) String
@@ -1240,7 +1240,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ToString</span> operator:
 
-``` cql
+```cql
 define "BooleanOverload": ToString(true)
 define "IntegerOverload": ToString(13)
 define "LongOverload": ToString(10000L)
@@ -1257,7 +1257,7 @@ define "IsNull": ToString(null as Integer)
 
 **Signature:**
 
-``` cql
+```cql
 ToTime(argument String) Time
 ```
 
@@ -1273,7 +1273,7 @@ In addition, the string must be interpretable as a valid time-of-day value.
 
 For example, the following are valid string representations for time-of-day values:
 
-``` cql
+```cql
 '14:30:00.0' // 2:30PM
 ```
 
@@ -1290,7 +1290,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 **Signature:**
 
-``` cql
+```cql
 Coalesce<T>(argument1 T, argument2 T) T
 Coalesce<T>(argument1 T, argument2 T, argument3 T) T
 Coalesce<T>(argument1 T, argument2 T, argument3 T, argument4 T) T
@@ -1306,7 +1306,7 @@ The static type of the first argument determines the type of the result, and all
 
 The following examples illustrate the behavior of the <span class="id">Coalesce</span> operator:
 
-``` cql
+```cql
 define "Coalesce15": Coalesce(null, 15, null)
 define "IsNull": Coalesce({ null, null, null })
 define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 5 inputs must be represented as list
@@ -1316,7 +1316,7 @@ define "CoalesceError": Coalesce(null, 15, null, null, null, null) // more than 
 
 **Signature:**
 
-``` cql
+```cql
 is null(argument Any) Boolean
 ```
 
@@ -1326,7 +1326,7 @@ The <span class="kw">is null</span> operator determines whether or not its argum
 
 The following examples illustrate the behavior of the <span class="kw">is null</span> operator:
 
-``` cql
+```cql
 define "IsTrue": null is null
 define "IsFalse": true is null
 ```
@@ -1335,7 +1335,7 @@ define "IsFalse": true is null
 
 **Signature:**
 
-``` cql
+```cql
 is false(argument Boolean) Boolean
 ```
 
@@ -1345,7 +1345,7 @@ The <span class="kw">is false</span> operator determines whether or not its argu
 
 The following examples illustrate the behavior of the <span class="kw">is false</span> operator:
 
-``` cql
+```cql
 define "IsFalseIsTrue": false is false
 define "IsFalseIsFalse": null is false
 ```
@@ -1354,7 +1354,7 @@ define "IsFalseIsFalse": null is false
 
 **Signature:**
 
-``` cql
+```cql
 is true(argument Boolean) Boolean
 ```
 
@@ -1364,7 +1364,7 @@ The <span class="kw">is true</span> operator determines whether or not its argum
 
 The following examples illustrate the behavior of the <span class="kw">is true</span> operator:
 
-``` cql
+```cql
 define "IsTrueIsTrue": true is true
 define "IsTrueIsFalse": false is true
 ```
@@ -1376,7 +1376,7 @@ define "IsTrueIsFalse": false is true
 
 **Signature:**
 
-``` cql
+```cql
 between(argument Integer, low Integer, high Integer) Boolean
 between(argument Long, low Long, high Long) Boolean
 between(argument Decimal, low Decimal, high Decimal) Boolean
@@ -1399,7 +1399,7 @@ For comparisons involving quantities, the dimensions of each quantity must be th
 
 For comparisons involving Date, DateTime, or Time values with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison. For example:
 
-``` cql
+```cql
 define "DateTimeBetweenIsNull": @2012-01-01 between @2012-01-01T12 and @2012-01-02T12
 ```
 
@@ -1411,7 +1411,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 When the first argument to a between is an interval, the operator is a synonym for the [during (or included in)](#included-in) operator, using the first argument and an inclusive interval constructed from the second and third arguments. For example:
 
-``` cql
+```cql
 define "Retinal Exam in Measurement Period or Year Prior":
   ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
     where RetinalExam.relevantPeriod between start of "Measurement Period" - 1 year and end of "Measurement Period"
@@ -1419,7 +1419,7 @@ define "Retinal Exam in Measurement Period or Year Prior":
 
 is equivalent to:
 
-``` cql
+```cql
 define "Retinal Exam in Measurement Period or Year Prior":
   ["Physical Exam, Performed": "Retinal or Dilated Eye Exam"] RetinalExam
     where RetinalExam.relevantPeriod during Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"]
@@ -1429,7 +1429,7 @@ If any argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="kw">between</span> operator:
 
-``` cql
+```cql
 define "IntegerBetweenIsTrue": 4 between 2 and 6
 define "LongBetweenIsTrue": 4L between 2L and 6L
 define "DecimalBetweenIsFalse": 3.5 between 3.6 and 4.8
@@ -1440,7 +1440,7 @@ define "QuantityBetweenIsNull": 3.5 'cm2' between 3.0 'cm' and 4.8 'cm'
 
 **Signature:**
 
-``` cql
+```cql
 =<T>(left T, right T) Boolean
 ```
 
@@ -1458,7 +1458,7 @@ For quantities, this means that the dimensions of each quantity must be the same
 
 For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
 
-``` cql
+```cql
 1 year = 12 months
 1 week = 7 days
 1 day = 24 hours
@@ -1483,7 +1483,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-``` cql
+```cql
 define "IntegerEqualIsTrue": 4 = (2 + 2)
 define "LongEqualIsTrue": 4L = (2L + 2L)
 define "DecimalEqualIsFalse": 3.5 = (3.5 - 0.1)
@@ -1500,7 +1500,7 @@ define "NullEqualIsNull": null = null
 
 **Signature:**
 
-``` cql
+```cql
 ~<T>(left T, right T) Boolean
 ```
 
@@ -1518,7 +1518,7 @@ For quantities, equivalent means the values are the same quantity when consideri
 
 For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are considered equivalent to their calendar duration counterparts:
 
-``` cql
+```cql
 1 year ~ 1 'a'
 1 month ~ 1 'mo'
 1 week = 1 'wk' // and 1 week ~ 1 'wk'
@@ -1531,7 +1531,7 @@ For time-valued quantities, UCUM definite-time duration quantities above days (a
 
 Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
 
-``` cql
+```cql
 1 year ~ 12 months
 1 year ~ 365 days
 1 month ~ 30 days
@@ -1560,7 +1560,7 @@ Note that this operator will always return <span class="kw">true</span> or <span
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-``` cql
+```cql
 define "IntegerEquivalentIsTrue": 4 ~ (2 + 2)
 define "LongEquivalentIsTrue": 4L ~ (2L + 2L)
 define "DecimalEquivalentIsFalse": 3.5 ~ (3.5 - 0.1)
@@ -1576,7 +1576,7 @@ define "NullEquivalentIsTrue": null ~ null
 
 **Signature:**
 
-``` cql
+```cql
 >(left Integer, right Integer) Boolean
 >(left Long, right Long) Boolean
 >(left Decimal, right Decimal) Boolean
@@ -1602,7 +1602,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">false</span>. For example:
 
-``` cql
+```cql
 define "DateTimeGreaterIsNull": @2012-01-01 > @2012-01-01T12
 ```
 
@@ -1614,7 +1614,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _greater_ operator:
 
-``` cql
+```cql
 define "IntegerGreaterIsTrue": 4 > 3
 define "LongGreaterIsTrue": 4L > 3L
 define "DecimalGreaterIsFalse": 3.5 > 3.5
@@ -1630,7 +1630,7 @@ define "NullGreaterIsNull": null > 5
 
 **Signature:**
 
-``` cql
+```cql
 >=(left Integer, right Integer) Boolean
 >=(left Long, right Long) Boolean
 >=(left Decimal, right Decimal) Boolean
@@ -1656,7 +1656,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">true</span>. For example:
 
-``` cql
+```cql
 define "DateTimeGreaterOrEqualIsNull": @2012-01-01 >= @2012-01-01T12
 ```
 
@@ -1666,7 +1666,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _greater or equal_ operator:
 
-``` cql
+```cql
 define "IntegerGreaterOrEqualIsTrue": 4 >= (2 + 2)
 define "LongGreaterOrEqualIsTrue": 4L >= (2L + 2L)
 define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)
@@ -1681,7 +1681,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 
 **Signature:**
 
-``` cql
+```cql
 <(left Integer, right Integer) Boolean
 <(left Long, right Long) Boolean
 <(left Decimal, right Decimal) Boolean
@@ -1697,7 +1697,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 
 **Description:**
 
-The _less_ (<span class="sym">\<</span>) operator returns <span class="kw">true</span> if the first argument is less than the second argument.
+The _less_ (<span class="sym">&lt;</span>) operator returns <span class="kw">true</span> if the first argument is less than the second argument.
 
 String comparisons are strictly lexical based on the Unicode value of the individual characters in the string.
 
@@ -1707,7 +1707,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">false</span>. For example:
 
-``` cql
+```cql
 define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12
 ```
 
@@ -1717,7 +1717,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _less_ operator:
 
-``` cql
+```cql
 define "IntegerLessIsTrue": 4 < (2 + 2 + 2)
 define "LongLessIsTrue": 4L < (2L + 2L + 2L)
 define "DecimalLessIsFalse": 3.5 < 3.5
@@ -1733,7 +1733,7 @@ define "NullLessIsNull": null < 5
 
 **Signature:**
 
-``` cql
+```cql
 <=(left Integer, right Integer) Boolean
 <=(left Long, right Long) Boolean
 <=(left Decimal, right Decimal) Boolean
@@ -1759,7 +1759,7 @@ For time-valued quantities, the UCUM definite-quantity durations above days (and
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">true</span>. For example:
 
-``` cql
+```cql
 define "DateTimeLessOrEqualIsNull": @2012-01-01 <= @2012-01-01T12
 ```
 
@@ -1769,7 +1769,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _less or equal_ operator:
 
-``` cql
+```cql
 define "IntegerLessOrEqualIsTrue": 4 <= (2 + 2)
 define "LongLessOrEqualIsTrue": 4L <= (2L + 2L)
 define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)
@@ -1784,7 +1784,7 @@ define "NullLessOrEqualIsNull": null <= 5
 
 **Signature:**
 
-``` cql
+```cql
 !=<T>(left T, right T) Boolean
 ```
 
@@ -1796,7 +1796,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation (<spa
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-``` cql
+```cql
 define "IntegerNotEqualIsFalse": 4 != (2 + 2)
 define "LongNotEqualIsFalse": 4L != (2L + 2L)
 define "DecimalNotEqualIsTrue": 3.5 != (3.5 - 0.1)
@@ -1811,7 +1811,7 @@ define "NullNotEqualIsNull": null != null
 
 **Signature:**
 
-``` cql
+```cql
 !~<T>(left T, right T) Boolean
 ```
 
@@ -1823,7 +1823,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-``` cql
+```cql
 define "IntegerNotEquivalentIsFalse": 4 !~ (2 + 2)
 define "LongNotEquivalentIsFalse": 4L !~ (2L + 2L)
 define "DecimalNotEquivalentIsTrue": 3.5 !~ (3.5 - 0.1)
@@ -1843,7 +1843,7 @@ The arithmetic operators provide a complete set of operations for performing ari
 
 **Signature:**
 
-``` cql
+```cql
 Abs(argument Integer) Integer
 Abs(argument Long) Long
 Abs(argument Decimal) Decimal
@@ -1865,7 +1865,7 @@ If the result of taking the absolute value of the input cannot be represented (e
 
 The following examples illustrate the behavior of the <span class="id">Abs</span> operator:
 
-``` cql
+```cql
 define "IntegerAbs": Abs(-5) // 5
 define "IntegerAbsIsNull": Abs(null as Integer)
 define "LongAbs": Abs(-5000000L) // 5000000L
@@ -1877,7 +1877,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 
 **Signature:**
 
-``` cql
+```cql
 +(left Integer, right Integer) Integer
 +(left Long, right Long) Long
 +(left Decimal, right Decimal) Decimal
@@ -1905,7 +1905,7 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 
 The following examples illustrate the behavior of the _add_ operator:
 
-``` cql
+```cql
 define "IntegerAdd": 2 + 2 // 4
 define "IntegerAddIsNull": 2 + null
 define "LongAdd": 25L + 5 // 30L
@@ -1918,7 +1918,7 @@ define "QuantityAddIsNull": -5.5 'cm' + 2 'cm2'
 
 **Signature:**
 
-``` cql
+```cql
 Ceiling(argument Decimal) Integer
 ```
 
@@ -1932,7 +1932,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Ceiling</span> operator:
 
-``` cql
+```cql
 define "IntegerCeiling": Ceiling(1) // 1
 define "DecimalCeiling": Ceiling(1.1) // 2
 define "QuantityCeilingIsNull": Ceiling(null as Decimal)
@@ -1942,7 +1942,7 @@ define "QuantityCeilingIsNull": Ceiling(null as Decimal)
 
 **Signature:**
 
-``` cql
+```cql
 /(left Decimal, right Decimal) Decimal
 /(left Quantity, right Quantity) Quantity
 ```
@@ -1957,7 +1957,7 @@ When invoked with a mixture of <span class="id">Decimal</span> and <span class="
 
 For division operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
-``` cql
+```cql
 12 'cm2' / 3 'cm'
 ```
 
@@ -1969,7 +1969,7 @@ If the result of the division cannot be represented, or the right argument is 0,
 
 The following examples illustrate the behavior of the _divide_ operator:
 
-``` cql
+```cql
 define "IntegerDivide": 4.0 / 2 // 2.0
 define "LongDivide": 4.0 / 2L // 2.0
 define "DecimalDivide": 9.9 / 3.0 // 3.3
@@ -1982,7 +1982,7 @@ define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 
 **Signature:**
 
-``` cql
+```cql
 Floor(argument Decimal) Integer
 ```
 
@@ -1996,7 +1996,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Floor</span> operator:
 
-``` cql
+```cql
 define "IntegerFloor": Floor(1) // 1
 define "DecimalFloor": Floor(2.1) // 2
 define "QuantityFloorIsNull": Floor(null as Decimal)
@@ -2006,7 +2006,7 @@ define "QuantityFloorIsNull": Floor(null as Decimal)
 
 **Signature:**
 
-``` cql
+```cql
 Exp(argument Decimal) Decimal
 ```
 
@@ -2022,7 +2022,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="id">Exp</span> operator:
 
-``` cql
+```cql
 define "IntegerExp": Exp(0) // 1.0
 define "LongExp": Exp(0L) // 1.0
 define "DecimalExp": Exp(-0.0) // 1.0
@@ -2033,7 +2033,7 @@ define "QuantityExpIsNull": Exp(null as Decimal)
 
 **Signature:**
 
-``` cql
+```cql
 HighBoundary(input Decimal, precision Integer) Decimal
 HighBoundary(input Date, precision Integer) Date
 HighBoundary(input DateTime, precision Integer) DateTime
@@ -2050,7 +2050,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The function can be used with Decimal, Date, DateTime, and Time values.
 
-``` cql
+```cql
 HighBoundary(1.587, 8) // 1.58799999
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
@@ -2063,7 +2063,7 @@ If the input value is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 Log(argument Decimal, base Decimal) Decimal
 ```
 
@@ -2079,7 +2079,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="id">Log</span> operator:
 
-``` cql
+```cql
 define "IntegerLog": Log(16, 2) // 4.0
 define "LongLog": Log(16L, 2L) // 4.0
 define "DecimalLog": Log(100.0, 10.0) // 2.0
@@ -2090,7 +2090,7 @@ define "QuantityLogIsNull": Log(null, 10.0)
 
 **Signature:**
 
-``` cql
+```cql
 LowBoundary(input Decimal, precision Integer) Decimal
 LowBoundary(input Date, precision Integer) Date
 LowBoundary(input DateTime, precision Integer) DateTime
@@ -2107,7 +2107,7 @@ If the precision is greater than the maximum possible precision of the implement
 
 The function can be used with Decimal, Date, DateTime, and Time values.
 
-``` cql
+```cql
 LowBoundary(1.587, 8) // 1.58700000
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
@@ -2120,7 +2120,7 @@ If the input value is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 Ln(argument Decimal) Decimal
 ```
 
@@ -2136,7 +2136,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="id">Ln</span> operator:
 
-``` cql
+```cql
 define "IntegerLn": Ln(1) // 0.0
 define "LongLn": Ln(1L) // 0.0
 define "DecimalLn": Ln(1.0) // 0.0
@@ -2147,7 +2147,7 @@ define "QuantityLnIsNull": Ln(null as Decimal)
 
 **Signature:**
 
-``` cql
+```cql
 maximum<T>() T
 ```
 
@@ -2181,7 +2181,7 @@ For any other type, attempting to invoke <span class="kw">maximum</span> results
 
 The following examples illustrate the behavior of the <span class="kw">maximum</span> operator:
 
-``` cql
+```cql
 define "IntegerMaximum": maximum Integer // 2147483647
 define "LongMaximum": maximum Long // 9223372036854775807
 define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999
@@ -2192,7 +2192,7 @@ define "ErrorMaximum": maximum Quantity
 
 **Signature:**
 
-``` cql
+```cql
 minimum<T>() T
 ```
 
@@ -2226,7 +2226,7 @@ For any other type, attempting to invoke <span class="kw">minimum</span> results
 
 The following examples illustrate the behavior of the <span class="kw">minimum</span> operator:
 
-``` cql
+```cql
 define "IntegerMinimum": minimum Integer // -2147483648
 define "LongMinimum": minimum Long // -9223372036854775808
 define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000
@@ -2237,7 +2237,7 @@ define "ErrorMinimum": minimum Quantity
 
 **Signature:**
 
-``` cql
+```cql
 mod(left Integer, right Integer) Integer
 mod(left Long, right Long) Long
 mod(left Decimal, right Decimal) Decimal
@@ -2266,7 +2266,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The following examples illustrate the behavior of the <span class="kw">mod</span> operator:
 
-``` cql
+```cql
 define "IntegerModulo": 3 mod 2 // 1
 define "LongModulo": 3L mod 2 // 1L
 define "DecimalModulo": 2.5 mod 2 // 0.5
@@ -2277,7 +2277,7 @@ define "ModuloIsNull": 2.5 mod null
 
 **Signature:**
 
-``` cql
+```cql
 *(left Integer, right Integer) Integer
 *(left Long, right Long) Long
 *(left Decimal, right Decimal) Decimal
@@ -2299,7 +2299,7 @@ When invoked with mixed <span class="id">Decimal</span> and <span class="id">Qua
 
 For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
 
-``` cql
+```cql
 12 'cm' * 3 'cm'
 3 'cm' * 12 'cm2'
 ```
@@ -2314,7 +2314,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 **Signature:**
 
-``` cql
+```cql
 -(argument Integer) Integer
 -(argument Long) Long
 -(argument Decimal) Decimal
@@ -2336,7 +2336,7 @@ If the result of negating the argument cannot be represented (e.g. `-(minimum In
 
 The following examples illustrate the behavior of the _negate_ operator:
 
-``` cql
+```cql
 define "IntegerNegate": -3 // -3
 define "LongNegate": -3L // -3L
 define "DecimalNegate": -(-3.3) // 3.3
@@ -2348,7 +2348,7 @@ define "NegateIsNull": -(null as Integer)
 
 **Signature:**
 
-``` cql
+```cql
 Precision(argument Decimal) Integer
 Precision(argument Date) Integer
 Precision(argument DateTime) Integer
@@ -2363,13 +2363,13 @@ The function can be used with Decimal, Date, DateTime, and Time values.
 
 For Decimal values, the function returns the number of digits of precision after the decimal place in the input value.
 
-``` cql
+```cql
 Precision(1.58700) // 5
 ```
 
 For Date and DateTime values, the function returns the number of digits of precision in the input value.
 
-``` cql
+```cql
 Precision(@2014) // 4
 Precision(@2014-01-05T10:30:00.000) // 17
 Precision(@T10:30) // 4
@@ -2382,7 +2382,7 @@ If the argument is null, the result is null.
 
 **Signature:**
 
-``` cql
+```cql
 predecessor of<T>(argument T) T
 ```
 
@@ -2411,7 +2411,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="kw">predecessor</span> operator:
 
-``` cql
+```cql
 define "IntegerPredecessor": predecessor of 100 // 99
 define "LongPredecessor": predecessor of 100L // 99L
 define "DecimalPredecessor": predecessor of 1.0 // 0.99999999
@@ -2423,7 +2423,7 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 
 **Signature:**
 
-``` cql
+```cql
 ^(argument Integer, exponent Integer) Integer
 ^(argument Long, exponent Long) Long
 ^(argument Decimal, exponent Decimal) Decimal
@@ -2446,7 +2446,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the _power_ operator:
 
-``` cql
+```cql
 define "IntegerPower": 2^3 // 8
 define "IntegerPowerFun": Power(2, 3) // 8
 define "LongPower": 2L^3L // 8L
@@ -2458,7 +2458,7 @@ define "NegateIsNull": 2.5^null
 
 **Signature:**
 
-``` cql
+```cql
 Round(argument Decimal) Decimal
 Round(argument Decimal, precision Integer) Decimal
 ```
@@ -2475,7 +2475,7 @@ Precision determines the decimal place at which the rounding will occur. If prec
 
 The following examples illustrate the behavior of the <span class="id">Round</span> operator:
 
-``` cql
+```cql
 define "IntegerRound": Round(1) // 1
 define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null)
@@ -2485,7 +2485,7 @@ define "RoundIsNull": Round(null)
 
 **Signature:**
 
-``` cql
+```cql
 -(left Integer, right Integer) Integer
 -(left Long, right Long) Long
 -(left Decimal, right Decimal) Decimal
@@ -2511,7 +2511,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the _subtract_ operator:
 
-``` cql
+```cql
 define "IntegerSubtract": 2 - 1 // 1
 define "LongSubtract": 2L - 1L // 1L
 define "DecimalSubtract": 3.14 - 3.12 // 0.02
@@ -2524,7 +2524,7 @@ define "SubtractIsNull": 3 - null
 
 **Signature:**
 
-``` cql
+```cql
 successor of<T>(argument T) T
 ```
 
@@ -2553,7 +2553,7 @@ If the result of the operation cannot be represented, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="kw">successor</span> operator:
 
-``` cql
+```cql
 define "IntegerSuccessor": successor of 100 // 101
 define "LongSuccessor": successor of 100L // 101L
 define "DecimalSuccessor": successor of 1.0 // 1.00000001
@@ -2565,7 +2565,7 @@ define "SuccessorIsNull": successor of (null as Quantity)
 
 **Signature:**
 
-``` cql
+```cql
 Truncate(argument Decimal) Integer
 ```
 
@@ -2579,7 +2579,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Truncate</span> operator:
 
-``` cql
+```cql
 define "IntegerTruncate": Truncate(101) // 101
 define "DecimalTruncate": Truncate(1.00000001) // 1
 define "TruncateIsNull": Truncate(null)
@@ -2589,7 +2589,7 @@ define "TruncateIsNull": Truncate(null)
 
 **Signature:**
 
-``` cql
+```cql
 div(left Integer, right Integer) Integer
 div(left Decimal, right Decimal) Decimal
 div(left Long, right Long) Long
@@ -2618,7 +2618,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The following examples illustrate the behavior of the <span class="kw">div</span> operator:
 
-``` cql
+```cql
 define "IntegerTruncatedDivide": 4 div 2 // 2
 define "LongTruncatedDivide": 4L div 2L // 2L
 define "DecimalTruncatedDivide": 4.14 div 2.06 // 2
@@ -2632,7 +2632,7 @@ define "TruncatedDivideIsNull": 3 div null
 
 **Signature:**
 
-``` cql
+```cql
 Combine(source List<String>) String
 Combine(source List<String>, separator String) String
 ```
@@ -2647,7 +2647,7 @@ For consistency with aggregate operator behavior, null elements in the input lis
 
 The following examples illustrate the behavior of the <span class="id">Combine</span> operator:
 
-``` cql
+```cql
 define "CombineList": Combine({ 'A', 'B', 'C' }) // 'ABC'
 define "CombineWithSeparator": Combine({ 'A', 'B', 'C' }, ' ') // 'A B C'
 define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
@@ -2657,7 +2657,7 @@ define "CombineWithNulls": Combine({ 'A', 'B', 'C', null }) // 'ABC'
 
 **Signature:**
 
-``` cql
+```cql
 +(left String, right String) String
 &(left String, right String) String
 ```
@@ -2672,7 +2672,7 @@ When using <span class="sym">&</span>, <span class="kw">null</span> arguments ar
 
 The following examples illustrate the behavior of the _concatenate_ operator:
 
-``` cql
+```cql
 define "ConcatenatePlus": 'John' + ' Doe' // 'John Doe'
 define "ConcatenateAnd": 'John' & null & ' Doe' // 'John Doe'
 define "ConcatenateFunction": Concatenate('John', ' Doe') // 'John Doe'
@@ -2683,7 +2683,7 @@ define "ConcatenateIsNull": 'John' + null + 'Doe' // null
 
 **Signature:**
 
-``` cql
+```cql
 EndsWith(argument String, suffix String) Boolean
 ```
 
@@ -2697,7 +2697,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">EndsWith</span> operator:
 
-``` cql
+```cql
 define "EndsWithIsTrue": EndsWith('ABC', 'C') // true
 define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false
 define "EndsWithIsNull": EndsWith('ABC', null) // null
@@ -2707,7 +2707,7 @@ define "EndsWithIsNull": EndsWith('ABC', null) // null
 
 **Signature:**
 
-``` cql
+```cql
 [](argument String, index Integer) String
 ```
 
@@ -2723,7 +2723,7 @@ If the index is greater than the length of the string being indexed, the result 
 
 The following examples illustrate the behavior of the _indexer_ operator:
 
-``` cql
+```cql
 define "Indexer2": 'ABCDE'[2] // 'C'
 define "IndexerIsNull": 'ABCDE'[14] // null
 define "IndexerIsAlsoNull": 'ABCDE'[null] // null
@@ -2733,7 +2733,7 @@ define "IndexerIsAlsoNull": 'ABCDE'[null] // null
 
 **Signature:**
 
-``` cql
+```cql
 LastPositionOf(pattern String, argument String) Integer
 ```
 
@@ -2747,7 +2747,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">LastPositionOf</span> operator:
 
-``` cql
+```cql
 define "LastPositionOfFound": LastPositionOf('B', 'ABCDEDCBA') // 7
 define "LastPositionOfNotFound": LastPositionOf('XYZ', 'ABCDE') // -1
 define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
@@ -2757,7 +2757,7 @@ define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
 
 **Signature:**
 
-``` cql
+```cql
 Length(argument String) Integer
 ```
 
@@ -2769,7 +2769,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Length</span> operator:
 
-``` cql
+```cql
 define "Length14": Length('ABCDE') // 5
 define "LengthIsNull": Length(null as String) // null
 ```
@@ -2778,7 +2778,7 @@ define "LengthIsNull": Length(null as String) // null
 
 **Signature:**
 
-``` cql
+```cql
 Lower(argument String) String
 ```
 
@@ -2793,7 +2793,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Lower</span> operator:
 
-``` cql
+```cql
 define "LowerCQL": Lower('ABCDE') // 'abcde'
 define "LowerIsNull": Lower(null) // null
 ```
@@ -2802,7 +2802,7 @@ define "LowerIsNull": Lower(null) // null
 
 **Signature:**
 
-``` cql
+```cql
 Matches(argument String, pattern String) Boolean
 ```
 
@@ -2817,7 +2817,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">Matches</span> operator:
 
-``` cql
+```cql
 define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')
 define "MatchesFalse": Matches('1,2three', '\\w+')
 define "MatchesIsNull": Matches('12three', null)
@@ -2827,7 +2827,7 @@ define "MatchesIsNull": Matches('12three', null)
 
 **Signature:**
 
-``` cql
+```cql
 PositionOf(pattern String, argument String) Integer
 ```
 
@@ -2841,7 +2841,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">PositionOf</span> operator:
 
-``` cql
+```cql
 define "PositionOfFound": PositionOf('B', 'ABCDEDCBA') // 1
 define "PositionOfNotFound": PositionOf('Z', 'ABCDE') // -1
 define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
@@ -2851,7 +2851,7 @@ define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
 
 **Signature:**
 
-``` cql
+```cql
 Matches(argument String, pattern String, substitution String) String
 ```
 
@@ -2866,7 +2866,7 @@ If any argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">ReplaceMatches</span> operator:
 
-``` cql
+```cql
 define "ReplaceMatchesFound": ReplaceMatches('ABCDE', 'C', 'XYZ') // 'ABXYZDE'
 define "ReplaceMatchesNotFound": ReplaceMatches('ABCDE', 'XYZ', '123') // 'ABCDE'
 define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
@@ -2876,7 +2876,7 @@ define "ReplaceMatchesIsNull": ReplaceMatches('ABCDE', 'C', null) // null
 
 **Signature:**
 
-``` cql
+```cql
 Split(stringToSplit String, separator String) List<String>
 ```
 
@@ -2890,7 +2890,7 @@ If the <span class="id">stringToSplit</span> argument does not contain any appea
 
 The following examples illustrate the behavior of the <span class="id">Split</span> operator:
 
-``` cql
+```cql
 define "SplitFound": Split('A B C', ' ') // { 'A', 'B', 'C' }
 define "SplitNotFound": Split('A B C', ',') // { 'A B C' }
 define "SplitIsNull": Split(null, ' ') // null
@@ -2900,7 +2900,7 @@ define "SplitIsNull": Split(null, ' ') // null
 
 **Signature:**
 
-``` cql
+```cql
 SplitOnMatches(stringToSplit String, separatorPattern String) List<String>
 ```
 
@@ -2918,7 +2918,7 @@ If the <span class="id">stringToSplit</span> argument does not contain any match
 
 **Signature:**
 
-``` cql
+```cql
 StartsWith(argument String, prefix String) Boolean
 ```
 
@@ -2932,7 +2932,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">StartsWith</span> operator:
 
-``` cql
+```cql
 define "StartsWithIsTrue": StartsWith('ABCDE', 'ABC') // true
 define "StartsWithIsFalse": StartsWith('ABCDE', 'XYZ') // false
 define "StartsWithIsNull": StartsWith('ABCDE', null) // null
@@ -2942,7 +2942,7 @@ define "StartsWithIsNull": StartsWith('ABCDE', null) // null
 
 **Signature:**
 
-``` cql
+```cql
 Substring(stringToSub String, startIndex Integer) String
 Substring(stringToSub String, startIndex Integer, length Integer) String
 ```
@@ -2957,7 +2957,7 @@ If <span class="id">stringToSub</span> or <span class="id">startIndex</span> is 
 
 The following examples illustrate the behavior of the <span class="id">Substring</span> operator:
 
-``` cql
+```cql
 define "SubstringWithoutLength": Substring('ABCDE', 2) // 'CDE'
 define "SubstringWithLength": Substring('ABCDE', 2, 1) // 'C'
 define "SubstringIsNull": Substring('ABCDE', null) // null
@@ -2968,7 +2968,7 @@ define "SubstringIsAlsoNull": Substring('ABCDE', 14) // null
 
 **Signature:**
 
-``` cql
+```cql
 Upper(argument String) String
 ```
 
@@ -2983,7 +2983,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Upper</span> operator:
 
-``` cql
+```cql
 define "UpperCQL": Upper('abcde') // 'ABCDE'
 define "UpperIsNull": Upper(null) // null
 ```
@@ -2996,7 +2996,7 @@ define "UpperIsNull": Upper(null) // null
 
 **Signature:**
 
-``` cql
+```cql
 +(left Date, right Quantity) Date
 +(left DateTime, right Quantity) DateTime
 +(left Time, right Quantity) Time
@@ -3034,7 +3034,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 **Signature:**
 
-``` cql
+```cql
 after _precision_ of(left Date, right Date) Boolean
 after _precision_ of(left DateTime, right DateTime) Boolean
 after _precision_ of(left Time, right Time) Boolean
@@ -3042,7 +3042,7 @@ after _precision_ of(left Time, right Time) Boolean
 
 **Description:**
 
-The <span class="kw">after</span>__-precision-__<span class="kw">of</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">false</span>.
+The <span class="kw">after</span>_-precision-_<span class="kw">of</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">false</span>.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3054,15 +3054,15 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-The following examples illustrate the behavior of the <span class="kw">after</span>__-precision-__<span class="kw">of</span> operator:
+The following examples illustrate the behavior of the <span class="kw">after</span>_-precision-_<span class="kw">of</span> operator:
 
-``` cql
+```cql
 define "AfterIsTrue": @2012-02-01 after month of @2012-01-01
 define "AfterIsFalse": @2012-01-01 after month of @2012-01-01
 define "AfterUncertainIsNull": @2012-01-01 after month of @2012
@@ -3075,7 +3075,7 @@ This operator is also defined for intervals, see the [After (Intervals)](#after-
 
 **Signature:**
 
-``` cql
+```cql
 before _precision_ of(left Date, right Date) Boolean
 before _precision_ of(left DateTime, right DateTime) Boolean
 before _precision_ of(left Time, right Time) Boolean
@@ -3083,7 +3083,7 @@ before _precision_ of(left Time, right Time) Boolean
 
 **Description:**
 
-The <span class="kw">before</span>__-precision-__<span class="kw">of</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">false</span>.
+The <span class="kw">before</span>_-precision-_<span class="kw">of</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">false</span>.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3095,15 +3095,15 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-The following examples illustrate the behavior of the <span class="kw">before</span>__-precision-__<span class="kw">of</span> operator:
+The following examples illustrate the behavior of the <span class="kw">before</span>_-precision-_<span class="kw">of</span> operator:
 
-``` cql
+```cql
 define "BeforeIsTrue": @2012-01-01 before month of @2012-02-01
 define "BeforeIsFalse": @2012-01-01 before month of @2012-01-01
 define "BeforeUncertainIsNull": @2012 before month of @2012-02-01
@@ -3117,7 +3117,7 @@ This operator is also defined for intervals, see the [Before (Intervals)](#befor
 
 **Signature:**
 
-``` cql
+```cql
 Date(year Integer) Date
 Date(year Integer, month Integer) Date
 Date(year Integer, month Integer, day Integer) Date
@@ -3131,7 +3131,7 @@ At least one component must be specified, and no component may be specified at a
 
 The following examples illustrate the behavior of the <span class="id">Date</span> operator:
 
-``` cql
+```cql
 define "DateValid": Date(2012, 1, 1)
 define "DateInvalid": Date(2012, null, 1)
 ```
@@ -3141,7 +3141,7 @@ define "DateInvalid": Date(2012, null, 1)
 
 **Signature:**
 
-``` cql
+```cql
 DateTime(year Integer) DateTime
 DateTime(year Integer, month Integer) DateTime
 DateTime(year Integer, month Integer, day Integer) DateTime
@@ -3172,7 +3172,7 @@ If <span class="id">timezoneOffset</span> is not specified, it is defaulted to t
 
 The following examples illustrate the behavior of the <span class="id">DateTime</span> operator:
 
-``` cql
+```cql
 define "DateValid": DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
 define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 ```
@@ -3182,7 +3182,7 @@ define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
 
 **Signature:**
 
-``` cql
+```cql
 _precision_ from(argument Date) Integer
 _precision_ from(argument DateTime) Integer
 _precision_ from(argument Time) Integer
@@ -3209,7 +3209,7 @@ If the argument is <span class="kw">null</span>, or is not specified to the leve
 
 The following examples illustrate the behavior of the _component_-<span class="kw">from</span> operator:
 
-``` cql
+```cql
 define "MonthFrom": month from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // 1
 define "TimeZoneOffsetFrom": timezoneoffset from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // -7.0
 define "DateFrom": date from DateTime(2012, 1, 1, 12, 30, 0, 0, -7) // @2012-01-01
@@ -3221,7 +3221,7 @@ define "MonthFromIsNull": month from DateTime(2012)
 
 **Signature:**
 
-``` cql
+```cql
 difference in _precision_ between(low Date, high Date) Integer
 difference in _precision_ between(low DateTime, high DateTime) Integer
 difference in _precision_ between(low Time, high Time) Integer
@@ -3239,7 +3239,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When computing the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3247,7 +3247,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _difference-_<span class="kw">between</span> operator:
 
-``` cql
+```cql
 define "DifferenceInMonths": difference in months between @2012-01-01 and @2012-02-01 // 1
 define "UncertainDifferenceInMonths": difference in months between @2012-01-02 and @2012 // [0, 11]
 define "DifferenceIsNull": difference in months between @2012-01-01 and null
@@ -3257,7 +3257,7 @@ define "DifferenceIsNull": difference in months between @2012-01-01 and null
 
 **Signature:**
 
-``` cql
+```cql
 _duration_ between(low Date, high Date) Integer
 _duration_ between(low DateTime, high DateTime) Integer
 _duration_ between(low Time, high Time) Integer
@@ -3273,7 +3273,7 @@ For <span class="id">DateTime</span> values, _duration_ must be one of: <span cl
 
 For <span class="id">Time</span> values, _duration_ must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When computing the duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3281,7 +3281,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _duration-_<span class="kw">between</span> operator:
 
-``` cql
+```cql
 define "DurationInMonths": months between @2012-01-01 and @2012-02-01 // 1
 define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 10]
 define "DurationIsNull": months between @2012-01-01 and null
@@ -3291,7 +3291,7 @@ define "DurationIsNull": months between @2012-01-01 and null
 
 **Signature:**
 
-``` cql
+```cql
 Now() DateTime
 ```
 
@@ -3307,7 +3307,7 @@ The <span class="id">Now</span> operator returns the date and time of the start 
 
 **Signature:**
 
-``` cql
+```cql
 on or after _precision_ (left Date, right Date) Boolean
 on or after _precision_ (left DateTime, right DateTime) Boolean
 on or after _precision_ (left Time, right Time) Boolean
@@ -3326,7 +3326,7 @@ In timing phrases, the keyword <span class="kw">same</span> is a synonym for <sp
 
 **Signature:**
 
-``` cql
+```cql
 on or before _precision_ (left Date, right Date) Boolean
 on or before _precision_ (left DateTime, right DateTime) Boolean
 on or before _precision_ (left Time, right Time) Boolean
@@ -3345,7 +3345,7 @@ In timing phrases, the keyword <span class="kw">same</span> is a synonym for <sp
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ as(left Date, right Date) Boolean
 same _precision_ as(left DateTime, right DateTime) Boolean
 same _precision_ as(left Time, right Time) Boolean
@@ -3353,7 +3353,7 @@ same _precision_ as(left Time, right Time) Boolean
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">as</span> operator compares two Date, DateTime, or Time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
+The <span class="kw">same</span>_-precision-_<span class="kw">as</span> operator compares two Date, DateTime, or Time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3365,15 +3365,15 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-The following examples illustrate the behavior of the <span class="kw">same</span>__-precision-__<span class="kw">as</span> operator:
+The following examples illustrate the behavior of the <span class="kw">same</span>_-precision-_<span class="kw">as</span> operator:
 
-``` cql
+```cql
 define "SameAsTrue": @2012-01-01 same day as @2012-01-01
 define "SameAsFalse": @2012-01-01 same day as @2012-01-02
 define "UncertainSameAsIsNull": @2012-01-01 same day as @2012-01
@@ -3387,7 +3387,7 @@ This operator is also defined for intervals, see the [Same As (Intervals)](#same
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ or after(left Date, right Date) Boolean
 same _precision_ or after(left DateTime, right DateTime) Boolean
 same _precision_ or after(left Time, right Time) Boolean
@@ -3395,7 +3395,7 @@ same _precision_ or after(left Time, right Time) Boolean
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or after</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
+The <span class="kw">same</span>_-precision-_<span class="kw">or after</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3407,7 +3407,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3415,9 +3415,9 @@ If either or both arguments are <span class="kw">null</span>, the result is <spa
 
 Note that in timing phrases, the keyword <span class="kw">on</span> may be used as a synonym for <span class="kw">same</span> for this operator.
 
-The following examples illustrate the behavior of the <span class="kw">same</span>__-precision-__<span class="kw">or after</span> operator:
+The following examples illustrate the behavior of the <span class="kw">same</span>_-precision-_<span class="kw">or after</span> operator:
 
-``` cql
+```cql
 define "SameOrAfterTrue": @2012-01-02 same day or after @2012-01-01
 define "SameOrAfterFalse": @2012-01-01 same day or after @2012-01-02
 define "UncertainSameOrAfterIsNull": @2012-01-02 same day or after @2012-01
@@ -3431,7 +3431,7 @@ This operator is also defined for intervals, see the [Same Or After (Intervals)]
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ or before(left Date, right Date) Boolean
 same _precision_ or before(left DateTime, right DateTime) Boolean
 same _precision_ or before(left Time, right Time) Boolean
@@ -3439,7 +3439,7 @@ same _precision_ or before(left Time, right Time) Boolean
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or before</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
+The <span class="kw">same</span>_-precision-_<span class="kw">or before</span> operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if either input has no value for the precision, the comparison stops and the result is <span class="kw">null</span>; if the specified precision has been reached, the comparison stops and the result is <span class="kw">true</span>.
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -3451,7 +3451,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3459,9 +3459,9 @@ If either or both arguments are <span class="kw">null</span>, the result is null
 
 Note that in timing phrases, the keyword <span class="kw">on</span> may be used as a synonym for <span class="kw">same</span> for this operator.
 
-The following examples illustrate the behavior of the <span class="kw">same</span>__-precision-__<span class="kw">or before</span> operator:
+The following examples illustrate the behavior of the <span class="kw">same</span>_-precision-_<span class="kw">or before</span> operator:
 
-``` cql
+```cql
 define "SameOrBeforeTrue": @2012-01-01 same day or before @2012-01-02
 define "SameOrBeforeFalse": @2012-01-02 same day or before @2012-01-01
 define "UncertainSameOrBeforeIsNull": @2012-01-02 same day or before @2012-01
@@ -3475,7 +3475,7 @@ This operator is also defined for intervals, see the [Same Or Before (Intervals)
 
 **Signature:**
 
-``` cql
+```cql
 -(left Date, right Quantity) Date
 -(left DateTime, right Quantity) DateTime
 -(left Time, right Quantity) Time
@@ -3514,7 +3514,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 **Signature:**
 
-``` cql
+```cql
 Time(hour Integer) Time
 Time(hour Integer, minute Integer) Time
 Time(hour Integer, minute Integer, second Integer) Time
@@ -3531,7 +3531,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 The following examples illustrate the behavior of the <span class="id">Time</span> operator:
 
-``` cql
+```cql
 define "TimeValid": Time(12, 30, 0, 0)
 define "TimeInvalid": Time(12, null, 0, 0)
 ```
@@ -3540,25 +3540,25 @@ define "TimeInvalid": Time(12, null, 0, 0)
 
 **Signature:**
 
-``` cql
+```cql
 TimeOfDay() Time
 ```
 
 **Description:**
 
-The <span class="id">TimeOfDay</span> operator returns the time of day of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">TimeOfDay</span> operator in this way.
+The <span class="id">TimeOfDay</span> operator returns the time of day of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#now)</span> operator for more information on the rationale for defining the <span class="id">TimeOfDay</span> operator in this way.
 
 #### Today
 
 **Signature:**
 
-``` cql
+```cql
 Today() Date
 ```
 
 **Description:**
 
-The <span class="id">Today</span> operator returns the date of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#Now)</span> operator for more information on the rationale for defining the <span class="id">Today</span> operator in this way.
+The <span class="id">Today</span> operator returns the date of the start timestamp associated with the evaluation request. See the <span class="id">[Now](#now)</span> operator for more information on the rationale for defining the <span class="id">Today</span> operator in this way.
 
 {: #interval-operators-3}
 ### Interval Operators
@@ -3568,7 +3568,7 @@ The <span class="id">Today</span> operator returns the date of the start timesta
 
 **Signature:**
 
-``` cql
+```cql
 after _precision_ (left Interval<T>, right Interval<T>) Boolean
 after _precision_ (left T, right Interval<T>) Boolean
 after _precision_ (left Interval<T>, right T) Boolean
@@ -3582,7 +3582,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval starts after the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3590,7 +3590,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">after</span> operator:
 
-``` cql
+```cql
 define "AfterIsTrue": 5 after Interval[1, 4]
 define "AfterIsFalse": Interval[1, 4] after 5
 define "AfterIsNull": Interval[1, 4] after null
@@ -3601,7 +3601,7 @@ define "AfterIsNull": Interval[1, 4] after null
 
 **Signature:**
 
-``` cql
+```cql
 before _precision_ (left Interval<T>, right Interval<T>) Boolean
 before _precision_ (left T, right Interval<T>) Boolean
 before _precision_ (left interval<T>, right T) Boolean
@@ -3615,7 +3615,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval ends before the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3623,7 +3623,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">before</span> operator:
 
-``` cql
+```cql
 define "BeforeIsTrue": 0 before Interval[1, 4]
 define "BeforeIsFalse": Interval[1, 4] before 0
 define "BeforeIsNull": Interval[1, 4] before null
@@ -3633,7 +3633,7 @@ define "BeforeIsNull": Interval[1, 4] before null
 
 **Signature:**
 
-``` cql
+```cql
 collapse(argument List<Interval<T>>) List<Interval<T>>
 collapse(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 ```
@@ -3656,14 +3656,14 @@ If the list argument is <span class="kw">null</span>, the result is <span class=
 
 The following examples illustrate the behavior of the <span class="kw">collapse</span> operator:
 
-``` cql
+```cql
 define "Collapse1To9": collapse { Interval[1, 4], Interval[4, 8], Interval[7, 9] } // { Interval[1, 9] }
 define "CollapseIsNull": collapse null
 ```
 
 Informatively, the following pseudo-code illustrates a potential approach to implementation of the collapse operator with a per argument aligned to the starting boundary of the first input interval:
 
-``` java
+```java
 anchor = start of i[0]
 for (n = 0; n < i.size; n++) {
   if (start of i[n] < anchor) {
@@ -3690,7 +3690,7 @@ for (n = 0; n < i.size; n++) {
 
 **Signature:**
 
-``` cql
+```cql
 contains _precision_ (argument Interval<T>, point T) Boolean
 ```
 
@@ -3704,7 +3704,7 @@ If the first argument is <span class="kw">null</span>, the result is <span class
 
 The following examples illustrate the behavior of the <span class="kw">contains</span> operator:
 
-``` cql
+```cql
 define "ContainsIsTrue": Interval[1, 5] contains 4
 define "ContainsIsFalse": Interval[1, 5] contains 6
 define "ContainsIsNull": Interval[1, 5] contains null
@@ -3714,7 +3714,7 @@ define "ContainsIsNull": Interval[1, 5] contains null
 
 **Signature:**
 
-``` cql
+```cql
 end of(argument Interval<T>) T
 ```
 
@@ -3730,7 +3730,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">End</span> operator:
 
-``` cql
+```cql
 define "EndOfInterval": end of Interval[1, 5] // 5
 define "EndIsNull": end of (null as Interval<Integer>)
 ```
@@ -3739,7 +3739,7 @@ define "EndIsNull": end of (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -3755,7 +3755,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">ends</span> operator:
 
-``` cql
+```cql
 define "EndsIsTrue": Interval[0, 5] ends Interval[-1, 5]
 define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]
 define "EndsIsNull": Interval[1, 5] ends null
@@ -3766,19 +3766,19 @@ define "EndsIsNull": Interval[1, 5] ends null
 
 **Signature:**
 
-``` cql
+```cql
 =(left Interval<T>, right Interval<T>) Boolean
 ```
 
 **Description:**
 
-The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators.
+The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-``` cql
+```cql
 define "EqualIsTrue": Interval[0, 5] = Interval[0, 5]
 define "EqualIsFalse": Interval[-1, 7] = Interval[0, 7]
 define "EqualIsNull": Interval[1, 5] = null
@@ -3789,17 +3789,17 @@ define "EqualIsNull": Interval[1, 5] = null
 
 **Signature:**
 
-``` cql
+```cql
 ~(left Interval<T>, right Interval<T>) Boolean
 ```
 
 **Description:**
 
-The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators are equivalent.
+The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators are equivalent.
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-``` cql
+```cql
 define "EquivalentIsTrue": Interval[0, 5] ~ Interval[0, 5]
 define "EquivalentIsAlsoTrue": Interval[1, null] ~ Interval[1, null]
 define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
@@ -3809,7 +3809,7 @@ define "EquivalentIsFalse": Interval[-1, 7] ~ Interval[0, 7]
 
 **Signature:**
 
-``` cql
+```cql
 except(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -3821,7 +3821,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">except</span> operator:
 
-``` cql
+```cql
 define "Except": Interval[0, 5] except Interval[3, 7] // Interval[0, 2]
 define "ExceptIsNull": null except Interval[-1, 7]
 ```
@@ -3830,7 +3830,7 @@ define "ExceptIsNull": null except Interval[-1, 7]
 
 **Signature:**
 
-``` cql
+```cql
 expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
@@ -3852,42 +3852,42 @@ More precisely, for each interval in the input, contribute all the intervals of 
 
 For example:
 
-``` cql
+```cql
 expand { Interval[@2018-01-01, @2018-01-04] } per day
 expand { Interval[@2018-01-01, @2018-01-04] } per 2 days
 ```
 
 The following are the results of these examples:
 
-``` cql
+```cql
 { Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
 { Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }
 ```
 
 If the interval boundaries are more precise than the per quantity, the more precise values will be truncated to the precision specified by the per quantity. In these cases, the resulting list of intervals may be more broad than the input range due to this truncation. For example:
 
-``` cql
+```cql
 expand { Interval[@T10:00, @T12:30] } per hour
 expand { Interval[10.0, 12.5] } per 1
 ```
 
 The above examples would result in:
 
-``` cql
+```cql
 { Interval[@T10, @T10], Interval[@T11, @T11], Interval[@T12, @T12] }
 { Interval[10, 10], Interval[11, 11], Interval[12, 12] }
 ```
 
 If the interval boundaries are less precise than the per quantity, for dates and times where the lack of precision indicates uncertainty, the interval will not contribute any results to the output, because adding the per to the lower boundary of the input interval results in null. For numeric intervals, adding the per to the lower boundary produces a more precise value for the output intervals. For example:
 
-``` cql
+```cql
 expand { Interval[@T10, @T10] } per minute
 expand { Interval[10, 10] } per 0.1
 ```
 
 The above examples would result in:
 
-``` cql
+```cql
 { }
 { Interval[10.0, 10.0], Interval[10.1, 10.1], ..., Interval[10.9, 10.9] }
 ```
@@ -3896,14 +3896,14 @@ For intervals of quantities, the semantics of quantity arithmetic and comparison
 
 If the input argument is an interval, rather than a list of intervals, the result is a list of points, rather than a list of intervals. In this case, the calculation is performed the same way, but the starting point of each resulting interval is returned, rather than the interval. For example:
 
-``` cql
+```cql
 expand Interval[1, 10]
 expand Interval[1, 10] per 2
 ```
 
 The above examples would result in:
 
-``` cql
+```cql
 { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
 { 1, 3, 5, 7, 9 }
 ```
@@ -3919,7 +3919,7 @@ If the list argument is <span class="kw">null</span>, the result is <span class=
 
 **Signature:**
 
-``` cql
+```cql
 in _precision_ (point T, argument Interval<T>) Boolean
 ```
 
@@ -3933,7 +3933,7 @@ If the first argument is <span class="kw">null</span>, the result is <span class
 
 The following examples illustrate the behavior of the <span class="kw">in</span> operator:
 
-``` cql
+```cql
 define "InIsTrue": 3 in Interval[0, 5]
 define "InIsFalse": -1 in Interval[0, 7]
 define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
@@ -3943,7 +3943,7 @@ define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 includes _precision_ (left Interval<T>, right Interval<T>) Boolean
 includes _precision_ (left Interval<T>, right T) Boolean
 ```
@@ -3956,13 +3956,13 @@ For the point overload, this operator is a synonym for the <span class="kw">[con
 
 For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
 The following examples illustrate the behavior of the <span class="kw">includes</span> operator:
 
-``` cql
+```cql
 define "IncludesIsTrue": Interval[-1, 5] includes Interval[0, 5]
 define "IncludesIsFalse": Interval[-1, 5] includes 6
 define "IncludesIsNull": Interval[-1, 5] includes null
@@ -3972,7 +3972,7 @@ define "IncludesIsNull": Interval[-1, 5] includes null
 
 **Signature:**
 
-``` cql
+```cql
 included in _precision_ (left Interval<T>, right Interval<T>) Boolean
 included in _precision_ (left T, right Interval<T>) Boolean
 ```
@@ -3985,7 +3985,7 @@ For the point overload, this operator is a synonym for the <span class="kw">[in]
 
 For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3993,7 +3993,7 @@ Note that <span class="kw">during</span> is a synonym for included in and may be
 
 The following examples illustrate the behavior of the <span class="kw">included in</span> operator:
 
-``` cql
+```cql
 define "IncludedInIsTrue": Interval[1, 5] included in Interval[0, 5]
 define "IncludedInIsFalse": -1 during Interval[0, 7]
 define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
@@ -4003,7 +4003,7 @@ define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 intersect(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -4015,7 +4015,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">intersect</span> operator:
 
-``` cql
+```cql
 define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
 define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 ```
@@ -4024,7 +4024,7 @@ define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 meets _precision_ (left Interval<T>, right Interval<T>) Boolean
 meets before _precision_ (left Interval<T>, right Interval<T>) Boolean
 meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
@@ -4036,7 +4036,7 @@ The <span class="kw">meets</span> operator returns <span class="kw">true</span> 
 
 The <span class="kw">meets before</span> operator returns <span class="kw">true</span> if the first interval ends immediately before the second interval starts, while the <span class="kw">meets after</span> operator returns <span class="kw">true</span> if the first interval starts immediately after the second interval ends.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4044,7 +4044,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 Note that Date-, DateTime-, or Time-based intervals with partially specified boundaries will "meet" at the precision of the boundaries, not the finest precision for the point type. For example:
 
-``` cql
+```cql
 define "MeetsAtHours": Interval[@T03, @T04] meets Interval[@T05, @T06]
 ```
 
@@ -4052,7 +4052,7 @@ The <span class="id">MeetsAtHours</span> expression returns true because the mee
 
 The following examples illustrate the behavior of the <span class="kw">meets</span>, <span class="kw">meets before</span>, and <span class="kw">meets after</span> operators:
 
-``` cql
+```cql
 define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]
 define "MeetsBeforeIsTrue": Interval[-5, -1] meets before Interval[0, 5]
 define "MeetsAfterIsFalse": Interval[6, 10] meets after Interval[0, 7]
@@ -4064,7 +4064,7 @@ define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 !=(left Interval<T>, right Interval<T>) : Boolean
 ```
 
@@ -4076,7 +4076,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation (<spa
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-``` cql
+```cql
 define "NotEqualIsFalse": Interval[0, 5] != Interval[0, 5]
 define "NotEqualIsTrue": Interval[-1, 7] != Interval[0, 7]
 define "NotEqualIsNull": Interval[1, 5] != null
@@ -4087,7 +4087,7 @@ define "NotEqualIsNull": Interval[1, 5] != null
 
 **Signature:**
 
-``` cql
+```cql
 !~(left Interval<T>, right Interval<T>) : Boolean
 ```
 
@@ -4099,7 +4099,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-``` cql
+```cql
 define "NotEquivalentIsFalse": Interval[0, 5] !~ Interval[0, 5]
 define "NotEquivalentIsAlsoFalse": Interval[1, null] !~ Interval[1, null]
 define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
@@ -4110,7 +4110,7 @@ define "NotEquivalentIsTrue": Interval[-1, 7] !~ Interval[0, 7]
 
 **Signature:**
 
-``` cql
+```cql
 on or after _precision_ (left Interval<T>, right Interval<T>) Boolean
 on or after _precision_ (left T, right Interval<T>) Boolean
 on or after _precision_ (left Interval<T>, right T) Boolean
@@ -4129,7 +4129,7 @@ In timing phrases, the keyword <span class="kw">same</span> is a synonym for <sp
 
 **Signature:**
 
-``` cql
+```cql
 on or before _precision_ (left Interval<T>, right Interval<T>) Boolean
 on or before _precision_ (left T, right Interval<T>) Boolean
 on or before _precision_ (left Interval<T>, right T) Boolean
@@ -4147,7 +4147,7 @@ In timing phrases, the keyword <span class="kw">same</span> is a synonym for <sp
 
 **Signature:**
 
-``` cql
+```cql
 overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean
 overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean
 overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
@@ -4159,7 +4159,7 @@ The <span class="kw">overlaps</span> operator returns <span class="kw">true</spa
 
 The operator <span class="kw">overlaps before</span> returns <span class="kw">true</span> if the first interval overlaps the second and starts before it, while the <span class="kw">overlaps after</span> operator returns <span class="kw">true</span> if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4167,7 +4167,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">overlaps</span>, <span class="kw">overlaps before</span>, and <span class="kw">overlaps after</span> operators:
 
-``` cql
+```cql
 define "OverlapsIsTrue": Interval[0, 4] overlaps Interval[1, 4]
 define "OverlapsBeforeIsTrue": Interval[0, 4] overlaps before Interval[1, 4]
 define "OverlapsAfterIsFalse": Interval[0, 4] overlaps after Interval[1, 4]
@@ -4178,7 +4178,7 @@ define "OverlapsIsNull": Interval[6, 10] overlaps (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 point from(argument Interval<T>) : T
 ```
 
@@ -4190,7 +4190,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="kw">point from</span> operator:
 
-``` cql
+```cql
 define "PointFrom": point from Interval[4, 4] // 4
 define "PointFromExclusive": point from Interval[4, 5) // 4
 define "PointFromError": point from Interval[1, 4] // Error
@@ -4203,7 +4203,7 @@ Note that the <span class="kw">point from</span> operator may only be used on a 
 
 **Signature:**
 
-``` cql
+```cql
 properly includes _precision_ (left Interval<T>, right Interval<T>) Boolean
 properly includes _precision_ (left Interval<T>, right T) Boolean
 ```
@@ -4214,7 +4214,7 @@ The <span class="kw">properly includes</span> operator for intervals returns <sp
 
 For the point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4222,7 +4222,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">properly includes</span> operator:
 
-``` cql
+```cql
 define "ProperlyIncludesIsTrue": Interval[-1, 5] properly includes Interval[0, 5]
 define "ProperlyIncludesIsFalse": Interval[-1, 5] properly includes Interval[-1, 5]
 define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
@@ -4232,7 +4232,7 @@ define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
 
 **Signature:**
 
-``` cql
+```cql
 properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
 properly included in _precision_ (left T, right Interval<T>) Boolean
 ```
@@ -4243,7 +4243,7 @@ The <span class="kw">properly included in</span> operator for intervals returns 
 
 For the point overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4253,7 +4253,7 @@ Note that <span class="kw">during</span> is a synonym for <span class="kw">inclu
 
 The following examples illustrate the behavior of the <span class="kw">properly included in</span> operator:
 
-``` cql
+```cql
 define "ProperlyIncludedInIsTrue": Interval[1, 5] properly included in Interval[0, 5]
 define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7]
 define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
@@ -4264,13 +4264,13 @@ define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as 
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ as(left Interval<T>, right Interval<T>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">as</span> operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the <span class="id">[Same As](#Same As)</span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>_-precision-_<span class="kw">as</span> operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the <span class="id">[Same As](#same-as)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4282,7 +4282,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison.
 
@@ -4295,7 +4295,7 @@ If either or both arguments are <span class="kw">null</span>, the result is <spa
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ or after(left Interval<T>, right Interval<T>) Boolean
 same _precision_ or after(left T, right Interval<T>) Boolean
 same _precision_ or after(left Interval<T>, right T) Boolean
@@ -4303,7 +4303,7 @@ same _precision_ or after(left Interval<T>, right T) Boolean
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or after</span> operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or After (Date, DateTime, or Time)](#same-or-after-1)</span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>_-precision-_<span class="kw">or after</span> operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or After (Date, DateTime, or Time)](#same-or-after-1)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4315,7 +4315,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>-based and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>-based and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
@@ -4332,7 +4332,7 @@ Note that in timing phrases, the keyword <span class="kw">on</span> may be used 
 
 **Signature:**
 
-``` cql
+```cql
 same _precision_ or before(left Interval<T>, right Interval<T>) Boolean
 same _precision_ or before(left T, right Interval<T>) Boolean
 same _precision_ or before(left Interval<T>, right T) Boolean
@@ -4340,7 +4340,7 @@ same _precision_ or before(left Interval<T>, right T) Boolean
 
 **Description:**
 
-The <span class="kw">same</span>__-precision-__<span class="kw">or before</span> operator returns true if the first interval ends on or before the second one starts, using the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or Before (Date, DateTime, or Time)](#same-or-before-1)</span> operator for Date, DateTime, or Time values.
+The <span class="kw">same</span>_-precision-_<span class="kw">or before</span> operator returns true if the first interval ends on or before the second one starts, using the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the <span class="id">[Same or Before (Date, DateTime, or Time)](#same-or-before-1)</span> operator for Date, DateTime, or Time values.
 
 If no precision is specified, comparisons are performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
@@ -4352,7 +4352,7 @@ For <span class="id">Time</span>-based intervals, _precision_ must be one of: <s
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#ToDateTime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span>- and <span class="id">DateTime</span>-based intervals, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When this operator is called with a mixture of point values and intervals, the point values are implicitly converted to an interval starting and ending on the given point value.
 
@@ -4368,7 +4368,7 @@ Note that in timing phrases, the keyword <span class="kw">on</span> may be used 
 
 **Signature:**
 
-``` cql
+```cql
 Size(argument Interval<T>) T
 ```
 
@@ -4382,7 +4382,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Size</span> operator:
 
-``` cql
+```cql
 define "SizeTest": Size(Interval[3, 7]) // 5, i.e. the interval contains 5 points
 define "SizeTestEquivalent": Size(Interval[3, 8)) // 5, i.e. the interval contains 5 points
 define "SizeIsNull": Size(null as Interval<Integer>) // null
@@ -4392,7 +4392,7 @@ define "SizeIsNull": Size(null as Interval<Integer>) // null
 
 **Signature:**
 
-``` cql
+```cql
 start of(argument Interval<T>) T
 ```
 
@@ -4408,7 +4408,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Start</span> operator:
 
-``` cql
+```cql
 define "StartOfInterval": start of Interval[1, 5] // 1
 define "StartIsNull": start of (null as Interval<Integer>)
 ```
@@ -4417,7 +4417,7 @@ define "StartIsNull": start of (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 ```
 
@@ -4425,7 +4425,7 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">starts</span> operator returns <span class="kw">true</span> if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the <span class="id">[Start](#Start)</span> and <span class="id">[End](#End)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4433,7 +4433,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">starts</span> operator:
 
-``` cql
+```cql
 define "StartsIsTrue": Interval[0, 5] starts Interval[0, 7]
 define "StartsIsFalse": Interval[0, 7] starts Interval[0, 6]
 define "StartsIsNull": Interval[1, 5] starts null
@@ -4443,7 +4443,7 @@ define "StartsIsNull": Interval[1, 5] starts null
 
 **Signature:**
 
-``` cql
+```cql
 union(left Interval<T>, right Interval<T>) Interval<T>
 ```
 
@@ -4455,7 +4455,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">union</span> operator:
 
-``` cql
+```cql
 define "Union": Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
 define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 ```
@@ -4464,7 +4464,7 @@ define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 width of(argument Interval<T>) T
 ```
 
@@ -4478,7 +4478,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="kw">width</span> operator:
 
-``` cql
+```cql
 define "Width": width of Interval[3, 7] // 4
 define "WidthIsNull": width of (null as Interval<Integer>) // null
 define "NullInterval": width of Interval[0, null) //null
@@ -4494,7 +4494,7 @@ Note that the operators in this section may all be invoked with singleton argume
 
 **Signature:**
 
-``` cql
+```cql
 contains(argument List<T>, element T) Boolean
 ```
 
@@ -4506,7 +4506,7 @@ If the first argument is <span class="kw">null</span>, the result is <span class
 
 The following examples illustrate the behavior of the <span class="kw">contains</span> operator:
 
-``` cql
+```cql
 define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5
 define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4
 define "ContainsIsAlsoFalse": null contains 4
@@ -4517,7 +4517,7 @@ define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null
 
 **Signature:**
 
-``` cql
+```cql
 distinct(argument List<T>) List<T>
 ```
 
@@ -4531,7 +4531,7 @@ The operator uses equality comparison semantics as defined in the Equal operator
 
 The following examples illustrate the behavior of the <span class="kw">distinct</span> operator:
 
-``` cql
+```cql
 define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }
 define "DistinctIsNull": distinct null // null
 ```
@@ -4541,7 +4541,7 @@ define "DistinctIsNull": distinct null // null
 
 **Signature:**
 
-``` cql
+```cql
 =(left List<T>, right List<T>) Boolean
 ```
 
@@ -4553,7 +4553,7 @@ If either argument is <span class="kw">null</span>, or contains null elements, t
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-``` cql
+```cql
 define "EqualIsTrue": { 1, 3, 5, 7 } = { 1, 3, 5, 7 }
 define "EqualIsFalse": { 1, 3, 5, 7 } = { 1, 3, 5 }
 define "EqualIsNull": { 1, 3, 5, 7 } = null
@@ -4564,7 +4564,7 @@ define "EqualIsNull": { 1, 3, 5, 7 } = null
 
 **Signature:**
 
-``` cql
+```cql
 ~(left List<T>, right List<T>) Boolean
 ```
 
@@ -4574,7 +4574,7 @@ The _equivalent_ (<span class="sym">~</span>) operator for lists returns <span c
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-``` cql
+```cql
 define "EquivalentIsTrue": { 1, 3, 5, 7 } ~ { 1, 3, 5, 7 }
 define "EquivalentIsAlsoTrue": { 1, 3, 5, null } ~ { 1, 3, 5, null }
 define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
@@ -4585,7 +4585,7 @@ define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 except(left List<T>, right List<T>) List<T>
 ```
 
@@ -4601,7 +4601,7 @@ If the first argument is <span class="kw">null</span>, the result is <span class
 
 The following examples illustrate the behavior of the <span class="kw">except</span> operator:
 
-``` cql
+```cql
 define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
 define "ExceptLeft": { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
 define "ExceptWithNull": { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
@@ -4612,7 +4612,7 @@ define "ExceptIsNull": null except { 1, 3, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 exists(argument List<T>) Boolean
 ```
 
@@ -4624,7 +4624,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="kw">exists</span> operator:
 
-``` cql
+```cql
 define "ExistsIsTrue": exists { 1, 3, 5, 7 }
 define "ExistsIsFalse": exists { }
 define "ExistsIsAlsoFalse": exists { null }
@@ -4635,7 +4635,7 @@ define "ExistsIsAlsoAlsoFalse": exists null
 
 **Signature:**
 
-``` cql
+```cql
 flatten(argument List<List<T>>) List<T>
 ```
 
@@ -4647,7 +4647,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="kw">flatten</span> operator:
 
-``` cql
+```cql
 define "Flatten": flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }
 define "FlattenIsNull": flatten null
 ```
@@ -4656,7 +4656,7 @@ define "FlattenIsNull": flatten null
 
 **Signature:**
 
-``` cql
+```cql
 First(argument List<T>) T
 ```
 
@@ -4668,7 +4668,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">First</span> operator:
 
-``` cql
+```cql
 define "First1": First({ 1, 2, 5 }) // 1
 define "FirstIsNull": First(null)
 ```
@@ -4678,7 +4678,7 @@ define "FirstIsNull": First(null)
 
 **Signature:**
 
-``` cql
+```cql
 in(element T, argument List<T>) Boolean
 ```
 
@@ -4690,7 +4690,7 @@ If the first argument is <span class="kw">null</span>, the result is <span class
 
 The following examples illustrate the behavior of the <span class="kw">in</span> operator:
 
-``` cql
+```cql
 define "InIsTrue": 5 in { 1, 3, 5, 7 }
 define "InIsFalse": 5 in { 1, 3 }
 define "InIsAlsoFalse": 5 in null
@@ -4702,7 +4702,7 @@ define "NullInIsTrue": null in { 1, 3, 5, null }
 
 **Signature:**
 
-``` cql
+```cql
 includes(left List<T>, right List<T>) Boolean
 includes(left List<T>, right T) Boolean
 ```
@@ -4719,7 +4719,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the <span class="kw">includes</span> operator:
 
-``` cql
+```cql
 define "IncludesIsTrue": { 1, 3, 5, 7 } includes 5
 define "IncludesIsNull": { 1, 3, 5, null } includes null
 define "IncludesIsFalse": { 1, 3 } includes { 1, 3, 5 }
@@ -4731,7 +4731,7 @@ define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 included in(left List<T>, right list<T>) Boolean
 included in(left T, right list<T>) Boolean
 ```
@@ -4748,7 +4748,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the <span class="kw">included in</span> operator:
 
-``` cql
+```cql
 define "IncludedInIsTrue": 5 included in { 1, 3, 5, 7 }
 define "IncludedInIsNull": null included in { 1, 3, 5 }
 define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }
@@ -4760,7 +4760,7 @@ define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
 
 **Signature:**
 
-``` cql
+```cql
 [](argument List<T>, index Integer) T
 ```
 
@@ -4776,7 +4776,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the _indexer_ operator:
 
-``` cql
+```cql
 define "Indexer": { 1, 3, 5, 7 }[1] // 3
 define "IndexerIsNull": { 1, 3, 5 }[-1]
 define "IndexerIsAlsoNull": (null as List<Integer>)[0]
@@ -4786,7 +4786,7 @@ define "IndexerIsAlsoNull": (null as List<Integer>)[0]
 
 **Signature:**
 
-``` cql
+```cql
 IndexOf(argument List<T>, element T) Integer
 ```
 
@@ -4800,7 +4800,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">IndexOf</span> operator:
 
-``` cql
+```cql
 define "IndexOfFound": IndexOf({ 1, 3, 5, 7 }, 5) // 2
 define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1
 define "IndexOfIsNull": IndexOf(null, 4)
@@ -4811,7 +4811,7 @@ define "IndexOfIsNull": IndexOf(null, 4)
 
 **Signature:**
 
-``` cql
+```cql
 intersect(left List<T>, right List<T>) List<T>
 ```
 
@@ -4827,7 +4827,7 @@ If either argument is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">intersect</span> operator:
 
-``` cql
+```cql
 define "Intersect": { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
 define "IntersectWithNull": { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
 define "IntersectIsNull": { 1, 3, 5 } intersect null
@@ -4837,7 +4837,7 @@ define "IntersectIsNull": { 1, 3, 5 } intersect null
 
 **Signature:**
 
-``` cql
+```cql
 Last(argument List<T>) T
 ```
 
@@ -4849,7 +4849,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Last</span> operator:
 
-``` cql
+```cql
 define "Last5": Last({ 1, 3, 5 }) // 5
 define "LastIsNull": Last(null)
 ```
@@ -4859,7 +4859,7 @@ define "LastIsNull": Last(null)
 
 **Signature:**
 
-``` cql
+```cql
 Length(argument List<T>) Integer
 ```
 
@@ -4871,7 +4871,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 The following examples illustrate the behavior of the <span class="id">Length</span> operator:
 
-``` cql
+```cql
 define "Length3": Length({ 1, 3, 5 }) // 3
 define "Length0": Length(null as List<Integer>)
 ```
@@ -4881,7 +4881,7 @@ define "Length0": Length(null as List<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 !=(left List<T>, right List<T>) Boolean
 ```
 
@@ -4893,7 +4893,7 @@ The _not equal_ operator is a shorthand for invocation of logical negation (<spa
 
 The following examples illustrate the behavior of the _not equal_ operator:
 
-``` cql
+```cql
 define "NotEqualIsFalse": { 1, 3, 5, 7 } != { 1, 3, 5, 7 }
 define "NotEqualIsTrue": { 1, 3, 5, 7 } != { 1, 3, 5 }
 define "NotEqualIsNull": { 1, 3, 5, 7 } != null
@@ -4904,7 +4904,7 @@ define "NotEqualIsNull": { 1, 3, 5, 7 } != null
 
 **Signature:**
 
-``` cql
+```cql
 !~(left List<T>, right List<T>) Boolean
 ```
 
@@ -4916,7 +4916,7 @@ The _not equivalent_ operator is a shorthand for invocation of logical negation 
 
 The following examples illustrate the behavior of the _not equivalent_ operator:
 
-``` cql
+```cql
 define "NotEquivalentIsFalse": { 1, 3, 5, 7 } !~ { 1, 3, 5, 7 }
 define "NotEquivalentIsAlsoFalse": { 1, 3, 5, null } !~ { 1, 3, 5, null }
 define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
@@ -4927,7 +4927,7 @@ define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 properly includes(left List<T>, right List<T>) Boolean
 properly includes(left T, right List<T>) Boolean
 ```
@@ -4946,7 +4946,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the <span class="kw">properly includes</span> operator:
 
-``` cql
+```cql
 define "ProperlyIncludesIsTrue": { 1, 3, 5, 7 } properly includes { 1, 3, 5 }
 define "ProperlyIncludesIsAlsoTrue": { 1, 3, 5, null } properly includes null
 define "ProperlyIncludesIsFalse": { 1, 3, 5 } properly includes { 1, 3, 5 }
@@ -4958,7 +4958,7 @@ define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 properly included in(left List<T>, right list<T>) Boolean
 ```
 
@@ -4976,7 +4976,7 @@ Note that the order of elements does not matter for the purposes of determining 
 
 The following examples illustrate the behavior of the <span class="kw">properly included in</span> operator:
 
-``` cql
+```cql
 define "ProperlyIncludedInIsTrue": { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
 define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5 }
 define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
@@ -4987,7 +4987,7 @@ define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in n
 
 **Signature:**
 
-``` cql
+```cql
 singleton from(argument List<T>) T
 ```
 
@@ -4999,7 +4999,7 @@ If the source list is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="kw">singleton from</span> operator:
 
-``` cql
+```cql
 define "SingletonFrom": singleton from { 1 } // 1
 define "SingletonFromError": singleton from { 1, 3, 5 }
 define "SingletonFromIsNull": singleton from (null as List<Integer>)
@@ -5009,7 +5009,7 @@ define "SingletonFromIsNull": singleton from (null as List<Integer>)
 
 **Signature:**
 
-``` cql
+```cql
 Skip(argument List<T>, number Integer) List<T>
 ```
 
@@ -5025,7 +5025,7 @@ If the number of elements is less than zero, the result is an empty list.
 
 The following examples illustrate the behavior of the <span class="id">Skip</span> operator:
 
-``` cql
+```cql
 define "Skip2": Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }
 define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
 define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
@@ -5036,7 +5036,7 @@ define "SkipIsNull": Skip(null, 2)
 
 **Signature:**
 
-``` cql
+```cql
 Tail(argument List<T>) List<T>
 ```
 
@@ -5048,7 +5048,7 @@ If the source list is <span class="kw">null</span>, the result is <span class="k
 
 The following examples illustrate the behavior of the <span class="id">Tail</span> operator:
 
-``` cql
+```cql
 define "Tail234": Tail({ 1, 2, 3, 4 }) // { 2, 3, 4 }
 define "TailEmpty": Tail({ }) // { }
 define "TailIsNull": Tail(null)
@@ -5058,7 +5058,7 @@ define "TailIsNull": Tail(null)
 
 **Signature:**
 
-``` cql
+```cql
 Take(argument List<T>, number Integer) List<T>
 ```
 
@@ -5072,7 +5072,7 @@ If number is <span class="kw">null</span>, or <span class="lit">0</span> or less
 
 The following examples illustrate the behavior of the <span class="id">Take</span> operator:
 
-``` cql
+```cql
 define "Take2": Take({ 1, 2, 3, 4 }, 2) // { 1, 2 }
 define "TakeTooMany": Take({ 1, 2 }, 3) // { 1, 2 }
 define "TakeEmpty": Take({ 1, 2, 3, 4 }, null) // { }
@@ -5084,7 +5084,7 @@ define "TakeIsNull": Take(null, 2)
 
 **Signature:**
 
-``` cql
+```cql
 union(left List<T>, right List<T>) List<T>
 ```
 
@@ -5102,7 +5102,7 @@ Note that the union operator can also be invoked with the symbolic operator (<sp
 
 The following examples illustrate the behavior of the <span class="kw">union</span> operator:
 
-``` cql
+```cql
 define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionAlternateSyntax": { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
@@ -5114,7 +5114,7 @@ define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
 
 **Signature:**
 
-``` cql
+```cql
 AllTrue(argument List<Boolean>) Boolean
 ```
 
@@ -5128,7 +5128,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">tr
 
 The following examples illustrate the behavior of the <span class="id">AllTrue</span> operator:
 
-``` cql
+```cql
 define "AllTrueIsTrue": AllTrue({ true, null, true })
 define "AllTrueIsAlsoTrue": AllTrue({ null, null, null })
 define "AllTrueIsTrueWhenNull": AllTrue(null)
@@ -5139,7 +5139,7 @@ define "AllTrueIsFalse": AllTrue({ true, false, null })
 
 **Signature:**
 
-``` cql
+```cql
 AnyTrue(argument List<Boolean>) Boolean
 ```
 
@@ -5153,7 +5153,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">fa
 
 The following examples illustrate the behavior of the <span class="id">AnyTrue</span> operator:
 
-``` cql
+```cql
 define "AnyTrueIsTrue": AnyTrue({ true, false, null })
 define "AnyTrueIsFalse": AnyTrue({ false, false, null })
 define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })
@@ -5164,7 +5164,7 @@ define "AnyTrueIsFalseWhenNull": AnyTrue(null)
 
 **Signature:**
 
-``` cql
+```cql
 Avg(argument List<Decimal>) Decimal
 Avg(argument List<Quantity>) Quantity
 ```
@@ -5179,7 +5179,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Avg</span> operator:
 
-``` cql
+```cql
 define "DecimalAvg": Avg({ 5.5, 4.7, 4.8 }) // 5.0
 define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
 define "AvgIsNull": Avg(null as List<Decimal>)
@@ -5189,7 +5189,7 @@ define "AvgIsNull": Avg(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Count(argument List<T>) Integer
 ```
 
@@ -5199,7 +5199,7 @@ The <span class="id">Count</span> operator returns the number of non-null elemen
 
 The following examples illustrate the behavior of the <span class="id">Count</span> operator:
 
-``` cql
+```cql
 define "Count5": Count({ 1, 2, 3, 4, 5 }) // 5
 define "Count0": Count({ null, null, null }) // 0
 define "CountNull0": Count(null as List<Decimal>) // 0
@@ -5209,7 +5209,7 @@ define "CountNull0": Count(null as List<Decimal>) // 0
 
 **Signature:**
 
-``` cql
+```cql
 GeometricMean(argument List<Decimal>) Decimal
 ```
 
@@ -5217,7 +5217,7 @@ GeometricMean(argument List<Decimal>) Decimal
 
 The <span class="id">GeometricMean</span> operator returns the geometric mean of the non-null elements in the source. Geometric mean is defined as the N<sup>th</sup> root of the geometric product of the elements. In other words:
 
-``` cql
+```cql
 GeometricMean(X) = Power(Product(X), 1 / Count(X))
 ```
 
@@ -5227,7 +5227,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">GeometricMean</span> operator:
 
-``` cql
+```cql
 define "GeometricMean4": GeometricMean({ 2.0, 8.0 }) // 4.0
 define "GeometricMeanIsNull": GeometricMean({ null, null, null })
 define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
@@ -5237,7 +5237,7 @@ define "GeometricMeanIsAlsoNull": GeometricMean(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Max(argument List<Integer>) Integer
 Max(argument List<Long>) Long
 Max(argument List<Decimal>) Decimal
@@ -5253,7 +5253,7 @@ Max(argument List<String>) String
 
 **Description:**
 
-The <span class="id">Max</span> operator returns the maximum element in the source. Comparison semantics are defined by the [Comparison Operators](#Comparison Operators) for the type of value being aggregated.
+The <span class="id">Max</span> operator returns the maximum element in the source. Comparison semantics are defined by the [Comparison Operators](#comparison-operators) for the type of value being aggregated.
 
 If the source contains no non-null elements, <span class="kw">null</span> is returned.
 
@@ -5261,7 +5261,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Max</span> operator:
 
-``` cql
+```cql
 define "IntegerMax": Max({ 2, 4, 8, 6 }) // 8
 define "LongMax": Max({ 2L, 4L, 8L, 6L }) // 8L
 define "DateMax": Max({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2013-01-01
@@ -5273,7 +5273,7 @@ define "MaxIsAlsoNull": Max(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Min(argument List<Integer>) Integer
 Min(argument List<Long>) Long
 Min(argument List<Decimal>) Decimal
@@ -5286,7 +5286,7 @@ Min(argument List<String>) String
 
 **Description:**
 
-The <span class="id">Min</span> operator returns the minimum element in the source. Comparison semantics are defined by the [Comparison Operators](#Comparison Operators) for the type of value being aggregated.
+The <span class="id">Min</span> operator returns the minimum element in the source. Comparison semantics are defined by the [Comparison Operators](#comparison-operators) for the type of value being aggregated.
 
 If the source contains no non-null elements, <span class="kw">null</span> is returned.
 
@@ -5294,7 +5294,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Min</span> operator:
 
-``` cql
+```cql
 define "IntegerMin": Min({ 2, 4, 8, 6 }) // 2
 define "LongMin": Min({ 2L, 4L, 8L, 6L }) // 2L
 define "DateMin": Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
@@ -5306,7 +5306,7 @@ define "MinIsAlsoNull": Min(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Median(argument List<Decimal>) Decimal
 Median(argument List<Quantity>) Quantity
 ```
@@ -5321,7 +5321,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Median</span> operator:
 
-``` cql
+```cql
 define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
 define "QuantityMedian": Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
 define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quantity })
@@ -5332,7 +5332,7 @@ define "MedianIsAlsoNull": Median(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Mode(argument List<T>) T
 ```
 
@@ -5346,7 +5346,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Mode</span> operator:
 
-``` cql
+```cql
 define "DecimalMode": Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
 define "QuantityMode": Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
 define "ModeIsNull": Mode({ null as Quantity, null as Quantity, null as Quantity })
@@ -5357,7 +5357,7 @@ define "ModeIsAlsoNull": Mode(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 PopulationStdDev(argument List<Decimal>) Decimal
 PopulationStdDev(argument List<Quantity>) Quantity
 ```
@@ -5372,7 +5372,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">PopulationStdDev</span> operator:
 
-``` cql
+```cql
 define "DecimalPopulationStdDev": PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.41421356
 define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'
 define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
@@ -5383,7 +5383,7 @@ define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 PopulationVariance(argument List<Decimal>) Decimal
 PopulationVariance(argument List<Quantity>) Quantity
 ```
@@ -5398,7 +5398,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">PopulationVariance</span> operator:
 
-``` cql
+```cql
 define "DecimalPopulationVariance": PopulationVariance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0
 define "QuantityPopulationVariance": PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'
 define "PopulationVarianceIsNull": PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })
@@ -5409,7 +5409,7 @@ define "PopulationVarianceIsAlsoNull": PopulationVariance(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Product(argument List<Integer>) Integer
 Product(argument List<Long>) Long
 Product(argument List<Decimal>) Decimal
@@ -5429,7 +5429,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Product</span> operator:
 
-``` cql
+```cql
 define "DecimalProduct": Product({ 1.0, 2.0, 3.0, 4.0 }) // 24.0
 define "QuantityProduct": Product({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg' }) // 24.0 'mg'
 define "ProductIsNull": Product({ null as Quantity, null as Quantity, null as Quantity })
@@ -5440,7 +5440,7 @@ define "ProductIsAlsoNull": Product(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 StdDev(argument List<Decimal>) Decimal
 StdDev(argument List<Quantity>) Quantity
 ```
@@ -5455,7 +5455,7 @@ If the list is <span class="kw">null</span>, the result is <span class="kw">null
 
 The following examples illustrate the behavior of the <span class="id">StdDev</span> operator:
 
-``` cql
+```cql
 define "DecimalStdDev": StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
 define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
 define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })
@@ -5466,7 +5466,7 @@ define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Sum(argument List<Integer>) Integer
 Sum(argument List<Long>) Long
 Sum(argument List<Decimal>) Decimal
@@ -5486,7 +5486,7 @@ If the list is <span class="kw">null</span>, the result is <span class="kw">null
 
 The following examples illustrate the behavior of the <span class="id">Sum</span> operator:
 
-``` cql
+```cql
 define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
 define "QuantitySum": Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
 define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity })
@@ -5497,7 +5497,7 @@ define "SumIsAlsoNull": Sum(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 Variance(argument List<Decimal>) Decimal
 Variance(argument List<Quantity>) Quantity
 ```
@@ -5512,7 +5512,7 @@ If the source is <span class="kw">null</span>, the result is <span class="kw">nu
 
 The following examples illustrate the behavior of the <span class="id">Variance</span> operator:
 
-``` cql
+```cql
 define "DecimalVariance": Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
 define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
 define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })
@@ -5526,7 +5526,7 @@ define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
 
 **Signature:**
 
-``` cql
+```cql
 AgeInYears() Integer
 AgeInMonths() Integer
 AgeInWeeks() Integer
@@ -5552,7 +5552,7 @@ These operators are shorthand for the equivalent AgeInXXXAt operator, passing To
 
 **Signature:**
 
-``` cql
+```cql
 AgeInYearsAt(asOf Date) Integer
 AgeInYearsAt(asOf DateTime) Integer
 AgeInMonthsAt(asOf Date) Integer
@@ -5580,7 +5580,7 @@ These operators are shorthand for the equivalent CalculateAgeInXXXAt operator, p
 
 **Signature:**
 
-``` cql
+```cql
 CalculateAgeInYears(birthDate Date) Integer
 CalculateAgeInYears(birthDate DateTime) Integer
 CalculateAgeInMonths(birthDate Date) Integer
@@ -5608,7 +5608,7 @@ These operators are shorthand for the equivalent CalculateAgeInXXXAt, passing th
 
 **Signature:**
 
-``` cql
+```cql
 CalculateAgeInYearsAt(birthDate Date, asOf Date) Integer
 CalculateAgeInYearsAt(birthDate DateTime, asOf DateTime) Integer
 CalculateAgeInMonthsAt(birthDate Date, asOf Date) Integer
@@ -5632,7 +5632,7 @@ The <span class="id">CalculateAgeAt</span> operators are defined in terms of a d
 
 The following examples illustrate the behavior of the <span class="id">CalculateAgeAt</span> operator:
 
-``` cql
+```cql
 define "CalculateAgeAt": CalculateAgeInYearsAt(@2000-01-01, @2015-01-01) // 15
 define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 ```
@@ -5642,7 +5642,7 @@ define "CalculateAgeAtIsNull": CalculateAgeInYearsAt(@2000-01-01, null)
 
 **Signature:**
 
-``` cql
+```cql
 =(left Code, right Code) Boolean
 =(left Concept, right Concept) Boolean
 ```
@@ -5655,7 +5655,7 @@ If either argument is <span class="kw">null</span>, or has different components 
 
 The following examples illustrate the behavior of the _equal_ operator:
 
-``` cql
+```cql
 define "Code1": Code { system: 'http://loinc.org', code: '8480-6', version: '1.0', display: 'Systolic blood pressure' }
 define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
 define "Concept2": Concept { codes: { Code1 }, display: 'More Concepts' }
@@ -5669,7 +5669,7 @@ define "EqualIsNull": Code1 = null
 
 **Signature:**
 
-``` cql
+```cql
 ~(left Code, right Code) Boolean
 ~(left Concept, right Concept) Boolean
 ~(left Code, right Concept) Boolean
@@ -5689,7 +5689,7 @@ Note that this operator will always return <span class="kw">true</span> or <span
 
 The following examples illustrate the behavior of the _equivalent_ operator:
 
-``` cql
+```cql
 define "Code1": Code { system: 'http://loinc.org', code: '8480-6', display: 'Systolic blood pressure' }
 define "Concept1": Concept { codes: { Code1 }, display: 'Concepts' }
 define "Concept2": Concept { codes: { null }, display: 'More Concepts' }
@@ -5705,7 +5705,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 
 **Signature:**
 
-``` cql
+```cql
 in(code String, codesystem CodeSystemRef) Boolean
 in(code Code, codesystem CodeSystemRef) Boolean
 in(concept Concept, codesystem CodeSystemRef) Boolean
@@ -5732,7 +5732,7 @@ If the <span class="id">code</span> system reference cannot be resolved, a run-t
 
 The following examples illustrate the behavior of the <span class="kw">in</span> (Codesystem) operator:
 
-``` cql
+```cql
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
 define "StringInCodesystem": '12345678' in "SNOMED:2014"
 define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
@@ -5749,7 +5749,7 @@ define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 {: .note-info}
 
 **Signature:**
-``` cql
+```cql
 ExpandValueSet(ValueSet) List<Code>
 ```
 
@@ -5765,7 +5765,7 @@ If the argument is null, the result is null.
 
 The following example illustrates use of the ExpandValueSet function:
 
-``` cql
+```cql
 valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
@@ -5775,7 +5775,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 **Signature:**
 
-``` cql
+```cql
 in(code String, valueset ValueSetRef) Boolean
 in(code Code, valueset ValueSetRef) Boolean
 in(concept Concept, valueset ValueSetRef) Boolean
@@ -5802,7 +5802,7 @@ If the value set reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the <span class="kw">in</span> (Valueset) operator:
 
-``` cql
+```cql
 valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
 define "StringInValueset": '12345678' in "Acute Pharyngitis"
 define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
@@ -5818,7 +5818,7 @@ define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
 
 **Signature:**
 
-``` cql
+```cql
 Message(source T, condition Boolean, code String, severity String, message String) T
 ```
 
@@ -5848,7 +5848,7 @@ The message is the content of the actual message that is sent to the calling env
 
 The following examples illustrate the behavior of the <span class="id">Message</span> operator:
 
-``` cql
+```cql
 parameter Numerator Integer default 1
 parameter Denominator Integer default 0
 define "ErrorMessage": Message('Divide by zero error!', Denominator = 0, 'Undefined', 'Error', 'The Denominator parameter is zero')

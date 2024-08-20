@@ -4,51 +4,51 @@ This appendix provides detailed mappings for each FHIRPath function in terms of 
 
 ### .aggregate()
 
-``` cql
+```cql
 X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
 ```
 
 ### .abs()
 
-``` cql
+```cql
 X.abs() === Abs(X)
 ```
 
 ### .all()
 
-``` cql
+```cql
 X.all(<condition>) === AllTrue(X $this let a: <condition> where a return a)
 ```
 
 ### .allFalse()
 
-``` cql
+```cql
 X.allFalse() === AllTrue(X A return not A)
 ```
 
 {: #alltrue-1}
 ### .allTrue()
 
-``` cql
+```cql
 X.allTrue() === AllTrue(X)
 ```
 
 ### .anyFalse()
 
-``` cql
+```cql
 X.anyFalse() === AnyTrue(X A return not A)
 ```
 
 {: #anytrue-1}
 ### .anyTrue()
 
-``` cql
+```cql
 X.anyTrue() === AnyTrue(X)
 ```
 
 ### .as()
 
-``` cql
+```cql
 X.as(T) === X as T
 ```
 
@@ -56,27 +56,27 @@ Note that the type argument T is expected to be a literal string and must resolv
 
 ### .ceiling()
 
-``` cql
+```cql
 X.ceiling() === Ceiling(X)
 ```
 
 {: #children-1}
 ### .children()
 
-``` cql
+```cql
 .children(X) === Children(X)
 ```
 
 {: #combine-1}
 ### .combine()
 
-``` cql
+```cql
 X.combine(Y) === Flatten(\{ X, Y })
 ```
 
 ### .conformsTo()
 
-``` cql
+```cql
 X.conformsTo(Y) === FHIRSupport.ConformsTo(Y)
 ```
 
@@ -85,96 +85,96 @@ Note that this mapping relies on an external library, FHIRSupport to provide con
 {: #contains-2}
 ### .contains()
 
-``` cql
+```cql
 X.contains(Y) === PositionOf(Y, X) >= 0
 ```
 
 ### .convertsToBoolean()
 
-``` cql
+```cql
 X.convertsToBoolean() === ConvertsToBoolean(X)
 ```
 
 ### .convertsToDate()
 
-``` cql
+```cql
 X.convertsToDate() === ConvertsToDate(X)
 ```
 
 ### .convertsToDateTime()
 
-``` cql
+```cql
 X.convertsToDateTime() === ConvertsToDateTime(X)
 ```
 
 ### .convertsToDecimal()
 
-``` cql
+```cql
 X.convertsToDecimal() === ConvertsToDecimal(X)
 ```
 
 ### .convertsToInteger()
 
-``` cql
+```cql
 X.convertsToInteger() === ConvertsToInteger(X)
 ```
 
 ### .convertsToQuantity()
 
-``` cql
+```cql
 X.convertsToQuantity() === ConvertsToQuantity(X)
 ```
 
 ### .convertsToTime()
 
-``` cql
+```cql
 X.convertsToTime() === ConvertsToTime(X)
 ```
 
 {: #count-1}
 ### .count()
 
-``` cql
+```cql
 X.count() === Count(X)
 ```
 
 {: #descendents-1}
 ### .descendents()
 
-``` cql
+```cql
 .descendents(X) === Descendents(X)
 ```
 
 {: #distinct-1}
 ### .distinct()
 
-``` cql
+```cql
 X.distinct() === distinct X
 ```
 
 ### .empty()
 
-``` cql
+```cql
 X.empty() === not exists X
 ```
 
 {: #endswith-1}
 ### .endsWith()
 
-``` cql
+```cql
 X.endsWith(Y) === EndsWith(X, Y)
 ```
 
 ### .exclude()
 
-``` cql
+```cql
 X.exclude(Y) === X except Y
 ```
 
 {: #exists-1}
 ### .exists()
 
-``` cql
+```cql
 X.exists() === exists X
 
 X.exists(<condition>) === exists (X $this where <condition>)
@@ -182,32 +182,32 @@ X.exists(<condition>) === exists (X $this where <condition>)
 
 ### .exp()
 
-``` cql
+```cql
 X.exp() === Exp(X)
 ```
 
 {: #first-1}
 ### .first()
 
-``` cql
+```cql
 X.first() === First(X)
 ```
 
 ### .floor()
 
-``` cql
+```cql
 X.floor() === Floor(X)
 ```
 
 ### .hasValue()
 
-``` cql
+```cql
 X.hasValue() === X is not null
 ```
 
 ### .iif()
 
-``` cql
+```cql
 iif(X, Y) === if X then Y else null
 
 iif(X, Y, Z) === if X then Y else Z
@@ -216,19 +216,19 @@ iif(X, Y, Z) === if X then Y else Z
 {: #indexof-1}
 ### .indexOf()
 
-``` cql
+```cql
 X.indexOf(Y) === PositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of IndexOf
 ```
 
 ### .intersect()
 
-``` cql
+```cql
 X.intersect(Y) === X intersect Y
 ```
 
 ### .is()
 
-``` cql
+```cql
 X.is(T) === X is T
 ```
 
@@ -236,64 +236,64 @@ Note that the argument T is expected to be a literal string and must resolve to 
 
 ### .isDistinct()
 
-``` cql
+```cql
 X.isDistinct() === Count(X) = Count(distinct X)
 ```
 
 {: #last-1}
 ### .last()
 
-``` cql
+```cql
 X.last() === Last(X)
 ```
 
 ### .lastIndexOf()
 
-``` cql
+```cql
 X.lastIndexOf(Y) === LastPositionOf(Y, X) // Note carefully the order of arguments here, it’s the opposite of lastIndexOf.
 ```
 
 {: #length-2}
 ### .length()
 
-``` cql
+```cql
 X.length() === Length(X)
 ```
 
 ### .ln()
 
-``` cql
+```cql
 X.ln() === Ln(X)
 ```
 
 ### .log()
 
-``` cql
+```cql
 X.log(B) === Log(X, B)
 ```
 
 ### .lower()
 
-``` cql
+```cql
 X.lower() === Lower(X)
 ```
 
 {: #matches-1}
 ### .matches()
 
-``` cql
+```cql
 X.matches(Y) === Matches(X, Y)
 ```
 
 ### .memberOf()
 
-``` cql
+```cql
 X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
 ```
 
 ### .ofType()
 
-``` cql
+```cql
 X.ofType(T) === X $this where $this is T return $this as T
 ```
 
@@ -302,51 +302,51 @@ Note that the argument T is required to be a literal string, and is interpreted 
 {: #not-1}
 ### .not()
 
-``` cql
+```cql
 X.not() === not X
 ```
 
 {: #now-1}
 ### .now()
 
-``` cql
+```cql
 now() === Now()
 ```
 
 ### .power()
 
-``` cql
+```cql
 X.power(Y) === Power(X, Y)
 ```
 
 ### .repeat()
 
-``` cql
+```cql
 X.repeat(<element>) === Repeat(X, <element>)
 ```
 
 The type of X.repeat(<element>) is inferred as the type of:
 
-``` cql
+```cql
 X.select(<element>).select(<element>)
 ```
 
 ### .replace()
 
-``` cql
+```cql
 X.replace(Y, Z) === Replace(X, Y, Z)
 ```
 
 {: #replacematches-1}
 ### .replaceMatches()
 
-``` cql
+```cql
 X.replaceMatches(Y, Z) === ReplaceMatches(X, Y, Z)
 ```
 
 ### .round()
 
-``` cql
+```cql
 X.round() === Round(X)
 X.round(Y) === Round(X, Y)
 ```
@@ -355,52 +355,52 @@ X.round(Y) === Round(X, Y)
 
 If the result type of <element> is not list-valued:
 
-``` cql
+```cql
 X.select(<element>) === X $this let a: <element> where a is not null return a
 ```
 
 If the result type of <element> is list-valued:
 
-``` cql
+```cql
 X.select(<element>) === Flatten(X $this let a: <element> where a is not null return a)
 ```
 
 ### .single()
 
-``` cql
+```cql
 X.single() === singleton from X
 ```
 
 {: #skip-1}
 ### .skip()
 
-``` cql
+```cql
 X.skip(Y) === Slice(X, Y, null)
 ```
 
 ### .sqrt()
 
-``` cql
+```cql
 X.sqrt() === Power(X, 0.5)
 ```
 
 {: #startswith-1}
 ### .startsWith()
 
-``` cql
+```cql
 X.startsWith(Y) === StartsWith(X, Y)
 ```
 
 ### .subsetOf()
 
-``` cql
+```cql
 X.subsetOf(Y) === X included in Y
 ```
 
 {: #substring-1}
 ### .substring()
 
-``` cql
+```cql
 X.substring(Y) === SubString(X, Y)
 
 X.substring(Y, Z) === SubString(X, Y, Z)
@@ -408,130 +408,130 @@ X.substring(Y, Z) === SubString(X, Y, Z)
 
 ### .subsumes()
 
-``` cql
+```cql
 X.subsumes(Y) === Subsumes(X, Y)
 ```
 
 ### .subsumedBy()
 
-``` cql
+```cql
 X.subsumedBy(Y) === SubsumedBy(X, Y)
 ```
 
 ### .supersetOf()
 
-``` cql
+```cql
 X.supersetOf(Y) === X includes Y
 ```
 
 {: #tail-1}
 ### .tail()
 
-``` cql
+```cql
 X.tail() === Slice(X, 1, null)
 ```
 
 {: #take-1}
 ### .take()
 
-``` cql
+```cql
 X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
 ```
 
 ### .timeOfDay()
 
-``` cql
+```cql
 timeOfDay() === TimeOfDay()
 ```
 
 {: #toboolean-1}
 ### .toBoolean()
 
-``` cql
+```cql
 X.toBoolean() === ToBoolean(X)
 ```
 
 ### .toChars()
 
-``` cql
+```cql
 X.toChars() === ToChars(X)
 ```
 
 {: #todate-1}
 ### .toDate()
 
-``` cql
+```cql
 X.toDate() === ToDate(X)
 ```
 
 {: #todatetime-1}
 ### .toDateTime()
 
-``` cql
+```cql
 X.toDateTime() === ToDateTime(X)
 ```
 
 {: #today-1}
 ### .today()
 
-``` cql
+```cql
 today() === Today()
 ```
 
 {: #todecimal-1}
 ### .toDecimal()
 
-``` cql
+```cql
 X.toDecimal() === ToDecimal(X)
 ```
 
 {: #tointeger-1}
 ### .toInteger()
 
-``` cql
+```cql
 X.toInteger() === ToInteger(X)
 ```
 
 ### .toQuantity()
 
-``` cql
+```cql
 X.toQuantity() === ToQuantity(X)
 ```
 
 {: #tostring-1}
 ### .toString()
 
-``` cql
+```cql
 X.toString() === ToString(X)
 ```
 
 {: #totime-1}
 ### .toTime()
 
-``` cql
+```cql
 X.toTime() === ToTime(X)
 ```
 
 ### .trace()
 
-``` cql
+```cql
 X.trace(Y) === Message(X, true, Y, 'Trace', ToString(X)))
 ```
 
 ### .truncate()
 
-``` cql
+```cql
 X.truncate() === Truncate(X)
 ```
 
 ### .upper()
 
-``` cql
+```cql
 X.upper() === Upper(X)
 ```
 
 ### .where()
 
-``` cql
+```cql
 X.where(<condition>) === X $this where <condition>
 ```
