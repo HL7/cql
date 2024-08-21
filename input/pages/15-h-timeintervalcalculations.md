@@ -102,7 +102,7 @@ Date 1: 2012-**02**-29 10:18:56<br/>
 Date 2: 2014-**02**-28 19:02:34<br/>
 Duration = year (date 2) - year (date 1) = 2014 - 2012 = **2 years**
 
-**Note:** Because there is no February 29 in 2014, per the [Date and Time Arithmetic](#05-languagesemantics.html#datetime-arithmetic-1) section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + **1 year** = 2013-02-28)
+**Note:** Because there is no February 29 in 2014, per the [Date and Time Arithmetic](05-languagesemantics.html#datetime-arithmetic-1) section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + **1 year** = 2013-02-28)
 
 #### Negative Examples
 

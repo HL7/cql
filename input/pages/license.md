@@ -13,3 +13,5 @@ This material contains content from LOINC® ([http://loinc.org](http://loinc.org
 This material contains content from the Unified Code for Units of Measure (UCUM) ([http://unitsofmeasure.org](http://unitsofmeasure.org)). The UCUM specification is copyright (c) 1999-2013, Regenstrief Institute, Inc. and available at no cost under the license at [http://unitsofmeasure.org/trac/wiki/TermsOfUse](http://unitsofmeasure.org/trac/wiki/TermsOfUse).
 
 This material contains quality measure content developed by the National Committee for Quality Assurance (NCQA). The measure content is copyright (c) 2008-2013 National Committee for Quality Assurance and used in accordance with the NCQA license terms for non-commercial use.
+
+{% include ip-statements.xhtml %}

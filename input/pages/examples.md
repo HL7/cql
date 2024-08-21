@@ -72,7 +72,6 @@ Using QDM:
   
 * [CQL](examples\CMS55v1_QDM.cql)
 * [ELM (XML)](examples\CMS55v1_QDM.xml)
-//* [ELM (JSON)](examples\CMS55v1_QDM.json)
 
 #### CMS135
 

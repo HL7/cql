@@ -612,7 +612,7 @@ A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withClause) clause and 
 
 A given query may include any number of <span class="kw">with</span> and <span class="kw">without</span> clauses in any order, but they must all come before any <span class="kw">where</span>, <span class="kw">return</span>, or <span class="kw">sort</span> clauses.
 
-The <span class="kw">such that</span> conditions in the examples above used [Timing Relationships](#timing-relationshipos) (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
+The <span class="kw">such that</span> conditions in the examples above used [Timing Relationships](#timing-relationships) (e.g. during, after end of), but any expression may be used, so long as the overall result is boolean-valued. For example:
 
 ```cql
 [MedicationDispense: "Warfarin"] D
@@ -1054,7 +1054,7 @@ See the [Terminology Operators](#terminology-operators) section for more informa
 
 ##### Codesystems
 
-In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the [Valuesets](#Valuesets) section for an example of a codesystem declaration.
+In addition to their use as part of valueset definitions, codesystem definitions can be referenced directly within an expression, just like valueset definitions. See the [Valuesets](#valuesets) section for an example of a codesystem declaration.
 
 For example:
 

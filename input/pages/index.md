@@ -80,3 +80,15 @@ The organization of this specification follows the outline of the perspectives d
 [Appendix K](18-k-listoffigures.html) – List Of Figures
 
 [Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams
+
+#### Dependencies
+
+{% include dependency-table-short.xhtml %}
+
+#### Cross Version Analysis
+
+{% include cross-version-analysis-inline.xhtml %}
+
+#### Global Profiles
+
+{% include globals-table.xhtml %}
