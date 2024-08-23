@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ciUrl="http://build.fhir.org/ig/HL7/cql" defaultVersion="1.5.2" defaultWorkgroup="cds" gitUrl="https://github.com/HL7/cql" url="http://cql.hl7.org">
+<version code="current" url="http://build.fhir.org/ig/HL7/cql"/>
+<version code="1.5.2" url="http://cql.hl7.org/N1"/>
+<version code="1.0" deprecated="true" url="http://www.hl7.org/documentcenter/public/standards/dstu/HL7_CQLANG_R1_DSTU_2015MAY.zip"/>
+<version code="1.1" deprecated="true" url="http://www.hl7.org/documentcenter/public/standards/dstu/HL7_CQL_SPEC_R1_DSTUR1dot1_2016JUL.zip"/>
+<version code="1.2" deprecated="true" url="http://cql.hl7.org/STU2"/>
+<version code="1.3" deprecated="true" url="http://cql.hl7.org/STU3"/>
+<version code="1.4" deprecated="true" url="http://cql.hl7.org/STU4"/>
+<version code="1.5" deprecated="true"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<artifact id="Binary/binary-cql-grammar" key="Binary-binary-cql-grammar" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-annotated-json" key="Binary-binary-example-chlamydiascreening-cds-annotated-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-annotated-xml" key="Binary-binary-example-chlamydiascreening-cds-annotated-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-cql" key="Binary-binary-example-chlamydiascreening-cds-cql" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-debug-json" key="Binary-binary-example-chlamydiascreening-cds-debug-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-debug-xml" key="Binary-binary-example-chlamydiascreening-cds-debug-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-json" key="Binary-binary-example-chlamydiascreening-cds-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-usingcommon-cql" key="Binary-binary-example-chlamydiascreening-cds-usingcommon-cql" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-usingcommon-json" key="Binary-binary-example-chlamydiascreening-cds-usingcommon-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-usingcommon-xml" key="Binary-binary-example-chlamydiascreening-cds-usingcommon-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cds-xml" key="Binary-binary-example-chlamydiascreening-cds-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-common-cql" key="Binary-binary-example-chlamydiascreening-common-cql" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-common-json" key="Binary-binary-example-chlamydiascreening-common-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-common-xml" key="Binary-binary-example-chlamydiascreening-common-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-cql" key="Binary-binary-example-chlamydiascreening-cqm-cql" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-json" key="Binary-binary-example-chlamydiascreening-cqm-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-usingcommon-cql" key="Binary-binary-example-chlamydiascreening-cqm-usingcommon-cql" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-usingcommon-json" key="Binary-binary-example-chlamydiascreening-cqm-usingcommon-json" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-usingcommon-xml" key="Binary-binary-example-chlamydiascreening-cqm-usingcommon-xml" name=""/>
+<artifact id="Binary/binary-example-chlamydiascreening-cqm-xml" key="Binary-binary-example-chlamydiascreening-cqm-xml" name=""/>
+<artifact id="Binary/binary-example-cms135-qdm-cql" key="Binary-binary-example-cms135-qdm-cql" name=""/>
+<artifact id="Binary/binary-example-cms135-qdm-json" key="Binary-binary-example-cms135-qdm-json" name=""/>
+<artifact id="Binary/binary-example-cms135-qdm-xml" key="Binary-binary-example-cms135-qdm-xml" name=""/>
+<artifact id="Binary/binary-example-cms146v2-cqm-cql" key="Binary-binary-example-cms146v2-cqm-cql" name=""/>
+<artifact id="Binary/binary-example-cms146v2-cqm-json" key="Binary-binary-example-cms146v2-cqm-json" name=""/>
+<artifact id="Binary/binary-example-cms146v2-cqm-xml" key="Binary-binary-example-cms146v2-cqm-xml" name=""/>
+<artifact id="Binary/binary-example-cms146v2-qdm-cql" key="Binary-binary-example-cms146v2-qdm-cql" name=""/>
+<artifact id="Binary/binary-example-cms146v2-qdm-json" key="Binary-binary-example-cms146v2-qdm-json" name=""/>
+<artifact id="Binary/binary-example-cms146v2-qdm-xml" key="Binary-binary-example-cms146v2-qdm-xml" name=""/>
+<artifact id="Binary/binary-example-cms154v1-nqf0069-cql" key="Binary-binary-example-cms154v1-nqf0069-cql" name=""/>
+<artifact id="Binary/binary-example-cms154v1-nqf0069-json" key="Binary-binary-example-cms154v1-nqf0069-json" name=""/>
+<artifact id="Binary/binary-example-cms154v1-nqf0069-xml" key="Binary-binary-example-cms154v1-nqf0069-xml" name=""/>
+<artifact id="Binary/binary-example-cms179v2-cqm-cql" key="Binary-binary-example-cms179v2-cqm-cql" name=""/>
+<artifact id="Binary/binary-example-cms179v2-cqm-json" key="Binary-binary-example-cms179v2-cqm-json" name=""/>
+<artifact id="Binary/binary-example-cms179v2-cqm-xml" key="Binary-binary-example-cms179v2-cqm-xml" name=""/>
+<artifact id="Binary/binary-example-cms179v2-qdm-cql" key="Binary-binary-example-cms179v2-qdm-cql" name=""/>
+<artifact id="Binary/binary-example-cms179v2-qdm-json" key="Binary-binary-example-cms179v2-qdm-json" name=""/>
+<artifact id="Binary/binary-example-cms179v2-qdm-xml" key="Binary-binary-example-cms179v2-qdm-xml" name=""/>
+<artifact id="Binary/binary-example-cms26v2-cqm-cql" key="Binary-binary-example-cms26v2-cqm-cql" name=""/>
+<artifact id="Binary/binary-example-cms26v2-cqm-json" key="Binary-binary-example-cms26v2-cqm-json" name=""/>
+<artifact id="Binary/binary-example-cms26v2-cqm-xml" key="Binary-binary-example-cms26v2-cqm-xml" name=""/>
+<artifact id="Binary/binary-example-cms55v1-nqf0495-cql" key="Binary-binary-example-cms55v1-nqf0495-cql" name=""/>
+<artifact id="Binary/binary-example-cms55v1-nqf0495-json" key="Binary-binary-example-cms55v1-nqf0495-json" name=""/>
+<artifact id="Binary/binary-example-cms55v1-nqf0495-xml" key="Binary-binary-example-cms55v1-nqf0495-xml" name=""/>
+<artifact id="Binary/binary-example-cms55v1-qdm-cql" key="Binary-binary-example-cms55v1-qdm-cql" name=""/>
+<artifact id="Binary/binary-example-cms55v1-qdm-xml" key="Binary-binary-example-cms55v1-qdm-xml" name=""/>
+<artifact id="Binary/binary-example-example.relatedcontextretrieve-0.1.0-cql" key="Binary-binary-example-example.relatedcontextretrieve-0.1.0-cql" name=""/>
+<artifact id="Binary/binary-example-example.relatedcontextretrieve-0.1.0-json" key="Binary-binary-example-example.relatedcontextretrieve-0.1.0-json" name=""/>
+<artifact id="Binary/binary-example-example.relatedcontextretrieve-0.1.0-xml" key="Binary-binary-example-example.relatedcontextretrieve-0.1.0-xml" name=""/>
+<artifact id="Binary/binary-fhirpath-grammar" key="Binary-binary-fhirpath-grammar" name=""/>
+<artifact id="Binary/binary-schema-clinicalexpression" key="Binary-binary-schema-clinicalexpression" name=""/>
+<artifact id="Binary/binary-schema-cqlannotations" key="Binary-binary-schema-cqlannotations" name=""/>
+<artifact id="Binary/binary-schema-expression" key="Binary-binary-schema-expression" name=""/>
+<artifact id="Binary/binary-schema-library" key="Binary-binary-schema-library" name=""/>
+<artifact id="Binary/binary-schema-modelinfo" key="Binary-binary-schema-modelinfo" name=""/>
+<artifact id="Binary/binary-schema-testschema" key="Binary-binary-schema-testschema" name=""/>
+<artifact id="Binary/binary-schema-types" key="Binary-binary-schema-types" name=""/>
+<artifact id="Binary/binary-test-cqlaggregatefunctionstest" key="Binary-binary-test-cqlaggregatefunctionstest" name=""/>
+<artifact id="Binary/binary-test-cqlarithmeticfunctionstest" key="Binary-binary-test-cqlarithmeticfunctionstest" name=""/>
+<artifact id="Binary/binary-test-cqlcomparisonoperatorstest" key="Binary-binary-test-cqlcomparisonoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqlconditionaloperatorstest" key="Binary-binary-test-cqlconditionaloperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqldatetimeoperatorstest" key="Binary-binary-test-cqldatetimeoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqlerrorsandmessagingoperatorstest" key="Binary-binary-test-cqlerrorsandmessagingoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqlintervaloperatorstest" key="Binary-binary-test-cqlintervaloperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqllistoperatorstest" key="Binary-binary-test-cqllistoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqllogicaloperatorstest" key="Binary-binary-test-cqllogicaloperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqlnullologicaloperatorstest" key="Binary-binary-test-cqlnullologicaloperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqlstringoperatorstest" key="Binary-binary-test-cqlstringoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqltypeoperatorstest" key="Binary-binary-test-cqltypeoperatorstest" name=""/>
+<artifact id="Binary/binary-test-cqltypestest" key="Binary-binary-test-cqltypestest" name=""/>
+<artifact id="Binary/binary-test-valueliteralsandselectors" key="Binary-binary-test-valueliteralsandselectors" name=""/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page key="08-a-cqlsyntax" name="Appendix A - CQL Syntax"/>
+<page deprecated="true" key="appendixa" name="Appendix A - Syntax"/>
+<page key="09-b-cqlreference" name="Appendix B - CQL Reference"/>
+<page deprecated="true" key="appendixb" name="Appendix B - Reference"/>
+<page deprecated="true" key="appendixc" name="Appendix C - Implementations"/>
+<page key="10-c-referenceimplementations" name="Appendix C - Reference Implementations"/>
+<page key="appendixd" name="Appendix D - References"/>
+<page key="appendixe" name="Appendix E - Acronyms"/>
+<page key="appendixf" name="Appendix F - Glossary"/>
+<page deprecated="true" key="appendixg" name="Appendix G - Conventions"/>
+<page key="14-g-formattingconventions" name="Appendix G - Formatting Conventions"/>
+<page deprecated="true" key="appendixh" name="Appendix H - Interval Examples"/>
+<page key="15-h-timeintervalcalculations" name="Appendix H - Time Interval Calculations"/>
+<page key="appendixi" name="Appendix I - FHIRPath Translation"/>
+<page key="17-j-listoftables" name="Appendix J - List Of Tables"/>
+<page deprecated="true" key="appendixj" name="Appendix J - List of Tables"/>
+<page key="18-k-listoffigures" name="Appendix K - List Of Figures"/>
+<page deprecated="true" key="appendixk" name="Appendix K - List of Figures"/>
+<page key="19-l-cqlsyntaxdiagrams" name="Appendix L - CQL Syntax Diagrams"/>
+<page key="artifacts" name="Artifacts Summary"/>
+<page key="02-authorsguide" name="Author's Guide"/>
+<page deprecated="true" key="authorsguide" name="Authors Guide"/>
+<page key="index" name="CQL Specification"/>
+<page key="toc" name="CQL Specification - table of contents"/>
+<page key="01-introduction" name="Chapter 1 - Introduction"/>
+<page key="04-logicalspecification" name="Chapter 4 - Logical Specification"/>
+<page key="05-languagesemantics" name="Chapter 5 - Language Semantics"/>
+<page key="06-translationsemantics" name="Chapter 6 - Translation Semantics"/>
+<page key="07-physicalrepresentation" name="Chapter 7 - Physical Representation"/>
+<page key="03-developersguide" name="Developer's Guide"/>
+<page deprecated="true" key="developersguide" name="Developers Guide"/>
+<page deprecated="true" key="documentation" name="Documentation"/>
+<page key="downloads" name="Downloads"/>
+<page key="elm" name="ELM"/>
+<page key="examples" name="Examples"/>
+<page key="grammar" name="Grammar"/>
+<page deprecated="true" key="history" name="History"/>
+<page deprecated="true" key="introduction" name="Introduction"/>
+<page deprecated="true" key="languagesemantics" name="Language Semantics"/>
+<page deprecated="true" key="logicalspecification" name="Logical Specification"/>
+<page deprecated="true" key="physicalrepresentation" name="Physical Representation"/>
+<page key="tests" name="Tests"/>
+<page deprecated="true" key="translationsemantics" name="Translation Semantics"/>
+</specification>
