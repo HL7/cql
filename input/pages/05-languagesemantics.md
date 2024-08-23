@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 This section contains more detailed information relating to the intended semantics of the Clinical Quality Language. These topics are specifically relevant for readers interested in building translation, semantic validation, or evaluation applications for CQL.
 

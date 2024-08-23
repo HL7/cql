@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 The following downloads are available for this specification:
 

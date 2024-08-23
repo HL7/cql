@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 As part of the Clinical Quality Framework effort, reference implementations of a CQL-to-ELM translator, a native ELM execution engine, and other CQL-related tools are maintained. This appendix provides a brief overview of where to find more information on these reference implementations.
 

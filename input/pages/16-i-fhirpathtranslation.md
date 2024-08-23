@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 

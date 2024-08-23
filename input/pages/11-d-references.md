@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 1.  _Clinical Quality Framework Use Cases._ http://wiki.siframework.org/Clinical+Quality+Framework+Use+Cases
 2.  _HL7 Version 3 Standard: Clinical Decision Support Knowledge Artifact Specification, Release 1.2._ http://www.hl7.org/implement/standards/product_brief.cfm?product_id=337

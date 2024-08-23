@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 <a name="table-12-a"></a>
 

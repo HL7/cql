@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 This guidance describes syntactic conventions and best practices for authoring statements and expressions of Clinical Quality Language (CQL) that encourage consistency, readability, maintainability, and reusability of the resulting CQL. Throughout the discussion, the following simplified syntax element definitions are used. Formal definitions of these elements can be found in the CQL Specification.
 

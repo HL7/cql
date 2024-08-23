@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 To determine the length of time between two dates, CQL provides two different approaches, _duration_, the number of whole periods between two dates, and _difference_, the number of period boundaries crossed between two dates.
 

@@ -523,9 +523,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="normative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N"/> 
         </extension>
+        -->
         <nameUrl value="index.html"/>
         <title value="CQL Specification"/>
         <generation value="markdown"/>
@@ -533,9 +535,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <!-- This extension is ignored by the fhir-base-template
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
             <valueCode value="cds"/> 
@@ -549,9 +553,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="02-authorsguide.html"/>
           <title value="Author's Guide"/>
           <generation value="markdown"/>
@@ -560,9 +566,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="03-developersguide.html"/>
           <title value="Developer's Guide"/>
           <generation value="markdown"/>
@@ -571,9 +579,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="04-logicalspecification.html"/>
           <title value="Logical Specification"/>
           <generation value="markdown"/>
@@ -582,9 +592,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="05-languagesemantics.html"/>
           <title value="Language Semantics"/>
           <generation value="markdown"/>
@@ -593,9 +605,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="06-translationsemantics.html"/>
           <title value="Translation Semantics"/>
           <generation value="markdown"/>
@@ -604,9 +618,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="07-physicalrepresentation.html"/>
           <title value="Physical Representation"/>
           <generation value="markdown"/>
@@ -615,9 +631,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="08-a-cqlsyntax.html"/>
           <title value="Appendix A - CQL Syntax"/>
           <generation value="markdown"/>
@@ -626,9 +644,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="09-b-cqlreference.html"/>
           <title value="Appendix B - CQL Reference"/>
           <generation value="markdown"/>
@@ -637,9 +657,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="10-c-referenceimplementations.html"/>
           <title value="Appendix C - Reference Implementations"/>
           <generation value="markdown"/>
@@ -648,9 +670,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="11-d-references.html"/>
           <title value="Appendix D - References"/>
           <generation value="markdown"/>
@@ -659,9 +683,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="12-e-acronyms.html"/>
           <title value="Appendix E - Acronyms"/>
           <generation value="markdown"/>
@@ -670,9 +696,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="13-f-glossary.html"/>
           <title value="Appendix F - Glossary"/>
           <generation value="markdown"/>
@@ -681,9 +709,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="14-g-formattingconventions.html"/>
           <title value="Appendix G - Formatting Conventions"/>
           <generation value="markdown"/>
@@ -692,9 +722,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="15-h-timeintervalcalculations.html"/>
           <title value="Appendix H - Time Interval Calculations"/>
           <generation value="markdown"/>
@@ -703,9 +735,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="normative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N"/> 
           </extension>
+          -->
           <nameUrl value="16-i-fhirpathtranslation.html"/>
           <title value="Appendix I - FHIRPath Translation"/>
           <generation value="markdown"/>
@@ -714,9 +748,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="17-j-listoftables.html"/>
           <title value="Appendix J - List Of Tables"/>
           <generation value="markdown"/>
@@ -725,9 +761,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="18-k-listoffigures.html"/>
           <title value="Appendix K - List Of Figures"/>
           <generation value="markdown"/>
@@ -736,9 +774,11 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
             <valueCode value="informative"/> 
           </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
           <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
             <valueString value="N/A"/> 
           </extension>
+          -->
           <nameUrl value="19-l-cqlsyntaxdiagrams.html"/>
           <title value="Appendix L - CQL Syntax Diagrams"/>
           <generation value="html"/>
@@ -748,9 +788,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="normative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N"/> 
         </extension>
+        -->
         <nameUrl value="title.html"/>
         <title value="Title"/>
         <generation value="markdown"/>
@@ -759,9 +801,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="informative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N/A"/> 
         </extension>
+        -->
         <nameUrl value="license.html"/>
         <title value="License"/>
         <generation value="markdown"/>
@@ -770,9 +814,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="informative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N/A"/> 
         </extension>
+        -->
         <nameUrl value="00-executivesummary.html"/>
         <title value="Executive Summary"/>
         <generation value="markdown"/>
@@ -781,9 +827,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="normative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N"/> 
         </extension>
+        -->
         <nameUrl value="grammar.html"/>
         <title value="Grammar"/>
         <generation value="markdown"/>
@@ -792,9 +840,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="normative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N"/> 
         </extension>
+        -->
         <nameUrl value="elm.html"/>
         <title value="ELM"/>
         <generation value="markdown"/>
@@ -803,9 +853,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="informative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N/A"/> 
         </extension>
+        -->
         <nameUrl value="examples.html"/>
         <title value="Examples"/>
         <generation value="markdown"/>
@@ -814,9 +866,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="informative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N/A"/> 
         </extension>
+        -->
         <nameUrl value="tests.html"/>
         <title value="Tests"/>
         <generation value="markdown"/>
@@ -825,14 +879,24 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="informative"/> 
         </extension> 
+        <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
           <valueString value="N/A"/> 
         </extension>
+        -->
         <nameUrl value="downloads.html"/>
         <title value="Downloads"/>
         <generation value="markdown"/>
       </page>
     </page>
+    <parameter>
+      <code value="releaselabel"/>
+      <value value="ci-build"/>
+    </parameter>
+    <parameter>
+      <code value="copyrightyear"/>
+      <value value="2014+"/>
+    </parameter>
     <parameter>
       <code value="generate"/>
       <value value="xml"/>

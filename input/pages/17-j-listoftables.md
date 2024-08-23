@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 ### Introduction
 

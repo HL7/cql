@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 The formal specification for the CQL syntax is defined using the ANTLR4 grammar framework. This framework is a general purpose cross-platform technology for describing computer languages. For more information on this framework, refer to the [ANTLR website](http://www.antlr.org/).
 

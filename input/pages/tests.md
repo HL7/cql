@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 The following contains a zip file that contains a set of unit tests for Clinical Quality Language functionality.
 

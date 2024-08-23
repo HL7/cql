@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 Expression Logical Model Schema Files are available here:
 

@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 This page contains the http://www.antlr.org/[Antlr 4.0] grammar for Clinical Quality Language.
 

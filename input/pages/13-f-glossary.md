@@ -1,4 +1,3 @@
-{% include styles.html %}
 
 **canonical representation** – As used within the CQL specification, this term means a representation of information in terms of primitives. For example, CQL contains high-level constructs such as timing phrases that are intended to allow natural language expression of timing relationships. The canonical representation of these constructs involves equivalent expression in terms of more primitive constructs targeted at implementation and integration applications.
 

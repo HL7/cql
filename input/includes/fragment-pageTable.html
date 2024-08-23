@@ -1,0 +1,38 @@
+{% if site.data.pages[page.path].status or site.data.pages[page.path].fmm %}
+  <!--NOTE: This is a hack, ideally we wouldn't have to have this fragment-pageTable template adjustment, but I don't
+  know how to set the statusClass (see Zulip: https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/How.20to.20set.20page.20status.20class.3F) -->
+  {% if site.data.pages[page.path].status == "informative" %}
+  <table class="colsi">
+  {% elsif site.data.pages[page.path].status == "normative" %}
+  <table class="colsn">
+  {% else %}
+  <table class="colstu">
+  {% endif %}
+    <tr>
+  {% if site.data.pages[page.path].status %}
+      <td>
+        <i>Page standards status:</i> <a href="{{site.data.fhir.path}}versions.html#std-process" title="Standard Status">{{site.data.pages[page.path].status|capitalize}}</a>
+        {% if site.data.pages[page.path].normativeVersion %}
+          (from v{{site.data.pages[page.path].normativeVersion}})
+        {% endif %}
+      </td>
+  {% endif %}
+  {% if site.data.pages[page.path].fmm %}
+      <td>
+        <a href="{{site.data.info.fmm-definition}}">Maturity Level</a>: {{site.data.pages[page.path].fmm}}
+      </td>
+  {% else %}
+    <!--NOTE: Another hack, to avoid the errors associated with using the fmm extension, which the QA reports is not usable on pages, even though it works -->
+    {% if site.data.pages[page.path].status == "informative" %}
+      <td>
+        <a href="{{site.data.info.fmm-definition}}">Maturity Level</a>: N/A
+      </td>
+    {% elsif site.data.pages[page.path].status == "normative" %}
+      <td>
+        <a href="{{site.data.info.fmm-definition}}">Maturity Level</a>: N
+      </td>
+    {% endif %}
+  {% endif %}
+    </tr>
+  </table>
+{% endif %}
