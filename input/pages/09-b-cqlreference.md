@@ -2464,7 +2464,7 @@ Round(argument Decimal, precision Integer) Decimal
 
 **Description:**
 
-The <span class="id">Round</span> operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
+The <span class="id">Round</span> operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round (i.e. to the nearest whole number), meaning that a decimal value greater than or equal to 0.5 and less than 1.0 will round to 1, and a decimal value less than or equal to -0.5 and greater than -1.0 will round to -1.
 
 When invoked with an <span class="id">Integer</span> argument, the argument will be implicitly converted to <span class="id">Decimal</span>.
 
@@ -2477,7 +2477,9 @@ The following examples illustrate the behavior of the <span class="id">Round</sp
 ```cql
 define "IntegerRound": Round(1) // 1
 define "DecimalRound": Round(3.14159, 3) // 3.142
-define "RoundIsNull": Round(null)
+define "RoundIsNull": Round(null) // null
+define "RoundPointFive": Round(0.5) // 1
+define "RoundNegativePointFive": Round(-0.5) // -1
 ```
 
 #### Subtract
