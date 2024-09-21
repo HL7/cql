@@ -1509,7 +1509,7 @@ The _equivalent_ (<span class="sym">~</span>) operator returns <span class="kw">
 
 With the exception of null behavior and the semantics for specific types defined below, equivalence is the same as equality.
 
-For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category.
+For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category. Note that <span class="kw">null</span> is not equivalent to the empty string (<span class="lit">''</span>).
 
 For decimals, equivalent means the values are the same with the comparison done on values rounded to the precision of the least precise operand; trailing zeroes after the decimal are ignored in determining precision for equivalent comparison.
 
@@ -5683,7 +5683,7 @@ The _equivalent_ (<span class="sym">~</span>) operator for <span class="id">Code
 
 For <span class="id">Concept</span> values, equivalence is defined as a non-empty intersection of the codes in each <span class="id">Concept</span> using <span class="id">Code</span> equivalence to determine the intersection. The <span class="id">display</span> element is ignored for the purposes of determining <span class="id">Concept</span> equivalence.
 
-Note that this operator will always return <span class="kw">true</span> or <span class="kw">false</span>, even if either or both of its arguments are <span class="kw">null</span>, or contain <span class="kw">null</span> components.
+Note that this operator will always return <span class="kw">true</span> or <span class="kw">false</span>, even if either or both of its arguments are <span class="kw">null</span>, or contain <span class="kw">null</span> components. However, <span class="kw">null</span> is not equivalent to an empty list (i.e. an empty concept is not equivalent to a <span class="kw">null</span> concept).
 
 > Note carefully that this notion of _equivalence_ is _not_ the same as the notion of equivalence used in terminology: “these codes represent the same concept.” CQL specifically avoids defining terminological equivalence. The notion of equivalence defined here is used to provide consistent and intuitive semantics when dealing with missing information when determining terminological membership.
 {: .note-warning}

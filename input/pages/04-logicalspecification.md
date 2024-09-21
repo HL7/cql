@@ -1125,7 +1125,7 @@ The Equivalent operator returns true if the arguments are the same value, or if 
 
 With the exception of null behavior and the semantics for specific types defined below, equivalence is the same as equality.
 
-For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category.
+For string values, equivalence returns true if the strings are the same value while ignoring case and locale, and normalizing whitespace. Normalizing whitespace means that all whitespace characters are treated as equivalent, with whitespace characters as defined in the whitespace lexical category. Note that null is not equivalent to the empty string ('').
 
 For decimals, equivalent means the values are the same with the comparison done on values rounded to the precision of the least precise operand; trailing zeroes after the decimal are ignored in determining precision for equivalent comparison.
 
@@ -1145,7 +1145,7 @@ For Date, DateTime, and Time values, the comparison is performed in the same way
 
 For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purposes of determining Code equivalence.
 
-For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept.
+For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept, using Code equivalence to determine the intersection. Note that an empty Concept is not equivalent to a null Concept.
 
 Note that this operator will always return true or false, even if either or both of its arguments are null or contain null components.
 
