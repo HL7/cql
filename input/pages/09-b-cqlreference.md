@@ -5681,7 +5681,7 @@ define "EqualIsNull": Code1 = null
 
 The _equivalent_ (<span class="sym">~</span>) operator for <span class="id">Code</span> values returns <span class="kw">true</span> if the <span class="id">code</span> and <span class="id">system</span> elements are equivalent. The <span class="id">version</span> and <span class="id">display</span> elements are ignored for the purposes of determining <span class="id">Code</span> equivalence.
 
-For <span class="id">Concept</span> values, equivalence is defined as a non-empty intersection of the codes in each <span class="id">Concept</span>. The <span class="id">display</span> element is ignored for the purposes of determining <span class="id">Concept</span> equivalence.
+For <span class="id">Concept</span> values, equivalence is defined as a non-empty intersection of the codes in each <span class="id">Concept</span> using <span class="id">Code</span> equivalence to determine the intersection. The <span class="id">display</span> element is ignored for the purposes of determining <span class="id">Concept</span> equivalence.
 
 Note that this operator will always return <span class="kw">true</span> or <span class="kw">false</span>, even if either or both of its arguments are <span class="kw">null</span>, or contain <span class="kw">null</span> components.
 
