@@ -140,7 +140,7 @@ Symbols provide structure to the grammar and allow symbolic invocation of common
 |**<>** |Angle-brackets for delimiting generic types within type specifiers
 |**.** |Period for qualifiers and accessors
 |**,** |Comma for delimiting items in a syntactic list
-|**= != \<= < > >=** |Comparison operators for comparing values
+|**= != \<= < > >= ~ !~** |Comparison operators for comparing values
 |**+ - * / ^** |Arithmetic operators for performing calculations
 {: .grid .table .table-striped}
 
