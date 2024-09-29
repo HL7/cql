@@ -653,7 +653,7 @@ is<T>(argument Any) Boolean
 
 **Description:**
 
-The <span class="kw">is</span> operator allows the type of a result to be tested. If the run-time type of the argument is of the type being tested, the result of the operator is <span class="kw">true</span>; otherwise, the result is <span class="kw">false</span>.
+The <span class="kw">is</span> operator allows the type of a result to be tested. If the run-time type of the argument is the same as or derived from the type being tested, the result of the operator is <span class="kw">true</span>; otherwise, the result is <span class="kw">false</span>.
 
 The following examples illustrate the behavior of the <span class="kw">is</span> operator:
 
@@ -661,6 +661,8 @@ The following examples illustrate the behavior of the <span class="kw">is</span>
 define "IsTrue": 5 is Integer
 define "IsFalse": '5' is Integer
 ```
+
+For more information, see the [Type Testing](03-developersguide.html#type-testing) topic in the Developer's Guide.
 
 #### CanConvertQuantity
 
