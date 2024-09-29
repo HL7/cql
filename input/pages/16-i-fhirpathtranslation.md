@@ -523,6 +523,13 @@ X.trace(Y) === Message(X, true, Y, 'Trace', ToString(X)))
 X.truncate() === Truncate(X)
 ```
 
+### .union() and |
+
+```cql
+X.union(Y) === X union Y
+X | Y === X union Y
+```
+
 ### .upper()
 
 ```cql
