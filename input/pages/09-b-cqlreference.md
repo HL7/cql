@@ -4221,7 +4221,7 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">properly includes</span> operator:
 
@@ -4250,7 +4250,7 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that <span class="kw">during</span> is a synonym for <span class="kw">included in</span>.
 
@@ -4945,7 +4945,7 @@ For the element overload, this operator returns true if the list contains (i.e. 
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
-If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4965,6 +4965,7 @@ define "ProperlyIncludesIsAlsoFalse": null properly includes { 1, 3, 5 }
 
 ```cql
 properly included in(left List<T>, right list<T>) Boolean
+properly included in(left T, right list<T>) Boolean
 ```
 
 **Description:**
@@ -4975,7 +4976,7 @@ For the element overload, this operator returns true if the element is in (i.e. 
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
-If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
