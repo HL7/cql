@@ -592,6 +592,18 @@ Because CQL allows multiple <span class="kw">using</span> declarations, the poss
     * If an exact match is found in the referenced model, that class is used.
     * If no exact match is found, an error is thrown that the qualified class name cannot be resolved.
 
+Note that when the <span class="id">System</span> model declaration is implicit, it is not considered as part of determining ambiguity. In other words, the following library:
+
+```cql
+library Test
+
+using FHIR version '4.0.1'
+
+define function g(q Quantity): q
+```
+
+The identifier <span class="id">Quantity</span> in this function declaration resolves to <span class="id">FHIR.Quantity</span> unambiguously because only the <span class="id">FHIR</span> model is explicitly declared.
+
 ### Types
 
 CQL is a statically typed language, meaning that it is possible to infer the type of any given expression, and for any given operator invocation, the type of the arguments must match the types of the operands. To provide complete support for the type system, CQL supports several constructs for dealing with types including _type specifiers_, as well as _conversion_, _casting_, and _type-testing_ operators.

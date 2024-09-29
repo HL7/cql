@@ -110,7 +110,7 @@ Table 6‑D - The ELM equivalent for each CQL logical operator
 |<span class="kw">convert</span> |Convert
 |<span class="kw">is</span> |Is
 |<span class="id">Children</span> |Children
-|<span class="id">Descendents</span> |Descendents
+|<span class="id">Descendants</span> |Descendants
 {: .grid .table .table-striped}
 
 Table 6‑E - The ELM equivalent for each CQL type operator
