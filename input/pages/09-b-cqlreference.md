@@ -28,7 +28,7 @@ Any other character in a format string indicates that that character must appear
 
 * **YYYY** - A full four digit year (0001..9999), padded with leading zeroes if necessary
 * **MM** - A full two digit month value (01..12), padded with leading zeroes if necessary
-* **DD** - A full two digit day value (00..31), padded with leading zeroes if necessary
+* **DD** - A full two digit day value (01..31), padded with leading zeroes if necessary
 * **hh** - A full two digit hour value (00..24), padded with leading zeroes if necessary
 * **mm** - A full two digit minute value (00..59), padded with leading zeroes if necessary
 * **ss** - A full two digit second value (00..59), padded with leading zeroes if necessary
