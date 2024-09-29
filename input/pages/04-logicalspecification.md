@@ -3132,7 +3132,7 @@ IndexOf : OperatorExpression
 
 The IndexOf operator returns the 0-based index of the given element in the given source list.
 
-The operator uses equality semantics as defined in the Equal operator to determine the index. The search is linear, and returns the index of the first element for which the equality comparison returns true.
+The operator uses equality semantics as defined in the Equal operator to determine the index, with the exception that nulls are considered equal. The search is linear, and returns the index of the first element for which the equality comparison returns true.
 
 If the list is empty, or no element is found, the result is -1.
 

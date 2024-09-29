@@ -4552,6 +4552,8 @@ define "DistinctIsNull": distinct null // null
 
 The _equal_ (<span class="sym">=</span>) operator for lists returns <span class="kw">true</span> if and only if the lists have the same element type, and have the same elements by value, in the same order.
 
+This operation uses equality semantics, with the exception that nulls are considered equal.
+
 If either argument is <span class="kw">null</span>, or contains null elements, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the _equal_ operator:
@@ -4795,7 +4797,7 @@ IndexOf(argument List<T>, element T) Integer
 
 **Description:**
 
-The <span class="id">IndexOf</span> operator returns the 0-based index of the given element in the given source list using equality semantics.
+The <span class="id">IndexOf</span> operator returns the 0-based index of the given element in the given source list using equality semantics, with the exception that nulls are considered equal.
 
 If the list is empty, or no element is found, the result is -1.
 
