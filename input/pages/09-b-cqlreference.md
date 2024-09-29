@@ -627,19 +627,19 @@ For example, the following are valid string representations for date and time va
 
 For specific semantics for each conversion, refer to the [explicit conversion](03-developersguide.html#explicit-conversion) operator documentation.
 
-#### Descendents
+#### Descendants
 
 **Signature:**
 
 ```cql
-Descendents(argument Any) List<Any>
+Descendants(argument Any) List<Any>
 ```
 
 **Description:**
 
-For structured types, the <span class="id">Descendents</span> operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
+For structured types, the <span class="id">Descendants</span> operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
-For list types, the result is the same as invoking <span class="id">Descendents</span> on each element in the list and flattening the resulting lists into a single result.
+For list types, the result is the same as invoking <span class="id">Descendants</span> on each element in the list and flattening the resulting lists into a single result.
 
 If the source is null, the result is null.
 

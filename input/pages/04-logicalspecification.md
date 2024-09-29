@@ -3805,17 +3805,17 @@ As with time-of-day literals, time-of-day values may be specified to any precisi
 
 If the argument is null, the result is null.
 
-#### Descendents
+#### Descendants
 
 ```
-Descendents : OperatorExpression
+Descendants : OperatorExpression
   ¦
   1..1 --> source : Expression
 ```
 
-For structured types, the Descendents operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
+For structured types, the Descendants operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.
 
-For list types, the result is the same as invoking Descendents on each element in the list and flattening the resulting lists into a single result.
+For list types, the result is the same as invoking Descendants on each element in the list and flattening the resulting lists into a single result.
 
 If the source is null, the result is null.
 
@@ -4238,7 +4238,7 @@ Refer to the [Not Equal section](#not-equal) in the Comparison Operators.
 SubsumedBy : BinaryExpression
 ```
 
-The SubsumedBy operator returns true if the given codes are equivalent, or if the first code is subsumed by the second code (i.e. the first code is a descendent of the second code in a subsumption hierarchy), and false otherwise.
+The SubsumedBy operator returns true if the given codes are equivalent, or if the first code is subsumed by the second code (i.e. the first code is a descendant of the second code in a subsumption hierarchy), and false otherwise.
 
 For the Concept overload, this operator returns true if any code in the first concept is subsumed by any code in the second.
 

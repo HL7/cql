@@ -1659,7 +1659,7 @@ FHIRPath traversal operations are defined such that only values that are present
 
 #### Type Resolution
 
-The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as <span class="id">.children()</span> and <span class="id">.descendents()</span>. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
+The FHIRPath specification does not require strongly-typed interpretation. In particular, the resolution of property names can be deferred completely to run-time, allowing for flexible use of expressions such as <span class="id">.children()</span> and <span class="id">.descendants()</span>. However, because CQL is a strongly-typed language, these types of expressions are required to be resolved at compile-time.
 
 For example, consider the following FHIRPath:
 

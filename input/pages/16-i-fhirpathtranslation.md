@@ -137,11 +137,11 @@ X.convertsToTime() === ConvertsToTime(X)
 X.count() === Count(X)
 ```
 
-{: #descendents-1}
-### .descendents()
+{: #descendants-1}
+### .descendants()
 
 ```cql
-.descendents(X) === Descendents(X)
+.descendants(X) === Descendants(X)
 ```
 
 {: #distinct-1}
