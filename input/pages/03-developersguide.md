@@ -1380,6 +1380,30 @@ In addition, even if a given query is based on a list of tuples, the results are
   return duration in days of E.period
 ```
 
+Note that if any query source in a multi-source query is list-valued, the result is a list, even if other sources are singleton.
+
+If all the sources of a query evaluate to <span class="kw">null</span>, the result is <span class="kw">null</span>
+
+For example, this query over a <span class="kw">null</span> list will return <span class="kw">null</span>:
+
+```cql
+define NullListQuery:
+  (null as List<FHIR.CodeableConcept>) X
+    return Concept {
+      codes: X.coding C return FHIRHelpers.ToCode(C)
+    }
+```
+
+Similarly, this query over a <span class="kw">null</span> object will return <span class="kw">null</span>:
+
+```cql
+define NullObjectQuery:
+  (null as FHIR.CodeableConcept) X
+    return Concept {
+      codes: X.coding C return FHIRHelpers.ToCode(C)
+    }
+```
+
 ### Related Context Retrieves
 
 > Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
