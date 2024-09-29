@@ -1891,7 +1891,9 @@ Table 2‑Q - Comparison of two interval values using a complete set of operatio
 
 Each of these operators returns <span class="kw">true</span> if the intervals X and Y are in the given relationship to each other. If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>. Otherwise, the result is <span class="kw">false</span>.
 
-In addition, CQL allows <span class="kw">meets</span> and <span class="kw">overlaps</span> to be invoked without the <span class="kw">before</span> or <span class="kw">after</span> suffix, indicating that either relationship should return <span class="kw">true</span>. In other words, X <span class="kw">meets</span> Y is equivalent to X <span class="kw">meets before</span> Y or X <span class="kw">meets after</span> Y, and similarly for the <span class="kw">overlaps</span> operator.
+In addition, CQL allows the <span class="kw">meets</span> operator to be invoked without the <span class="kw">before</span> or <span class="kw">after</span> suffix, indicating that either relationship should return <span class="kw">true</span>. In other words, X <span class="kw">meets</span> Y is equivalent to X <span class="kw">meets before</span> Y or X <span class="kw">meets after</span> Y.
+
+The <span class="kw">overlaps</span> operator can also be invoked without the <span class="kw">before</span> or <span class="kw">after</span> suffix, indicating that any overlap should return <span class="kw">true</span>.
 
 Note that to use these operators, the intervals must be of the same point type. For example, it is invalid to compare an interval of dates or times with an interval of numbers.
 
