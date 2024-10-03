@@ -881,6 +881,7 @@ will result in <span class="kw">null</span>. The convert syntax is equivalent to
 |**ToDecimal(String)** |Converts the string representation of a decimal value to a Decimal value using the format (<span class="sym">+\|-</span>)d\*.d\*
 |**ToQuantity(Decimal)** |Converts a Decimal value to a Quantity with a default unit ('1')
 |**ToQuantity(Integer)** |Converts an Integer value to a Quantity with a default unit ('1')
+|**ToQuantity(Long)** |Converts a Long value to a Quantity with a default unit ('1')
 |**ToQuantity(String)** |Converts the string representation of a quantity value to a Quantity value using the format (<span class="sym">+\|-</span>)d\*.d\*'units'
 |**ToRatio(String)** |Converts the string representation of a ratio value to a Ratio value using the format \<quantity>:\<quantity>
 |**ToDate(String)** |Converts the string representation of a date value to a Date value using ISO-8601 format: YYYY-MM-DD
@@ -929,7 +930,7 @@ In addition to the explicit conversion operators discussed above, CQL supports i
 |----|----|----|----|----|----|----|----|----|----|----|----|----|----|----
 |**Boolean** |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |- |-
 |**Integer** |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
-|**Long** |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |- |-
+|**Long** |Explicit |Explicit |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |- |-
 |**Decimal** |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |- |-
 |**Quantity** |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |- |-
 |**Ratio** |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |- |-

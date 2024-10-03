@@ -3726,7 +3726,7 @@ If the argument is null, the result is null.
 ConvertsToQuantity : UnaryExpression
 ```
 
-The ConvertsToQuantity operator returns true if the value of its argument is or can be converted to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values.
+The ConvertsToQuantity operator returns true if the value of its argument is or can be converted to a Quantity value. The operator may be used with Integer, Long, Decimal, Ratio, or String values.
 
 For String values, the operator accepts strings using the following format:
 
@@ -3740,7 +3740,7 @@ Note that the decimal value of the quantity returned by this operator must be a 
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is false.
 
-For Integer, Decimal, and Ratio values, the operator simply returns true.
+For Integer, Long, Decimal, and Ratio values, the operator simply returns true.
 
 If the argument is null, the result is null.
 
@@ -4007,7 +4007,7 @@ If the argument is null, the result is null.
 ToQuantity : UnaryExpression
 ```
 
-The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the [ConvertQuantity](#convertquantity) operator.
+The ToQuantity operator converts the value of its argument to a Quantity value. The operator may be used with Integer, Long, Decimal, Ratio, or String values. The operation does not perform any unit conversion, that capability is supported by the [ConvertQuantity](#convertquantity) operator.
 
 For String values, the operator accepts strings using the following format:
 
@@ -4019,7 +4019,7 @@ Note that the decimal value of the quantity returned by this operator must be a 
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid Quantity value, the result is null.
 
-For Integer and Decimal values, the result is a Quantity with the value of the integer or decimal input, and the default unit ('1').
+For Integer, Long, and Decimal values, the result is a Quantity with the value of the integer or decimal input, and the default unit ('1').
 
 For Ratio values, the operation is equivalent to the result of dividing the numerator of the ratio by the denominator.
 

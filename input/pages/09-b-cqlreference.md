@@ -597,7 +597,7 @@ The following table lists the conversions supported in CQL:
 |----|----|----|----|----|----|----|----|----|----|----|----|----
 |**Boolean** |N/A |Explicit |Explicit |Explicit |- |- |Explicit |- |- |- |- |- |-
 |**Integer** |Explicit |N/A |Implicit |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
-|**Long** |Explicit |Explicit |N/A |Implicit |- |- |Explicit |- |- |- |- |- |-
+|**Long** |Explicit |Explicit |N/A |Implicit |Implicit |- |Explicit |- |- |- |- |- |-
 |**Decimal** |Explicit |- |- |N/A |Implicit |- |Explicit |- |- |- |- |- |-
 |**Quantity** |- |- |- |- |N/A |- |Explicit |- |- |- |- |- |-
 |**Ratio** |- |- |- |- |- |N/A |Explicit |- |- |- |- |- |-
@@ -1131,6 +1131,7 @@ define "IsNull": ToInteger('one')
 ```cql
 ToQuantity(argument Decimal) Quantity
 ToQuantity(argument Integer) Quantity
+ToQuantity(argument Long) Quantity
 ToQuantity(argument Ratio) Quantity
 ToQuantity(argument String) Quantity
 ```
@@ -1151,7 +1152,7 @@ Note that the decimal value of the quantity returned by this operator must be a 
 
 If the input string is not formatted correctly, or cannot be interpreted as a valid <span class="id">Quantity</span> value, the result is <span class="kw">null</span>.
 
-For the <span class="id">Integer</span> and <span class="id">Decimal</span> overloads, the operator returns a quantity with the value of the argument and a unit of <span class="lit">'1'</span> (the default unit).
+For the <span class="id">Integer</span>, <span class="id">Long</span>, and <span class="id">Decimal</span> overloads, the operator returns a quantity with the value of the argument and a unit of <span class="lit">'1'</span> (the default unit).
 
 For the <span class="id">Ratio</span> overload, the operator is equivalent to dividing the numerator of the ratio by the denominator.
 
@@ -1162,6 +1163,7 @@ The following examples illustrate the behavior of the <span class="id">ToQuantit
 ```cql
 define "DecimalOverload": ToQuantity(0.1) // 0.1 '1'
 define "IntegerOverload": ToQuantity(13) // 13 '1'
+define "LongOverload": ToQuantity(13L) // 13 '1'
 define "StringOverload": ToQuantity('-0.1 \'mg\'') // -0.1 'mg'
 define "IsNull": ToQuantity('444 \'cm')
 ```
