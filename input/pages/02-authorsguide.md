@@ -1633,7 +1633,7 @@ DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
 
 Each of these expressions returns <span class="kw">true</span> because the <span class="id">Date</span> and <span class="id">Time</span> values are equal at the specified level of precision and above. For example, <span class="kw">same month as</span> means the same year _and_ the same month.
 
-Note that when explicitly comparing or calculating at the millisecond precision, the values are considered separated (i.e. one value having milliseconds and the other not would result in a null or uncertainty.
+Note that when explicitly comparing or calculating at the millisecond precision, the values are considered separated (i.e. one value having milliseconds and the other not would result in a null or uncertainty).
 
 Note: To compare a specific component of two dates, use the extraction operators covered in the next section.
 
