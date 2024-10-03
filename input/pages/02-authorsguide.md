@@ -474,6 +474,9 @@ Although the alias in this example is a single-letter abbreviation, <span class=
 
 Note that alias names, as with all language constructs, may be the subject of language conventions. The [Formatting Conventions](14-g-formattingconventions.html) section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
 
+> Because CQL is a superset of FHIRPath, the iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in iteration contexts. See the [Iteration Elements](03-developersguide.html#iteration-elements) topic for more information.
+{: .note-info}
+
 #### Filtering
 
 The <span class="kw">where</span> clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to <span class="kw">true</span> for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
@@ -500,6 +503,9 @@ The condition of a <span class="kw">where</span> clause is allowed to contain an
 ```
 
 Note that because CQL uses three-valued logic, the result of evaluating any given boolean-valued condition may be _unknown_ (<span class="kw">null</span>). For example, if the list of inpatient encounters from the first example contains some elements whose <span class="id">period</span> attribute is <span class="kw">null</span>, the result of the condition for that element will not be <span class="kw">false</span>, but <span class="kw">null</span>, indicating that it is not known whether or not the duration of the encounter was at least 120 days. For the purposes of evaluating a filter, only elements where the condition evaluates to <span class="kw">true</span> are included in the result, effectively ignoring the entries for which the logical expression evaluates to <span class="kw">null</span>.  For more discussion on three-valued logic, see the section on [Missing Information](#missing-information) in the Author's Guide, as well as the section on [Nullological Operators](03-developersguide.html#nullological-operators) in the Developer's guide.
+
+> Because CQL is a superset of FHIRPath, the iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in iteration contexts. See the [Iteration Elements](03-developersguide.html#iteration-elements) topic for more information.
+{: .note-info}
 
 #### Shaping
 
@@ -529,6 +535,9 @@ If two encounters have the same value for <span class="id">lengthOfStay</span>, 
 [Encounter: "Inpatient"] E
   return all E.lengthOfStay
 ```
+
+> Because CQL is a superset of FHIRPath, the iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in iteration contexts. See the [Iteration Elements](03-developersguide.html#iteration-elements) topic for more information.
+{: .note-info}
 
 #### Sorting
 
@@ -577,6 +586,9 @@ When the sort elements do not provide a unique ordering (i.e. there is a possibi
 A query may only contain a single <span class="kw">sort</span> clause, and it must always appear last in the query.
 
 When the data being sorted includes <span class="kw">nulls</span>, they are considered lower than any non-null value, meaning they will appear at the beginning of the list when the data is sorted ascending, and at the end of the list when the data is sorted descending.
+
+> Because CQL is a superset of FHIRPath, the iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in iteration contexts. See the [Iteration Elements](03-developersguide.html#iteration-elements) topic for more information.
+{: .note-info}
 
 #### Relationships
 
@@ -632,6 +644,9 @@ MeasurementPeriodEncounters E
 ```
 
 This example retrieves all the elements returned by the expression <span class="id">MeasurementPeriodEncounters</span> that have both a related <span class="id">Pharyngitis</span> and <span class="id">Antibiotics</span> result.
+
+> Because CQL is a superset of FHIRPath, the iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in iteration contexts. See the [Iteration Elements](03-developersguide.html#iteration-elements) topic for more information.
+{: .note-info}
 
 #### Full Query
 
