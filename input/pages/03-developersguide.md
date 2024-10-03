@@ -613,7 +613,7 @@ Because CQL allows multiple <span class="kw">using</span> declarations, the poss
     * If an exact match is found in the referenced model, that class is used.
     * If no exact match is found, an error is thrown that the qualified class name cannot be resolved.
 
-Note that when the <span class="id">System</span> model declaration is implicit, it is not considered as part of determining ambiguity. In other words, the following library:
+Note that when the <span class="id">System</span> model declaration is implicit, it is not considered as part of determining ambiguity. In other words, in the following library:
 
 ```cql
 library Test
