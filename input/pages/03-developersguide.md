@@ -544,9 +544,30 @@ A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagra
 
 #### Identifier Resolution
 
-For identifiers, if a library name is not provided, the identifier must refer to a locally or system defined component. If a library name is provided, it must be the local identifier for the library, and that library must contain the identifier being referenced.
+Identifier resolution is the process of matching an identifier to a declared symbol in the context in which the identifier appears. 
+
+When resolving identifiers, if a library name is not provided (i.e. the identifier is not qualified), the identifier must refer to a locally or system defined component. If a library name is provided, it must be the local identifier for the library, and that library must contain the identifier being referenced.
 
 For named expressions, CQL supports forward declarations, so long as the resolution does not result in a circular definition.
+
+CQL supports identifier hiding in certain contexts such as query clauses and function bodies where new identifiers may be introduced. In general, identifier hiding follows the principle that newly introduced identifiers hide existing identifiers.
+
+Specifically, query aliases, operand names, and let aliases are allowed to be defined with the same name as an existing identifier, effectively hiding the existing identifier.
+
+For example:
+
+```cql
+library IdentifierHiding
+
+define E: 'A top-level expression named E'
+
+define Query: [Encounter] E where E.period is not null
+
+define function A(E Encounter):
+  duration in days of E.period
+```
+
+The above example defines a top-level expression identified <span class="id">E</span>. In the <span class="id">Query</span> expression, an alias <span class="id">E</span> is introduced, hiding the top-level expression from the scope of the query. Similarly, the function <span class="id">A</span> defines an operand identified <span class="id">E</span>, so within the body of the function, the identifier <span class="id">E</span> refers to the function operand, hiding the top-level expression from the body of the function.
 
 #### Function Resolution
 
