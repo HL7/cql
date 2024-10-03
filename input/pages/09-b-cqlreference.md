@@ -951,9 +951,9 @@ ToDate(argument String) Date
 
 The <span class="id">ToDate</span> operator converts the value of its argument to a <span class="id">Date</span> value.
 
-For the DateTime overload, the operator is equivalent to invoking <span class="kw">date from</span> on the DateTime value.
+For the <span class="id">DateTime</span> overload, the operator is equivalent to invoking <span class="kw">date from</span> on the DateTime value.
 
-For the string overload, the operator expects the string to be formatted using the ISO-8601 date representation:
+For the <span class="id">String</span> overload, the operator expects the string to be formatted using the ISO-8601 date representation:
 
 **YYYY-MM-DD**
 
@@ -990,7 +990,7 @@ ToDateTime(argument String) DateTime
 
 The <span class="id">ToDateTime</span> operator converts the value of its argument to a <span class="id">DateTime</span> value.
 
-For the string overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
+For the <span class="id">String</span> overload, the operator expects the string to be formatted using the ISO-8601 datetime representation:
 
 **YYYY-MM-DDThh:mm:ss.fff(Z\|((+\|-)hh:mm))**
 
@@ -3931,11 +3931,12 @@ If the list argument is <span class="kw">null</span>, the result is <span class=
 
 ```cql
 in _precision_ (point T, argument Interval<T>) Boolean
+during _precision_ (point T, argument Interval<T>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">in</span> operator for intervals returns <span class="kw">true</span> if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is <span class="kw">null</span>, the result of the boundary comparison is considered true.
+The <span class="kw">in</span> operator (can also be invoked using <span class="kw">during</span>) for intervals returns <span class="kw">true</span> if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is <span class="kw">null</span>, the result of the boundary comparison is considered true.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3945,6 +3946,7 @@ The following examples illustrate the behavior of the <span class="kw">in</span>
 
 ```cql
 define "InIsTrue": 3 in Interval[0, 5]
+define "DuringIsTrue": 3 during Interval[0, 5]
 define "InIsFalse": -1 in Interval[0, 7]
 define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 ```
@@ -3962,9 +3964,9 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for intervals returns <span class="kw">true</span> if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the <span class="kw">[contains](#contains)</span> operator.
+For the point, interval overload, this operator is a synonym for the <span class="kw">[contains](#contains)</span> operator.
 
-For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval, interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
@@ -3984,16 +3986,18 @@ define "IncludesIsNull": Interval[-1, 5] includes null
 
 ```cql
 included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+during _precision_ (left Interval<T>, right Interval<T>) Boolean
 included in _precision_ (left T, right Interval<T>) Boolean
+during _precision_ (left T, right Interval<T>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">included in</span> operator for intervals returns <span class="kw">true</span> if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
+The <span class="kw">included in</span> (or <span class="kw">during</span>) operator for intervals returns <span class="kw">true</span> if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-For the point overload, this operator is a synonym for the <span class="kw">[in](#in)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the point-interval overload, this operator is a synonym for the <span class="kw">[in](#in)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
 
-For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
@@ -4005,6 +4009,7 @@ The following examples illustrate the behavior of the <span class="kw">included 
 
 ```cql
 define "IncludedInIsTrue": Interval[1, 5] included in Interval[0, 5]
+define "DuringIsTrue": Interval[1, 5] during Interval[0, 5]
 define "IncludedInIsFalse": -1 during Interval[0, 7]
 define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 ```
@@ -4222,13 +4227,13 @@ properly includes _precision_ (left Interval<T>, right T) Boolean
 
 The <span class="kw">properly includes</span> operator for intervals returns <span class="kw">true</span> if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.
 
-For the point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
+For the interval-point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">properly includes</span> operator:
 
@@ -4244,20 +4249,22 @@ define "ProperlyIncludesIsNull": Interval[-1, 5] properly includes null
 
 ```cql
 properly included in _precision_ (left Interval<T>, right Interval<T>) Boolean
+properly during _precision_ (left Interval<T>, right Interval<T>) Boolean
 properly included in _precision_ (left T, right Interval<T>) Boolean
+property during _precision_ (left T, right Interval<T>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">properly included in</span> operator for intervals returns <span class="kw">true</span> if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
+The <span class="kw">properly included in</span> (or <span class="kw">properly during</span>) operator for intervals returns <span class="kw">true</span> if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.
 
-For the point overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
+For the point-interval overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
-For the interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that <span class="kw">during</span> is a synonym for <span class="kw">included in</span>.
 
@@ -4265,6 +4272,7 @@ The following examples illustrate the behavior of the <span class="kw">properly 
 
 ```cql
 define "ProperlyIncludedInIsTrue": Interval[1, 5] properly included in Interval[0, 5]
+define "ProperlyDuringIsTrue": Interval[1, 5] properly during Interval[0, 5]
 define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7]
 define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
 ```
@@ -4723,9 +4731,9 @@ includes(left List<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list using equality semantics, with the exception that <span class="kw">null</span> elements are considered equal.
 
-For the singleton overload, this operator is a synonym for the <span class="kw">[contains](#contains-1)</span> operator.
+For the list-singleton overload, this operator is a synonym for the <span class="kw">[contains](#contains-1)</span> operator.
 
-For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4752,9 +4760,9 @@ included in(left T, right list<T>) Boolean
 
 The <span class="kw">included in</span> operator for lists returns <span class="kw">true</span> if every element of the first list is in the second list using equality semantics.
 
-For the singleton overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the singleton-list overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
 
-For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4948,11 +4956,11 @@ properly includes(left T, right List<T>) Boolean
 
 The <span class="kw">properly includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list, and the first list is strictly larger than the second list.
 
-For the element overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
+For the singleton-list overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
-For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
@@ -4979,11 +4987,11 @@ properly included in(left T, right list<T>) Boolean
 
 The <span class="kw">properly included in</span> operator for lists returns <span class="kw">true</span> if every element of the first list is in the second list and the first list is strictly smaller than the second list.
 
-For the element overload, this operator returns true if the element is in (i.e. included in) the list and it is not the only element in the list.
+For the singleton-list overload, this operator returns true if the element is in (i.e. included in) the list and it is not the only element in the list.
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
-For the list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 Note that the order of elements does not matter for the purposes of determining inclusion.
 
