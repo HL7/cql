@@ -2220,6 +2220,8 @@ When calculating the difference between DateTime values with different timezone 
 
 If either argument is null, the result is null.
 
+Note that when calculating difference, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
+
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
 
 #### DurationBetween
@@ -2241,6 +2243,8 @@ For calculations involving weeks, the duration of a week is equivalent to 7 days
 When calculating duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 If either argument is null, the result is null.
+
+Note that when calculating duration, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
 
 Note that this operator can be implemented using Uncertainty as described in the CQL specification, Chapter 5, Precision-Based Timing.
 

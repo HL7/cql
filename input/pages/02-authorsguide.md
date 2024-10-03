@@ -829,7 +829,7 @@ Note that the <span class="id">Time</span> value literal format is identical to 
 
 Only <span class="id">DateTime</span> values may specify a timezone offset, either as UTC (<span class="sym">Z</span>), or as a timezone offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
 
-For both <span class="id">DateTime</span> and <span class="id">Time</span> values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
+For both <span class="id">DateTime</span> and <span class="id">Time</span> values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. In other words, when performing comparisons or calculations for precisions of seconds and above, if milliseconds are not specified, the calculation should be performed as though milliseconds had been specified as <span class="lit">0</span>.
 
 For more information on the use of date and time values within CQL, refer to the [Date and Time Operators](#date-and-time-operators) section.
 
@@ -1623,7 +1623,7 @@ Date and time comparisons are performed by comparing the values at each precisio
 
 Table 2‑N - The precision-based comparison operators for <span class="kw">Date</span> and <span class="kw">Time</span> comparisons
 
-If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for <span class="id">Time</span> values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). But if a precision is specified, the comparison is performed beginning with years and proceeding only to the specified level of precision. For example:
+If no precision is specified, these operators are synonyms for the symbolic conversion operators, and the comparisons are performed in the same way (from years, or hours for <span class="id">Time</span> values, down to the finest precision specified in either input, with seconds and milliseconds treated as a single precision using a decimal). If a precision is specified, the comparison is performed beginning with years and proceeding to the specified level of precision. For example:
 
 ```cql
 Date(2014) same year as Date(2014, 7, 11)
@@ -1632,6 +1632,8 @@ DateTime(2014, 7, 11) same day as DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
 Each of these expressions returns <span class="kw">true</span> because the <span class="id">Date</span> and <span class="id">Time</span> values are equal at the specified level of precision and above. For example, <span class="kw">same month as</span> means the same year _and_ the same month.
+
+Note that when explicitly comparing or calculating at the millisecond precision, the values are considered separated (i.e. one value having milliseconds and the other not would result in a null or uncertainty.
 
 Note: To compare a specific component of two dates, use the extraction operators covered in the next section.
 
@@ -2071,6 +2073,8 @@ In addition, the boundaries may even be specified to different levels of precisi
 ```cql
 Interval[Date(2014), Date(2015, 1, 1)]
 ```
+
+Note that when calculating duration, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
 
 #### List Operators
 

@@ -156,7 +156,7 @@ CQL supports date and time values in the range <span class="lit">@0001-01-01T00:
 
 CQL also supports partial datetime values. For example, the datetime <span class="lit">@2014-01-01T03</span> represents some instant during the hour of 3:00 on January 1st, 2014.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds should be performed as though milliseconds had been specified as <span class="lit">0</span>.
 
 {: #decimal-1}
 #### Decimal
@@ -289,7 +289,7 @@ CQL supports time values in the range <span class="lit">@T00:00:00.0</span> to <
 
 CQL also supports partial time values. For example, the time <span class="lit">@T03</span> represents some instant during the hour of 3:00.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds should be performed as though milliseconds had been specified as <span class="lit">0</span>.
 
 #### ValueSet
 
@@ -3255,6 +3255,8 @@ When this operator is called with both <span class="id">Date</span> and <span cl
 
 When computing the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
+Note that when calculating difference, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the _difference-_<span class="kw">between</span> operator:
@@ -3288,6 +3290,8 @@ For <span class="id">Time</span> values, _duration_ must be one of: <span class=
 When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
 When computing the duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that when calculating duration, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
