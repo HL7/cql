@@ -1982,7 +1982,7 @@ If the argument is null, the result is null.
 Matches : BinaryExpression
 ```
 
-The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters.  The start and end of line markers ^, $ can be used to match the entire string.
 
 If either argument is null, the result is null.
 
@@ -2014,7 +2014,7 @@ If either argument is null, the result is null.
 ReplaceMatches : TernaryExpression
 ```
 
-The ReplaceMatches operator matches the given string using the regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode and allow Unicode characters.
+The ReplaceMatches operator matches the given string using the regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode and allow Unicode characters. The start and end of line markers ^, $ can be used to match the entire string.
 
 If any argument is null, the result is null.
 

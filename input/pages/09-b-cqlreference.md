@@ -2815,7 +2815,7 @@ Matches(argument String, pattern String) Boolean
 
 **Description:**
 
-The <span class="id">Matches</span> operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+The <span class="id">Matches</span> operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters. The start/end of line markers <span class="sym">^</span> and <span class="sym">$</span> can be used to match the entire string.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2828,6 +2828,7 @@ The following examples illustrate the behavior of the <span class="id">Matches</
 define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')
 define "MatchesFalse": Matches('1,2three', '\\w+')
 define "MatchesIsNull": Matches('12three', null)
+define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1', 'Library')
 ```
 
 #### PositionOf
@@ -2864,7 +2865,7 @@ Matches(argument String, pattern String, substitution String) String
 
 **Description:**
 
-The <span class="id">ReplaceMatches</span> operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use single line mode, and allow Unicode characters.
+The <span class="id">ReplaceMatches</span> operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters. The start and end of line markers <span class="sym">^</span>, <span class="sym">$</span> can be used to match the entire string.
 
 If any argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
