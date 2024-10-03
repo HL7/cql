@@ -1063,6 +1063,8 @@ Because of the possibility that a given invocation signature may be resolved to 
 
 These conversion precedences can be viewed as ordered from _least converting_ to _most converting_. When determining a conversion path from an invocation signature to a declared signature, the _least converting_ overall conversion path is used.
 
+Class and tuple types are compatible if the elements of one type are a subset of the elements of the other, by name. Choice types are compatible if the choices of one type are a subset of the choices of the other.
+
 ### Conditional Expressions
 
 To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the <span class="kw">if</span> expression, and the <span class="kw">case</span> expression.
