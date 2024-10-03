@@ -1746,7 +1746,7 @@ If the argument is null, the result is null.
 Predecessor : UnaryExpression
 ```
 
-The Predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
+The Predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a <span class="kw">null</span> is returned.
 
 The Predecessor operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
@@ -1762,7 +1762,7 @@ For Quantity values, the Predecessor is equivalent to subtracting 1 if the quant
 
 If the argument is null, the result is null.
 
-If the result of the operation cannot be represented, the result is null.
+If the result of the operation cannot be represented (i.e. would result in underflow), the result is <span class="kw">null</span>.
 
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
@@ -1819,7 +1819,7 @@ If the result of the operation cannot be represented, the result is null.
 Successor : UnaryExpression
 ```
 
-The <span class="id">Successor</span> operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+The <span class="id">Successor</span> operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, <span class="kw">null</span> is returned
 
 The <span class="id">Successor</span> operator is defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.
 
@@ -1835,7 +1835,7 @@ For <span class="id">Quantity</span> values, <span class="id">Successor</span> i
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-If the result of the operation cannot be represented, the result is <span class="kw">null</span>.
+If the result of the operation cannot be represented (i.e. would result in overflow), the result is <span class="kw">null</span>.
 
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
 {: .note-warning}

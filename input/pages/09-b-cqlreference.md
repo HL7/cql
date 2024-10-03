@@ -2395,7 +2395,7 @@ predecessor of<T>(argument T) T
 
 **Description:**
 
-The <span class="kw">predecessor</span> operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a run-time error is thrown.
+The <span class="kw">predecessor</span> operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a <span class="kw">null</span> is returned.
 
 The <span class="kw">predecessor</span> operator is defined for the <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Decimal</span>, <span class="id">Quantity</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> types.
 
@@ -2411,7 +2411,7 @@ For <span class="id">Quantity</span> values, the <span class="kw">predecessor</s
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-If the result of the operation cannot be represented, the result is <span class="kw">null</span>.
+If the result of the operation cannot be represented (i.e. would result in an underflow), the result is <span class="kw">null</span>.
 
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the predecessor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
@@ -2539,7 +2539,7 @@ successor of<T>(argument T) T
 
 **Description:**
 
-The <span class="kw">successor</span> operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a run-time error is thrown.
+The <span class="kw">successor</span> operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a <span class="kw">null</span> is returned.
 
 The <span class="kw">successor</span> operator is defined for the <span class="id">Integer</span>, <span class="id">Long</span>, <span class="id">Quantity</span>, <span class="id">Decimal</span>, <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> types.
 
@@ -2555,7 +2555,7 @@ For <span class="id">Quantity</span> values, the <span class="kw">successor</spa
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-If the result of the operation cannot be represented, the result is <span class="kw">null</span>.
+If the result of the operation cannot be represented (i.e. would result in an overflow), the result is <span class="kw">null</span>.
 
 > Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
 {: .note-warning}
