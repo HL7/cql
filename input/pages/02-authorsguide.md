@@ -1311,10 +1311,22 @@ For <span class="id">Decimal</span> values, equality is defined to ignore traili
 
 For <span class="id">Date</span> and <span class="id">Time</span> values, equality is defined to account for the possibility that the <span class="id">Date</span> and <span class="id">Time</span> values involved are specified to varying levels of precision. For a complete discussion of this behavior, refer to [Comparing Dates and Times](#comparing-dates-and-times).
 
-For structured values, equality returns <span class="kw">true</span> if the values being compared are the same type (meaning they have the same types of elements) and the values for each element are the same value. For example, the following comparison returns <span class="kw">true</span>:
+For structured values, equality returns <span class="kw">true</span> if the values being compared are the same type (meaning they have the same types of elements) and the values for all elements that have values are the same value. For example, the following comparison returns <span class="kw">true</span>:
 
 ```cql
 Tuple { id: 'ABC-001', name: 'John Smith' } = Tuple { id: 'ABC-001', name: 'John Smith' }
+```
+
+As another example, if one tuple has a value for an element that is not present in the other tuple, the result is <span class="kw">null<span>:
+
+```cql
+Tuple { x: 1, y: 1 } = Tuple { x: 1, y: null }
+```
+
+As well, tuple equality is defined as a conjunction of equality comparisons of the elements, allowing for known unequal values to be determined. For example, the following comparison returns <span class="kw">false</span> because the y elements are known unequal:
+
+```cql
+Tuple { x: 1, y: 1 } = Tuple { x: null, y: 2 }
 ```
 
 For lists, equality returns <span class="kw">true</span> if the lists contain the same elements in the same order. For example, the following lists are equal:

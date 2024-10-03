@@ -1098,7 +1098,7 @@ For time-valued quantities, UCUM definite-time duration quantities above days (a
 
 For ratios, this means that the numerator and denominator must be the same, using quantity equality semantics.
 
-For tuple types, this means that equality returns true if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal.
+For tuple types, this means that equality returns true if and only if the tuples are of the same type, and the values for all elements that have values, by name, are equal, defined as a conjunction of equality comparisons.
 
 For list types, this means that equality returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equal using equality semantics, with the exception that null elements are considered equal.
 
