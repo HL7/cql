@@ -2650,9 +2650,11 @@ Combine(source List<String>, separator String) String
 
 The <span class="id">Combine</span> operator combines a list of strings, optionally separating each string with the given separator.
 
-If either argument is <span class="kw">null</span>, or the source list is empty, the result is <span class="kw">null</span>.
+If the source argument is <span class="kw">null</span>, or the source list is empty, the result is <span class="kw">null</span>.
 
-For consistency with aggregate operator behavior, null elements in the input list are ignored.
+If the separator argument is <span class="kw">null</span>, it is ignored.
+
+For consistency with aggregate operator behavior, <span class="kw">null</span> elements in the input list are ignored.
 
 The following examples illustrate the behavior of the <span class="id">Combine</span> operator:
 

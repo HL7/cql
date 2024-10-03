@@ -1888,7 +1888,11 @@ Combine : OperatorExpression
 
 The Combine operator combines a list of strings, optionally separating each string with the given separator.
 
-If either argument is null, or any element in the source list of strings is null, the result is null.
+If the source argument is null, or the source list is empty, the result is null.
+
+If the separator argument is null, it is ignored.
+
+For consistency with aggregate operator behavior, null elements in the input list are ignored.
 
 #### Concatenate
 
