@@ -152,7 +152,7 @@ simple type DateTime
 
 The <span class="id">DateTime</span> type represents date and time values with potential uncertainty within CQL.
 
-CQL supports date and time values in the range <span class="lit">@0001-01-01T00:00:00.0</span> to <span class="lit">@9999-12-31T23:59:59.999</span> with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset.
+CQL supports date and time values in the range <span class="lit">@0001-01-01T00:00:00.0</span> to <span class="lit">@9999-12-31T23:59:59.999</span> with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is assumed. See the [Constructing Date and Time Values](02-authorsguide.html#constructing-datetime-values) section for more information.
 
 CQL also supports partial datetime values. For example, the datetime <span class="lit">@2014-01-01T03</span> represents some instant during the hour of 3:00 on January 1st, 2014.
 
