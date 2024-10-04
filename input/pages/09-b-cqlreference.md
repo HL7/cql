@@ -3952,7 +3952,7 @@ The following examples illustrate the behavior of the <span class="kw">in</span>
 
 ```cql
 define "InIsTrue": 3 in Interval[0, 5]
-define "DuringIsTrue": 3 during Interval[0, 5]
+define "DuringIsTrue": @2014-02-03 during Interval[@2014-02-01, @2014-02-08]
 define "InIsFalse": -1 in Interval[0, 7]
 define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
 ```
@@ -3970,9 +3970,9 @@ includes _precision_ (left Interval<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for intervals returns <span class="kw">true</span> if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.
 
-For the point, interval overload, this operator is a synonym for the <span class="kw">[contains](#contains)</span> operator.
+For the point-interval overload, this operator is a synonym for the <span class="kw">[contains](#contains)</span> operator.
 
-For the interval, interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
@@ -4015,8 +4015,8 @@ The following examples illustrate the behavior of the <span class="kw">included 
 
 ```cql
 define "IncludedInIsTrue": Interval[1, 5] included in Interval[0, 5]
-define "DuringIsTrue": Interval[1, 5] during Interval[0, 5]
-define "IncludedInIsFalse": -1 during Interval[0, 7]
+define "DuringIsTrue": Interval[@2014-02-02, @2014-02-05] during Interval[@2014-02-01, @2014-02-10]
+define "IncludedInIsFalse": -1 included in Interval[0, 7]
 define "IncludedInIsNull": 3 included in (null as Interval<Integer>)
 ```
 
@@ -4278,8 +4278,8 @@ The following examples illustrate the behavior of the <span class="kw">properly 
 
 ```cql
 define "ProperlyIncludedInIsTrue": Interval[1, 5] properly included in Interval[0, 5]
-define "ProperlyDuringIsTrue": Interval[1, 5] properly during Interval[0, 5]
-define "ProperlyIncludedInIsFalse": Interval[0, 7] properly during Interval[0, 7]
+define "ProperlyDuringIsTrue": Interval[@2014-02-02, @2014-02-05] properly during Interval[@2014-02-01, @2014-02-05]
+define "ProperlyIncludedInIsFalse": Interval[0, 7] properly included in Interval[0, 7]
 define "ProperlyIncludedInIsNull": Interval[1, 5] properly included in (null as Interval<Integer>)
 ```
 
