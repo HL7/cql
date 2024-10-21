@@ -1714,13 +1714,3 @@ The FHIRPath syntax is designed as a fluent API, meaning that operations are inv
 This mechanism is then used to implement the FHIRPath operators, which are rewritten via the lambda replacement as direct invocations of CQL. The detailed equivalents for all FHIRPath operations are defined in the [FHIRPath Function Translation Appendix](16-i-fhirpathtranslation.html).
 
 The _disable-method-invocation_ option controls whether or not method-style invocation is allowed in the translator.
-
-#### Iteration Elements
-
-Because CQL is a superset of FHIRPath, the FHIRPath iteration elements <span class="kw">$this</span> and <span class="kw">$index</span> are available in _iteration_ contexts as defined by FHIRPath. In addition to the FHIRPath iteration [Functions](https://hl7.org/fhirpath/#functions), these elements are accessible in the following iterating contexts in CQL:
-
-* <span class="kw">let</span> clause
-* The _condition_ expression in <span class="kw">with</span> and <span class="kw">without</span> clauses
-* <span class="kw">where</span> clause
-* <span class="kw">return</span> clause
-* <span class="kw">sort</span> clause

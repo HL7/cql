@@ -1,11 +1,15 @@
 
 This appendix provides detailed mappings for each FHIRPath function in terms of the ELM output produced.
 
+In addition to the function mappings below, the <span class="kw">$index</span> accessor can be used within the FHIRPath iteration functions (i.e. FHIRPath functions that take an _expression_ as an argument) to access the 0-based index of the current iteration.
+
 ### .aggregate()
 
 ```cql
 X.aggregate(<iteration>, <init>) === Aggregate(<iteration>, <init>)
 ```
+
+In addition, the <span class="kw">$total</span> accumulator can be used within the iteration and init expressions to access the current value of the accumulator.
 
 ### .abs()
 

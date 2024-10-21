@@ -322,7 +322,7 @@ Note that the expression specified in the default element must be able to be eva
 	</xs:complexType>
 	<xs:complexType name="IdentifierRef">
 		<xs:annotation>
-			<xs:documentation>The IdentifierRef type defines an expression that references an identifier that is either unresolved, or has been resolved to an attribute in an unambiguous iteration scope such as a sort. Implementations should attempt to resolve the identifier, only throwing an error at compile-time (or run-time for an interpretive system) if the identifier reference cannot be resolved.</xs:documentation>
+			<xs:documentation>The IdentifierRef type defines an expression that references an identifier that is either unresolved, or has been resolved to an attribute in an unambiguous iteration scope such as Sort. Implementations should attempt to resolve the identifier, only throwing an error at compile-time (or run-time for an interpretive system) if the identifier reference cannot be resolved.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Expression">
@@ -2968,6 +2968,8 @@ If the source argument is null, the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The Current expression returns the value of the object currently in scope. For example, within a ForEach expression, this returns the current element being considered in the iteration.
 
+Scopes are introduced by the named scoping operators (Filter, ForEach, and Repeat), the implicit scoping operators (Sort and Aggregate) as well as introduced within Queries by the AliasedQuerySource, LetClause, AggregateClause, and SortClause elements.
+
 It is an error to invoke the Current operator outside of a scoped operation.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
@@ -2978,7 +2980,11 @@ It is an error to invoke the Current operator outside of a scoped operation.</xs
 	</xs:complexType>
 	<xs:complexType name="Iteration">
 		<xs:annotation>
-			<xs:documentation>The Iteration expression returns the current iteration number of a scoped operation.</xs:documentation>
+			<xs:documentation>The Iteration expression returns the current iteration number of a scoped operation. For example, within a ForEach expression, this returns the 0-based index of the current iteration.
+			
+Scopes are introduced by the named scoping operators (Filter, ForEach, and Repeat), the implicit scoping operators (Sort and Aggregate) as well as introduced within Queries by the AliasedQuerySource, LetClause, AggregateClause, and SortClause elements.
+
+It is an error to invoke the Iteration operator outside of a scoped operation.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Expression">
@@ -2988,7 +2994,9 @@ It is an error to invoke the Current operator outside of a scoped operation.</xs
 	</xs:complexType>
 	<xs:complexType name="Total">
 		<xs:annotation>
-			<xs:documentation>The Total expression returns the current value of the total aggregation accumulator in an aggregate operation.</xs:documentation>
+			<xs:documentation>The Total expression returns the current value of the total aggregation accumulator in an aggregate operation.
+			
+It is an error to invoke the Total operator outside of an aggregate operation (Aggregate or within the AggregateClause of a query).</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Expression">
@@ -3260,15 +3268,15 @@ If the source is null, the result is false.</xs:documentation>
 	<!-- Data Operators -->
 	<xs:complexType name="Property">
 		<xs:annotation>
-			<xs:documentation>The Property operator returns the value of the property on source specified by the path attribute.
+			<xs:documentation>The Property operator returns the value of the property on the source (or named scope) specified by the path attribute.
 
-If the result of evaluating source is null, the result is null.
+If the result of evaluating source (or the named scope) is null, the result is null.
 
 The path attribute may include qualifiers (.) and indexers ([x]). Indexers must be literal integer values.
 
 If the path attribute contains qualifiers or indexers, each qualifier or indexer is traversed to obtain the actual value. If the object of the property access at any point in traversing the path is null, the result is null.
 
-If a scope is specified, the name is used to resolve the scope in which the path will be resolved. Scopes can be named by operators such as Filter and ForEach.
+If a scope is specified, the name is used to resolve the scope in which the path will be resolved. Scopes can be named by the scoping operators (Filter, ForEach, Repeat, and Sort) as well as introduced within a Query through the AliasedQuerySource, LetClause, AggregateClause, and SortClause.
 
 Property expressions can also be used to access the individual points and closed indicators for interval types using the property names low, high, lowClosed, and highClosed.</xs:documentation>
 		</xs:annotation>
@@ -3372,7 +3380,9 @@ Property expressions can also be used to access the individual points and closed
 	</xs:complexType>
 	<xs:complexType name="ByExpression">
 		<xs:annotation>
-			<xs:documentation>The ByExpression element specifies that the sort should be performed using the given expression and direction. This approach is used to specify the sort order as a calculated expression.</xs:documentation>
+			<xs:documentation>The ByExpression element specifies that the sort should be performed using the given expression and direction. This approach is used to specify the sort order as a calculated expression.
+
+Within the expression, the iteration accessor $this can be used to access the current iteration value, and $index can be used to access the 0-based index of the current iteration.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SortByItem">
