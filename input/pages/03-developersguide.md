@@ -1065,6 +1065,23 @@ These conversion precedences can be viewed as ordered from _least converting_ to
 
 Class and tuple types are compatible if the elements of one type are a subset of the elements of the other, by name. Choice types are compatible if the choices of one type are a subset of the choices of the other.
 
+This ordering of conversion precedence also implies a type precedence to resolve ambiguity when overloads differ by type category:
+
+1. Simple Types
+2. Tuples
+3. Classes
+4. Intervals
+5. Lists
+6. Choices
+
+For example, the expression
+
+```cql
+Interval[1, null] properly includes null
+```
+
+Because the <span class="kw">null</span> can be interpreted as either a point or an interval, type precedence is used to distinguish the overloads, and the point overload is chosen.
+
 ### Conditional Expressions
 
 To simplify the expression of complex logic, CQL provides two flavors of conditional expressions, the <span class="kw">if</span> expression, and the <span class="kw">case</span> expression.
