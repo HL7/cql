@@ -260,11 +260,11 @@ expression
     | unaryLogicalExpression
     | betweenExpression
     | durationExpression
+    | setExpression
     | comparisonExpression
     | expression intervalOperatorPhrase expression
     | membershipExpression
     | binaryLogicalExpression
-    | setExpression
     ;
 
 booleanExpression

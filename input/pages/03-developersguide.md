@@ -454,6 +454,7 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |**Type Operators** |<span class="kw">is as cast</span>..<span class="kw">as</span>
 |**Unary Logical** |<span class="kw">not exists</span>
 |**Between** |<span class="kw">between</span><br/>_precision_ <span class="kw">between</span><br/><span class="kw">duration in</span> _precision_ <span class="kw">between</span><br/><span class="kw">difference in</span> _precision_ <span class="kw">between</span>
+|**Binary List** |<span class="kw">union intersect except</span>
 |**Comparison** |<span class="sym">\<=</span> <span class="sym">&lt;</span> <span class="sym">></span> <span class="sym">>=</span>
 |**Timing Phrase** |<span class="kw">same as</span><br/><span class="kw">includes</span><br/><span class="kw">during</span><br/><span class="kw">before/after</span><br/><span class="kw">within</span>
 |**Interval Operators** |<span class="kw">meets overlaps starts ends</span>
@@ -462,7 +463,6 @@ CQL uses standard in-fix operator notation for expressing computational logic. A
 |**Conjunction** |<span class="kw">and</span>
 |**Disjunction** |<span class="kw">or xor</span>
 |**Implication** |<span class="kw">implies</span>
-|**Binary List** |<span class="kw">union intersect except</span>
 {: .grid .table .table-striped}
 
 Table 3‑F - The order of operator precedence in CQL
