@@ -1931,7 +1931,11 @@ Round : OperatorExpression
   0..1 --> precision : Expression
 ```
 
-The Round operator returns the nearest integer to its argument. The semantics of round are defined as a traditional round, meaning that a decimal value of 0.5 or higher will round to 1.
+The Round operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round (i.e. to the nearest whole number), meaning that a decimal value greater than or equal to 0.5 and less than 1.0 will round to 1, and a decimal value less than or equal to -0.5 and greater than -1.0 will round to -1
+
+When invoked with an Integer argument, the argument will be implicitly converted to Decimal.
+
+When invoked with a Quantity argument, units are not impacted (i.e. the result has the same units as the input).
 
 If the argument is null, the result is null.
 

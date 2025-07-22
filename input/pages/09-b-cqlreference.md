@@ -227,6 +227,8 @@ structured type Quantity
 
 The <span class="id">Quantity</span> type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
 
+Systems shall not implicitly convert units other than when performaing calculations. For example, the value `1 '[in_i]'` must be preserved as `'[in_i]'`, not converted to common or preferred units such as `2.54 'cm'`.
+
 #### Ratio
 
 **Definition:**
@@ -2468,6 +2470,8 @@ define "NegateIsNull": 2.5^null
 ```cql
 Round(argument Decimal) Decimal
 Round(argument Decimal, precision Integer) Decimal
+Round(argument Quantity) Quantity
+Round(argument Quantity, precision Integer) Quantity
 ```
 
 **Description:**
@@ -2475,6 +2479,8 @@ Round(argument Decimal, precision Integer) Decimal
 The <span class="id">Round</span> operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round (i.e. to the nearest whole number), meaning that a decimal value greater than or equal to 0.5 and less than 1.0 will round to 1, and a decimal value less than or equal to -0.5 and greater than -1.0 will round to -1.
 
 When invoked with an <span class="id">Integer</span> argument, the argument will be implicitly converted to <span class="id">Decimal</span>.
+
+When invoked with a <span class="id">Quantity</span> argument, units are not impacted (i.e. the result has the same units as the input).
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2488,6 +2494,7 @@ define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null) // null
 define "RoundPointFive": Round(0.5) // 1
 define "RoundNegativePointFive": Round(-0.5) // -1
+define "QuantityRound": Round(2.54 'cm') // 2 'cm'
 ```
 
 #### Subtract
