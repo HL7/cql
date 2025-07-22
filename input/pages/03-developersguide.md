@@ -555,6 +555,39 @@ The `bind` clause of the `include` declaration allows values for parameters in t
 
 In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.
 
+#### Parameter Constraints
+
+> Parameter constraints were introduced in CQL 2.0, and are trial-use
+{: .note-info}
+
+Parameter constraints are expression definitions in a library that are required to be true in order to make use of any of the expressions in the library. For example:
+
+```cql
+/*
+@constraint: error
+@message: Measurement period must be a year
+*/
+define IsYearly: start of "Measurement Period" same year as end of "Measurement Period"
+```
+
+Any definition marked with the `@constraint` tag would be evaluated whenever any expressions of the library were evaluated. A result of `false` would result in a run-time error being raised with the message provided in the `@message` tag. Note that this means that the constraint is considered satisfied if the expression evaluates to `null`. To construct a constraint that a parameter is required (i.e. cannot be null), test that explicitly in the expression:
+
+```cql
+/*
+@constraint: error
+@message: Measurement period is required
+*/
+define MeasurementPeriodIsRequired: "Measurement Period" is not null
+```
+
+Note that the initial proposed implementation would be limited to parameter constraints, so the expression would only have access to local parameters (i.e. no data access). This could be indicated with a `@constraintScope` of "parameter", and this scope could be expanded to other types of constraints in the future.
+
+The `@constraint` tag is applicable on top-level expression definitions, and must have a value of either `error` or `warning`.
+
+The `@message` tag is applicable on top-level expression definitions that have a `@constraint` tag, and must have a value that is the message that will be provided when the constraint is violated.
+
+The `@constraintScope` tag is applicable on top-level expression definitions that have a `@constraint` tag, and must be set to `parameter`.
+
 #### Access Modifiers
 
 Each component of a library may have an access modifier applied, either <span class="kw">public</span> or <span class="kw">private</span>. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
