@@ -3,7 +3,7 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
-  <version value="1.5.3"/>
+  <version value="2.0.0-cibuild"/>
   <name value="CQL"/>
   <title value="Clinical Quality Language Specification"/>
   <status value="active"/>
