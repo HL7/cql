@@ -13,6 +13,7 @@ The CQL grammar is defined in an ANTLR4 grammar file, CQL.g4. The root productio
 ```antlr4
 library
     :
+    directive*
     libraryDefinition?
     definition*
     statement*
@@ -23,6 +24,10 @@ library
 Other than _statement_, these production rules define the declarations available for a library.
 
 ```antlr4
+directive
+    : '#' identifier (':' STRING)?
+    ;
+
 libraryDefinition
     : 'library' qualifiedIdentifier ('version' versionSpecifier)?
     ;

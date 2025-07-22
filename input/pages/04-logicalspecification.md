@@ -384,56 +384,62 @@ Library : Element
   ¦
   1..1 --> schemaIdentifier : VersionedIdentifier (2)
   ¦
-  0..1 --> usings (3)
+  0..1 --> directives (3)
   ¦        ¦
-  ¦        1..* --> def : UsingDef (4)
+  ¦        1..* --> def : DirectiveDef (4)
   ¦
-  0..1 --> includes (5)
+  0..1 --> usings (5)
   ¦        ¦
-  ¦        1..* --> def : IncludeDef (6)
+  ¦        1..* --> def : UsingDef (6)
   ¦
-  0..1 --> parameters (7)
+  0..1 --> includes (7)
+  ¦        ¦
+  ¦        1..* --> def : IncludeDef (8)
+  ¦
+  0..1 --> parameters (9)
   ¦        ¦
   ¦        0..* --> def : ParameterDef
   ¦
-  0..1 --> codeSystems (8)
+  0..1 --> codeSystems (10)
   ¦        ¦
   ¦        0..* --> def : CodeSystemDef
   ¦
-  0..1 --> valueSets (9)
+  0..1 --> valueSets (11)
   ¦        ¦
   ¦        0..* --> def : ValueSetDef
   ¦
-  0..1 --> codes (10)
+  0..1 --> codes (12)
   ¦        ¦
   ¦        0..* --> def : CodeDef
   ¦
-  0..1 --> concepts (11)
+  0..1 --> concepts (13)
   ¦        ¦
   ¦        0..* --> def : ConceptDef
   ¦
-  0..1 --> contexts (12)
+  0..1 --> contexts (14)
   ¦        ¦
   ¦        0..* --> def : ContextDef
   ¦
-  0..1 --> statements (13)
+  0..1 --> statements (15)
            ¦
            0..* --> def : ExpressionDef
 ```
 
 1. The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.
 2. This is the identifier of the XML schema (and its version) which governs the structure of this Library.
-3. Set of data models referenced in the Expression objects in this knowledge artifact.
-4. A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
-5. Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
-6. A reference to a library whose components can be used within the artifact.
-7. The parameters defined within this library.
-8. The code systems defined within this library.
-9. The value sets defined within this library.
-10. The codes defined within this library.
-11. The concepts defined within this library.
-12. The contexts used within this library.
-13. The statements section contains the expression and function definitions for the library.
+3. Set of directives defined in this library.
+4. A directive defined in this library.
+5. Set of data models referenced in the Expression objects in this knowledge artifact.
+6. A reference to a data model that is used in the artifact, e.g., the Virtual Medical Record.
+7. Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.
+8. A reference to a library whose components can be used within the artifact.
+9. The parameters defined within this library.
+10. The code systems defined within this library.
+11. The value sets defined within this library.
+12. The codes defined within this library.
+13. The concepts defined within this library.
+14. The contexts used within this library.
+15. The statements section contains the expression and function definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -511,6 +517,16 @@ UsingDef : Element
 Defines a data model that is available within the artifact.
 
 The `name` attribute specifies the fully qualified name of the model. If this is not provided, the localIdentifier attribute is used as the name of the model. The model qualifier is the namespace name of the model.
+
+#### DirectiveDef
+
+```
+DirectiveDef : Element
+  ¦
+  0..1 --> name
+  ¦
+  0..1 --> version
+```
 
 ### Parameters
 

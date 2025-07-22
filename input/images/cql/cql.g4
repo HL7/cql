@@ -11,6 +11,10 @@ import fhirpath;
  * Parser Rules
  */
 
+directive
+    : '#' identifier (':' STRING)?
+    ;
+
 definition
     : usingDefinition
     | includeDefinition
@@ -23,6 +27,7 @@ definition
 
 library
     :
+    directive*
     libraryDefinition?
     definition*
     statement*

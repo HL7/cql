@@ -561,6 +561,56 @@ Each component of a library may have an access modifier applied, either <span cl
 
 A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessModifier).
 
+#### Directives
+
+> Directives were introduced in CQL 2.0, and are trial-use
+{: .note-info}
+
+Each library may include any number of _directives_ at the very beginning of the library (before the library declaration). Directives are a common mechanism to support providing additional contextual information for a library, as well as provide pre-processing opportunities. Directives can be though of as parameters to the language processing application.
+
+This initial introduction of directives into the language is deliberately scoped to only the very beginning of a library.
+
+> NOTE: We seek ballot feedback on whether directives should be allowed throughout a library, rather than only at the beginning as proposed.
+
+Directives consist of an identifier, followed by an optional string value:
+
+```cql
+#AllowFluent
+#DefaultComparisonPrecision: minutes
+```
+
+##### DefaultComparisonPrecision
+
+> Directives were introduced in CQL 2.0, and are trial-use
+{: .note-info}
+
+```
+#DefaultComparisonPrecision: <precision> <inclusion behavior>
+```
+
+Date and time comparison in CQL supports specifying the precision at which the comparison is performed. For example, two date values can be compared to the month. By default, comparisons that do not specify an explicit comparison precision will be performed to the millisecond precision. However, clinical logic often involves comparisons only to the minute, so it is useful to provide a mechanism for specifying a default comparison precision, avoiding the need for authors to specify minute precision for all date and time comparisons.
+
+This is accomplished by applying this directive at the library level, and indicates that any expressions and function definitions within that library are to be performed at the specified default precision unless the operation explicity specifies a precision. The inclusion of this directive results in date and time comparisons being compiled to ELM with the given precision (i.e. it's a compile-time determination, rather than a run-time engine setting).
+
+The use of this directive is local to the library (meaning it does not impact comparisons occuring in dedclarations from included libraries) unless one of the following additional `<inclusion behavior>` clauses is provided:
+
+* `default included libraries`: the directive is used if the included library does not specify its own comparison precision
+* `override included libraries`: the directive is used regardless of whether the included library specifies its own comparison precision
+* `check included libraries`: the directive is used if the included library does not specify its own comparison precision, or it specifies the same comparison precision, otherwise an error is raised
+
+For example:
+
+```cql
+#DefaultComparisonPrecision: 'minutes' check included libraries
+```
+
+Means that all comparisons that do not explicitly specify precision should be performed to the minute and that using expressions or functions from libraries that specify a different default comparison precision will result in an error.
+
+> Note for implementers that because this directive has the potential to change the output ELM, it has implications for caching compiled ELM, and even compiled ELM referenced from different libraries. We seek ballot feedback on whether supporting the included library behaviors is necessary or overly burdensome.
+{: .note-info}
+
+As well, defining a parameter that would provide this capability should not be considered viable since it would change runtime behavior of the logic, and this should be a compile-time consideration. It is part of the intent of the logic and should not be varied by run-time considerations.
+
 #### Identifier Resolution
 
 Identifier resolution is the process of matching an identifier to a declared symbol in the context in which the identifier appears. 
