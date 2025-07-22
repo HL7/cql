@@ -14,3 +14,7 @@ Note that the CQL grammar file included here has the following modifications:
 
 1. The FHIRPath grammar is included directly, rather than imported to get a full generation
 2. The grammar has been rearranged in to smaller chunks so that the generated diagrams are more bite-sized
+
+Consider the following RR diagramming tool:
+https://github.com/GuntherRademacher/rr
+
