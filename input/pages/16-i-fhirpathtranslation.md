@@ -141,6 +141,18 @@ X.convertsToTime() === ConvertsToTime(X)
 X.count() === Count(X)
 ```
 
+### .dateOf()
+
+```cql
+X.dateOf() === date from X
+```
+
+### .dayOf()
+
+```cql
+X.dayOf() === day from X
+```
+
 ### .decode()
 
 ```cql
@@ -230,6 +242,12 @@ X.hasValue() === X is not null
 
 ```cql
 X.highBoundary(precision) === HighBoundary(X, precision)
+```
+
+### .hourOf()
+
+```cql
+X.hourOf() === hour from X
 ```
 
 ### .iif()
@@ -337,6 +355,24 @@ X.matchesFull(Y) === Matches(X, '^' + Y + '$')
 X.memberOf(Y) === InValueSet(X, Y) // where Y is required to be a ValueSetRef
 ```
 
+### .millisecondOf()
+
+```cql
+X.millisecondOf() === millisecond from X
+```
+
+### .minuteOf()
+
+```cql
+X.minuteOf() === minute from X
+```
+
+### .monthOf()
+
+```cql
+X.monthOf() === month from X
+```
+
 ### .ofType()
 
 ```cql
@@ -401,6 +437,12 @@ X.replaceMatches(Y, Z) === ReplaceMatches(X, Y, Z)
 ```cql
 X.round() === Round(X)
 X.round(Y) === Round(X, Y)
+```
+
+### .secondOf()
+
+```cql
+X.secondOf() === second from X
 ```
 
 ### .select()
@@ -496,10 +538,22 @@ X.tail() === Slice(X, 1, null)
 X.take(Y) === Slice(X, 0, Coalesce(Y, 0))
 ```
 
+### .timeOf()
+
+```cql
+X.timeOf() === time from X
+```
+
 ### .timeOfDay()
 
 ```cql
 timeOfDay() === TimeOfDay()
+```
+
+### .timezoneOffsetOf()
+
+```cql
+X.timezoneOffsetOf() === timezoneoffset from X
 ```
 
 {: #toboolean-1}
@@ -611,4 +665,10 @@ X.upper() === Upper(X)
 
 ```cql
 X.where(<condition>) === X $this where <condition>
+```
+
+### .yearOf()
+
+```cql
+X.yearOf() === year from X
 ```
