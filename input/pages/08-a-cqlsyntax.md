@@ -42,7 +42,7 @@ usingDefinition
     ;
 
 includeDefinition
-    : 'include' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)?
+    : 'include' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)? ('bind' tupleSelector)?
     ;
 
 localIdentifier

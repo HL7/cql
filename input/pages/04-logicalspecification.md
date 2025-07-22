@@ -442,6 +442,8 @@ A Library is an instance of a CQL-ELM library.
 ```
 IncludeDef : Element
   ¦
+  0..1 --> bind : Tuple
+  ¦
   1..1 --> localIdentifier
   ¦
   0..1 --> mediaType
@@ -452,6 +454,8 @@ IncludeDef : Element
 ```
 
 Includes a library for use within the artifact.
+
+The optional bind Tuple-valued element specifies values for parameters in the included library as expressions that may reference parameters in the current library. Bind expressions are evaluated in the same context as any parameter value expression, in that they only have access to parameter definitions in the library and may not contain any retrieve expressions. In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.
 
 #### VersionedIdentifier
 

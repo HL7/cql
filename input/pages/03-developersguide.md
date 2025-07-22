@@ -160,6 +160,7 @@ asc
 ascending
 before
 between
+bind
 by
 called
 case
@@ -535,6 +536,15 @@ library C includes library A version '2'
 A library D may not reference both B and C, because it would result in two different versions of library A being referenced.
 
 In addition, library references are not transitive, meaning that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
+
+#### Parameter Binding
+
+> Parameter binding was introduced in CQL 2.0, and is trial-use
+{: .note-info}
+
+The `bind` clause of the `include` declaration allows values for parameters in the included library to be specified as expressions that may reference parameters in the current library. Bind expressions are evaluated in the same context as any parameter value expression, in that they only have access to parameter definitions in the current library and may not contain any retrieve expressions. 
+
+In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.
 
 #### Access Modifiers
 

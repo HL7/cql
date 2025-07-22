@@ -2,7 +2,7 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.5 - Mixed Normative/Trial-Use
+ * Version 2.0 - Mixed Normative/Trial-Use
  */
 
 import fhirpath;
@@ -42,7 +42,7 @@ usingDefinition
     ;
 
 includeDefinition
-    : 'include' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)?
+    : 'include' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)? ('bind' tupleSelector)?
     ;
 
 localIdentifier

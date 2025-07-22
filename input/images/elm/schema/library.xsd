@@ -43,6 +43,13 @@
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Element">
+			    <xs:sequence>
+					<xs:element name="bind" type="Tuple">
+						<xs:annotation>
+							<xs:documentation>Specifies values for parameters in the included library as expressions that may reference parameters in the current library. Bind expressions are evaluated in the same context as any parameter value expression, in that they only have access to parameter definitions in the library and may not contain any retrieve expressions. In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
 				<xs:attribute name="localIdentifier" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>A unique name within this artifact for the library reference. This
