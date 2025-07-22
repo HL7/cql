@@ -288,6 +288,13 @@ X.lower() === Lower(X)
 X.matches(Y) === Matches(X, Y)
 ```
 
+{: #matchesfull}
+### .matchesFull()
+
+```cql
+X.matchesFull(Y) === Matches(X, '^' + Y + '$')
+```
+
 ### .memberOf()
 
 ```cql

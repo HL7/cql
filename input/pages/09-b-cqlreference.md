@@ -2842,6 +2842,33 @@ define "MatchesIsNull": Matches('12three', null)
 define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1', 'Library')
 ```
 
+#### MatchesFull
+
+**Signature:**
+
+```cql
+MatchesFull(argument String, pattern String) Boolean
+```
+
+**Description:**
+
+The <span class="id">MatchesFull</span> operator returns true when the value completely matches the given regular expression (implying that the start/end of line markers `^`, `$` are always surrounding the regex expression provided).
+
+Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters. The start/end of line markers <span class="sym">^</span> and <span class="sym">$</span> can be used to match the entire string.
+
+If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+
+> Platforms will typically use native regular expression implementations. These are typically fairly similar, but there will always be small differences. As such, CQL does not prescribe a particular dialect, but recommends the use of the [PCRE](http://www.pcre.org) dialect.
+{: .note-warning}
+
+The following examples illustrate the behavior of the <span class="id">MatchesFull</span> operator:
+
+```cql
+define MatchesFullFalse: 'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('Library') // returns false
+define MatchesFullAlsoFalse: 'N8000123123'.matchesFull('N[0-9]{8}') // returns false as the string is not an 8 char number (it has 10)
+define MatchesFullTrue: 'N8000123123'.matchesFull('N[0-9]{10}') // returns true as the string has an 10 number sequence in it starting with `N`
+```
+
 #### PositionOf
 
 **Signature:**
