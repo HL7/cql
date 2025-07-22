@@ -53,10 +53,11 @@ Note that nested multi-line comments are not supported.
 > Comment tags were introduced in CQL 1.5, and are trial-use
 {: .note-info}
 
-Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, followed by a colon (`:`). For example:
+Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, optionally followed by a colon (`:`) and a string value. For example:
 
 ```cql
 /*
+@inclusion
 @author: Frederic Chopin
 @description: Defines whether the patient is included in the initial population
 */
@@ -68,6 +69,12 @@ define "InInitialPopulation":
 
 The contents of the resulting tag will be whatever comes after the tag definition until the next tag or the end of the comment-block, whatever comes first.
 
+For example, the above declaration results in 3 tags:
+
+* `@inclusion` with no value
+* `@author` with the value `Frederic Chopin`
+* `@description` with the value `Defines whether the patient is included in the initial population`
+
 ```cql
 /*
 @author: Ludwig van Beethoven
@@ -78,6 +85,8 @@ to ensure overlapping intervals do not contribute multiple times to the result
 define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
   Sum((collapse Intervals) X return all duration in days of X)
 ```
+
+In this example, the `@comment` tag includes all the content to the end of the comment-block.
 
 #### Literals
 
