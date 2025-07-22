@@ -3,9 +3,9 @@
 
 ![assets/images/image1](assets/images/image1.png){: width=144; height=148; }
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
+*HL7 Standard: Clinical Quality Language Specification, Release 2 Mixed Normative/Trial-Use (CQL 2.0)*
 
-*December 2020 Publication*
+*August 2025 Publication*
 
 *HL7 Mixed Normative/Trial-Use Specification*
 

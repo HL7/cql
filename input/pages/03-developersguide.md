@@ -50,7 +50,7 @@ Note that nested multi-line comments are not supported.
 
 ##### Tags
 
-> Comment tags are a new feature of CQL 1.5, and are trial-use
+> Comment tags were introduced in CQL 1.5, and are trial-use
 {: .note-info}
 
 Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, followed by a colon (`:`). For example:
@@ -1459,7 +1459,7 @@ define NullObjectQuery:
 
 ### Related Context Retrieves
 
-> Support for specifying search paths, include and reverseInclude elements in the Retrieve is a new feature of CQL 1.5, and is trial-use.
+> Support for specifying search paths, include and reverseInclude elements in the Retrieve was introduced in CQL 1.5, and is trial-use.
 {: .note-info}
 
 To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
@@ -1490,7 +1490,7 @@ If the expression being defined (such as "Mother" in the previous example) is <s
 
 ### Aggregate Queries
 
-> The aggregate clause is a new feature of CQL 1.5, and is trial-use.
+> The aggregate clause was introduced in CQL 1.5, and is trial-use.
 {: .note-info}
 
 CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate the factorial of 5:
@@ -1597,7 +1597,7 @@ Equal(X, Y)
 
 #### Fluent Functions
 
-> Fluent functions are a new feature of CQL 1.5, and are trial-use.
+> Fluent functions was introduced in CQL 1.5, and are trial-use.
 {: .note-info}
 Functions can be defined as _fluent_ by including the <span class="kw">fluent</span> keyword as part of the function definition:
 

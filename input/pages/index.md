@@ -1,7 +1,7 @@
 
 ### Clinical Quality Language (CQL)
 
-*HL7 Standard: Clinical Quality Language Specification, Release 1 Mixed Normative/Trial-Use (CQL 1.5)*
+*HL7 Standard: Clinical Quality Language Specification, Release 2 Mixed Normative/Trial-Use (CQL 2.0)*
 
 *HL7 Mixed Normative/STU Specification*
 

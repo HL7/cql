@@ -87,7 +87,7 @@ The <span class="id">Code</span> type represents single terminology codes within
 
 #### CodeSystem
 
-> The CodeSystem type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The CodeSystem type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Definition:**
@@ -181,7 +181,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 {: #long-1}
 #### Long
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Definition:**
@@ -293,7 +293,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 #### ValueSet
 
-> The ValueSet type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The ValueSet type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Definition:**
@@ -318,7 +318,7 @@ The <span class="id">codesystems</span> element is used to capture code system v
 
 #### Vocabulary
 
-> The Vocabulary type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Vocabulary type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Definition:**
@@ -772,7 +772,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 #### ConvertsToLong
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Signature:**
@@ -795,7 +795,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument Any) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -846,7 +846,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 ConvertsToString(argument Any) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1050,7 +1050,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 #### ToLong
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Signature:**
@@ -1094,7 +1094,7 @@ ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1211,7 +1211,7 @@ ToString(argument DateTime) String
 ToString(argument Time) String
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1391,7 +1391,7 @@ between(argument String, low String, high String) Boolean
 between(argument Interval<T>, low T, high T) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1594,7 +1594,7 @@ define "NullEquivalentIsTrue": null ~ null
 >(left String, right String) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1648,7 +1648,7 @@ define "NullGreaterIsNull": null > 5
 >=(left String, right String) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1699,7 +1699,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 <(left String, right String) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1751,7 +1751,7 @@ define "NullLessIsNull": null < 5
 <=(left String, right String) Boolean
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1857,7 +1857,7 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -1891,7 +1891,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2251,8 +2251,8 @@ mod(left Decimal, right Decimal) Decimal
 mod(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2291,7 +2291,7 @@ define "ModuloIsNull": 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2328,7 +2328,7 @@ If the result of the operation cannot be represented, the result is <span class=
 -(argument Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2436,7 +2436,7 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 ^(argument Decimal, exponent Decimal) Decimal
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2501,7 +2501,7 @@ define "RoundNegativePointFive": Round(-0.5) // -1
 -(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -2605,8 +2605,8 @@ div(left Long, right Long) Long
 div(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -3851,7 +3851,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
 
-> The Interval<T> overload for expand is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -5058,7 +5058,6 @@ define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
 define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
 define "SkipIsNull": Skip(null, 2)
 ```
-
 #### Tail
 
 **Signature:**
@@ -5275,7 +5274,7 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -5443,7 +5442,7 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -5500,7 +5499,7 @@ Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ```
 
-> The Long type is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Description:**
@@ -5772,7 +5771,7 @@ define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
 {: #expandvalueset}
 #### ExpandValueSet (ValueSet)
 
-> The ExpandValueSet function is a new feature being introduced in CQL 1.5, and has trial-use status.
+> The ExpandValueSet function was introduced in CQL 1.5, and has trial-use status.
 {: .note-info}
 
 **Signature:**
