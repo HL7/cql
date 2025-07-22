@@ -919,6 +919,12 @@ Retrieve : Expression
   ¦
   0..* --> include : IncludeElement
   ¦
+  0..* --> codeFilter : CodeFilterElement
+  ¦
+  0..* --> dateFilter : DateFilterElement
+  ¦
+  0..* --> otherFilter : OtherFilterElement
+  ¦
   1..1 --> dataType
   ¦
   0..1 --> templateId
@@ -946,6 +952,8 @@ Retrieve : Expression
   0..1 --> dateHighProperty
   ¦
   0..1 --> dateSearch
+  ¦
+  0..1 --> includedIn
 ```
 
 The retrieve expression defines clinical data that will be used by the artifact. This expression allows clinically relevant filtering criteria to be provided in a well-defined and computable way. This operation defines the integration boundary for artifacts. The result of a retrieve is defined to return the same data for subsequent invocations within the same evaluation request. This means in particular that patient data updates made during the evaluation request are not visible to the artifact. In effect, the patient data is a snapshot of the data as of the start of the evaluation. This ensures strict deterministic and functional behavior of the artifact, and allows the implementation engine freedom to cache intermediate results in order to improve performance.
@@ -964,6 +972,15 @@ If specified, the context element references an expression that, when evaluated,
 
 ##### include
 Specifies a related data type to be included in the result as part of the retrieve.
+
+##### codeFilter
+Specifies a terminology filter to be applied as part of the retrieve. Each codeFilter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple codeFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the code filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
+
+##### dateFilter
+Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specifies as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
+
+##### otherFilter
+Specifies other, non-id, -context, -terminology, or -date valued filter criteria to be applied as part of the retrieve. Each other Filter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple otherFilters are present, they are all applied (i.e. ANDed). This element is included to allow for additional filtering criteria as determined by optimization strategies.
 
 ##### dataType
 The dataType attribute specifies the type of data being requested.
@@ -1039,12 +1056,135 @@ This property may be specified as a path, including qualifiers and constant inde
 ##### dateSearch
 The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
 
+##### includedIn
+The localId of another Retrieve that includes the data for this retrieve. The target Retrieve will have an includeElement referencing this retrieve.
+
+#### CodeFilterElement
+
+The CodeFilterElement type specifies a terminology filter criteria for use within a retrieve, specified as either [property] [comparator] [value] or [search] [comparator] [value].
+
+```
+CodeFilterElement : Element
+  ¦
+  1..1 --> value : Expression
+  ¦
+  0..1 --> property
+  ¦
+  0..1 --> valueSetProperty
+  ¦
+  0..1 --> search
+  ¦
+  1..1 --> comparator
+```
+
+##### value
+An expression that provides the comparison value for the filter. The expression is expected to result in a List&lt;Code&gt; to match against. Only the clinical statements that match at least one of the specified codes will be returned.
+
+##### property
+The property attribute specifies which property the filter applies to.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### valueSetProperty
+The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
+
+This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity.
+
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### search
+The search attribute specifies the name of a search path for the filter.
+
+##### comparator
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
+
+#### DateFilterElement
+The DateFilterElement type specifies a date-valued filter criteria for use within a retrieve, specified as either a date-valued [property], a date-value [lowProperty] and [highProperty] or a [search], and an expression that evaluates to a date or time type, an interval of a date or time type, or a time-valued Quantity.
+
+```
+DateFilterElement : Element
+  ¦
+  1..1 --> value : Expression
+  ¦
+  0..1 --> property
+  ¦
+  0..1 --> lowProperty
+  ¦
+  0..1 --> highProperty
+  ¦
+  0..1 --> search
+```
+
+##### value
+An expression that provides the comparison value for the filter. The expression is expected to result in a date or time type, an interval of a date or time type, or a time-valued quantity. Only the clinical statements that match at least one of the specified codes will be returned.
+
+##### property
+The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement.
+
+This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range.
+
+Instances with no value for the dateProperty will not be included in the result set if a date range is specified.
+
+Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the dateProperty must not be present. If specified, the lowProperty and highProperty values will be used to construct an interval with inclusive boundaries for the date range.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### lowProperty
+The lowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement.
+
+Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### highProperty
+The highProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement.
+
+Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### search
+The search attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.
+
+#### OtherFilterElement
+The OtherFilterElement type specifies an arbitrarily-typed filter criteria for use within a retrieve, specified as either [property] [comparator] [value] or [search] [comparator] [value].
+
+```
+OtherFilterElement : Element
+  ¦
+  1..1 --> value : Expression
+  ¦
+  0..1 --> property
+  ¦
+  0..1 --> search
+  ¦
+  1..1 --> comparator
+```
+
+##### value
+An expression that provides the comparison value for the filter.
+
+##### property
+The property attribute specifies which property the filter applies to.
+
+This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
+
+##### search
+The search attribute specifies the name of a search path for the filter.
+
+##### comparator
+The comparator attribute specifies the comparison operation for the filter.
+
 #### IncludeElement
 
 The IncludeElement type specifies include information for an include within a retrieve.
 
 ```
 IncludeElement : Element
+  ¦
+  0..1 --> includeFrom
   ¦
   0..1 --> relatedDataType
   ¦
@@ -1054,6 +1194,10 @@ IncludeElement : Element
   ¦
   0..1 --> isReverse
 ```
+
+##### includeFrom
+
+The localId of another Retrieve that specifies the data to be included in this retrieve. The target Retrieve will have an includedIn attribute referencing this includeElement.
 
 ##### relatedDataType
 
