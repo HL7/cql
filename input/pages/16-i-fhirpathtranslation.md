@@ -159,6 +159,17 @@ X.dayOf() === day from X
 X.decode(format) === Decode(X, format)
 ```
 
+### .defineVariable()
+
+Because the defineVariable function is introducing a named alias, all subsequent fluent function invocations must be evaluated within the query.
+
+In addition, the name argument must be compile-time evaluable.
+
+```cql
+X.defineVariable(name) === { input: X } alias let name: alias.X return X
+X.defineVariable(name, expression) === X alias let name: expression
+```
+
 {: #descendants-1}
 ### .descendants()
 
