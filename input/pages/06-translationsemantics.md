@@ -292,6 +292,7 @@ Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> o
 |CQL Operator |ELM Equivalent
 |----|----
 |<span class="kw">contains</span> |Contains
+|<span class="kw">~contains</span> |EquivalentContains
 |<span class="kw">distinct</span> |Distinct
 |<span class="sym">=</span> |Equal
 |<span class="kw">except</span> |Except
@@ -299,6 +300,7 @@ Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> o
 |<span class="kw">flatten</span> |Flatten
 |<span class="id">First</span> |First
 |<span class="kw">in</span> |In
+|<span class="kw">~in</span> |EquivalentIn
 |<span class="kw">includes</span> |Includes
 |<span class="kw">included in</span> |IncludedIn
 |<span class="sym">[]</span> |Indexer
@@ -360,8 +362,10 @@ Table 6‑M - The ELM equivalent for each CQL aggegrate operator
 |<span class="id">CalculateAgeIn</span>**-precision-**<span class="id">At</span> |CalculateAgeAt
 |<span class="sym">=</span> |Equal
 |<span class="sym">~</span> |Equivalent
-|<span class="kw">in</span> **(Codesystem)** |InCodeSystem
-|<span class="kw">in</span> **(Valueset)** |InValueSet
+|<span class="kw">in</span>,<span class="kw">~in</span> **(Codesystem)** |InCodeSystem,AnyInCodeSystem
+|<span class="kw">in</span>,<span class="kw">~in</span> **(Valueset)** |InValueSet,AnyInValueSet
+|<span class="kw">~contains</span> **(Codesystem)** |InCodeSystem,AnyInCodeSystem (with arguments swapped)
+|<span class="kw">~contains</span> **(Valueset)** |InValueSet,AnyInValueSet (with arguments swapped)
 {: .grid .table .table-striped}
 
 Table 6‑N - The ELM equivalent for each CQL clinical operator

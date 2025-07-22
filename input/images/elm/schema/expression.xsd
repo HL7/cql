@@ -2326,6 +2326,16 @@ For the Interval, T overload, this operator returns true if the given point is e
 		</xs:complexContent>
 		<!-- Contains(i, p) = (if lowClosed then p >= Coalesce(i.low, p) else p > i.low) and (if highClosed then p <= Coalesce(i.high, p) else p < i.high) -->
 	</xs:complexType>
+	<xs:complexType name="EquivalentContains">
+		<xs:annotation>
+			<xs:documentation>The EquivalentContains operator returns true if the first operand contains the second, using equivalent, rather than equality semantics.
+
+This operator returns true if the given element is in the given list, using equivalent semantics. If the first argument is null, the result is false.  If the second argument is null, the result is true if the list contains any null elements, and false otherwise.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BinaryExpression"/>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="ProperContains">
 		<xs:annotation>
 			<xs:documentation>The ProperContains operator returns true if the first operand properly contains the second.
@@ -2363,6 +2373,16 @@ For the T, Interval overload, this operator returns true if the given point is e
 			</xs:extension>
 		</xs:complexContent>
 		<!-- In(p, i) = (if lowClosed then p >= Coalesce(i.low, p) else p > i.low) and (if highClosed then p <= Coalesce(i.high, p) else p < i.high) -->
+	</xs:complexType>
+	<xs:complexType name="EquivalentIn">
+		<xs:annotation>
+			<xs:documentation>The EquivalentIn operator tests for membership in a list using equivalent, rather than equality semantics.
+
+This operator returns true if the given element is in the given list, using equivalent semantics. If the first argument is null, the result is true if the list contains any null elements, and false otherwise. If the second argument is null the result is false.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BinaryExpression"/>
+		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ProperIn">
 		<xs:annotation>

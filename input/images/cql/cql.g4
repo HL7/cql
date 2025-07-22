@@ -320,7 +320,7 @@ expression
     | expression ('<=' | '<' | '>' | '>=') expression                                               #inequalityExpression
     | expression intervalOperatorPhrase expression                                                  #timingExpression
     | expression ('=' | '!=' | '~' | '!~') expression                                               #equalityExpression
-    | expression ('in' | 'contains') dateTimePrecisionSpecifier? expression                         #membershipExpression
+    | expression ('in' | '~in' | 'contains' | '~contains' ) dateTimePrecisionSpecifier? expression  #membershipExpression
     | expression 'and' expression                                                                   #andExpression
     | expression ('or' | 'xor') expression                                                          #orExpression
     | expression 'implies' expression                                                               #impliesExpression
@@ -522,6 +522,7 @@ keyword
     | 'collapse'
     | 'concept'
     | 'Concept'
+    | '~contains'
     | 'contains'
     | 'context'
     | 'convert'
@@ -553,6 +554,7 @@ keyword
     | 'hours'
     | 'if'
     | 'implies'
+    | '~in'
     | 'in'
     | 'include'
     | 'includes'

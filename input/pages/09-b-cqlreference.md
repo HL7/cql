@@ -4606,6 +4606,60 @@ define "EquivalentIsAlsoTrue": { 1, 3, 5, null } ~ { 1, 3, 5, null }
 define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 ```
 
+{: #equivalentin}
+#### EquivalentIn
+
+> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
+
+**Signature:**
+
+```cql
+~in(element T, argument List<T>) Boolean
+```
+
+**Description:**
+
+The <span class="kw">~in</span> operator for lists returns <span class="kw">true</span> if the given element is in the given list using equivalent semantics.
+
+If the first argument is <span class="kw">null</span>, the result is <span class="kw">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="kw">false</span> otherwise. If the second argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
+
+The following examples illustrate the behavior of the <span class="kw">~in</span> operator:
+
+```cql
+define "EquivalentInIsTrue": 'a' ~in { 'A', 'B', 'C' }
+define "EquivalentInIsFalse": 'a' ~in { 'B', 'C' }
+define "EquivalentInIsAlsoFalse": 'a' ~in null
+define "NullEquivalentInIsTrue": null ~in { 1, 3, 5, null }
+```
+
+{: #equivalentcontains}
+#### EquivalentContains
+
+> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
+
+**Signature:**
+
+```cql
+~contains(argument List<T>, element T) Boolean
+```
+
+**Description:**
+
+The <span class="kw">~contains</span> operator for lists returns <span class="kw">true</span> if the given element is in the list using equivalent semantics.
+
+If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="kw">false</span> otherwise.
+
+The following examples illustrate the behavior of the <span class="kw">~contains</span> operator:
+
+```cql
+define "EquivalentContainsIsTrue": { 'A', 'B', 'C' } ~contains 'a'
+define "EquivalentContainsIsFalse": { 'B', 'C' } ~contains 'a'
+define "EquivalentContainsIsAlsoFalse": null ~contains 'a'
+define "EquivalentContainsNullIsFalse": { 'A', 'B', 'C' } ~contains null
+```
+
 {: #except-1}
 #### Except
 
@@ -5780,22 +5834,25 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 > Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
 {: .note-warning}
 
-#### In (Codesystem)
+#### Contains (Codesystem)
+
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
 
 **Signature:**
 
 ```cql
-in(code String, codesystem CodeSystemRef) Boolean
-in(code Code, codesystem CodeSystemRef) Boolean
-in(concept Concept, codesystem CodeSystemRef) Boolean
-in(codes List<Code>, codeSystem CodeSystemRef) Boolean
-in(List<string>, CodeSystem)
-in(List<Concept>, CodeSystem)
+~contains(codesystem CodeSystem, code String) Boolean
+~contains(codesystem CodeSystem, code Code) Boolean
+~contains(codesystem CodeSystem, concept Concept) Boolean
+~contains(codesystem CodeSystem, codes List<Code>) Boolean
+~contains(codesystem CodeSystem, codes List<string>) Boolean
+~contains(codesystem CodeSystem, codes List<Concept>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">in</span> (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span>.
+The <span class="kw">~contains</span> (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
 
@@ -5809,13 +5866,57 @@ If the <span class="id">code</span> argument is <span class="kw">null</span>, th
 
 If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
 
-The following examples illustrate the behavior of the <span class="kw">in</span> (Codesystem) operator:
+The following examples illustrate the behavior of the <span class="kw">~contains</span> (Codesystem) operator:
 
 ```cql
 codesystem "SNOMED:2014": 'http://snomed.info/sct'
-define "StringInCodesystem": '12345678' in "SNOMED:2014"
-define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345678' } in "SNOMED:2014"
-define "NullStringInCodesystem": null as String in "SNOMED:2014" // false
+define "CodesystemContainsString": "SNOMED:2014" ~contains '12345678'
+define "CodesystemContainsCode": "SNOMED:2014" ~contains Code { system: "http://snomed.info/sct", code: '12345678' }
+define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String // false
+```
+
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+{: .note-warning}
+
+#### In (Codesystem)
+
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+{: .note-info}
+
+**Signature:**
+
+```cql
+~in(code String, codesystem CodeSystem) Boolean
+~in(code Code, codesystem CodeSystem) Boolean
+~in(concept Concept, codesystem CodeSystem) Boolean
+~in(codes List<Code>, codesystem CodeSystem) Boolean
+~in(codes List<string>, codesystem CodeSystem) Boolean
+~in(codes List<Concept>, codesystem CodeSystem) Boolean
+```
+
+**Description:**
+
+The <span class="kw">~in</span> (<span class="kw">in</span> in version 1.5) (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
+
+For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
+
+For the <span class="id">Code</span> overload, if the given code system contains an equivalent code, the result is <span class="kw">true</span>.
+
+For the <span class="id">Concept</span> overload, if the given code system contains a code equivalent to any code in the given concept, the result is <span class="kw">true</span>.
+
+For the <span class="id">List\<Code></span> overload, if the given code system contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
+
+If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
+
+If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
+
+The following examples illustrate the behavior of the <span class="kw">~in</span> (Codesystem) operator:
+
+```cql
+codesystem "SNOMED:2014": 'http://snomed.info/sct'
+define "StringInCodesystem": '12345678' ~in "SNOMED:2014"
+define "CodeInCodesystem": Code { system: "http://snomed.info/sct", code: '12345678' } ~in "SNOMED:2014"
+define "NullStringInCodesystem": null as String ~in "SNOMED:2014" // false
 ```
 
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
@@ -5850,22 +5951,69 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
 
-#### In (Valueset)
+#### Contains (Valueset)
+
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
 
 **Signature:**
 
 ```cql
-in(code String, valueset ValueSetRef) Boolean
-in(code Code, valueset ValueSetRef) Boolean
-in(concept Concept, valueset ValueSetRef) Boolean
-in(codes List<Code>, valueset ValueSetRef) Boolean
-in(List<string>, ValueSet)
-in(List<Concept>, ValueSet)
+~contains(valueset ValueSet, code String) Boolean
+~contains(valueset ValueSet, code Code) Boolean
+~contains(valueset ValueSet, concept Concept) Boolean
+~contains(valueset ValueSet, codes List<Code>) Boolean
+~contains(valueset ValueSet, codes List<string>) Boolean
+~contains(valueset ValueSet, codes List<Concept>) Boolean
 ```
 
 **Description:**
 
-The <span class="kw">in</span> (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span>.
+The <span class="kw">~contains</span> (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
+
+For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
+
+For the <span class="id">Code</span> overload, if the given valueset contains an equivalent code, the result is <span class="kw">true</span>.
+
+For the <span class="id">Concept</span> overload, if the given valueset contains a code equivalent to any code in the given concept, the result is <span class="kw">true</span>.
+
+For the <span class="id">List\<Code></span> overload, if the given valueset contains a code equivalent to any code in the given list, the result is <span class="kw">true</span>.
+
+If the code argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
+
+If the value set reference cannot be resolved, a run-time error is thrown.
+
+The following examples illustrate the behavior of the <span class="kw">~contains</span> (Valueset) operator:
+
+```cql
+valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
+define "ValuesetContainsString": "Acute Pharyngitis" ~contains '12345678'
+define "ValuesetContainsCode": "Acute Pharyngitis" ~contains Code { system: 'http://snomed.info/sct', code: '12345678' }
+define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as String // false
+```
+
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+{: .note-warning}
+
+#### In (Valueset)
+
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+{: .note-info}
+
+**Signature:**
+
+```cql
+~in(code String, valueset ValueSet) Boolean
+~in(code Code, valueset ValueSet) Boolean
+~in(concept Concept, valueset ValueSet) Boolean
+~in(codes List<Code>, valueset ValueSet) Boolean
+~in(codes List<string>, valueset ValueSet) Boolean
+~in(codes List<Concept>, valueset ValueSet) Boolean
+```
+
+**Description:**
+
+The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
@@ -5883,9 +6031,9 @@ The following examples illustrate the behavior of the <span class="kw">in</span>
 
 ```cql
 valueset "Acute Pharyngitis": 'http://acute.pharyngitis/valueset'
-define "StringInValueset": '12345678' in "Acute Pharyngitis"
-define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '12345678' } in "Acute Pharyngitis"
-define "NullStringInValueset": null as String in "Acute Pharyngitis" // false
+define "StringInValueset": '12345678' ~in "Acute Pharyngitis"
+define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '12345678' } ~in "Acute Pharyngitis"
+define "NullStringInValueset": null as String ~in "Acute Pharyngitis" // false
 ```
 
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all

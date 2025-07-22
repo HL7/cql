@@ -337,7 +337,7 @@ expression
     | expression ('<=' | '<' | '>' | '>=') expression                                               #inequalityExpression
     | expression intervalOperatorPhrase expression                                                  #timingExpression
     | expression ('=' | '!=' | '~' | '!~') expression                                               #equalityExpression
-    | expression ('in' | 'contains') dateTimePrecisionSpecifier? expression                         #membershipExpression
+    | expression ('in' | '~in' | 'contains' | '~contains' ) dateTimePrecisionSpecifier? expression  #membershipExpression
     | expression 'and' expression                                                                   #andExpression
     | expression ('or' | 'xor') expression                                                          #orExpression
     | expression 'implies' expression                                                               #impliesExpression
@@ -561,6 +561,7 @@ keyword
     | 'concept'
     | 'Concept'
     | 'contains'
+    | '~contains'
     | 'context'
     | 'convert'
     | 'date'
@@ -592,6 +593,7 @@ keyword
     | 'if'
     | 'implies'
     | 'in'
+    | '~in'
     | 'include'
     | 'includes'
     | 'included in'
@@ -615,13 +617,13 @@ keyword
     | 'null'
     | 'occurs'
     | 'of'
-		| 'on or'
+    | 'on or'
     | 'or'
     | 'or after'
     | 'or before'
     | 'or less'
     | 'or more'
-		| 'or on'
+	| 'or on'
     | 'overlaps'
     | 'parameter'
     | 'per'

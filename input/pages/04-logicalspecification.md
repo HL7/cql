@@ -1025,7 +1025,7 @@ This property may be specified as a path, including qualifiers and constant inde
 The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.
 
 ##### codeComparator
-The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '~in', 'contains', '~contains', '=', or '~'. Note that 'in', '~in', and '~contains' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
 ##### valueSetProperty
 The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data.
@@ -1106,7 +1106,7 @@ This property may be specified as a path, including qualifiers and constant inde
 The search attribute specifies the name of a search path for the filter.
 
 ##### comparator
-The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
+The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '~in', 'contains', '~contains', '=', or '~'. Note that 'in', '~in', and '~contains' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.
 
 #### DateFilterElement
 The DateFilterElement type specifies a date-valued filter criteria for use within a retrieve, specified as either a date-valued [property], a date-value [lowProperty] and [highProperty] or a [search], and an expression that evaluates to a date or time type, an interval of a date or time type, or a time-valued Quantity.
@@ -2746,6 +2746,26 @@ Refer to the [Equal section](#equal) in the Comparison Operators.
 #### Equivalent
 
 Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
+
+#### EquivalentIn
+
+```
+EquivalentIn : BinaryExpression
+```
+
+The EquivalentIn operator tests for membership in a list using equivalent, rather than equality semantics.
+
+This operator returns true if the given element is in the given list, using equivalent semantics. If the first argument is null, the result is true if the list contains any null elements, and false otherwise. If the second argument is null the result is false.
+
+#### EquivalentContains
+
+```
+EquivalentContains : BinaryExpression
+```
+
+The EquivalentContains operator returns true if the first operand contains the second, using equivalent, rather than equality semantics.
+
+This operator returns true if the given element is in the given list, using equivalent semantics. If the first argument is null, the result is false.  If the second argument is null, the result is true if the list contains any null elements, and false otherwise.
 
 #### Except
 
