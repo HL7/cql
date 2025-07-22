@@ -2849,7 +2849,21 @@ If the startIndex is null, the slice begins at the first element of the list.
 
 If the endIndex is null, the slice continues to the last element of the list.
 
-If the startIndex or endIndex is less than 0, or if the endIndex is less than the startIndex, the result is an empty list.</xs:documentation>
+A negative index counts back from the end of the list.
+
+If -list.count &lt;= startIndex &lt; 0, startIndex + list.count is used as the startIndex.
+
+If startIndex &lt; -list.count, 0 is used as the startIndex.
+
+If startIndex &gt;= list.count, the result is an empty list.
+
+If -list.count &lt;= endIndex &lt; 0, endIndex + list.count is used as the endIndex.
+
+If endIndex &lt; -list.count, 0 is used as the endIndex.
+
+If endIndex &gt;= list.count, list.count is used.
+
+If endIndex &lt;= startIndex, the result is an empty list.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OperatorExpression">

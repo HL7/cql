@@ -5058,6 +5058,59 @@ define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }
 define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }
 define "SkipIsNull": Skip(null, 2)
 ```
+
+#### Slice
+
+> The Slice function was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
+
+**Signature:**
+
+```cql
+Slice(argument List<T>)
+Slice(argument List<T>, startIndex Integer)
+Slice(argument List<T>, startIndex Integer, endIndex Integer)
+```
+
+**Description:**
+
+The <span class="id">Slice</span> operator returns a portion of the elements in a list, beginning at the <span class="id">startIndex</span> and ending just before the <span class="id">endIndex</span> index.
+
+If the source list is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+
+If the startIndex is <span class="kw">null</span>, the slice begins at the first element of the list.
+
+If the endIndex is <span class="kw">null</span>, the slice continues to the last element of the list.
+
+A negative index counts back from the end of the list.
+
+If `-list.count <= startIndex < 0`, `startIndex + list.count` is used as the `startIndex`.
+
+If `startIndex < -list.count`, `0` is used as the `startIndex`.
+
+If `startIndex >= list.count`, the result is an empty list.
+
+If `-list.count <= endIndex < 0`, `endIndex + list.count` is used as the `endIndex`.
+
+If `endIndex < -list.count`, `0` is used as the `endIndex`.
+
+If `endIndex >= list.count`, `list.count` is used as the `endIndex`.
+
+If `endIndex <= startIndex`, the result is an empty list.
+
+The following examples illustrate the behavior of the <span class="id">Slice</span> operator:
+
+```cql
+define SliceAll: Slice({ 1, 2, 3, 4, 5 }) // { 1, 2, 3, 4, 5 }
+define SliceEmpty: Slice({ }) // { }
+define SliceNull: Slice(null) // null
+define SliceStart: Slice({ 1, 2, 3, 4, 5 }, 1) // { 2, 3, 4, 5 }
+define SliceEnd: Slice({ 1, 2, 3, 4, 5 }, 1, 3) // { 2, 3 }
+define SliceNegative: Slice({ 1, 2, 3, 4, 5 }, -2) // { 4, 5 }
+define SliceStartAndNegative: Slice({ 1, 2, 3, 4, 5 }, 1, -1) // { 2, 3, 4 }
+define SlicePast: Slice({ 1, 2, 3, 4, 5 }, 5) // { }
+```
+
 #### Tail
 
 **Signature:**

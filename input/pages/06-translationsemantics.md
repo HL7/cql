@@ -313,6 +313,7 @@ Table 6‑K - The ELM equivalent for each CQL <span class="kw">Interval</span> o
 |<span class="kw">properly included in</span> |ProperlyIncludedIn
 |<span class="kw">singleton from</span> |SingletonFrom
 |<span class="id">Skip(n)</span> |Slice(n, null)
+|<span class="id">Slice(n, s, e)</span> |Slice(n, s, e)
 |<span class="id">Tail</span> |Slice(1, null)
 |<span class="id">Take(n)</span> |Slice(0, n)
 |<span class="kw">union</span> |Union
