@@ -38,7 +38,7 @@ libraryDefinition
     ;
 
 usingDefinition
-    : 'using' modelIdentifier ('version' versionSpecifier)?
+    : 'using' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)?
     ;
 
 includeDefinition
@@ -510,6 +510,7 @@ keyword
     | 'ascending'
     | 'before'
     | 'between'
+    | 'bind'
     | 'by'
     | 'called'
     | 'case'
@@ -705,6 +706,7 @@ reservedWord
 keywordIdentifier
     : 'asc'
     | 'ascending'
+    | 'bind'
     | 'by'
     | 'called'
     | 'code'
@@ -793,6 +795,7 @@ functionIdentifier
     | 'ascending'
     | 'before'
     | 'between'
+    | 'bind'
     | 'by'
     | 'called'
     | 'case'

@@ -33,6 +33,11 @@
               the model to be referenced within the artifact.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="optional">
+				    <xs:annotation>
+					    <xs:documentation>The fully qualified name of the model. If this is not provided, the localIdentifier attribute is used as the name of the model. The model qualifier is the namespace name of the model.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 				<xs:attribute name="version" type="xs:string" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>

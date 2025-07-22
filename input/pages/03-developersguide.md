@@ -590,12 +590,35 @@ As with expressions, CQL supports forward declarations for functions, so long as
 {: #data-models-1}
 ### Data Models
 
+> Model namespaces and aliases were introduced in CQL 2.0, and are trial-use
+{: .note-info}
+
 CQL allows any number of data models to be included in a given library, subject to the following constraints:
 
-* The data model identifier must be unique, both among data models, as well as libraries.
-* Data model references are not included from referenced libraries. To reference the data types in a data model, an appropriate local using declaration must be specified.
+* The local [identifier](#identifiers) for a referenced model must be [unqualified](#qualified-identifiers) and unique within the artifact.
+* Circular model references are not allowed.
+* Data model references are not included from referenced libraries. To reference the data types in a data model, an appropriate local `using` declaration must be specified.
 
 As with library references, data model references may include a version specifier. If a version is specified, then the environment must ensure that the version specifier matches the version of the data model supplied. If no data model matching the requested version is present, an error is thrown.
+
+Data model references may include any number of qualifiers. If present, the qualifier for a model name is the namespace name for the model's namespace URI:
+
+```cql
+using hl7.fhir.us.core.USCore
+```
+
+The namespace name in the above declaration is `hl7.fhir.us.core`, corresponding to the `USCore` model info namespace URI of `http://hl7.org/fhir/us/core`.
+
+If a local identifier for the data model is not specified (using the `called` clause), the unqualified name of the model is used as the local identifier.
+
+Multiple versions of the same model MAY be included using the `called` clause:
+
+```cql
+using hl7.fhir.us.core.USCore version '7.0.0' called USCore7
+using hl7.fhir.us.core.USCore version '8.0.0' called USCore8
+```
+
+Allowing multiple versions of the same model to be referenced within the same library enables authors to build CQL conversion logic if desired, as well as allowing for dependencies that may use different versions of the same model to be referenced.
 
 #### Alternate Data Models
 

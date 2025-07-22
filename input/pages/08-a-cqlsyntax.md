@@ -38,7 +38,7 @@ definition
     ;
 
 usingDefinition
-    : 'using' modelIdentifier ('version' versionSpecifier)?
+    : 'using' qualifiedIdentifier ('version' versionSpecifier)? ('called' localIdentifier)?
     ;
 
 includeDefinition

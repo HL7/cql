@@ -503,10 +503,14 @@ UsingDef : Element
   ¦
   1..1 --> uri
   ¦
+  0..1 --> name
+  ¦
   0..1 --> version
 ```
 
 Defines a data model that is available within the artifact.
+
+The `name` attribute specifies the fully qualified name of the model. If this is not provided, the localIdentifier attribute is used as the name of the model. The model qualifier is the namespace name of the model.
 
 ### Parameters
 
