@@ -226,6 +226,12 @@ X.floor() === Floor(X)
 X.hasValue() === X is not null
 ```
 
+### .highBoundary()
+
+```cql
+X.highBoundary(precision) === HighBoundary(X, precision)
+```
+
 ### .iif()
 
 ```cql
@@ -299,6 +305,12 @@ X.ln() === Ln(X)
 X.log(B) === Log(X, B)
 ```
 
+### .lowBoundary()
+
+```cql
+X.lowBoundary(precision) === LowBoundary(X, precision)
+```
+
 ### .lower()
 
 ```cql
@@ -351,6 +363,12 @@ now() === Now()
 
 ```cql
 X.power(Y) === Power(X, Y)
+```
+
+### .precision()
+
+```cql
+X.precision() === Precision(X)
 ```
 
 ### .repeat()
