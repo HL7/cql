@@ -141,6 +141,12 @@ X.convertsToTime() === ConvertsToTime(X)
 X.count() === Count(X)
 ```
 
+### .decode()
+
+```cql
+X.decode(format) === Decode(X, format)
+```
+
 {: #descendants-1}
 ### .descendants()
 
@@ -161,11 +167,23 @@ X.distinct() === distinct X
 X.empty() === not exists X
 ```
 
+### .encode()
+
+```cql
+X.encode(format) === Encode(X, format)
+```
+
 {: #endswith-1}
 ### .endsWith()
 
 ```cql
 X.endsWith(Y) === EndsWith(X, Y)
+```
+
+### .escape()
+
+```cql
+X.escape(target) === Escape(X, target)
 ```
 
 ### .exclude()
@@ -241,6 +259,12 @@ Note that the argument T is expected to be a literal string and must resolve to 
 
 ```cql
 X.isDistinct() === Count(X) = Count(distinct X)
+```
+
+### .join()
+
+```cql
+X.join(separator) === Combine(X, separator)
 ```
 
 {: #last-1}
@@ -388,6 +412,12 @@ X.single() === singleton from X
 X.skip(Y) === Slice(X, Y, null)
 ```
 
+### .split()
+
+```cql
+X.split(separator) === Split(X, separator)
+```
+
 ### .sqrt()
 
 ```cql
@@ -528,10 +558,22 @@ X.toTime() === ToTime(X)
 X.trace(Y) === Message(X, true, Y, 'Trace', ToString(X)))
 ```
 
+### .trim()
+
+```cql
+X.trim() === Trim(X)
+```
+
 ### .truncate()
 
 ```cql
 X.truncate() === Truncate(X)
+```
+
+### .unescape()
+
+```cql
+X.unescape(target) === Unescape(X, target)
 ```
 
 ### .union() and |
