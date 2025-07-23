@@ -96,6 +96,214 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="InfoDef">
+	    <xs:complexContent>
+		    <xs:extension base="Element"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContextInfoDef">
+		<xs:annotation>
+			<xs:documentation>Defines an available context type for the model.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+		    <xs:extension base="InfoDef">
+				<xs:sequence>
+					<xs:element name="contextType" type="NamedTypeSpecifier" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Specifies the type for the context.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="keyElement" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Specifies the key elements, in order, of the context type that form the reference key for the context. The elements taken together must form a unique identifier for instances of the context.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Specifies the name of the context. This is the name that will be referenced by context statements within CQL.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RelationshipInfoDef">
+		<xs:annotation>
+			<xs:documentation>Defines the relationship of a class to the context.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+		    <xs:extension base="InfoDef">
+			    <xs:element name="relatedKeyElement" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Specifies the related key elements, in order, of the type that contain the reference to the context. There must be the same number of elements, and in the same order, as the target context.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:attribute name="context" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Specifies the target context of the relationship.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ClassInfoDefElement">
+	    <xs:complexContent>
+		    <xs:extension base="InfoDef">
+				<xs:sequence>
+					<xs:element name="elementTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="name" type="xs:string" use="required"/>
+				<xs:attribute name="prohibited" type="xs:boolean" use="optional"/>
+				<xs:attribute name="oneBased" type="xs:boolean" use="optional">
+					<xs:annotation>
+						<xs:documentation>Indicates that the starting index for a list-valued element is one. By default, lists are zero-based.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ClassInfoDef">
+		<xs:annotation>
+			<xs:documentation>The ClassInfoDef type models information associated with a single class in the data model.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:sequence>
+					<xs:element name="element" type="ClassInfoElementDef" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="contextRelationship" type="RelationshipInfoDef" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="targetContextRelationship" type="RelationshipInfoDef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Namespace is the namespace of the class. This is typically just the name of the model, but can contain additional qualifiers.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The name attribute specifies the name of the type within the data model. This corresponds to the name of the class within the class model, or the name of the type in the case of an xsd. In FHIR, this corresponds to the name of the resource.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="identifier" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>The identifier attribute specifies a unique name for the class that may be independent of the name. In FHIR, this corresponds to the profile identifier.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="label" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>The label attribute specifies the name of the class as it is referenced from CQL. This is a user-friendly identifier for the class that can be used within CQL as an alternative way to reference the class.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="retrievable" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>The retrievable attribute specifies whether the class can be used within a retrieve statement. This flag is intended to allow the implementation to control whether or not the class can be used as a data access point for the data model.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="primaryCodePath" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>The primaryCodePath attribute specifies the path relative to the class that should be used to perform code filtering when a retrieve does not specify a code path.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="primaryValueSetPath" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>The primaryValueSetPath attribute specifies the path relative to the class that should be used to perform alternative value set matching when source data does not have a code defined.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TypeInfoDef" abstract="true">
+	    <xs:complexContent>
+		    <xs:extension>
+				<xs:sequence>
+					<xs:element name="baseTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SimpleTypeInfoDef">
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:attribute name="namespace" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Namespace is the namespace of the type. This is typically just the name of the model, but can contain additional qualifiers.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Name is the unqualified name of the type within this model.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IntervalTypeInfoDef">
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:sequence>
+					<xs:element name="pointTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListTypeInfoDef">
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:sequence>
+					<xs:element name="elementTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TupleTypeInfoDefElement">
+	    <xs:complexContent>
+		    <xs:extension base="InfoDef">
+				<xs:sequence>
+					<xs:element name="elementTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="name" type="xs:string" use="required"/>
+				<xs:attribute name="prohibited" type="xs:boolean" use="optional"/>
+				<xs:attribute name="oneBased" type="xs:boolean" use="optional">
+					<xs:annotation>
+						<xs:documentation>Indicates that the starting index for a list-valued element is one. By default, lists are zero-based.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TupleTypeInfoDef">
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:sequence>
+					<xs:element name="element" type="TupleTypeInfoDefElement" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProfileInfoDef">
+		<xs:complexContent>
+			<xs:extension base="ClassInfoDef"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConversionInfoDef">
+	    <xs:complexContent>
+		    <xs:extension base="InfoDef">
+				<xs:sequence>
+					<xs:element name="fromTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="toTypeSpecifier" type="TypeSpecifier" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="functionName" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChoiceTypeInfoDef">
+		<xs:complexContent>
+			<xs:extension base="TypeInfoDef">
+				<xs:sequence>
+					<xs:element name="choice" type="TypeSpecifier" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:element name="library" type="Library">
 		<xs:annotation>
 			<xs:documentation>library represents a serialized library of CQL-Epression Logic
@@ -225,12 +433,21 @@
 					</xs:element>
 					<xs:element name="statements" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
-							<xs:documentation>The statements section contains the expression and function
-                definitions for the library.</xs:documentation>
+							<xs:documentation>The statements section contains the expression and function definitions for the library.</xs:documentation>
 						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="def" type="ExpressionDef" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="infoDefs" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The infoDefs section contains the model definitions for the library.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="def" type="InfoDef" minOccurs="0" maxOccurs="unbounded"/>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>

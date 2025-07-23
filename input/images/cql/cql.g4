@@ -159,6 +159,9 @@ statement
     : expressionDefinition
     | contextDefinition
     | functionDefinition
+    | contextInfoDefinition
+    | typeInfoDefinition
+    | conversionInfoDefinition
     ;
 
 expressionDefinition
@@ -181,6 +184,38 @@ operandDefinition
 
 functionBody
     : expression
+    ;
+
+contextInfoDefinition
+    : 'define' 'context' identifier 'of' 'type' namedTypeSpecifier 'with' 'key' '{' identifier (',' identifier)* '}'
+    ;
+
+typeInfoDefinition
+    : 'define' accessModifier? 'type' qualifiedIdentifier baseTypeSpecifier? typeElements? typeInfo contextRelationship*
+    ;
+
+baseTypeSpecifier
+    : 'extends' namedTypeSpecifier
+    ;
+
+typeElements
+    : '{' typeElementDefinition (',' typeElementDefinition)* '}'
+    ;
+
+typeElementDefinition
+    : referentialIdentifier typeSpecifier
+    ;
+
+typeInfo
+    : ('label' identifier)? ('identifier' STRING)? 'retrievable'? ('primary' 'code' 'path' simplePath)?
+    ;
+
+contextRelationship
+    : 'related' 'to' qualifiedIdentifier 'context' 'by' '{' identifier (',' identifier)* '}'
+    ;
+
+conversionInfoDefinition
+    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' identifierOrFunctionIdentifier
     ;
 
 /*
@@ -530,6 +565,7 @@ keyword
     | '~contains'
     | 'contains'
     | 'context'
+    | 'conversion'
     | 'convert'
     | 'date'
     | 'day'
@@ -550,6 +586,8 @@ keyword
     | 'except'
     | 'exists'
     | 'expand'
+    | 'explicit'
+    | 'extends'
     | 'false'
     | 'flatten'
     | 'fluent'
@@ -557,7 +595,9 @@ keyword
     | 'function'
     | 'hour'
     | 'hours'
+    | 'identifier'
     | 'if'
+    | 'implicit'
     | 'implies'
     | '~in'
     | 'in'
@@ -567,6 +607,8 @@ keyword
     | 'intersect'
     | 'Interval'
     | 'is'
+    | 'key'
+    | 'label'
     | 'let'
     | 'library'
     | 'List'
@@ -593,12 +635,16 @@ keyword
     | 'or on'
     | 'overlaps'
     | 'parameter'
+    | 'path'
     | 'per'
     | 'point'
     | 'predecessor'
+    | 'primary'
     | 'private'
     | 'properly'
     | 'public'
+    | 'related'
+    | 'retrievable'
     | 'return'
     | 'same'
     | 'second'
@@ -616,6 +662,7 @@ keyword
     | 'to'
     | 'true'
     | 'Tuple'
+    | 'type'
     | 'union'
     | 'using'
     | 'valueset'
@@ -722,6 +769,7 @@ keywordIdentifier
     | 'concept'
     | 'contains'
     | 'context'
+    | 'conversion'
     | 'date'
     | 'default'
     | 'define'
@@ -732,12 +780,18 @@ keywordIdentifier
     | 'end'
     | 'ends'
     | 'except'
+    | 'explicit'
+    | 'extends'
     | 'fluent'
     | 'function'
+    | 'identifier'
+    | 'implicit'
     | 'implies'
     | 'include'
     | 'includes'
     | 'intersect'
+    | 'key'
+    | 'label'
     | 'library'
     | 'meets'
     | 'mod'
@@ -746,16 +800,20 @@ keywordIdentifier
     | 'or less'
     | 'or more'
     | 'overlaps'
+    | 'path'
     | 'parameter'
     | 'predecessor'
+    | 'primary'
     | 'private'
     | 'public'
+    | 'related'
     | 'start'
     | 'starting'
     | 'starts'
     | 'successor'
     | 'time'
     | 'timezoneoffset'
+    | 'type'
     | 'union'
     | 'using'
     | 'valueset'
@@ -816,6 +874,7 @@ functionIdentifier
     | 'Concept'
     | 'contains'
     | 'context'
+    | 'conversion'
     | 'convert'
     | 'date'
     | 'day'
@@ -836,6 +895,8 @@ functionIdentifier
     | 'except'
     | 'exists'
     | 'expand'
+    | 'explicit'
+    | 'extends'
     | 'false'
     | 'flatten'
     | 'fluent'
@@ -843,7 +904,9 @@ functionIdentifier
     | 'function'
     | 'hour'
     | 'hours'
+    | 'identifier'
     | 'if'
+    | 'implicit'
     | 'implies'
     | 'in'
     | 'include'
@@ -852,6 +915,8 @@ functionIdentifier
     | 'intersect'
     | 'Interval'
     | 'is'
+    | 'key'
+    | 'label'
     | 'let'
     | 'library'
     | 'List'
@@ -876,12 +941,16 @@ functionIdentifier
     | 'or more'
     | 'overlaps'
     | 'parameter'
+    | 'path'
     | 'per'
     | 'point'
     | 'predecessor'
+    | 'primary'
     | 'private'
     | 'properly'
     | 'public'
+    | 'related'
+    | 'retrievable'
     | 'return'
     | 'same'
     | 'singleton'
@@ -899,6 +968,7 @@ functionIdentifier
     | 'to'
     | 'true'
     | 'Tuple'
+    | 'type'
     | 'union'
     | 'using'
     | 'valueset'

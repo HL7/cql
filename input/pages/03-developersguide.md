@@ -183,6 +183,7 @@ concept
 Concept
 contains
 context
+conversion
 convert
 date
 day
@@ -203,6 +204,8 @@ ends
 except
 exists
 expand
+explicit
+extends
 false
 flatten
 fluent
@@ -210,7 +213,9 @@ from
 function
 hour
 hours
+identifier
 if
+implicit
 implies
 in
 include
@@ -219,6 +224,8 @@ included in
 intersect
 Interval
 is
+key
+label
 let
 library
 List
@@ -245,12 +252,16 @@ or more
 or on
 overlaps
 parameter
+path
 per
 point
 predecessor
+primary
 private
 properly
 public
+related
+retrievable
 return
 same
 singleton
@@ -268,6 +279,7 @@ timezoneoffset
 to
 true
 Tuple
+type
 union
 using
 valueset
@@ -1666,6 +1678,92 @@ define FactorialOfFive:
 ```
 
 In this example, since the starting clause is omitted, Result is initially <span class="kw">null</span>, and Coalesce must be used to provide the default value of 1, and the type of Integer will be inferred through the Coalesce. Note that although this example only computes the factorial of five, the expand operator could be used to generate a sequence of integers and used to construct a general factorial function.
+
+### Defining Models
+
+> The ability to define models as part of the language was introduced in CQL 2.0, and is trial-use.
+{: .note-info}
+
+CQL allows authors to define models consisting of all the elements  named class types, functions that operate on those types, conversions, and contexts. This is accomplished by allowing types, conversions, and contexts to be defined as part of libraries. The following sections discuss each of these constructs in more detail.
+
+#### Defining Class Types
+
+> The ability to define class types was introduced in CQL 2.0, and is trial-use.
+{: .note-info}
+
+CQL allows authors to define named class types, for example:
+
+```cql
+define public type Quantity extends System.Any {
+  value System.Decimal,
+  unit System.String
+}
+```
+
+The basic syntax for this definition is:
+
+```ebnf
+<typeInfoDefinition> ::=
+  define [<access modifier>] type <qualified identifier> [extends <type specifier>]
+  {  <type element definition> (, <type element definition>)* }
+
+<type element definition> ::=
+  <element name> <type specifier>
+```
+
+A complete syntax diagram of a type definition can be seen [here](19-l-cqlsyntaxdiagrams.html#typeInfoDefinition).
+
+Types can be public or private. A private type is only accessible within the library in which it is declared.
+
+When a class type `extends` a base type, it inherits all of the elements from its base type, recursively. Derived types cannot redeclare elements that are defined in its base types.
+
+#### Defining Conversions
+
+> The ability to define conversions was introduced in CQL 2.0, and is trial-use.
+{: .note-info}
+
+CQL allows authors to define implicit and explicit conversions, for example:
+
+```cql
+define implicit conversion from FHIR.Period to System.Interval<System.DateTime> using FHIRHelpers.ToInterval
+```
+
+This definition indicates that values of type `FHIR.Period` can be implicitly converted to values of type `Interval<System.DateTime>` using the function `FHIRHelpers.ToInterval`.
+
+Conversions defined in this way function as described in the [Conversions](#conversions) topic.
+
+#### Defining Contexts
+
+> The ability to define contexts was introduced in CQL 2.0, and is trial-use.
+{: .note-info}
+
+CQL allows authors to define contexts as part of an overall model:
+
+```cql
+define context Patient of type FHIR.Patient with key { id }
+```
+
+This establishes a context named `Patient` that is represented by the type `FHIR.Patient`, and has key elements `id`.
+
+A syntax diagram of a context definition can be seen [here](19-l-cqlsyntaxdiagrams.html#contextInfoDefinition).
+
+Once this definition is provided, it can be used in a [context](02-authorsguide.html#context) declaration.
+
+It is not legal to declare more than one context with the same type. This is determined when model libraries are included. If, across all included libraries, more than one context definition of the same type is defined, an error on the include statement is raised.
+
+Note that if a context is defined in library C, it is only defined for a library L if L has an include C statement in it. A library M which includes L but does _not_ include C will not be able to use the contexts in C. In other words, as with all library components, inclusion is not transitive; in order to make use of the components of a library, it must be included directly.
+
+The context can also be referenced in a context relationship as part of a class type definition, allowing the relationship of the class type to the context to be expressed:
+
+```cql
+define type Observation extends DomainResource {
+  subject Patient,
+  code CodeableConcept,
+  value Choice<CodeableConcept, Quantity>
+  ...
+}
+related to Patient by { subject }
+```
 
 ### Defining Functions
 

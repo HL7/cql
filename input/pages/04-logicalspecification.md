@@ -421,6 +421,10 @@ Library : Element
   ¦        0..* --> def : ContextDef
   ¦
   0..1 --> statements (15)
+  ¦        ¦
+  ¦        0..* --> def : ExpressionDef
+  ¦
+  0..1 --> infoDefs (16)
            ¦
            0..* --> def : ExpressionDef
 ```
@@ -440,6 +444,7 @@ Library : Element
 13. The concepts defined within this library.
 14. The contexts used within this library.
 15. The statements section contains the expression and function definitions for the library.
+16. The infoDefs section contains the model definitions for the library.
 
 A Library is an instance of a CQL-ELM library.
 
@@ -526,6 +531,196 @@ DirectiveDef : Element
   0..1 --> name
   ¦
   0..1 --> version
+```
+
+#### InfoDef
+
+```
+InfoDef : Element
+```
+
+The InfoDef is base structure for all model info definitions.
+
+#### ContextInfoDef
+
+```
+ContextInfoDef : InfoDef
+  ¦
+  1..1 --> contextType : NamedTypeSpecifier
+  ¦
+  0..* --> keyElement : xs:string
+  ¦
+  0..1 --> name
+```
+
+Defines an available context type for the model.
+
+The `contextType` element specifies the type for the context.
+
+The `keyElement` attribute specifies the key elements, in order, of the context type that form the reference key for the context. The elements taken together must form a unique identifier for instances of the context.
+
+The `name` element specifies the name of the context. This is the name that will be referenced by context statements within CQL.
+
+#### RelationshipInfoDef
+
+```
+RelationshipInfoDef : InfoDef
+  ¦
+  0..* --> relatedKeyElement : xs:string
+  ¦
+  1..1 --> context
+```
+
+Defines the relationship of a class to the context.
+
+The `relatedKeyElement` specifies the related key elements, in order, of the type that contain the reference to the context. There must be the same number of elements, and in the same order, as the target context.
+
+The `context` specifies the target context of the relationship.
+
+#### ClassInfoDef
+
+```
+ClassInfoDef : TypeInfoDef
+  ¦
+  0..* --> element : ClassInfoElementDef
+  ¦
+  0..* --> contextRelationship : RelationshipInfoDef
+  ¦
+  0..* --> targetContextRelationship : RelationshipInfoDef
+  ¦
+  0..1 --> namespace
+  ¦
+  1..1 --> name
+  ¦
+  0..1 --> identifier
+  ¦
+  0..1 --> label
+  ¦
+  0..1 --> retrievable
+  ¦
+  0..1 --> primaryCodePath
+  ¦
+  0..1 --> primaryValueSetPath
+```
+
+The ClassInfoDef type models information associated with a single class in the data model.
+
+Namespace is the namespace of the class. This is typically just the name of the model, but can contain additional qualifiers.
+
+The name attribute specifies the name of the type within the data model. This corresponds to the name of the class within the class model, or the name of the type in the case of an xsd. In FHIR, this corresponds to the name of the resource.
+
+The identifier attribute specifies a unique name for the class that may be independent of the name. In FHIR, this corresponds to the profile identifier.
+
+The label attribute specifies the name of the class as it is referenced from CQL. This is a user-friendly identifier for the class that can be used within CQL as an alternative way to reference the class.
+
+The retrievable attribute specifies whether the class can be used within a retrieve statement. This flag is intended to allow the implementation to control whether or not the class can be used as a data access point for the data model.
+
+The primaryCodePath attribute specifies the path relative to the class that should be used to perform code filtering when a retrieve does not specify a code path.
+
+The primaryValueSetPath attribute specifies the path relative to the class that should be used to perform alternative value set matching when source data does not have a code defined.
+
+#### ClassInfoDefElement
+
+```
+ClassInfoDefElement : InfoDef
+  ¦
+  1..1 --> elementTypeSpecifier : TypeSpecifier
+  ¦
+  1..1 --> name
+  ¦
+  0..1 --> prohibited
+  ¦
+  0..1 --> oneBased
+```
+
+The `oneBased` indicates that the starting index for a list-valued element is one. By default, lists are zero-based.
+
+#### TypeInfoDef
+
+```
+TypeInfoDef : InfoDef
+  ¦
+  1..1 --> baseTypeSpecifier : TypeSpecifier
+```
+
+#### SimpleTypeInfoDef
+
+```
+SimpleTypeInfoDef : TypeInfoDef
+  ¦
+  0..1 --> namespace
+  ¦
+  1..1 --> name
+```
+
+Namespace is the namespace of the type. This is typically just the name of the model, but can contain additional qualifiers.
+
+Name is the unqualified name of the type within this model.
+
+#### IntervalTypeInfoDef
+
+```
+IntervalTypeInfoDef : TypeInfoDef
+  ¦
+  1..1 --> pointTypeSpecifier : TypeSpecifier
+```
+
+#### ListTypeInfoDef
+
+```
+ListTypeInfoDef : TypeInfoDef
+  ¦
+  1..1 --> elementTypeSpecifier : TypeSpecifier
+```
+
+#### TupleTypeInfoDef
+
+```
+TupleTypeInfoDef : TypeInfoDef
+  ¦
+  0..* --> element : TupleTypeInfoDefElement
+```
+
+#### TupleTypeInfoDefElement
+
+```
+TupleTypeInfoDefElement : InfoDef
+  ¦
+  1..1 --> elementTypeSpecifier : TypeSpecifier
+  ¦
+  1..1 --> name
+  ¦
+  0..1 --> prohibited
+  ¦
+  0..1 --> oneBased
+```
+
+Indicates that the starting index for a list-valued element is one. By default, lists are zero-based.
+
+#### ProfileInfoDef
+
+```
+ProfileInfoDef : ClassInfoDef
+```
+
+#### ConversionInfoDef
+
+```
+ConversionInfoDef : InfoDef
+  ¦
+  1..1 --> fromTypeSpecifier : TypeSpecifier
+  ¦
+  1..1 --> toTypeSpecifier : TypeSpecifier
+  ¦
+  0..1 --> functionName
+```
+
+#### ChoiceTypeInfoDef
+
+```
+ChoiceTypeInfoDef : TypeInfoDef
+  ¦
+  0..* --> choice : TypeSpecifier
 ```
 
 ### Parameters

@@ -28,6 +28,9 @@ The following table specifies the ELM equivalent for each CQL declaration:
 |<span class="kw">parameter</span> |ParameterDef
 |<span class="kw">define</span> |ExpressionDef
 |<span class="kw">function</span> |FunctionDef
+|<span class="kw">define context</span> |ContextInfoDef
+|<span class="kw">define type</span> |ClassInfoDef
+|<span class="kw">define conversion</span> |ConversionInfoDef
 {: .grid .table .table-striped}
 
 Table 6‑A - The ELM equivalent for each CQL declaration
