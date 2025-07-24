@@ -2474,6 +2474,9 @@ Round(argument Quantity) Quantity
 Round(argument Quantity, precision Integer) Quantity
 ```
 
+> The Quantity overloads of the Round function were introduced in CQL 2.0, and have trial-use status.
+{: .note-info}
+
 **Description:**
 
 The <span class="id">Round</span> operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round (i.e. to the nearest whole number), meaning that a decimal value greater than or equal to 0.5 and less than 1.0 will round to 1, and a decimal value less than or equal to -0.5 and greater than -1.0 will round to -1.
@@ -2843,6 +2846,9 @@ define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-M
 ```
 
 #### MatchesFull
+
+> The MatchesFull function was introduced in CQL 2.0, and has trial-use status.
+{: .note-info}
 
 **Signature:**
 
