@@ -26,13 +26,13 @@ Throughout this specification, message codes are documented as follows:
 
 <!-- This comment must appear before each table documenting codes so that editors can maintain the code system whenever new codes are documented in the specification -->
 <!-- MESSAGE -->
-| Code | Description | Category | Severity | Source | Example Message | Notes |
+|Code |Description |Category |Severity |Source |Example Message |Notes |
 |----|----|----|----|----|----|----|
-| 000-00000 | Compile-Time | Internal translator error | compile-time | error | system | Internal translator error | This message code typically indicates an unexpected error was encountered while attempting to compile CQL. |
-| 001-00000 | Lexical | Lexical error | lexical | error | content | Lexical error | This is a general message code for lexical errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
-| 002-00000 | Syntax | Syntax error | syntax | error | content | Syntax error | This is a general message code for syntax errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
-| 003-00000 | Semantic | Semantic error | semantic | error | content | Semantic error | This is a general message code for semantic errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
-| 100-00000 | Run-time | Run-time error | run-time | error | content | Run-time error | This is a general message code for run-time errors encountered while attempting to evaluate CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
+|000-00000 |Internal translator error |compile-time |error |system  |Internal translator error |This message code typically indicates an unexpected error was encountered while attempting to compile CQL. |
+|001-00000 |Lexical error             |lexical      |error |content |Lexical error             |This is a general message code for lexical errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
+|002-00000 |Syntax error              |syntax       |error |content |Syntax error              |This is a general message code for syntax errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
+|003-00000 |Semantic error            |semantic     |error |content |Semantic error            |This is a general message code for semantic errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
+|100-00000 |Run-time error            |run-time     |error |content |Run-time error            |This is a general message code for run-time errors encountered while attempting to evaluate CQL. The actual message will typically contain more detailed information about the issue and how to address it. |
 {: .grid .table .table-striped}
 
 For a complete index of messages defined in this specification, see the [CQL Message Codes](CodeSystem-cql-message-codes.html) code system.
