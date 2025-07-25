@@ -1538,6 +1538,17 @@ from [Encounter] E
 
 Moreover, parsing the grammar can be simplified by requiring that all queries start with the <span class="kw">from</span> keyword. To support a change to the language to enable this simplification, environments may require that all queries begin with the <span class="kw">from</span> keyword.
 
+#### Data Models With References
+
+For queries involving multiple sources, either through multiple sources in the `from` clause, or other inclusions such as `with`, `without`, and sub-queries, the relationship between sources can be established in multiple ways. In clinical logic, a timing relationship is often used, but for data models that establish explicit references, resolution of those references is an important capability. Ideally, data models are structured such that the reference is represented in a value-based way in the data types, and the relationship can be expressed with comparison. For example, in FHIR, references are expressed using the `Reference` type:
+
+```cql
+[MedicationRequest] MR
+  with [Medication] M such that M.id = Last(Split(MR.medication.reference, '/'))
+```
+
+Note that this example is assuming the reference is to a resource on the local server, and so can only be used in contexts where that can be guaranteed, but the example illustrates how such a reference might be compared. A more complete implementation of resolution is available in the FHIR extensions to FHIRPath using the `resolve()` function. In addition, refer to the [Using CQL With FHIR](http://hl7.org/fhir/uv/cql) implementation guide for more information on how to support querying FHIR with CQL.
+
 ### Non-Retrieve Queries
 
 In addition to the query examples already discussed, it is possible to use any arbitrary expression as the source for a query. For example:
