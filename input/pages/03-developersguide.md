@@ -1281,9 +1281,10 @@ And the inferred type of this expression is `Choice<Boolean, List<T>>`. This is 
 However, for models that make extensive use of choice types, there is significant value in allowing the result of conditionals to be a choice of types. To ensure that when this feature is used it is intentional, systems should issue a warning when none of the branches are choice types, but the inferred type of the overall conditional is a choice type:
 
 <!-- MESSAGE -->
-| Code | Description | Category | Severity | Source | Example Message |
-|----|----|----|----|----|
-| 003-10000 | Conditional expression resulted in a choice type | semantic | warning | content | Conditional expression resulted in a choice type `Choice<Boolean, List<Integer>` |
+
+|Code |Description |Category |Severity |Source |Example Message
+|----|----|----|----|----|----
+|003-10000 |Conditional expression resulted in a choice type |semantic |warning |content |Conditional expression resulted in a choice type `Choice<Boolean, List<Integer>`
 {: .grid .table .table-striped}
 
 Authors can suppress this warning using the `@suppressMessage` tag:
