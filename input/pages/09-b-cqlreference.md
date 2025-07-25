@@ -3064,6 +3064,12 @@ For <span class="id">DateTime</span> values, the quantity unit must be one of: <
 
 For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
+
+```cql
+@T23:30:00 + 1 hour // @T00:30:00
+```
+
 Note that the quantity units may be specified in singular, plural, or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to add a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 
 For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
@@ -3546,6 +3552,13 @@ For <span class="id">Date</span> values, the quantity unit must be one of: <span
 For <span class="id">DateTime</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, <span class="kw">days</span>, <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
 For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
+
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values.
+
+```cql
+@T00:30:00 - 1 hour // @T23:30:00
+@T01:00:00 - 2 hours // @T23:00:00
+```
 
 Note that the quantity units may be specified in singular, plural or UCUM form. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to subtract a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 

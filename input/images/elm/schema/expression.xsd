@@ -1322,6 +1322,10 @@ For DateTime values, the quantity unit must be one of years, months, weeks, days
 
 For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
 
+As Time is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to @T23:30:00 will result in @T00:30:00 of the previous day, which is consistent with the behaviour of DateTime values:
+
+@T23:30:00 + 1 hour // @T00:30:00
+
 Note that as with any Date, Time, or DateTime operations, temporal units may be specified with either singular, plural, or UCUM units. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to add a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 
 For precisions above seconds, any decimal portion of the time-valued quantity is ignored, since date/time arithmetic above seconds is performed with calendar duration semantics.
@@ -1351,6 +1355,11 @@ For Date values, the quantity unit must be one of years, months, weeks, or days.
 For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
 
 For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+
+As Time is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from @T00:30:00 will result in @T23:30:00 of the previous day, which is consistent with the behaviour of DateTime values.
+
+@T00:30:00 - 1 hour // @T23:30:00
+@T01:00:00 - 2 hours // @T23:00:00
 
 Note that as with any Date, Time, or DateTime operations, temporal units may be specified with either singular, plural, or UCUM units. However, to avoid the potential confusion of calendar-based date and time arithmetic with definite-duration date and time arithmetic, it is an error to attempt to subtract a definite-duration time-valued unit above days (and weeks), a calendar duration must be used.
 
