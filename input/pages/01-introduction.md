@@ -128,6 +128,15 @@ The result is a dramatic reduction in the complexity of processing quality artif
 
 The logical perspective is informed conceptually by the HL7 Version 3 Standard: Clinical Decision Support Knowledge Artifact Specification, Release 1.2 (CDS KAS), a prior version of a standard for the representation of clinical decision support artifacts. This heritage is intended to provide familiarity and continuity for authors and consumers in the decision support space. The current version of that standard, Release 1.3, has been updated to use the ELM as defined in this specification.
 
+Distinguishing values and functions that are compile-time constants requires some definition for the concept of "compile-time". A rough description of "compile-time" is "the period of computation during which CQL is transformed into ELM". Runtime, from the point of the specification, should be anything after that. It is a nuanced distinction because there are any number of transformations to ELM that may be applied after generation but before execution, such as query-restriction push-downs. Some subset of those could be applied at the time ELM is generated. In other words, some possible phases look like:
+
+1. CQL to ELM transformation
+2. ELM optimization \<- the set of optimizations that could be applied statically
+3. Query planning \<- the set of optimizations that could be applied dynamically at runtime
+4. Query execution
+
+Anything happening during phase 1 is "compile-time", anything happening during phase 4 is "run-time", and anything else is implementation specific and undefined. A given compiler implementation may or may not decide to apply some optimizations during phase 1.
+
 #### Physical Perspective
 
 The physical perspective is concerned with the implementation and communication aspects of the logical model—specifically, with how the canonical representation of expression logic is shared between producers and consumers. This specification defines an XML schema representation of the ELM for this purpose, describes the intended semantics of CQL, and discusses various implementation approaches.
