@@ -156,7 +156,7 @@ CQL supports date and time values in the range <span class="lit">@0001-01-01T00:
 
 CQL also supports partial datetime values. For example, the datetime <span class="lit">@2014-01-01T03</span> represents some instant during the hour of 3:00 on January 1st, 2014.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds should be performed as though milliseconds had been specified as <span class="lit">0</span>.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds are performed as though milliseconds had been specified as <span class="lit">0</span>. This is true of all comparison operations for date and time values, whether explicit (such as <span class="sym">=, !=, \<, \<=, >, >=</span>) or implicit (such as <span class="kw">same as, before, after, same or before, same or after</span>), or when comparison is performed as part of other operations such as interval <span class="kw">meets</span> and <span class="kw">overlaps</span>.
 
 {: #decimal-1}
 #### Decimal
@@ -227,7 +227,7 @@ structured type Quantity
 
 The <span class="id">Quantity</span> type represents quantities with a specified unit within CQL. The unit must be a valid UCUM unit or CQL temporal keyword. UCUM units in CQL use the case-sensitive (c/s) form. When a quantity value has no unit specified, operations are performed with the default UCUM unit ('1'). The value element of a Quantity must be present.
 
-Systems shall not implicitly convert units other than when performaing calculations. For example, the value `1 '[in_i]'` must be preserved as `'[in_i]'`, not converted to common or preferred units such as `2.54 'cm'`.
+Systems shall not implicitly convert units other than when performing calculations. For example, the value `1 '[in_i]'` must be preserved as `'[in_i]'`, not converted to common or preferred units such as `2.54 'cm'`.
 
 #### Ratio
 
@@ -291,7 +291,7 @@ CQL supports time values in the range <span class="lit">@T00:00:00.0</span> to <
 
 CQL also supports partial time values. For example, the time <span class="lit">@T03</span> represents some instant during the hour of 3:00.
 
-Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds should be performed as though milliseconds had been specified as <span class="lit">0</span>.
+Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds are performed as though milliseconds had been specified as <span class="lit">0</span>. This is true of all comparison operations for time values, whether explicit (such as <span class="sym">=, !=, \<, \<=, >, >=</span>) or implicit (such as <span class="kw">same as, before, after, same or before, same or after</span>), or when comparison is performed as part of other operations such as interval <span class="kw">meets</span> and <span class="kw">overlaps</span>.
 
 #### ValueSet
 
@@ -1498,6 +1498,9 @@ define "RatioEqualIsTrue": 1:8 = 1:8
 define "RatioEqualIsFalse": 1:8 = 2:16
 define "ListEqualIsTrue": { null, 1, 2, 3 } = { null, 1, 2, 3 }
 define "DateTimeEqualIsNull": @2012-01-01 = @2012-01-01T12
+define "DateTimeWithMillisecondsEqualIsTrue": @2024-11-15T12:30:00.0 = @2024-11-15T12:30:00 // true, RHS interpreted as 00.0
+define "DateTimeWithMillisecondsEqualIsFalse": @2024-11-15T12:30:00.5 = @2024-11-15T12:30:00 // false, RHS interpreted as 00.0
+define "DateTimeWithMillisecondsEqualIsNull": @2024-11-15T12:30:00.5 = @2024-11-14T12:30 // null, RHS has uncertain seconds + milliseconds
 define "NullEqualIsNull": null = null
 define "TupleEqualBothNullTrue": { x: 1, y: null } = { x: 1, y: null }
 define "TupleEqualBothNullFalse": { x: 1, y: null } = { x: 2, y: null }
@@ -1629,6 +1632,9 @@ define "LongGreaterIsTrue": 4L > 3L
 define "DecimalGreaterIsFalse": 3.5 > 3.5
 define "QuantityGreaterIsNull": 3.6 'cm2' > 3.5 'cm'
 define "NullGreaterIsNull": null > 5
+define "DateTimeWithMillisecondsGreaterIsFalse": @2024-11-15T12:30:00.0 > @2024-11-15T12:30:00 // false, RHS interpreted as 00.0
+define "DateTimeWithMillisecondsGreaterIsTrue": @2024-11-15T12:30:00.5 > @2024-11-15T12:30:00 // true, RHS interpreted as 00.0
+define "DateTimeWithMillisecondsGreaterIsNull": @2024-11-15T12:30:00.5 > @2024-11-14T12:30 // null, RHS has uncertain seconds + milliseconds
 ```
 
 > Note that relative ratio comparisons are not directly supported due to the variance of uses within healthcare. See the discussion in [Ratio Operators](02-authorsguide.html#ratio-operators) for more information.
@@ -3112,9 +3118,11 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3153,9 +3161,11 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> values as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3261,7 +3271,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, extraction of a week component is not supported.
 
-When extracting the Date or Time from a <span class="id">DateTime</span> value, implementations should normalize to the timezone offset of the evaluation request timestamp.
+When extracting the Date or Time from a <span class="id">DateTime</span> value, the value is normalized to the timezone offset of the evaluation request timestamp.
 
 If the argument is <span class="kw">null</span>, or is not specified to the level of precision being extracted, the result is <span class="kw">null</span>.
 
@@ -3297,9 +3307,9 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining the number of boundaries crossed.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When computing the difference between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When computing the difference between DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 Note that when calculating difference, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
 
@@ -3333,9 +3343,9 @@ For <span class="id">DateTime</span> values, _duration_ must be one of: <span cl
 
 For <span class="id">Time</span> values, _duration_ must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When computing the duration between DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When computing the duration between DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
 Note that when calculating duration, just like date and time comparison calculations, seconds and milliseconds are considered a single precision with decimal semantics.
 
@@ -3427,9 +3437,11 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mxiture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3469,9 +3481,11 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3513,9 +3527,11 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
-When this operator is called with both <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
+When this operator is called with a mixture of <span class="id">Date</span> and <span class="id">DateTime</span> inputs, the <span class="id">Date</span> values will be implicitly converted to <span class="id">DateTime</span> as defined by the <span class="id">[ToDateTime](#todatetime)</span> operator.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
 If either or both arguments are <span class="kw">null</span>, the result is null.
 
@@ -3655,6 +3671,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">after</span> operator:
@@ -3688,6 +3706,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">before</span> operator:
@@ -3718,6 +3738,8 @@ Conceptually, the per argument to the collapse operator partitions the value-spa
 The per argument determines the precision at which the collapse is computed and must be a quantity-valued expression compatible with the interval point type. For numeric intervals, this means a quantity with the default unit <span class="lit">'1'</span> (not to be confused with the quantity value, which may be any valid positive decimal). For Date-, DateTime-, and Time-valued intervals, this means a quantity with a temporal unit (e.g., 'year', 'month', etc).
 
 If the per argument is <span class="kw">null</span>, a per value will be constructed based on the coarsest precision of the boundaries of the intervals in the input set. For example, a list of DateTime-based intervals where the boundaries are a mixture of hours and minutes will collapse at the hour precision.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If the list of intervals is empty, the result is empty. If the list of intervals contains a single interval, the result is a list with that interval. If the list of intervals contains nulls, they will be excluded from the resulting list.
 
@@ -3768,6 +3790,8 @@ contains _precision_ (argument Interval<T>, point T) Boolean
 The <span class="kw">contains</span> operator for intervals returns <span class="kw">true</span> if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is <span class="kw">null</span>, the result of the boundary comparison is considered <span class="kw">true</span>.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3820,6 +3844,8 @@ This operator uses the semantics described in the <span class="kw">[start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">ends</span> operator:
@@ -3842,6 +3868,8 @@ define "EndsIsNull": Interval[1, 5] ends null
 **Description:**
 
 The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3866,6 +3894,8 @@ define "EqualIsNull": Interval[1, 5] = null
 
 The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators are equivalent.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 The following examples illustrate the behavior of the _equivalent_ operator:
 
 ```cql
@@ -3885,6 +3915,8 @@ except(left Interval<T>, right Interval<T>) Interval<T>
 **Description:**
 
 The <span class="kw">except</span> operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns <span class="kw">null</span>.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -3977,6 +4009,8 @@ The above examples would result in:
 { 1, 3, 5, 7, 9 }
 ```
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If the list of intervals is empty, the result is empty. If the list of intervals contains <span class="kw">nulls</span>, they will be excluded from the resulting list.
 
 If the list argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
@@ -3998,6 +4032,8 @@ during _precision_ (point T, argument Interval<T>) Boolean
 The <span class="kw">in</span> operator (can also be invoked using <span class="kw">during</span>) for intervals returns <span class="kw">true</span> if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is <span class="kw">null</span>, the result of the boundary comparison is considered true.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If the first argument is <span class="kw">null</span>, the result is <span class="kw">null</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
@@ -4031,6 +4067,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 The following examples illustrate the behavior of the <span class="kw">includes</span> operator:
 
 ```cql
@@ -4062,6 +4100,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 Note that <span class="kw">during</span> is a synonym for included in and may be used to invoke the same operation wherever <span class="kw">included in</span> may appear.
 
 The following examples illustrate the behavior of the <span class="kw">included in</span> operator:
@@ -4084,6 +4124,8 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 **Description:**
 
 The <span class="kw">intersect</span> operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns <span class="kw">null</span>.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4113,6 +4155,8 @@ The <span class="kw">meets before</span> operator returns <span class="kw">true<
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4237,6 +4281,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">overlaps</span>, <span class="kw">overlaps before</span>, and <span class="kw">overlaps after</span> operators:
@@ -4292,6 +4338,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">properly includes</span> operator:
@@ -4322,6 +4370,8 @@ For the point-interval overload, this operator returns true if the point is in (
 This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4363,7 +4413,9 @@ When this operator is called with a mixture of <span class="id">Date</span>- and
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4398,7 +4450,9 @@ When this operator is called with a mixture of point values and intervals, the p
 
 For comparisons involving date or time intervals with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either or both arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4435,7 +4489,9 @@ When this operator is called with a mixture of point values and intervals, the p
 
 For comparisons involving date or time values with imprecision, note that the result of the comparison may be <span class="kw">null</span>, depending on whether the values involved are specified to the level of precision used for the comparison.
 
-When comparing DateTime values with different timezone offsets, implementations should normalize to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+When comparing DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either or both arguments are <span class="kw">null</span>, the result is null.
 
@@ -4506,6 +4562,8 @@ This operator uses the semantics described in the <span class="id">[Start](#star
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
+
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="kw">starts</span> operator:
@@ -4527,6 +4585,8 @@ union(left Interval<T>, right Interval<T>) Interval<T>
 **Description:**
 
 The <span class="kw">union</span> operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns <span class="kw">null</span>.
+
+Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
