@@ -1,0 +1,1 @@
+The tests at this location have been relocated to https://github.com/cqframework/cql-tests to better support the evolution of the tests, as well as their use in continuous integration pipelines for the various CQL engines. See the https://github.com/cqframework/cql-tests-runner for a simple NodeJS application that exercises an engine uses the tests.
