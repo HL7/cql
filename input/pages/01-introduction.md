@@ -53,8 +53,8 @@ Considering each of these components separately, the next step involves identify
     </tr>
     <tr>
       <td><a href="#approach">Logical</a></td>
-      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">Quality Data Model (QDM)</a></td>
-      <td><a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">Quality Data Model (QDM)</a></td>
+      <td><a href="https://ecqi.healthit.gov/qdm">Quality Data Model (QDM)</a></td>
+      <td><a href="https://ecqi.healthit.gov/qdm">Quality Data Model (QDM)</a></td>
       <td></td>
     </tr>
   </tbody>
