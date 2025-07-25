@@ -18,6 +18,7 @@ This discussion defines the following terms to describe different approaches to 
 * camelCase - First letters of words are capitalized, except the first word, with no whitespace characters allowed
 * PascalCase - First letters of words are capitalized, including words not capitalized in Title Case like "and" and "of", with no whitespace characters allowed
 * Title Case - Standard title casing including spaces and tabs, but no other whitespace characters allowed
+* Initial Case - First letter of every word is capitalized (e.g. "Blood Pressure Observations Within 30 Days", as opposed to Title Case "Blood Pressure Observations within 30 Days")
 
 #### CQL-Defined Casing
 
