@@ -1,0 +1,116 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-message-codes",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+        "valueCode": "cds"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode": "trial-use"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+        "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-message-codes",
+  "name": "CQLMessageCodes",
+  "title": "CQL Message Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating. This code system is intended to be a place to identify codes for messages that are indicated by the specification itself. Implementation-specific, application-specific, and content-specific codes may be provided with codes from other code systems, but should ideally map to some code (possibly a more general code) in this code system.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-category",
+  "content": "complete",
+  "property": [
+    { "code": "category", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#category", "description": "The language area, possible values are codes in the [CQL Message Category Codes](CodeSystem-cql-message-category-codes.html) code system", "type": "code" },
+    { "code": "severity", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#severity", "description": "Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system", "type": "code" },
+    { "code": "source", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#source", "description": "The source of the issue, providing information about where the issue is originating and how it might be addressed, possible values are codes in the [CQL Message Source Codes](CodeSystem-cql-message-source-codes.html) code system", "type": "code" },
+    { "code": "example", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#example", "description": "An example message", "type": "string" },
+    { "code": "notes", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#notes", "description": "Notes about the message, especially how to address the issue being identified", "type": "string" },
+    { "code": "spec-link", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#spec-link", "description": "A URL to the specification where this message is defined", "type": "string" }
+  ],
+  "concept": [
+    {
+      "code": "000-00000",
+      "display": "Internal",
+      "definition": "Internal translator error",
+      "property": [
+        { "code": "category", "valueCode": "compile-time" },
+        { "code": "severity", "valueCode": "error" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Internal translator error" },
+        { "code": "notes", "valueString": "This message code typically indicates an unexpected error was encountered while attempting to compile CQL." },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+      ]
+    },
+    {
+      "code": "001-00000",
+      "display": "Lexical",
+      "definition": "Lexical error",
+      "property": [
+        { "code": "category", "valueCode": "lexical" },
+        { "code": "severity", "valueCode": "error" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Lexical error" },
+        { "code": "notes", "valueString": "This is a general message code for lexical errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+      ]
+    },
+    {
+      "code": "002-00000",
+      "display": "Syntax",
+      "definition": "Syntax error",
+      "property": [
+        { "code": "category", "valueCode": "syntax" },
+        { "code": "severity", "valueCode": "error" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Syntax error" },
+        { "code": "notes", "valueString": "This is a general message code for syntax errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+      ]
+    },
+    {
+      "code": "003-00000",
+      "display": "Semantic",
+      "definition": "Semantic error",
+      "property": [
+        { "code": "category", "valueCode": "semantic" },
+        { "code": "severity", "valueCode": "error" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Semantic error" },
+        { "code": "notes", "valueString": "This is a general message code for semantic errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+      ]
+    },
+    {
+      "code": "003-10000",
+      "display": "Conditional expression resulted in a choice type",
+      "definition": "Indicates that a conditional expression resulted in a choice type when none of the branches of the conditional were choice types. This can indicate a mistake and should be reviewed.",
+      "property": [
+        { "code": "category", "valueCode": "semantic" },
+        { "code": "severity", "valueCode": "warning" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Conditional expression resulted in a choice type `Choice<Boolean, List<Integer>`" },
+        { "code": "notes", "valueString": "This message may be suppressed with the @suppressWarning tag" },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/03-developersguide.html#type-inference-of-conditional-expressions" }
+      ]
+    },
+    {
+      "code": "100-00000",
+      "display": "Run-time",
+      "definition": "Runtime error",
+      "property": [
+        { "code": "category", "valueCode": "run-time" },
+        { "code": "severity", "valueCode": "error" },
+        { "code": "source", "valueCode": "content" },
+        { "code": "example", "valueString": "Run-time error" },
+        { "code": "notes", "valueString": "This is a general message code for run-time errors encountered while attempting to evaluate CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
+        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+      ]
+    }
+  ]
+}

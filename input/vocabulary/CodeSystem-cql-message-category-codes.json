@@ -1,0 +1,57 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-message-category-codes",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+        "valueCode": "cds"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode": "trial-use"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+        "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-message-category-codes",
+  "name": "CQLMessageCategoryCodes",
+  "title": "CQL Message Category Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for categorization of messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-category",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "compile-time",
+      "display": "Compile-Time",
+      "definition": "The message is associated with compile-time (or authoring) processing, such as a lexical, syntactic, or semantic error.",
+      "concept": [
+        {
+            "code": "lexical",
+            "display": "Lexical",
+            "definition": "The message is associated with lexical processing, such as an invalid token."
+        },
+        {
+            "code": "syntax",
+            "display": "Syntax",
+            "definition": "The message is associated with syntactic processing of CQL, such as an unexpected keyword."
+        },
+        {
+            "code": "semantic",
+            "display": "Semantic",
+            "definition": "The message is associated with semantic processing of CQL, such as an unresolvable function call."
+        }
+      ]
+    },
+    {
+        "code": "run-time",
+        "display": "Run-Time",
+        "definition": "The message is associated with run-time (or evaluation) processing of CQL, such as a duplicate value."
+    }
+  ]
+}

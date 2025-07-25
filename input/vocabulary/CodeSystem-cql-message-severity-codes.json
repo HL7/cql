@@ -1,0 +1,50 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-message-severity-codes",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+        "valueCode": "cds"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode": "trial-use"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+        "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-message-severity-codes",
+  "name": "CQLMessageSeverityCodes",
+  "title": "CQL Message Severity Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for severity of messages returned by applications that process Clinical Quality Language, indicating what level of processing should occur for the message.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-severity",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "info",
+      "display": "Info",
+      "definition": "The message is informational and is expected to be made available in some way to the calling environment, but does not indicate any particular problem or issue that must be addressed."
+    },
+    {
+      "code": "warning",
+      "display": "Warning",
+      "definition": "The message is a warning that is expected to be made conspicuously available to the calling environment, potentially to the end-user of the logic, and indicates that there is a problem or issue that should be addressed, but does not necessarily need to stop processing."
+    },
+    {
+      "code": "error",
+      "display": "Error",
+      "definition": "The message is an error that must be made available to the calling environment, and indicates that there is a problem or issue of sufficient severity that at least some processing cannot be completed until the issue is addressed."
+    },
+    {
+      "code": "fatal",
+      "display": "Fatal",
+      "definition": "The message is a fatal situation that must be made available to the calling environment, and indicates that there is a significant problem or issue that stopped processing completely. No further processing can be completed until the issue is addressed."
+    }
+  ]
+}

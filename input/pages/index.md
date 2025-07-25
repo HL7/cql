@@ -80,6 +80,8 @@ The organization of this specification follows the outline of the perspectives d
 
 [Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams
 
+[Appendix M](20-m-messages.html) - Messages Index
+
 #### Dependencies
 
 {% include dependency-table-short.xhtml %}

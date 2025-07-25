@@ -1,0 +1,50 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-message-source-codes",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+        "valueCode": "cds"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode": "trial-use"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+        "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-message-source-codes",
+  "name": "CQLMessageSourceCodes",
+  "title": "CQL Message Source Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for the source of messages returned by applications that process Clinical Quality Language, indicating generally where the message originated, as well as who or what might be able to potentially address the issue.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-source",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "content",
+      "display": "Content",
+      "definition": "The message is associated with content, such as input values. Content messages can typically be addressed by correcting the input value."
+    },
+    {
+      "code": "application",
+      "display": "Application",
+      "definition": "The message is associated with the application, such as an unexpected situation in application processing. Application messages typically need to be addressed by the application developer."
+    },
+    {
+      "code": "system",
+      "display": "System",
+      "definition": "The message is associated with the system or infrastructure, such as internal translator or engine errors. System messages typically need to be addressed by infrastructure developers."
+    },
+    {
+      "code": "environment",
+      "display": "Environment",
+      "definition": "The message is associated with the overall operating environment, such as network timeouts, or memory or disk space issues. Environment messages typically need to be addressed by a system administrator."
+    }
+  ]
+}

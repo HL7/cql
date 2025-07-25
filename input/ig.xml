@@ -783,6 +783,19 @@
           <title value="Appendix L - CQL Syntax Diagrams"/>
           <generation value="html"/>
         </page>
+        <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="trial-use"/> 
+          </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
+          -->
+          <nameUrl value="20-m-messages.html"/>
+          <title value="Appendix M - Messages"/>
+          <generation value="html"/>
+        </page>
       </page>
       <page>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">

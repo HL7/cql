@@ -243,3 +243,5 @@ The organization of this specification follows the outline of the perspectives d
 [Appendix K](18-k-listoffigures.html) - List of Figures
 
 [Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams
+
+[Appendix M](20-m-messages.html) - Messages Index

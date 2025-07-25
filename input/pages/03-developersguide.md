@@ -1263,6 +1263,44 @@ if Count(X) > 0 then X[1] else 0
 
 Short-circuit evaluation means the expression `X[1]` will only be evaluated if `Count(X) > 0` evaluates to <span class="kw">true</span>. This is in contrast to the logical operators <span class="kw">and</span> and <span class="kw">or</span>, where short-circuit evaluation is not required.
 
+#### Type Inference of Conditional Expressions
+
+The inferred result type of a conditional expression is determined initially by the result type of the first expression. For each subsequent expression, if the result type is a supertype of the inferred type, or if the inferred type is convertible to the result type, the type of the subsequent element becomes the new inferred element type for the expression. Otherwise, the result type of the subsequent expression is added to the choice of possible types.
+
+This means that, for example, the following condition is valid:
+
+```cql
+if Count(list) = 0 then
+  false
+else
+  list
+```
+
+And the inferred type of this expression is `Choice<Boolean, List<T>>`. This is unusual, as most languages with a conditional expression require both types to be compatible, as this is often unintentional and should be caught by the compiler.
+
+However, for models that make extensive use of choice types, there is significant value in allowing the result of conditionals to be a choice of types. To ensure that when this feature is used it is intentional, systems should issue a warning when none of the branches are choice types, but the inferred type of the overall conditional is a choice type:
+
+<!-- MESSAGE -->
+| Code | Description | Category | Severity | Source | Example Message |
+|----|----|----|----|----|
+| 003-10000 | Conditional expression resulted in a choice type | semantic | warning | content | Conditional expression resulted in a choice type `Choice<Boolean, List<Integer>` |
+{: .grid .table .table-striped}
+
+Authors can suppress this warning using the `@suppressMessage` tag:
+
+```cql
+/*
+@suppressMessage: 003-10000 - The getList function intentionally returns a choice of Boolean or List
+*/
+define function getList(list List<Integer>):
+  if Count(list) = 0 then
+    false
+  else
+    list
+```
+
+For more inforamtion about messages, refer to [Appendix M - Messages](20-m-messages.html)
+
 ### Nullological Operators
 
 To provide complete support for missing information, CQL supports several operators for testing for and dealing with null results.
