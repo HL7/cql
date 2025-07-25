@@ -155,7 +155,7 @@ Table 6‑F - The ELM equivalent for each CQL nullological operator
 |<span class="sym">&lt;</span> |Less
 |<span class="sym">\<=</span> |LessOrEqual
 |<span class="sym">~</span> |Equivalent
-|<span class="sym">!=</span> |NotEqual
+|<span class="sym">!=</span> |Not of Equal (NOTE: NotEqual is deprecated in 2.0)
 |<span class="sym">!~</span> |Not of Equivalent
 {: .grid .table .table-striped}
 

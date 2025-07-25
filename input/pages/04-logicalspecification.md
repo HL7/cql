@@ -1605,6 +1605,9 @@ The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date
 NotEqual : BinaryExpression
 ```
 
+> This operator is deprecated in CQL 2.0 and should not be used. Use a combination of Not and Equal instead.
+{: .note-info}
+
 The NotEqual operator returns true if its arguments are not the same value.
 
 The NotEqual operator is a shorthand for invocation of logical negation of the Equal operator.

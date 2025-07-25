@@ -1211,7 +1211,9 @@ Note that this operator will always return true or false, even if either or both
 	</xs:complexType>
 	<xs:complexType name="NotEqual">
 		<xs:annotation>
-			<xs:documentation>The NotEqual operator returns true if its arguments are not the same value.
+			<xs:documentation>DEPRECATED: This operator is deprecated because it is only short-hand for the equivalent Equal and Not, and the current translator does not ever output it.
+			
+The NotEqual operator returns true if its arguments are not the same value.
 
 The NotEqual operator is a shorthand for invocation of logical negation of the Equal operator.</xs:documentation>
 		</xs:annotation>
