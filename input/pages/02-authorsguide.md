@@ -819,7 +819,7 @@ Only <span class="id">DateTime</span> values may specify a timezone offset, eith
 
 For both <span class="id">DateTime</span> and <span class="id">Time</span> values, although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. In other words, when performing comparisons or calculations for precisions of seconds and above, if milliseconds are not specified, the calculation should be performed as though milliseconds had been specified as <span class="lit">0</span>.
 
-For more information on the use of date and time values within CQL, refer to the [Date and Time Operators](#date-and-time-operators) section.
+For more information on the use of date and time values within CQL, refer to the [Date and Time Operators](#datetime-operators) section.
 
 Specifically, because <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values may be specified to varying levels of precisions, operations such as comparison and duration calculation may result in <span class="kw">null</span>, rather than the <span class="kw">true</span> or <span class="kw">false</span> that would result from the same operation involving fully specified values. For a discussion of the effect of imprecision on date and time operations, refer to the [Comparing Dates and Times](#comparing-dates-and-times) section.
 
@@ -1433,7 +1433,8 @@ The following table lists the arithmetic operations available in CQL:
 Table 2‑J - Arithmetic operations that CQL provides
 
 
-#### <a name="datetime-operators"></a>Date and Time Operators
+{: #datetime-operators}
+#### Date and Time Operators
 
 Operations on date and time data are an essential component of expressing clinical knowledge, and CQL provides a complete set of date and time operators. These operators broadly fall into five categories:
 
