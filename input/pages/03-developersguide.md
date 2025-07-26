@@ -1019,6 +1019,14 @@ convert 'Foo' to Integer
 
 will result in <span class="kw">null</span>. The convert syntax is equivalent to invoking one of the defined conversion operators:
 
+For simplicity, all the conversion operations are defined to return the input value if no conversion is required. For example:
+
+```cql
+convert true to Boolean
+```
+
+will simply return true, even though no conversion is technically required.
+
 <a name="table-3-i"></a>
 
 |Operator |Description

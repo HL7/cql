@@ -4005,7 +4005,7 @@ CanConvert : UnaryExpression
   0..1 --> toType
 ```
 
-The CanConvert operator returns true if the given value can be converted to a specific type, and false otherwise.
+The CanConvert operator returns true if the given value is or can be converted to a specific type, and false otherwise.
 
 This operator returns true for conversion:
 
@@ -4029,7 +4029,7 @@ See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a descri
 CanConvertQuantity : BinaryExpression
 ```
 
-The CanConvertQuantity operator returns true if the Quantity can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
+The CanConvertQuantity operator returns true if the Quantity is or can be converted to an equivalent Quantity with the given Unit. Otherwise, the result is false.
 
 Note that implementations are not required to support quantity conversion, and so may return false, even if the conversion is valid. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
 
@@ -4063,6 +4063,8 @@ The Convert operator converts a value to a specific type. The result of the oper
 
 If no valid conversion exists from the actual value to the target type, the result is null.
 
+For simplicity, if no conversion is required, the convert operator simply returns the input value.
+
 This operator supports conversion:
 
 Between String and each of Boolean, Integer, Long, Decimal, Quantity, Ratio, Date, DateTime, and Time
@@ -4085,7 +4087,7 @@ See [Formatting Strings](09-b-cqlreference.html#formatting-strings) for a descri
 ConvertQuantity : BinaryExpression
 ```
 
-The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
+The ConvertQuantity operator converts a Quantity to an equivalent Quantity with the given unit. If the unit of the input quantity is or can be converted to the target unit, the result is an equivalent Quantity with the target unit. Otherwise, the result is null.
 
 Note that implementations are not required to support quantity conversion. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM. Implementations that do not support unit conversion shall throw an error if an unsupported unit conversion is requested with this operation.
 
