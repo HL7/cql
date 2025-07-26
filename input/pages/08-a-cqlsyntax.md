@@ -453,7 +453,7 @@ term
     ;
 
 externalConstant
-    : '%' identifier
+    : '%' ( keywordIdentifier | identifier | STRING )
     ;
 
 qualifiedInvocation // Terms that can be used after the function/member invocation '.'
