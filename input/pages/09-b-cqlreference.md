@@ -1989,7 +1989,7 @@ define "IntegerDivide": 4.0 / 2 // 2.0
 define "LongDivide": 4.0 / 2L // 2.0
 define "DecimalDivide": 9.9 / 3.0 // 3.3
 define "DecimalDivideIsNull": 2.2 / null
-define "DecimalDivideIsError": 2.2 / 0
+define "DecimalDivideByZeroIsNull": 2.2 / 0 // null
 define "QuantityDivide": -5.5 'mg' / 2.0 'mg' // -2.75
 ```
 
