@@ -1825,7 +1825,10 @@ For example:
 
 ```cql
 define function "CumulativeDuration"(Intervals List<Interval<DateTime>>):
-  Sum((collapse Intervals) X return all duration in days of X)
+  Sum(
+    (collapse Intervals) I 
+      return all (difference in days between start of I and end of I) + 1
+  ) 
 ```
 
 This statement defines a function named <span class="id">CumulativeDuration</span> that takes a single argument named <span class="id">Intervals</span> of type <span class="kw">List\<Interval\<DateTime>></span>. The function returns the sum of duration in days of the collapsed intervals given. This function can then be used just as any other system-defined function:
