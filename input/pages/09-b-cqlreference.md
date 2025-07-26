@@ -1228,7 +1228,7 @@ The <span class="id">ToString</span> operator converts the value of its argument
 |<span class="id">Integer</span> |**(-)?#0**
 |<span class="id">Long</span> |**(-)?#0**
 |<span class="id">Decimal</span> |**(-)?\#0.0#**
-|<span class="id">Quantity</span> |**(-)?\#0.0# '\<unit>'**
+|<span class="id">Quantity</span> |**(-)?\#0.0# (('\<unit>')\|(\<unit>))**
 |<span class="id">Ratio</span> |**\<quantity>:\<quantity>**
 |<span class="id">Date</span> |**YYYY-MM-DD**
 |<span class="id">DateTime</span> |**YYYY-MM-DDThh:mm:ss.fff(+\|-)hh:mm**
@@ -1239,7 +1239,7 @@ Table 9‑G - The string representations that the ToString operator uses for eac
 
 See [Formatting Strings](#formatting-strings) for a description of the formatting strings used in this specification.
 
-The result of any ToString must be round-trippable back to the source value.
+The result of any ToString must be round-trippable back to the source value. In particular, `ToString(4 days)` results in the string value `4 days` (i.e. not `4 'd'`).
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
