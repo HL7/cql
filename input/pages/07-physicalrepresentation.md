@@ -1,3 +1,4 @@
+{::options toc_levels="1..6"/}
 
 The physical representation for CQL is specifically concerned with communicating the logic involved in any given artifact. As discussed in the previous sections, the unit of distribution for CQL is the library, which corresponds to a single file of CQL at the author level, or a single ELM document at the physical level.
 

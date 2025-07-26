@@ -1,3 +1,4 @@
+{::options toc_levels="1..6"/}
 
 This chapter describes the Expression Logical Model (ELM) and how it is used to represent clinical knowledge within a quality artifact.
 

@@ -3,7 +3,7 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
-  <version value="2.0.0-cibuild"/>
+  <version value="2.0.0-ballot1"/>
   <name value="CQL"/>
   <title value="Clinical Quality Language Specification"/>
   <status value="active"/>
@@ -481,11 +481,24 @@
           <title value="V1.5 Change Log"/>
           <generation value="markdown"/>
         </page>
+        <page>
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+            <valueCode value="informative"/> 
+          </extension> 
+          <!--NOTE: This results in an error in the QA because this extension can't be used on a page, but it works (i.e. the pageTable template sees this as the value of the .fmm property). Hacked this with the pageTable fragment, but would be nice if this worked as expected.
+          <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+            <valueString value="N/A"/> 
+          </extension>
+          -->
+          <nameUrl value="v2.0-changelog.html"/>
+          <title value="V2.0 Change Log"/>
+          <generation value="markdown"/>
+        </page>
       </page>
     </page>
     <parameter>
       <code value="releaselabel"/>
-      <value value="Release 1 Errata 2"/>
+      <value value="STU 2 - Ballot 1"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>

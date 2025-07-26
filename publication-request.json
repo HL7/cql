@@ -1,11 +1,11 @@
 {
   "package-id" : "hl7.cql",
-  "version": "1.5.3",
-  "path": "http://cql.hl7.org/N1",
-  "mode": "technical-correction",
-  "status": "normative",
-  "sequence": "Normative",
-  "desc": "Current Official Published Version - Normative Release 1 (mixed Normative/Trial-use content + 2 technical errata)",
-  "descmd": "Technical Corrections/Errata Publication",
-  "changes": "v1.5-changelog.html"
+  "version": "2.0.0-ballot1",
+  "path": "http://cql.hl7.org/2025Sep",
+  "mode": "working",
+  "status": "trial-use",
+  "sequence": "R2",
+  "desc": "STU 2 - Ballot 1",
+  "descmd": "First ballot of Release 2 trial-use content. This ballot introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes.",
+  "changes": "v2.0-changelog.html"
 }
