@@ -9,45 +9,45 @@ These examples illustrate the logic for coordinated decision support and quality
 
 ##### Chlamydia Screening Quality Measure
 
-* [CQL](examples\ChlamydiaScreening_CQM.cql)
-* [ELM (XML)](examples\ChlamydiaScreening_CQM.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CQM.json)
+* [CQL](examples\ChlamydiaScreeningCQM.cql)
+* [ELM (XML)](examples\ChlamydiaScreeningCQM.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCQM.json)
 
 ##### Chlamydia Screening Decision Support
 
-* [CQL](examples\ChlamydiaScreening_CDS.cql)
-* [ELM (XML)](examples\ChlamydiaScreening_CDS.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CDS.json)
+* [CQL](examples\ChlamydiaScreeningCDS.cql)
+* [ELM (XML)](examples\ChlamydiaScreeningCDS.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCDS.json)
 
 ELM Artifacts with Annotations Included:
   
-* [ELM (XML)](examples\ChlamydiaScreening_CDS_Annotated.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CDS_Annotated.json)
+* [ELM (XML)](examples\ChlamydiaScreeningCDSAnnotated.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCDSAnnotated.json)
 
 ELM Artifacts with Debug Information Included:
 
-* [ELM (XML)](examples\ChlamydiaScreening_CDS_Debug.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CDS_Debug.json)
+* [ELM (XML)](examples\ChlamydiaScreeningCDSDebug.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCDSDebug.json)
 
 #### Shared Logic
 
 ##### Common Library
 
-* [CQL](examples\ChlamydiaScreening_Common.cql)
-* [ELM (XML)](examples\ChlamydiaScreening_Common.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_Common.json)
+* [CQL](examples\ChlamydiaScreeningCommon.cql)
+* [ELM (XML)](examples\ChlamydiaScreeningCommon.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCommon.json)
 
 ##### Chlamydia Screening Quality Measure Using Common Library
 
-* [CQL](examples\ChlamydiaScreening_CQM_UsingCommon.cql)
-* [ELM (XML)](examples\ChlamydiaScreening_CQM_UsingCommon.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CQM_UsingCommon.json)
+* [CQL](examples\ChlamydiaScreeningCQMUsingCommon.cql)
+* [ELM (XML)](examples\ChlamydiaScreeningCQMUsingCommon.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCQMUsingCommon.json)
 
 ##### Chlamydia Screening Decision Support Using Common Library
 
-* [CQL](examples\ChlamydiaScreening_CDS_UsingCommon.cql)
-* [ELM (XML)](examples\ChlamydiaScreening_CDS_UsingCommon.xml)
-* [ELM (JSON)](examples\ChlamydiaScreening_CDS_UsingCommon.json)
+* [CQL](examples\ChlamydiaScreeningCDSUsingCommon.cql)
+* [ELM (XML)](examples\ChlamydiaScreeningCDSUsingCommon.xml)
+* [ELM (JSON)](examples\ChlamydiaScreeningCDSUsingCommon.json)
 
 ### Example Quality Measures
 
@@ -55,62 +55,62 @@ These examples illustrate various quality measures expressed in CQL.
 
 #### CMS26v2
 
-* [CQL](examples\CMS26v2_CQM.cql)
-* [ELM (XML)](examples\CMS26v2_CQM.xml)
-* [ELM (JSON)](examples\CMS26v2_CQM.json)
+* [CQL](examples\CMS26v2CQM.cql)
+* [ELM (XML)](examples\CMS26v2CQM.xml)
+* [ELM (JSON)](examples\CMS26v2CQM.json)
 
 #### CMS55v1
 
 Using QUICK:
   
-* [CQL](examples\CMS55v1_NQF0495.cql)
-* [ELM (XML)](examples\CMS55v1_NQF0495.xml)
-* [ELM (JSON)](examples\CMS55v1_NQF0495.json)
+* [CQL](examples\CMS55v1NQF0495.cql)
+* [ELM (XML)](examples\CMS55v1NQF0495.xml)
+* [ELM (JSON)](examples\CMS55v1NQF0495.json)
 
 Using QDM:
   
-* [CQL](examples\CMS55v1_QDM.cql)
-* [ELM (XML)](examples\CMS55v1_QDM.xml)
+* [CQL](examples\CMS55v1QDM.cql)
+* [ELM (XML)](examples\CMS55v1QDM.xml)
 
 #### CMS135
 
-* [CQL](examples\CMS135_QDM.cql)
-* [ELM (XML)](examples\CMS135_QDM.xml)
-* [ELM (JSON)](examples\CMS135_QDM.json)
+* [CQL](examples\CMS135QDM.cql)
+* [ELM (XML)](examples\CMS135QDM.xml)
+* [ELM (JSON)](examples\CMS135QDM.json)
 
 #### CMS146v2
 
 Using QUICK:
   
-* [CQL](examples\CMS146v2_CQM.cql)
-* [ELM (XML)](examples\CMS146v2_CQM.xml)
-* [ELM (JSON)](examples\CMS146v2_CQM.json)
+* [CQL](examples\CMS146v2CQM.cql)
+* [ELM (XML)](examples\CMS146v2CQM.xml)
+* [ELM (JSON)](examples\CMS146v2CQM.json)
 
 Using QDM:
   
-* [CQL](examples\CMS146v2_QDM.cql)
-* [ELM (XML)](examples\CMS146v2_QDM.xml)
-* [ELM (JSON)](examples\CMS146v2_QDM.json)
+* [CQL](examples\CMS146v2QDM.cql)
+* [ELM (XML)](examples\CMS146v2QDM.xml)
+* [ELM (JSON)](examples\CMS146v2QDM.json)
 
 #### CMS154v1
 
-* [CQL](examples\CMS154v1_NQF0069.cql)
-* [ELM (XML)](examples\CMS154v1_NQF0069.xml)
-* [ELM (JSON)](examples\CMS154v1_NQF0069.json)
+* [CQL](examples\CMS154v1NQF0069.cql)
+* [ELM (XML)](examples\CMS154v1NQF0069.xml)
+* [ELM (JSON)](examples\CMS154v1NQF0069.json)
 
 #### CMS179v2
 
 Using QUICK:
 
-* [CQL](examples\CMS179v2_CQM.cql)
-* [ELM (XML)](examples\CMS179v2_CQM.xml)
-* [ELM (JSON)](examples\CMS179v2_CQM.json)
+* [CQL](examples\CMS179v2CQM.cql)
+* [ELM (XML)](examples\CMS179v2CQM.xml)
+* [ELM (JSON)](examples\CMS179v2CQM.json)
   
 Using QDM:
   
-* [CQL](examples\CMS179v2_QDM.cql)
-* [ELM (XML)](examples\CMS179v2_QDM.xml)
-* [ELM (JSON)](examples\CMS179v2_QDM.json)
+* [CQL](examples\CMS179v2QDM.cql)
+* [ELM (XML)](examples\CMS179v2QDM.xml)
+* [ELM (JSON)](examples\CMS179v2QDM.json)
   
 #### Mother Infant Measure
 
