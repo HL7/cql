@@ -2846,7 +2846,7 @@ The following examples illustrate the behavior of the <span class="id">Matches</
 
 ```cql
 define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')
-define "MatchesFalse": Matches('1,2three', '\\w+')
+define "MatchesFalse": Matches('1,2three', '^\\w+$')
 define "MatchesIsNull": Matches('12three', null)
 define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1', 'Library')
 ```
