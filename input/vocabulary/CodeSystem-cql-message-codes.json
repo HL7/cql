@@ -29,9 +29,9 @@
     { "code": "category", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#category", "description": "The language area, possible values are codes in the [CQL Message Category Codes](CodeSystem-cql-message-category-codes.html) code system", "type": "code" },
     { "code": "severity", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#severity", "description": "Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system", "type": "code" },
     { "code": "source", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#source", "description": "The source of the issue, providing information about where the issue is originating and how it might be addressed, possible values are codes in the [CQL Message Source Codes](CodeSystem-cql-message-source-codes.html) code system", "type": "code" },
-    { "code": "example", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#example", "description": "An example message", "type": "string" },
+    { "code": "example", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#example", "description": "An example message providing a sample of what kinds of actual messages will be returned with this code.", "type": "string" },
     { "code": "notes", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#notes", "description": "Notes about the message, especially how to address the issue being identified", "type": "string" },
-    { "code": "spec-link", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#spec-link", "description": "A URL to the specification where this message is defined", "type": "string" }
+    { "code": "spec-link", "uri": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes#spec-link", "description": "A URL to the point in the specification where this message is defined", "type": "string" }
   ],
   "concept": [
     {
@@ -44,7 +44,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Internal translator error" },
         { "code": "notes", "valueString": "This message code typically indicates an unexpected error was encountered while attempting to compile CQL." },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+        { "code": "spec-link", "valueString": "20-m-messages.html#messages" }
       ]
     },
     {
@@ -57,7 +57,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Lexical error" },
         { "code": "notes", "valueString": "This is a general message code for lexical errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+        { "code": "spec-link", "valueString": "20-m-messages.html#messages" }
       ]
     },
     {
@@ -70,7 +70,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Syntax error" },
         { "code": "notes", "valueString": "This is a general message code for syntax errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+        { "code": "spec-link", "valueString": "20-m-messages.html#messages" }
       ]
     },
     {
@@ -83,7 +83,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Semantic error" },
         { "code": "notes", "valueString": "This is a general message code for semantic errors encountered while processing CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+        { "code": "spec-link", "valueString": "20-m-messages.html#messages" }
       ]
     },
     {
@@ -96,7 +96,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Conditional expression resulted in a choice type `Choice<Boolean, List<Integer>`" },
         { "code": "notes", "valueString": "This message may be suppressed with the @suppressWarning tag" },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/03-developersguide.html#type-inference-of-conditional-expressions" }
+        { "code": "spec-link", "valueString": "03-developersguide.html#type-inference-of-conditional-expressions" }
       ]
     },
     {
@@ -109,7 +109,7 @@
         { "code": "source", "valueCode": "content" },
         { "code": "example", "valueString": "Run-time error" },
         { "code": "notes", "valueString": "This is a general message code for run-time errors encountered while attempting to evaluate CQL. The actual message will typically contain more detailed information about the issue and how to address it." },
-        { "code": "spec-link", "valueString": "http://cql.hl7.org/20-m-messages.html#messages" }
+        { "code": "spec-link", "valueString": "20-m-messages.html#messages" }
       ]
     }
   ]

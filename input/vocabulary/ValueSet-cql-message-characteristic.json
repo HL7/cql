@@ -1,6 +1,6 @@
 {
   "resourceType": "ValueSet",
-  "id": "cql-message-category",
+  "id": "cql-message-characteristic",
   "extension": [
     {
         "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
@@ -15,18 +15,18 @@
         "valueInteger": 2
     }
   ],
-  "url": "http://cql.hl7.org/ValueSet/cql-message-category",
-  "name": "CQLMessageCategory",
-  "title": "CQL Message Category",
+  "url": "http://cql.hl7.org/ValueSet/cql-message-characteristic",
+  "name": "CQLMessageCharacteristic",
+  "title": "CQL Message Characteristic",
   "status": "active",
   "experimental": false,
   "publisher": "Clinical Decision Support Workgroup",
-  "description": "Codes for categorization of messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating. This is the 'all system' value set for the CQL Message Category Codes code system.",
+  "description": "Codes for characteristics of messages returned by applications that process Clinical Quality Language. This is the 'all system' value set for the CQL Message Characteristic Codes code system.",
   "immutable": true,
   "compose": {
     "include": [
       {
-        "system": "http://cql.hl7.org/CodeSystem/cql-message-category-codes"
+        "system": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes"
       }
     ]
   }

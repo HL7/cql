@@ -21,12 +21,12 @@
   "status": "active",
   "experimental": false,
   "publisher": "Clinical Decision Support Workgroup",
-  "description": "Codes for the source of messages returned by applications that process Clinical Quality Language, indicating generally where the message originated, as well as who or what might be able to potentially address the issue. This is the 'whole code system value set' for the CQL Message Source Codes code system.",
+  "description": "Codes for the source of messages returned by applications that process Clinical Quality Language, indicating generally where the message originated, as well as who or what might be able to potentially address the issue. This is the 'all system' value set for the CQL Message Source Codes code system.",
   "immutable": true,
   "compose": {
     "include": [
       {
-        "system": "http://cql.hl7.org/CodeSystem/cql-message-severity-codes"
+        "system": "http://cql.hl7.org/CodeSystem/cql-message-source-codes"
       }
     ]
   }

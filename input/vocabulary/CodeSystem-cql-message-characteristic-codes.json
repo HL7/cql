@@ -1,0 +1,55 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-message-characteristic-codes",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+        "valueCode": "cds"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode": "trial-use"
+    },
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+        "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-message-characteristic-codes",
+  "name": "CQLMessageCharacteristicCodes",
+  "title": "CQL Message Characteristic Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for characteristics of messages returned by applications that process Clinical Quality Language.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-characteristics",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "category",
+      "display": "Category",
+      "definition": "The language area, possible values are codes in the [CQL Message Category Codes](CodeSystem-cql-message-category-codes.html) code system."
+    },
+    {
+        "code": "severity",
+        "display": "Severity",
+        "definition": "Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system."
+    },
+    {
+      "code": "example",
+      "display": "Example Message",
+      "definition": "An example message providing a sample of what kinds of actual messages will be returned with this code."
+    },
+    {
+      "code": "notes",
+      "display": "Notes",
+      "definition": "Notes about the message, especially how to address the issue being identified."
+    },
+    {
+      "code": "spec-link",
+      "display": "Specification Link",
+      "definition": "A URL to the point in the specification where this message is defined."
+    }
+  ]
+}

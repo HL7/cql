@@ -21,7 +21,7 @@
   "status": "active",
   "experimental": false,
   "publisher": "Clinical Decision Support Workgroup",
-  "description": "Codes for severity of messages returned by applications that process Clinical Quality Language, indicating what level of processing should occur for the message. This is the 'whole code system value set' for the CQL Message Severity code system.",
+  "description": "Codes for severity of messages returned by applications that process Clinical Quality Language, indicating what level of processing should occur for the message. This is the 'all system' value set for the CQL Message Severity code system.",
   "immutable": true,
   "compose": {
     "include": [

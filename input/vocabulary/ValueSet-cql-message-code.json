@@ -21,7 +21,7 @@
   "status": "active",
   "experimental": false,
   "publisher": "Clinical Decision Support Workgroup",
-  "description": "Codes for messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating. This code system is intended to be a place to identify codes for messages that are indicated by the specification itself. Implementation-specific, application-specific, and content-specific codes may be provided with codes from other code systems, but should ideally map to some code (possibly a more general code) in this code system. This is the 'whole code system value set' for the CQL Message Codes code system.",
+  "description": "Codes for messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating. This code system is intended to be a place to identify codes for messages that are indicated by the specification itself. Implementation-specific, application-specific, and content-specific codes may be provided with codes from other code systems, but should ideally map to some code (possibly a more general code) in this code system. This is the 'all system' value set for the CQL Message Codes code system.",
   "immutable": true,
   "compose": {
     "include": [
