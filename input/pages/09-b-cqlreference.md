@@ -2066,7 +2066,14 @@ If the precision is greater than the maximum possible precision of the implement
 The function can be used with Decimal, Date, DateTime, and Time values.
 
 ```cql
-HighBoundary(1.587, 8) // 1.58799999
+HighBoundary(1.587) // 1.58750000
+HighBoundary(1.587, 6) // 1.587500
+HighBoundary(1.587, 2) // 1.59
+HighBoundary(1.587, 0) // 2
+HighBoundary(-1.587) == -1.58650000
+HighBoundary(-1.587, 6) == -1.586500
+HighBoundary(-1.587, 2) == -1.58
+HighBoundary(-1.587, 0) == 1
 HighBoundary(@2014, 6) // @2014-12
 HighBoundary(@2014-01-01T08, 17) // @2014-01-01T08:59:59.999
 HighBoundary(@T10:30, 9) // @T10:30:59.999
@@ -2123,7 +2130,14 @@ If the precision is greater than the maximum possible precision of the implement
 The function can be used with Decimal, Date, DateTime, and Time values.
 
 ```cql
-LowBoundary(1.587, 8) // 1.58700000
+LowBoundary(1.587, 8) // 1.58650000
+LowBoundary(1.587, 6) // 1.586500
+LowBoundary(1.587, 2) // 1.58
+LowBoundary(1.587, 0) // 1
+LowBoundary(-1.587) // -1.58750000
+LowBoundary(-1.587, 6) // -1.587500
+LowBoundary(-1.587, 2) // -1.59
+LowBoundary(-1.587, 0) // -2
 LowBoundary(@2014, 6) // @2014-01
 LowBoundary(@2014-01-01T08, 17) // @2014-01-01T08:00:00.000
 LowBoundary(@T10:30, 9) // @T10:30:00.000
