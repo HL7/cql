@@ -55,10 +55,10 @@ The <span class="kw">library</span> declaration specifies both the name of the l
 The following example illustrates the library declaration:
 
 ```cql
-library CMS153_CQM version '2'
+library CMS153CQM version '2'
 ```
 
-The above declaration names the library with the identifier <span class="id">CMS153_CQM</span> and specifies the version <span class="lit">'2'</span>.
+The above declaration names the library with the identifier <span class="id">CMS153CQM</span> and specifies the version <span class="lit">'2'</span>.
 
 A syntax diagram of the <span class="kw">library</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
 
@@ -89,27 +89,27 @@ A syntax diagram of the <span class="kw">using</span> declaration can be seen [h
 A CQL library can reference zero or more other CQL libraries with <span class="kw">include</span> declarations. Components defined within these included libraries can then be referenced within the library by name.
 
 ```cql
-include CMS153_Common
+include CMS153Common
 ```
 
-Components defined in the CMS153_Common library can now be referenced using the library name. For example:
+Components defined in the CMS153Common library can now be referenced using the library name. For example:
 
 ```cql
 define "SexuallyActive":
-  exists (CMS153_Common."ConditionsIndicatingSexualActivity")
-    or exists (CMS153_Common."LaboratoryTestsIndicatingSexualActivity")
+  exists (CMS153Common."ConditionsIndicatingSexualActivity")
+    or exists (CMS153Common."LaboratoryTestsIndicatingSexualActivity")
 ```
 
-This expression references <span class="id">ConditionsIndicatingSexualActivity</span> and <span class="id">LaboratoryTestsIndicatingSexualActivity</span> defined in the <span class="id">CMS153_Common</span> library.
+This expression references <span class="id">ConditionsIndicatingSexualActivity</span> and <span class="id">LaboratoryTestsIndicatingSexualActivity</span> defined in the <span class="id">CMS153Common</span> library.
 
-The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, <span class="id">CMS153_Common</span>, and the identifier, <span class="id">ConditionsIndicatingSexualActivity</span>, separated by a dot (<span class="sym">.</span>).
+The syntax used to reference these expressions is a _qualified identifier_ consisting of two parts. The qualifier, <span class="id">CMS153Common</span>, and the identifier, <span class="id">ConditionsIndicatingSexualActivity</span>, separated by a dot (<span class="sym">.</span>).
 
 For more information on libraries, refer to the [Using Libraries to Share Logic](#using-libraries-to-share-logic) section.
 
 The <span class="kw">include</span> declaration may optionally specify a version, meaning that a specific version of the library must be used:
 
 ```cql
-include CMS153_Common version '2'
+include CMS153Common version '2'
 ```
 
 A more in-depth discussion of library versioning is provided in the [Libraries](03-developersguide.html#libraries-1) section of the Developers guide.
@@ -117,10 +117,10 @@ A more in-depth discussion of library versioning is provided in the [Libraries](
 In addition, the <span class="kw">include</span> declaration may optionally specify an assigned name using the <span class="kw">called</span> clause:
 
 ```cql
-include CMS153_Common version '2' called Common
+include CMS153Common version '2' called Common
 ```
 
-Components defined in the <span class="id">CMS153_Common</span> library, version 2, can now be referenced using the assigned name of <span class="id">Common</span>. For example:
+Components defined in the <span class="id">CMS153Common</span> library, version 2, can now be referenced using the assigned name of <span class="id">Common</span>. For example:
 
 ```cql
 define "SexuallyActive":
@@ -2585,7 +2585,7 @@ valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 Putting it all together, we now have:
 
 ```cql
-library CMS153_CQM version '2'
+library CMS153CQM version '2'
 
 using QUICK
 
@@ -2761,7 +2761,7 @@ The <span class="id">(result)</span> syntax indicates that the item should only 
 Finally, putting it all together, we have a complete, albeit simplified, definition of the logic involved in defining the population criteria for a measure:
 
 ```cql
-library CMS153_CQM version '2'
+library CMS153CQM version '2'
 
 using QUICK
 
@@ -2825,7 +2825,7 @@ With these factors in mind, and using the CQL for the measure we have already bu
 To begin with, we are using the same data model, QUICK, the same valueset declarations, and the same context:
 
 ```cql
-library CMS153_CDS version '2'
+library CMS153CDS version '2'
 
 using QUICK
 
@@ -2922,10 +2922,10 @@ We start by identifying the aspects that are identical between the two:
 1.  SexuallyActive criteria, without the timing relationship
 2.  ChlamydiaScreening test, without the timing relationship
 
-With these in mind, we can create a new library, <span class="id">CMS153_Common</span>, that will contain the common elements:
+With these in mind, we can create a new library, <span class="id">CMS153Common</span>, that will contain the common elements:
 
 ```cql
-library CMS153_Common version '2'
+library CMS153Common version '2'
 
 using QUICK
 
@@ -2951,11 +2951,11 @@ define "ResultsPresentForChlamydiaScreening":
 Using this library, we can then rewrite the CQM to reference the common elements from the library:
 
 ```cql
-library CMS153_CQM version '2'
+library CMS153CQM version '2'
 
 using QUICK
 
-include CMS153_Common version '2' called Common
+include CMS153Common version '2' called Common
 
 parameter MeasurementPeriod default Interval[
   @2013-01-01T00:00:00.0,
@@ -2991,11 +2991,11 @@ Note: The keyword <span class="kw">called</span> was chosen to avoid confusion w
 And similarly for the CDS artifact:
 
 ```cql
-library CMS153_CDS version '2'
+library CMS153CDS version '2'
 
 using QUICK
 
-include CMS153_Common version '2' called Common
+include CMS153Common version '2' called Common
 
 valueset "Reason for not performing Chlamydia Screening": 'TBD'
 
