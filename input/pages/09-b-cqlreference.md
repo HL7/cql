@@ -2411,11 +2411,11 @@ For <span class="id">Integer</span>, <span class="kw">predecessor</span> is equi
 
 For <span class="id">Long</span>, <span class="kw">predecessor</span> is equivalent to subtracting 1L.
 
-For <span class="id">Decimal</span>, <span class="kw">predecessor</span> is equivalent to subtracting the minimum precision value for the <span class="id">Decimal</span> type, or 10<sup>-08</sup>.
+For <span class="id">Decimal</span>, <span class="kw">predecessor</span> is equivalent to subtracting 1 * the precision of the argument.
 
-For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="kw">predecessor</span> is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">predecessor</span> is equivalent to subtracting 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">predecessor</span> is equivalent to subtracting one second, etc.
+For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="kw">predecessor</span> is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">predecessor</span> is equivalent to subtracting 1 * the precision of the combined seconds and milliseconds, represented as a Decimal; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">predecessor</span> is equivalent to subtracting one second, etc.
 
-For <span class="id">Quantity</span> values, the <span class="kw">predecessor</span> is equivalent to subtracting 1 if the quantity is an integer, and the minimum precision value for the <span class="id">Decimal</span> type if the quantity is a decimal. The units are unchanged.
+For <span class="id">Quantity</span> values, the <span class="kw">predecessor</span> is equivalent to subtracting 1 * the precision of the quantity value. The units are unchanged.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2429,8 +2429,12 @@ The following examples illustrate the behavior of the <span class="kw">predecess
 ```cql
 define "IntegerPredecessor": predecessor of 100 // 99
 define "LongPredecessor": predecessor of 100L // 99L
-define "DecimalPredecessor": predecessor of 1.0 // 0.99999999
+define "DecimalPredecessor": predecessor of 1.0 // 0.9
+define "DecimalHundredthsPredecessor": predecessor of 1.01 // 1.00
+define "DecimalMostPrecisePredecessor": predecessor of 1.00000000 // 0.99999999
 define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31
+define "DateTimeMillisecondsPredecessor": predecessor of @2014-01-01T08:30:00.0 // @2014-01-01T08:29:59.9
+define "QuantityPredecessor": predecessor of 2.54 'cm' // 2.53 'cm'
 define "PredecessorIsNull": predecessor of (null as Quantity)
 ```
 
@@ -2563,17 +2567,17 @@ For <span class="id">Integer</span>, <span class="kw">successor</span> is equiva
 
 For <span class="id">Long</span>, <span class="kw">successor</span> is equivalent to adding 1L.
 
-For <span class="id">Decimal</span>, <span class="kw">successor</span> is equivalent to adding the minimum precision value for the <span class="id">Decimal</span> type, or 10<sup>-08</sup>.
+For <span class="id">Decimal</span>, <span class="kw">successor</span> is equivalent to adding 1 * the precision of the argument.
 
-For <span class="id">Date</span>, <span class="id">DateTime</span> and <span class="id">Time</span> values, <span class="kw">successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">successor</span> is equivalent to adding 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">successor</span> is equivalent to adding one second, etc.
+For <span class="id">Date</span>, <span class="id">DateTime</span> and <span class="id">Time</span> values, <span class="kw">successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="kw">successor</span> is equivalent to adding 1 * the precision of the combined seconds and milliseconds, represented as a Decimal; if the <span class="id">DateTime</span> is specified to the second, <span class="kw">successor</span> is equivalent to adding one second, etc.
 
-For <span class="id">Quantity</span> values, the <span class="kw">successor</span> is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the <span class="id">Decimal</span> type if the quantity is a decimal. The units are unchanged.
+For <span class="id">Quantity</span> values, the <span class="kw">successor</span> is equivalent to adding 1 * the precision of the quantity value. The units are unchanged.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 If the result of the operation cannot be represented (i.e. would result in an overflow), the result is <span class="kw">null</span>.
 
-> Note that implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor will reflect the minimum representable step size for the implementation.
+> Note that for implementations that support more precise values than the minimum required precision and scale for Decimal, DateTime, and Time values, the successor may reflect the minimum representable step size for the implementation.
 {: .note-warning}
 
 The following examples illustrate the behavior of the <span class="kw">successor</span> operator:
@@ -2581,8 +2585,12 @@ The following examples illustrate the behavior of the <span class="kw">successor
 ```cql
 define "IntegerSuccessor": successor of 100 // 101
 define "LongSuccessor": successor of 100L // 101L
-define "DecimalSuccessor": successor of 1.0 // 1.00000001
+define "DecimalSuccessor": successor of 1.0 // 1.1
+define "DecimalHundredthsSuccessor": successor of 1.01 // 1.02
+define "DecimalMostPreciseSuccessor": successor of 1.00000000 // 1.00000001
 define "DateSuccessor": successor of @2014-01-01 // @2014-01-02
+define "DateTimeMillisecondsSuccessor": successor of @2014-01-01T08:30:00.0 // @2014-01-01T08:30:00.1
+define "QuantitySuccessor": successor of 2.54 'cm' // 2.55 'cm'
 define "SuccessorIsNull": successor of (null as Quantity)
 ```
 

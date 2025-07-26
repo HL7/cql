@@ -2128,11 +2128,11 @@ For Integer, Predecessor is equivalent to subtracting 1.
 
 For Long, Predecessor is equivalent to subtracting 1L.
 
-For Decimal, Predecessor is equivalent to subtracting the minimum precision value for the Decimal type, or 10^-08.
+For Decimal, Predecessor is equivalent to subtracting 1 * the precision of the argument.
 
-For Date, DateTime, and Time values, Predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Predecessor is equivalent to subtracting 1 millisecond; if the DateTime is specified to the second, Predecessor is equivalent to subtracting one second, etc.
+For Date, DateTime, and Time values, Predecessor is equivalent to subtracting a time-unit quantity for the lowest specified precision of the value. For example, if the DateTime is fully specified, Predecessor is equivalent to subtracting 1 * the precision of the combined seconds and milliseconds, represented as a Decimal; if the DateTime is specified to the second, Predecessor is equivalent to subtracting one second, etc.
 
-For Quantity values, the Predecessor is equivalent to subtracting 1 if the quantity is an integer, and the minimum precision value for Decimal if the quantity is a decimal. The units are unchanged.
+For Quantity values, the Predecessor is equivalent to subtracting 1 * the precision of the quantity value. The units are unchanged.
 
 If the argument is null, the result is null.
 
@@ -2212,11 +2212,11 @@ For <span class="id">Integer</span>, <span class="id">Successor</span> is equiva
 
 For <span class="id">Long</span>, <span class="id">Successor</span> is equivalent to adding 1L.
 
-For <span class="id">Decimal</span>, <span class="id">Successor</span> is equivalent to adding the minimum precision value for the <span class="id">Decimal</span> type, or 10^-08.
+For <span class="id">Decimal</span>, <span class="id">Successor</span> is equivalent to adding 1 * the precision of the argument.
 
-For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="id">Successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="id">Successor</span> is equivalent to adding 1 millisecond; if the <span class="id">DateTime</span> is specified to the second, <span class="id">Successor</span> is equivalent to adding one second, etc.
+For <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values, <span class="id">Successor</span> is equivalent to adding a time-unit quantity for the lowest specified precision of the value. For example, if the <span class="id">DateTime</span> is fully specified, <span class="id">Successor</span> is equivalent to adding 1 * the precision of the combined seconds and milliseconds, represented as a Decimal; if the <span class="id">DateTime</span> is specified to the second, <span class="id">Successor</span> is equivalent to adding one second, etc.
 
-For <span class="id">Quantity</span> values, <span class="id">Successor</span> is equivalent to adding 1 if the quantity is an integer, and the minimum precision value for the <span class="id">Decimal</span> type if the quantity is a decimal. The units are unchanged.
+For <span class="id">Quantity</span> values, <span class="id">Successor</span> is equivalent to adding 1 * the precision of the quantity value. The units are unchanged.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
