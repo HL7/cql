@@ -196,7 +196,7 @@ The CodeSystemRef expression allows a previously defined named code system to be
 ```
 Concept : Expression
   ¦
-  1..* --> code : Code
+  0..* --> code : Code
   ¦
   0..1 --> display
 ```
@@ -208,7 +208,7 @@ The Concept type represents a literal concept selector.
 ```
 ConceptDef : Element
   ¦
-  1..* --> code : CodeRef (1)
+  0..* --> code : CodeRef (1)
   ¦
   1..1 --> name
   ¦

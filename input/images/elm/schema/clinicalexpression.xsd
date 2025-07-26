@@ -437,7 +437,7 @@ Note that the recommended approach to statically binding to an expansion set is 
 		<xs:complexContent>
 			<xs:extension base="Element">
 				<xs:sequence>
-					<xs:element name="code" type="CodeRef" minOccurs="1" maxOccurs="unbounded">
+					<xs:element name="code" type="CodeRef" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>A code that makes up the concept. All codes within a given concept must be synonyms.</xs:documentation>
 						</xs:annotation>
@@ -523,7 +523,7 @@ Note that the recommended approach to statically binding to an expansion set is 
 		<xs:complexContent>
 			<xs:extension base="Expression">
 				<xs:sequence>
-					<xs:element name="code" type="Code" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="code" type="Code" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="display" type="xs:string" use="optional"/>
 			</xs:extension>

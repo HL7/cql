@@ -88,7 +88,7 @@ codeDefinition
     ;
 
 conceptDefinition
-    : accessModifier? 'concept' identifier ':' '{' codeIdentifier (',' codeIdentifier)* '}' displayClause?
+    : accessModifier? 'concept' identifier ':' '{' (codeIdentifier (',' codeIdentifier)*)? '}' displayClause?
     ;
 
 codeIdentifier
@@ -140,7 +140,7 @@ intervalTypeSpecifier
     ;
 
 tupleTypeSpecifier
-    : 'Tuple' '{' tupleElementDefinition (',' tupleElementDefinition)* '}'
+    : 'Tuple' '{' (tupleElementDefinition (',' tupleElementDefinition)*)? '}'
     ;
 
 tupleElementDefinition
@@ -541,7 +541,7 @@ codeSelector
     ;
 
 conceptSelector
-    : 'Concept' '{' codeSelector (',' codeSelector)* '}' displayClause?
+    : 'Concept' '{' (codeSelector (',' codeSelector)*)? '}' displayClause?
     ;
 
 keyword

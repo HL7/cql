@@ -124,6 +124,10 @@ structured type Concept
 
 The <span class="id">Concept</span> type represents a single terminological concept within CQL.
 
+The <span class="id">codes<span> element may be an empty list, or it may be <span class="kw">null</span>. 
+
+The <span class="id">display</span> element may be <span class="kw">null</span> or an empty string.
+
 #### Date
 
 **Definition:**

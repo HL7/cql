@@ -958,7 +958,7 @@ The <span class="id">Concept</span> type has the following elements:
 
 |Name |Type |Description
 |----|----|----
-|**codes** |<span class="id">List\<Code></span> |The list of semantically equivalent codes representing the concept.
+|**codes** |<span class="id">List\<Code></span> |The list (potentially empty) of semantically equivalent codes representing the concept.
 |**display** |<span class="id">String</span> |A description of the concept.
 {: .grid .table .table-striped}
 
