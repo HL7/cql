@@ -24,6 +24,7 @@
   "description": "Codes for categorization of messages returned by applications that process Clinical Quality Language, whether as part of authoring or evaluating.",
   "caseSensitive": true,
   "valueSet": "http://cql.hl7.org/ValueSet/cql-message-category",
+  "hierarchyMeaning": "is-a",
   "content": "complete",
   "concept": [
     {

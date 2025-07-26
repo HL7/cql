@@ -23,7 +23,7 @@
   "publisher": "Clinical Decision Support Workgroup",
   "description": "Codes for characteristics of messages returned by applications that process Clinical Quality Language.",
   "caseSensitive": true,
-  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-characteristics",
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-message-characteristic",
   "content": "complete",
   "concept": [
     {
@@ -35,6 +35,11 @@
         "code": "severity",
         "display": "Severity",
         "definition": "Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system."
+    },
+    {
+      "code": "source",
+      "display": "Source",
+      "definition": "The source of the issue, providing information about where the issue is originating and how it might be addressed, possible values are codes in the [CQL Message Source Codes](CodeSystem-cql-message-source-codes.html) code system."
     },
     {
       "code": "example",
