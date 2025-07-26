@@ -2,15 +2,20 @@ grammar cql;
 
 /*
  * Clinical Quality Language Grammar Specification
- * Version 1.5 - Mixed Normative/Trial-Use
+ * Version 2.0 - Mixed Normative/Trial-Use
  */
 
 /*
  * Parser Rules
  */
 
+directive
+    : '#' identifier (':' STRING)?
+    ;
+
 library
     :
+    directive*
     libraryDefinition?
     definition*
     statement*
@@ -36,11 +41,11 @@ definition
     ;
 
 usingDefinition
-    : 'using' identifier ('version' STRING)?
+    : 'using' qualifiedIdentifier ('version' STRING)? ('called' identifier)?
     ;
 
 includeDefinition
-    : 'include' qualifiedIdentifier ('version' STRING)? ('called' identifier)?
+    : 'include' qualifiedIdentifier ('version' STRING)? ('called' identifier)? ('bind' tupleSelector)?
     ;
 
 accessModifier
@@ -69,7 +74,7 @@ codeDefinition
     ;
 
 conceptDefinition
-    : accessModifier? 'concept' identifier ':' '{' qualifiedIdentifier (',' qualifiedIdentifier)* '}' displayClause?
+    : accessModifier? 'concept' identifier ':' '{' (qualifiedIdentifier (',' qualifiedIdentifier)*)? '}' displayClause?
     ;
 
 /*
@@ -97,7 +102,7 @@ intervalTypeSpecifier
     ;
 
 tupleTypeSpecifier
-    : 'Tuple' '{' tupleElementDefinition (',' tupleElementDefinition)* '}'
+    : 'Tuple' '{' (tupleElementDefinition (',' tupleElementDefinition)*)? '}'
     ;
 
 tupleElementDefinition
@@ -116,6 +121,9 @@ statement
     : expressionDefinition
     | contextDefinition
     | functionDefinition
+    | contextInfoDefinition
+    | typeInfoDefinition
+    | conversionInfoDefinition
     ;
 
 expressionDefinition
@@ -142,6 +150,38 @@ operandDefinition
 
 functionBody
     : expression
+    ;
+
+contextInfoDefinition
+    : 'define' 'context' identifier 'of' 'type' namedTypeSpecifier 'with' 'key' '{' identifier (',' identifier)* '}'
+    ;
+
+typeInfoDefinition
+    : 'define' accessModifier? 'type' qualifiedIdentifier baseTypeSpecifier? typeElements? typeInfo contextRelationship*
+    ;
+
+baseTypeSpecifier
+    : 'extends' namedTypeSpecifier
+    ;
+
+typeElements
+    : '{' typeElementDefinition (',' typeElementDefinition)* '}'
+    ;
+
+typeElementDefinition
+    : identifier typeSpecifier
+    ;
+
+typeInfo
+    : ('label' identifier)? ('identifier' STRING)? 'retrievable'? ('primary' 'code' 'path' simplePath)?
+    ;
+
+contextRelationship
+    : 'related' 'to' qualifiedIdentifier 'context' 'by' '{' identifier (',' identifier)* '}'
+    ;
+
+conversionInfoDefinition
+    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' identifier
     ;
 
 /*
@@ -292,7 +332,7 @@ binaryLogicalExpression
     ;
 
 membershipExpression
-    : expression ('in' | 'contains') dateTimePrecisionSpecifier? expression
+    : expression ('in' | '~in' | 'contains' | '~contains' ) dateTimePrecisionSpecifier? expression
     ;
 
 setExpression
@@ -496,8 +536,8 @@ selector
     ;
 
 literal
-    : 'true'
-    | 'false'
+    : 'true'                                                #trueLiteral
+    | 'false'                                               #falseLiteral
     | 'null'                                                #nullLiteral
     | STRING                                                #stringLiteral
     | NUMBER                                                #numberLiteral
@@ -560,7 +600,7 @@ codeSelector
     ;
 
 conceptSelector
-    : 'Concept' '{' codeSelector (',' codeSelector)* '}' displayClause?
+    : 'Concept' '{' (codeSelector (',' codeSelector)*)? '}' displayClause?
     ;
 
 keyword
@@ -573,6 +613,7 @@ keyword
     | 'ascending'
     | 'before'
     | 'between'
+    | 'bind'
     | 'by'
     | 'called'
     | 'case'
@@ -584,8 +625,10 @@ keyword
     | 'collapse'
     | 'concept'
     | 'Concept'
+    | '~contains'
     | 'contains'
     | 'context'
+    | 'conversion'
     | 'convert'
     | 'date'
     | 'day'
@@ -606,6 +649,8 @@ keyword
     | 'except'
     | 'exists'
     | 'expand'
+    | 'explicit'
+    | 'extends'
     | 'false'
     | 'flatten'
     | 'fluent'
@@ -613,8 +658,11 @@ keyword
     | 'function'
     | 'hour'
     | 'hours'
+    | 'identifier'
     | 'if'
+    | 'implicit'
     | 'implies'
+    | '~in'
     | 'in'
     | 'include'
     | 'includes'
@@ -622,6 +670,8 @@ keyword
     | 'intersect'
     | 'Interval'
     | 'is'
+    | 'key'
+    | 'label'
     | 'let'
     | 'library'
     | 'List'
@@ -648,12 +698,16 @@ keyword
     | 'or on'
     | 'overlaps'
     | 'parameter'
+    | 'path'
     | 'per'
     | 'point'
     | 'predecessor'
+    | 'primary'
     | 'private'
     | 'properly'
     | 'public'
+    | 'related'
+    | 'retrievable'
     | 'return'
     | 'same'
     | 'second'
@@ -671,6 +725,7 @@ keyword
     | 'to'
     | 'true'
     | 'Tuple'
+    | 'type'
     | 'union'
     | 'using'
     | 'valueset'
@@ -686,269 +741,6 @@ keyword
     | 'xor'
     | 'year'
     | 'years'
-    ;
-
-// NOTE: Not used, this is the set of reserved words that may not appear as identifiers in ambiguous contexts
-reservedWord
-    : 'aggregate'
-    | 'all'
-    | 'and'
-    | 'as'
-    | 'after'
-    | 'before'
-    | 'between'
-    | 'case'
-    | 'cast'
-    | 'Code'
-    | 'collapse'
-    | 'Concept'
-    | 'convert'
-    | 'day'
-    | 'days'
-    | 'difference'
-    | 'distinct'
-    | 'duration'
-    | 'during'
-    | 'else'
-    | 'exists'
-    | 'expand'
-    | 'false'
-    | 'flatten'
-    | 'from'
-    | 'if'
-    | 'in'
-    | 'included in'
-    | 'is'
-    | 'hour'
-    | 'hours'
-    | 'Interval'
-    | 'let'
-    | 'List'
-    | 'maximum'
-    | 'millisecond'
-    | 'milliseconds'
-    | 'minimum'
-    | 'minute'
-    | 'minutes'
-    | 'month'
-    | 'months'
-    | 'not'
-    | 'null'
-    | 'occurs'
-    | 'of'
-    | 'on or'
-    | 'or'
-    | 'or on'
-    | 'per'
-    | 'point'
-    | 'properly'
-    | 'return'
-    | 'same'
-    | 'second'
-    | 'seconds'
-    | 'singleton'
-    | 'sort'
-    | 'such that'
-    | 'then'
-    | 'to'
-    | 'true'
-    | 'Tuple'
-    | 'week'
-    | 'weeks'
-    | 'when'
-    | 'with'
-    | 'within'
-    | 'without'
-    | 'year'
-    | 'years'
-    ;
-
-// Keyword identifiers are keywords that may be used as identifiers in a referential context
-// Effectively, keyword except reservedWord
-keywordIdentifier
-    : 'asc'
-    | 'ascending'
-    | 'by'
-    | 'called'
-    | 'code'
-    | 'codesystem'
-    | 'codesystems'
-    | 'concept'
-    | 'contains'
-    | 'context'
-    | 'date'
-    | 'default'
-    | 'define'
-    | 'desc'
-    | 'descending'
-    | 'display'
-    | 'div'
-    | 'end'
-    | 'ends'
-    | 'except'
-    | 'fluent'
-    | 'function'
-    | 'implies'
-    | 'include'
-    | 'includes'
-    | 'intersect'
-    | 'library'
-    | 'meets'
-    | 'mod'
-    | 'or after'
-    | 'or before'
-    | 'or less'
-    | 'or more'
-    | 'overlaps'
-    | 'parameter'
-    | 'predecessor'
-    | 'private'
-    | 'public'
-    | 'start'
-    | 'starting'
-    | 'starts'
-    | 'successor'
-    | 'time'
-    | 'timezoneoffset'
-    | 'union'
-    | 'using'
-    | 'valueset'
-    | 'version'
-    | 'where'
-    | 'width'
-    | 'xor'
-    ;
-
-// Function identifiers are keywords that may be used as identifiers for functions
-functionIdentifier
-    : 'after'
-    | 'aggregate'
-    | 'all'
-    | 'and'
-    | 'as'
-    | 'asc'
-    | 'ascending'
-    | 'before'
-    | 'between'
-    | 'by'
-    | 'called'
-    | 'case'
-    | 'cast'
-    | 'code'
-    | 'Code'
-    | 'codesystem'
-    | 'codesystems'
-    | 'collapse'
-    | 'concept'
-    | 'Concept'
-    | 'contains'
-    | 'context'
-    | 'convert'
-    | 'date'
-    | 'day'
-    | 'days'
-    | 'default'
-    | 'define'
-    | 'desc'
-    | 'descending'
-    | 'difference'
-    | 'display'
-    | 'distinct'
-    | 'div'
-    | 'duration'
-    | 'during'
-    | 'else'
-    | 'end'
-    | 'ends'
-    | 'except'
-    | 'exists'
-    | 'expand'
-    | 'false'
-    | 'flatten'
-    | 'fluent'
-    | 'from'
-    | 'function'
-    | 'hour'
-    | 'hours'
-    | 'if'
-    | 'implies'
-    | 'in'
-    | 'include'
-    | 'includes'
-    | 'included in'
-    | 'intersect'
-    | 'Interval'
-    | 'is'
-    | 'let'
-    | 'library'
-    | 'List'
-    | 'maximum'
-    | 'meets'
-    | 'millisecond'
-    | 'milliseconds'
-    | 'minimum'
-    | 'minute'
-    | 'minutes'
-    | 'mod'
-    | 'month'
-    | 'months'
-    | 'not'
-    | 'null'
-    | 'occurs'
-    | 'of'
-    | 'or'
-    | 'or after'
-    | 'or before'
-    | 'or less'
-    | 'or more'
-    | 'overlaps'
-    | 'parameter'
-    | 'per'
-    | 'point'
-    | 'predecessor'
-    | 'private'
-    | 'properly'
-    | 'public'
-    | 'return'
-    | 'same'
-    | 'singleton'
-    | 'second'
-    | 'seconds'
-    | 'start'
-    | 'starting'
-    | 'starts'
-    | 'sort'
-    | 'successor'
-    | 'such that'
-    | 'then'
-    | 'time'
-    | 'timezoneoffset'
-    | 'to'
-    | 'true'
-    | 'Tuple'
-    | 'union'
-    | 'using'
-    | 'valueset'
-    | 'version'
-    | 'week'
-    | 'weeks'
-    | 'where'
-    | 'when'
-    | 'width'
-    | 'with'
-    | 'within'
-    | 'without'
-    | 'xor'
-    | 'year'
-    | 'years'
-    ;
-
-// Reserved words that are also type names
-typeNameIdentifier
-    : 'Code'
-    | 'Concept'
-    | 'date'
-    | 'time'
     ;
 
 identifier

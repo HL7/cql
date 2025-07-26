@@ -132,7 +132,7 @@ CQL uses standard escape sequences for string literals:
 
 Table 3‑C - The escape sequences for string literals in CQL
 
-A syntax diagram of the standard escape sequences for string literals supported can be seen [here](19-l-cqlsyntaxdiagrams.html#ESC).
+A syntax diagram of the standard escape sequences for string literals supported can be seen [here](19-l-cqlsyntaxdiagrams.html#esc).
 
 #### Symbols
 
@@ -382,8 +382,6 @@ Note that most reserved words may still be used as identifiers if the usage is u
 
 In addition, even though many keywords are allowed to appear as identifiers, this feature of the language is about avoiding naming clashes with data models used in CQL, and several places in the grammar do not allow keywords or reserved words to be used as identifiers. For example, named expressions, terminology declarations, aliases, and let clauses cannot use keywords or reserved words as identifiers.
 
-A syntax diagram of the _reserved_ words supported can be seen [here](19-l-cqlsyntaxdiagrams.html#reservedWord).
-
 #### Identifiers
 
 Identifiers are used to name various elements within the language. There are three types of identifiers in CQL, simple, delimited, and quoted.
@@ -420,7 +418,7 @@ A quoted identifier is any sequence of characters enclosed in double-quotes (<sp
 
 The use of double-quotes and backticks allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
 
-A syntax diagram of quoted identifier can be seen [here](19-l-cqlsyntaxdiagrams.html#QUOTEDIDENTIFIER).
+A syntax diagram of quoted identifier can be seen [here](19-l-cqlsyntaxdiagrams.html#quotedidentifier).
 
 To specify a quoted or delimited identifier that includes a double-quote (<span class="sym">"</span>) or backtick (<span class="sym">`</span>), use a backslash to escape the delimiter:
 
@@ -453,7 +451,7 @@ Table 3‑E - The escape sequences for identifiers in CQL
 
 Identifiers can be combined using the _qualifier_ operator (<span class="sym">.</span>), resulting in a _qualified identifier_. For example <span class="id">Common.ConditionsIndicatingSexualActivity</span>. An identifier with no qualifiers is an _unqualified identifier_.
 
-A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdiagrams.html#qualifiedIdentifier).
+A syntax diagram of a _qualified identifier_ can be seen [here](19-l-cqlsyntaxdiagrams.html#qualifiedidentifier).
 
 #### Operator Precedence
 
@@ -604,7 +602,7 @@ The `@constraintScope` tag is applicable on top-level expression definitions tha
 
 Each component of a library may have an access modifier applied, either <span class="kw">public</span> or <span class="kw">private</span>. If no access modifier is applied, the component is considered public. Only public components of a library may be accessed by referencing libraries. Private components can only be accessed within the library itself.
 
-A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessModifier).
+A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagrams.html#accessmodifier).
 
 #### Directives
 
@@ -824,7 +822,7 @@ In various constructs, the type of a value must be specified. For example, when 
 * List Types
 * Choice Types
 
-A syntax diagram of the _type specifiers_ in CQL can be seen [here](19-l-cqlsyntaxdiagrams.html#typeSpecifier).
+A syntax diagram of the _type specifiers_ in CQL can be seen [here](19-l-cqlsyntaxdiagrams.html#typespecifier).
 
 The _named type specifier_ is simply the name of the type. For example:
 
@@ -834,7 +832,7 @@ parameter Threshold Integer
 
 This example declares a parameter named <span class="id">Threshold</span> of type <span class="id">Integer</span>.
 
-A syntax diagram of a _named type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#namedTypeSpecifier).
+A syntax diagram of a _named type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#namedtypespecifier).
 
 The _tuple type specifier_ allows the names and types of the elements of the type to be specified. For example:
 
@@ -842,7 +840,7 @@ The _tuple type specifier_ allows the names and types of the elements of the typ
 parameter Demographics Tuple { address String, city String, zip String }
 ```
 
-A syntax diagram of a _tuple type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#tupleTypeSpecifier).
+A syntax diagram of a _tuple type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#tupletypespecifier).
 
 The _interval type specifier_ allows the point-type of the interval to be specified:
 
@@ -850,7 +848,7 @@ The _interval type specifier_ allows the point-type of the interval to be specif
 parameter Range Interval<Integer>
 ```
 
-A syntax diagram of a _interval type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalTypeSpecifier).
+A syntax diagram of a _interval type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervaltypespecifier).
 
 The _list type specifier_ allows the element-type of a list to be specified:
 
@@ -858,7 +856,7 @@ The _list type specifier_ allows the element-type of a list to be specified:
 parameter Points List<Integer>
 ```
 
-A syntax diagram of a _list type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#listTypeSpecifier).
+A syntax diagram of a _list type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#listtypespecifier).
 
 And finally, the _choice type specifier_ allows a choice type to be specified:
 
@@ -866,7 +864,7 @@ And finally, the _choice type specifier_ allows a choice type to be specified:
 parameter ChoiceValue Choice<Integer, String>
 ```
 
-A syntax diagram of a _choice type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#choiceTypeSpecifier).
+A syntax diagram of a _choice type specifier_ construct can be seen [here](19-l-cqlsyntaxdiagrams.html#choicetypespecifier).
 
 #### Type Testing
 
@@ -1725,7 +1723,7 @@ define "RolledOutIntervals":
 
 In this example, the `aggregate` expression is returning the union of the current result with an interval constructed from the greater of the day after the end of the last interval and the start of the current interval, to the duration in days of the current interval later. The result is a list of non-overlapping intervals where any overlaps in the input list have pushed out subsequent intervals.
 
-A syntax diagram of an `aggregate` clause construct can be seen [here](19-l-cqlsyntaxdiagrams.html#aggregateClause).
+A syntax diagram of an `aggregate` clause construct can be seen [here](19-l-cqlsyntaxdiagrams.html#aggregateclause).
 
 Note that in general, since the type of the aggregate expression is not known until the expression can be semantically analyzed, it may be necessary to provide a typed starting expression as illustrated in this example. The starting clause can be omitted if the type of the result can be inferred from the aggregate expression:
 
@@ -1769,7 +1767,7 @@ The basic syntax for this definition is:
   <element name> <type specifier>
 ```
 
-A complete syntax diagram of a type definition can be seen [here](19-l-cqlsyntaxdiagrams.html#typeInfoDefinition).
+A complete syntax diagram of a type definition can be seen [here](19-l-cqlsyntaxdiagrams.html#typeinfodefinition).
 
 Types can be public or private. A private type is only accessible within the library in which it is declared.
 
@@ -1788,7 +1786,7 @@ define implicit conversion from FHIR.Period to System.Interval<System.DateTime> 
 
 This definition indicates that values of type `FHIR.Period` can be implicitly converted to values of type `Interval<System.DateTime>` using the function `FHIRHelpers.ToInterval`.
 
-Conversions defined in this way function as described in the [Conversions](#conversions) topic.
+Conversions defined in this way function as described in the [Conversion](#conversion) topic.
 
 #### Defining Contexts
 
@@ -1803,7 +1801,7 @@ define context Patient of type FHIR.Patient with key { id }
 
 This establishes a context named `Patient` that is represented by the type `FHIR.Patient`, and has key elements `id`.
 
-A syntax diagram of a context definition can be seen [here](19-l-cqlsyntaxdiagrams.html#contextInfoDefinition).
+A syntax diagram of a context definition can be seen [here](19-l-cqlsyntaxdiagrams.html#contextinfodefinition).
 
 Once this definition is provided, it can be used in a [context](02-authorsguide.html#context) declaration.
 
@@ -1827,7 +1825,7 @@ related to Patient by { subject }
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type.
 
-A syntax diagram of a function defintion can be seen [here](19-l-cqlsyntaxdiagrams.html#functionDefinition).
+A syntax diagram of a function defintion can be seen [here](19-l-cqlsyntaxdiagrams.html#functiondefinition).
 
 For example:
 

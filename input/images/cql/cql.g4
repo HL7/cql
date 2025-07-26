@@ -811,6 +811,7 @@ keywordIdentifier
     | 'private'
     | 'public'
     | 'related'
+    | 'retrievable'
     | 'start'
     | 'starting'
     | 'starts'

@@ -60,7 +60,7 @@ library CMS153CQM version '2'
 
 The above declaration names the library with the identifier <span class="id">CMS153CQM</span> and specifies the version <span class="lit">'2'</span>.
 
-A syntax diagram of the <span class="kw">library</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#libraryDefinition).
+A syntax diagram of the <span class="kw">library</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#librarydefinition).
 
 #### Data Models
 
@@ -82,7 +82,7 @@ If necessary, a version specifier can be provided to indicate which version of t
 using QUICK version '0.3.0'
 ```
 
-A syntax diagram of the <span class="kw">using</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingDefinition).
+A syntax diagram of the <span class="kw">using</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingdefinition).
 
 #### Libraries
 
@@ -128,7 +128,7 @@ define "SexuallyActive":
     or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 ```
 
-A syntax diagram of the <span class="kw">include</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includeDefinition).
+A syntax diagram of the <span class="kw">include</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#includedefinition).
 
 #### Terminology
 
@@ -136,7 +136,7 @@ A CQL library may contain zero or more named terminology declarations, including
 
 These declarations specify a local name that represents a codesystem, valueset, code, or concept and can be used anywhere within the library where the terminology is expected.
 
-The syntax diagrams of the [codesystem definition](19-l-cqlsyntaxdiagrams.html#codesystemDefinition),[valueset definition](19-l-cqlsyntaxdiagrams.html#valuesetDefinition), [code definition](19-l-cqlsyntaxdiagrams.html#codeDefinition) and [concept definition](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
+The syntax diagrams of the [codesystem definition](19-l-cqlsyntaxdiagrams.html#codesystemdefinition),[valueset definition](19-l-cqlsyntaxdiagrams.html#valuesetdefinition), [code definition](19-l-cqlsyntaxdiagrams.html#codedefinition) and [concept definition](19-l-cqlsyntaxdiagrams.html#conceptdefinition).
 
 Consider the following valueset declaration:
 
@@ -185,7 +185,7 @@ A CQL library can define zero or more parameters. Each parameter is defined with
 
 Table 2‑B - Elements that define a parameter
 
-A syntax diagram of the <span class="kw">parameter</span> can be seen [here](19-l-cqlsyntaxdiagrams.html#parameterDefinition).
+A syntax diagram of the <span class="kw">parameter</span> can be seen [here](19-l-cqlsyntaxdiagrams.html#parameterdefinition).
 
 The parameters defined in a library may be referenced by name in any expression within the library. When expressions in a CQL library are evaluated, the values for parameters are provided by the environment. For example, a library that defines criteria for a quality measure may define a parameter to represent the measurement period:
 
@@ -247,7 +247,7 @@ The following table lists some typical contexts:
 
 Table 2‑C - Typical contexts for CQL
 
-A syntax diagram of the <span class="kw">context</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#contextDefinition).
+A syntax diagram of the <span class="kw">context</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#contextdefinition).
 
 Depending on different needs, models may define any context appropriate to their use case, but should identify a default context that is used when authors do not declare a specific context.
 
@@ -478,7 +478,7 @@ Note that alias names, as with all language constructs, may be the subject of la
 
 The <span class="kw">where</span> clause allows the results of the query to be filtered by a condition that is evaluated for each element of the query being filtered. If the condition evaluates to <span class="kw">true</span> for the element being tested, that element is included in the result. Otherwise, the element is excluded from the resulting list.
 
-A syntax diagram of a <span class="kw">where</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#whereClause).
+A syntax diagram of a <span class="kw">where</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#whereclause).
 
 For example:
 
@@ -505,7 +505,7 @@ Note that because CQL uses three-valued logic, the result of evaluating any give
 
 The <span class="kw">return</span> clause of a CQL query allows the results of the query to be shaped. In most cases, the results of a query will be of the same type as the primary source of the query. However, some scenarios require only specific elements be extracted, or computations on the data involved in each element be performed. The <span class="kw">return</span> clause enables this type of query.
 
-A syntax diagram of a <span class="kw">return</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#returnClause).
+A syntax diagram of a <span class="kw">return</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#returnclause).
 
 For example:
 
@@ -534,7 +534,7 @@ If two encounters have the same value for <span class="id">lengthOfStay</span>, 
 
 CQL queries can sort results in any order using the <span class="kw">sort by</span> clause.
 
-A syntax diagram of a <span class="kw">sort</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#sortClause).
+A syntax diagram of a <span class="kw">sort</span> clause can be seen [here](19-l-cqlsyntaxdiagrams.html#sortclause).
 
 For example:
 
@@ -609,7 +609,7 @@ The <span class="kw">without</span> clause returns only those elements from the 
 
 This query is the same as the previous example, except that only encounters that _do not_ have overlapping conditions of <span class="id">"Acute Pharyngitis"</span> are returned. In other words, if the _such that_ condition evaluates to <span class="kw">true</span> (if the Encounter has an overlapping Condition of <span class="id">Acute Pharyngitis</span> in this case), then that Encounter is not included in the result.
 
-A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withClause) clause and [without](19-l-cqlsyntaxdiagrams.html#withoutClause) clause.
+A syntax diagram of a [with](19-l-cqlsyntaxdiagrams.html#withclause) clause and [without](19-l-cqlsyntaxdiagrams.html#withoutclause) clause.
 
 A given query may include any number of <span class="kw">with</span> and <span class="kw">without</span> clauses in any order, but they must all come before any <span class="kw">where</span>, <span class="kw">return</span>, or <span class="kw">sort</span> clauses.
 
@@ -788,7 +788,7 @@ For case- and locale-insensitive comparison, locale-insensitive meaning that an 
 
 CQL supports the representation of <span class="id">Date</span>, <span class="id">DateTime</span>, and <span class="id">Time</span> values.
 
-A syntax diagram of a <span class="id">Date, DateTime and Time</span> format can be seen [here](19-l-cqlsyntaxdiagrams.html#DATETIME).
+A syntax diagram of a <span class="id">Date, DateTime and Time</span> format can be seen [here](19-l-cqlsyntaxdiagrams.html#datetime).
 
 <span class="id">DateTime</span> values are used to represent an instant along the timeline, known to at least the year precision, and potentially to the millisecond precision. <span class="id">DateTime</span> values are specified using an at-symbol (<span class="sym">@</span>) followed by an ISO-8601 textual representation of the <span class="id">DateTime</span> value:
 
@@ -904,7 +904,7 @@ The <span class="id">Code</span> type has the following elements:
 
 Table 2‑F - Elements that make up a <span class="kw">code</span> type
 
-A syntax diagram of a <span class="id">Code</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#codeDefinition).
+A syntax diagram of a <span class="id">Code</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#codedefinition).
 
 The following examples illustrate the code declaration:
 
@@ -918,7 +918,7 @@ code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood 
 
 The above declarations can be referenced directly or within a [retrieve expression](#filtering-with-terminology).
 
-A syntax diagram of a <span class="id">Code</span> referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeSelector).
+A syntax diagram of a <span class="id">Code</span> referencing an existing code can be seen [here](19-l-cqlsyntaxdiagrams.html#codeselector).
 
 In addition, CQL provides a <span class="id">Code</span> literal that can be used to reference an existing code from a specific code system.
 
@@ -981,7 +981,7 @@ concept "Type B Hepatitis": { "Hepatitis Type B (SNOMED)", "Hepatitis Type B (IC
 
 The above declaration can be referenced directly or within a [retrieve expression](#filtering-with-terminology).
 
-A syntax diagram of a <span class="id">Concept</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptDefinition).
+A syntax diagram of a <span class="id">Concept</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptdefinition).
 
 As with codes, local names for concept declarations should be consistent with external declarations to avoid introducing any confusion of meaning.
 
@@ -996,13 +996,13 @@ Concept {
 
 This example constructs a <span class="id">Concept</span> with display <span class="lit">'Type B viral hepatitis'</span> and code of <span class="lit">'66071002'</span>.
 
-A syntax diagram of a <span class="id">Concept</span> literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptSelector).
+A syntax diagram of a <span class="id">Concept</span> literal can be seen [here](19-l-cqlsyntaxdiagrams.html#conceptselector).
 
 ##### Valuesets
 
 As a value, a valueset is simply a list of <span class="id">Code</span> values. However, CQL allows valuesets to be used without reference to the codes involved by declaring valuesets as a special type of value within the language.
 
-A syntax diagram of a valueset declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#valuesetDefinition).
+A syntax diagram of a valueset declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#valuesetdefinition).
 
 The following example illustrates some typical valueset declarations:
 
@@ -1089,7 +1089,7 @@ define "PharyngitisOnSetDateTime": FirstPharyngitis.onsetDateTime
 
 Tuples can also be constructed directly using a tuple selector.
 
-A syntax diagram of a _tuple_ selector can be seen [here](19-l-cqlsyntaxdiagrams.html#tupleSelector).
+A syntax diagram of a _tuple_ selector can be seen [here](19-l-cqlsyntaxdiagrams.html#tupleselector).
 
 For example:
 
@@ -1189,7 +1189,7 @@ CQL supports the representation of intervals, or ranges, of values of various ty
 
 Intervals in CQL are represented by specifying the low and high points of the <span class="id">Interval</span> and whether the boundary is inclusive (meaning the boundary point is part of the interval) or exclusive (meaning the boundary point is excluded from the interval). Following standard mathematics notation, inclusive (closed) boundaries are indicated with square brackets, and exclusive (open) boundaries are indicated with parentheses.
 
-A syntax diagram of an <span class="id">Interval</span> construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalSelector).
+A syntax diagram of an <span class="id">Interval</span> construct can be seen [here](19-l-cqlsyntaxdiagrams.html#intervalselector).
 
 For example:
 
