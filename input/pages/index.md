@@ -9,17 +9,6 @@ Clinical Quality Language (CQL) is a high-level, domain-specific language focuse
 
 In addition, this specification describes a machine-readable canonical representation called Expression Logical Model (ELM) targeted at implementations and designed to enable sharing of clinical knowledge.
 
-![ANSI Approved Logo](assets/images/ansi-approved.gif)
-
-|===
-|Formal Name: |HL7 Cross-Paradigm Specification: Clinical Quality Language, Release 1
-|ANSI Designation: |ANSI/HL7 CQLANG, R1-2020
-|Date of Approval: |2020-12-01
-|===
-{: .grid .table .table-striped}
-
-CQL is an ANSI Normative Standard. ANSI has certificated that the portions of this specification marked Normative have met its requirements for development of a formal standard.
-
 > This specification is normative, except where identified as informative or trial-use content.
 >
 > For a complete description of the changes to this version, please review the version history linked below.
