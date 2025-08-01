@@ -3,22 +3,11 @@
 
 ![assets/images/image1](assets/images/image1.png){: width=144; height=148; }
 
-*HL7 Standard: Clinical Quality Language Specification, Release 2 Mixed Normative/Trial-Use (CQL 2.0)*
+*HL7 Standard: Clinical Quality Language Specification, Release 2 Trial-Use (CQL 2.0.0-ballot)*
 
 *August 2025 Publication*
 
-*HL7 Mixed Normative/Trial-Use Specification*
-
-![ANSI Approved Logo](assets/images/ansi-approved.gif)
-
-|===
-|Formal Name: |HL7 Cross-Paradigm Specification: Clinical Quality Language, Release 1
-|ANSI Designation: |ANSI/HL7 CQLANG, R1-2020
-|Date of Approval: |2020-12-01
-|===
-{: .grid .table .table-striped}
-
-CQL is an ANSI Normative Standard. ANSI has certificated that the portions of this specification marked Normative have met its requirements for development of a formal standard.
+*HL7 Trial-Use Specification*
 
 *Sponsored by:*
 
@@ -34,15 +23,15 @@ Use of this material is governed by HL7's [*IP Compliance Policy*](http://www.hl
 
 *Identifying Information for Specification:*
 
-*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 1 (CQL 1.5)
+*Specification Name and Release Number:* HL7 Standard: Clinical Quality Language Specification, Release 2 - STU Ballot (CQL 2.0.0-ballot)
 
 *Realm:* Universal
 
-*Ballot Level:* Normative
+*Ballot Level:* Trial-Use
 
-*Ballot Cycle:* May 2020
+*Ballot Cycle:* September 2025
 
-*Specification Date:* Dec 2020
+*Specification Date:* August 1st 2025
 
 |==================================================================
 |Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD <br/>University of Utah Health Care <br/>guilherme.delfiol@utah.edu
@@ -74,8 +63,8 @@ Copyrights
 
 This material includes SNOMED Clinical Terms ® (SNOMED CT®), which are used by permission of the International Health Terminology Standards Development Organization (IHTSDO). All rights reserved. SNOMED CT was originally created by The College of American Pathologists. "SNOMED ®" and "SNOMED CT ®" are registered trademarks of the IHTSDO.
 
-This material contains content from LOINC® (http://loinc.org). The LOINC table, LOINC codes, and LOINC panels and forms file are copyright (c) 1995-2011, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and available at no cost under the license at http://loinc.org/terms-of-use.
+This material contains content from LOINC® (http://loinc.org). The LOINC table, LOINC codes, and LOINC panels and forms file are copyright (c) 1995+, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and available at no cost under the license at http://loinc.org/terms-of-use.
 
-This material contains content from the Unified Code for Units of Measure (UCUM) (http://unitsofmeasure.org). The UCUM specification is copyright (c) 1999-2013, Regenstrief Institute, Inc. and available at no cost under the license at http://unitsofmeasure.org/trac/wiki/TermsOfUse.
+This material contains content from the Unified Code for Units of Measure (UCUM) (http://unitsofmeasure.org). The UCUM specification is copyright (c) 1999+, Regenstrief Institute, Inc. and available at no cost under the license at http://unitsofmeasure.org/trac/wiki/TermsOfUse.
 
-This material contains quality measure content developed by the National Committee for Quality Assurance (NCQA). The measure content is copyright (c) 2008-2013 National Committee for Quality Assurance and used in accordance with the NCQA license terms for non-commercial use.
+This material contains quality measure content developed by the National Committee for Quality Assurance (NCQA). The measure content is copyright (c) 2008+ National Committee for Quality Assurance and used in accordance with the NCQA license terms for non-commercial use.
