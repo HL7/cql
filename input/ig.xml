@@ -498,7 +498,7 @@
     </page>
     <parameter>
       <code value="releaselabel"/>
-      <value value="STU 2 - Ballot 1"/>
+      <value value="STU 2 - Ballot"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
