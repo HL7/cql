@@ -85,8 +85,30 @@
   <li>
     <a href="tests.html">Tests</a>
   </li>
-  <li>
-    <a href="downloads.html">Downloads</a>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a target="_blank" href="https://chat.fhir.org/#narrow/channel/179220-cql">Discussion Forum</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://confluence.hl7.org/spaces/CDS/pages/55935478/Clinical+Quality+Language">Project Page</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://jira.hl7.org/secure/Dashboard.jspa?selectPageId=17129">Specification Dashboard</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://jira.hl7.org/secure/CreateIssueDetails!init.jspa?pid=10405&amp;issuetype=10600&amp;customfield_11302=FHIR-cql">Propose a Change</a>
+      </li>
+      <li>
+        <a href="downloads.html">Downloads</a>
+      </li>
+      <!--li>
+        <a href="license.html">License</a>
+      </li-->
+    </ul>
   </li>
   <li>
     <a href="changes.html">Changes</a>
