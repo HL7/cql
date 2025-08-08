@@ -6,9 +6,3 @@ INFORMATION: CodeSystem/cql-message-characteristic-codes: CodeSystem: Most code 
 INFORMATION: CodeSystem/cql-message-codes: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 INFORMATION: CodeSystem/cql-message-severity-codes: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 INFORMATION: CodeSystem/cql-message-source-codes: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
-
-# 2.0.0-ballot-02: These value sets are resolving, this is an acknowledged issue in the publisher, and will be fixed next release, per https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/.E2.9C.94.20CodeSystem.20property.20value.20set.20not.20found/with/530885941
-WARNING: CodeSystem/cql-message-codes: CodeSystem.property[0]: The ValueSet http://cql.hl7.org/ValueSet/cql-message-category is unknown, so the property codes cannot be validated
-WARNING: CodeSystem/cql-message-codes: CodeSystem.property[1]: The ValueSet http://cql.hl7.org/ValueSet/cql-message-severity is unknown, so the property codes cannot be validated
-WARNING: CodeSystem/cql-message-codes: CodeSystem.property[2]: The ValueSet http://cql.hl7.org/ValueSet/cql-message-source is unknown, so the property codes cannot be validated
-
