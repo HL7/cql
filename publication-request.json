@@ -4,8 +4,8 @@
   "path": "http://cql.hl7.org/2025Sep",
   "mode": "working",
   "status": "trial-use",
-  "sequence": "R2",
-  "desc": "STU 2 - Ballot",
-  "descmd": "Trial-use ballot of Release 2 trial-use content. This ballot introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes.",
+  "sequence": "R2 STU 1",
+  "desc": "R2 STU 1 - Ballot",
+  "descmd": "Trial-use ballot of Release 2 trial-use content. This ballot introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes. Normative elements of the specification remain normative from a maturity perspective (i.e. normative aspects of the specification will not change in backwards-incompatible ways). New content introduced in this trial-use are marked as such, and trial-use content that was introduced in 1.5 remains trial-use in this version.",
   "changes": "v2.0-changelog.html"
 }

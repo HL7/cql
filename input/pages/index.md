@@ -5,11 +5,14 @@
 
 *HL7 Trial-Use Specification*
 
+{: .stu-note}
+> This is a trial-use ballot of the CQL specification that introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes. Normative elements of the specification remain normative from a maturity perspective (i.e. normative aspects of the specification will not change in backwards-incompatible ways). New content introduced in this trial-use are marked as such, and trial-use content that was introduced in 1.5 remains trial-use in this version.
+
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
 
 In addition, this specification describes a machine-readable canonical representation called Expression Logical Model (ELM) targeted at implementations and designed to enable sharing of clinical knowledge.
 
-> For a complete description of the changes to this version, please review the version history linked below.
+> For a complete description of the changes to this version, please review the [version history](http://cql.hl7.org/history.html).
 {: .note-info}
 
 |===
