@@ -1,0 +1,295 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "cql-language-capabilities",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+      "valueCode": "cds"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+      "valueCode": "trial-use"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/CodeSystem/cql-language-capabilities",
+  "name": "CQLLanguageCapabilityCodes",
+  "title": "CQL Language Capability Codes",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Codes for CQL language capabilities.",
+  "caseSensitive": true,
+  "valueSet": "http://cql.hl7.org/ValueSet/cql-language-capability",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "decimal-precision-and-scale",
+      "display": "Decimal precision and scale",
+      "definition": "How many total digits (precision) and how many digits to the right of the decimal point (scale) the implementation supports for Decimal values."
+    },
+    {
+      "code": "datetime-precision-and-scale",
+      "display": "Datetime precision and scale",
+      "definition": "The finest granularity (precision) and smallest increment (scale) supported for date/time values. Precision might be year, month, day, second, or millisecond; scale refers to how many fractional digits of seconds are supported (e.g., .123 = millisecond scale)."
+    },
+    {
+      "code": "ucum-unit-conversion-support",
+      "display": "UCUM unit conversion support",
+      "definition": "Whether and how the engine can automatically convert between units of measure using UCUM (Unified Code for Units of Measure). For example, being able to convert 1 cm into 0.01 m."
+    },
+    {
+      "code": "regex-dialect",
+      "display": "Regex dialect",
+      "definition": "Which flavor of regular expressions the implementation supports (e.g., PCRE, JavaScript, .NET). This matters since regex syntax can differ slightly across dialects."
+    },
+    {
+      "code": "supported-data-models",
+      "display": "Supported data models",
+      "definition": "Which external models the engine can evaluate against (e.g., FHIR R4, QDM). This lists what structured data sources can be used in retrieve expressions."
+    },
+    {
+      "code": "system.ratio",
+      "display": "System.Ratio",
+      "definition": "A built-in CQL (or ELM) numeric type that represents a ratio (a fractional relationship) between two numbers, e.g. “3 / 4”. It is used to express proportions, rates, or relative relationships between quantities rather than absolute values."
+    },
+    {
+      "code": "system.date",
+      "display": "System.Date",
+      "definition": "The CQL type for a calendar date (year, month, day) without a time component (or fractional time). It may allow partial specification (e.g. specifying just a year, or year + month) to indicate uncertainty in more granular components."
+    },
+    {
+      "code": "expand-operator",
+      "display": "Expand operator",
+      "definition": "In the context of CQL, the Expand operator is used on a ValueSet to obtain (materialize) the set of all individual codes that belong to it. In other words, given a value set definition (which may include code hierarchies, includes, excludes), Expand produces the explicit list of codes. (This is part of terminology / vocabulary support.)"
+    },
+    {
+      "code": "fhirpath-support",
+      "display": "FHIRPath Support",
+      "definition": "The ability of a CQL implementation to evaluate or translate FHIRPath expressions (the query/lang standard for navigating FHIR resources) within CQL logic. This means that within CQL you can use FHIRPath navigation and filtering over FHIR model data as supported by the engine."
+    },
+    {
+      "code": "precision-operators-for-decimal-and-date-time-types",
+      "display": "Precision operators for Decimal and Date/Time types",
+      "definition": "Operators that allow you to control or adjust the precision (number of significant digits, fractional parts) of Decimal and date/time types (e.g. truncating or rounding to a given precision). These let you normalize values to particular scales (e.g. rounding to 2 decimal places, truncating to days, etc.)."
+    },
+    {
+      "code": "model-defined-contexts",
+      "display": "Model-defined contexts",
+      "definition": "Contexts (in define context ...) that are defined by the data model, not just generic ones like Patient or Population. This means the model itself can specify named contexts (for example, “EncounterContext” or “ObservationContext”) which authors can use in CQL to scope their data retrieval or logic."
+    },
+    {
+      "code": "library-namespaces",
+      "display": "Library namespaces",
+      "definition": "The ability in CQL to organize libraries into namespaces (or qualified names) so that names (definitions, functions, etc.) do not collide. Namespaces help in modularization and avoid ambiguity when multiple libraries define similarly-named items."
+    },
+    {
+      "code": "related-context-retrieves",
+      "display": "Related-context retrieves",
+      "definition": "A retrieve operation that is relative to a context, meaning it retrieves data not just globally but in relation to the current context entity. For example, retrieving “observations of the patient in the current encounter” or “diagnoses for the patient in the same encounter context.” It allows a retrieve to be constrained by context relationship paths."
+    },
+    {
+      "code": "unit-conversion-support",
+      "display": "Unit conversion support",
+      "definition": "The engine’s ability to convert between units of measure (especially UCUM units) as needed in expressions. For example, converting from “cm” to “m”, or “mg” to “g” automatically (as long as it’s a valid conversion) so that arithmetic or comparisons across different units can work correctly."
+    },
+    {
+      "code": "modular-arithmetic-for-quantities",
+      "display": "Modular arithmetic for quantities",
+      "definition": "Arithmetic operations using mod (or remainder) when applied to Quantities (i.e. numeric values associated with units). This means you can compute something like a mod b where a and b are quantities, provided their units are compatible. The operation yields the remainder after division, respecting unit conversion semantics (i.e. converting units so the operation is meaningful)."
+    },
+    {
+      "code": "expand-a-single-interval",
+      "display": "Expand a single interval",
+      "definition": "The expand operator, when applied to an Interval, produces a sequence (list) of discrete points or sub-values from that interval at a specified step (the “per” value). If you expand a single interval (rather than a list of intervals), you get a list of points rather than further intervals."
+    },
+    {
+      "code": "aggregate-clause",
+      "display": "Aggregate clause",
+      "definition": "A clause (often in a Query expression) that defines how to accumulate, combine, or reduce multiple values into a summary result (e.g. sum, count, average). In CQL, an aggregate clause allows for grouping and summarizing collections of data."
+    },
+    {
+      "code": "include-retrieves",
+      "display": "Include retrieves",
+      "definition": "A retrieve that includes not only direct data from the specified model (or context) but also data that is included via relationships or navigations (i.e. following association paths). Essentially, a more inclusive query for related records, not just the primary entity."
+    },
+    {
+      "code": "searchpath-retrieves",
+      "display": "Searchpath retrieves",
+      "definition": "A retrieve that uses a search path (a path expression) to navigate the data model, filtering or selecting data based on traversing relationships. In other words, rather than retrieve X, you might retrieve X Y somePath where somePath defines which linked entities to follow in the model to constrain or fetch records."
+    },
+    {
+      "code": "id-retrieves",
+      "display": "Id retrieves",
+      "definition": "A retrieve operation that fetches entities by a unique identifier (id). Instead of retrieving based on criteria or paths, you directly fetch a resource or record with the given id."
+    },
+    {
+      "code": "system.long",
+      "display": "System.Long",
+      "definition": "A built-in integral numeric type in CQL/ELM for representing 64-bit signed integers (whole numbers without fractional parts). It supports typical integer arithmetic operations (add, subtract, multiply, divide, modulus)."
+    },
+    {
+      "code": "system.vocabulary",
+      "display": "System.Vocabulary",
+      "definition": "An abstract (reference) type in CQL/ELM which is a supertype for types that reference terminologies (e.g. CodeSystem, ValueSet). It holds properties like an identifier and version, allowing CQL to manipulate or refer to external code systems generically."
+    },
+    {
+      "code": "system.codesystem",
+      "display": "System.CodeSystem",
+      "definition": "A CQL type used to represent a reference to an external code system (e.g. SNOMED, LOINC). It is not the definition of the code system itself but a pointer (via an id, plus optional version) to that system, which CQL can use in code or concept operations (e.g. in, contains)."
+    },
+    {
+      "code": "system.valueSet",
+      "display": "System.ValueSet",
+      "definition": "A CQL type representing a reference to a ValueSet (a set of codes drawn from one or more code systems). ValueSet references include an id (often a URI) and optional version. CQL supports operations like ExpandValueSet, contains, and in over these references."
+    },
+    {
+      "code": "system-data-types",
+      "display": "System Data Types",
+      "definition": "This refers to the suite of primitive and structured types defined by CQL/ELM (e.g. Integer, Long, Decimal, String, Boolean, Date, DateTime, Time, Interval &lt;T&gt;, List &lt;T&gt;, Tuple, Quantity, etc.). These “system types” are the foundational types on which CQL expressions operate."
+    },
+    {
+      "code": "logical-operators",
+      "display": "Logical Operators",
+      "definition": "Operators that combine or invert Boolean values under 3-valued logic (i.e. true / false / null). Includes and, or, not, and implies."
+    },
+    {
+      "code": "type-operators",
+      "display": "Type Operators",
+      "definition": "Operators that inspect or convert types. Includes things like is/is not, type conversion or casting operators (e.g. as or explicit casting), possibly “choice” / “choice resolution” or promotion/demotion operators (to handle mixed or choice types)."
+    },
+    {
+      "code": "nullological-operators",
+      "display": "Nullological Operators",
+      "definition": "Operators for dealing with null / missing information. Includes things like Null, Coalesce, IsNull, IsTrue / IsFalse"
+    },
+    {
+      "code": "comparison-operators",
+      "display": "Comparison Operators",
+      "definition": "Operators that compare two values to yield a Boolean (or null) result. Includes = (equal), != (not equal), <, <=, >, >=, in / not in."
+    },
+    {
+      "code": "arithmetic-operators",
+      "display": "Arithmetic Operators",
+      "definition": "Operators that work on numeric (or quantity) types. Includes +, -, *, /, mod, unary plus, unary minus (negation), functions like abs, round, power, exp, ln etc. When used with Quantity, they respect unit semantics (unit conversion or compatibility)."
+    },
+    {
+      "code": "string-operators",
+      "display": "String Operators",
+      "definition": "Operators to manipulate or query strings. Examples: Concatenation (e.g. & or + depending on syntax); length — number of characters; substring, indexOf, split, startsWith, endsWith; matches — test regex pattern against the string; replaceMatches — replace parts that match a regex."
+    },
+    {
+      "code": "date-and-time-operators",
+      "display": "Date and Time Operators",
+      "definition": "Operators for manipulating or querying dates, times, and datetimes: now(), today() — get the current date/time context; Extract components: e.g. yearOf(), monthOf(), dayOf(), hourOf() etc.; Arithmetic on dates/times: e.g. adding/subtracting durations, intervals; Rounding/truncation operations (e.g. rounding to nearest minute); Comparisons, difference, duration calculations."
+    },
+    {
+      "code": "interval-operators",
+      "display": "Interval Operators",
+      "definition": "Operators that operate on intervals (ranges) of values: start, end — return boundaries of an interval; contains, in — whether a value is in the interval; union, intersect — combine or overlap intervals; width — size/length of the interval; expand — generate discrete points from an interval; starts, ends — test whether one interval starts or ends another."
+    },
+    {
+      "code": "list-operators",
+      "display": "List Operators",
+      "definition": "Operators on lists (collections) of elements: size — number of elements; empty, not empty; first, last; indexer — get the i-th element; contains, in; union, intersect, except — set-like operations; map, filter, distinct (or equivalent); sort, reverse, zip."
+    },
+    {
+      "code": "aggregate-functions",
+      "display": "Aggregate Functions",
+      "definition": "Functions that reduce a collection (list) into a scalar or summary. Some common ones: count — count of elements; sum, min, max, average; median, mode (if supported); exists, all, any."
+    },
+    {
+      "code": "clinical-operators",
+      "display": "Clinical Operators",
+      "definition": "Operators specific to the clinical/health domain (CQL’s built-ins). Examples: retrieve — fetch clinical data from a data model (FHIR, QDM, etc.); include / expand (for value sets); Terminology functions: in, belongsTo, concept, code, codeSystem, valueSet operations; Temporal and duration operations in clinical context."
+    },
+    {
+      "code": "diagnostic-operators",
+      "display": "Diagnostic Operators",
+      "definition": "Operators used for error handling, messaging, diagnostics, and exception-like behavior in CQL/ELM. Examples: throw / raise / error — cause an error or diagnostic message; log or messaging operators (if the implementation supports emitting debug or diagnostic output); Possibly isDefined, hasValue checks; Operators to test or capture error conditions."
+    },
+    {
+      "code": "single-source-query",
+      "display": "Single source query",
+      "definition": "A query that retrieves or operates over one source collection (a list, interval, or data set)."
+    },
+    {
+      "code": "relationships-query",
+      "display": "Relationships query",
+      "definition": "A query that involves two or more source collections in the from clause."
+    },
+    {
+      "code": "let-clause-query",
+      "display": "Let clause query",
+      "definition": "A query that introduces local definitions (bindings) to simplify or reuse expressions."
+    },
+    {
+      "code": "where-clause-query",
+      "display": "Where clause query",
+      "definition": "A query that filters results using Boolean conditions."
+    },
+    {
+      "code": "return-clause-query",
+      "display": "Return clause query",
+      "definition": "Specifies the shape or content of each row returned from the query."
+    },
+    {
+      "code": "aggregate-clause-query",
+      "display": "Aggregate clause query",
+      "definition": "Defines how to reduce a set of query results to a single summary value."
+    },
+    {
+      "code": "multi-source-query",
+      "display": "Multi source query",
+      "definition": "A query that involves two or more source collections in the from clause."
+    },
+    {
+      "code": "unfiltered-context-retrieve",
+      "display": "Unfiltered context retrieve",
+      "definition": "A retrieve that returns all data elements of a given type within the current context, without applying any terminology or attribute filters."
+    },
+    {
+      "code": "terminology-based-retrieve",
+      "display": "Terminology-based retrieve",
+      "definition": "A retrieve that uses a terminology reference (ValueSet, CodeSystem, or Code) to filter the results."
+    },
+    {
+      "code": "valueset-terminology-target-retrieve",
+      "display": "Valueset terminology target retrieve",
+      "definition": "A specific kind of terminology-based retrieve where the filter is a ValueSet reference."
+    },
+    {
+      "code": "codesystem-terminology-target-retrieve",
+      "display": "CodeSystem terminology target retrieve",
+      "definition": "A retrieve filtered to a CodeSystem as the target. This means all codes within that system are valid, possibly with additional criteria."
+    },
+    {
+      "code": "code-terminology-target-retrieve",
+      "display": "Code terminology target retrieve",
+      "definition": "A retrieve filtered by a specific code (not an entire ValueSet or system)."
+    },
+    {
+      "code": "searchpath-retrieve",
+      "display": "Searchpath retrieve",
+      "definition": "A retrieve that uses a search path expression into the model to determine the attribute where the terminology applies."
+    },
+    {
+      "code": "include-retrieve",
+      "display": "Include retrieve",
+      "definition": "A retrieve that includes related records by following model-defined references."
+    },
+    {
+      "code": "related-context-retrieve",
+      "display": "Related-context retrieve",
+      "definition": "A retrieve scoped to a different context entity that is related to the current context."
+    },
+    {
+      "code": "profile-based-retrieve",
+      "display": "Profile-based retrieve",
+      "definition": "A retrieve constrained to a profile (a subtype of a resource with additional rules)."
+    }
+  ]
+}
