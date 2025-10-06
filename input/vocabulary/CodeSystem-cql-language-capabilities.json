@@ -343,22 +343,22 @@
     {
       "code": "tuple",
       "display": "Tuple",
-      "definition": "An anonymous structured type with named elements."
+      "definition": "An structured type with named elements."
     },
     {
       "code": "choice",
       "display": "Choice",
-      "definition": "A structured type. A type that allows a value to be one of several specified types."
+      "definition": "A type that allows a value to be one of several specified types."
     },
     {
       "code": "list<T>",
       "display": "List<T>",
-      "definition": "A structured type. A collection type. An ordered collection of elements of type T."
+      "definition": "A collection type. An ordered collection of elements of type T."
     },
     {
       "code": "interval<T>",
       "display": "Interval<T>",
-      "definition": "A collection type. Represents a continuous or discrete range of values of type T (e.g. numbers, dates)."
+      "definition": "An interval type. Represents a continuous or discrete range of values of type T (e.g. numbers, dates)."
     },
     {
       "code": "interval<integer>",
@@ -384,11 +384,6 @@
       "code": "interval<datetime>",
       "display": "Interval<DateTime>",
       "definition": "An interval type. A range of full date/times."
-    },
-    {
-      "code": "choicetype",
-      "display": "Choice Type",
-      "definition": "Represents a value that may be one of several different types. Basically a union type."
     }
   ]
 }
