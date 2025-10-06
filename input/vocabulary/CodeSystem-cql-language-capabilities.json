@@ -56,16 +56,6 @@
       "definition": "Which external models the engine can evaluate against (e.g., FHIR R4, QDM). This lists what structured data sources can be used in retrieve expressions."
     },
     {
-      "code": "system.ratio",
-      "display": "System.Ratio",
-      "definition": "A built-in CQL (or ELM) numeric type that represents a ratio (a fractional relationship) between two numbers, e.g. “3 / 4”. It is used to express proportions, rates, or relative relationships between quantities rather than absolute values."
-    },
-    {
-      "code": "system.date",
-      "display": "System.Date",
-      "definition": "The CQL type for a calendar date (year, month, day) without a time component (or fractional time). It may allow partial specification (e.g. specifying just a year, or year + month) to indicate uncertainty in more granular components."
-    },
-    {
       "code": "expand-operator",
       "display": "Expand operator",
       "definition": "In the context of CQL, the Expand operator is used on a ValueSet to obtain (materialize) the set of all individual codes that belong to it. In other words, given a value set definition (which may include code hierarchies, includes, excludes), Expand produces the explicit list of codes. (This is part of terminology / vocabulary support.)"
@@ -131,6 +121,11 @@
       "definition": "A retrieve operation that fetches entities by a unique identifier (id). Instead of retrieving based on criteria or paths, you directly fetch a resource or record with the given id."
     },
     {
+      "code": "system.integer",
+      "display": "System.Integer",
+      "definition": "A cql data type. A whole number type with no fractional component."
+    },
+    {
       "code": "system.long",
       "display": "System.Long",
       "definition": "A built-in integral numeric type in CQL/ELM for representing 64-bit signed integers (whole numbers without fractional parts). It supports typical integer arithmetic operations (add, subtract, multiply, divide, modulus)."
@@ -151,9 +146,44 @@
       "definition": "A CQL type representing a reference to a ValueSet (a set of codes drawn from one or more code systems). ValueSet references include an id (often a URI) and optional version. CQL supports operations like ExpandValueSet, contains, and in over these references."
     },
     {
-      "code": "system-data-types",
-      "display": "System Data Types",
-      "definition": "This refers to the suite of primitive and structured types defined by CQL/ELM (e.g. Integer, Long, Decimal, String, Boolean, Date, DateTime, Time, Interval &lt;T&gt;, List &lt;T&gt;, Tuple, Quantity, etc.). These “system types” are the foundational types on which CQL expressions operate."
+      "code": "system.decimal",
+      "display": "System.Decimal",
+      "definition": "A system data type. A numeric type that supports fractional values with defined precision (total digits) and scale (digits to the right of the decimal)."
+    },
+    {
+      "code": "system.string",
+      "display": "System.String",
+      "definition": "A system data type. A sequence of characters."
+    },
+    {
+      "code": "system.boolean",
+      "display": "System.Boolean",
+      "definition": "A system data type. A logical truth value."
+    },
+    {
+      "code": "system.date",
+      "display": "System.Date",
+      "definition": "A system data type. A calendar date consisting of year, month, and day, but no time."
+    },
+    {
+      "code": "system.time",
+      "display": "System.Time",
+      "definition": "A system data type. A time of day, without any date."
+    },
+    {
+      "code": "system.datetime",
+      "display": "System.DateTime",
+      "definition": "A system data type. A combination of date and time, representing a specific point on the timeline."
+    },
+    {
+      "code": "system.quantity",
+      "display": "System.Quantity",
+      "definition": "A system data type. A numeric value paired with a unit of measure (UCUM code)."
+    },
+    {
+      "code": "system.ratio",
+      "display": "System.Ratio",
+      "definition": "A system data type. A fractional relationship between two Quantity values (numerator and denominator)."
     },
     {
       "code": "logical-operators",
@@ -294,51 +324,6 @@
       "code": "profile-based-retrieve",
       "display": "Profile-based retrieve",
       "definition": "A retrieve constrained to a profile (a subtype of a resource with additional rules)."
-    },
-    {
-      "code": "integer",
-      "display": "Integer",
-      "definition": "A simple type. A whole number type with no fractional component."
-    },
-    {
-      "code": "decimal",
-      "display": "Decimal",
-      "definition": "A simple type. A numeric type that supports fractional values with defined precision (total digits) and scale (digits to the right of the decimal)."
-    },
-    {
-      "code": "string",
-      "display": "String",
-      "definition": "A simple type. A sequence of characters."
-    },
-    {
-      "code": "boolean",
-      "display": "Boolean",
-      "definition": "A simple type. A logical truth value."
-    },
-    {
-      "code": "date",
-      "display": "Date",
-      "definition": "A simple type. A calendar date consisting of year, month, and day, but no time."
-    },
-    {
-      "code": "time",
-      "display": "Time",
-      "definition": "A simple type. A time of day, without any date."
-    },
-    {
-      "code": "datetime",
-      "display": "DateTime",
-      "definition": "A simple type. A combination of date and time, representing a specific point on the timeline."
-    },
-    {
-      "code": "quantity",
-      "display": "Quantity",
-      "definition": "A simple type. A numeric value paired with a unit of measure (UCUM code)."
-    },
-    {
-      "code": "ratio",
-      "display": "Ratio",
-      "definition": "A simple type. A fractional relationship between two Quantity values (numerator and denominator)."
     },
     {
       "code": "tuple",
