@@ -25,6 +25,10 @@
   "caseSensitive": true,
   "valueSet": "http://cql.hl7.org/ValueSet/cql-language-capability",
   "content": "complete",
+  "property": [
+    { "code": "version", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#version", "description": "The version in which the capability was introduced in the specification", "type": "string"},
+    { "code": "versionTo", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#versionTo", "description": "The last version in which the capability was included in the specification", "type": "string"}
+  ],
   "concept": [
     {
       "code": "decimal-precision-and-scale",
@@ -290,6 +294,101 @@
       "code": "profile-based-retrieve",
       "display": "Profile-based retrieve",
       "definition": "A retrieve constrained to a profile (a subtype of a resource with additional rules)."
+    },
+    {
+      "code": "integer",
+      "display": "Integer",
+      "definition": "A simple type. A whole number type with no fractional component."
+    },
+    {
+      "code": "decimal",
+      "display": "Decimal",
+      "definition": "A simple type. A numeric type that supports fractional values with defined precision (total digits) and scale (digits to the right of the decimal)."
+    },
+    {
+      "code": "string",
+      "display": "String",
+      "definition": "A simple type. A sequence of characters."
+    },
+    {
+      "code": "boolean",
+      "display": "Boolean",
+      "definition": "A simple type. A logical truth value."
+    },
+    {
+      "code": "date",
+      "display": "Date",
+      "definition": "A simple type. A calendar date consisting of year, month, and day, but no time."
+    },
+    {
+      "code": "time",
+      "display": "Time",
+      "definition": "A simple type. A time of day, without any date."
+    },
+    {
+      "code": "datetime",
+      "display": "DateTime",
+      "definition": "A simple type. A combination of date and time, representing a specific point on the timeline."
+    },
+    {
+      "code": "quantity",
+      "display": "Quantity",
+      "definition": "A simple type. A numeric value paired with a unit of measure (UCUM code)."
+    },
+    {
+      "code": "ratio",
+      "display": "Ratio",
+      "definition": "A simple type. A fractional relationship between two Quantity values (numerator and denominator)."
+    },
+    {
+      "code": "tuple",
+      "display": "Tuple",
+      "definition": "An anonymous structured type with named elements."
+    },
+    {
+      "code": "choice",
+      "display": "Choice",
+      "definition": "A structured type. A type that allows a value to be one of several specified types."
+    },
+    {
+      "code": "list<T>",
+      "display": "List<T>",
+      "definition": "A structured type. A collection type. An ordered collection of elements of type T."
+    },
+    {
+      "code": "interval<T>",
+      "display": "Interval<T>",
+      "definition": "A collection type. Represents a continuous or discrete range of values of type T (e.g. numbers, dates)."
+    },
+    {
+      "code": "interval<integer>",
+      "display": "Interval<Integer>",
+      "definition": "An interval type. A range of integers."
+    },
+    {
+      "code": "interval<decimal>",
+      "display": "Interval<Decimal>",
+      "definition": "An interval type. A range of decimal numbers."
+    },
+    {
+      "code": "interval<date>",
+      "display": "Interval<Date>",
+      "definition": "An interval type. A range of dates (year/month/day, no time)."
+    },
+    {
+      "code": "interval<time>",
+      "display": "Interval<Time>",
+      "definition": "An interval type. A range of times of day (no date)."
+    },
+    {
+      "code": "interval<datetime>",
+      "display": "Interval<DateTime>",
+      "definition": "An interval type. A range of full date/times."
+    },
+    {
+      "code": "choicetype",
+      "display": "Choice Type",
+      "definition": "Represents a value that may be one of several different types. Basically a union type."
     }
   ]
 }

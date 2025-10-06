@@ -1,0 +1,33 @@
+{
+  "resourceType": "ValueSet",
+  "id": "cql-capability-characteristic-codes",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+      "valueCode": "cds"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+      "valueCode": "trial-use"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger": 2
+    }
+  ],
+  "url": "http://cql.hl7.org/ValueSet/cql-capability-characteristic-codes",
+  "name": "CQLCapabilityCharacteristicCodes",
+  "status": "active",
+  "title": "CQL Capability Characteristic Codes",
+  "experimental": false,
+  "publisher": "Clinical Decision Support Workgroup",
+  "description": "Capability characteristic codes for CQL.",
+  "immutable": true,
+  "compose": {
+    "include": [
+      {
+        "system": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes"
+      }
+    ]
+  }
+}
