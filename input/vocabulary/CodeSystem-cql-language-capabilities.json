@@ -33,7 +33,7 @@
         { "code": "version", "valueString": "1.0" },
         { "code": "value", "valueString": "28,8" },
         { "code": "valueMeaning", "valueString": "The supported precision and scale of decimal values" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#decimal" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#decimal" }
       ]
     },
     {
@@ -42,7 +42,7 @@
       "definition": "The finest granularity (precision) and smallest increment (scale) supported for date/time values.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#datetime" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime" }
       ]
     },
     {
@@ -51,7 +51,7 @@
       "definition": "Whether and how the engine can automatically convert between units of measure using UCUM.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#convertquantity" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertquantity" }
       ]
     },
     {
@@ -60,7 +60,7 @@
       "definition": "Which flavor of regular expressions the implementation supports.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#matches" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#matches" }
       ]
     },
     {
@@ -69,7 +69,7 @@
       "definition": "Which external models the engine can evaluate against.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#data-model" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#data-model" }
       ]
     },
     {
@@ -78,7 +78,7 @@
       "definition": "Expand on ValueSet/Interval.",
       "property": [
         { "code": "version", "valueString": "1.3" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#collapse-and-expand-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#collapse-and-expand-operators" }
       ]
     },
     {
@@ -87,7 +87,7 @@
       "definition": "Ability to evaluate/translate FHIRPath within CQL.",
       "property": [
         { "code": "version", "valueString": "1.3" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/16-i-fhirpathtranslation.html" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/16-i-fhirpathtranslation.html" }
       ]
     },
     {
@@ -96,7 +96,7 @@
       "definition": "Operators that adjust/control precision.",
       "property": [
         { "code": "version", "valueString": "1.4" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#precision" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#precision" }
       ]
     },
     {
@@ -105,7 +105,7 @@
       "definition": "Contexts defined by the data model.",
       "property": [
         { "code": "version", "valueString": "1.4" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#context-support" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#context-support" }
       ]
     },
     {
@@ -114,7 +114,7 @@
       "definition": "Organize libraries into namespaces.",
       "property": [
         { "code": "version", "valueString": "1.4" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/07-physicalrepresentation.html#media-types-and-namespaces" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/07-physicalrepresentation.html#media-types-and-namespaces" }
       ]
     },
     {
@@ -123,7 +123,7 @@
       "definition": "Context-relative retrieve operations.",
       "property": [
         { "code": "version", "valueString": "1.4" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -132,7 +132,7 @@
       "definition": "Convert between compatible UCUM units.",
       "property": [
         { "code": "version", "valueString": "1.4" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#conversions" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#conversions" }
       ]
     },
     {
@@ -141,7 +141,7 @@
       "definition": "Modulo/remainder with Quantity.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#quantity-arithmetic" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#quantity-arithmetic" }
       ]
     },
     {
@@ -150,7 +150,7 @@
       "definition": "Expand applied to a single Interval.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#expand" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#expand" }
       ]
     },
     {
@@ -159,7 +159,7 @@
       "definition": "Query clause for aggregation.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#aggregate-clause" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#aggregate-clause" }
       ]
     },
     {
@@ -168,7 +168,7 @@
       "definition": "Retrieve that follows model references.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -177,7 +177,7 @@
       "definition": "Retrieve using a search path expression.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -186,7 +186,7 @@
       "definition": "Retrieve by unique identifier.",
       "property": [
         { "code": "version", "valueString": "1.5" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
 
@@ -195,7 +195,7 @@
       "display": "System Data Types",
       "definition": "Primitive, structured, and collection types defined by the System namespace.",
       "property": [
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#types" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#types" }
       ],
       "concept": [
         {
@@ -204,7 +204,7 @@
           "definition": "Whole numbers with no fractional component.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#integer" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#integer" }
           ]
         },
         {
@@ -213,7 +213,7 @@
           "definition": "64-bit signed integers.",
           "property": [
             { "code": "version", "valueString": "1.5" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#long" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#long" }
           ]
         },
         {
@@ -222,7 +222,7 @@
           "definition": "Numbers with fractional precision and scale.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#decimal" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#decimal" }
           ]
         },
         {
@@ -231,7 +231,7 @@
           "definition": "Sequence of text characters.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#string" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#string" }
           ]
         },
         {
@@ -240,7 +240,7 @@
           "definition": "Logical truth values.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#boolean" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#boolean" }
           ]
         },
         {
@@ -249,7 +249,7 @@
           "definition": "Calendar date without time.",
           "property": [
             { "code": "version", "valueString": "1.3" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#date" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#date" }
           ]
         },
         {
@@ -258,7 +258,7 @@
           "definition": "Time of day without date.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#time" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#time" }
           ]
         },
         {
@@ -267,7 +267,7 @@
           "definition": "Date and time point (optional offset).",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#datetime" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime" }
           ]
         },
         {
@@ -276,7 +276,7 @@
           "definition": "Numeric value with unit.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#quantity" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#quantity" }
           ]
         },
         {
@@ -285,7 +285,7 @@
           "definition": "Fractional relationship between two Quantities.",
           "property": [
             { "code": "version", "valueString": "1.3" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#ratio" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#ratio" }
           ]
         },
         {
@@ -294,7 +294,7 @@
           "definition": "Range over an ordered type.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
           ]
         },
         {
@@ -303,7 +303,7 @@
           "definition": "Ordered collection of elements of a type.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#collection-types" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#collection-types" }
           ]
         },
         {
@@ -312,7 +312,7 @@
           "definition": "Structured type with named elements.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#structured-types" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#structured-types" }
           ]
         },
         {
@@ -321,7 +321,7 @@
           "definition": "Value of one among several types.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#choice-types" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#choice-types" }
           ]
         },
         {
@@ -330,7 +330,7 @@
           "definition": "Reference to an external code system.",
           "property": [
             { "code": "version", "valueString": "1.5" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#codesystem" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#codesystem" }
           ]
         },
         {
@@ -339,7 +339,7 @@
           "definition": "Reference to a set of codes.",
           "property": [
             { "code": "version", "valueString": "1.5" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#valueset" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#valueset" }
           ]
         },
         {
@@ -348,7 +348,7 @@
           "definition": "Base type for vocabulary-related types.",
           "property": [
             { "code": "version", "valueString": "1.5" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#vocabulary" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#vocabulary" }
           ]
         }
       ]
@@ -360,7 +360,7 @@
       "definition": "and, or, not, implies under 3-valued logic.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#logical-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#logical-operators" }
       ]
     },
     {
@@ -369,7 +369,7 @@
       "definition": "Type inspection and conversion operators.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#type-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#type-operators" }
       ]
     },
     {
@@ -378,7 +378,7 @@
       "definition": "Operators dealing with null/missing information.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#nullological-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#nullological-operators" }
       ]
     },
     {
@@ -387,7 +387,7 @@
       "definition": "Equal, not equal, <, <=, >, >=, in/not in, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#comparison-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#comparison-operators" }
       ]
     },
     {
@@ -396,7 +396,7 @@
       "definition": "Add, subtract, multiply, divide, mod, round, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#arithmetic-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators" }
       ]
     },
     {
@@ -405,7 +405,7 @@
       "definition": "Length, substring, startsWith, endsWith, matches, replaceMatches, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#string-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#string-operators" }
       ]
     },
     {
@@ -414,7 +414,7 @@
       "definition": "Date/time arithmetic, components, now/today, comparisons, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#date-and-time-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#date-and-time-operators" }
       ]
     },
     {
@@ -423,7 +423,7 @@
       "definition": "contains, in, union, intersect, width, expand, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -432,7 +432,7 @@
       "definition": "size, first/last, contains, union/intersect/except, map/filter/distinct, sort/reverse/zip, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#list-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#list-operators" }
       ]
     },
     {
@@ -441,7 +441,7 @@
       "definition": "count, sum, min, max, average, median, mode, etc.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#aggregate-functions" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#aggregate-functions" }
       ]
     },
     {
@@ -450,7 +450,7 @@
       "definition": "Retrieve/terminology functions; temporal/duration in clinical context.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#clinical-operators" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#clinical-operators" }
       ]
     },
     {
@@ -459,7 +459,7 @@
       "definition": "Errors and messaging functions.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#errors-and-messaging" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#errors-and-messaging" }
       ]
     },
 
@@ -469,7 +469,7 @@
       "definition": "Query over one source.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#evaluate-sources" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#evaluate-sources" }
       ]
     },
     {
@@ -478,7 +478,7 @@
       "definition": "Query involving two or more sources.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#evaluate-sources" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#evaluate-sources" }
       ]
     },
     {
@@ -487,7 +487,7 @@
       "definition": "Introduce local bindings.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#let-clause" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#let-clause" }
       ]
     },
     {
@@ -496,7 +496,7 @@
       "definition": "Filter using Boolean conditions.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#where-clause" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#where-clause" }
       ]
     },
     {
@@ -505,7 +505,7 @@
       "definition": "Specify the shape/content of returned rows.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#return-clause" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#return-clause" }
       ]
     },
     {
@@ -514,7 +514,7 @@
       "definition": "Reduce rows to a summary value.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#aggregate-clause" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#aggregate-clause" }
       ]
     },
     {
@@ -523,7 +523,7 @@
       "definition": "Query using two or more sources.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/74-queryevaluation.html#evaluate-sources" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#evaluate-sources" }
       ]
     },
 
@@ -533,7 +533,7 @@
       "definition": "All data of a type in the current context.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#language-capabilities" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#language-capabilities" }
       ]
     },
     {
@@ -542,7 +542,7 @@
       "definition": "Retrieve filtered by ValueSet/CodeSystem/Code.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -551,16 +551,16 @@
       "definition": "Retrieve filtered by a ValueSet reference.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
-      "code",: "codesystem-terminology-target-retrieve",
+      "code": "codesystem-terminology-target-retrieve",
       "display": "CodeSystem terminology target retrieve",
       "definition": "Retrieve filtered by a CodeSystem.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -569,7 +569,7 @@
       "definition": "Retrieve filtered by a single Code.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -578,7 +578,7 @@
       "definition": "Retrieve using a search path expression.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -587,7 +587,7 @@
       "definition": "Retrieve that includes related records via references.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -596,7 +596,7 @@
       "definition": "Retrieve scoped to a related context entity.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/05-languagesemantics.html#retrieve-paths" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#retrieve-paths" }
       ]
     },
     {
@@ -605,7 +605,7 @@
       "definition": "Retrieve constrained to a profile.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/42-conformancelevels.html#strict-conformance" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/42-conformancelevels.html#strict-conformance" }
       ]
     },
 
@@ -615,7 +615,7 @@
       "definition": "Structured type with named elements.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#structured-types" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#structured-types" }
       ]
     },
     {
@@ -624,7 +624,7 @@
       "definition": "Value that may be one of several specified types.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#choice-types" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#choice-types" }
       ]
     },
     {
@@ -633,7 +633,7 @@
       "definition": "Ordered collection of elements of type T.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/63-expressionlanguagesemantics.html#collection-types" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/63-expressionlanguagesemantics.html#collection-types" }
       ]
     },
     {
@@ -642,7 +642,7 @@
       "definition": "Range of values of type T.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -651,7 +651,7 @@
       "definition": "Range of integers.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -660,7 +660,7 @@
       "definition": "Range of decimal numbers.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -669,7 +669,7 @@
       "definition": "Range of dates (no time).",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -678,7 +678,7 @@
       "definition": "Range of times of day (no date).",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     },
     {
@@ -687,7 +687,7 @@
       "definition": "Range of full date/times.",
       "property": [
         { "code": "version", "valueString": "1.0" },
-        { "code": "reference", "valueString": "https://cql.hl7.org/2025Sep/09-b-cqlreference.html#interval-operators-3" }
+        { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
     }
   ]
