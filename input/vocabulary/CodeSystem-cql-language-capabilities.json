@@ -28,7 +28,10 @@
   "content": "complete",
   "property": [
     { "code": "version", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#version", "description": "The version in which the capability was introduced in the specification", "type": "string"},
-    { "code": "versionTo", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#versionTo", "description": "The last version in which the capability was included in the specification", "type": "string"}
+    { "code": "versionTo", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#versionTo", "description": "The last version in which the capability was included in the specification", "type": "string"},
+    { "code": "value", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#value", "description": "A qualifier value used to provide more detail about the capability", "type": "string"},
+    { "code": "valueMeaning", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#valueMeaning", "description": "A description of the meaning of qualifier values for the capability", "type": "string"},
+    { "code": "reference", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#reference", "description": "A reference to the specification documenting this capability", "type": "string"}
   ],
   "concept": [
     {
@@ -39,6 +42,14 @@
         {
           "code": "version",
           "valueString": "1.0"
+        },
+        {
+          "code": "value",
+          "valueString": "28,8"
+        },
+        {
+          "code": "valueMeaning",
+          "valueString": "The supported precision and scale of decimal values"
         }
       ]
     },

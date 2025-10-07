@@ -35,6 +35,21 @@
       "code": "versionTo",
       "display": "VersionTo",
       "definition": "The last version of the specification in which the features being tested appears."
+    },
+    {
+      "code": "value",
+      "display": "Value",
+      "definition": "A qualifier value used to provide more detail about the capability."
+    },
+    {
+      "code": "valueMeaning",
+      "display": "Value Meaning",
+      "definition": "A description of the meaning of qualifier values for the capability."
+    },
+    {
+      "code": "reference",
+      "display": "Reference",
+      "definition": "A reference to the specification documenting this capability."
     }
   ]
 }
