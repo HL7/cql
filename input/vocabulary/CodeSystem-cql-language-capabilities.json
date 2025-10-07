@@ -24,6 +24,7 @@
   "description": "Codes for CQL language capabilities.",
   "caseSensitive": true,
   "valueSet": "http://cql.hl7.org/ValueSet/cql-language-capability",
+  "hierarchyMeaning": "is-a",
   "content": "complete",
   "property": [
     { "code": "version", "uri": "http://cql.hl7.org/CodeSystem/cql-capability-characteristic-codes#version", "description": "The version in which the capability was introduced in the specification", "type": "string"},
@@ -123,92 +124,94 @@
     {
       "code": "system-data-types",
       "display": "System Data Types",
-      "definition": "The suite of primitive, structured, and collection types defined by the CQL/ELM System namespace. These types form the foundational data model for all CQL expressions."
-    },
-    {
-      "code": "system.integer",
-      "display": "System.Integer",
-      "definition": "A System data type representing whole numbers with no fractional component."
-    },
-    {
-      "code": "system.long",
-      "display": "System.Long",
-      "definition": "A System data type representing 64-bit signed integers, used when integer precision exceeds the standard 32-bit range."
-    },
-    {
-      "code": "system.decimal",
-      "display": "System.Decimal",
-      "definition": "A System data type representing numeric values with fractional precision and scale."
-    },
-    {
-      "code": "system.string",
-      "display": "System.String",
-      "definition": "A System data type representing a sequence of text characters."
-    },
-    {
-      "code": "system.boolean",
-      "display": "System.Boolean",
-      "definition": "A System data type representing logical truth values: true or false."
-    },
-    {
-      "code": "system.date",
-      "display": "System.Date",
-      "definition": "A System data type representing a calendar date (year, month, and day), without a time component."
-    },
-    {
-      "code": "system.time",
-      "display": "System.Time",
-      "definition": "A System data type representing a time of day, possibly including fractions of seconds, without a date."
-    },
-    {
-      "code": "system.datetime",
-      "display": "System.DateTime",
-      "definition": "A System data type representing a specific point in time, combining a date and time, and optionally a timezone offset."
-    },
-    {
-      "code": "system.quantity",
-      "display": "System.Quantity",
-      "definition": "A System data type representing a numeric value paired with a unit of measure, such as '5 mg' or '120 mm[Hg]'."
-    },
-    {
-      "code": "system.ratio",
-      "display": "System.Ratio",
-      "definition": "A System data type representing a fractional relationship between two Quantity values (numerator and denominator)."
-    },
-    {
-      "code": "system.interval",
-      "display": "System.Interval",
-      "definition": "A System data type representing a continuous or discrete range of values of a given ordered type, such as numbers or dates."
-    },
-    {
-      "code": "system.list",
-      "display": "System.List",
-      "definition": "A System data type representing an ordered collection of elements of a given type."
-    },
-    {
-      "code": "system.tuple",
-      "display": "System.Tuple",
-      "definition": "A System structured data type representing a collection of named elements, like a lightweight record or object."
-    },
-    {
-      "code": "system.choice",
-      "display": "System.Choice",
-      "definition": "A System data type representing a value that may be one of several possible types, such as in FHIR elements with 'value[x]'."
-    },
-    {
-      "code": "system.codesystem",
-      "display": "System.CodeSystem",
-      "definition": "A System data type representing a reference to an external code system (e.g., SNOMED CT, LOINC)."
-    },
-    {
-      "code": "system.valueset",
-      "display": "System.ValueSet",
-      "definition": "A System data type representing a reference to a set of codes defined by one or more code systems."
-    },
-    {
-      "code": "system.vocabulary",
-      "display": "System.Vocabulary",
-      "definition": "An abstract System data type serving as the base type for vocabulary-related types such as CodeSystem and ValueSet."
+      "definition": "The suite of primitive, structured, and collection types defined by the CQL/ELM System namespace. These types form the foundational data model for all CQL expressions.",
+      "concept": [
+        {
+          "code": "system.integer",
+          "display": "System.Integer",
+          "definition": "A System data type representing whole numbers with no fractional component."
+        },
+        {
+          "code": "system.long",
+          "display": "System.Long",
+          "definition": "A System data type representing 64-bit signed integers, used when integer precision exceeds the standard 32-bit range."
+        },
+        {
+          "code": "system.decimal",
+          "display": "System.Decimal",
+          "definition": "A System data type representing numeric values with fractional precision and scale."
+        },
+        {
+          "code": "system.string",
+          "display": "System.String",
+          "definition": "A System data type representing a sequence of text characters."
+        },
+        {
+          "code": "system.boolean",
+          "display": "System.Boolean",
+          "definition": "A System data type representing logical truth values: true or false."
+        },
+        {
+          "code": "system.date",
+          "display": "System.Date",
+          "definition": "A System data type representing a calendar date (year, month, and day), without a time component."
+        },
+        {
+          "code": "system.time",
+          "display": "System.Time",
+          "definition": "A System data type representing a time of day, possibly including fractions of seconds, without a date."
+        },
+        {
+          "code": "system.datetime",
+          "display": "System.DateTime",
+          "definition": "A System data type representing a specific point in time, combining a date and time, and optionally a timezone offset."
+        },
+        {
+          "code": "system.quantity",
+          "display": "System.Quantity",
+          "definition": "A System data type representing a numeric value paired with a unit of measure, such as '5 mg' or '120 mm[Hg]'."
+        },
+        {
+          "code": "system.ratio",
+          "display": "System.Ratio",
+          "definition": "A System data type representing a fractional relationship between two Quantity values (numerator and denominator)."
+        },
+        {
+          "code": "system.interval",
+          "display": "System.Interval",
+          "definition": "A System data type representing a continuous or discrete range of values of a given ordered type, such as numbers or dates."
+        },
+        {
+          "code": "system.list",
+          "display": "System.List",
+          "definition": "A System data type representing an ordered collection of elements of a given type."
+        },
+        {
+          "code": "system.tuple",
+          "display": "System.Tuple",
+          "definition": "A System structured data type representing a collection of named elements, like a lightweight record or object."
+        },
+        {
+          "code": "system.choice",
+          "display": "System.Choice",
+          "definition": "A System data type representing a value that may be one of several possible types, such as in FHIR elements with 'value[x]'."
+        },
+        {
+          "code": "system.codesystem",
+          "display": "System.CodeSystem",
+          "definition": "A System data type representing a reference to an external code system (e.g., SNOMED CT, LOINC)."
+        },
+        {
+          "code": "system.valueset",
+          "display": "System.ValueSet",
+          "definition": "A System data type representing a reference to a set of codes defined by one or more code systems."
+        },
+        {
+          "code": "system.vocabulary",
+          "display": "System.Vocabulary",
+          "definition": "An abstract System data type serving as the base type for vocabulary-related types such as CodeSystem and ValueSet."
+        }
+      ]
     },
     {
       "code": "logical-operators",
