@@ -361,6 +361,53 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#logical-operators" }
+      ],
+      "concept": [
+        {
+          "code": "logical-operators.and",
+          "display": "Logical Operator and",
+          "definition": "Returns the logical conjunction of the arguments using three-valued logic: if either operand is false → false, if both operands are true → true, otherwise (some null) → null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#and" }
+          ]
+        },
+        {
+          "code": "logical-operators.or",
+          "display": "Logical Operator or",
+          "definition": "Returns the logical conjunction of the arguments using three-valued logic: if either operand is false → false, if both operands are true → true, otherwise (some null) → null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#or" }
+          ]
+        },
+        {
+          "code": "logical-operators.not",
+          "display": "Logical Operator not",
+          "definition": "Returns exclusive-or using three-valued logic: true if exactly one operand is true and the other is false, false if both are true or both are false, otherwise (some null) → null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not" }
+          ]
+        },
+        {
+          "code": "logical-operators.xor",
+          "display": "Logical Operator xor",
+          "definition": "Unary logical negation using three-valued logic: not true → false, not false → true, not null → null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#xor" }
+          ]
+        },
+        {
+          "code": "logical-operators.implies",
+          "display": "Logical Operator implies",
+          "definition": "Logical implication using three-valued logic: if left is true → result equals right, if left is false → true, if left is null → true when right is true, else null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#implies" }
+          ]
+        }
       ]
     },
     {
