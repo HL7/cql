@@ -417,6 +417,232 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#type-operators" }
+      ],
+      "concept": [
+        {
+          "code": "type-operators.as",
+          "display": "Type Operator as",
+          "definition": "Type cast; attempts to treat a value as a given target type, returning null if it cannot.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#as" }
+          ]
+        },
+        {
+          "code": "type-operators.is",
+          "display": "Type Operator is",
+          "definition": "Type check; returns true if a value is of (or can be promoted to) the given type.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#is" }
+          ]
+        },
+        {
+          "code": "type-operators.children",
+          "display": "Type Operator children",
+          "definition": "Returns the direct child elements/values of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#children" }
+          ]
+        },
+        {
+          "code": "type-operators.descendants",
+          "display": "Type Operator descendants",
+          "definition": "Returns all descendant elements/values of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#descendants" }
+          ]
+        },
+        {
+          "code": "type-operators.convert",
+          "display": "Type Operator convert",
+          "definition": "ConvertQuantity: converts a quantity to an equivalent unit.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convert" }
+          ]
+        },
+        {
+          "code": "type-operators.to-boolean",
+          "display": "Type Operator to-boolean",
+          "definition": "Converts to Boolean (e.g., from String).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toboolean" }
+          ]
+        },
+        {
+          "code": "type-operators.to-integer",
+          "display": "Type Operator to-integer",
+          "definition": "Converts to Integer (from Boolean, Long, String, etc.).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tointeger" }
+          ]
+        },        {
+          "code": "type-operators.to-long",
+          "display": "Type Operator to-long",
+          "definition": "Converts to Long (from Boolean, Integer, String).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tolong" }
+          ]
+        },
+        {
+          "code": "type-operators.to-decimal",
+          "display": "Type Operator to-decimal",
+          "definition": "Converts to Decimal (from Boolean, Integer, Long, String).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todecimal" }
+          ]
+        },
+        {
+          "code": "type-operators.to-quantity",
+          "display": "Type Operator to-quantity",
+          "definition": "Converts to Quantity (from Integer/Long/Decimal/String/Ratio; no unit conversion here).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toquantity" }
+          ]
+        },
+        {
+          "code": "type-operators.to-ratio",
+          "display": "Type Operator to-ratio",
+          "definition": "Converts to Ratio (from String of the form 'quantity:quantity').",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toratio" }
+          ]
+        },
+        {
+          "code": "type-operators.to-date",
+          "display": "Type Operator to-date",
+          "definition": "Converts to Date (from String using ISO-like formats).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todate" }
+          ]
+        },
+        {
+          "code": "type-operators.to-datetime",
+          "display": "Type Operator to-datetime",
+          "definition": "Converts to DateTime (from Date or String using ISO-like formats).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todatetime" }
+          ]
+        },
+        {
+          "code": "type-operators.to-time",
+          "display": "Type Operator to-time",
+          "definition": "Converts to Time (from String using ISO-like formats).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#totime" }
+          ]
+        },
+        {
+          "code": "type-operators.to-string",
+          "display": "Type Operator to-string",
+          "definition": "Converts supported types to String.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tostring" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-boolean",
+          "display": "Type Operator converts-to-boolean",
+          "definition": "Returns true if the input is a Boolean or can be converted by ToBoolean; false if conversion fails; null if the input is null (per spec behavior for ConvertsTo*).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoboolean" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-integer",
+          "display": "Type Operator converts-to-integer",
+          "definition": "Returns true if the input is an Integer or parses to Integer via ToInteger; false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstointeger" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-long",
+          "display": "Type Operator converts-to-long",
+          "definition": "Returns true if the input is a Long or parses to Long via ToLong; false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstolong" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-decimal",
+          "display": "Type Operator converts-to-decimal",
+          "definition": "Returns true if the input is a Decimal or parses to Decimal via ToDecimal; false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodecimal" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-quantity",
+          "display": "Type Operator converts-to-quantity",
+          "definition": "Returns true if the input is a Quantity or parses to Quantity via ToQuantity (accepted numeric/string forms); false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoquantity" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-ratio",
+          "display": "Type Operator converts-to-ration",
+          "definition": "Returns true if the input is a Ratio or parses to Ratio via ToRatio (e.g., \"Q1:Q2\" form); false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoratio" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-date",
+          "display": "Type Operator converts-to-date",
+          "definition": "Returns true if the input is a Date or parses to Date via ToDate (supported ISO-like formats); false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodate" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-datetime",
+          "display": "Type Operator converts-to-datetime",
+          "definition": "Returns true if the input is a DateTime or parses to DateTime via ToDateTime (supported ISO-like formats, optional timezone); false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodatetime" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-time",
+          "display": "Type Operator converts-to-time",
+          "definition": "Returns true if the input is a Time or parses to Time via ToTime (supported time formats); false if not parseable; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstotime" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-string",
+          "display": "Type Operator converts-to-string",
+          "definition": "Returns true if the input is a String or can be converted via ToString; false if conversion is not defined; null if input is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstostring" }
+          ]
+        }
       ]
     },
     {
