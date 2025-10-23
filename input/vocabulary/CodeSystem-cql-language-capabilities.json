@@ -435,6 +435,89 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#comparison-operators" }
+      ],
+      "concept": [
+        {
+          "code": "comparison-operators.equal",
+          "display": "Comparison Operators equal",
+          "definition": "Equal (=) returns true when the two arguments are the same value (type-specific equality semantics).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equal" }
+          ]
+        },
+        {
+          "code": "comparison-operators.equivalent",
+          "display": "Comparison Operators equivalent",
+          "definition": "Equivalent (~) returns true when the two arguments are the same value ignoring representation differences (e.g., unit conversions where comparable, case-insensitive strings where specified, etc.).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equivalent" }
+          ]
+        },
+        {
+          "code": "comparison-operators.greater",
+          "display": "Comparison Operators greater",
+          "definition": "The greater (>) operator returns true if the first argument is greater than the second argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#greater" }
+          ]
+        },
+        {
+          "code": "comparison-operators.greater-or-equal",
+          "display": "Comparison Operators greater or equal",
+          "definition": "Greater Or Equal (>=) returns true if the first argument is greater than or equal to the second.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#greater-or-equal" }
+          ]
+        },
+        {
+          "code": "comparison-operators.less",
+          "display": "Comparison Operators less",
+          "definition": "Less (<) returns true if the first argument is less than the second argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#less" }
+          ]
+        },
+        {
+          "code": "comparison-operators.less-or-equal",
+          "display": "Comparison Operators less-or-equal",
+          "definition": "The less or equal (<=) operator returns true if the first argument is less than or equal to the second argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#less-or-equal" }
+          ]
+        },
+        {
+          "code": "comparison-operators.not-equal",
+          "display": "Comparison Operators not-equal",
+          "definition": "The not equal (!=) operator returns true if its arguments are not the same value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not-equal" }
+          ]
+        },
+        {
+          "code": "comparison-operators.not-equivalent",
+          "display": "Comparison Operators not-equivalent",
+          "definition": "The not equivalent (!~) operator returns true if its arguments are not equivalent.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not-equivalent" }
+          ]
+        },
+        {
+          "code": "comparison-operators.between",
+          "display": "Comparison Operators between",
+          "definition": "The between operator determines whether the first argument is within a given range, inclusive. If the first argument is greater than or equal to the low argument, and less than or equal to the high argument, the result is true, otherwise, the result is false.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#between" }
+          ]
+        }
       ]
     },
     {
