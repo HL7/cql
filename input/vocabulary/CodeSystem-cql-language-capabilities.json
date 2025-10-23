@@ -462,6 +462,170 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#date-and-time-operators" }
+      ],
+      "concept": [
+        {
+          "code": "date-and-time-operators.add",
+          "display": "Date and Time Operators add",
+          "definition": "The add (+) operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#add" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.after",
+          "display": "Date and Time Operators after",
+          "definition": "The after-precision-of operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is false.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#after" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.before",
+          "display": "Date and Time Operators before",
+          "definition": "The before-precision-of operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is false.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#before" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.date",
+          "display": "Date and Time Operators date",
+          "definition": "The Date operator constructs a date value from the given components.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#date" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.datetime",
+          "display": "Date and Time Operators datetime",
+          "definition": "The DateTime operator constructs a DateTime value from the given components.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.from",
+          "display": "Date and Time Operators from",
+          "definition": "The component-from operator returns the specified component of the argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#from" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.difference",
+          "display": "Date and Time Operators difference",
+          "definition": "The difference-between operator returns the number of boundaries crossed for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional boundaries are dropped.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#difference" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.duration",
+          "display": "Date and Time Operators duration",
+          "definition": "The duration-between operator returns the number of whole calendar periods for the specified precision between the first and second arguments. If the first argument is after the second argument, the result is negative. The result of this operation is always an integer; any fractional periods are dropped.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#duration" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.now",
+          "display": "Date and Time Operators now",
+          "definition": "The Now operator returns the date and time of the start timestamp associated with the evaluation request.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#now" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.on or after",
+          "display": "Date and Time Operators on or after",
+          "definition": "The on or after operator for Date, DateTime, and Time values is a synonym for the same or after operator and is supported to enable natural phrasing. See the description of the Same Or After (Date, DateTime, or Time) operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#on-or-after" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.on or before",
+          "display": "Date and Time Operators on or before",
+          "definition": "The on or before operator for Date, DateTime, and Time values is a synonym for the same or before operator and is supported to enable natural phrasing. See the description of the Same Or Before (Date, DateTime, or Time) operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#on-or-before" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.same as",
+          "display": "Date and Time Operators same as",
+          "definition": "The same-precision-as operator compares two Date, DateTime, or Time values to the specified precision for equality. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the values are different, the comparison stops and the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-as" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.same or after",
+          "display": "Date and Time Operators same or after",
+          "definition": "The same-precision-or after operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or after the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-or-after" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.same or before",
+          "display": "Date and Time Operators same or before",
+          "definition": "The same-precision-or before operator compares two Date, DateTime, or Time values to the specified precision to determine whether the first argument is the same or before the second argument. The comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if either input has no value for the precision, the comparison stops and the result is null; if the specified precision has been reached, the comparison stops and the result is true.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-or-before" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.subtract",
+          "display": "Date and Time Operators subtract",
+          "definition": "The subtract (-) operator returns the value of the given Date, DateTime, or Time, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#subtract" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.time",
+          "display": "Date and Time Operators time",
+          "definition": "The Time operator constructs a time value from the given components.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#time" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.timeofday",
+          "display": "Date and Time Operators timeofday",
+          "definition": "The TimeOfDay operator returns the time of day of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the TimeOfDay operator in this way.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#timeofday" }
+          ]
+        },
+        {
+          "code": "date-and-time-operators.today",
+          "display": "Date and Time Operators today",
+          "definition": "The Today operator returns the date of the start timestamp associated with the evaluation request. See the Now operator for more information on the rationale for defining the Today operator in this way.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#today" }
+          ]
+        }
       ]
     },
     {
