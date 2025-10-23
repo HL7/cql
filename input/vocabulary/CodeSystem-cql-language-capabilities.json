@@ -583,7 +583,7 @@
           ]
         },
         {
-          "code": "interval-operators.included in",
+          "code": "interval-operators.included-in",
           "display": "Interval Operators included in",
           "definition": "The included in (or during) operator for intervals returns true if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.",
           "property": [
@@ -610,7 +610,7 @@
           ]
         },
         {
-          "code": "interval-operators.not equal",
+          "code": "interval-operators.not-equal",
           "display": "Interval Operators not equal",
           "definition": "The not equal (!=) operator for intervals returns true if its arguments are not the same value.",
           "property": [
@@ -619,7 +619,7 @@
           ]
         },
         {
-          "code": "interval-operators.not equivalent",
+          "code": "interval-operators.not-equivalent",
           "display": "Interval Operators not equivalent",
           "definition": "The not equivalent (!~) operator for intervals returns true if its arguments are not equivalent.",
           "property": [
@@ -628,7 +628,7 @@
           ]
         },
         {
-          "code": "interval-operators.on or after",
+          "code": "interval-operators.on-or-after",
           "display": "Interval Operators on or after",
           "definition": "The on or after operator for intervals is a synonym for the same or after operator and is supported to enable natural phrasing. See the description of the Same Or After (Intervals) operator.",
           "property": [
@@ -637,7 +637,7 @@
           ]
         },
         {
-          "code": "interval-operators.on or before",
+          "code": "interval-operators.on-or-before",
           "display": "Interval Operators on or before",
           "definition": "The on or before operator for Date-, DateTime-, or Time-based intervals is a synonym for the same or before operator and is supported to enable natural phrasing. See the description of the Same Or Before (Intervals) operator.",
           "property": [
@@ -655,7 +655,7 @@
           ]
         },
         {
-          "code": "interval-operators.point from",
+          "code": "interval-operators.point-from",
           "display": "Interval Operators point from",
           "definition": "The point from operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.",
           "property": [
@@ -664,48 +664,93 @@
           ]
         },
         {
-          "code": "interval-operators.properly includes",
+          "code": "interval-operators.properly-includes",
           "display": "Interval Operators properly includes",
           "definition": "The properly includes operator for intervals returns true if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#properly-includes" }
           ]
         },
         {
-          "code": "interval-operators.",
-          "display": "Interval Operators ",
-          "definition": "",
+          "code": "interval-operators.properly-included-in",
+          "display": "Interval Operators properly included in",
+          "definition": "The properly included in (or properly during) operator for intervals returns true if the first interval is completely included in the second and the first interval is strictly smaller than the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval, and they are not the same interval.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#included-in" }
           ]
         },
         {
-          "code": "interval-operators.",
-          "display": "Interval Operators ",
-          "definition": "",
+          "code": "interval-operators.same-as",
+          "display": "Interval Operators same as",
+          "definition": "The same-precision-as operator for intervals returns true if the two intervals start and end at the same value, using the semantics described in the Start and End operators to determine interval boundaries, and for Date, DateTime, or Time value, performing the comparisons at the specified precision, as described in the Same As operator for Date, DateTime, or Time values.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-as" }
           ]
         },
         {
-          "code": "interval-operators.",
-          "display": "Interval Operators ",
-          "definition": "",
+          "code": "interval-operators.same-or-after",
+          "display": "Interval Operators same or after",
+          "definition": "The same-precision-or after operator for intervals returns true if the first interval starts on or after the second one ends, using the semantics described in the Start and End operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the Same or After (Date, DateTime, or Time) operator for Date, DateTime, or Time values.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-or-after" }
           ]
         },
         {
-          "code": "interval-operators.",
-          "display": "Interval Operators ",
-          "definition": "",
+          "code": "interval-operators.same-or-before",
+          "display": "Interval Operators same or before",
+          "definition": "The same-precision-or before operator returns true if the first interval ends on or before the second one starts, using the semantics described in the Start and End operators to determine interval boundaries, and for Date, DateTime, or Time values, performing the comparisons at the specified precision, as described in the Same or Before (Date, DateTime, or Time) operator for Date, DateTime, or Time values.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#same-or-before" }
+          ]
+        },
+        {
+          "code": "interval-operators.size",
+          "display": "Interval Operators size",
+          "definition": "The Size operator returns the size of an interval. The result of this operator is equivalent to invoking: (end of argument – start of argument) + point-size, where point-size is determined by successor of minimum T - minimum T.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#size" }
+          ]
+        },
+        {
+          "code": "interval-operators.start",
+          "display": "Interval Operators start",
+          "definition": "The Start operator returns the starting point of an interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#start" }
+          ]
+        },
+        {
+          "code": "interval-operators.starts",
+          "display": "Interval Operators starts",
+          "definition": "The starts operator returns true if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#starts" }
+          ]
+        },
+        {
+          "code": "interval-operators.union",
+          "display": "Interval Operators union",
+          "definition": "The union operator for intervals returns the union of the intervals. More precisely, the operator returns the interval that starts at the earliest starting point in either argument, and ends at the latest starting point in either argument. If the arguments do not overlap or meet, this operator returns null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#union" }
+          ]
+        },
+        {
+          "code": "interval-operators.width",
+          "display": "Interval Operators width",
+          "definition": "The width operator returns the width of an interval. The result of this operator is equivalent to invoking: (end of argument – start of argument).",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#width" }
           ]
         }
       ]
