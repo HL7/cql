@@ -440,7 +440,7 @@
         {
           "code": "comparison-operators.equal",
           "display": "Comparison Operators equal",
-          "definition": "Equal (=) returns true when the two arguments are the same value (type-specific equality semantics).",
+          "definition": "The equal (=) operator returns true if the arguments are equal; false if the arguments are known unequal, and null otherwise. Equality semantics are defined to be value-based.",
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equal" }
@@ -449,7 +449,7 @@
         {
           "code": "comparison-operators.equivalent",
           "display": "Comparison Operators equivalent",
-          "definition": "Equivalent (~) returns true when the two arguments are the same value ignoring representation differences (e.g., unit conversions where comparable, case-insensitive strings where specified, etc.).",
+          "definition": "The equivalent (~) operator returns true if the arguments are equivalent in value, or if they are both null; and false otherwise.",
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equivalent" }
@@ -467,7 +467,7 @@
         {
           "code": "comparison-operators.greater-or-equal",
           "display": "Comparison Operators greater or equal",
-          "definition": "Greater Or Equal (>=) returns true if the first argument is greater than or equal to the second.",
+          "definition": "The greater or equal (>=) operator returns true if the first argument is greater than or equal to the second argument.",
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#greater-or-equal" }
@@ -476,7 +476,7 @@
         {
           "code": "comparison-operators.less",
           "display": "Comparison Operators less",
-          "definition": "Less (<) returns true if the first argument is less than the second argument.",
+          "definition": "The less (<) operator returns true if the first argument is less than the second argument.",
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#less" }
