@@ -444,6 +444,215 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators" }
+      ],
+      "concept": [
+        {
+          "code": "arithmetic-operators.abs",
+          "display": "Arithmetic Operators abs",
+          "definition": "The Abs operator returns the absolute value of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#abs" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.add",
+          "display": "Arithmetic Operators add",
+          "definition": "The add (+) operator performs numeric addition of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#add" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.ceiling",
+          "display": "Arithmetic Operators ceiling",
+          "definition": "The Ceiling operator returns the first integer greater than or equal to the argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#ceiling" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.divide",
+          "display": "Arithmetic Operators divide",
+          "definition": "The divide (/) operator performs numeric division of its arguments. Note that this operator is Decimal division; for Integer division, use the truncated divide (div) operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#string-operators" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.floor",
+          "display": "Arithmetic Operators floor",
+          "definition": "The Floor operator returns the first integer less than or equal to the argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#floor" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.exp",
+          "display": "Arithmetic Operators exp",
+          "definition": "The Exp operator raises e to the power of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#exp" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.highboundary",
+          "display": "Arithmetic Operators highboundary",
+          "definition": "The HighBoundary function returns the greatest possible value of the input to the specified precision.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#highboundary" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.log",
+          "display": "Arithmetic Operators log",
+          "definition": "The Log operator computes the logarithm of its first argument, using the second argument as the base.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#log" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.lowboundary",
+          "display": "Arithmetic Operators lowboundary",
+          "definition": "The LowBoundary function returns the least possible value of the input to the specified precision.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#lowboundary" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.ln",
+          "display": "Arithmetic Operators ln",
+          "definition": "The Ln operator computes the natural logarithm of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#ln" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.maximum",
+          "display": "Arithmetic Operators maximum",
+          "definition": "The maximum operator returns the maximum representable value for the given type, defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#maximum" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.minimum",
+          "display": "Arithmetic Operators minimum",
+          "definition": "The minimum operator returns the minimum representable value for the given type, defined for the Integer, Long, Decimal, Quantity, Date, DateTime, and Time types.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#minimum" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.mod",
+          "display": "Arithmetic Operators mod",
+          "definition": "The mod operator computes the remainder of the division of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#mod" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.multiply",
+          "display": "Arithmetic Operators multiply",
+          "definition": "The multiply (*) operator performs numeric multiplication of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#multiply" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.negate",
+          "display": "Arithmetic Operators negate",
+          "definition": "The negate (-) operator returns the negative of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#negate" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.precision",
+          "display": "Arithmetic Operators precision",
+          "definition": "The Precision function returns the number of digits of precision in the input value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#precision" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.predecessor",
+          "display": "Arithmetic Operators predecessor",
+          "definition": "The predecessor operator returns the predecessor of the argument. For example, the predecessor of 2 is 1. If the argument is already the minimum value for the type, a null is returned.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#predecessor"}
+          ]
+        },
+        {
+          "code": "arithmetic-operators.power",
+          "display": "Arithmetic Operators power",
+          "definition": "The power (^) operator raises the first argument to the power given by the second argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#power" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.round",
+          "display": "Arithmetic Operators round",
+          "definition": "The Round operator returns the nearest whole number to its argument. The semantics of round are defined as a traditional round (i.e. to the nearest whole number), meaning that a decimal value greater than or equal to 0.5 and less than 1.0 will round to 1, and a decimal value less than or equal to -0.5 and greater than -1.0 will round to -1.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#round" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.subtract",
+          "display": "Arithmetic Operators subtract",
+          "definition": "The subtract (-) operator performs numeric subtraction of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#subtract" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.successor",
+          "display": "Arithmetic Operators successor",
+          "definition": "The successor operator returns the successor of the argument. For example, the successor of 1 is 2. If the argument is already the maximum value for the type, a null is returned.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#successor" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.truncate",
+          "display": "Arithmetic Operators truncate",
+          "definition": "The Truncate operator returns the integer component of its argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#truncate" }
+          ]
+        },
+        {
+          "code": "arithmetic-operators.div",
+          "display": "Arithmetic Operators div",
+          "definition": "The div operator performs truncated division of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#div" }
+          ]
+        }
       ]
     },
     {
