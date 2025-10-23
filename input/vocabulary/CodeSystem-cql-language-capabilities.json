@@ -430,36 +430,36 @@
         {
           "code": "nullological-operators.coalesce",
           "display": "Nullological Operators coalesce",
-          "definition": "Returns the first non-null value from the given arguments (or list). If all are null, the result is null.",
+          "definition": "The Coalesce operator returns the first non-null result in a list of arguments. If all arguments evaluate to null, the result is null.",
           "property": [
-            { "code": "version", "valueString": "1.5" },
+            { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#coalesce" }
           ]
         },
         {
           "code": "nullological-operators.is-null",
           "display": "Nullological Operators is-null",
-          "definition": "Yields true if the argument evaluates to null; otherwise false.",
+          "definition": "The is null operator determines whether or not its argument evaluates to null. If the argument evaluates to null, the result is true; otherwise, the result is false.",
           "property": [
-            { "code": "version", "valueString": "1.5" },
+            { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#isnull" }
           ]
         },
         {
           "code": "nullological-operators.is-true",
           "display": "Nullological Operators coalesce",
-          "definition": "Yields true if the Boolean argument evaluates to true; otherwise false.",
+          "definition": "The is true operator determines whether or not its argument evaluates to true. If the argument evaluates to true, the result is true; otherwise, the result is false.",
           "property": [
-            { "code": "version", "valueString": "1.5" },
+            { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#istrue" }
           ]
         },
         {
           "code": "nullological-operators.is-false",
           "display": "Nullological Operators is-false",
-          "definition": "Yields true if the Boolean argument evaluates to false; otherwise false.",
+          "definition": "The is false operator determines whether or not its argument evaluates to false. If the argument evaluates to false, the result is true; otherwise, the result is false.",
           "property": [
-            { "code": "version", "valueString": "1.5" },
+            { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#isfalse" }
           ]
         }
