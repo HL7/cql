@@ -446,6 +446,7 @@
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators" }
       ]
     },
+
     {
       "code": "string-operators",
       "display": "String Operators",
@@ -471,6 +472,242 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
+      ],
+      "concept": [
+        {
+          "code": "interval-operators.after",
+          "display": "Interval Operators after",
+          "definition": "The after operator for intervals returns true if the first interval starts after the second one ends. In other words, if the starting point of the first interval is greater than the ending point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#after" }
+          ]
+        },
+        {
+          "code": "interval-operators.before",
+          "display": "Interval Operators before",
+          "definition": "The before operator for intervals returns true if the first interval ends before the second one starts. In other words, if the ending point of the first interval is less than the starting point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#before" }
+          ]
+        },
+        {
+          "code": "interval-operators.collapse",
+          "display": "Interval Operators collapse",
+          "definition": "The collapse operator returns the unique set of intervals that completely covers the ranges present in the given list of intervals. In other words, adjacent intervals within a sorted list are merged if they either overlap or meet.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#collapse" }
+          ]
+        },
+        {
+          "code": "interval-operators.contains",
+          "display": "Interval Operators contains",
+          "definition": "The contains operator for intervals returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#contains" }
+          ]
+        },
+        {
+          "code": "interval-operators.end",
+          "display": "Interval Operators end",
+          "definition": "The End operator returns the ending point of an interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#end" }
+          ]
+        },
+        {
+          "code": "interval-operators.ends",
+          "display": "Interval Operators ends",
+          "definition": "The ends operator returns true if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#ends" }
+          ]
+        },
+        {
+          "code": "interval-operators.equal",
+          "display": "Interval Operators equal",
+          "definition": "The equal (=) operator for intervals returns true if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the Start and End operators",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "interval-operators.equivalent",
+          "display": "Interval Operators equivalent",
+          "definition": "The equivalent (~) operator for intervals returns true if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the Start and End operators are equivalent.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equivalent" }
+          ]
+        },
+        {
+          "code": "interval-operators.except",
+          "display": "Interval Operators except",
+          "definition": "The except operator for intervals returns the set difference of two intervals. More precisely, this operator returns the portion of the first interval that does not overlap with the second. Note that to avoid returning an improper interval, if the second argument is properly contained within the first and does not start or end it, this operator returns null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#except" }
+          ]
+        },
+        {
+          "code": "interval-operators.expand",
+          "display": "Interval Operators expand",
+          "definition": "The expand operator returns the set of intervals of size per for all the intervals in the input, or the list of points covering the range of the given interval, if invoked on a single interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#expand" }
+          ]
+        },
+        {
+          "code": "interval-operators.in",
+          "display": "Interval Operators in",
+          "definition": "The in operator (can also be invoked using during) for intervals returns true if the given point is equal to the starting or ending point of the interval, or greater than the starting point and less than the ending point. For open interval boundaries, exclusive comparison operators are used. For closed interval boundaries, if the interval boundary is null, the result of the boundary comparison is considered true.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#in" }
+          ]
+        },
+        {
+          "code": "interval-operators.includes",
+          "display": "Interval Operators includes",
+          "definition": "The includes operator for intervals returns true if the first interval completely includes the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#includes" }
+          ]
+        },
+        {
+          "code": "interval-operators.included in",
+          "display": "Interval Operators included in",
+          "definition": "The included in (or during) operator for intervals returns true if the first interval is completely included in the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second interval, and the ending point of the first interval is less than or equal to the ending point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#included-in" }
+          ]
+        },
+        {
+          "code": "interval-operators.intersect",
+          "display": "Interval Operators intersect",
+          "definition": "The intersect operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#intersect" }
+          ]
+        },
+        {
+          "code": "interval-operators.meets",
+          "display": "Interval Operators meets",
+          "definition": "The meets operator returns true if the first interval ends immediately before the second interval starts, or if the first interval starts immediately after the second interval ends. In other words, if the ending point of the first interval is equal to the predecessor of the starting point of the second, or if the starting point of the first interval is equal to the successor of the ending point of the second.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#meets" }
+          ]
+        },
+        {
+          "code": "interval-operators.not equal",
+          "display": "Interval Operators not equal",
+          "definition": "The not equal (!=) operator for intervals returns true if its arguments are not the same value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not-equal" }
+          ]
+        },
+        {
+          "code": "interval-operators.not equivalent",
+          "display": "Interval Operators not equivalent",
+          "definition": "The not equivalent (!~) operator for intervals returns true if its arguments are not equivalent.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not-equivalent" }
+          ]
+        },
+        {
+          "code": "interval-operators.on or after",
+          "display": "Interval Operators on or after",
+          "definition": "The on or after operator for intervals is a synonym for the same or after operator and is supported to enable natural phrasing. See the description of the Same Or After (Intervals) operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#on-or-after" }
+          ]
+        },
+        {
+          "code": "interval-operators.on or before",
+          "display": "Interval Operators on or before",
+          "definition": "The on or before operator for Date-, DateTime-, or Time-based intervals is a synonym for the same or before operator and is supported to enable natural phrasing. See the description of the Same Or Before (Intervals) operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#on-or-before" }
+          ]
+        },
+        {
+          "code": "interval-operators.overlaps",
+          "display": "Interval Operators overlaps",
+          "definition": "The overlaps operator returns true if the first interval overlaps the second. More precisely, if the starting or ending point of either interval is in the other, or if the ending point of the first interval is greater than or equal to the starting point of the second interval, and the starting point of the first interval is less than or equal to the ending point of the second interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#overlaps" }
+          ]
+        },
+        {
+          "code": "interval-operators.point from",
+          "display": "Interval Operators point from",
+          "definition": "The point from operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#point-from" }
+          ]
+        },
+        {
+          "code": "interval-operators.properly includes",
+          "display": "Interval Operators properly includes",
+          "definition": "The properly includes operator for intervals returns true if the first interval completely includes the second and the first interval is strictly larger than the second. More precisely, if the starting point of the first interval is less than or equal to the starting point of the second interval, and the ending point of the first interval is greater than or equal to the ending point of the second interval, and they are not the same interval.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "interval-operators.",
+          "display": "Interval Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "interval-operators.",
+          "display": "Interval Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "interval-operators.",
+          "display": "Interval Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "interval-operators.",
+          "display": "Interval Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        }
       ]
     },
     {
