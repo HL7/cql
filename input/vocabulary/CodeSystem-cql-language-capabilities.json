@@ -1285,7 +1285,7 @@
         {
           "code": "list-operators.contains",
           "display": "List Operators contains",
-          "definition": "The contains operator for lists returns true if the given element is in the list using equality semantics, with the exception that null elements are considered equal.\n\n",
+          "definition": "The contains operator for lists returns true if the given element is in the list using equality semantics, with the exception that null elements are considered equal.",
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#contains" }
@@ -1298,15 +1298,6 @@
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#distinct" }
-          ]
-        },
-        {
-          "code": "list-operators.",
-          "display": "List Operators ",
-          "definition": "",
-          "property": [
-            { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
           ]
         },
         {
@@ -1352,15 +1343,6 @@
           "property": [
             { "code": "version", "valueString": "1.0" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#flatten" }
-          ]
-        },
-        {
-          "code": "list-operators.",
-          "display": "List Operators ",
-          "definition": "",
-          "property": [
-            { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
           ]
         },
         {
@@ -1455,7 +1437,7 @@
         },
         {
           "code": "list-operators.not_equivalent",
-          "display": "List Operators ",
+          "display": "List Operators not equivalent",
           "definition": "The not equivalent (!~) operator for lists returns true if its arguments are not equivalent.",
           "property": [
             { "code": "version", "valueString": "1.0" },
