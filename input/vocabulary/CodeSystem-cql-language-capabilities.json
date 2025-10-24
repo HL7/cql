@@ -801,7 +801,6 @@
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators" }
       ]
     },
-
     {
       "code": "string-operators",
       "display": "String Operators",
@@ -1281,6 +1280,251 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#list-operators" }
+      ],
+      "concept": [
+        {
+          "code": "list-operators.contains",
+          "display": "List Operators contains",
+          "definition": "The contains operator for lists returns true if the given element is in the list using equality semantics, with the exception that null elements are considered equal.\n\n",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#contains" }
+          ]
+        },
+        {
+          "code": "list-operators.distinct",
+          "display": "List Operators distinct",
+          "definition": "The distinct operator returns the given list with duplicates eliminated using equality semantics.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#distinct" }
+          ]
+        },
+        {
+          "code": "list-operators.",
+          "display": "List Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "list-operators.equal",
+          "display": "List Operators equal",
+          "definition": "The equal (=) operator for lists returns true if and only if the lists have the same element type, and have the same elements by value, in the same order.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equal" }
+          ]
+        },
+        {
+          "code": "list-operators.equivalent",
+          "display": "List Operators equivalent",
+          "definition": "The equivalent (~) operator for lists returns true if and only if the lists contain elements of the same type, have the same number of elements, and for each element in the lists, in order, the elements are equivalent.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equivalent" }
+          ]
+        },
+        {
+          "code": "list-operators.except",
+          "display": "List Operators except",
+          "definition": "The except operator returns the set difference of two lists. More precisely, the operator returns a list with the elements that appear in the first operand that do not appear in the second operand.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#except" }
+          ]
+        },
+        {
+          "code": "list-operators.exists",
+          "display": "List Operators exists",
+          "definition": "The exists operator returns true if the list contains any non-null elements.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#exists" }
+          ]
+        },
+        {
+          "code": "list-operators.flatten",
+          "display": "List Operators flatten",
+          "definition": "The flatten operator flattens a list of lists into a single list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#flatten" }
+          ]
+        },
+        {
+          "code": "list-operators.",
+          "display": "List Operators ",
+          "definition": "",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#" }
+          ]
+        },
+        {
+          "code": "list-operators.first",
+          "display": "List Operators first",
+          "definition": "The First operator returns the first element in a list. The operator is equivalent to invoking the indexer with an index of 0.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#first" }
+          ]
+        },
+        {
+          "code": "list-operators.in",
+          "display": "List Operators in",
+          "definition": "The in operator for lists returns true if the given element is in the given list using equality semantics, with the exception that null elements are considered equal.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#in" }
+          ]
+        },
+        {
+          "code": "list-operators.includes",
+          "display": "List Operators includes",
+          "definition": "The includes operator for lists returns true if the first list contains every element of the second list using equality semantics, with the exception that null elements are considered equal.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#includes" }
+          ]
+        },
+        {
+          "code": "list-operators.included_in",
+          "display": "List Operators included in",
+          "definition": "The included in operator for lists returns true if every element of the first list is in the second list using equality semantics.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#included-in" }
+          ]
+        },
+        {
+          "code": "list-operators.indexer",
+          "display": "List Operators indexer",
+          "definition": "The indexer ([]) operator returns the element at the indexth position in a list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#indexer" }
+          ]
+        },
+        {
+          "code": "list-operators.indexof",
+          "display": "List Operators IndexOf",
+          "definition": "The IndexOf operator returns the 0-based index of the given element in the given source list using equality semantics, with the exception that nulls are considered equal.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#indexof" }
+          ]
+        },
+        {
+          "code": "list-operators.intersect",
+          "display": "List Operators intersect",
+          "definition": "The intersect operator for lists returns the intersection of two lists. More precisely, the operator returns a list containing only the elements that appear in both lists.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#intersect" }
+          ]
+        },
+        {
+          "code": "list-operators.last",
+          "display": "List Operators last",
+          "definition": "The Last operator returns the last element in a list. In a list of length N, the operator is equivalent to invoking the indexer with an index of N - 1",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#last" }
+          ]
+        },
+        {
+          "code": "list-operators.length",
+          "display": "List Operators length",
+          "definition": "The Length operator returns the number of elements in a list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#length" }
+          ]
+        },
+        {
+          "code": "list-operators.not_equal",
+          "display": "List Operators not equal",
+          "definition": "The not equal (!=) operator for lists returns true if its arguments are not the same value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not_equal" }
+          ]
+        },
+        {
+          "code": "list-operators.not_equivalent",
+          "display": "List Operators ",
+          "definition": "The not equivalent (!~) operator for lists returns true if its arguments are not equivalent.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#not_equivalent" }
+          ]
+        },
+        {
+          "code": "list-operators.properly_includes",
+          "display": "List Operators properly includes",
+          "definition": "The properly includes operator for lists returns true if the first list contains every element of the second list, and the first list is strictly larger than the second list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#properly_includes" }
+          ]
+        },
+        {
+          "code": "list-operators.properly_included_in",
+          "display": "List Operators properly included in",
+          "definition": "The properly included in operator for lists returns true if every element of the first list is in the second list and the first list is strictly smaller than the second list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#properly_included_in" }
+          ]
+        },
+        {
+          "code": "list-operators.singleton_from",
+          "display": "List Operators singleton from",
+          "definition": "The singleton from operator extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#singleton_from" }
+          ]
+        },
+        {
+          "code": "list-operators.skip",
+          "display": "List Operators skip",
+          "definition": "The Skip operator returns the elements in the list, skipping the first number elements. If the list has less number elements, the result is empty.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#skip" }
+          ]
+        },
+        {
+          "code": "list-operators.tail",
+          "display": "List Operators tail",
+          "definition": "The Tail operator returns all but the first element from the given list. If the list is empty, the result is empty.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tail" }
+          ]
+        },
+        {
+          "code": "list-operators.take",
+          "display": "List Operators take",
+          "definition": "The Take operator returns the first number elements from the given list. If the list has less than number elements, the result only contains the elements in the list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#take" }
+          ]
+        },
+        {
+          "code": "list-operators.union",
+          "display": "List Operators union",
+          "definition": "The union operator for lists returns a list with all unique elements from both arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#union" }
+          ]
+        }
       ]
     },
     {
