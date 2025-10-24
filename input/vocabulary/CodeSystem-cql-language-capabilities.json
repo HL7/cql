@@ -1299,9 +1299,109 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#clinical-operators" }
+      ],
+      "concept": [
+        {
+          "code": "clinical-operators.age",
+          "display": "Clinical Operators age",
+          "definition": "The Age operators calculate the age of the patient as of the current date in the precision named in the operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#age" }
+          ]
+        },
+        {
+          "code": "clinical-operators.ageat",
+          "display": "Clinical Operators age at",
+          "definition": "The AgeAt operators calculate the age of the patient as of a given date and in the precision named in the operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#ageat" }
+          ]
+        },
+        {
+          "code": "clinical-operators.calculateage",
+          "display": "Clinical Operators calculate age",
+          "definition": "The CalculateAge operators calculate the age of a person born on the given birth date, as of the current date, and in the precision named in the operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#calculateage" }
+          ]
+        },
+        {
+          "code": "clinical-operators.calculateageat",
+          "display": "Clinical Operators Calculate age at",
+          "definition": "The CalculateAgeAt operators calculate the age of a person born on the given birth date as of the given date, and in the precision named in the operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#calculateageat" }
+          ]
+        },
+        {
+          "code": "clinical-operators.contains_codesystem",
+          "display": "Clinical Operators contains codesystem",
+          "definition": "The ~contains (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem or CodeSystem-valued expression.",
+          "property": [
+            { "code": "version", "valueString": "2.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#calculateage" }
+          ]
+        },
+        {
+          "code": "clinical-operators.contains_valueset",
+          "display": "Clinical Operators contains valueset",
+          "definition": "The ~contains (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset or ValueSet-valued expression.",
+          "property": [
+            { "code": "version", "valueString": "2.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#contains_valueset" }
+          ]
+        },
+        {
+          "code": "clinical-operators.equal",
+          "display": "Clinical Operators equal",
+          "definition": "The equal (=) operator for Codes and Concepts uses tuple equality semantics. This means that the operator will return true if and only if the values for each element by name are equal.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equal-3" }
+          ]
+        },
+        {
+          "code": "clinical-operators.equivalent",
+          "display": "Clinical Operators equivalent",
+          "definition": "The equivalent (~) operator for Code values returns true if the code and system elements are equivalent. The version and display elements are ignored for the purposes of determining Code equivalence.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#equivalent-3" }
+          ]
+        },
+        {
+          "code": "clinical-operators.in-codesysterm",
+          "display": "Clinical Operators in (Codesystem)",
+          "definition": "The in (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined codesystem.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#in-codesystem" }
+          ]
+        },
+        {
+          "code": "clinical-operators.expandvalueset",
+          "display": "Clinical Operators expand valueset",
+          "definition": "The ExpandValueSet function returns the current expansion for the given value set.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#expandvalueset" }
+          ]
+        },
+        {
+          "code": "clinical-operators.in_valueset",
+          "display": "Clinical Operators in valueset",
+          "definition": "The in (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#in_valueset" }
+          ]
+        }
       ]
-    },
-    {
+    },    {
       "code": "diagnostic-operators",
       "display": "Diagnostic Operators",
       "definition": "Errors and messaging functions.",
