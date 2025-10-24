@@ -1018,6 +1018,143 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#string-operators" }
+      ],
+      "concept": [
+        {
+          "code": "string-operators.combine",
+          "display": "String Operators combine",
+          "definition": "The Combine operator combines a list of strings, optionally separating each string with the given separator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#combine" }
+          ]
+        },
+        {
+          "code": "string-operators.concatenate",
+          "display": "String Operators concatenate",
+          "definition": "The concatenate (+ or &) operator performs string concatenation of its arguments.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#concatenate" }
+          ]
+        },
+        {
+          "code": "string-operators.endwith",
+          "display": "String Operators endwith",
+          "definition": "The EndsWith operator returns true if the given string ends with the given suffix.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#endwith" }
+          ]
+        },
+        {
+          "code": "string-operators.indexer",
+          "display": "String Operators indexer",
+          "definition": "The indexer ([]) operator returns the character at the indexth position in a string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#indexer" }
+          ]
+        },
+        {
+          "code": "string-operators.lastpositionof",
+          "display": "String Operators lastpositionof",
+          "definition": "The LastPositionOf operator returns the 0-based index of the last appearance of the given pattern in the given string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#lastpositionof" }
+          ]
+        },
+        {
+          "code": "string-operators.length",
+          "display": "String Operators length",
+          "definition": "The Length operator returns the number of characters in a string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#length" }
+          ]
+        },
+        {
+          "code": "string-operators.lower",
+          "display": "String Operators lower",
+          "definition": "The Lower operator returns the given string with all characters converted to their lower case equivalents.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#lower" }
+          ]
+        },
+        {
+          "code": "string-operators.matches",
+          "display": "String Operators matches",
+          "definition": "The Matches operator returns true if the given string matches the given regular expression pattern. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters. The start/end of line markers ^ and $ can be used to match the entire string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#matches" }
+          ]
+        },
+        {
+          "code": "string-operators.positionof",
+          "display": "String Operators positionof",
+          "definition": "The PositionOf operator returns the 0-based index of the given pattern in the given string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#positionof" }
+          ]
+        },
+        {
+          "code": "string-operators.replacematches",
+          "display": "String Operators replacematches",
+          "definition": "The ReplaceMatches operator matches the given string using the given regular expression pattern, replacing each match with the given substitution. The substitution string may refer to identified match groups in the regular expression. Regular expressions should function consistently, regardless of any culture- and locale-specific settings in the environment, should be case-sensitive, use partial matching, use single line mode, and allow Unicode characters. The start and end of line markers ^, $ can be used to match the entire string.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#replacematches" }
+          ]
+        },
+        {
+          "code": "string-operators.split",
+          "display": "String Operators split",
+          "definition": "The Split operator splits a string into a list of strings using a separator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#split" }
+          ]
+        },
+        {
+          "code": "string-operators.splitonmatches",
+          "display": "String Operators splitonmatches",
+          "definition": "The SplitOnMatches operator splits a string into a list of strings using a separator that is defined by a regular expression pattern.",
+          "property": [
+            { "code": "version", "valueString": "1.3" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#splitonmatches" }
+          ]
+        },
+        {
+          "code": "string-operators.startswith",
+          "display": "String Operators startswith",
+          "definition": "The StartsWith operator returns true if the given string starts with the given prefix.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#startswith" }
+          ]
+        },
+        {
+          "code": "string-operators.substring",
+          "display": "String Operators substring",
+          "definition": "The Substring operator returns the string within stringToSub, starting at the 0-based index startIndex, and consisting of length characters.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#substring" }
+          ]
+        },
+        {
+          "code": "string-operators.upper",
+          "display": "String Operators upper",
+          "definition": "The Upper operator returns the given string with all characters converted to their upper case equivalents.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#upper" }
+          ]
+        }
       ]
     },
     {
