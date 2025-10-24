@@ -417,6 +417,241 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#type-operators" }
+      ],
+      "concept": [
+        {
+          "code": "type-operators.as",
+          "display": "Type Operator as",
+          "definition": "The as operator allows the result of an expression to be cast as a given target type. This allows expressions to be written that are statically typed against the expected run-time type of the argument.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#as" }
+          ]
+        },
+        {
+          "code": "type-operators.cast-as",
+          "display": "Type Operator as",
+          "definition": "(See the as operator in addition) The cast prefix indicates that if the argument is not of the specified type at run-time then an exception is thrown.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#as" }
+          ]
+        },
+        {
+          "code": "type-operators.is",
+          "display": "Type Operator is",
+          "definition": "The is operator allows the type of a result to be tested. If the run-time type of the argument is the same as or derived from the type being tested, the result of the operator is true; otherwise, the result is false.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#is" }
+          ]
+        },
+        {
+          "code": "type-operators.children",
+          "display": "Type Operator children",
+          "definition": "For structured types, the Children operator returns a list of all the values of the elements of the type. List-valued elements are expanded and added to the result individually, rather than as a single list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#children" }
+          ]
+        },
+        {
+          "code": "type-operators.descendants",
+          "display": "Type Operator descendants",
+          "definition": "or structured types, the Descendants operator returns a list of all the values of the elements of the type, recursively. List-valued elements are expanded and added to the result individually, rather than as a single list.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#descendants" }
+          ]
+        },
+        {
+          "code": "type-operators.convert-quantity",
+          "display": "Type Operator convert-quantity",
+          "definition": "The convert operator converts a value to a specific type. The result of the operator is the value of the argument converted to the target type, if possible. If there is no valid conversion from the actual value to the target type, the result is null.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convert" }
+          ]
+        },
+        {
+          "code": "type-operators.to-boolean",
+          "display": "Type Operator to-boolean",
+          "definition": "The ToBoolean operator converts the value of its argument to a Boolean value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toboolean" }
+          ]
+        },
+        {
+          "code": "type-operators.to-integer",
+          "display": "Type Operator to-integer",
+          "definition": "The ToInteger operator converts the value of its argument to an Integer value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tointeger" }
+          ]
+        },        {
+          "code": "type-operators.to-long",
+          "display": "Type Operator to-long",
+          "definition": "The ToLong operator converts the value of its argument to a Long value.",
+          "property": [
+            { "code": "version", "valueString": "1.5" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tolong" }
+          ]
+        },
+        {
+          "code": "type-operators.to-decimal",
+          "display": "Type Operator to-decimal",
+          "definition": "The ToDecimal operator converts the value of its argument to a Decimal value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todecimal" }
+          ]
+        },
+        {
+          "code": "type-operators.to-quantity",
+          "display": "Type Operator to-quantity",
+          "definition": "The ToQuantity operator converts the value of its argument to a Quantity value. The operation does not perform any unit conversion, that capability is supported by the ConvertQuantity operator.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toquantity" }
+          ]
+        },
+        {
+          "code": "type-operators.to-ratio",
+          "display": "Type Operator to-ratio",
+          "definition": "The ToRatio operator converts the value of its argument to a Ratio value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#toratio" }
+          ]
+        },
+        {
+          "code": "type-operators.to-date",
+          "display": "Type Operator to-date",
+          "definition": "The ToDate operator converts the value of its argument to a Date value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todate" }
+          ]
+        },
+        {
+          "code": "type-operators.to-datetime",
+          "display": "Type Operator to-datetime",
+          "definition": "The ToDateTime operator converts the value of its argument to a DateTime value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#todatetime" }
+          ]
+        },
+        {
+          "code": "type-operators.to-time",
+          "display": "Type Operator to-time",
+          "definition": "The ToTime operator converts the value of its argument to a Time value. The operator expects the string to be formatted using ISO-8601 time representation.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#totime" }
+          ]
+        },
+        {
+          "code": "type-operators.to-string",
+          "display": "Type Operator to-string",
+          "definition": "The ToString operator converts the value of its argument to a String value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#tostring" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-boolean",
+          "display": "Type Operator converts-to-boolean",
+          "definition": "The ConvertsToBoolean operator returns true if its argument is or can be converted to a Boolean value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoboolean" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-integer",
+          "display": "Type Operator converts-to-integer",
+          "definition": "The ConvertsToInteger operator returns true if its argument is or can be converted to an Integer value. See the ToInteger operator for a description of the supported conversions.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstointeger" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-long",
+          "display": "Type Operator converts-to-long",
+          "definition": "The ConvertsToLong operator returns true if its argument is or can be converted to a Long value.",
+          "property": [
+            { "code": "version", "valueString": "1.5" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstolong" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-decimal",
+          "display": "Type Operator converts-to-decimal",
+          "definition": "The ToDecimal operator returns true if its argument is or can be converted to a Decimal value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodecimal" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-quantity",
+          "display": "Type Operator converts-to-quantity",
+          "definition": "The ConvertsToQuantity operator returns true if its argument is or can be converted to a Quantity value. See the ToQuantity operator for a description of the supported conversions.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoquantity" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-ratio",
+          "display": "Type Operator converts-to-ration",
+          "definition": "The ConvertsToRatio operator returns true if its argument is or can be converted to a Ratio value",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstoratio" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-date",
+          "display": "Type Operator converts-to-date",
+          "definition": "The ConvertsToDate operator returns true if its argument is or can be converted to a Date value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodate" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-datetime",
+          "display": "Type Operator converts-to-datetime",
+          "definition": "The ConvertsToDateTime operator returns true if its argument is or can be converted to a DateTime value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstodatetime" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-time",
+          "display": "Type Operator converts-to-time",
+          "definition": "The ConvertsToTime operator returns true if its argument is or can be converted to a Time value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstotime" }
+          ]
+        },
+        {
+          "code": "type-operators.converts-to-string",
+          "display": "Type Operator converts-to-string",
+          "definition": "The ConvertsToString operator returns true if its argument is or can be converted to a String value.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#convertstostring" }
+          ]
+        }
       ]
     },
     {
