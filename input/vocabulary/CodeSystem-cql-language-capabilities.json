@@ -505,7 +505,7 @@
           "display": "Arithmetic Operators highboundary",
           "definition": "The HighBoundary function returns the greatest possible value of the input to the specified precision.",
           "property": [
-            { "code": "version", "valueString": "1.0" },
+            { "code": "version", "valueString": "1.5" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#highboundary" }
           ]
         },
@@ -523,7 +523,7 @@
           "display": "Arithmetic Operators lowboundary",
           "definition": "The LowBoundary function returns the least possible value of the input to the specified precision.",
           "property": [
-            { "code": "version", "valueString": "1.0" },
+            { "code": "version", "valueString": "1.5" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#lowboundary" }
           ]
         },
@@ -586,7 +586,7 @@
           "display": "Arithmetic Operators precision",
           "definition": "The Precision function returns the number of digits of precision in the input value.",
           "property": [
-            { "code": "version", "valueString": "1.0" },
+            { "code": "version", "valueString": "1.5" },
             { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#precision" }
           ]
         },
