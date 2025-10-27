@@ -1880,9 +1880,19 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#errors-and-messaging" }
+      ],
+      "concept": [
+        {
+          "code": "diagnostic-operators.message",
+          "display": "Diagnostic Operators message",
+          "definition": "The Message operator provides a run-time mechanism for returning messages, warnings, traces, and errors to the calling environment.",
+          "property": [
+            { "code": "version", "valueString": "1.0" },
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#message" }
+          ]
+        }
       ]
     },
-
     {
       "code": "single-source-query",
       "display": "Single source query",
