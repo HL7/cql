@@ -5976,6 +5976,8 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 > Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
 {: .note-warning}
 
+{: .contains_codesystem}
+
 #### Contains (Codesystem)
 
 > The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
@@ -6020,6 +6022,7 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
+{: #in_codesystem}
 #### In (Codesystem)
 
 > The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
@@ -6092,7 +6095,6 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
-
 #### Contains (Valueset)
 
 > The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
@@ -6136,6 +6138,7 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
+
 
 #### In (Valueset)
 
