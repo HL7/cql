@@ -6095,7 +6095,6 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
-{: .contains_valueset}
 #### Contains (Valueset)
 
 > The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
@@ -6140,7 +6139,6 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-{: .in_valueset}
 
 #### In (Valueset)
 

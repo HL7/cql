@@ -1352,7 +1352,7 @@
           "definition": "The ~contains (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset or ValueSet-valued expression.",
           "property": [
             { "code": "version", "valueString": "2.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#contains_valueset" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html" }
           ]
         },
         {
@@ -1397,7 +1397,7 @@
           "definition": "The in (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined valueset.",
           "property": [
             { "code": "version", "valueString": "1.0" },
-            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#in_valueset" }
+            { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html" }
           ]
         }
       ]
