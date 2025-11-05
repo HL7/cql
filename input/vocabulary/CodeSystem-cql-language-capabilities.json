@@ -2109,6 +2109,56 @@
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
+    },
+    {
+      "code": "timezone-offset-policy",
+      "display": "Timezone offset policy",
+      "definition": "How the engine handles Date/DateTime values that do not include an explicit timezone offset.",
+      "property": [
+        { "code": "version", "valueString": "1.5" },
+        {
+          "code": "reference",
+          "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime"
+        },
+        {
+          "code": "valueMeaning",
+          "valueString": "Indicates whether offset-less inputs are preserved without an offset, or normalized by applying the server's offset."
+        }
+      ],
+      "concept": [
+        {
+          "code": "timezone-offset-policy.no-default-offset",
+          "display": "No default offset for offset-less inputs",
+          "definition": "If an input Date/DateTime has no timezone offset, the value remains offset-less (no offset is applied). Downstream comparisons and operations follow offset-less semantics.",
+          "property": [
+            { "code": "version", "valueString": "1.5" },
+            {
+              "code": "reference",
+              "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime"
+            },
+            {
+              "code": "value",
+              "valueString": "none"
+            }
+          ]
+        },
+        {
+          "code": "timezone-offset-policy.default-server-offset",
+          "display": "Default server offset for offset-less inputs",
+          "definition": "If an input Date/DateTime has no timezone offset, the engine assigns the server's timezone offset associated with the evaluation start timestamp.",
+          "property": [
+            { "code": "version", "valueString": "1.5" },
+            {
+              "code": "reference",
+              "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime"
+            },
+            {
+              "code": "value",
+              "valueString": "server"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
