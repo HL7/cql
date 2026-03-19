@@ -2113,7 +2113,7 @@
     {
       "code": "timezone-offset-policy",
       "display": "Timezone offset policy",
-      "definition": "How the engine handles Date/DateTime values that do not include an explicit timezone offset.",
+      "definition": "How the engine handles DateTime values that do not include an explicit timezone offset.",
       "property": [
         { "code": "version", "valueString": "1.5" },
         {
@@ -2129,7 +2129,7 @@
         {
           "code": "timezone-offset-policy.no-default-offset",
           "display": "No default offset for offset-less inputs",
-          "definition": "If an input Date/DateTime has no timezone offset, the value remains offset-less (no offset is applied). Downstream comparisons and operations follow offset-less semantics.",
+          "definition": "If an input DateTime has no timezone offset, the value remains offset-less (no offset is applied). Downstream comparisons and operations follow offset-less semantics.",
           "property": [
             { "code": "version", "valueString": "1.5" },
             {
@@ -2145,7 +2145,7 @@
         {
           "code": "timezone-offset-policy.default-server-offset",
           "display": "Default server's offset for offset-less inputs",
-          "definition": "If an input Date/DateTime has no timezone offset, the engine assigns the server's timezone offset.",
+          "definition": "If an input DateTime has no timezone offset, the engine assigns the server's timezone offset.",
           "property": [
             { "code": "version", "valueString": "1.5" },
             {
@@ -2161,7 +2161,7 @@
         {
           "code": "timezone-offset-policy.default-evaluationrequest-offset",
           "display": "Timezone offset of the evaluation request",
-          "definition": "the timezone offset of the evaluation request (typically the client's timezone offset).",
+          "definition": "If an input DateTime has no timezone offset, the timezone offset of the evaluation request (typically the client's timezone offset).",
           "property": [
             { "code": "version", "valueString": "1.5" },
             {
