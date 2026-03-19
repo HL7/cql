@@ -2144,8 +2144,24 @@
         },
         {
           "code": "timezone-offset-policy.default-server-offset",
-          "display": "Default server offset for offset-less inputs",
-          "definition": "If an input Date/DateTime has no timezone offset, the engine assigns the server's timezone offset associated with the evaluation start timestamp.",
+          "display": "Default server's offset for offset-less inputs",
+          "definition": "If an input Date/DateTime has no timezone offset, the engine assigns the server's timezone offset.",
+          "property": [
+            { "code": "version", "valueString": "1.5" },
+            {
+              "code": "reference",
+              "valueString": "https://cql.hl7.org/09-b-cqlreference.html#datetime"
+            },
+            {
+              "code": "value",
+              "valueString": "server"
+            }
+          ]
+        },
+        {
+          "code": "timezone-offset-policy.default-evaluationrequest-offset",
+          "display": "Timezone offset of the evaluation request",
+          "definition": "the timezone offset of the evaluation request (typically the client's timezone offset).",
           "property": [
             { "code": "version", "valueString": "1.5" },
             {
@@ -2162,3 +2178,4 @@
     }
   ]
 }
+f
