@@ -1931,7 +1931,13 @@ In addition, timing phrases allow the use of time durations to offset the relati
 X starts 3 days before start Y
 ```
 
-This returns <span class="kw">true</span> if the start of X is equal to three days before the start of Y. Timing phrases can also include <span class="kw">less than</span>, <span class="kw">more than</span>, <span class="kw">or less</span> and <span class="kw">or more</span> to determine how the time duration is interpreted. For example:
+This returns <span class="kw">true</span> if the start of X is equal to three days before the start of Y. Note carefully that the addition of an offset to timing phrase here turned what was a relative comparison into an equality comparison, because the timing phrase is indicating an exact offset before or after. As another example, consider:
+
+```cql
+30 years before Today()
+```
+
+This comparison is only true on the day exactly 30 years before today. For relative comparison with an offset, timing phrases can also include <span class="kw">less than</span>, <span class="kw">more than</span>, <span class="kw">or less</span> and <span class="kw">or more</span> to determine how the offset is interpreted. For example:
 
 ```cql
 X starts 3 days or less before start Y
@@ -1942,7 +1948,7 @@ X starts more than 3 days before start Y
 
 The first expression returns <span class="kw">true</span> if the start of X is within the interval beginning three days before the start of Y and ending just before the start of Y. The second expression returns <span class="kw">true</span> if the start of X is within the interval beginning just after three days before the start of Y and ending just before the start of Y. The third expression returns <span class="kw">true</span> if the start of X is three days or more before the start of Y. And the fourth expression returns <span class="kw">true</span> if the start of X is more than three days before the start of Y.
 
-Timing phrases can also support inclusive comparisons using <span class="kw">on or</span> and <span class="kw">or on</span> syntax. For example:
+Timing phrases can also support inclusive relative comparisons using <span class="kw">on or</span> and <span class="kw">or on</span> syntax. For example:
 
 ```cql
 X starts 3 days or less before or on start Y
