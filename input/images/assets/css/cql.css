@@ -154,3 +154,7 @@ table.std-status-stu td {
     border-left: 6px solid #ffeb3b;
   }
   
+  .note-stu {
+    background-color: #fff2ff;
+    border-left: 6px solid #ffa0ff;
+  }

@@ -939,6 +939,21 @@ For <span class="kw">intersect</span>, this means the inputs can be lists of dif
 
 For <span class="kw">except</span>, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
 
+Note that although the following function declarations are technically allowed:
+
+```cql
+define function Foo(t Integer)
+define function Foo(t Choice<Integer, Decimal>)
+```
+
+Doing so results in a potentially ambiguous overload and should be discouraged.
+
+> STU NOTE: We are seeking feedback on whether allowing overloads with this type of ambiguity should be deprecated in a future version of this specification.
+{: .note-stu}
+
+> Implementations should provide a warning when this type of overload is detected.
+{: .note-warning}
+
 #### Type Inference
 
 Type inference is the process of determining the type of an expression based on the types of the values and operations involved in the expression. CQL is a strongly typed language, meaning that it is always possible to infer the type of an expression at compile-time (i.e. by static analysis).
