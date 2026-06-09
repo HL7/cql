@@ -3,7 +3,7 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
   <url value="http://cql.hl7.org/ImplementationGuide/ig"/>
-  <version value="2.0.0-ballot"/>
+  <version value="2.0.0-cibuild"/>
   <name value="CQL"/>
   <title value="Clinical Quality Language Specification"/>
   <status value="active"/>
@@ -17,18 +17,18 @@
   </contact>
   <packageId value="hl7.cql"/>
   <fhirVersion value="4.0.1"/>
-  <dependsOn id="terminology">
+  <!--dependsOn id="terminology">
     <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
     <packageId value="hl7.terminology.r4"/>
     <version value="6.5.0"/>
-  </dependsOn>
-  <!-- NOTE: Explicitly depending on 5.2.0 here to avoid the standards-status extension issue with 5.3.0-ballot -->
+  </dependsOn-->
+  <!-- NOTE: This was explicitly depending on 5.2.0 here to avoid the standards-status extension issue with 5.3.0-ballot -->
   <!-- See discussion here: https://chat.fhir.org/#narrow/channel/179192-fmg/topic/Extensions.20Pack.20Problem/with/532367710 -->
-  <dependsOn id="extensions">
+  <!--dependsOn id="extensions">
     <uri value="http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"/>
     <packageId value="hl7.fhir.uv.extensions.r4"/>
     <version value="5.2.0"/>
-  </dependsOn>
+  </dependsOn-->
   <definition>
     <page>
       <nameUrl value="toc.html"/>
@@ -510,7 +510,7 @@
     </page>
     <parameter>
       <code value="releaselabel"/>
-      <value value="R2 STU 1 (Ballot)"/>
+      <value value="R2 STU 1 (CI Build)"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
