@@ -1121,6 +1121,14 @@ define "MixedMultiply": 1 * 1.0
 
 The type of the literal <span class="lit">1</span> is <span class="id">Integer</span>, and the type of the literal <span class="lit">1.0</span> is <span class="id">Decimal</span>. To infer the type of the expression correctly, the language will implicitly convert the type of the <span class="lit">1</span> to <span class="id">Decimal</span> by inserting a <span class="id">ToDecimal</span> invocation. The multiplication is then performed on two <span class="id">Decimals</span>, and the result type is <span class="id">Decimal</span>.
 
+When implicitly converting a number to a quantity, the resulting quantity will have the default unit <span class="lit">1</span>. In some cases, this could result in uncomparable units, for example:
+
+```cql
+MedicationRequest.expectedSupplyDuration between 30 and 60 days
+```
+
+The literal <span class="lit">30</span> in this case is implicitly converted to a quantity with the default unit, which is not comparable with calendar days, and so the result of this expression may unexpectedly be <span class="kw">null</span>. Implementation environments should make use of unit conversion validation to help warn useres at compile-time when this situation occurs.
+
 In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type <span class="id">Person</span> with elements <span class="id">Name</span> of type <span class="id">String</span> and <span class="id">DOB</span> of type <span class="id">DateTime</span>, the following comparison is valid:
 
 ```cql
