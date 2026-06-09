@@ -1121,6 +1121,12 @@ define "MixedMultiply": 1 * 1.0
 
 The type of the literal <span class="lit">1</span> is <span class="id">Integer</span>, and the type of the literal <span class="lit">1.0</span> is <span class="id">Decimal</span>. To infer the type of the expression correctly, the language will implicitly convert the type of the <span class="lit">1</span> to <span class="id">Decimal</span> by inserting a <span class="id">ToDecimal</span> invocation. The multiplication is then performed on two <span class="id">Decimals</span>, and the result type is <span class="id">Decimal</span>.
 
+For <span class="id">Quantity</span> values, operations may result in implicit conversion of units as determined by application of the UCUM specification. For example:
+
+```cql
+1 'm' = 100 'cm'
+```
+
 When implicitly converting a number to a quantity, the resulting quantity will have the default unit <span class="lit">1</span>. In some cases, this could result in uncomparable units, for example:
 
 ```cql
