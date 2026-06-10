@@ -5157,14 +5157,14 @@ define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 
 ```cql
 properly includes(left List<T>, right List<T>) Boolean
-properly includes(left T, right List<T>) Boolean
+properly includes(left List<T>, right T) Boolean
 ```
 
 **Description:**
 
 The <span class="kw">properly includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list, and the first list is strictly larger than the second list.
 
-For the singleton-list overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
+For the list-singleton overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
