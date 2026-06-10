@@ -853,7 +853,7 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
 {: .grid .table .table-striped}
 
-Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units.
+Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units, and such comparisons return <span class="kw">null</span>.
 
 For example, the following quantities are _calendar duration_ quantities:
 
