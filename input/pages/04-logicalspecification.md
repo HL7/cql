@@ -1820,11 +1820,11 @@ The Add operator is defined for the Integer, Long Decimal, and Quantity types. I
 
 For Date, DateTime, and Time values, the operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
 
@@ -2180,11 +2180,11 @@ The Subtract operator is defined for the Integer, Long, Decimal, and Quantity ty
 
 For Date, DateTime, Time values, the operator returns the value of the first argument, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values.
 

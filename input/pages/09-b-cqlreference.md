@@ -3099,11 +3099,11 @@ define "UpperIsNull": Upper(null) // null
 
 The _add_ (<span class="sym">+</span>) operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For <span class="id">Date</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, or <span class="kw">days</span>.
+For <span class="id">Date</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, or <span class="kw">days</span>, or an error is thrown.
 
-For <span class="id">DateTime</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, <span class="kw">days</span>, <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
+For <span class="id">DateTime</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, <span class="kw">days</span>, <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>, or an error is thrown.
 
-For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
+For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>, or an error is thrown.
 
 As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
 
@@ -3145,11 +3145,11 @@ The <span class="kw">after</span>_-precision-_<span class="kw">of</span> operato
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
-For <span class="id">Date</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, or <span class="kw">day</span>.
+For <span class="id">Date</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, or <span class="kw">day</span>, or an error is thrown.
 
-For <span class="id">DateTime</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, <span class="kw">day</span>, <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>.
+For <span class="id">DateTime</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, <span class="kw">day</span>, <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>, or an error is thrown.
 
-For <span class="id">Time</span> values, _precision_ must be one of: <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>.
+For <span class="id">Time</span> values, _precision_ must be one of: <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>, or an error is thrown.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
