@@ -3267,8 +3267,6 @@ The <span class="id">DateTime</span> operator constructs a DateTime value from t
 
 At least one component other than <span class="id">timezoneOffset</span> must be specified, and no component may be specified at a precision below an unspecified precision. For example, <span class="id">hour</span> may be <span class="kw">null</span>, but if it is, <span class="id">minute</span>, <span class="id">second</span>, and <span class="id">millisecond</span> must all be <span class="kw">null</span> as well.
 
-If all the arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>, as opposed to a <span class="id">DateTime</span> with no components specified.
-
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 If <span class="id">timezoneOffset</span> is not specified, it is defaulted to the timezone offset of the evaluation request.
