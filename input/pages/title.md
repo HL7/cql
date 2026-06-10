@@ -33,16 +33,24 @@ Use of this material is governed by HL7's [*IP Compliance Policy*](http://www.hl
 
 *Specification Date:* August 1st 2025
 
+The following table lists the authors and editors of the specification, as well as current and past co-chairs of the sponsoring and co-sponsoring Clinical Decision Support (CDS), Clinical Quality Information (CQI), and Implementable Technology Specifications (ITS) Work Groups within Health Level 7 International.
+
 |==================================================================
 |Co-Chair (CDS): |Guilherme Del Fiol, MD, PhD <br/>University of Utah Health Care <br/>guilherme.delfiol@utah.edu
 |Co-Chair (CDS): |Robert Jenders, MD, MS <br/>jenders@ucla.edu
 |Co-Chair (CDS): |Kensaku Kawamoto, MD, PhD <br/>University of Utah Health Care <br/>kensaku.kawamoto@utah.edu
 |Co-Chair (CDS): |Howard Strasberg <br/>Walters Kluwer Health <br/>howard.strasberg@wolterskluwer.com
+|Co-Chair (CDS): |Isaac Vetter <br/>Epic <br/>
 |Co-Chair (CQI): |Patricia Craig <br/>The Joint Commission <br/>pcraig@jointcommission.org
 |Co-Chair (CQI): |Floyd Eisenberg <br/>iParsimony LLC <br/>FEisenberg@iParsimony.com
+|Co-Chair (CQI): |Yan Heras <br/>Optimum eHealth <br/>
 |Co-Chair (CQI): |Chris Millet <br/>chris@thelazycompany.com
+|Co-Chair (CQI): |Stan Rankins <br/>Telligen <br/>
+|Co-Chair (CQI): |Anne Smith <br/>NCQA <br/>
 |Co-Chair (CQI): |Walter Suarez, MD, MPH <br/>Kaiser Permanente <br/>walter.q.suarez@kp.org
+|Co-Chair (CQI): |Matt Tiller <br/>The MITRE Corporation <br/>
 |Co-Chair (CQI): |Kanwarpreet Sethi<br/>Lantana Consulting Group<br/>kp.sethi@lantanagroup.com
+|Co-Chair (ITS): |Jeff Brown <br/>Knapp Consulting Inc. <br/>pknapp@pknapp.com
 |Co-Chair (ITS): |Paul Knapp <br/>Knapp Consulting Inc. <br/>pknapp@pknapp.com
 |Co-Chair (ITS): |Dale Nelson<br/>Lantana Consulting Group<br/>dale.nelson@squaretrends.com
 |Co-Chair (ITS): |Andy Stechishin <br/>HL7 Canada<br/>andy.stechishin@gmail.com
