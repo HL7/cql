@@ -566,6 +566,15 @@ The `bind` clause of the `include` declaration allows values for parameters in t
 
 In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.
 
+For example:
+
+```cql
+include ColorectalCancerElements called CCE
+  bind { AsOf: end of "Measurement Period" }
+```
+
+This example illustrates setting the `AsOf` parameter in the included `ColorectalCancerElements` library to the result of evaluating the expression `end of "Measurement Period"` in the current library.
+
 #### Parameter Constraints
 
 > Parameter constraints were introduced in CQL 2.0, and are trial-use
