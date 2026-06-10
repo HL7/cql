@@ -88,7 +88,7 @@ The <span class="id">Code</span> type represents single terminology codes within
 
 #### CodeSystem
 
-> The CodeSystem type feature was introduced in CQL 1.5, and has trial-use status.
+> The CodeSystem type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -186,7 +186,7 @@ CQL supports positive and negative decimal values with a _precision_ (meaning to
 {: #long-1}
 #### Long
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -300,7 +300,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 #### ValueSet
 
-> The ValueSet type feature was introduced in CQL 1.5, and has trial-use status.
+> The ValueSet type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -325,7 +325,7 @@ The <span class="id">codesystems</span> element is used to capture code system v
 
 #### Vocabulary
 
-> The Vocabulary type feature was introduced in CQL 1.5, and has trial-use status.
+> The Vocabulary type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -781,7 +781,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 #### ConvertsToLong
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -804,7 +804,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument Any) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -855,7 +855,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 ConvertsToString(argument Any) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1059,7 +1059,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 #### ToLong
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -1103,7 +1103,7 @@ ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1220,7 +1220,7 @@ ToString(argument DateTime) String
 ToString(argument Time) String
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1400,7 +1400,7 @@ between(argument String, low String, high String) Boolean
 between(argument Interval<T>, low T, high T) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1606,7 +1606,7 @@ define "NullEquivalentIsTrue": null ~ null
 >(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1663,7 +1663,7 @@ define "DateTimeWithMillisecondsGreaterIsNull": @2024-11-15T12:30:00.5 > @2024-1
 >=(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1714,7 +1714,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 <(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1766,7 +1766,7 @@ define "NullLessIsNull": null < 5
 <=(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1872,7 +1872,7 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1906,7 +1906,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2287,7 +2287,7 @@ mod(left Quantity, right Quantity) Quantity
 ```
 
 > The Long type feature was introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2326,7 +2326,7 @@ define "ModuloIsNull": 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2363,7 +2363,7 @@ If the result of the operation cannot be represented, the result is <span class=
 -(argument Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2475,7 +2475,7 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 ^(argument Decimal, exponent Decimal) Decimal
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2511,7 +2511,7 @@ Round(argument Quantity) Quantity
 Round(argument Quantity, precision Integer) Quantity
 ```
 
-> The Quantity overloads of the Round function were introduced in CQL 2.0, and have trial-use status.
+> The Quantity overloads of the Round function were introduced in CQL 2.0, and have trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2548,7 +2548,7 @@ define "QuantityRound": Round(2.54 'cm') // 2 'cm'
 -(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2657,7 +2657,7 @@ div(left Quantity, right Quantity) Quantity
 ```
 
 > The Long type feature was introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2888,7 +2888,7 @@ define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-M
 
 #### MatchesFull
 
-> The MatchesFull function was introduced in CQL 2.0, and has trial-use status.
+> The MatchesFull function was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -3969,7 +3969,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
 
-> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status.
+> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -4757,7 +4757,7 @@ define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 {: #equivalentin}
 #### EquivalentIn
 
-> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -4784,7 +4784,7 @@ define "NullEquivalentInIsTrue": null ~in { 1, 3, 5, null }
 {: #equivalentcontains}
 #### EquivalentContains
 
-> The EquivalentContains operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -5263,7 +5263,7 @@ define "SkipIsNull": Skip(null, 2)
 
 #### Slice
 
-> The Slice function was introduced in CQL 2.0, and has trial-use status.
+> The Slice function was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -5529,7 +5529,7 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5697,7 +5697,7 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5754,7 +5754,7 @@ Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5984,7 +5984,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 
 #### EquivalentContains (CodeSystem)
 
-> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6030,7 +6030,7 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 {: #equivalentin-codesystem}
 #### EquivalentIn (CodeSystem)
 
-> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6075,7 +6075,7 @@ define "NullStringInCodesystem": null as String ~in "SNOMED:2014" // false
 {: #expandvalueset}
 #### ExpandValueSet (ValueSet)
 
-> The ExpandValueSet function was introduced in CQL 1.5, and has trial-use status.
+> The ExpandValueSet function was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6103,7 +6103,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 #### EquivalentContains (ValueSet)
 
-> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6149,7 +6149,7 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 {: #equivalentin-valueset}
 #### EquivalentIn (ValueSet)
 
-> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**

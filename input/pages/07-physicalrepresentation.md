@@ -44,7 +44,7 @@ text/cql; version=1.4
 
 Implementations consuming CQL or ELM that has a version indicated by the content type in this way should respect the version specified. Implementations should deal gracefully when processing CQL for versions they do not understand, but this is an implementation decision, especially given the backwards-compatible and future-compatible possibilities of CQL and ELM.
 
-> The text/cql-identifier and text/cql-expression media types, as well as use of the version parameter with all the media types, are new features introduced in CQL 1.5, and are trial-use.
+> The text/cql-identifier and text/cql-expression media types, as well as use of the version parameter with all the media types, are new features introduced in CQL 1.5, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 

@@ -1,4 +1,4 @@
-> Messages were introduced in CQL 2.0, and are trial-use
+> Messages were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 Index of messages, warnings, or errors that can be raised as part of processing libraries of CQL.
