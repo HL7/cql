@@ -4784,7 +4784,7 @@ define "NullEquivalentInIsTrue": null ~in { 1, 3, 5, null }
 {: #equivalentcontains}
 #### EquivalentContains
 
-> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains operator was introduced in CQL 2.0, and has trial-use status.
 {: .note-info}
 
 **Signature:**
