@@ -2534,7 +2534,7 @@ define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null) // null
 define "RoundPointFive": Round(0.5) // 1
 define "RoundNegativePointFive": Round(-0.5) // -1
-define "QuantityRound": Round(2.54 'cm') // 2 'cm'
+define "QuantityRound": Round(2.54 'cm') // 3 'cm'
 ```
 
 #### Subtract
