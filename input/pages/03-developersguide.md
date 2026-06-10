@@ -1770,7 +1770,7 @@ In this example, since the starting clause is omitted, Result is initially <span
 > The ability to define models as part of the language was introduced in CQL 2.0, and is trial-use.
 {: .note-info}
 
-CQL allows authors to define models consisting of all the elements  named class types, functions that operate on those types, conversions, and contexts. This is accomplished by allowing types, conversions, and contexts to be defined as part of libraries. The following sections discuss each of these constructs in more detail.
+CQL allows authors to define models consisting of named class types, functions that operate on those types, conversions, and contexts. The following sections discuss each of these constructs in more detail.
 
 #### Defining Class Types
 
