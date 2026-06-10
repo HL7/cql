@@ -1549,7 +1549,7 @@ For time-valued quantities, UCUM definite-time duration quantities above days (a
 1 millisecond = 1 'ms' // and 1 millsecond ~ 1 'ms'
 ```
 
-Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
+Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics using the shortest number of conversion steps (e.g. convert from days to years directly, not from days to months to years):
 
 ```cql
 1 year ~ 12 months

@@ -1563,7 +1563,7 @@ As noted in the [Quantities](#quantities) section, UCUM time-period units can be
 
 For a detailed discussion of calendar calculation semantics, refer to [Appendix H – Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
-For comparisons involving time durations (where no anchor to a calendar is available), the duration of a year is considered to be 365 days, and the duration of a month is considered to be 30 days. Duration calculations involving weeks consider a week as equivalent to 7 days.
+For comparisons involving time durations, see the [Equal](09-b-cqlreference.html#equal) and [Equivalent](09-b-cqlreference.html#equivalent) operator documentation in the CQL Reference.
 
 ##### Comparing Dates and Times
 
