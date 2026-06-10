@@ -72,15 +72,15 @@ For more information on how these data models are used, see the [Retrieve](#retr
 The following example illustrates the using declaration:
 
 ```cql
-using QUICK
+using FHIR
 ```
 
-The above declaration specifies that the <span class="id">QUICK</span> model will be used as the data model within the library. The [QUICK data model](http://hl7.org/fhir/us/qicore/quick/QUICK-index.html) will be used for the examples in this section unless specified otherwise.
+The above declaration specifies that the <span class="id">FHIR</span> resource model will be used as the data model within the library. The [FHIR](http://hl7.org/fhir) specification will be used to provide examples in this section unless specified otherwise.
 
 If necessary, a version specifier can be provided to indicate which version of the data model should be used as shown below:
 
 ```cql
-using QUICK version '0.3.0'
+using FHIR version '4.0.1'
 ```
 
 A syntax diagram of the <span class="kw">using</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingdefinition).
@@ -2498,22 +2498,22 @@ Note that these simplifications result in a measure that is not clinically relev
 
 As an aside, one of the simplifications made to the QDM presented above is the removal of the notion of _occurrencing_. Readers familiar with that concept as defined in QDM should be aware that CQL by design does not include this notion. CQL queries are expressive enough that the correlation accomplished by occurrencing in QDM is not required in CQL.
 
-The following table lists the QDM data elements involved and their mappings to the QUICK data structures:
+The following table lists the QDM data elements involved and their basic mappings to the FHIR data structures:
 
 <a name="table-2-v"></a>
 
-|QDM Data Element |QUICK Equivalent
+|QDM Data Element |FHIR Equivalent
 |----|----
 |**Patient Characteristic Birthdate** |Patient.birthDate
 |**Patient Characteristic Sex** |Patient.gender
 |**Diagnosis** |Condition
-|**Laboratory Test, Order** |DiagnosticOrder
-|**Laboratory Test, Result** |DiagnosticReport
+|**Laboratory Test, Order** |ServiceRequest
+|**Laboratory Test, Result** |Observation
 {: .grid .table .table-striped}
 
-Table 2‑V - QDM Data elements and their mapping to QUICK data structures
+Table 2‑V - QDM Data elements and their mapping to FHIR data structures
 
-Note that the specific mapping to the QUICK data structures is beyond the scope of this walkthrough; it is only provided here to demonstrate the link back to the original QDM.
+Note that the specific mapping to the FHIR data structures is beyond the scope of this walkthrough; it is only provided here to provide a general flavor of mapping from QDM to FHIR.
 
 Note also that the use of the QDM as a starting point was deliberately chosen to provide familiarity and is not a general requirement for building CQL. Artifact development could also begin directly from clinical guidelines expressed in other formats or directly from relevant clinical domain expertise. Using the QDM provides a familiar way to establish the starting requirements.
 
@@ -2597,7 +2597,7 @@ Putting it all together, we now have:
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 parameter MeasurementPeriod default Interval[
   @2013-01-01T00:00:00.0,
@@ -2627,7 +2627,7 @@ This criteria has three main components:
 
 * The relationship to the measurement period
 
-Using the mapping to QUICK, the equivalent retrieve in CQL is:
+Using the mapping to FHIR, the equivalent retrieve in CQL is:
 
 ```cql
 [Condition: "Other Female Reproductive Conditions"] C
@@ -2773,7 +2773,7 @@ Finally, putting it all together, we have a complete, albeit simplified, definit
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
@@ -2832,12 +2832,12 @@ And finally, although present in some quality measures, many do not include crit
 
 With these factors in mind, and using the CQL for the measure we have already built, deriving a point-of-care intervention is fairly straightforward.
 
-To begin with, we are using the same data model, QUICK, the same valueset declarations, and the same context:
+To begin with, we are using the same data model, FHIR, the same valueset declarations, and the same context:
 
 ```cql
 library CMS153CDS version '2'
 
-using QUICK
+using FHIR
 
 codesystem "SNOMED": 'http://snomed.info/sct'
 
@@ -2937,7 +2937,7 @@ With these in mind, we can create a new library, <span class="id">CMS153Common</
 ```cql
 library CMS153Common version '2'
 
-using QUICK
+using FHIR
 
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
@@ -2950,8 +2950,8 @@ define "ConditionsIndicatingSexualActivity":
     union ...
 
 define "LaboratoryTestsIndicatingSexualActivity":
-  [DiagnosticOrder: "Pregnancy Test"]
-    union [DiagnosticOrder: "Pap"]
+  [ServiceRequest: "Pregnancy Test"]
+    union [ServiceRequest: "Pap"]
     union ...
 
 define "ResultsPresentForChlamydiaScreening":
@@ -2963,7 +2963,7 @@ Using this library, we can then rewrite the CQM to reference the common elements
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 include CMS153Common version '2' called Common
 
@@ -2980,9 +2980,9 @@ define "Patient16To23AndFemale":
     and Patient.gender in Common."Female Administrative Sex"
 
 define "SexuallyActive":
-  exists (Common"ConditionsIndicatingSexualActivity" C
+  exists (Common."ConditionsIndicatingSexualActivity" C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
-  or exists (Common"LaboratoryTestsIndicatingSexualActivity" R
+  or exists (Common."LaboratoryTestsIndicatingSexualActivity" R
     where R.issued during MeasurementPeriod)
 
 define "InInitialPopulation":
@@ -2992,7 +2992,7 @@ define "InDenominator":
   true
 
 define "InNumerator":
-  exists (Common"ResultsPresentForChlamydiaScreening" S
+  exists (Common."ResultsPresentForChlamydiaScreening" S
     where S.issued during MeasurementPeriod)
 ```
 
@@ -3003,7 +3003,7 @@ And similarly for the CDS artifact:
 ```cql
 library CMS153CDS version '2'
 
-using QUICK
+using FHIR
 
 include CMS153Common version '2' called Common
 
@@ -3016,13 +3016,13 @@ define "Patient16To23AndFemale":
     and Patient.gender in Common."Female Administrative Sex"
 
 define "SexuallyActive":
-  exists (Common"ConditionsIndicatingSexualActivity")
-  or exists (Common"LaboratoryTestsIndicatingSexualActivity")
+  exists (Common."ConditionsIndicatingSexualActivity")
+  or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 
 define "NoScreening":
-  not exists (Common"ResultsPresentForChlamydiaScreening" S
+  not exists (Common."ResultsPresentForChlamydiaScreening" S
     where S.issued during Interval[Today() - 1 years, Today()])
-  and not exists ([ProcedureRequest: Common"Chlamydia Screening"] R
+  and not exists ([ServiceRequest: Common."Chlamydia Screening"] R
     where R.orderedOn same day or after Today()
 
 define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening
