@@ -1468,10 +1468,11 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks), and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks), and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics using the shortest number of conversion steps (e.g. convert from days to years directly, not from days to months to years):
 
 ```cql
-1 year = 12 months
+1 year = 12 months or 365 days
+1 month = 30 days
 1 week = 7 days
 1 day = 24 hours
 1 hour = 60 minutes
