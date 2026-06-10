@@ -1652,6 +1652,8 @@ Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
 
 The result in this example is <span class="kw">null</span> because the first date has no _hour_ component.
 
+For best practices related to comparing dates and times, refer to the [Date and Time Considerations](14-g-formattingconventions.html#date-and-time-considerations) topic.
+
 ##### Extracting Date and Time Components
 
 Given a <span class="id">Date</span> and <span class="id">Time</span> value, CQL supports extraction of any of the components. For example:

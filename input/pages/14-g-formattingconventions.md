@@ -213,6 +213,14 @@ The alias `Inpatient` in this example is allowed, but is the same as the value s
 
 The alias `Encounter` in this example is used in both the outer and inner queries, again resulting in potential confusion for the reader.
 
+#### Date and Time Considerations
+
+When comparing <span class="id">Date</span> and <span class="id">DateTime</span> values results in implicit conversion of the <span class="id">Date</span> to a <span class="id">DateTime</span> with <span class="kw">null</span> components, which can lead to unexpected partial comparison cases. Be explicit about precision when comparing <span class="id">Date</span> and <span class="id">DateTime</span> values, as comparing with mismatched precision can yield <span class="kw">null</span> results (which are often interpreted as <span class="lit">false</span>). In most cases, using <span class="kw">day of</span> precision is appropriate when comparing a <span class="id">Date</span> and <span class="id">DateTime</span>.
+
+In addition, <span class="kw">day of</span> precision should be used when comparing between events within a date range and date precision is clinically appropriate (e.g. comparing medication order dates or procedure dates against encounter periods). Further, <span class="kw">minute of</span> or <span class="kw">second of</span> precision should be used when comparing between events where time values are clinically appropriate.
+
+In CQL 2.0, the use of the new [_default comparison precision_](03-developersguide.html#defaultcomparisonprecision) capability can provide a way to facilitate these best practices.
+
 #### Direct Reference Codes
 
 Using "direct reference codes", involves declaring an identifier for a specific code in a code system, and using that directly within the logic. That's appropriate for cases where you know exactly what you want, and there's very little possibility for variation on that (i.e. systems are likely to use those codes directly, rather than have local codes that they are mapping to).
