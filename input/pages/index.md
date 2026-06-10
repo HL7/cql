@@ -52,25 +52,25 @@ The organization of this specification follows the outline of the perspectives d
 
 [Appendix C](10-c-referenceimplementations.html) – Reference Implementations provides information about where to find reference implementations for a CQL-ELM translator, a CQL Execution Framework for JavaScript, and other related tooling.
 
-[Appendix D](11-d-references.html) – References
+[Appendix D](11-d-references.html) – Listing of references used throughout the specification
 
-[Appendix E](12-e-acronyms.html) – Acronyms
+[Appendix E](12-e-acronyms.html) – Definitions of acronyms used throughout the specification
 
-[Appendix F](13-f-glossary.html) – Glossary
+[Appendix F](13-f-glossary.html) – Glossary of terms
 
-[Appendix G](14-g-formattingconventions.html) – Conventions
+[Appendix G](14-g-formattingconventions.html) – Fromatting Conventions and Best Practices for authoring readable and maintainable CQL
 
 [Appendix H](15-h-timeintervalcalculations.html) – Timing Interval Calculation Examples
 
-[Appendix I](16-i-fhirpathtranslation.html) – FHIRPath Function Translation
+[Appendix I](16-i-fhirpathtranslation.html) – FHIRPath Function Translation mapping from FHIRPath function names to CQL expressions
 
 [Appendix J](17-j-listoftables.html) – List Of Tables
 
 [Appendix K](18-k-listoffigures.html) – List Of Figures
 
-[Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams
+[Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams providing a visual illustration of CQL grammar rules
 
-[Appendix M](20-m-messages.html) - Messages Index
+[Appendix M](20-m-messages.html) - An index of all the messages defined in the specification
 
 #### Dependencies
 
