@@ -1814,7 +1814,7 @@ Add : BinaryExpression
 
 The Add operator performs numeric addition of its arguments.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a run-time error.
 
 The Add operator is defined for the Integer, Long Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
 
@@ -1869,7 +1869,7 @@ Divide : BinaryExpression
 
 The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer or Long. For integer division, use the truncated divide operator.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.
+For division operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -2046,7 +2046,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The Modulo operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For Modulo operations involving quantities, the resulting quantity will have the appropriate unit.
+For Modulo operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
 
 #### Multiply
 
@@ -2056,7 +2056,7 @@ Multiply : BinaryExpression
 
 The Multiply operator performs numeric multiplication of its arguments.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit.
+For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -2174,7 +2174,7 @@ Subtract : BinaryExpression
 
 The Subtract operator performs numeric subtraction of its arguments.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a run-time error.
 
 The Subtract operator is defined for the Integer, Long, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
 
@@ -2254,7 +2254,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit.
+For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
 
 ### String Operators
 

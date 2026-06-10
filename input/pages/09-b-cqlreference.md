@@ -1919,7 +1919,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be added, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be added, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -1986,7 +1986,7 @@ For division operations involving quantities, the resulting quantity will have t
 12 'cm2' / 3 'cm'
 ```
 
-In this example, the result will have a unit of <span class="lit">'cm'</span>. Note that when performing division of quantities with the same units, the result will have the default UCUM unit (<span class="lit">'1'</span>). When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+In this example, the result will have a unit of <span class="lit">'cm'</span>. Note that when performing division of quantities with the same units, the result will have the default UCUM unit (<span class="lit">'1'</span>). When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>). Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2300,7 +2300,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Integer</span> or <span class="id">Decimal</span>, and <span class="id">Quantity</span> arguments, the <span class="id">Integer</span> or <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For modulo operations involving quantities, the resulting quantity will have the appropriate unit.
+For modulo operations involving quantities, the resulting quantity will have the appropriate unit.  Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2346,7 +2346,7 @@ For multiplication operations involving quantities, the resulting quantity will 
 3 'cm' * 12 'cm2'
 ```
 
-In this example, the first result will have a unit of <span class="lit">'cm2'</span>, and the second result will have a unit of <span class="lit">'cm3'</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+In this example, the first result will have a unit of <span class="lit">'cm2'</span>, and the second result will have a unit of <span class="lit">'cm3'</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>). Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2559,7 +2559,7 @@ When invoked with mixed <span class="id">Integer</span> and <span class="id">Dec
 
 When invoked with mixed <span class="id">Long</span> and <span class="id">Decimal</span> arguments, the <span class="id">Long</span> argument will be implicitly converted to <span class="id">Decimal</span>.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be subtracted, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be subtracted, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2670,7 +2670,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Integer</span> or <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Integer</span> or <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.
+For division operations involving quantities, the resulting quantity will have the appropriate unit.  Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
