@@ -1869,7 +1869,7 @@ Divide : BinaryExpression
 
 The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer or Long. For integer division, use the truncated divide operator.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
+For division operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -2046,7 +2046,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The Modulo operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For Modulo operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
+For Modulo operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 #### Multiply
 
@@ -2056,7 +2056,7 @@ Multiply : BinaryExpression
 
 The Multiply operator performs numeric multiplication of its arguments.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
+For multiplication operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -2254,7 +2254,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit. Attempting to operate on quantities with invalid or special units will result in null.
+For TruncatedDivide operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 ### String Operators
 

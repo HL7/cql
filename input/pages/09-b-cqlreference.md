@@ -2339,7 +2339,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
+For multiplication involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. For example:
 
 ```cql
 12 'cm' * 3 'cm'
@@ -2670,7 +2670,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Integer</span> or <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Integer</span> or <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.  Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
+For division operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
