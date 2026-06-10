@@ -5982,7 +5982,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 > Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
 {: .note-warning}
 
-#### Contains (Codesystem)
+#### EquivalentContains (CodeSystem)
 
 > The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
 {: .note-info}
@@ -6000,7 +6000,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 
 **Description:**
 
-The <span class="kw">~contains</span> (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
+The <span class="kw">~contains</span> (CodeSystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
 
@@ -6026,7 +6026,9 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-#### In (Codesystem)
+{: #in-codesystem}
+{: #equivalentin-codesystem}
+#### EquivalentIn (CodeSystem)
 
 > The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
 {: .note-info}
@@ -6044,7 +6046,7 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 
 **Description:**
 
-The <span class="kw">~in</span> (<span class="kw">in</span> in version 1.5) (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
+The <span class="kw">~in</span> (<span class="kw">in</span> in version 1.5) (CodeSystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
 
@@ -6099,7 +6101,7 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
 
-#### Contains (Valueset)
+#### EquivalentContains (ValueSet)
 
 > The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
 {: .note-info}
@@ -6117,7 +6119,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 **Description:**
 
-The <span class="kw">~contains</span> (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
+The <span class="kw">~contains</span> (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
@@ -6143,7 +6145,9 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-#### In (Valueset)
+{: #in-valueset}
+{: #equivalentin-valueset}
+#### EquivalentIn (ValueSet)
 
 > The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
 {: .note-info}
@@ -6161,7 +6165,7 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 
 **Description:**
 
-The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
+The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 

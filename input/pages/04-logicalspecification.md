@@ -4674,6 +4674,46 @@ For the Date overload, precision must be one of year, month, week, or day, and t
 
 For the DateTime overload, the result is the number of whole calendar periods that have elapsed between the first datetime and the second datetime.
 
+#### CodeSystemContains
+
+```
+CodeSystemContains : OperatorExpression
+  ¦
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
+  ¦
+  1..1 --> code : Expression
+```
+
+The CodeSystemContains operator returns true if the given code system contains the given code.
+
+The first argument is statically a CodeSystemRef. This This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
+
+The third argument is expected to be a String, Code, or Concept.
+
+#### CodeSystemContainsAny
+
+```
+CodeSystemContainsAny : OperatorExpression
+  ¦
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
+  ¦
+  1..1 --> codes : Expression
+```
+
+The CodeSystemContainsAny operator returns true if the given code system contains any of the given codes.
+
+The first argument is a CodeSystemRef. This allows for static analysis of code system references within an artifact.
+
+The second argument is expected to be of type CodeSystem, allowing references to code systems to be preserved as references.
+
+The third argument is expected to be a list of String, Code, or Concept.
+
 #### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
@@ -4793,3 +4833,45 @@ If the severity is Trace, the operator is expected to make the message available
 If the severity is Warning, the operator is expected to provide the message as a warning to the calling environment.
 
 If the severity is Message, the operator is expected to provide the message as information to the calling environment.
+
+#### ValueSetContains
+
+```
+ValueSetContains : OperatorExpression
+  ¦
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
+  ¦
+  1..1 --> code : Expression
+```
+
+The ValueSetContains operator returns true if the given value set contains the given code.
+
+The first argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be a ValueSet, allowing references to value sets to be preserved as references.
+
+The third argument is expected to be a String, Code, or Concept.
+
+#### ValueSetContainsAny
+
+```
+ValueSetContainsAny : OperatorExpression
+  ¦
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
+  ¦
+  1..1 --> codes : Expression
+```
+
+The ValueSetContainsAny operator returns true if the given value set contains any of the given codes.
+
+The first argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be of type ValueSet, allowing references to value sets to be preserved as references.
+
+The third argument is expected to be a list of String, Code, or Concept.
+
+
