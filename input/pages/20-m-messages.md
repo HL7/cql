@@ -14,12 +14,6 @@ Messages in Clinical Quality Language have the following characteristics:
 * Severity: Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system
 * Source: The source of the issue, providing information about where the issue is originating and how it might be addressed, possible values are codes in the [CQL Message Source Codes](CodeSystem-cql-message-source-codes.html) code system.
 
-// Severity
-Info, Warning, Error, Fatal
-
-// Where the issue is associated
-Content, Application, System, Environment
-
 ### Messages
 
 Throughout this specification, message codes are documented as follows:
