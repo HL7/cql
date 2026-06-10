@@ -187,6 +187,32 @@ Syntax highlighting is an important aspect of readability. In order to enable di
 
 The following sections discuss best practices for authoring readable, maintainable, and reusable CQL.
 
+#### Alias Names
+
+Aliases are used in CQL to reference items within the scope of a query. Alias names used in CQL should be simple, valid, PascalCase identifiers with descriptive names, avoiding abbreviations unless the abbreviation is commonly used in (or defined within) the context of use for the artifact in which the logic will be used.
+
+Re-use of an alias name in a peer or child context within complex queries can make it difficult to follow what is happening in a query. Although it is allowed by the language due to identifier scoping rules, its use should be discouraged.
+
+For example:
+
+```cql
+[Encounter: Inpatient] Inpatient
+  where Inpatient.period during "Measurement Period"
+```
+
+The alias `Inpatient` in this example is allowed, but is the same as the value set identifier `Inpatient`, resulting in potential confusion for the reader. As another example:
+
+```cql
+[Encounter: "Inpatient Encounter"] Encounter
+  where Encounter.period during "Measurement Period"
+    and not exists (
+      [Encounter: "Emergency Department Encounter"] Encounter 
+        where Encounter.period during "Measurement Period"
+    )
+```
+
+The alias `Encounter` in this example is used in both the outer and inner queries, again resulting in potential confusion for the reader.
+
 #### Direct Reference Codes
 
 Using "direct reference codes", involves declaring an identifier for a specific code in a code system, and using that directly within the logic. That's appropriate for cases where you know exactly what you want, and there's very little possibility for variation on that (i.e. systems are likely to use those codes directly, rather than have local codes that they are mapping to).
