@@ -180,7 +180,7 @@ simple type Decimal
 
 The <span class="id">Decimal</span> type represents real values within CQL.
 
-CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10<sup>28</sup> + 1)/10<sup>8</sup> to (10<sup>28</sup>-1)/10<sup>-8</sup> with a step size of 10<sup>-8</sup>.
+CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10<sup>28</sup> + 1)/10<sup>8</sup> to (10<sup>28</sup>-1)/10<sup>8</sup> with a step size of 10<sup>-8</sup>.
 
 
 {: #long-1}
