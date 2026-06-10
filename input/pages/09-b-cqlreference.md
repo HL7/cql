@@ -6012,7 +6012,7 @@ For the <span class="id">List\<Code></span> overload, if the given code system c
 
 If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
-If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
+If the <span class="id">codesystem</span> reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the <span class="kw">~contains</span> (Codesystem) operator:
 
@@ -6058,7 +6058,7 @@ For the <span class="id">List\<Code></span> overload, if the given code system c
 
 If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
-If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
+If the <span class="id">codesystem</span> reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the <span class="kw">~in</span> (Codesystem) operator:
 
