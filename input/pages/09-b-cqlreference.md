@@ -4719,7 +4719,7 @@ The _equal_ (<span class="sym">=</span>) operator for lists returns <span class=
 
 This operation uses equality semantics, with the exception that nulls are considered equal.
 
-If either argument is <span class="kw">null</span>, or contains null elements, the result is <span class="kw">null</span>.
+If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
