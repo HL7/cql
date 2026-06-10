@@ -4968,7 +4968,7 @@ included in(left T, right list<T>) Boolean
 
 The <span class="kw">included in</span> operator for lists returns <span class="kw">true</span> if every element of the first list is in the second list using equality semantics.
 
-For the singleton-list overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the singleton-list overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator. If the first argument is <span class="kw">null</span>, the result is <span class="lit">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="lit">false</span> otherwise. If the second argument is <span class="kw">null</span>, the result is <span class="lit">false</span>.
 
 For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
