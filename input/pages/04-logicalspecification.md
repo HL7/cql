@@ -52,7 +52,7 @@ The _Tuple_ class represents construction of a new structured value, with the va
 
 To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some usages, such as within a _Filter_ expression, the source is implicit. If used outside such a usage, a source must be provided.
 
-The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
+The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that sub-elements should be traversed. Indexers specified in paths must be literal integer values.
 
 #### Tuple
 
@@ -1197,7 +1197,7 @@ Specifies a related data type to be included in the result as part of the retrie
 Specifies a terminology filter to be applied as part of the retrieve. Each codeFilter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple codeFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the code filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
 
 ##### dateFilter
-Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specifies as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
+Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specified as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
 
 ##### otherFilter
 Specifies other, non-id, -context, -terminology, or -date valued filter criteria to be applied as part of the retrieve. Each other Filter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple otherFilters are present, they are all applied (i.e. ANDed). This element is included to allow for additional filtering criteria as determined by optimization strategies.
@@ -1219,7 +1219,7 @@ The idSearch attribute specifies the name of the search path to use for searchin
 ##### contextProperty
 The contextProperty attribute optionally specifies which property of the model contains the context value.
 
-Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
 
@@ -1509,7 +1509,7 @@ For interval types, this means that two intervals are equivalent if and only if 
 
 For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is false, rather than null. As with equality, the second and millisecond precisions are combined and combined as a single precision using a decimal, with decimal equivalence semantics.
 
-For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purposes of determining Code equivalence.
+For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purpose of determining Code equivalence.
 
 For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept, using Code equivalence to determine the intersection. Note that an empty Concept is not equivalent to a null Concept.
 
@@ -2602,7 +2602,7 @@ For Date values, precision must be one of Year, Month, Week, or Day.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
-For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining boundaries.
+For calculations involving weeks, Sunday is considered to be the first day of the week for the purpose of determining boundaries.
 
 When calculating the difference between DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3027,7 +3027,7 @@ This operator has two overloads:
 1. List, List
 2. Interval, Interval
 
-For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics, with the exception that null elements are considered equal for the purposes of determining the result. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
+For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics, with the exception that null elements are considered equal for the purpose of determining the result. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 For the interval overload, this operator returns the portion of the first interval that does not overlap with the second. If the second argument is properly contained within the first and does not start or end it, this operator returns null.
 
@@ -4688,7 +4688,7 @@ CodeSystemContains : OperatorExpression
 
 The CodeSystemContains operator returns true if the given code system contains the given code.
 
-The first argument is statically a CodeSystemRef. This This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The first argument is statically a CodeSystemRef. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 The second argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
 
@@ -4738,7 +4738,7 @@ The InCodeSystem operator returns true if the given code is in the given code sy
 
 The first argument is expected to be a String, Code, or Concept.
 
-The second argument is statically a CodeSystemRef. This This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is statically a CodeSystemRef. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 The third argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
 

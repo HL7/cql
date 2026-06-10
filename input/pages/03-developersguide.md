@@ -645,7 +645,7 @@ Date and time comparison in CQL supports specifying the precision at which the c
 
 This is accomplished by applying this directive at the library level, and indicates that any expressions and function definitions within that library are to be performed at the specified default precision unless the operation explicity specifies a precision. The inclusion of this directive results in date and time comparisons being compiled to ELM with the given precision (i.e. it's a compile-time determination, rather than a run-time engine setting).
 
-The use of this directive is local to the library (meaning it does not impact comparisons occuring in dedclarations from included libraries) unless one of the following additional `<inclusion behavior>` clauses is provided:
+The use of this directive is local to the library (meaning it does not impact comparisons occurring in declarations from included libraries) unless one of the following additional `<inclusion behavior>` clauses is provided:
 
 * `default included libraries`: the directive is used if the included library does not specify its own comparison precision
 * `override included libraries`: the directive is used regardless of whether the included library specifies its own comparison precision
@@ -1206,7 +1206,7 @@ CQL also supports the notion of _implicit casting_ to prevent the need to cast a
 define "ImplicitCast": 5 * null
 ```
 
-The type of the first argument to the multiplication is <span class="id">Integer</span>, and the type of the second argument is <span class="id">Any</span>, an untyped <span class="kw">null</span> literal. But multipication of <span class="id">Integer</span> and <span class="id">Any</span> is not defined and <span class="id">Any</span> is a supertype of <span class="id">Integer</span>, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
+The type of the first argument to the multiplication is <span class="id">Integer</span>, and the type of the second argument is <span class="id">Any</span>, an untyped <span class="kw">null</span> literal. But multiplication of <span class="id">Integer</span> and <span class="id">Any</span> is not defined and <span class="id">Any</span> is a supertype of <span class="id">Integer</span>, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
 ```cql
 define "ImplicitCast": 5 * (null as Integer)
@@ -1345,7 +1345,7 @@ define function getList(list List<Integer>):
     list
 ```
 
-For more inforamtion about messages, refer to [Appendix M - Messages](20-m-messages.html)
+For more information about messages, refer to [Appendix M - Messages](20-m-messages.html)
 
 ### Nullological Operators
 
@@ -1864,7 +1864,7 @@ related to Patient by { subject }
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type.
 
-A syntax diagram of a function defintion can be seen [here](19-l-cqlsyntaxdiagrams.html#functiondefinition).
+A syntax diagram of a function definition can be seen [here](19-l-cqlsyntaxdiagrams.html#functiondefinition).
 
 For example:
 
@@ -1918,7 +1918,7 @@ Equal(X, Y)
 
 #### Fluent Functions
 
-> Fluent functions was introduced in CQL 1.5, and are trial-use.
+> Fluent functions were introduced in CQL 1.5, and are trial-use.
 {: .note-info}
 Functions can be defined as _fluent_ by including the <span class="kw">fluent</span> keyword as part of the function definition:
 
@@ -2029,7 +2029,7 @@ See the [Promotion and Demotion](#promotion-and-demotion) topic for more discuss
 
 #### Missing Information
 
-FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
+FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propagation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
 
 #### Type Resolution
 

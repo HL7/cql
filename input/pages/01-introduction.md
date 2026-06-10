@@ -193,7 +193,7 @@ It is important for implementers to clearly understand the underlying environmen
 
 ### Relationship to Other HL7 Specifications
 
-The Clinical Quality Language specification is designed as a domain-specific language suitable for querying as well as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow. For more information about other HL7 specifications, refer to the the [References](11-d-references.html) section.
+The Clinical Quality Language specification is designed as a domain-specific language suitable for querying as well as a general purpose query language suitable for describing clinical knowledge in a broad range of applications. As such, it has relationships to, and can be used by, several other HL7 specifications, as explained in the sections that follow. For more information about other HL7 specifications, refer to the [References](11-d-references.html) section.
 
 #### Health Quality Measure Format (HQMF)
 

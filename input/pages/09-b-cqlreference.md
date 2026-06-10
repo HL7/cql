@@ -248,7 +248,7 @@ structured type Ratio
 
 **Description:**
 
-The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
+The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. cannot be null).
 
 {: #string-1}
 #### String
@@ -3105,7 +3105,7 @@ For <span class="id">DateTime</span> values, the quantity unit must be one of: <
 
 For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>, or an error is thrown.
 
-As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behavior of `DateTime` values:
 
 ```cql
 @T23:30:00 + 1 hour // @T00:30:00
@@ -3602,7 +3602,7 @@ For <span class="id">DateTime</span> values, the quantity unit must be one of: <
 
 For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
-As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values.
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behavior of `DateTime` values.
 
 ```cql
 @T00:30:00 - 1 hour // @T23:30:00

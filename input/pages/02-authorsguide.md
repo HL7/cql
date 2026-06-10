@@ -216,11 +216,11 @@ If a parameter definition does not indicate a default value, a parameter value m
 
 In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
 
-. Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
-. Parameter defaults cannot reference expressions or functions defined in the current library
-. Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the [Terminology Operators](#terminology-operators) section.
-. Parameter defaults cannot reference other parameters
+* Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
+* Parameter defaults cannot reference expressions or functions defined in the current library
+* Parameter defaults cannot reference included libraries
+* Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the [Terminology Operators](#terminology-operators) section.
+* Parameter defaults cannot reference other parameters
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
 
@@ -837,7 +837,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ```
 
-The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](http://unitsofmeasure.org/ucum.html) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](https://unitsofmeasure.org/ucum) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -2277,7 +2277,7 @@ Most list operators in CQL operate on lists of any type, but for lists of interv
 <a name="figure-2-f"></a>
 <div><img src="assets/images/image8.png" alt="assets/images/image8" width="353" height="75"/></div>
 
-Figure 2‑F - Example input intervals to illustrate the behavior of the the <span class="kw">collapse</span> operator
+Figure 2‑F - Example input intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
 If we want to determine the total duration _covered_ by these intervals, we cannot simply use the <span class="kw">distinct</span> operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate <span class="kw">union</span> of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
