@@ -2470,8 +2470,8 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 **Signature:**
 
 ```cql
-^(argument Integer, exponent Integer) Integer
-^(argument Long, exponent Long) Long
+^(argument Integer, exponent Integer) Decimal
+^(argument Long, exponent Long) Decimal
 ^(argument Decimal, exponent Decimal) Decimal
 ```
 
@@ -2497,7 +2497,7 @@ define "IntegerPower": 2^3 // 8
 define "IntegerPowerFun": Power(2, 3) // 8
 define "LongPower": 2L^3L // 8L
 define "DecimalPower": 2.5^2.0 // 6.25
-define "NegateIsNull": 2.5^null
+define "PowerIsNull": 2.5^null
 ```
 
 #### Round
