@@ -211,7 +211,7 @@ typeInfo
     ;
 
 contextRelationship
-    : 'related' 'to' qualifiedIdentifier 'context' 'by' '{' identifier (',' identifier)* '}'
+    : 'related' 'to' qualifiedIdentifier 'by' '{' identifier (',' identifier)* '}'
     ;
 
 conversionInfoDefinition
