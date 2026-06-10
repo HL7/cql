@@ -1859,6 +1859,8 @@ The Ceiling operator returns the first integer greater than or equal to the argu
 
 If the argument is null, the result is null.
 
+If the result of the operation cannot be represented as an Integer, the result is null.
+
 #### Divide
 
 ```
@@ -1896,6 +1898,8 @@ Floor : UnaryExpression
 The Floor operator returns the first integer less than or equal to the argument.
 
 If the argument is null, the result is null.
+
+If the result cannot be represented as an Integer, the result is null.
 
 #### HighBoundary
 

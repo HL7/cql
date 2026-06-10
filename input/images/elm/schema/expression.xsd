@@ -1447,7 +1447,9 @@ For Modulo operations involving quantities, the resulting quantity will have the
 		<xs:annotation>
 			<xs:documentation>The Ceiling operator returns the first integer greater than or equal to the argument.
 
-If the argument is null, the result is null.</xs:documentation>
+If the argument is null, the result is null.
+
+If the result of the operation cannot be represented as an Integer, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnaryExpression"/>
@@ -1457,7 +1459,9 @@ If the argument is null, the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The Floor operator returns the first integer less than or equal to the argument.
 
-If the argument is null, the result is null.</xs:documentation>
+If the argument is null, the result is null.
+
+If the result cannot be represented as an Integer, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnaryExpression"/>

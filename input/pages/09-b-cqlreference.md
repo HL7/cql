@@ -1952,12 +1952,15 @@ When invoked with an <span class="id">Integer</span> argument, the argument will
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+If the result of the operation cannot be represented as an <span class="id">Integer</span>, the result is <span class="kw">null</span>.
+
 The following examples illustrate the behavior of the <span class="id">Ceiling</span> operator:
 
 ```cql
 define "IntegerCeiling": Ceiling(1) // 1
 define "DecimalCeiling": Ceiling(1.1) // 2
-define "QuantityCeilingIsNull": Ceiling(null as Decimal)
+define "DecimalCeilingIsNull": Ceiling(null as Decimal)
+define "CeilingOverflowIsNull": Ceiling(3147483647.05) // null
 ```
 
 #### Divide
@@ -2016,12 +2019,15 @@ When invoked with an <span class="id">Integer</span> argument, the argument will
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+If the result cannot be represented as an <span class="id">Integer</span>, the result is <span class="kw">null</span>.
+
 The following examples illustrate the behavior of the <span class="id">Floor</span> operator:
 
 ```cql
 define "IntegerFloor": Floor(1) // 1
 define "DecimalFloor": Floor(2.1) // 2
-define "QuantityFloorIsNull": Floor(null as Decimal)
+define "DecimalFloorIsNull": Floor(null as Decimal)
+define "UnderflowFloorIsNull": Floor(2147483648.2) // null
 ```
 
 #### Exp
