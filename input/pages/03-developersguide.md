@@ -610,7 +610,7 @@ A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagra
 > Directives were introduced in CQL 2.0, and are trial-use
 {: .note-info}
 
-Each library may include any number of _directives_ at the very beginning of the library (before the library declaration). Directives are a common mechanism to support providing additional contextual information for a library, as well as provide pre-processing opportunities. Directives can be though of as parameters to the language processing application.
+Each library may include any number of _directives_ at the very beginning of the library (before the library declaration). Directives are a common mechanism to support providing additional contextual information for a library, as well as provide pre-processing opportunities. Directives can be thought of as parameters to the language processing application.
 
 This initial introduction of directives into the language is deliberately scoped to only the very beginning of a library.
 
