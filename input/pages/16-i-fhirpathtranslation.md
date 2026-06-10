@@ -461,13 +461,13 @@ X.secondOf() === second from X
 If the result type of <element> is not list-valued:
 
 ```cql
-X.select(<element>) === X $this let a: <element> where a is not null return a
+X.select(<element>) === X $this let a: <element> where a is not null return all a
 ```
 
 If the result type of <element> is list-valued:
 
 ```cql
-X.select(<element>) === Flatten(X $this let a: <element> where a is not null return a)
+X.select(<element>) === Flatten(X $this let a: <element> where a is not null return all a)
 ```
 
 ### .single()
