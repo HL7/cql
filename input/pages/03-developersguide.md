@@ -759,7 +759,7 @@ using FHIR version '4.0.1'
 define function g(q Quantity): q
 ```
 
-The identifier <span class="id">Quantity</span> in this function declaration resolves to <span class="id">FHIR.Quantity</span> unambiguously because only the <span class="id">FHIR</span> model is explicitly declared.
+The identifier <span class="id">Quantity</span> in this function declaration resolves to <span class="id">FHIR.Quantity</span> unambiguously because only the <span class="id">FHIR</span> model is explicitly declared. In order to refer to the CQL <span class="id">System.Quantity</span> type instead, use the fully qualified identifier <span class="id">System.Quantity</span>.
 
 ### Types
 
