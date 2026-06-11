@@ -636,6 +636,32 @@ MeasurementPeriodEncounters E
 
 This example retrieves all the elements returned by the expression <span class="id">MeasurementPeriodEncounters</span> that have both a related <span class="id">Pharyngitis</span> and <span class="id">Antibiotics</span> result.
 
+Because the <span class="kw">such that</span> condition can be an arbitrary expression, it is possible to write relationship clauses that do not reference the primary source. For example:
+
+```cql
+[Encounter: "Ambulatory/ED Visit"] E
+  with [Condition: "Acute Pharyngitis"] P
+    such that P.onsetDateTime starts one year on or before Today()
+  without [Observation: "Streptococcus Test"] T
+    such that T.effective same day as Today()
+```
+
+This example retrieves all "Ambulatory/ED Visit" encounters where the patient has a documented condition of "Acute Pharyngitis" and does not have a documented "Streptococcus Test". This is valid, but can sometimes indicate a missing relationship criteria. Implementations may issue a warning to authors when the <span class="kw">such that</span> condition of a relationship clause does not refer to either the primary source or the related source.
+
+It is worth noting that the <span class="kw">with</span> and <span class="kw">without</span> clauses are shorthand for equivalent <span class="kw">exists</span> and <span class="kw">not exists</span> expressions:
+
+```cql
+[Encounter: "Ambulatory/ED Visit"] E
+  where exists (
+    [Condition: "Acute Pharyngitis"] P
+      where P.onsetDateTime starts one year on or before Today()
+  )
+    and not exists (
+      [Observation: "Streptococcus Test"] T
+        where T.effective same day as Today()
+    )
+```
+
 #### Full Query
 
 The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
