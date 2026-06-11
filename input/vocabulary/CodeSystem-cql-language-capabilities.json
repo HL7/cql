@@ -12,7 +12,7 @@
   "status": "active",
   "experimental": false,
   "publisher": "Clinical Decision Support Workgroup",
-  "description": "Codes for CQL language capabilities.",
+  "description": "This code system defines codes to represent CQL language capabilities, including characteristics of each capability such as the version of the specification in which the capability was introduced. This code system can be used to support advertising the capabilities required by knowledge artifacts, as well as the capabilities supported by CQL engines. The nature of the codes in this code system necessarily duplicate content in the CQL specification. When this duplication disagrees with the definition of features in the specification, the specification content is considered the source of truth (i.e. this code system is not the source of truth for CQL specification and capability semantics).",
   "caseSensitive": true,
   "valueSet": "http://cql.hl7.org/ValueSet/cql-language-capability",
   "hierarchyMeaning": "is-a",
