@@ -662,6 +662,8 @@ It is worth noting that the <span class="kw">with</span> and <span class="kw">wi
     )
 ```
 
+In particular, this means that if there are no related elements in a with clause (i.e. the related source is empty, or none of the related elements match the such that criteria), the result of the with relationship is false, while if there are no related elements in a without clause, the result of the without relationship is true.
+
 #### Full Query
 
 The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
