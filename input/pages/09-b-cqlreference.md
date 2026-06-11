@@ -159,9 +159,13 @@ The <span class="id">DateTime</span> type represents date and time values with p
 
 CQL supports date and time values in the range <span class="lit">@0001-01-01T00:00:00.0</span> to <span class="lit">@9999-12-31T23:59:59.999</span> with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is assumed. See the [Constructing Date and Time Values](02-authorsguide.html#constructing-datetime-values) section for more information.
 
+> Note that the FHIRPath specification indicates that systems may choose policies for timezone offset handling (see [DateTime Equality](https://build.fhir.org/ig/HL7/FHIRPath/#datetime-equality)). To ensure consistent results when evaluating DateTime comparisons and operations, the CQL specification requires that if a DateTime value does not have a timezone offset, the timezone offset of the evaluation request timestamp is assumed. This requirement is consistent with, but tighter than, the constraints established by FHIRPath.
+
 CQL also supports partial datetime values. For example, the datetime <span class="lit">@2014-01-01T03</span> represents some instant during the hour of 3:00 on January 1st, 2014.
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds are performed as though milliseconds had been specified as <span class="lit">0</span>. This is true of all comparison operations for date and time values, whether explicit (such as <span class="sym">=, !=, \<, \<=, >, >=</span>) or implicit (such as <span class="kw">same as, before, after, same or before, same or after</span>), or when comparison is performed as part of other operations such as interval <span class="kw">meets</span> and <span class="kw">overlaps</span>.
+
+
 
 {: #decimal-1}
 #### Decimal
