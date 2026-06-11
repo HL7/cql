@@ -187,6 +187,40 @@ Syntax highlighting is an important aspect of readability. In order to enable di
 
 The following sections discuss best practices for authoring readable, maintainable, and reusable CQL.
 
+#### Alias Names
+
+Aliases are used in CQL to reference items within the scope of a query. Alias names used in CQL should be simple, valid, PascalCase identifiers with descriptive names, avoiding abbreviations unless the abbreviation is commonly used in (or defined within) the context of use for the artifact in which the logic will be used.
+
+Re-use of an alias name in a peer or child context within complex queries can make it difficult to follow what is happening in a query. Although it is allowed by the language due to identifier scoping rules, its use should be discouraged.
+
+For example:
+
+```cql
+[Encounter: Inpatient] Inpatient
+  where Inpatient.period during "Measurement Period"
+```
+
+The alias `Inpatient` in this example is allowed, but is the same as the value set identifier `Inpatient`, resulting in potential confusion for the reader. As another example:
+
+```cql
+[Encounter: "Inpatient Encounter"] Encounter
+  where Encounter.period during "Measurement Period"
+    and not exists (
+      [Encounter: "Emergency Department Encounter"] Encounter 
+        where Encounter.period during "Measurement Period"
+    )
+```
+
+The alias `Encounter` in this example is used in both the outer and inner queries, again resulting in potential confusion for the reader.
+
+#### Date and Time Considerations
+
+When comparing <span class="id">Date</span> and <span class="id">DateTime</span> values results in implicit conversion of the <span class="id">Date</span> to a <span class="id">DateTime</span> with <span class="kw">null</span> components, which can lead to unexpected partial comparison cases. Be explicit about precision when comparing <span class="id">Date</span> and <span class="id">DateTime</span> values, as comparing with mismatched precision can yield <span class="kw">null</span> results (which are often interpreted as <span class="lit">false</span>). In most cases, using <span class="kw">day of</span> precision is appropriate when comparing a <span class="id">Date</span> and <span class="id">DateTime</span>.
+
+In addition, <span class="kw">day of</span> precision should be used when comparing between events within a date range and date precision is clinically appropriate (e.g. comparing medication order dates or procedure dates against encounter periods). Further, <span class="kw">minute of</span> or <span class="kw">second of</span> precision should be used when comparing between events where time values are clinically appropriate.
+
+In CQL 2.0, the use of the new [_default comparison precision_](03-developersguide.html#defaultcomparisonprecision) capability can provide a way to facilitate these best practices.
+
 #### Direct Reference Codes
 
 Using "direct reference codes", involves declaring an identifier for a specific code in a code system, and using that directly within the logic. That's appropriate for cases where you know exactly what you want, and there's very little possibility for variation on that (i.e. systems are likely to use those codes directly, rather than have local codes that they are mapping to).

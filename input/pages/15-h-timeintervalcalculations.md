@@ -48,7 +48,7 @@ The following sections provide detailed examples of calculating duration and dif
 In CQL, a _year_ is defined as the duration of any time interval which starts at a certain time of day at a certain calendar date of the calendar year and ends at:
 
 * The same time of day on the same calendar date of the next calendar year, if it exists
-* The same time of day on the immediately following calendar date of the next calendar year, if the same calendar date of the next calendar year does not exist.
+* The same time of day on the last day of the same month in the next calendar year, if the same calendar date of the next calendar year does not exist.
 
 **Note:** When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 
@@ -88,6 +88,13 @@ Date 1: 2012-02-**20**<br/>
 Date 2: 2014-02-**10**<br/>
 Duration = year (date 2) - year (date 1) - 1 = 2014 - 2012 - 1 = **1 year**
 
+**Example 3.b:** day (date 2) > day (date 1)<br/>
+Date 1: 2012-**02**-29 10:18:56<br/>
+Date 2: 2014-**02**-28 19:02:34<br/>
+Duration = year (date 2) - year (date 1) = 2014 - 2012 = **2 years**
+
+**Note:** Because there is no February 29 in 2014, per the [Date and Time Arithmetic](05-languagesemantics.html#datetime-arithmetic-1) section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + **2 years** = 2014-02-28)
+
 ##### Scenario 4
 When month (date 2) > month (date 1)<br/>
 Duration (years) = year (date 2) - year (date 1)
@@ -96,13 +103,6 @@ Duration (years) = year (date 2) - year (date 1)
 Date 1: 2012-**03**-10 11:16:02<br/>
 Date 2: 2013-**08**-15 21:34:16<br/>
 Duration = year (date 2) - year (date 1) = 2013 - 2012 - **1 year**
-
-**Example 4.b:**<br/>
-Date 1: 2012-**02**-29 10:18:56<br/>
-Date 2: 2014-**02**-28 19:02:34<br/>
-Duration = year (date 2) - year (date 1) = 2014 - 2012 = **2 years**
-
-**Note:** Because there is no February 29 in 2014, per the [Date and Time Arithmetic](05-languagesemantics.html#datetime-arithmetic-1) section, the last day of the calendar month is used. Thus the number of years can only change when the date reaches February 28. (e.g. 2012-02-29 + **1 year** = 2013-02-28)
 
 #### Negative Examples
 
@@ -160,7 +160,7 @@ Duration = year (date 2) - year (date 1) = 2013 - 2015 = **-2 years**
 A month in CQL is defined as the duration of any time interval which starts at a certain time of day at a certain calendar day of the calendar month and ends at:
 
 * The same time of day at the same calendar day of the ending calendar month, if it exists
-* The same time of day at the immediately following calendar date of the ending calendar month, if the same calendar date of the ending month in the ending year does not exist.
+* The same time of day at the last calendar date of the ending calendar month, if the same calendar date of the ending month in the ending year does not exist.
 
 **Notes:** When in the next calendar year the same calendar date does not exist, the ISO states that the ending calendar day has to be agreed upon. The above convention is used in CQL as a resolution to this issue.
 

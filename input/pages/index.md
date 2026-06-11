@@ -34,9 +34,9 @@ The organization of this specification follows the outline of the perspectives d
 
 [Chapter 1](01-introduction.html) – Introduction provides introductory and background material for the specification.
 
-[Chapter 2](02-authorsguide.html) – Author’s Guide provides a high-level discussion of the Clinical Quality Language syntax. This discussion is a self-contained introduction to the language targeted at clinical quality authors.
+[Chapter 2](02-authorsguide.html) – Author’s Guide provides a high-level discussion of the CQL syntax. This discussion is a self-contained introduction to the language targeted at clinical quality authors.
 
-[Chapter 3](03-developersguide.html) – Developer’s Guide provides a more in-depth look at the Clinical Quality Language targeted at developers familiar with typical development languages such as Java, C#, and SQL.
+[Chapter 3](03-developersguide.html) – Developer’s Guide provides a more in-depth look at CQL targeted at developers familiar with typical development languages such as Java, C#, and SQL.
 
 [Chapter 4](04-logicalspecification.html) – Logical Specification provides a complete description of the elements that can be used to represent quality logic. Note that Chapters 2 and 3 describe the same functional capabilities of the language, and that anything that can be expressed in one mechanism can be equivalently expressed in the other.
 
@@ -46,31 +46,31 @@ The organization of this specification follows the outline of the perspectives d
 
 [Chapter 7](07-physicalrepresentation.html) – Physical Representation is reference documentation for the XML schema used to persist ELM.
 
-[Appendix A](08-a-cqlsyntax.html) – CQL Syntax Formal Specification discusses the ANTLR4 grammar for the Clinical Quality Language.
+[Appendix A](08-a-cqlsyntax.html) – CQL Syntax Formal Specification discusses the ANTLR4 grammar for the language.
 
 [Appendix B](09-b-cqlreference.html) – CQL Reference provides a complete reference for the types and operators available in CQL, and is intended to be used by authors and developers alike.
 
 [Appendix C](10-c-referenceimplementations.html) – Reference Implementations provides information about where to find reference implementations for a CQL-ELM translator, a CQL Execution Framework for JavaScript, and other related tooling.
 
-[Appendix D](11-d-references.html) – References
+[Appendix D](11-d-references.html) – Listing of references used throughout the specification
 
-[Appendix E](12-e-acronyms.html) – Acronyms
+[Appendix E](12-e-acronyms.html) – Definitions of acronyms used throughout the specification
 
-[Appendix F](13-f-glossary.html) – Glossary
+[Appendix F](13-f-glossary.html) – Glossary of terms
 
-[Appendix G](14-g-formattingconventions.html) – Conventions
+[Appendix G](14-g-formattingconventions.html) – Formatting Conventions and Best Practices for authoring readable and maintainable CQL
 
 [Appendix H](15-h-timeintervalcalculations.html) – Timing Interval Calculation Examples
 
-[Appendix I](16-i-fhirpathtranslation.html) – FHIRPath Function Translation
+[Appendix I](16-i-fhirpathtranslation.html) – FHIRPath Function Translation mapping from FHIRPath function names to CQL expressions
 
 [Appendix J](17-j-listoftables.html) – List Of Tables
 
 [Appendix K](18-k-listoffigures.html) – List Of Figures
 
-[Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams
+[Appendix L](19-l-cqlsyntaxdiagrams.html) - CQL Syntax Diagrams providing a visual illustration of CQL grammar rules
 
-[Appendix M](20-m-messages.html) - Messages Index
+[Appendix M](20-m-messages.html) - An index of all the messages defined in the specification
 
 #### Dependencies
 

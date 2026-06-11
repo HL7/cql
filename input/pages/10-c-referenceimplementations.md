@@ -5,29 +5,21 @@ As part of the Clinical Quality Framework effort, reference implementations of a
 
 The CQL-to-ELM Translator is a reference implementation for the translation of text-based CQL library documents into an XML or JSON representation using the ELM. In addition to being developed and used as part of CQF pilots, the translator has been integrated into production authoring environments for both Clinical Decision Support and Clinical Quality Measurement. The implementation can also be used as the first step in a process to enable distribution, translation, execution, and integration of CQL-based quality artifacts.
 
-The CQL-to-ELM Translator is licensed under the open source [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/clinical_quality_language, as well as a [Maven Package](https://search.maven.org/search?q=g:info.cqframework) ([Snapshots](https://oss.sonatype.org/content/repositories/snapshots/info/cqframework/)).
-
-For an overview of the project, along with current status, refer to the following document:
-
-https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cql-to-elm/OVERVIEW.md
+The CQL-to-ELM Translator is licensed under the open source [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/clinical_quality_language, as well as a [Maven Package](https://search.maven.org/search?q=g:org.cqframework).
 
 ### CQL Execution Framework Reference Implementation
 
-A reference implementation for executing CQL is currently under development. This reference implementation was used in CQF pilots and has been integrated into production eCQM testing tools.
+A reference implementation for executing CQL is available in JavaScript. In addition to being used in multiple CQF pilots and connectathon testing initiatives, this reference implementation has been integrated into production dQM authoring and testing tools.
 
-The CQL execution framework is licensed under the open source Apache Version 2.0 license, and available as part of the clinical_quality_language project on GitHub: https://github.com/cqframework/cql-execution.
-
-For an overview of the project along with current status, refer to the following document:
-
-https://github.com/cqframework/cql-execution/blob/master/OVERVIEW.md
+The CQL execution framework is licensed under the open source Apache Version 2.0 license, and available on GitHub: https://github.com/cqframework/cql-execution.
 
 ### Other CQL-related Tools
 
-Other CQL-related tools such as a graphical CQL grammar parsetree viewer, a ModelInfo generator, and a CQL syntax highlighting plugin for [Atom](https://atom.io/) are also available. The Clinical Quality Framework Initiative maintains a list of known Community Projects on the CQL Github Wiki:
+Other CQL-related tools including [CQL Language Support for for Visual Studio Code](https://github.com/cqframework/vscode-cql) are also available. The Clinical Quality Framework Initiative maintains a list of known Community Projects tooling and content projects on the CQL Github Wiki:
 
 https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects
 
-#### CQL-to-ELM Translator and Formatter
+#### CQL-to-ELM Translator and Engine (in Kotlin, targeting Kotlin Multi-platform (KMP))
 
 * https://github.com/cqframework/clinical_quality_language: CQL-to-ELM Translator
 
@@ -42,18 +34,14 @@ https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects
 
 * https://github.com/cqframework/cql-translation-service: RESTful service for translating CQL to ELM
 
-#### Java Execution Engine
+#### CQL Studio
 
-* https://github.com/dbcg/cql_engine
+* [https://cqlstudio.com/](https://cqlstudio.com/): Integrated Development Environment for CQL-based knowledge artifact development
+* [https://studio.quality.hl7.org/](https://studio.quality.hl7.org/): HL7 Foundry entry for CQL Studio
 
-#### CQL Execution Service
+#### VSCode Plugin
 
-* https://github.com/dbcg/cql_execution_service
-* https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-CQL-SERVICES: Expose CQL via Custom-API or CDS Hooks interface (built on JavaScript CQL Execution Engine)
-
-#### Atom Plugin
-
-* https://github.com/cqframework/atom-cql-support
+* [https://github.com/cqframework/vscode-cql](https://github.com/cqframework/vscode-cql)
 
 #### CDS Connect
 
@@ -75,8 +63,19 @@ https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects
 
 * https://github.com/cqframework/cqf-tooling: Tooling to support CQL library tooling and other handy utilities related to CQL-based FHIR content
 
-### Formatting and Usage
+### Shared Content
 
-Because of the flexibility and broad applicability of CQL, it necessarily covers a breadth of topics. The Clinical Quality Framework Initiative provides recommendations and guidance to ensure consistent and appropriate use of CQL in the following wiki:
+Because of the flexibility and broad applicability of CQL, it necessarily covers a breadth of topics. The Clinical Quality Framework Initiative provides recommendations, guidance, and resources to ensure consistent and appropriate use of CQL in the following wiki, including Cooking with CQL examples:
 
 * https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Formatting-and-Usage-Topics
+
+#### Common Libraries
+
+As adoption and use of Clinical Quality Language continues to grow, especially as a mechansim for expressing computable logic in FHIR applications, patterns and practices have emerged and been standardized in the following FHIR implementation guides:
+
+* [Using CQL With FHIR](https://hl7.org/fhir/uv/cql) - Latest version of FHIRHelpers, FHIR-ModelInfo, FHIRCommon, and FHIR-based authoring guidance
+* [CQL US Common](https://hl7.org/fhir/us/cql) - USCoreCommon, USCoreElements, and US-specific authoring patterns
+
+In addition, the CQFramework initiative maintains a list of known community content projects at the following location:
+
+https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects#content

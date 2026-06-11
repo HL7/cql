@@ -1159,7 +1159,7 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks), and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For ratios, this means that the numerator and denominator must be the same, using quantity equality semantics.
 
@@ -1229,7 +1229,7 @@ The NotEqual operator is a shorthand for invocation of logical negation of the E
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For Date, Time, and DateTime values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1251,7 +1251,7 @@ The Greater operator is defined for the Integer, Long, Decimal, String, Date, Da
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For Date, Time, and DateTime values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1273,7 +1273,7 @@ The LessOrEqual operator is defined for the Integer, Long, Decimal, String, Date
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For Date, Time, and DateTime values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1295,7 +1295,7 @@ The GreaterOrEqual operator is defined for the Integer, Long, Decimal, String, D
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For Date, Time, and DateTime values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1314,17 +1314,17 @@ Note that relative ratio comparisons are not directly supported due to the varia
 		<xs:annotation>
 			<xs:documentation>The Add operator performs numeric addition of its arguments.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units or special will result in a run-time error.
 
 The Add operator is defined for the Integer, Long, Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
 
 For Date, DateTime, and Time values, the operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As Time is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to @T23:30:00 will result in @T00:30:00 of the previous day, which is consistent with the behaviour of DateTime values:
 
@@ -1348,17 +1348,17 @@ If the result of the addition cannot be represented (i.e. arithmetic overflow), 
 		<xs:annotation>
 			<xs:documentation>The Subtract operator performs numeric subtraction of its arguments.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a run-time error.
 
 The Subtract operator is defined for the Integer, Long, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
 
 For Date, DateTime, Time values, the operator returns the value of the first argument, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As Time is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from @T00:30:00 will result in @T23:30:00 of the previous day, which is consistent with the behaviour of DateTime values.
 
@@ -1383,7 +1383,7 @@ If the result of the operation cannot be represented, the result is null.</xs:do
 		<xs:annotation>
 			<xs:documentation>The Multiply operator performs numeric multiplication of its arguments.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit.
+For multiplication operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -1399,7 +1399,7 @@ The Multiply operator is defined for the Integer, Long, Decimal and Quantity typ
 		<xs:annotation>
 			<xs:documentation>The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer. For integer division, use the truncated divide operator.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.
+For division operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -1421,7 +1421,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit.</xs:documentation>
+For TruncatedDivide operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="BinaryExpression"/>
@@ -1437,7 +1437,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The Modulo operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For Modulo operations involving quantities, the resulting quantity will have the appropriate unit.</xs:documentation>
+For Modulo operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="BinaryExpression"/>
@@ -1447,7 +1447,9 @@ For Modulo operations involving quantities, the resulting quantity will have the
 		<xs:annotation>
 			<xs:documentation>The Ceiling operator returns the first integer greater than or equal to the argument.
 
-If the argument is null, the result is null.</xs:documentation>
+If the argument is null, the result is null.
+
+If the result of the operation cannot be represented as an Integer, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnaryExpression"/>
@@ -1457,7 +1459,9 @@ If the argument is null, the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The Floor operator returns the first integer less than or equal to the argument.
 
-If the argument is null, the result is null.</xs:documentation>
+If the argument is null, the result is null.
+
+If the result cannot be represented as an Integer, the result is null.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnaryExpression"/>
@@ -2130,8 +2134,6 @@ At least one component must be specified, and no component may be specified at a
 			<xs:documentation>The DateTime operator constructs a DateTime value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
-
-If all the arguments are null, the result is null, as opposed to a DateTime with no components specified.
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a Decimal for the purposes of comparison.
 

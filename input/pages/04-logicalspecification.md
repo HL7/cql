@@ -52,7 +52,7 @@ The _Tuple_ class represents construction of a new structured value, with the va
 
 To access elements of a structured value, use the _Property_ expression. A property expression has a _path_ attribute, an optional _source_ element, and a _value_ element. The source element returns the structured value to be accessed. In some usages, such as within a _Filter_ expression, the source is implicit. If used outside such a usage, a source must be provided.
 
-The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that subelements should be traversed. Indexers specified in paths must be literal integer values.
+The path attribute specifies a property path relative to the source structured value. The property expression returns the value of the property specified by the property path. Property paths are allowed to include qualifiers (<span class="sym">.</span>) as well as indexers (<span class="sym">[x]</span>) to indicate that sub-elements should be traversed. Indexers specified in paths must be literal integer values.
 
 #### Tuple
 
@@ -1197,7 +1197,7 @@ Specifies a related data type to be included in the result as part of the retrie
 Specifies a terminology filter to be applied as part of the retrieve. Each codeFilter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple codeFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the code filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
 
 ##### dateFilter
-Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specifies as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
+Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specified as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.
 
 ##### otherFilter
 Specifies other, non-id, -context, -terminology, or -date valued filter criteria to be applied as part of the retrieve. Each other Filter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple otherFilters are present, they are all applied (i.e. ANDed). This element is included to allow for additional filtering criteria as determined by optimization strategies.
@@ -1219,7 +1219,7 @@ The idSearch attribute specifies the name of the search path to use for searchin
 ##### contextProperty
 The contextProperty attribute optionally specifies which property of the model contains the context value.
 
-Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information.
+Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information.
 
 This property may be specified as a path, including qualifiers and constant indexers. The &lt;simplePath&gt; production rule in the CQL grammar provides the formal semantics for this path.
 
@@ -1460,7 +1460,7 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in null. When a quantity has no units specified, it is treated as a quantity with the default unit ('1').
 
-For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to the calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks), and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to the calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in null.
 
 For ratios, this means that the numerator and denominator must be the same, using quantity equality semantics.
 
@@ -1509,7 +1509,7 @@ For interval types, this means that two intervals are equivalent if and only if 
 
 For Date, DateTime, and Time values, the comparison is performed in the same way as it is for equality, except that if one input has a value for a given precision and the other does not, the comparison stops and the result is false, rather than null. As with equality, the second and millisecond precisions are combined and combined as a single precision using a decimal, with decimal equivalence semantics.
 
-For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purposes of determining Code equivalence.
+For Code values, equivalence is defined based on the code and system elements only. The display and version elements are ignored for the purpose of determining Code equivalence.
 
 For Concept values, equivalence is defined as a non-empty intersection of the codes in each Concept, using Code equivalence to determine the intersection. Note that an empty Concept is not equivalent to a null Concept.
 
@@ -1525,7 +1525,7 @@ The Greater operator returns true if the first argument is greater than the seco
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1546,7 +1546,7 @@ The GreaterOrEqual operator returns true if the first argument is greater than o
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is true; if the first value is less than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1567,7 +1567,7 @@ The Less operator returns true if the first argument is less than the second arg
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is false. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1588,7 +1588,7 @@ The LessOrEqual operator returns true if the first argument is less than or equa
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' are comparable, but units of 'cm2' and 'cm' are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return null. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is true; if the first value is greater than the second, the result is false; if one input has a value for the precision and the other does not, the comparison stops and the result is null; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is true. For the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics.
 
@@ -1814,17 +1814,17 @@ Add : BinaryExpression
 
 The Add operator performs numeric addition of its arguments.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be added, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a run-time error.
 
 The Add operator is defined for the Integer, Long Decimal, and Quantity types. In addition, a time-valued Quantity can be added to a Date, DateTime or Time using this operator.
 
 For Date, DateTime, and Time values, the operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
 
@@ -1859,6 +1859,8 @@ The Ceiling operator returns the first integer greater than or equal to the argu
 
 If the argument is null, the result is null.
 
+If the result of the operation cannot be represented as an Integer, the result is null.
+
 #### Divide
 
 ```
@@ -1867,7 +1869,7 @@ Divide : BinaryExpression
 
 The Divide operator performs numeric division of its arguments. Note that the result type of Divide is Decimal, even if its arguments are of type Integer or Long. For integer division, use the truncated divide operator.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.
+For division operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -1896,6 +1898,8 @@ Floor : UnaryExpression
 The Floor operator returns the first integer less than or equal to the argument.
 
 If the argument is null, the result is null.
+
+If the result cannot be represented as an Integer, the result is null.
 
 #### HighBoundary
 
@@ -2042,7 +2046,7 @@ If the result of the modulo cannot be represented, or the right argument is 0, t
 
 The Modulo operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For Modulo operations involving quantities, the resulting quantity will have the appropriate unit.
+For Modulo operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 #### Multiply
 
@@ -2052,7 +2056,7 @@ Multiply : BinaryExpression
 
 The Multiply operator performs numeric multiplication of its arguments.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit.
+For multiplication operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 If either argument is null, the result is null.
 
@@ -2170,17 +2174,17 @@ Subtract : BinaryExpression
 
 The Subtract operator performs numeric subtraction of its arguments.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a run-time error.
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of 'cm' and 'm' can be subtracted, but units of 'cm2' and 'cm' cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a run-time error.
 
 The Subtract operator is defined for the Integer, Long, Decimal, and Quantity types. In addition, a time-valued Quantity can be subtracted from a Date, DateTime, or Time using this operator.
 
 For Date, DateTime, Time values, the operator returns the value of the first argument, decremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For Date values, the quantity unit must be one of years, months, weeks, or days.
+For Date values, the quantity unit must be one of years, months, weeks, or days, or an error is thrown.
 
-For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds.
+For DateTime values, the quantity unit must be one of years, months, weeks, days, hours, minutes, seconds, or milliseconds, or an error is thrown.
 
-For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds.
+For Time values, the quantity unit must be one of hours, minutes, seconds, or milliseconds, or an error is thrown.
 
 As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values.
 
@@ -2250,7 +2254,7 @@ If the result of the operation cannot be represented, or the right argument is 0
 
 The TruncatedDivide operator is defined for the Integer, Long, Decimal, and Quantity types.
 
-For TruncatedDivide operations involving quantities, the resulting quantity will have the appropriate unit.
+For TruncatedDivide operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in null.
 
 ### String Operators
 
@@ -2566,8 +2570,6 @@ The DateTime operator constructs a DateTime value from the given components.
 
 At least one component other than timezoneOffset must be specified, and no component may be specified at a precision below an unspecified precision. For example, hour may be null, but if it is, minute, second, and millisecond must all be null as well.
 
-If all the arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>, as opposed to a <span class="id">DateTime</span> with no components specified.
-
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
 If timezoneOffset is not specified, it is defaulted to the timezone offset of the evaluation request.
@@ -2600,7 +2602,7 @@ For Date values, precision must be one of Year, Month, Week, or Day.
 
 For Time values, precision must be one of Hour, Minute, Second, or Millisecond.
 
-For calculations involving weeks, Sunday is considered to be the first day of the week for the purposes of determining boundaries.
+For calculations involving weeks, Sunday is considered to be the first day of the week for the purpose of determining boundaries.
 
 When calculating the difference between DateTime values with different timezone offsets, the values are normalized to the timezone offset of the evaluation request timestamp, but only when the comparison precision is hours, minutes, seconds, or milliseconds.
 
@@ -3025,7 +3027,7 @@ This operator has two overloads:
 1. List, List
 2. Interval, Interval
 
-For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics, with the exception that null elements are considered equal for the purposes of determining the result. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
+For the list overload, this operator returns a list with the elements that appear in the first operand, that do not appear in the second operand, using equality semantics, with the exception that null elements are considered equal for the purpose of determining the result. The operator is defined with set semantics, meaning that each element will appear in the result at most once, and that there is no expectation that the order of the inputs will be preserved in the results.
 
 For the interval overload, this operator returns the portion of the first interval that does not overlap with the second. If the second argument is properly contained within the first and does not start or end it, this operator returns null.
 
@@ -4672,6 +4674,46 @@ For the Date overload, precision must be one of year, month, week, or day, and t
 
 For the DateTime overload, the result is the number of whole calendar periods that have elapsed between the first datetime and the second datetime.
 
+#### CodeSystemContains
+
+```
+CodeSystemContains : OperatorExpression
+  ¦
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
+  ¦
+  1..1 --> code : Expression
+```
+
+The CodeSystemContains operator returns true if the given code system contains the given code.
+
+The first argument is statically a CodeSystemRef. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
+
+The third argument is expected to be a String, Code, or Concept.
+
+#### CodeSystemContainsAny
+
+```
+CodeSystemContainsAny : OperatorExpression
+  ¦
+  0..1 --> codesystem : CodeSystemRef
+  |
+  0..1 --> codesystemExpression : Expression
+  ¦
+  1..1 --> codes : Expression
+```
+
+The CodeSystemContainsAny operator returns true if the given code system contains any of the given codes.
+
+The first argument is a CodeSystemRef. This allows for static analysis of code system references within an artifact.
+
+The second argument is expected to be of type CodeSystem, allowing references to code systems to be preserved as references.
+
+The third argument is expected to be a list of String, Code, or Concept.
+
 #### Equal
 
 Refer to the [Equal section](#equal) in the Comparison Operators.
@@ -4696,7 +4738,7 @@ The InCodeSystem operator returns true if the given code is in the given code sy
 
 The first argument is expected to be a String, Code, or Concept.
 
-The second argument is statically a CodeSystemRef. This This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
+The second argument is statically a CodeSystemRef. This allows for both static analysis of the code system references within an artifact, as well as the implementation of code system membership by the target environment as a service call to a terminology server, if desired.
 
 The third argument is expected to be a CodeSystem, allowing references to code systems to be preserved as references.
 
@@ -4791,3 +4833,45 @@ If the severity is Trace, the operator is expected to make the message available
 If the severity is Warning, the operator is expected to provide the message as a warning to the calling environment.
 
 If the severity is Message, the operator is expected to provide the message as information to the calling environment.
+
+#### ValueSetContains
+
+```
+ValueSetContains : OperatorExpression
+  ¦
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
+  ¦
+  1..1 --> code : Expression
+```
+
+The ValueSetContains operator returns true if the given value set contains the given code.
+
+The first argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be a ValueSet, allowing references to value sets to be preserved as references.
+
+The third argument is expected to be a String, Code, or Concept.
+
+#### ValueSetContainsAny
+
+```
+ValueSetContainsAny : OperatorExpression
+  ¦
+  0..1 --> valueset : ValueSetRef
+  |
+  0..1 --> valuesetExpression : Expression
+  ¦
+  1..1 --> codes : Expression
+```
+
+The ValueSetContainsAny operator returns true if the given value set contains any of the given codes.
+
+The first argument is statically a ValueSetRef. This allows for both static analysis of the value set references within an artifact, as well as the implementation of valueset membership by the target environment as a service call to a terminology server, if desired.
+
+The second argument is expected to be of type ValueSet, allowing references to value sets to be preserved as references.
+
+The third argument is expected to be a list of String, Code, or Concept.
+
+

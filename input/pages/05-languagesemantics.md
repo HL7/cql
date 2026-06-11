@@ -988,7 +988,7 @@ Note that as with the before and after transformations, a null test is required 
 
 In general, interval comparisons are already defined in terms of the fundamental comparison operators (<span class="sym">=</span>, <span class="sym">></span>, <span class="sym">&lt;</span>, <span class="sym">>=</span>, <span class="sym">\<=</span>, and the precision-based counterparts) so the semantics of the interval comparisons follow directly from these extended semantics.
 
-Note that open null boundaries of intervals are treaterd as uncertainties for the purposes of interval computation. For example:
+Note that open null boundaries of intervals are treated as uncertainties for the purposes of interval computation. For example:
 
 ```cql
 intersect Interval[1, 10] intersect Interval[5, null)

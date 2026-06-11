@@ -72,15 +72,15 @@ For more information on how these data models are used, see the [Retrieve](#retr
 The following example illustrates the using declaration:
 
 ```cql
-using QUICK
+using FHIR
 ```
 
-The above declaration specifies that the <span class="id">QUICK</span> model will be used as the data model within the library. The [QUICK data model](http://hl7.org/fhir/us/qicore/quick/QUICK-index.html) will be used for the examples in this section unless specified otherwise.
+The above declaration specifies that the <span class="id">FHIR</span> resource model will be used as the data model within the library. The [FHIR](http://hl7.org/fhir) specification will be used to provide examples in this section unless specified otherwise.
 
 If necessary, a version specifier can be provided to indicate which version of the data model should be used as shown below:
 
 ```cql
-using QUICK version '0.3.0'
+using FHIR version '4.0.1'
 ```
 
 A syntax diagram of the <span class="kw">using</span> declaration can be seen [here](19-l-cqlsyntaxdiagrams.html#usingdefinition).
@@ -216,11 +216,11 @@ If a parameter definition does not indicate a default value, a parameter value m
 
 In addition, because parameter defaults are part of the declaration, the expressions used to define them have the following restrictions applied:
 
-. Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
-. Parameter defaults cannot reference expressions or functions defined in the current library
-. Parameter defaults cannot reference included libraries
-. Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the [Terminology Operators](#terminology-operators) section.
-. Parameter defaults cannot reference other parameters
+* Parameter defaults cannot reference run-time data (i.e. they cannot contain Retrieve expressions)
+* Parameter defaults cannot reference expressions or functions defined in the current library
+* Parameter defaults cannot reference included libraries
+* Parameter defaults cannot perform terminology operations. For more information on terminology operations, see the [Terminology Operators](#terminology-operators) section.
+* Parameter defaults cannot reference other parameters
 
 In other words, the value for the default of a parameter must be able to be calculated at compile-time.
 
@@ -636,6 +636,34 @@ MeasurementPeriodEncounters E
 
 This example retrieves all the elements returned by the expression <span class="id">MeasurementPeriodEncounters</span> that have both a related <span class="id">Pharyngitis</span> and <span class="id">Antibiotics</span> result.
 
+Because the <span class="kw">such that</span> condition can be an arbitrary expression, it is possible to write relationship clauses that do not reference the primary source. For example:
+
+```cql
+[Encounter: "Ambulatory/ED Visit"] E
+  with [Condition: "Acute Pharyngitis"] P
+    such that P.onsetDateTime starts one year on or before Today()
+  without [Observation: "Streptococcus Test"] T
+    such that T.effective same day as Today()
+```
+
+This example retrieves all "Ambulatory/ED Visit" encounters where the patient has a documented condition of "Acute Pharyngitis" and does not have a documented "Streptococcus Test". This is valid, but can sometimes indicate a missing relationship criteria. Implementations may issue a warning to authors when the <span class="kw">such that</span> condition of a relationship clause does not refer to either the primary source or the related source.
+
+It is worth noting that the <span class="kw">with</span> and <span class="kw">without</span> clauses are shorthand for equivalent <span class="kw">exists</span> and <span class="kw">not exists</span> expressions:
+
+```cql
+[Encounter: "Ambulatory/ED Visit"] E
+  where exists (
+    [Condition: "Acute Pharyngitis"] P
+      where P.onsetDateTime starts one year on or before Today()
+  )
+    and not exists (
+      [Observation: "Streptococcus Test"] T
+        where T.effective same day as Today()
+    )
+```
+
+In particular, this means that if there are no related elements in a with clause (i.e. the related source is empty, or none of the related elements match the such that criteria), the result of the with relationship is false, while if there are no related elements in a without clause, the result of the without relationship is true.
+
 #### Full Query
 
 The clauses described in the previous section must appear in the correct order in order to specify a valid CQL query. The general order of clauses is:
@@ -837,7 +865,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ```
 
-The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](http://unitsofmeasure.org/ucum.html) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](https://unitsofmeasure.org/ucum) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -853,7 +881,7 @@ For time-valued quantities, in addition to the definite duration UCUM units, CQL
 |`millisecond`/`milliseconds` |`'millisecond'` |`= 1 'ms'`
 {: .grid .table .table-striped}
 
-Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units.
+Durations above days (and weeks) are calendar durations that are not comparable with definite quantity UCUM duration units, and such comparisons return <span class="kw">null</span>.
 
 For example, the following quantities are _calendar duration_ quantities:
 
@@ -1563,7 +1591,7 @@ As noted in the [Quantities](#quantities) section, UCUM time-period units can be
 
 For a detailed discussion of calendar calculation semantics, refer to [Appendix H – Time Interval Calculation Examples](15-h-timeintervalcalculations.html).
 
-For comparisons involving time durations (where no anchor to a calendar is available), the duration of a year is considered to be 365 days, and the duration of a month is considered to be 30 days. Duration calculations involving weeks consider a week as equivalent to 7 days.
+For comparisons involving time durations, see the [Equal](09-b-cqlreference.html#equal) and [Equivalent](09-b-cqlreference.html#equivalent) operator documentation in the CQL Reference.
 
 ##### Comparing Dates and Times
 
@@ -1651,6 +1679,8 @@ Date(2014, 7, 15) after hour of DateTime(2014, 7, 11, 14, 0, 0)
 ```
 
 The result in this example is <span class="kw">null</span> because the first date has no _hour_ component.
+
+For best practices related to comparing dates and times, refer to the [Date and Time Considerations](14-g-formattingconventions.html#date-and-time-considerations) topic.
 
 ##### Extracting Date and Time Components
 
@@ -1931,7 +1961,13 @@ In addition, timing phrases allow the use of time durations to offset the relati
 X starts 3 days before start Y
 ```
 
-This returns <span class="kw">true</span> if the start of X is equal to three days before the start of Y. Timing phrases can also include <span class="kw">less than</span>, <span class="kw">more than</span>, <span class="kw">or less</span> and <span class="kw">or more</span> to determine how the time duration is interpreted. For example:
+This returns <span class="kw">true</span> if the start of X is equal to three days before the start of Y. Note carefully that the addition of an offset to timing phrase here turned what was a relative comparison into an equality comparison, because the timing phrase is indicating an exact offset before or after. As another example, consider:
+
+```cql
+30 years before Today()
+```
+
+This comparison is only true on the day exactly 30 years before today. For relative comparison with an offset, timing phrases can also include <span class="kw">less than</span>, <span class="kw">more than</span>, <span class="kw">or less</span> and <span class="kw">or more</span> to determine how the offset is interpreted. For example:
 
 ```cql
 X starts 3 days or less before start Y
@@ -1942,7 +1978,7 @@ X starts more than 3 days before start Y
 
 The first expression returns <span class="kw">true</span> if the start of X is within the interval beginning three days before the start of Y and ending just before the start of Y. The second expression returns <span class="kw">true</span> if the start of X is within the interval beginning just after three days before the start of Y and ending just before the start of Y. The third expression returns <span class="kw">true</span> if the start of X is three days or more before the start of Y. And the fourth expression returns <span class="kw">true</span> if the start of X is more than three days before the start of Y.
 
-Timing phrases can also support inclusive comparisons using <span class="kw">on or</span> and <span class="kw">or on</span> syntax. For example:
+Timing phrases can also support inclusive relative comparisons using <span class="kw">on or</span> and <span class="kw">or on</span> syntax. For example:
 
 ```cql
 X starts 3 days or less before or on start Y
@@ -2269,7 +2305,7 @@ Most list operators in CQL operate on lists of any type, but for lists of interv
 <a name="figure-2-f"></a>
 <div><img src="assets/images/image8.png" alt="assets/images/image8" width="353" height="75"/></div>
 
-Figure 2‑F - Example input intervals to illustrate the behavior of the the <span class="kw">collapse</span> operator
+Figure 2‑F - Example input intervals to illustrate the behavior of the <span class="kw">collapse</span> operator
 
 If we want to determine the total duration _covered_ by these intervals, we cannot simply use the <span class="kw">distinct</span> operator, because each of these intervals is different. Yet two of them overlap, so they cover part of the same range. We also can’t simply perform an aggregate <span class="kw">union</span> of the intervals because some of them don’t overlap, so there isn’t a single interval that covers the entire range.
 
@@ -2490,22 +2526,22 @@ Note that these simplifications result in a measure that is not clinically relev
 
 As an aside, one of the simplifications made to the QDM presented above is the removal of the notion of _occurrencing_. Readers familiar with that concept as defined in QDM should be aware that CQL by design does not include this notion. CQL queries are expressive enough that the correlation accomplished by occurrencing in QDM is not required in CQL.
 
-The following table lists the QDM data elements involved and their mappings to the QUICK data structures:
+The following table lists the QDM data elements involved and their basic mappings to the FHIR data structures:
 
 <a name="table-2-v"></a>
 
-|QDM Data Element |QUICK Equivalent
+|QDM Data Element |FHIR Equivalent
 |----|----
 |**Patient Characteristic Birthdate** |Patient.birthDate
 |**Patient Characteristic Sex** |Patient.gender
 |**Diagnosis** |Condition
-|**Laboratory Test, Order** |DiagnosticOrder
-|**Laboratory Test, Result** |DiagnosticReport
+|**Laboratory Test, Order** |ServiceRequest
+|**Laboratory Test, Result** |Observation
 {: .grid .table .table-striped}
 
-Table 2‑V - QDM Data elements and their mapping to QUICK data structures
+Table 2‑V - QDM Data elements and their mapping to FHIR data structures
 
-Note that the specific mapping to the QUICK data structures is beyond the scope of this walkthrough; it is only provided here to demonstrate the link back to the original QDM.
+Note that the specific mapping to the FHIR data structures is beyond the scope of this walkthrough; it is only provided here to provide a general flavor of mapping from QDM to FHIR.
 
 Note also that the use of the QDM as a starting point was deliberately chosen to provide familiarity and is not a general requirement for building CQL. Artifact development could also begin directly from clinical guidelines expressed in other formats or directly from relevant clinical domain expertise. Using the QDM provides a familiar way to establish the starting requirements.
 
@@ -2589,7 +2625,7 @@ Putting it all together, we now have:
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 parameter MeasurementPeriod default Interval[
   @2013-01-01T00:00:00.0,
@@ -2619,7 +2655,7 @@ This criteria has three main components:
 
 * The relationship to the measurement period
 
-Using the mapping to QUICK, the equivalent retrieve in CQL is:
+Using the mapping to FHIR, the equivalent retrieve in CQL is:
 
 ```cql
 [Condition: "Other Female Reproductive Conditions"] C
@@ -2765,7 +2801,7 @@ Finally, putting it all together, we have a complete, albeit simplified, definit
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
@@ -2824,12 +2860,12 @@ And finally, although present in some quality measures, many do not include crit
 
 With these factors in mind, and using the CQL for the measure we have already built, deriving a point-of-care intervention is fairly straightforward.
 
-To begin with, we are using the same data model, QUICK, the same valueset declarations, and the same context:
+To begin with, we are using the same data model, FHIR, the same valueset declarations, and the same context:
 
 ```cql
 library CMS153CDS version '2'
 
-using QUICK
+using FHIR
 
 codesystem "SNOMED": 'http://snomed.info/sct'
 
@@ -2929,7 +2965,7 @@ With these in mind, we can create a new library, <span class="id">CMS153Common</
 ```cql
 library CMS153Common version '2'
 
-using QUICK
+using FHIR
 
 valueset "Female Administrative Sex": 'urn:oid:2.16.840.1.113883.3.560.100.2'
 ...
@@ -2942,8 +2978,8 @@ define "ConditionsIndicatingSexualActivity":
     union ...
 
 define "LaboratoryTestsIndicatingSexualActivity":
-  [DiagnosticOrder: "Pregnancy Test"]
-    union [DiagnosticOrder: "Pap"]
+  [ServiceRequest: "Pregnancy Test"]
+    union [ServiceRequest: "Pap"]
     union ...
 
 define "ResultsPresentForChlamydiaScreening":
@@ -2955,7 +2991,7 @@ Using this library, we can then rewrite the CQM to reference the common elements
 ```cql
 library CMS153CQM version '2'
 
-using QUICK
+using FHIR
 
 include CMS153Common version '2' called Common
 
@@ -2972,9 +3008,9 @@ define "Patient16To23AndFemale":
     and Patient.gender in Common."Female Administrative Sex"
 
 define "SexuallyActive":
-  exists (Common"ConditionsIndicatingSexualActivity" C
+  exists (Common."ConditionsIndicatingSexualActivity" C
     where Interval[C.onsetDateTime, C.abatementDate] overlaps MeasurementPeriod)
-  or exists (Common"LaboratoryTestsIndicatingSexualActivity" R
+  or exists (Common."LaboratoryTestsIndicatingSexualActivity" R
     where R.issued during MeasurementPeriod)
 
 define "InInitialPopulation":
@@ -2984,7 +3020,7 @@ define "InDenominator":
   true
 
 define "InNumerator":
-  exists (Common"ResultsPresentForChlamydiaScreening" S
+  exists (Common."ResultsPresentForChlamydiaScreening" S
     where S.issued during MeasurementPeriod)
 ```
 
@@ -2995,7 +3031,7 @@ And similarly for the CDS artifact:
 ```cql
 library CMS153CDS version '2'
 
-using QUICK
+using FHIR
 
 include CMS153Common version '2' called Common
 
@@ -3008,13 +3044,13 @@ define "Patient16To23AndFemale":
     and Patient.gender in Common."Female Administrative Sex"
 
 define "SexuallyActive":
-  exists (Common"ConditionsIndicatingSexualActivity")
-  or exists (Common"LaboratoryTestsIndicatingSexualActivity")
+  exists (Common."ConditionsIndicatingSexualActivity")
+  or exists (Common."LaboratoryTestsIndicatingSexualActivity")
 
 define "NoScreening":
-  not exists (Common"ResultsPresentForChlamydiaScreening" S
+  not exists (Common."ResultsPresentForChlamydiaScreening" S
     where S.issued during Interval[Today() - 1 years, Today()])
-  and not exists ([ProcedureRequest: Common"Chlamydia Screening"] R
+  and not exists ([ServiceRequest: Common."Chlamydia Screening"] R
     where R.orderedOn same day or after Today()
 
 define "NeedScreening": Patient16To23AndFemale and SexuallyActive and NoScreening

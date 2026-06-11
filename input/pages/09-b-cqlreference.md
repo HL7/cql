@@ -88,7 +88,7 @@ The <span class="id">Code</span> type represents single terminology codes within
 
 #### CodeSystem
 
-> The CodeSystem type feature was introduced in CQL 1.5, and has trial-use status.
+> The CodeSystem type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -159,9 +159,13 @@ The <span class="id">DateTime</span> type represents date and time values with p
 
 CQL supports date and time values in the range <span class="lit">@0001-01-01T00:00:00.0</span> to <span class="lit">@9999-12-31T23:59:59.999</span> with a 1 millisecond step size. Note that DateTime values may also optionally indicate an offset. If no timezone offset is specified, the timezone offset of the evaluation request timestamp is assumed. See the [Constructing Date and Time Values](02-authorsguide.html#constructing-datetime-values) section for more information.
 
+> Note that the FHIRPath specification indicates that systems may choose policies for timezone offset handling (see [DateTime Equality](https://build.fhir.org/ig/HL7/FHIRPath/#datetime-equality)). To ensure consistent results when evaluating DateTime comparisons and operations, the CQL specification requires that if a DateTime value does not have a timezone offset, the timezone offset of the evaluation request timestamp is assumed. This requirement is consistent with, but tighter than, the constraints established by FHIRPath.
+
 CQL also supports partial datetime values. For example, the datetime <span class="lit">@2014-01-01T03</span> represents some instant during the hour of 3:00 on January 1st, 2014.
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison, duration, and difference calculation. When milliseconds are <span class="kw">null</span>, they are combined as <span class="sym">.0</span>. In other words, if milliseconds are not specified, calculations for precisions above milliseconds are performed as though milliseconds had been specified as <span class="lit">0</span>. This is true of all comparison operations for date and time values, whether explicit (such as <span class="sym">=, !=, \<, \<=, >, >=</span>) or implicit (such as <span class="kw">same as, before, after, same or before, same or after</span>), or when comparison is performed as part of other operations such as interval <span class="kw">meets</span> and <span class="kw">overlaps</span>.
+
+
 
 {: #decimal-1}
 #### Decimal
@@ -180,13 +184,13 @@ simple type Decimal
 
 The <span class="id">Decimal</span> type represents real values within CQL.
 
-CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10<sup>28</sup> + 1)/10<sup>8</sup> to (10<sup>28</sup>-1)/10<sup>-8</sup> with a step size of 10<sup>-8</sup>.
+CQL supports positive and negative decimal values with a _precision_ (meaning total number of possible digits) of 28 and a _scale_ (meaning number of possible digits to the right of the decimal) of 8. In other words, decimal values in the range (-10<sup>28</sup> + 1)/10<sup>8</sup> to (10<sup>28</sup>-1)/10<sup>8</sup> with a step size of 10<sup>-8</sup>.
 
 
 {: #long-1}
 #### Long
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -248,7 +252,7 @@ structured type Ratio
 
 **Description:**
 
-The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. can not be null).
+The <span class="id">Ratio</span> type represents a relationship between two quantities, such as a titre (e.g. 1:128), or a concentration (e.g. 5 'mg':10'mL'). The numerator and denominator elements must be present (i.e. cannot be null).
 
 {: #string-1}
 #### String
@@ -300,7 +304,7 @@ Although the milliseconds are specified with a separate component, seconds and m
 
 #### ValueSet
 
-> The ValueSet type feature was introduced in CQL 1.5, and has trial-use status.
+> The ValueSet type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -325,7 +329,7 @@ The <span class="id">codesystems</span> element is used to capture code system v
 
 #### Vocabulary
 
-> The Vocabulary type feature was introduced in CQL 1.5, and has trial-use status.
+> The Vocabulary type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Definition:**
@@ -781,7 +785,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 
 #### ConvertsToLong
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -804,7 +808,7 @@ If the input string is not formatted correctly, or cannot be interpreted as a va
 ConvertsToInteger(argument Any) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -855,7 +859,7 @@ If the argument is <span class="kw">null</span>, the result is <span class="kw">
 ConvertsToString(argument Any) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1059,7 +1063,7 @@ define "IsNull": ToDecimal('+-0.1')
 
 #### ToLong
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -1103,7 +1107,7 @@ ToInteger(argument String) Integer
 ToInteger(argument Long) Integer
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1220,7 +1224,7 @@ ToString(argument DateTime) String
 ToString(argument Time) String
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1400,7 +1404,7 @@ between(argument String, low String, high String) Boolean
 between(argument Interval<T>, low T, high T) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1468,10 +1472,11 @@ For decimal values, trailing zeroes are ignored.
 
 For quantities, this means that the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks). Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
+For time-valued quantities, UCUM definite-time duration quantities above days (and weeks) are not comparable to calendar duration quantities above days (and weeks), and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics using the shortest number of conversion steps (e.g. convert from days to years directly, not from days to months to years):
 
 ```cql
-1 year = 12 months
+1 year = 12 months or 365 days
+1 month = 30 days
 1 week = 7 days
 1 day = 24 hours
 1 hour = 60 minutes
@@ -1548,7 +1553,7 @@ For time-valued quantities, UCUM definite-time duration quantities above days (a
 1 millisecond = 1 'ms' // and 1 millsecond ~ 1 'ms'
 ```
 
-Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics:
+Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics using the shortest number of conversion steps (e.g. convert from days to years directly, not from days to months to years):
 
 ```cql
 1 year ~ 12 months
@@ -1606,7 +1611,7 @@ define "NullEquivalentIsTrue": null ~ null
 >(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1617,7 +1622,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">false</span>. For example:
 
@@ -1663,7 +1668,7 @@ define "DateTimeWithMillisecondsGreaterIsNull": @2024-11-15T12:30:00.5 > @2024-1
 >=(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1674,7 +1679,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is greater than the second, the result is <span class="kw">true</span>; if the first value is less than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">true</span>. For example:
 
@@ -1714,7 +1719,7 @@ define "NullGreaterOrEqualIsNull": null >= 5
 <(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1725,7 +1730,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">false</span>. For example:
 
@@ -1766,7 +1771,7 @@ define "NullLessIsNull": null < 5
 <=(left String, right String) Boolean
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1777,7 +1782,7 @@ String comparisons are strictly lexical based on the Unicode value of the indivi
 
 For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> are comparable, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> are not. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
-For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
+For time-valued quantities, the UCUM definite-quantity durations above days (and weeks) are not comparable to calendar durations, and such comparisons return <span class="kw">null</span>. Definite-time duration unit conversions shall be performed as specified in ISO-8601, while calendar-time duration unit conversions shall be performed according to calendar duration semantics. In particular, unit conversion between variable length calendar durations (i.e. years and months) and definite-time durations (i.e. days or below) results in <span class="kw">null</span>.
 
 For Date, DateTime, and Time values, the comparison is performed by considering each precision in order, beginning with years (or hours for time values). If the values are the same, comparison proceeds to the next precision; if the first value is less than the second, the result is <span class="kw">true</span>; if the first value is greater than the second, the result is <span class="kw">false</span>; if one input has a value for the precision and the other does not, the comparison stops and the result is <span class="kw">null</span>; if neither input has a value for the precision or the last precision has been reached, the comparison stops and the result is <span class="kw">true</span>. For example:
 
@@ -1872,7 +1877,7 @@ Abs(argument Decimal) Decimal
 Abs(argument Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1906,7 +1911,7 @@ define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'
 +(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -1919,7 +1924,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be added, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+When adding quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be added, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -1952,12 +1957,15 @@ When invoked with an <span class="id">Integer</span> argument, the argument will
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+If the result of the operation cannot be represented as an <span class="id">Integer</span>, the result is <span class="kw">null</span>.
+
 The following examples illustrate the behavior of the <span class="id">Ceiling</span> operator:
 
 ```cql
 define "IntegerCeiling": Ceiling(1) // 1
 define "DecimalCeiling": Ceiling(1.1) // 2
-define "QuantityCeilingIsNull": Ceiling(null as Decimal)
+define "DecimalCeilingIsNull": Ceiling(null as Decimal)
+define "CeilingOverflowIsNull": Ceiling(3147483647.05) // null
 ```
 
 #### Divide
@@ -1983,7 +1991,7 @@ For division operations involving quantities, the resulting quantity will have t
 12 'cm2' / 3 'cm'
 ```
 
-In this example, the result will have a unit of <span class="lit">'cm'</span>. Note that when performing division of quantities with the same units, the result will have the default UCUM unit (<span class="lit">'1'</span>). When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+In this example, the result will have a unit of <span class="lit">'cm'</span>. Note that when performing division of quantities with the same units, the result will have the default UCUM unit (<span class="lit">'1'</span>). When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>). Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2016,12 +2024,15 @@ When invoked with an <span class="id">Integer</span> argument, the argument will
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+If the result cannot be represented as an <span class="id">Integer</span>, the result is <span class="kw">null</span>.
+
 The following examples illustrate the behavior of the <span class="id">Floor</span> operator:
 
 ```cql
 define "IntegerFloor": Floor(1) // 1
 define "DecimalFloor": Floor(2.1) // 2
-define "QuantityFloorIsNull": Floor(null as Decimal)
+define "DecimalFloorIsNull": Floor(null as Decimal)
+define "UnderflowFloorIsNull": Floor(2147483648.2) // null
 ```
 
 #### Exp
@@ -2281,7 +2292,7 @@ mod(left Quantity, right Quantity) Quantity
 ```
 
 > The Long type feature was introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2294,7 +2305,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Integer</span> or <span class="id">Decimal</span>, and <span class="id">Quantity</span> arguments, the <span class="id">Integer</span> or <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For modulo operations involving quantities, the resulting quantity will have the appropriate unit.
+For modulo operations involving quantities, the resulting quantity will have the appropriate unit.  Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2320,7 +2331,7 @@ define "ModuloIsNull": 2.5 mod null
 *(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2333,14 +2344,14 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For multiplication operations involving quantities, the resulting quantity will have the appropriate unit. For example:
+For multiplication involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. For example:
 
 ```cql
 12 'cm' * 3 'cm'
 3 'cm' * 12 'cm2'
 ```
 
-In this example, the first result will have a unit of <span class="lit">'cm2'</span>, and the second result will have a unit of <span class="lit">'cm3'</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+In this example, the first result will have a unit of <span class="lit">'cm2'</span>, and the second result will have a unit of <span class="lit">'cm3'</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>). Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2357,7 +2368,7 @@ If the result of the operation cannot be represented, the result is <span class=
 -(argument Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2464,12 +2475,12 @@ define "PredecessorIsNull": predecessor of (null as Quantity)
 **Signature:**
 
 ```cql
-^(argument Integer, exponent Integer) Integer
-^(argument Long, exponent Long) Long
+^(argument Integer, exponent Integer) Decimal
+^(argument Long, exponent Long) Decimal
 ^(argument Decimal, exponent Decimal) Decimal
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2491,7 +2502,7 @@ define "IntegerPower": 2^3 // 8
 define "IntegerPowerFun": Power(2, 3) // 8
 define "LongPower": 2L^3L // 8L
 define "DecimalPower": 2.5^2.0 // 6.25
-define "NegateIsNull": 2.5^null
+define "PowerIsNull": 2.5^null
 ```
 
 #### Round
@@ -2505,7 +2516,7 @@ Round(argument Quantity) Quantity
 Round(argument Quantity, precision Integer) Quantity
 ```
 
-> The Quantity overloads of the Round function were introduced in CQL 2.0, and have trial-use status.
+> The Quantity overloads of the Round function were introduced in CQL 2.0, and have trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2528,7 +2539,7 @@ define "DecimalRound": Round(3.14159, 3) // 3.142
 define "RoundIsNull": Round(null) // null
 define "RoundPointFive": Round(0.5) // 1
 define "RoundNegativePointFive": Round(-0.5) // -1
-define "QuantityRound": Round(2.54 'cm') // 2 'cm'
+define "QuantityRound": Round(2.54 'cm') // 3 'cm'
 ```
 
 #### Subtract
@@ -2542,7 +2553,7 @@ define "QuantityRound": Round(2.54 'cm') // 2 'cm'
 -(left Quantity, right Quantity) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2553,7 +2564,7 @@ When invoked with mixed <span class="id">Integer</span> and <span class="id">Dec
 
 When invoked with mixed <span class="id">Long</span> and <span class="id">Decimal</span> arguments, the <span class="id">Long</span> argument will be implicitly converted to <span class="id">Decimal</span>.
 
-When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be subtracted, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
+When subtracting quantities, the dimensions of each quantity must be the same, but not necessarily the unit. For example, units of <span class="lit">'cm'</span> and <span class="lit">'m'</span> can be subtracted, but units of <span class="lit">'cm2'</span> and <span class="lit">'cm'</span> cannot. The unit of the result will be the most granular unit of either input. Attempting to operate on quantities with invalid or special units will result in a <span class="kw">null</span>. When a quantity has no units specified, it is treated as a quantity with the default unit (<span class="lit">'1'</span>).
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2651,7 +2662,7 @@ div(left Quantity, right Quantity) Quantity
 ```
 
 > The Long type feature was introduced in CQL 1.5, and has trial-use status.
-> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status.
+> The Quantity overload for this operator was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -2664,7 +2675,7 @@ When invoked with mixed <span class="id">Long</span> and <span class="id">Decima
 
 When invoked with mixed <span class="id">Integer</span> or <span class="id">Decimal</span> and <span class="id">Quantity</span> arguments, the <span class="id">Integer</span> or <span class="id">Decimal</span> argument will be implicitly converted to <span class="id">Quantity</span>.
 
-For division operations involving quantities, the resulting quantity will have the appropriate unit.
+For division operations involving quantities, the resulting quantity will have an appropriate unit as determined by application of the UCUM specification. Attempting to operate on quantities with invalid or special units will result in <span class="kw">null</span>.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -2882,7 +2893,7 @@ define "MatchesTrue2": Matches('http://fhir.org/guides/cqf/common/Library/FHIR-M
 
 #### MatchesFull
 
-> The MatchesFull function was introduced in CQL 2.0, and has trial-use status.
+> The MatchesFull function was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -3093,13 +3104,13 @@ define "UpperIsNull": Upper(null) // null
 
 The _add_ (<span class="sym">+</span>) operator returns the value of the first argument, incremented by the time-valued quantity, respecting variable length periods for calendar years and months.
 
-For <span class="id">Date</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, or <span class="kw">days</span>.
+For <span class="id">Date</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, or <span class="kw">days</span>, or an error is thrown.
 
-For <span class="id">DateTime</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, <span class="kw">days</span>, <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
+For <span class="id">DateTime</span> values, the quantity unit must be one of: <span class="kw">years</span>, <span class="kw">months</span>, <span class="kw">weeks</span>, <span class="kw">days</span>, <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>, or an error is thrown.
 
-For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
+For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>, or an error is thrown.
 
-As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values:
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that adding 1 hour to `@T23:30:00` will result in `@T00:30:00` of the previous day, which is consistent with the behavior of `DateTime` values:
 
 ```cql
 @T23:30:00 + 1 hour // @T00:30:00
@@ -3139,11 +3150,11 @@ The <span class="kw">after</span>_-precision-_<span class="kw">of</span> operato
 
 If no precision is specified, the comparison is performed beginning with years (or hours for time values) and proceeding to the finest precision specified in either input.
 
-For <span class="id">Date</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, or <span class="kw">day</span>.
+For <span class="id">Date</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, or <span class="kw">day</span>, or an error is thrown.
 
-For <span class="id">DateTime</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, <span class="kw">day</span>, <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>.
+For <span class="id">DateTime</span> values, _precision_ must be one of: <span class="kw">year</span>, <span class="kw">month</span>, <span class="kw">day</span>, <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>, or an error is thrown.
 
-For <span class="id">Time</span> values, _precision_ must be one of: <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>.
+For <span class="id">Time</span> values, _precision_ must be one of: <span class="kw">hour</span>, <span class="kw">minute</span>, <span class="kw">second</span>, or <span class="kw">millisecond</span>, or an error is thrown.
 
 Note specifically that due to variability in the way week numbers are determined, comparisons involving weeks are not supported.
 
@@ -3260,8 +3271,6 @@ DateTime(year Integer, month Integer, day Integer,
 The <span class="id">DateTime</span> operator constructs a DateTime value from the given components.
 
 At least one component other than <span class="id">timezoneOffset</span> must be specified, and no component may be specified at a precision below an unspecified precision. For example, <span class="id">hour</span> may be <span class="kw">null</span>, but if it is, <span class="id">minute</span>, <span class="id">second</span>, and <span class="id">millisecond</span> must all be <span class="kw">null</span> as well.
-
-If all the arguments are <span class="kw">null</span>, the result is <span class="kw">null</span>, as opposed to a <span class="id">DateTime</span> with no components specified.
 
 Although the milliseconds are specified with a separate component, seconds and milliseconds are combined and represented as a <span class="id">Decimal</span> for the purposes of comparison.
 
@@ -3598,7 +3607,7 @@ For <span class="id">DateTime</span> values, the quantity unit must be one of: <
 
 For <span class="id">Time</span> values, the quantity unit must be one of: <span class="kw">hours</span>, <span class="kw">minutes</span>, <span class="kw">seconds</span>, or <span class="kw">milliseconds</span>.
 
-As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behaviour of `DateTime` values.
+As `Time` is cyclic, the result of overflowing the time value will be wrapped around the beginning of the day, so that subtracting 1 hour from `@T00:30:00` will result in `@T23:30:00` of the previous day, which is consistent with the behavior of `DateTime` values.
 
 ```cql
 @T00:30:00 - 1 hour // @T23:30:00
@@ -3696,7 +3705,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval starts after the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3731,7 +3740,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval ends before the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3869,7 +3878,7 @@ ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">ends</span> operator returns <span class="kw">true</span> if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
-This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3896,7 +3905,7 @@ define "EndsIsNull": Interval[1, 5] ends null
 
 **Description:**
 
-The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators.
+The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -3921,7 +3930,7 @@ define "EqualIsNull": Interval[1, 5] = null
 
 **Description:**
 
-The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators are equivalent.
+The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators are equivalent. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -3965,7 +3974,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
 
-> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status.
+> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -4092,7 +4101,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4125,7 +4134,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4154,6 +4163,8 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 
 The <span class="kw">intersect</span> operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns <span class="kw">null</span>.
 
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
@@ -4181,7 +4192,7 @@ The <span class="kw">meets</span> operator returns <span class="kw">true</span> 
 
 The <span class="kw">meets before</span> operator returns <span class="kw">true</span> if the first interval ends immediately before the second interval starts, while the <span class="kw">meets after</span> operator returns <span class="kw">true</span> if the first interval starts immediately after the second interval ends.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4306,7 +4317,7 @@ The <span class="kw">overlaps</span> operator returns <span class="kw">true</spa
 
 The operator <span class="kw">overlaps before</span> returns <span class="kw">true</span> if the first interval overlaps the second and starts before it, while the <span class="kw">overlaps after</span> operator returns <span class="kw">true</span> if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4333,7 +4344,7 @@ point from(argument Interval<T>) : T
 
 **Description:**
 
-The <span class="kw">point from</span> operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown.
+The <span class="kw">point from</span> operator extracts the single point from a unit interval. If the argument is not a unit interval, a run-time error is thrown. In particular, attempting to extract a point from the _maximum interval_ (`Interval[null, null]`) will result in an error.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4363,7 +4374,7 @@ The <span class="kw">properly includes</span> operator for intervals returns <sp
 
 For the interval-point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4396,7 +4407,7 @@ The <span class="kw">properly included in</span> (or <span class="kw">properly d
 
 For the point-interval overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4587,7 +4598,7 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">starts</span> operator returns <span class="kw">true</span> if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4717,7 +4728,7 @@ The _equal_ (<span class="sym">=</span>) operator for lists returns <span class=
 
 This operation uses equality semantics, with the exception that nulls are considered equal.
 
-If either argument is <span class="kw">null</span>, or contains null elements, the result is <span class="kw">null</span>.
+If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the _equal_ operator:
 
@@ -4751,7 +4762,7 @@ define "EquivalentIsFalse": { 1, 3, 5, 7 } ~ { 1, 3, 5 }
 {: #equivalentin}
 #### EquivalentIn
 
-> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -4778,7 +4789,7 @@ define "NullEquivalentInIsTrue": null ~in { 1, 3, 5, null }
 {: #equivalentcontains}
 #### EquivalentContains
 
-> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -4800,6 +4811,7 @@ define "EquivalentContainsIsTrue": { 'A', 'B', 'C' } ~contains 'a'
 define "EquivalentContainsIsFalse": { 'B', 'C' } ~contains 'a'
 define "EquivalentContainsIsAlsoFalse": null ~contains 'a'
 define "EquivalentContainsNullIsFalse": { 'A', 'B', 'C' } ~contains null
+define "EquivalentContainsNullIsTrue": { 'A', 'B', 'C', null } ~contains null
 ```
 
 {: #except-1}
@@ -4962,7 +4974,7 @@ included in(left T, right list<T>) Boolean
 
 The <span class="kw">included in</span> operator for lists returns <span class="kw">true</span> if every element of the first list is in the second list using equality semantics.
 
-For the singleton-list overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator, and will return <span class="kw">null</span> if the first argument is <span class="kw">null</span>, and <span class="kw">false</span> if the second argument is <span class="kw">null</span>.
+For the singleton-list overload, this operator is a synonym for the <span class="kw">[in](#in-1)</span> operator. If the first argument is <span class="kw">null</span>, the result is <span class="lit">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="lit">false</span> otherwise. If the second argument is <span class="kw">null</span>, the result is <span class="lit">false</span>.
 
 For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -5151,14 +5163,14 @@ define "NotEquivalentIsTrue": { 1, 3, 5, 7 } !~ { 1, 3, 5 }
 
 ```cql
 properly includes(left List<T>, right List<T>) Boolean
-properly includes(left T, right List<T>) Boolean
+properly includes(left List<T>, right T) Boolean
 ```
 
 **Description:**
 
 The <span class="kw">properly includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list, and the first list is strictly larger than the second list.
 
-For the singleton-list overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
+For the list-singleton overload, this operator returns true if the list contains (i.e. includes) the element, and it is not the only element in the list.
 
 This operator uses equality semantics to determine whether or not two elements are the same, with the exception that null elements are considered equal.
 
@@ -5257,7 +5269,7 @@ define "SkipIsNull": Skip(null, 2)
 
 #### Slice
 
-> The Slice function was introduced in CQL 2.0, and has trial-use status.
+> The Slice function was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -5523,7 +5535,7 @@ Max(argument List<Time>) Time
 Max(argument List<String>) String
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5691,7 +5703,7 @@ Product(argument List<Decimal>) Decimal
 Product(argument List<Quantity>) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5748,7 +5760,7 @@ Sum(argument List<Decimal>) Decimal
 Sum(argument List<Quantity>) Quantity
 ```
 
-> The Long type feature was introduced in CQL 1.5, and has trial-use status.
+> The Long type feature was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**
@@ -5976,11 +5988,9 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 > Note: Because code declarations in CQL allow the value of the code to be any valid code from the code system, it is possible to define code declarations that use expressions if the code system supports it (_post-coordinated expressions_ in SNOMED, for example). However, using such features of a code system would effectively require a terminology server in order to fully support the capability, and CQL is not prescriptive about such support, and artifacts that make use of these types of features for code equivalence should come with a warning about implementability.
 {: .note-warning}
 
-{: .contains_codesystem}
+#### EquivalentContains (CodeSystem)
 
-#### Contains (Codesystem)
-
-> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -5996,7 +6006,7 @@ define "EquivalentIsFalse": Concept1 ~ Concept2
 
 **Description:**
 
-The <span class="kw">~contains</span> (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
+The <span class="kw">~contains</span> (CodeSystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
 
@@ -6008,7 +6018,7 @@ For the <span class="id">List\<Code></span> overload, if the given code system c
 
 If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
-If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
+If the <span class="id">codesystem</span> reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the <span class="kw">~contains</span> (Codesystem) operator:
 
@@ -6022,10 +6032,11 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
-{: #in_codesystem}
-#### In (Codesystem)
+{: #in-codesystem}
+{: #equivalentin-codesystem}
+#### EquivalentIn (CodeSystem)
 
-> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6041,7 +6052,7 @@ define "CodesystemContainsNullString": "SNOMED:2014" ~contains null as String //
 
 **Description:**
 
-The <span class="kw">~in</span> (<span class="kw">in</span> in version 1.5) (Codesystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
+The <span class="kw">~in</span> (<span class="kw">in</span> in version 1.5) (CodeSystem) operators determine whether or not a given code, or any of a list of codes, is in a particular codesystem. Note that these operators can only be invoked by referencing a defined <span class="kw">codesystem</span> or <span class="id">CodeSystem</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given code system contains a code with an equivalent code element, the result is <span class="kw">true</span>.
 
@@ -6053,7 +6064,7 @@ For the <span class="id">List\<Code></span> overload, if the given code system c
 
 If the <span class="id">code</span> argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
-If the <span class="id">code</span> system reference cannot be resolved, a run-time error is thrown.
+If the <span class="id">codesystem</span> reference cannot be resolved, a run-time error is thrown.
 
 The following examples illustrate the behavior of the <span class="kw">~in</span> (Codesystem) operator:
 
@@ -6070,7 +6081,7 @@ define "NullStringInCodesystem": null as String ~in "SNOMED:2014" // false
 {: #expandvalueset}
 #### ExpandValueSet (ValueSet)
 
-> The ExpandValueSet function was introduced in CQL 1.5, and has trial-use status.
+> The ExpandValueSet function was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6095,9 +6106,10 @@ valueset "Value Set Reference": 'http://example.org/ValueSet/ExampleValueSet'
 
 define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 ```
-#### Contains (Valueset)
 
-> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status.
+#### EquivalentContains (ValueSet)
+
+> The EquivalentContains (`~contains`) operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6113,7 +6125,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 **Description:**
 
-The <span class="kw">~contains</span> (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
+The <span class="kw">~contains</span> (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
@@ -6139,10 +6151,11 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 > Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
 {: .note-warning}
 
+{: #in-valueset}
+{: #equivalentin-valueset}
+#### EquivalentIn (ValueSet)
 
-#### In (Valueset)
-
-> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership.
+> The EquivalentIn (`~in`) operator was introduced in CQL 2.0, and has trial-use status. For backwards-compatibility the normative In (`in`) can still be used to test code system membership. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Signature:**
@@ -6158,7 +6171,7 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 
 **Description:**
 
-The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (Valueset) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
+The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
 For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
 

@@ -51,7 +51,7 @@ Note that nested multi-line comments are not supported.
 
 ##### Tags
 
-> Comment tags were introduced in CQL 1.5, and are trial-use
+> Comment tags were introduced in CQL 1.5, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 Within multi-line comments, CQL supports the ability to define _tags_ that will be associated with the declaration on which they appear. Tags are defined in comments immediately preceding the declaration to which they apply using the `@` symbol, followed by a valid, unquoted identifier, optionally followed by a colon (`:`) and a string value. For example:
@@ -559,16 +559,25 @@ In addition, library references are not transitive, meaning that in order to ref
 
 #### Parameter Binding
 
-> Parameter binding was introduced in CQL 2.0, and is trial-use
+> Parameter binding was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 The `bind` clause of the `include` declaration allows values for parameters in the included library to be specified as expressions that may reference parameters in the current library. Bind expressions are evaluated in the same context as any parameter value expression, in that they only have access to parameter definitions in the current library and may not contain any retrieve expressions. 
 
 In addition, a bind clause on an included library overrides any parameter values provided by the evaluation environment.
 
+For example:
+
+```cql
+include ColorectalCancerElements called CCE
+  bind { AsOf: end of "Measurement Period" }
+```
+
+This example illustrates setting the `AsOf` parameter in the included `ColorectalCancerElements` library to the result of evaluating the expression `end of "Measurement Period"` in the current library.
+
 #### Parameter Constraints
 
-> Parameter constraints were introduced in CQL 2.0, and are trial-use
+> Parameter constraints were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 Parameter constraints are expression definitions in a library that are required to be true in order to make use of any of the expressions in the library. For example:
@@ -607,10 +616,10 @@ A syntax diagram of the access modifiers can be seen [here](19-l-cqlsyntaxdiagra
 
 #### Directives
 
-> Directives were introduced in CQL 2.0, and are trial-use
+> Directives were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
-Each library may include any number of _directives_ at the very beginning of the library (before the library declaration). Directives are a common mechanism to support providing additional contextual information for a library, as well as provide pre-processing opportunities. Directives can be though of as parameters to the language processing application.
+Each library may include any number of _directives_ at the very beginning of the library (before the library declaration). Directives are a common mechanism to support providing additional contextual information for a library, as well as provide pre-processing opportunities. Directives can be thought of as parameters to the language processing application.
 
 This initial introduction of directives into the language is deliberately scoped to only the very beginning of a library.
 
@@ -625,7 +634,7 @@ Directives consist of an identifier, followed by an optional string value:
 
 ##### DefaultComparisonPrecision
 
-> Directives were introduced in CQL 2.0, and are trial-use
+> Directives were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 ```
@@ -636,7 +645,7 @@ Date and time comparison in CQL supports specifying the precision at which the c
 
 This is accomplished by applying this directive at the library level, and indicates that any expressions and function definitions within that library are to be performed at the specified default precision unless the operation explicity specifies a precision. The inclusion of this directive results in date and time comparisons being compiled to ELM with the given precision (i.e. it's a compile-time determination, rather than a run-time engine setting).
 
-The use of this directive is local to the library (meaning it does not impact comparisons occuring in dedclarations from included libraries) unless one of the following additional `<inclusion behavior>` clauses is provided:
+The use of this directive is local to the library (meaning it does not impact comparisons occurring in declarations from included libraries) unless one of the following additional `<inclusion behavior>` clauses is provided:
 
 * `default included libraries`: the directive is used if the included library does not specify its own comparison precision
 * `override included libraries`: the directive is used regardless of whether the included library specifies its own comparison precision
@@ -693,7 +702,7 @@ As with expressions, CQL supports forward declarations for functions, so long as
 {: #data-models-1}
 ### Data Models
 
-> Model namespaces and aliases were introduced in CQL 2.0, and are trial-use
+> Model namespaces and aliases were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 CQL allows any number of data models to be included in a given library, subject to the following constraints:
@@ -759,7 +768,7 @@ using FHIR version '4.0.1'
 define function g(q Quantity): q
 ```
 
-The identifier <span class="id">Quantity</span> in this function declaration resolves to <span class="id">FHIR.Quantity</span> unambiguously because only the <span class="id">FHIR</span> model is explicitly declared.
+The identifier <span class="id">Quantity</span> in this function declaration resolves to <span class="id">FHIR.Quantity</span> unambiguously because only the <span class="id">FHIR</span> model is explicitly declared. In order to refer to the CQL <span class="id">System.Quantity</span> type instead, use the fully qualified identifier <span class="id">System.Quantity</span>.
 
 ### Types
 
@@ -938,6 +947,21 @@ For <span class="kw">union</span>, this means that the inputs can be lists of di
 For <span class="kw">intersect</span>, this means the inputs can be lists of different types of elements, and the type of the result is a choice with only the types that are common between the input types. Again, if this results in a choice with a single component, it degenerates to the component type.
 
 For <span class="kw">except</span>, this means that the inputs can contain lists of different types of elements, but because the except may not exclude all the values of a given type, the result will be the same type as the left input.
+
+Note that although the following function declarations are technically allowed:
+
+```cql
+define function Foo(t Integer)
+define function Foo(t Choice<Integer, Decimal>)
+```
+
+Doing so results in a potentially ambiguous overload and should be discouraged.
+
+> STU NOTE: We are seeking feedback on whether allowing overloads with this type of ambiguity should be deprecated in a future version of this specification.
+{: .note-stu}
+
+> Implementations should provide a warning when this type of overload is detected.
+{: .note-warning}
 
 #### Type Inference
 
@@ -1121,6 +1145,20 @@ define "MixedMultiply": 1 * 1.0
 
 The type of the literal <span class="lit">1</span> is <span class="id">Integer</span>, and the type of the literal <span class="lit">1.0</span> is <span class="id">Decimal</span>. To infer the type of the expression correctly, the language will implicitly convert the type of the <span class="lit">1</span> to <span class="id">Decimal</span> by inserting a <span class="id">ToDecimal</span> invocation. The multiplication is then performed on two <span class="id">Decimals</span>, and the result type is <span class="id">Decimal</span>.
 
+For <span class="id">Quantity</span> values, operations may result in implicit conversion of units as determined by application of the UCUM specification. For example:
+
+```cql
+1 'm' = 100 'cm'
+```
+
+When implicitly converting a number to a quantity, the resulting quantity will have the default unit <span class="lit">1</span>. In some cases, this could result in uncomparable units, for example:
+
+```cql
+MedicationRequest.expectedSupplyDuration between 30 and 60 days
+```
+
+The literal <span class="lit">30</span> in this case is implicitly converted to a quantity with the default unit, which is not comparable with calendar days, and so the result of this expression may unexpectedly be <span class="kw">null</span>. Implementation environments should make use of unit conversion validation to help warn useres at compile-time when this situation occurs.
+
 In addition, CQL defines implicit conversion of a named structured type to its equivalent tuple type. For example, given the type <span class="id">Person</span> with elements <span class="id">Name</span> of type <span class="id">String</span> and <span class="id">DOB</span> of type <span class="id">DateTime</span>, the following comparison is valid:
 
 ```cql
@@ -1168,7 +1206,7 @@ CQL also supports the notion of _implicit casting_ to prevent the need to cast a
 define "ImplicitCast": 5 * null
 ```
 
-The type of the first argument to the multiplication is <span class="id">Integer</span>, and the type of the second argument is <span class="id">Any</span>, an untyped <span class="kw">null</span> literal. But multipication of <span class="id">Integer</span> and <span class="id">Any</span> is not defined and <span class="id">Any</span> is a supertype of <span class="id">Integer</span>, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
+The type of the first argument to the multiplication is <span class="id">Integer</span>, and the type of the second argument is <span class="id">Any</span>, an untyped <span class="kw">null</span> literal. But multiplication of <span class="id">Integer</span> and <span class="id">Any</span> is not defined and <span class="id">Any</span> is a supertype of <span class="id">Integer</span>, not a subtype. This means that with strict typing, this expression would not compile without the addition of an explicit cast:
 
 ```cql
 define "ImplicitCast": 5 * (null as Integer)
@@ -1307,7 +1345,7 @@ define function getList(list List<Integer>):
     list
 ```
 
-For more inforamtion about messages, refer to [Appendix M - Messages](20-m-messages.html)
+For more information about messages, refer to [Appendix M - Messages](20-m-messages.html)
 
 ### Nullological Operators
 
@@ -1653,7 +1691,7 @@ define NullObjectQuery:
 
 ### Related Context Retrieves
 
-> Support for specifying search paths, include and reverseInclude elements in the Retrieve was introduced in CQL 1.5, and is trial-use.
+> Support for specifying search paths, include, and reverseInclude elements in the Retrieve was introduced in CQL 1.5, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 To allow queries to cross contexts, CQL supports the notion of a _related context retrieve_. For example, consider a neonatal measure where the infant is the subject of the measure. In order to calculate gestational age, the measure may need to retrieve information from the mother's record. Without the ability to cross contexts, this would not be possible. The following example illustrates this usage:
@@ -1684,7 +1722,7 @@ If the expression being defined (such as "Mother" in the previous example) is <s
 
 ### Aggregate Queries
 
-> The aggregate clause was introduced in CQL 1.5, and is trial-use.
+> The aggregate clause was introduced in CQL 1.5, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 CQL provides support for a limited class of recursive problems using the _aggregate clause_ of the query construct. This clause is similar in function to the JavaScript `.reduce()` function, in that it allows an expression to be repeatedly evaluated for each element of a list, and that expression can access the _current_ value of the aggregation. For example, the following query illustrates a simple usage of this construct to calculate the factorial of 5:
@@ -1738,14 +1776,14 @@ In this example, since the starting clause is omitted, Result is initially <span
 
 ### Defining Models
 
-> The ability to define models as part of the language was introduced in CQL 2.0, and is trial-use.
+> The ability to define models as part of the language was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
-CQL allows authors to define models consisting of all the elements  named class types, functions that operate on those types, conversions, and contexts. This is accomplished by allowing types, conversions, and contexts to be defined as part of libraries. The following sections discuss each of these constructs in more detail.
+CQL allows authors to define models consisting of named class types, functions that operate on those types, conversions, and contexts. The following sections discuss each of these constructs in more detail.
 
 #### Defining Class Types
 
-> The ability to define class types was introduced in CQL 2.0, and is trial-use.
+> The ability to define class types was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 CQL allows authors to define named class types, for example:
@@ -1776,7 +1814,7 @@ When a class type `extends` a base type, it inherits all of the elements from it
 
 #### Defining Conversions
 
-> The ability to define conversions was introduced in CQL 2.0, and is trial-use.
+> The ability to define conversions was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 CQL allows authors to define implicit and explicit conversions, for example:
@@ -1791,7 +1829,7 @@ Conversions defined in this way function as described in the [Conversion](#conve
 
 #### Defining Contexts
 
-> The ability to define contexts was introduced in CQL 2.0, and is trial-use.
+> The ability to define contexts was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 CQL allows authors to define contexts as part of an overall model:
@@ -1826,7 +1864,7 @@ related to Patient by { subject }
 
 CQL provides for the definition of functions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type.
 
-A syntax diagram of a function defintion can be seen [here](19-l-cqlsyntaxdiagrams.html#functiondefinition).
+A syntax diagram of a function definition can be seen [here](19-l-cqlsyntaxdiagrams.html#functiondefinition).
 
 For example:
 
@@ -1880,7 +1918,7 @@ Equal(X, Y)
 
 #### Fluent Functions
 
-> Fluent functions was introduced in CQL 1.5, and are trial-use.
+> Fluent functions were introduced in CQL 1.5, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 Functions can be defined as _fluent_ by including the <span class="kw">fluent</span> keyword as part of the function definition:
 
@@ -1991,7 +2029,7 @@ See the [Promotion and Demotion](#promotion-and-demotion) topic for more discuss
 
 #### Missing Information
 
-FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propogation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
+FHIRPath traversal operations are defined such that only values that are present are returned. In other words, it does not define a _null_ indicator to represent missing information. Instead, it uses the empty collection (<span class="sym">\{ }</span>) and propagates empty collections in expressions. In general, if the input to an operator or function is an empty collection, the result is an empty collection. This corresponds to the null propagation semantics of CQL, particularly with respect to the three-valued logic semantics of the logical operators.
 
 #### Type Resolution
 

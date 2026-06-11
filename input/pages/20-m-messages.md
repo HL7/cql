@@ -1,4 +1,4 @@
-> Messages were introduced in CQL 2.0, and are trial-use
+> Messages were introduced in CQL 2.0, and are trial-use. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 Index of messages, warnings, or errors that can be raised as part of processing libraries of CQL.
@@ -13,12 +13,6 @@ Messages in Clinical Quality Language have the following characteristics:
 * Category: The language area, possible values are codes in the [CQL Message Category Codes](CodeSystem-cql-message-category-codes.html) code system
 * Severity: Severity of the issue, possible values are codes in the [CQL Message Severity Codes](CodeSystem-cql-message-severity-codes.html) code system
 * Source: The source of the issue, providing information about where the issue is originating and how it might be addressed, possible values are codes in the [CQL Message Source Codes](CodeSystem-cql-message-source-codes.html) code system.
-
-// Severity
-Info, Warning, Error, Fatal
-
-// Where the issue is associated
-Content, Application, System, Environment
 
 ### Messages
 
