@@ -4804,6 +4804,8 @@ The <span class="kw">~contains</span> operator for lists returns <span class="kw
 
 If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="kw">false</span> otherwise.
 
+The _equivalent contains_ operator (<span class="kw">~contains</span>) was introduced as the formal converse of the _equivalent in_ operator (<span class="kw">~in</span>) (i.e. `A ~in B` will always result in the same value as `B ~contains A`). This relationship allows the operation to be used in contexts where one argument or the other refers to a structure and so cannot be reversed, such as in a Retrieve.
+
 The following examples illustrate the behavior of the <span class="kw">~contains</span> operator:
 
 ```cql
@@ -6020,6 +6022,8 @@ If the <span class="id">code</span> argument is <span class="kw">null</span>, th
 
 If the <span class="id">codesystem</span> reference cannot be resolved, a run-time error is thrown.
 
+The _equivalent contains_ operator (<span class="kw">~contains</span>) was introduced as the formal converse of the _equivalent in_ operator (<span class="kw">~in</span>) (i.e. `A ~in B` will always result in the same value as `B ~contains A`). This relationship allows the operation to be used in contexts where one argument or the other refers to a structure and so cannot be reversed, such as in a Retrieve.
+
 The following examples illustrate the behavior of the <span class="kw">~contains</span> (Codesystem) operator:
 
 ```cql
@@ -6138,6 +6142,8 @@ For the <span class="id">List\<Code></span> overload, if the given valueset cont
 If the code argument is <span class="kw">null</span>, the result is <span class="kw">false</span>.
 
 If the value set reference cannot be resolved, a run-time error is thrown.
+
+The _equivalent contains_ operator (<span class="kw">~contains</span>) was introduced as the formal converse of the _equivalent in_ operator (<span class="kw">~in</span>) (i.e. `A ~in B` will always result in the same value as `B ~contains A`). This relationship allows the operation to be used in contexts where one argument or the other refers to a structure and so cannot be reversed, such as in a Retrieve.
 
 The following examples illustrate the behavior of the <span class="kw">~contains</span> (Valueset) operator:
 
