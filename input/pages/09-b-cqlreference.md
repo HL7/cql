@@ -5292,19 +5292,19 @@ If the endIndex is <span class="kw">null</span>, the slice continues to the last
 
 A negative index counts back from the end of the list.
 
-If `-list.count <= startIndex < 0`, `startIndex + list.count` is used as the `startIndex`.
+If `-list.count <= startIndex < 0`, then `startIndex + list.count` is used as the effective `startIndex` (e.g. `Slice({'a', 'b', 'c'}, -2)` has an effective `startIndex` of `1`).
 
-If `startIndex < -list.count`, `0` is used as the `startIndex`.
+If `startIndex < -list.count`, then `0` is used as the effective `startIndex` (e.g. `Slice({'a', 'b', 'c'}, -4)` has an effective `startIndex` of `0`).
 
-If `startIndex >= list.count`, the result is an empty list.
+If `startIndex >= list.count`, then the result is an empty list (e.g. `Slice({'a', 'b', 'c'}, 4)` results in `{ }`).
 
-If `-list.count <= endIndex < 0`, `endIndex + list.count` is used as the `endIndex`.
+If `-list.count <= endIndex < 0`, then `endIndex + list.count` is used as the effective `endIndex` (e.g. `Slice({'a', 'b', 'c'}, 0, -2)` has an effective `endIndex` of `1`).
 
-If `endIndex < -list.count`, `0` is used as the `endIndex`.
+If `endIndex < -list.count`, then `0` is used as the effective `endIndex` (e.g. `Slice({'a', 'b', 'c'}, 0, -4)` has an effective `endIndex` of `0`).
 
-If `endIndex >= list.count`, `list.count` is used as the `endIndex`.
+If `endIndex >= list.count`, then `list.count` is used as the effective `endIndex` (e.g. `Slice({'a', 'b', 'c'}, 0, 4)` has an effective `endIndex` of `3`).
 
-If `endIndex <= startIndex`, the result is an empty list.
+If effective `endIndex <=` effective `startIndex` (using the above rules), then the result is an empty list (e.g. `Slice({'a', 'b', 'c'}, 4, 2)` results in `{ }`).
 
 The following examples illustrate the behavior of the <span class="id">Slice</span> operator:
 

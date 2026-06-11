@@ -59,9 +59,8 @@ A quality artifact can be said to be loosely conforming if the artifact referenc
 
 ##### Language Capabilities
 
-Because of the scope of CQL, and the various implementation options for different features of the language, implementations may find it useful to advertise the language capabilities they support. In addition, knowledge artifacts may find it useful to advertise the language capabilities they require. To facilitate these use cases, this specification defines a [Language Capabilities CodeSystem](https://build.fhir.org/ig/HL7/cql/CodeSystem-cql-language-capabilities.html) that enumerates the capabilities of the language. For each capability, the code system allows characteristics of that capability to be defined, including:
+Because of the scope of CQL, and the various implementation options for different features of the language, implementations may find it useful to advertise the language capabilities they support. In addition, knowledge artifacts may find it useful to advertise the language capabilities they require. To facilitate these use cases, this specification defines a [Language Capabilities CodeSystem](CodeSystem-cql-language-capabilities.html) that enumerates the capabilities of the language. For each capability, the code system allows [characteristics](CodeSystem-cql-capability-characteristic-codes.html) of that capability to be defined, including:
 
-* code, display, and definition
 * version - The first version in which the capability appears
 * versionTo - The last version in which the capability appears
 * value - Additional information about the capability, for example, the precise decimal precision and scale supported (since this may vary per implementation)
