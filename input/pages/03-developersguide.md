@@ -1182,6 +1182,8 @@ define "TupleConvert": convert TupleExpression to Person
 
 The conversion from a tuple to a structured type requires that the set of elements in the tuple type be the same set or a subset of the elements in the structured type.
 
+Implicit conversion in CQL is not transitive. For example, the existence of an implicit conversion from type `A` to type `B` and from type `B` to type `C` does not mean that there is an implicit conversion from `A` to `C` (although unit conversion may proceed through multiple steps to achieve the target unit).
+
 #### Casting
 
 Casting is the operation of treating a value of some base type as a more specific type at run-time. The <span class="kw">as</span> operator provides this functionality. For example, given a model that defines an <span class="id">ImagingProcedure</span> as a specialization of a <span class="id">Procedure</span>, in the following example:
