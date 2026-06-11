@@ -2812,12 +2812,15 @@ If the pattern is not found, the result is -1.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+Note that if `pattern` is the empty string (`''`), the result is the length of the `argument`, because the empty string matches at every position in the string, including the one after the final character.
+
 The following examples illustrate the behavior of the <span class="id">LastPositionOf</span> operator:
 
 ```cql
 define "LastPositionOfFound": LastPositionOf('B', 'ABCDEDCBA') // 7
 define "LastPositionOfNotFound": LastPositionOf('XYZ', 'ABCDE') // -1
 define "LastPositionOfIsNull": LastPositionOf(null, 'ABCDE') // null
+define "LastPositionOfIsLength": LastPosifionOf('', 'ABCDE') // 5
 ```
 
 #### Length
@@ -2937,12 +2940,15 @@ If the pattern is not found, the result is -1.
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+Note that if `pattern` is the empty string (`''`), the result is `0`, because the empty string matches at every position in the string, including the beginning of the string.
+
 The following examples illustrate the behavior of the <span class="id">PositionOf</span> operator:
 
 ```cql
 define "PositionOfFound": PositionOf('B', 'ABCDEDCBA') // 1
 define "PositionOfNotFound": PositionOf('Z', 'ABCDE') // -1
 define "PositionOfIsNull": PositionOf(null, 'ABCDE') // null
+define "PositionOfZero": PositionOf('', 'ABCDE') // 0
 ```
 
 #### ReplaceMatches
