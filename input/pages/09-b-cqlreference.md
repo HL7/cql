@@ -4811,6 +4811,7 @@ define "EquivalentContainsIsTrue": { 'A', 'B', 'C' } ~contains 'a'
 define "EquivalentContainsIsFalse": { 'B', 'C' } ~contains 'a'
 define "EquivalentContainsIsAlsoFalse": null ~contains 'a'
 define "EquivalentContainsNullIsFalse": { 'A', 'B', 'C' } ~contains null
+define "EquivalentContainsNullIsTrue": { 'A', 'B', 'C', null } ~contains null
 ```
 
 {: #except-1}
