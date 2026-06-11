@@ -713,7 +713,13 @@ CQL allows any number of data models to be included in a given library, subject 
 
 As with library references, data model references may include a version specifier. If a version is specified, then the environment must ensure that the version specifier matches the version of the data model supplied. If no data model matching the requested version is present, an error is thrown.
 
-Data model references may include any number of qualifiers. If present, the qualifier for a model name is the namespace name for the model's namespace URI:
+As an example, the following declaration allows the `USCore` model to be used:
+
+```cql
+using USCore
+```
+
+However, using an unqualified name for the data model leads to the possibility of naming clashes as models may be developed and used by independent groups. To avoid this possibility, data model references may include any number of qualifiers. If present, the qualifier for a model name is the namespace name for the model's namespace URI:
 
 ```cql
 using hl7.fhir.us.core.USCore
