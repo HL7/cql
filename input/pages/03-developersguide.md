@@ -585,12 +585,22 @@ Parameter constraints are expression definitions in a library that are required 
 ```cql
 /*
 @constraint: error
-@message: Measurement period must be a year
+@message: Measurement period must be in a single year
 */
 define IsYearly: start of "Measurement Period" same year as end of "Measurement Period"
 ```
 
-Any definition marked with the `@constraint` tag would be evaluated whenever any expressions of the library were evaluated. A result of `false` would result in a run-time error being raised with the message provided in the `@message` tag. Note that this means that the constraint is considered satisfied if the expression evaluates to `null`. To construct a constraint that a parameter is required (i.e. cannot be null), test that explicitly in the expression:
+Any definition marked with the `@constraint` tag would be evaluated whenever any expressions of the library were evaluated. A result of `false` would result in a run-time error being raised with the message provided in the `@message` tag. Note that this means that the constraint is considered satisfied if the expression evaluates to `null`. To ensure that the result is required to be true, use an `is true` predicate:
+
+```cql
+/*
+@constraint: error
+@message: Measurement period must be in a single year
+*/
+define IsYearly: (start of "Measurement Period" same year as end of "Measurement Period") is true
+```
+
+To construct a constraint that a parameter is required (i.e. cannot be null), test that explicitly in the expression:
 
 ```cql
 /*
@@ -600,7 +610,7 @@ Any definition marked with the `@constraint` tag would be evaluated whenever any
 define MeasurementPeriodIsRequired: "Measurement Period" is not null
 ```
 
-Note that the initial proposed implementation would be limited to parameter constraints, so the expression would only have access to local parameters (i.e. no data access). This could be indicated with a `@constraintScope` of "parameter", and this scope could be expanded to other types of constraints in the future.
+The initial specification of this capability is limited to parameter constraints, so the expression only has access to local parameters (i.e. no data access). This can be indicated with a `@constraintScope` of "parameter", allowing the scope to be expanded to other types of constraints in the future.
 
 The `@constraint` tag is applicable on top-level expression definitions, and must have a value of either `error` or `warning`.
 
