@@ -667,7 +667,7 @@ For example:
 #DefaultComparisonPrecision: 'minutes' check included libraries
 ```
 
-Means that all comparisons that do not explicitly specify precision should be performed to the minute and that using expressions or functions from libraries that specify a different default comparison precision will result in an error.
+This directive means that all comparisons that do not explicitly specify precision should be performed to the minute and that using expressions or functions from libraries that specify a different default comparison precision will result in an error.
 
 > Note for implementers that because this directive has the potential to change the output ELM, it has implications for caching compiled ELM, and even compiled ELM referenced from different libraries. We seek ballot feedback on whether supporting the included library behaviors is necessary or overly burdensome.
 {: .note-info}

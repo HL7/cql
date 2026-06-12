@@ -20,15 +20,13 @@ And as a final introductory note, CQL is designed to support two levels of usage
 
 ### Declarations
 
-Constructs expressed within CQL are packaged in containers called _libraries_. Libraries provide a convenient unit for the definition, versioning, and distribution of logic. For simplicity, libraries in CQL correspond directly with a single file.
+CQL consists of a series of declarations that establish named expressions, functions, and terminology, organized in _libraries_. Libraries provide a convenient unit for the definition, versioning, and distribution of logic. For simplicity, libraries in CQL correspond directly with a single source document.
 
-Libraries in CQL provide the overall packaging for CQL definitions. Each library allows a set of declarations to provide information about the library as well as to define constructs that will be available within the library.
-
-Libraries can contain any or all of the following constructs:
+Libraries can contain any or all of the following declarations:
 
 <a name="table-2-a"></a>
 
-|Construct |Description
+|Declarations |Description
 |----|----
 |**library** |Header information for the library, including the name and version, if any.
 |**using** |Data model information, specifying that the library may access types from the referenced data model.
@@ -43,11 +41,11 @@ Libraries can contain any or all of the following constructs:
 |**function** |Libraries may also contain function definitions. A function in CQL is a named expression that is allowed to take any number of arguments, each of which has a name and a declared type. These are most often used as part of shared libraries.
 {: .grid .table .table-striped}
 
-Table 2‑A - Constructs that CQL libraries can contain
+Table 2‑A - Declarations that CQL libraries can contain
 
-A syntax diagram of a library containing all of the constructs can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
+A syntax diagram for a CQL library containing all of the declarations can be seen [here](19-l-cqlsyntaxdiagrams.html#library).
 
-The following sections discuss these constructs in more detail.
+The following sections discuss these declarations in more detail.
 
 #### Library
 
@@ -155,7 +153,7 @@ define "PatientIsFemale": Patient.gender in "Female Administrative Sex"
 
 The above example defines the <span class="id">PatientIsFemale</span> expression as <span class="kw">true</span> for patients whose gender is a code in the valueset identified by <span class="id">"Female Administrative Sex"</span>.
 
-Note that the name of the valueset uses double quotes, unlike the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of constructs such as valuesets and expression definitions.
+Note that the name of the valueset uses double quotes, unlike the string representation of the OID for the valueset, which uses single quotes. Single quotes are used to build arbitrary strings in CQL; double quotes are used to represent names of definitions such as valuesets and expression definitions.
 
 Note also that the local name for a valueset is user-defined and not required to match the actual name of the valueset identified within the external valueset repository. However, when using external terminologies, authors should use the name of the terminology as defined externally to avoid introducing any potential confusion of meaning.
 
@@ -172,6 +170,10 @@ This codesystem declaration in this example establishes the local name "SNOMED" 
 For more information about terminologies as values within CQL, refer to the [Clinical Values](#clinical-values) section.
 
 #### Parameters
+
+Parameters in CQL are names that serve as placeholders for values that are provided when the logic is evaluated. 
+
+> Note that the term _parameter_ is often used to refer to the definition of an argument to a function. Within CQL, the term parameter refers only to the parameter declaration, and the term argument is used for functions. See the [Defining Functions](03-developersguide.html#defining-functions) for more information on arguments in functions.
 
 A CQL library can define zero or more parameters. Each parameter is defined with the elements listed in the following table:
 
@@ -465,12 +467,12 @@ A query construct begins by introducing an _alias_ for the primary source:
 [Encounter: "Inpatient"] E
 ```
 
-The primary source for this query is the retrieve expression +++[+++<span class="id">Encounter</span>: <span class="id">"Inpatient"</span>], and the alias is <span class="id">E</span>. Subsequent clauses in the query must reference elements of this source by using this alias.
+The primary source for this query is the retrieve construct \[<span class="id">Encounter</span>: <span class="id">"Inpatient"</span>], and the alias is <span class="id">E</span>. Subsequent clauses in the query must reference elements of this source by using this alias.
 
-Although the alias in this example is a single-letter abbreviation, <span class="id">E</span>, it could also be a longer abbreviation:
+Although the alias in this example is a single-letter abbreviation, <span class="id">E</span>, it could also be a more descriptive name:
 
 ```cql
-[Encounter: "Inpatient"] Enc
+[Encounter: "Inpatient"] InpatientEncounter
 ```
 
 Note that alias names, as with all language constructs, may be the subject of language conventions. The [Formatting Conventions](14-g-formattingconventions.html) section defines a very general set of formatting conventions for use with Clinical Quality Languages. Within specific domains, institutions or stakeholders may create additional conventions and style guides appropriate to their domains.
@@ -1170,7 +1172,7 @@ The result of this invocation is a list containing the <span class="id">Number</
 
 ##### Missing Information
 
-Because clinical information is often incomplete, CQL provides a special construct, <span class="kw">null</span>, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the <span class="id">admissionDate</span> element of the Encounter tuple is <span class="kw">null</span>.
+Because clinical information is often incomplete, CQL provides a special keyword, <span class="kw">null</span>, to represent an _unknown_ or missing value or result. For example, the admission date of an encounter may not be known. In that case, the result of accessing the <span class="id">admissionDate</span> element of the Encounter tuple is <span class="kw">null</span>.
 
 In order to provide consistent behavior in the presence of missing information, CQL defines <span class="kw">null</span> behavior for all operations. For example, consider the following expression:
 

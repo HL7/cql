@@ -4,7 +4,7 @@ This appendix provides a reference for all the system-defined types, operators, 
 
 For each type, the definition and semantics are provided. Note that because CQL does not define a type declaration syntax, the definitions are expressed in a pseudo-syntax.
 
-For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its parameters. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the <span class="kw">and</span> operator is given as:
+For each operator or function, the signature, semantics, and usually an example are provided. Note that for built-in operators, the signature is expressed in a pseudo-syntax intended to clearly define the operator and its operands. Although the symbolic operators may in general be prefix, infix, or postfix operators, the signatures for each operator are defined using function definition syntax for consistency and ease of representation. For example, the signature for the <span class="kw">and</span> operator is given as:
 
 ```cql
 and(left Boolean, right Boolean) Boolean
@@ -6231,7 +6231,7 @@ The code provides a coded representation of the error. Note that this is a token
 
 The severity determines what level of processing should occur for the message that is generated:
 
-* Trace – The operation produces an informational message that is expected to be made available to a tracing mechanism such as a debug log in the calling environment. In addition, some representation of the contents of the source parameter should be made available to the tracing mechanism.
+* Trace – The operation produces an informational message that is expected to be made available to a tracing mechanism such as a debug log in the calling environment. In addition, some representation of the contents of the source operand should be made available to the tracing mechanism.
 * Message – The operation produces an informational message that is expected to be made available in some way to the calling environment.
 * Warning – The operation produces a warning message that is expected to be made conspicuously available to the calling environment, potentially to the end-user of the logic.
 * Error – The operation produces a run-time error and return the message to the calling environment. This is the only severity that stops evaluation. All other severities continue evaluation of the expression.
@@ -6240,7 +6240,7 @@ If no severity is supplied, a default severity of Message is assumed.
 
 The message is the content of the actual message that is sent to the calling environment.
 
-> Note that for Trace severity, the implementation should output the contents of the source parameter as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
+> Note that for Trace severity, the implementation should output the contents of the source operand as part of the trace message. Because the logic may be operating on patient information, the utmost care should be taken to ensure that appropriate safeguards are in place to avoid logging sensitive information. At a minimum, all PHI should be redacted from these trace messages.
 {: .note-danger}
 
 The following examples illustrate the behavior of the <span class="id">Message</span> operator:

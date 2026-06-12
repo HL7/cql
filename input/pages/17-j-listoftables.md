@@ -7,7 +7,7 @@
 
 ### Author's Guide
 
-1.  [Table 2-A](02-authorsguide.html#table-2-a) : Constructs that CQL libraries can contain
+1.  [Table 2-A](02-authorsguide.html#table-2-a) : Declarations that CQL libraries can contain
 
 2.  [Table 2-B](02-authorsguide.html#table-2-b) : Elements that define a parameter
 
