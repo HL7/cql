@@ -610,6 +610,9 @@ To construct a constraint that a parameter is required (i.e. cannot be null), te
 define MeasurementPeriodIsRequired: "Measurement Period" is not null
 ```
 
+> Note that the convention to consider constraint evaluations that result in `null` to be "satisfied" is an established practice in query and database management languages, including SQL and XQuery. The convention results in generally simpler occurrence constraint expressions. For example, to state that age must be at least 18, the constraint `age >= 18` suffices, whereas without this convention, authors have to include an additional predicate check, either `age is not null and age >= 18`, or `age >= 18 is true`.
+{: .note-info}
+
 The initial specification of this capability is limited to parameter constraints, so the expression only has access to local parameters (i.e. no data access). This can be indicated with a `@constraintScope` of "parameter", allowing the scope to be expanded to other types of constraints in the future.
 
 The `@constraint` tag is applicable on top-level expression definitions, and must have a value of either `error` or `warning`.
@@ -633,7 +636,8 @@ Each library may include any number of _directives_ at the very beginning of the
 
 This initial introduction of directives into the language is deliberately scoped to only the very beginning of a library.
 
-> NOTE: We seek ballot feedback on whether directives should be allowed throughout a library, rather than only at the beginning as proposed.
+> Note: We continue to seek implementer feedback on whether directives should be allowed throughout a library, rather than only at the beginning as proposed.
+{: .note-stu}
 
 Directives consist of an identifier, followed by an optional string value:
 
