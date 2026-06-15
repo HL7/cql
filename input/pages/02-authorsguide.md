@@ -867,7 +867,7 @@ A quantity is a number with an associated unit. For example:
 3 months
 ```
 
-The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](https://unitsofmeasure.org/ucum) unit or calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
+The number portion of a quantity can be an <span class="id">Integer</span> or <span class="id">Decimal</span>, and the unit portion is either a (single-quoted) <span class="id">String</span> representing a valid [Unified Code for Units of Measure (UCUM)](https://unitsofmeasure.org/ucum) unit or a calendar duration keyword, singular or plural. To avoid the possibility of ambiguity, UCUM codes shall be specified using the case-sensitive (c/s) form.
 
 For time-valued quantities, in addition to the definite duration UCUM units, CQL defines calendar duration keywords for calendar duration units:
 
@@ -1402,7 +1402,7 @@ In addition, equivalence is defined more loosely than equality for some types:
 * For <span class="id">Code</span> values, equivalence means the values have the same system and code.
 * For <span class="id">Concept</span> values, equivalence means the values have at least one equivalent code.
 
-For more detail, see the definitions of [Equal](09-b-cqlreference.html#equal) and [Equivalent](09-b-cqlreference.html#equivalent) in the CQL reference.
+For more detail, see the definitions of [Equal](09-b-cqlreference.html#equal), [Equivalent](09-b-cqlreference.html#equivalent), and [Comparison Operators](09-b-cqlreference.html#comparison-operators-4) in the CQL reference.
 
 #### Logical Operators
 
@@ -1462,6 +1462,7 @@ The following table lists the arithmetic operations available in CQL:
 
 Table 2‑J - Arithmetic operations that CQL provides
 
+Complete semantics for each operator are defined in the [Arithmetic Operators](09-b-cqlreference.html#arithmetic-operators-4) section of the CQL Reference.
 
 {: #datetime-operators}
 #### Date and Time Operators
@@ -2401,8 +2402,39 @@ This formulation also has the advantage of allowing for the case that the actual
 
 CQL supports the standard comparison operators (<span class="sym">=</span> <span class="sym">!=</span> <span class="sym">~</span> <span class="sym">!~</span> <span class="sym">&lt;</span> <span class="sym">\<=</span> <span class="sym">></span> <span class="sym">>=</span>) and the standard arithmetic operators (<span class="sym">+</span> <span class="sym">-</span> <span class="sym">*</span> <span class="sym">/</span>) for quantities. In addition, aggregate operators that utilize these basic comparisons and computations are also supported, such as <span class="id">Min</span>, <span class="id">Max</span>, <span class="id">Sum</span>, etc.
 
+Complete semantics for each operator are defined in the [Equal](09-b-cqlreference.html#equal), [Equivalent](09-b-cqlreference.html#equivalent), [Comparison Operators](09-b-cqlreference.html#comparison-operators-4), and [Arithmetic Operators](09-b-cqlreference.html#arithmetic-operators-4) sections of the CQL Reference.
+
+###### Unit Conversion
+
+When an operation requires unit conversion, the conversion SHALL be performed according to the UCUM specification when both quantities are UCUM, according to the calendar unit conversion factors when both quantities are calendar durations, and according to the time-valued unit conversion factors when one quantity is UCUM and the other is a calendar unit. In all cases, the conversion SHALL select a target unit appropriate for the operation (most granular for addition and subtraction; least granular for comparisons).
+
+The _most granular_ unit between two units A and B, is the smaller unit of measurement. This can be determined by examining the conversion factor _f_ from `A` to `B`:
+
+* if _f_ \<= `1`, `A` is the _most granular_
+* if _f_ > `1`, `B` is the _most granular_
+
+For example, the conversion factor from `'mm'` to `'cm'` is 0.1, so `'mm'` is the _most granular_ unit.
+
+The _least granular_ unit between two units A and B, is the larget unit of measurement, the opposite of the _most granular_ determination.
+
+The _most granular_ unit is selected for addition and subtraction, while the _least granular_ unit is selected for comparison operations, as described in the detailed reference for each operation.
+
 > Note that complete support for unit conversion for all valid UCUM units would be ideal, but practical CQL implementations will likely provide support for a subset of units for commonly used clinical dimensions. At a minimum, however, a CQL implementation must respect units and return <span class="kw">null</span> if it is not capable of normalizing the quantities involved in a given expression to a common unit. Implementations should issue a run-time warning in these cases as well.
 {: .note-warning}
+
+> As a resource for implementation, refer to the [NLM Unit Conversion Service](https://ucum.nlm.nih.gov/ucum-service.html#toBaseUnits) for a detailed implementation of converting any given UCUM unit to base units.
+{: .note-info}
+
+###### Arbitrary Units
+
+The UCUM specification defines [arbitrary units](https://ucum.org/ucum#section-Arbitrary-Units) as units whose meaning depends on the measurement procedure (assay). In UCUM specifically, arbitrary units cannot be converted to or compared with any other unit. In general, operations on arbitrary units are not supported. However, clinical logic may involve these units and so long as the context is appropriate, should be supported.
+
+Specifically, systems that support UCUM units should support comparison of quantities involving arbitrary units so long as
+
+1. The units are exactly the same (case-sensitively), and 
+2. One or both operands to the comparison are literal.
+
+In this case, authoring systems should provide a warning to authors that arbitrary units differ based on context and care should be taken to ensure that the comparison is appropriate. 
 
 ##### Ratio Operators
 
