@@ -6137,7 +6137,7 @@ define TestExpandValueSet: ExpandValueSet("Value Set Reference")
 
 The <span class="kw">~contains</span> (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
-For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
+For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains the code being resolved in multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
 For the <span class="id">Code</span> overload, if the given valueset contains an equivalent code, the result is <span class="kw">true</span>.
 
@@ -6160,7 +6160,7 @@ define "ValuesetContainsCode": "Acute Pharyngitis" ~contains Code { system: 'htt
 define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as String // false
 ```
 
-> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all. Implementation should issue a warning whenever the string overload is used.
 {: .note-warning}
 
 {: #in-valueset}
@@ -6185,7 +6185,7 @@ define "ValuesetContainsNullString": "Acute Pharyngitis" ~contains null as Strin
 
 The <span class="kw">~in</span> (<span class="kw">in</span> in 1.5) (ValueSet) operators determine whether or not a given code, or any of a list of codes, is in a particular valueset. Note that these operators can only be invoked by referencing a defined <span class="kw">valueset</span> or <span class="id">ValueSet</span>-valued expression.
 
-For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the resolved value set contains codes from multiple code systems, a run-time error is thrown because the operation is ambiguous.
+For the <span class="id">String</span> overload, if the given valueset contains a code with an equivalent code element, the result is <span class="kw">true</span>. Note that for this overload, because the code being tested cannot specify code system information, if the value set contains the code being resolved in multiple code systems, a run-time error is thrown because the operation is ambiguous.
 
 For the <span class="id">Code</span> overload, if the given valueset contains an equivalent code, the result is <span class="kw">true</span>.
 
@@ -6206,7 +6206,7 @@ define "CodeInValueset": Code { system: 'http://snomed.info/sct', code: '1234567
 define "NullStringInValueset": null as String ~in "Acute Pharyngitis" // false
 ```
 
-> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all
+> Note carefully that the use of the string overloads for membership testing in code systems and value sets is potentially problematic and should be used with caution, if at all. Implementations should issue a warning when this overload is used.
 {: .note-warning}
 
 ### Errors and Messaging
