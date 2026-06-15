@@ -2434,7 +2434,13 @@ Specifically, systems that support UCUM units should support comparison of quant
 1. The units are exactly the same (case-sensitively), and 
 2. One or both operands to the comparison are literal.
 
-In this case, authoring systems should provide a warning to authors that arbitrary units differ based on context and care should be taken to ensure that the comparison is appropriate. 
+For example:
+
+```cql
+Dalteparin.dosage() >= 10000 '[IU]/mL'
+```
+
+In this case, authoring systems should provide a warning to authors that arbitrary units differ based on context and care should be taken to ensure that the comparison is appropriate.
 
 ##### Ratio Operators
 
