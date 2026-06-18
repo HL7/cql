@@ -1214,7 +1214,7 @@ Note that this operator will always return true or false, even if either or both
 	<xs:complexType name="NotEqual">
 		<xs:annotation>
 			<xs:documentation>DEPRECATED: This operator is deprecated because it is only short-hand for the equivalent Equal and Not, and the current translator does not ever output it.
-			
+
 The NotEqual operator returns true if its arguments are not the same value.
 
 The NotEqual operator is a shorthand for invocation of logical negation of the Equal operator.</xs:documentation>
@@ -2302,9 +2302,11 @@ If the argument is null, the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The Start operator returns the starting point of an interval.
 
-If the low boundary of the interval is open, this operator returns the Successor of the low value of the interval. Note that if the low value of the interval is null, the result is null.
+If the low boundary of the interval is closed and non-null, this operator returns the low value of the interval. If the low boundary of the interval is closed and null, this operator returns the minimum value for the point type of the interval.
 
-If the low boundary of the interval is closed and the low value of the interval is not null, this operator returns the low value of the interval. Otherwise, the result is the minimum value of the point type of the interval.
+If the low boundary of the interval is open and non-null, this operator returns the successor of the low value of the interval. If the low boundary of the interval is open and null, this operator returns an uncertainty from the minimum value for the point type of the interval to the end of the interval (inclusive).
+
+If the low boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
@@ -2317,9 +2319,11 @@ If the argument is null, the result is null.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>The End operator returns the ending point of an interval.
 
-If the high boundary of the interval is open, this operator returns the Predecessor of the high value of the interval. Note that if the high value of the interval is null, the result is null.
+If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and null, this operator returns the maximum value for the point type of the interval.
 
-If the high boundary of the interval is closed and the high value of the interval is not null, this operator returns the high value of the interval. Otherwise, the result is the maximum value of the point type of the interval.
+If the high boundary of the interval is open and non-null, this operator returns the of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the start of the interval to the maximum value for the point type of the interval (inclusive).
+
+If the high boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
 If the argument is null, the result is null.</xs:documentation>
 		</xs:annotation>
@@ -3074,7 +3078,7 @@ It is an error to invoke the Current operator outside of a scoped operation.</xs
 	<xs:complexType name="Iteration">
 		<xs:annotation>
 			<xs:documentation>The Iteration expression returns the current iteration number of a scoped operation. For example, within a ForEach expression, this returns the 0-based index of the current iteration.
-			
+
 Scopes are introduced by the named scoping operators (Filter, ForEach, and Repeat), the implicit scoping operators (Sort and Aggregate) as well as introduced within Queries by the AliasedQuerySource, LetClause, AggregateClause, and SortClause elements.
 
 It is an error to invoke the Iteration operator outside of a scoped operation.</xs:documentation>
@@ -3088,7 +3092,7 @@ It is an error to invoke the Iteration operator outside of a scoped operation.</
 	<xs:complexType name="Total">
 		<xs:annotation>
 			<xs:documentation>The Total expression returns the current value of the total aggregation accumulator in an aggregate operation.
-			
+
 It is an error to invoke the Total operator outside of an aggregate operation (Aggregate or within the AggregateClause of a query).</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
