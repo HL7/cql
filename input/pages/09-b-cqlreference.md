@@ -3861,7 +3861,7 @@ The <span class="id">End</span> operator returns the ending point of an interval
 
 If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and <span class="kw">null</span>, this operator returns the <span class="kw">maximum</span> value for the point type of the interval.
 
-If the high boundary of the interval is open and non-null, this operator returns the <span class="kw">predecessor</span> of the high value of the interval. If the high boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the <span class="kw">start</span> of the interval to the <span class="kw">maximum</span> value for the point type of the interval (inclusive).
+If the high boundary of the interval is open and non-null, this operator returns the <span class="kw">predecessor</span> of the high value of the interval. If the high boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the low bounday of the interval (using <span class="id">[Start](#start)</span> operator semantics to determine the low boundary) to the <span class="kw">maximum</span> value for the point type of the interval.
 
 If the high boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 
@@ -4589,7 +4589,7 @@ The <span class="id">Start</span> operator returns the starting point of an inte
 
 If the low boundary of the interval is closed and non-null, this operator returns the low value of the interval. If the low boundary of the interval is closed and <span class="kw">null</span>, this operator returns the <span class="kw">minimum</span> value for the point type of the interval.
 
-If the low boundary of the interval is open and non-null, this operator returns the <span class="kw">successor</span> of the low value of the interval. If the low boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the <span class="kw">minimum</span> value for the point type of the interval to the <span class="kw">end</span> of the interval (inclusive).
+If the low boundary of the interval is open and non-null, this operator returns the <span class="kw">successor</span> of the low value of the interval. If the low boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the <span class="kw">minimum</span> value for the point type of the interval to the high boundary of the interval (using <span class="id">[End](#end)</span> operator semantics to determine the high boundary).
 
 If the low boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 

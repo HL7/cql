@@ -2845,13 +2845,13 @@ The low and high elements are both optional. If the low element is not specified
 
 The static type of the low bound determines the type of the interval, and the high bound must be of the same type.
 
-If the low bound of the interval is null and open, the low bound of the interval is interpreted as unknown and represented as an uncertainty from the minimum value for the point type to the high boundary (inclusive); computations involving the low boundary may result in null.
+If the low bound of the interval is null and open, the low bound of the interval is interpreted as unknown and represented as an uncertainty from the minimum value for the point type to the high bound (see below); computations involving the low bound may result in null.
 
-If the low bound of the interval is null and closed, the interval is interpreted to start at the minimum value of the point type, and computations involving the low boundary will be performed with that value.
+If the low bound of the interval is null and closed, the interval is interpreted to start at the minimum value for the point type, and computations involving the low bound will be performed with that value.
 
-If the high bound of the interval is null and open, the high bound of the interval is unknown and represented as an uncertainty from the low boundary (inclusive) to the maximum value for the point type; computations involving the high boundary may result in null.
+If the high bound of the interval is null and open, the high bound of the interval is interpreted as unknown and represented as an uncertainty from the low bound (see above) to the maximum value for the point type; computations involving the high bound may result in null.
 
-If the high bound of the interval is null and closed, the interval is interpreted to end at the maximum value of the point type, and computations involving the high boundary will be performed with that interpretation.
+If the high bound of the interval is null and closed, the interval is interpreted to end at the maximum value for the point type, and computations involving the high bound will be performed with that interpretation.
 
 {: #after-1}
 #### After
@@ -2965,7 +2965,7 @@ The End operator returns the ending point of an interval.
 
 If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and null, this operator returns the maximum value for the point type of the interval.
 
-If the high boundary of the interval is open and non-null, this operator returns the of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the start of the interval to the maximum value for the point type of the interval (inclusive).
+If the high boundary of the interval is open and non-null, this operator returns the predecessor of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the low bounday of the interval (using Start operator semantics to determine the low boundary) to the maximum value for the point type of the interval.
 
 If the high boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
@@ -3382,7 +3382,7 @@ The Start operator returns the starting point of an interval.
 
 If the low boundary of the interval is closed and non-null, this operator returns the low value of the interval. If the low boundary of the interval is closed and null, this operator returns the minimum value for the point type of the interval.
 
-If the low boundary of the interval is open and non-null, this operator returns the successor of the low value of the interval. If the low boundary of the interval is open and null, this operator returns an uncertainty from the minimum value for the point type of the interval to the end of the interval (inclusive).
+If the low boundary of the interval is open and non-null, this operator returns the successor of the low value of the interval. If the low boundary of the interval is open and null, this operator returns an uncertainty from the minimum value for the point type of the interval to the high boundary of the interval (using End operator semantics to determine the high boundary).
 
 If the low boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
