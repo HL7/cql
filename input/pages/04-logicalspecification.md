@@ -2965,7 +2965,7 @@ The End operator returns the ending point of an interval.
 
 If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and null, this operator returns the maximum value for the point type of the interval.
 
-If the high boundary of the interval is open and non-null, this operator returns the predecessor of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the low bounday of the interval (using Start operator semantics to determine the low boundary) to the maximum value for the point type of the interval.
+If the high boundary of the interval is open and non-null, this operator returns the predecessor of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the low boundary of the interval (using Start operator semantics to determine the low boundary) to the maximum value for the point type of the interval.
 
 If the high boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
