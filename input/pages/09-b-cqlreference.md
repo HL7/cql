@@ -3873,7 +3873,8 @@ The following examples illustrate the behavior of the <span class="id">End</span
 define "EndOfClosedInterval": end of Interval[1, 5] // 5
 define "EndOfOpenHighInterval": end of Interval[1, 5) // 4
 define "EndOfClosedNullHighInterval": end of Interval[1, null] // 2147483647
-define "EndOfOpendNullHighInterval": end of Interval[1, null) // uncertainty[1, 2147483647]
+define "EndOfOpenNullHighInterval": end of Interval[1, null) // uncertainty[1, 2147483647]
+define "EndOfOpenNullHighOpenLowInterval": end of Interval(1, null) // uncertainty[2, 2147483647]
 define "EndOfBoundlessDateInterval": end of Interval[null, null] as Interval<Date> // @9999-12-31
 define "EndOfAnyPointTypeInterval": end of Interval[null, null] as Interval<Any> // null
 define "EndOfNullInterval": end of (null as Interval<Integer>) // null
@@ -4600,7 +4601,8 @@ The following examples illustrate the behavior of the <span class="id">Start</sp
 define "StartOfClosedInterval": start of Interval[1, 5] // 1
 define "StartOfOpenLowInterval": start of Interval(1, 5] // 2
 define "StartOfClosedNullLowInterval": start of Interval[null, 5] // -2147483648
-define "StartOfOpendNullLowInterval": start of Interval(null, 5] // uncertainty[-2147483648, 5]
+define "StartOfOpenNullLowInterval": start of Interval(null, 5] // uncertainty[-2147483648, 5]
+define "StartOfOpenNullLowOpenHighInterval": start of Interval(null, 5) // uncertainty[-2147483648, 4]
 define "StartOfBoundlessDateInterval": start of Interval[null, null] as Interval<Date> // @0001-01-01
 define "StartOfAnyPointTypeInterval": start of Interval[null, null] as Interval<Any> // null
 define "StartOfNullInterval": start of (null as Interval<Integer>) // null
