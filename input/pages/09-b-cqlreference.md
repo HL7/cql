@@ -668,11 +668,15 @@ is<T>(argument Any) Boolean
 
 The <span class="kw">is</span> operator allows the type of a result to be tested. If the run-time type of the argument is the same as or derived from the type being tested, the result of the operator is <span class="kw">true</span>; otherwise, the result is <span class="kw">false</span>.
 
+Note that because <span class="kw">null</span> is not a value, and the <span class="kw">is</span> operator is strictly a run-time consideration (i.e. what is the run-time type of the value),  the expression <span class="kw">null</span> <span class="kw">is</span> <span class="id">Integer</span> returns <span class="kw">false</span>. Similarly, because <span class="kw">as</span> is strictly a compile-time consideration (i.e. treat this value as a value of this type), the expression <span class="sym">(</span><span class="kw">null</span> <span class="kw">as</span> <span class="id">Integer</span><span class="sym">)</span> <span class="kw">is</span> <span class="id">Integer</span> is equivalent to <span class="kw">null</span> <span class="kw">is</span> <span class="id">Integer</span> and also returns <span class="kw">flase</span>.
+
 The following examples illustrate the behavior of the <span class="kw">is</span> operator:
 
 ```cql
 define "IsTrue": 5 is Integer
 define "IsFalse": '5' is Integer
+define "NullIsFalse": null is Integer // false
+define "NullAsIsFalse": (null as Integer) is Integer // also false
 ```
 
 For more information, see the [Type Testing](03-developersguide.html#type-testing) topic in the Developer's Guide.
