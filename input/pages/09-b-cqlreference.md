@@ -3711,7 +3711,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval starts after the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3746,7 +3746,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval ends before the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3892,7 +3892,7 @@ ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">ends</span> operator returns <span class="kw">true</span> if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
-This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4115,7 +4115,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4148,7 +4148,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4177,7 +4177,7 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 
 The <span class="kw">intersect</span> operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -4206,7 +4206,7 @@ The <span class="kw">meets</span> operator returns <span class="kw">true</span> 
 
 The <span class="kw">meets before</span> operator returns <span class="kw">true</span> if the first interval ends immediately before the second interval starts, while the <span class="kw">meets after</span> operator returns <span class="kw">true</span> if the first interval starts immediately after the second interval ends.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4331,7 +4331,7 @@ The <span class="kw">overlaps</span> operator returns <span class="kw">true</spa
 
 The operator <span class="kw">overlaps before</span> returns <span class="kw">true</span> if the first interval overlaps the second and starts before it, while the <span class="kw">overlaps after</span> operator returns <span class="kw">true</span> if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4388,7 +4388,7 @@ The <span class="kw">properly includes</span> operator for intervals returns <sp
 
 For the interval-point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4421,7 +4421,7 @@ The <span class="kw">properly included in</span> (or <span class="kw">properly d
 
 For the point-interval overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4620,7 +4620,7 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">starts</span> operator returns <span class="kw">true</span> if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries have `null` values.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
