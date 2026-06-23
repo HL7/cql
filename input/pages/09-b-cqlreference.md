@@ -4985,7 +4985,7 @@ includes(left List<T>, right T) Boolean
 
 The <span class="kw">includes</span> operator for lists returns <span class="kw">true</span> if the first list contains every element of the second list using equality semantics, with the exception that <span class="kw">null</span> elements are considered equal.
 
-For the list-singleton overload, this operator is a synonym for the <span class="kw">[contains](#contains-1)</span> operator.
+For the list-singleton overload, this operator is a synonym for the <span class="kw">[contains](#contains-1)</span> operator. If the first argument is <span class="kw">null</span>, the result is <span class="kw">false</span>. If the second argument is <span class="kw">null</span>, the result is <span class="kw">true</span> if the list contains any <span class="kw">null</span> elements, and <span class="kw">false</span> otherwise.
 
 For the list-list overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
@@ -4995,9 +4995,9 @@ The following examples illustrate the behavior of the <span class="kw">includes<
 
 ```cql
 define "IncludesIsTrue": { 1, 3, 5, 7 } includes 5
-define "IncludesIsNull": { 1, 3, 5, null } includes null
+define "IncludesNullIsTrue": { 1, 3, 5, null } includes null
 define "IncludesIsFalse": { 1, 3 } includes { 1, 3, 5 }
-define "IncludesIsAlsoNull": null includes { 1, 3, 5 }
+define "IncludesIsNull": null includes { 1, 3, 5 }
 ```
 
 {: #included-in-1}
@@ -5024,9 +5024,9 @@ The following examples illustrate the behavior of the <span class="kw">included 
 
 ```cql
 define "IncludedInIsTrue": 5 included in { 1, 3, 5, 7 }
-define "IncludedInIsNull": null included in { 1, 3, 5 }
+define "NullIncludedInIsTrue": null included in { 1, 3, 5, null }
 define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }
-define "IncludedInIsAlsoNull": { 1, 3, 5, null } included in null
+define "IncludedInIsNull": { 1, 3, 5 } included in null
 ```
 
 {: #indexer-1}
