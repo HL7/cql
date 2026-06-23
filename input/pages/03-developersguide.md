@@ -674,6 +674,17 @@ For example:
 
 This directive means that all comparisons that do not explicitly specify precision should be performed to the minute and that using expressions or functions from libraries that specify a different default comparison precision will result in an error.
 
+> When specifying an inclusion behavior for included libraries, authors should carefully review those libraries to ensure that the new default precision does not alter the intent or logical correctness of expressions within those libraries.
+{: .note-warning}
+
+In addition, authors should consider the potential impact of this setting on operations. For example:
+
+```cql
+define isBefore: @2000-01-01T00:00:00.0 before @2000-01-01T00:00:30.0
+```
+
+With standard default precision, this evaluates to true (as expected). If default precision is changed to minutes, however, this expression evaluates to false (which might not be expected).
+
 > Note for implementers that because this directive has the potential to change the output ELM, it has implications for caching compiled ELM, and even compiled ELM referenced from different libraries. We seek ballot feedback on whether supporting the included library behaviors is necessary or overly burdensome.
 {: .note-info}
 
