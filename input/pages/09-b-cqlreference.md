@@ -3332,7 +3332,7 @@ For <span class="id">Time</span> values, _precision_ must be one of: <span class
 
 Note specifically that due to variability in the way week numbers are determined, extraction of a week component is not supported.
 
-When extracting the Date or Time from a <span class="id">DateTime</span> value, the value is normalized to the timezone offset of the evaluation request timestamp.
+When extracting the Time from a <span class="id">DateTime</span> value, the value is normalized to the timezone offset of the evaluation request timestamp.
 
 If the argument is <span class="kw">null</span>, or is not specified to the level of precision being extracted, the result is <span class="kw">null</span>.
 
