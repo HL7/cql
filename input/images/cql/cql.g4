@@ -215,7 +215,7 @@ contextRelationship
     ;
 
 conversionInfoDefinition
-    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' identifierOrFunctionIdentifier
+    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' (qualifierExpression '.')* identifierOrFunctionIdentifier
     ;
 
 /*

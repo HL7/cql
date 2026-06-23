@@ -1843,7 +1843,7 @@ When a class type `extends` a base type, it inherits all of the elements from it
 CQL allows authors to define implicit and explicit conversions, for example:
 
 ```cql
-define implicit conversion from FHIR.Period to System.Interval<System.DateTime> using FHIRHelpers.ToInterval
+define implicit conversion from FHIR.Period to Interval<System.DateTime> using FHIRHelpers.ToInterval
 ```
 
 This definition indicates that values of type `FHIR.Period` can be implicitly converted to values of type `Interval<System.DateTime>` using the function `FHIRHelpers.ToInterval`.
