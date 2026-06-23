@@ -34,7 +34,7 @@ Any other character in a format string indicates that that character must appear
 * **hh** - A full two digit hour value (00..24), padded with leading zeroes if necessary
 * **mm** - A full two digit minute value (00..59), padded with leading zeroes if necessary
 * **ss** - A full two digit second value (00..59), padded with leading zeroes if necessary
-* **fff** - A fractional millisecond value (0..999)
+* **fff** - A millisecond value, represented as a fractional second (e.g. `.1` = `100 milliseconds`)
 
 These formatting patterns are set in bold to distinguish them typographically from literals or code and to make clear that they are not intended to be formally interpreted as regex patterns.
 
@@ -3309,6 +3309,7 @@ The following examples illustrate the behavior of the <span class="id">DateTime<
 ```cql
 define "DateValid": DateTime(2012, 1, 1, 12, 30, 0, 0, -7)
 define "DateInvalid": DateTime(2012, 1, 1, 12, null, 0, 0, -7)
+define "DateWithMilliseconds": DateTime(2012, 1, 1, 12, 30, 0, 10, -7) // @2012-01-01T12:30:00.010-07:00
 ```
 
 {: #datetime-component-from}
@@ -3685,6 +3686,7 @@ The following examples illustrate the behavior of the <span class="id">Time</spa
 ```cql
 define "TimeValid": Time(12, 30, 0, 0)
 define "TimeInvalid": Time(12, null, 0, 0)
+define "TimeWithMilliseconds": Time(12, 30, 0, 10) // @T12:30:00.010
 ```
 
 #### TimeOfDay
