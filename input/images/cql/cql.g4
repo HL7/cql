@@ -356,7 +356,7 @@ expression
     | expression 'properly'? 'between' expressionTerm 'and' expressionTerm                          #betweenExpression
     | ('duration' 'in')? pluralDateTimePrecision 'between' expressionTerm 'and' expressionTerm      #durationBetweenExpression
     | 'difference' 'in' pluralDateTimePrecision 'between' expressionTerm 'and' expressionTerm       #differenceBetweenExpression
-    | expression ('|' | 'union' | 'intersect' | 'except') expression                                #inFixSetExpression
+    | expression ('|' | 'union' | 'intersect' | 'except') ('all' 'ordered'?)? expression            #inFixSetExpression
     | expression ('<=' | '<' | '>' | '>=') expression                                               #inequalityExpression
     | expression intervalOperatorPhrase expression                                                  #timingExpression
     | expression ('=' | '!=' | '~' | '!~') expression                                               #equalityExpression
@@ -632,6 +632,7 @@ keyword
     | 'of'
     | 'on or'
     | 'or'
+    | 'ordered'
     | 'or after'
     | 'or before'
     | 'or less'
@@ -940,6 +941,7 @@ functionIdentifier
     | 'occurs'
     | 'of'
     | 'or'
+    | 'ordered'
     | 'or after'
     | 'or before'
     | 'or less'

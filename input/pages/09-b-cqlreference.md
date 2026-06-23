@@ -4829,6 +4829,8 @@ define "EquivalentContainsNullIsTrue": { 'A', 'B', 'C', null } ~contains null
 
 ```cql
 except(left List<T>, right List<T>) List<T>
+exceptAll(left List<T>, right List<T>) List<T>
+exceptAllOrdered(left List<T>, right List<T>) List<T>
 ```
 
 **Description:**
@@ -4841,6 +4843,10 @@ The operator is defined with set semantics, meaning that each element will appea
 
 If the first argument is <span class="kw">null</span>, the result is <span class="kw">null</span>. If the second argument is <span class="kw">null</span>, the operation is performed as though the second argument was an empty list.
 
+The <span class="kw">except all</span> operator for lists returns a list with the elements that appear in the first argument, but do not appear in the second argument, without eliminating duplicates, and with no expectation that the order of elements in the inputs will be preserved in the results.
+
+The <span class="kw">except all ordered</span> operator for lists returns a list with the elements that appear in the first argument, but do not appear in the second argument, without eliminating duplicates, and preserving the order of elements in the left argument.
+
 The following examples illustrate the behavior of the <span class="kw">except</span> operator:
 
 ```cql
@@ -4848,6 +4854,8 @@ define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }
 define "ExceptLeft": { 1, 3, 5, 7 } except null // { 1, 3, 5, 7 }
 define "ExceptWithNull": { 1, 3, 5, 7, null } except { 1, 3, null } // { 5, 7 }
 define "ExceptIsNull": null except { 1, 3, 5 }
+define "ExceptAll": { 1, 3, 3, 5, 7 } except all { 1, 3 } // { 3, 5, 7 }
+define "ExceptAllOrdered": { 7, 5, 3, 3, 1 } except all ordered { 1, 3 } // { 7, 5, 3 }
 ```
 
 #### Exists
@@ -5055,6 +5063,8 @@ define "IndexOfIsNull": IndexOf(null, 4)
 
 ```cql
 intersect(left List<T>, right List<T>) List<T>
+intersectAll(left List<T>, right List<T>) List<T>
+intersectAllOrdered(left List<T>, right List<T>) List<T>
 ```
 
 **Description:**
@@ -5067,12 +5077,18 @@ The operator is defined with set semantics, meaning that each element will appea
 
 If either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
+The <span class="kw">intersect all</span> operator for lists returns a list with only the elements that appear in both arguments, without eliminating duplicates, and with no expectation that the order of elements in the inputs will be preserved in the results.
+
+The <span class="kw">intersect all ordered</span> operator for lists returns a list with the elements that appear in both arguments, without eliminating duplicates, and preserving the order of elements in the left input.
+
 The following examples illustrate the behavior of the <span class="kw">intersect</span> operator:
 
 ```cql
 define "Intersect": { 1, 3, 5 } intersect { 3, 5, 7 } // { 3, 5 }
 define "IntersectWithNull": { null, 1, 3, 5 } intersect { null, 3, 5, 7 } // { null, 3, 5 }
 define "IntersectIsNull": { 1, 3, 5 } intersect null
+define "IntersectAll": { 1, 3, 3, 5 } intersect all { 3, 5, 7 } // { 3, 3, 5 }
+define "IntersectAllOrdered": { 5, 3, 3, 1 } intersect all ordered { 3, 5, 7 } // { 5, 3, 3 }
 ```
 
 #### Last
@@ -5381,6 +5397,8 @@ define "TakeIsNull": Take(null, 2)
 
 ```cql
 union(left List<T>, right List<T>) List<T>
+unionAll(left List<T>, right List<T>) List<T>
+unionAllOrdered(left List<T>, right List<T>) List<T>
 ```
 
 **Description:**
@@ -5395,12 +5413,18 @@ If either argument is <span class="kw">null</span>, it is considered an empty li
 
 Note that the union operator can also be invoked with the symbolic operator (<span class="sym">|</span>).
 
+The <span class="kw">union all</span> operator for lists returns a list with all elements from both arguments, without eliminating duplicates, and with no expectation that the order of elements in the inputs will be preserved in the results.
+
+The <span class="kw">union all ordered</span> operator for lists returns a list with all elements from both arguments, without eliminating duplicates, and preserving the order of elements in the input arguments, with elements from the left argument appearing first in the resulting list, followed by elements from the right argument.
+
 The following examples illustrate the behavior of the <span class="kw">union</span> operator:
 
 ```cql
 define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionAlternateSyntax": { 1, 2, 3 } | { 4, 5 } // { 1, 2, 3, 4, 5 }
 define "UnionWithNull": null union { 4, 5 } // { 4, 5 }
+define "UnionAll": { 1, 2, 3, 3 } union { 5, 4, 4 } // { 1, 2, 3, 3, 4, 4, 5 }
+define "UnionAllOrdered": { 1, 2, 3, 3 } union { 5, 4, 4 } // { 1, 2, 3, 3, 5, 4, 4 }
 ```
 
 ### Aggregate Functions

@@ -3019,6 +3019,10 @@ This operator returns true if the given element is in the given list, using equi
 
 ```
 Except : NaryExpression
+  ¦
+  0..1 --> all
+  ¦
+  0..1 --> ordered
 ```
 
 The Except operator returns the set difference of the two arguments.
@@ -3034,6 +3038,10 @@ For the interval overload, this operator returns the portion of the first interv
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If the first argument is null, the result is null. If the second argument is null, the operation is performed as though the second argument was an empty list.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true) or not (false, the default). The ordered attribute may only be used if the all attribute is true.
 
 #### Expand
 
@@ -3132,6 +3140,10 @@ If either argument is null, the result is null.
 
 ```
 Intersect : NaryExpression
+  ¦
+  0..1 --> all
+  ¦
+  0..1 --> ordered
 ```
 
 The Intersect operator returns the intersection of its arguments.
@@ -3147,6 +3159,10 @@ For the interval overload, this operator returns the interval that defines the o
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is null, the result is null.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true) or not (false, the default). The ordered attribute may only be used if the all attribute is true.
 
 #### Meets
 
@@ -3406,6 +3422,10 @@ If either argument is null, the result is null.
 
 ```
 Union : NaryExpression
+  ¦
+  0..1 --> all
+  ¦
+  0..1 --> ordered
 ```
 
 The Union operator returns the union of its arguments.
@@ -3421,6 +3441,10 @@ For the interval overload, this operator returns the interval that starts at the
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
 If either argument is null, the operation is performed as though the argument was an empty list.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true) or not (false, the default). The ordered attribute may only be used if the all attribute is true.
 
 #### Width
 
@@ -3675,9 +3699,9 @@ Repeat : Expression
   ¦
   1..1 --> element : Expression
   ¦
-  0..1 --> all : Expression
-  ¦
   0..1 --> scope
+  ¦
+  0..1 --> all
 ```
 
 The Repeat expression performs successive ForEach until no new elements are returned.
@@ -3688,7 +3712,7 @@ If the source argument is null, the result is null.
 
 If the element argument evaluates to null for some item in the source list, the resulting list will contain a null for that element.
 
-If the all argument is true, the operation will repeat as long as the element expression returns a result (i.e. the operation may generate duplicate elements).
+If the all attribute is true, the operation will repeat as long as the element expression returns a result (i.e. the operation may generate duplicate elements).
 
 Implementations should include safety mechanisms to prevent infinte loops. An implementation may impose a limit on the number of iterations, or it may statically analyze the expression to ensure it navigates to child elements within a hierarchical structure. If an infinite loop is detected, or considered likely, the evaluation may end and signal an error to the calling environment.
 

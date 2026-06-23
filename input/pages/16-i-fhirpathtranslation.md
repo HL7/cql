@@ -75,6 +75,8 @@ X.ceiling() === Ceiling(X)
 
 ```cql
 X.combine(Y) === Flatten(\{ X, Y })
+X.combine(Y) === X union all Y
+X.combine(Y, true) === X union all ordered Y
 ```
 
 ### .conformsTo()

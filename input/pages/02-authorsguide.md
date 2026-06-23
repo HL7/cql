@@ -2248,7 +2248,7 @@ This example returns:
 { 1, 2, 3, 4, 5 }
 ```
 
-Note that duplicates are eliminated in the result of a <span class="kw">union</span>.
+Note that duplicates are eliminated in the result of a <span class="kw">union</span>. To preserve duplicates in the result, use <span class="kw">union all</span>.
 
 To compute only the common elements from multiple lists, use the <span class="kw">intersect</span> operator:
 

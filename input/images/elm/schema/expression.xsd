@@ -2798,10 +2798,17 @@ For the interval overload, this operator returns the interval that starts at the
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
-If either argument is null, the operation is performed as though the argument was an empty list.</xs:documentation>
+If either argument is null, the operation is performed as though the argument was an empty list.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true), or not (false, the default). The ordered attribute may only be used if the all attribute is true.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="NaryExpression"/>
+			<xs:extension base="NaryExpression">
+				<xs:attribute name="all" type="xs:boolean" use="optional"/>
+				<xs:attribute name="ordered" type="xs:boolean" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="Intersect">
@@ -2818,10 +2825,17 @@ For the interval overload, this operator returns the interval that defines the o
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
-If either argument is null, the result is null.</xs:documentation>
+If either argument is null, the result is null.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true), or not (false, the default). The ordered attribute may only be used if the all attribute is true.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="NaryExpression"/>
+			<xs:extension base="NaryExpression">
+				<xs:attribute name="all" type="xs:boolean" use="optional"/>
+				<xs:attribute name="ordered" type="xs:boolean" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 		<!-- Overlaps(i1, i2) = End(i1) >= Start(i2) and Start(i1) <= End(i2) -->
 		<!-- Intersect(i1, i2) = Overlaps(i1, i2) ? [MAX(Start(i1), Start(i2)), Min(End(i1), End(i2))] : null -->
@@ -2840,10 +2854,17 @@ For the interval overload, this operator returns the portion of the first interv
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
-If the first argument is null, the result is null. If the second argument is null, the operation is performed as though the second argument was an empty list.</xs:documentation>
+If the first argument is null, the result is null. If the second argument is null, the operation is performed as though the second argument was an empty list.
+
+For the list overload, the all attribute indicates whether the operation eliminates duplicates (false, the default) or not (true).
+
+For the list overload, the ordered attribute indicates whether the operation preserves the ordering of elements in the inputs (true), or not (false, the default). The ordered attribute may only be used if the all attribute is true.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="NaryExpression"/>
+			<xs:extension base="NaryExpression">
+				<xs:attribute name="all" type="xs:boolean" use="optional"/>
+				<xs:attribute name="ordered" type="xs:boolean" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<!-- List/Set Operators -->
@@ -3035,7 +3056,7 @@ If the source argument is null, the result is null.
 
 If the element argument evaluates to null for some item in the source list, the resulting list will contain a null for that element.
 
-If the all argument is true, the operation will repeat as long as the element expression returns a result (i.e. the operation may generate duplicate elements).
+If the all attribute is true, the operation will repeat as long as the element expression returns a result (i.e. the operation may generate duplicate elements).
 
 Implementations should include safety mechanisms to prevent infinte loops. An implementation may impose a limit on the number of iterations, or it may statically analyze the expression to ensure it navigates to child elements within a hierarchical structure. If an infinite loop is detected, or considered likely, the evaluation may end and signal an error to the calling environment.</xs:documentation>
 		</xs:annotation>
@@ -3044,9 +3065,9 @@ Implementations should include safety mechanisms to prevent infinte loops. An im
 				<xs:sequence>
 					<xs:element name="source" type="Expression" minOccurs="1" maxOccurs="1"/>
 					<xs:element name="element" type="Expression" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="all" type="Expression" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="scope" type="xs:string" use="optional"/>
+				<xs:attribute name="all" type="xs:boolean" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
