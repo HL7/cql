@@ -430,6 +430,18 @@ The type of X.repeat(<element>) is inferred as the type of:
 X.select(<element>).select(<element>)
 ```
 
+### .repeatAll()
+
+```cql
+X.repeatAll(<element>) === Repeat(X, <element>, true)
+```
+
+The type of X.repeatAll(<element>) is inferred as the type of:
+
+```cql
+X.select(<element>).select(<element>)
+```
+
 ### .replace()
 
 ```cql

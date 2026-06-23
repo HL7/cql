@@ -3675,6 +3675,8 @@ Repeat : Expression
   ¦
   1..1 --> element : Expression
   ¦
+  0..1 --> all : Expression
+  ¦
   0..1 --> scope
 ```
 
@@ -3685,6 +3687,10 @@ The operator uses equality comparison semantics as defined in the Equal operator
 If the source argument is null, the result is null.
 
 If the element argument evaluates to null for some item in the source list, the resulting list will contain a null for that element.
+
+If the all argument is true, the operation will repeat as long as the element expression returns a result (i.e. the operation may generate duplicate elements).
+
+Implementations should include safety mechanisms to prevent infinte loops. An implementation may impose a limit on the number of iterations, or it may statically analyze the expression to ensure it navigates to child elements within a hierarchical structure. If an infinite loop is detected, or considered likely, the evaluation may end and signal an error to the calling environment.
 
 #### SingletonFrom
 
