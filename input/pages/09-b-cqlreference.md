@@ -694,6 +694,23 @@ The CanConvertQuantity operator returns true if the Quantity is or can be conver
 
 If either argument is null, the result is null.
 
+#### Comparable
+
+**Signature:**
+
+```cql
+Comparable(left Quantity, right Quantity)
+```
+
+**Description:**
+
+The Comparable operator returns true if the left Quantity can be compared to the right Quantity (i.e. the units are commensurable). Otherwise, the result is false.
+
+> Note that implementations are not required to support quantity conversion, and so may return false, even if the quantities are comparable. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+{: .note-warning}
+
+If either argument is null, the result is null.
+
 #### ConvertQuantity
 
 **Signature:**

@@ -79,6 +79,12 @@ X.combine(Y) === X union all Y
 X.combine(Y, true) === X union all ordered Y
 ```
 
+### .comparable()
+
+```cql
+X.comparable(Y) === Comparable(X, Y)
+```
+
 ### .conformsTo()
 
 ```cql

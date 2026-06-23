@@ -4082,6 +4082,18 @@ For list types, the result is the same as invoking Children on each element in t
 
 If the source is null, the result is null.
 
+#### Comparable
+
+```
+Comparable : BinaryExpression
+```
+
+The Comparable operator returns true if the left Quantity can be compared to the right Quantity (i.e. the units are commensurable). Otherwise, the result is false.
+
+Note that implementations are not required to support quantity conversion, and so may return false, even if the quantities are comparable. Implementations that do support unit conversion shall do so according to the conversion specified by UCUM.
+
+If either argument is null, the result is null.
+
 #### Convert
 
 ```
