@@ -5261,7 +5261,7 @@ The following examples illustrate the behavior of the <span class="kw">properly 
 
 ```cql
 define "ProperlyIncludedInIsTrue": { 1, 3, 5 } properly included in { 1, 3, 5, 7 }
-define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5 }
+define "ProperlyIncludedInIsAlsoTrue": null properly included in { 1, 3, 5, null }
 define "ProperlyIncludedInIsFalse": { 1, 3, 5 } properly included in { 1, 3, 5 }
 define "ProperlyIncludedInIsAlsoFalse": { 1, 3, 5, null } properly included in null
 ```
