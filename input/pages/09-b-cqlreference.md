@@ -20,10 +20,11 @@ InDemographic and NeedsScreening
 In addition, formatting strings are used throughout the reference to describe possible string formats for operators such as ToDateTime that convert a string to a DateTime value. The following symbols are used to describe format strings:
 
 * **0** - Any digit must appear at this location in the format string
-* **#** - Any digit may appear at this location in the format string
+* **#** - Any digits may appear at this location in the format string
 * **?** - The immediately preceding pattern is optional
 * **( )** - Used to group patterns
 * **\|** - Used to combine choices of patterns (e.g. **+\|-** means a **+** or **-** may appear at this location)
+* **\< >** - Used to indicate some specific text is included. e.g. \<unit> to indicate that the unit of a quantity is specified
 
 Any other character in a format string indicates that that character must appear at that location (or may appear if it is modified by the optional indicator, or part of a group that is modified by the optional indicator), with the exception of the following patterns used when describing date and time format strings:
 
