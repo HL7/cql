@@ -1,6 +1,8 @@
 
 The examples provided here illustrate the use of Clinical Quality Language to express the logic involved in decision support and quality measurement artifacts. The examples are intended for educational and demonstration purposes only and should not be considered endorsed or production ready.
 
+> NOTE: The examples provided here are intentionally developed against a simplified information model called QUICK. This allows the examples to focus on authoring priniciples, rather than the details of any particular information model. For specific information on how to use CQL with FHIR, refer to the [Using CQL With FHIR](http://hl7.org/fhir/uv/cql) implementation guide. In addition, numerous examples of FHIR-based CQL content can be found in related implementation guides, including [FHIR Clinical Guidelines](http://hl7.org/fhir/uv/cpg), [FHIR Quality Measures](http://hl7.org/fhir/uv/cqm), as well as the [Community Projects - Content](https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects#content) page.
+
 ### Chlamydia Screening Examples
 
 These examples illustrate the logic for coordinated decision support and quality measurement artifacts expressed in CQL, as developed in the Author's Guide. The first set illustrates independent logic, and the second set illustrates the same artifacts using a common library to share logic.

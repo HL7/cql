@@ -554,7 +554,7 @@ library B includes library A version '1'
 library C includes library A version '2'
 ```
 
-A library D may not reference both B and C, because it would result in two different versions of library A being referenced.
+A given library SHALL NOT include multiple versions of the same library. However, as this example illustrates, this situation can arise through different included libraries that then reference different versions of the same library. In these cases it is up to the implementation environment to deal with version discrepancies. The simplest implementation just raises an error whenever the situation is encountered. However, this is not ideal, and more sophisticated implementation strategies (such as using a [manifest](https://hl7.org/fhir/uv/crmi/version-manifest.html) to resolve version discrepancies) should be developed.
 
 In addition, library references are not transitive, meaning that in order to reference the components declared within a particular library, the library must be explicitly included. In other words, referencing a library does not automatically include libraries referenced by that library.
 
@@ -755,14 +755,19 @@ The namespace name in the above declaration is `hl7.fhir.us.core`, corresponding
 
 If a local identifier for the data model is not specified (using the `called` clause), the unqualified name of the model is used as the local identifier.
 
-Multiple versions of the same model MAY be included using the `called` clause:
+Multiple versions of the same model SHALL NOT be referenced in the same library. For example, the following would result in an error:
 
 ```cql
 using hl7.fhir.us.core.USCore version '7.0.0' called USCore7
 using hl7.fhir.us.core.USCore version '8.0.0' called USCore8
 ```
 
-Allowing multiple versions of the same model to be referenced within the same library enables authors to build CQL conversion logic if desired, as well as allowing for dependencies that may use different versions of the same model to be referenced.
+Allowing multiple versions of the same model to be referenced within the same library leads to significant challenges from both an authoring and implementation perspective; for example types with the same name but from different versions, even minor versions, would resolve as different types. For this reason, all references to a given model in the same library must be to the same version.
+
+> It is possible for multiple versions of the same model to be introduced through included libraries. In these cases it is up to the implementation environment to deal with version discrepancies. The simplest implementation just raises an error whenever the situation is encountered. However, this is not ideal, and more sophisticated implementation strategies (such as using a [manifest](https://hl7.org/fhir/uv/crmi/version-manifest.html) to resolve version discrepancies) should be developed.
+{: .stu-note}
+
+As a best practice, dealing with multiple versions of the same model can be accomplished by including the specification version (usually just major version number) in the name of the model. For example, `USCore7` and `USCore8`, rather than `USCore version 7` and `USCore version 8`.
 
 #### Alternate Data Models
 
