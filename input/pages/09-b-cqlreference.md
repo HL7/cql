@@ -4012,7 +4012,7 @@ expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
 expand(argument Interval<T>, per Quantity) List<T>
 ```
 
-> The Interval<T> overload for expand was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+> The Interval overload for expand was introduced in CQL 1.5, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
 {: .note-info}
 
 **Description:**

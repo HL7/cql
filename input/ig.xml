@@ -524,5 +524,9 @@
       <code value="generate"/>
       <value value="JSON"/>
     </parameter>
+    <parameter>
+      <code value="auto-oid-root"/>
+      <value value="2.16.840.1.113883.4.642.40.71"/>
+    </parameter>
   </definition>
 </ImplementationGuide>

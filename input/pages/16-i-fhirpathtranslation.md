@@ -432,7 +432,7 @@ X.precision() === Precision(X)
 X.repeat(<element>) === Repeat(X, <element>)
 ```
 
-The type of X.repeat(<element>) is inferred as the type of:
+The type of `X.repeat(<element>)` is inferred as the type of:
 
 ```cql
 X.select(<element>).select(<element>)
@@ -444,7 +444,7 @@ X.select(<element>).select(<element>)
 X.repeatAll(<element>) === Repeat(X, <element>, true)
 ```
 
-The type of X.repeatAll(<element>) is inferred as the type of:
+The type of `X.repeatAll(<element>)` is inferred as the type of:
 
 ```cql
 X.select(<element>).select(<element>)
@@ -478,13 +478,13 @@ X.secondOf() === second from X
 
 ### .select()
 
-If the result type of <element> is not list-valued:
+If the result type of `<element>` is not list-valued:
 
 ```cql
 X.select(<element>) === X $this let a: <element> where a is not null return all a
 ```
 
-If the result type of <element> is list-valued:
+If the result type of `<element>` is list-valued:
 
 ```cql
 X.select(<element>) === Flatten(X $this let a: <element> where a is not null return all a)
