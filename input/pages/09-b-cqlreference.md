@@ -3735,7 +3735,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval starts after the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3770,7 +3770,7 @@ For the point-interval overload, the operator returns <span class="kw">true</spa
 
 For the interval-point overload, the operator returns <span class="kw">true</span> if the given interval ends before the given point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3883,17 +3883,25 @@ end of(argument Interval<T>) T
 
 The <span class="id">End</span> operator returns the ending point of an interval.
 
-If the high boundary of the interval is open, this operator returns the <span class="kw">predecessor</span> of the high value of the interval. Note that if the high value of the interval is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and <span class="kw">null</span>, this operator returns the <span class="kw">maximum</span> value for the point type of the interval.
 
-If the high boundary of the interval is closed and the high value of the interval is not null, this operator returns the high value of the interval. Otherwise, the result is the maximum value of the point type of the interval.
+If the high boundary of the interval is open and non-null, this operator returns the <span class="kw">predecessor</span> of the high value of the interval. If the high boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the low boundary of the interval (using <span class="id">[Start](#start)</span> operator semantics to determine the low boundary) to the <span class="kw">maximum</span> value for the point type of the interval.
+
+If the high boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="id">End</span> operator:
 
 ```cql
-define "EndOfInterval": end of Interval[1, 5] // 5
-define "EndIsNull": end of (null as Interval<Integer>)
+define "EndOfClosedInterval": end of Interval[1, 5] // 5
+define "EndOfOpenHighInterval": end of Interval[1, 5) // 4
+define "EndOfClosedNullHighInterval": end of Interval[1, null] // 2147483647
+define "EndOfOpenNullHighInterval": end of Interval[1, null) // uncertainty[1, 2147483647]
+define "EndOfOpenNullHighOpenLowInterval": end of Interval(1, null) // uncertainty[2, 2147483647]
+define "EndOfBoundlessDateInterval": end of Interval[null, null] as Interval<Date> // @9999-12-31
+define "EndOfAnyPointTypeInterval": end of Interval[null, null] as Interval<Any> // null
+define "EndOfNullInterval": end of (null as Interval<Integer>) // null
 ```
 
 #### Ends
@@ -3908,7 +3916,7 @@ ends _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">ends</span> operator returns <span class="kw">true</span> if the first interval ends the second. More precisely, if the starting point of the first interval is greater than or equal to the starting point of the second, and the ending point of the first interval is equal to the ending point of the second.
 
-This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="kw">[start](#start)</span> and <span class="kw">[end](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -3935,7 +3943,7 @@ define "EndsIsNull": Interval[1, 5] ends null
 
 **Description:**
 
-The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+The _equal_ (<span class="sym">=</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and they have the same value for the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators. Proper determination of the <span class="id">Start</span> and <span class="id">End</span> values is particularly important for intervals with `null` boundaries.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -3960,7 +3968,7 @@ define "EqualIsNull": Interval[1, 5] = null
 
 **Description:**
 
-The _equivalent_ (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type, and the starting and ending points of the intervals as determined by the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators are equivalent. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+The equivalent (<span class="sym">~</span>) operator for intervals returns <span class="kw">true</span> if and only if the intervals are over the same point type and their starting and ending points, as determined by the <span class="id">Start</span> and <span class="id">End</span> operators, are equivalent. Proper determination of the <span class="id">Start</span> and <span class="id">End</span> values is particularly important for intervals with `null` boundaries.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -4131,7 +4139,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4164,7 +4172,7 @@ For the point-interval overload, this operator is a synonym for the <span class=
 
 For the interval-interval overload, if either argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4193,7 +4201,7 @@ intersect(left Interval<T>, right Interval<T>) Interval<T>
 
 The <span class="kw">intersect</span> operator for intervals returns the intersection of two intervals. More precisely, the operator returns the interval that defines the overlapping portion of both arguments. If the arguments do not overlap, this operator returns <span class="kw">null</span>.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 Comparisons of values are performed with the same semantics as specified for comparison of the point type. In particular, for the purposes of comparison of DateTime or Time values, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics, and this combination is performed before any comparisons used in the operation.
 
@@ -4222,7 +4230,7 @@ The <span class="kw">meets</span> operator returns <span class="kw">true</span> 
 
 The <span class="kw">meets before</span> operator returns <span class="kw">true</span> if the first interval ends immediately before the second interval starts, while the <span class="kw">meets after</span> operator returns <span class="kw">true</span> if the first interval starts immediately after the second interval ends.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4347,7 +4355,7 @@ The <span class="kw">overlaps</span> operator returns <span class="kw">true</spa
 
 The operator <span class="kw">overlaps before</span> returns <span class="kw">true</span> if the first interval overlaps the second and starts before it, while the <span class="kw">overlaps after</span> operator returns <span class="kw">true</span> if the first interval overlaps the second and ends after it.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4404,7 +4412,7 @@ The <span class="kw">properly includes</span> operator for intervals returns <sp
 
 For the interval-point overload, this operator returns true if the interval contains (i.e. includes) the point, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4437,7 +4445,7 @@ The <span class="kw">properly included in</span> (or <span class="kw">properly d
 
 For the point-interval overload, this operator returns true if the point is in (i.e. included in) the interval, and the interval is not a unit interval containing only the point.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
@@ -4603,17 +4611,25 @@ start of(argument Interval<T>) T
 
 The <span class="id">Start</span> operator returns the starting point of an interval.
 
-If the low boundary of the interval is open, this operator returns the <span class="kw">successor</span> of the low value of the interval. Note that if the low value of the interval is <span class="kw">null</span>, the result is <span class="kw">null</span>.
+If the low boundary of the interval is closed and non-null, this operator returns the low value of the interval. If the low boundary of the interval is closed and <span class="kw">null</span>, this operator returns the <span class="kw">minimum</span> value for the point type of the interval.
 
-If the low boundary of the interval is closed and the low value of the interval is not null, this operator returns the low value of the interval. Otherwise, the result is the minimum value of the point type of the interval.
+If the low boundary of the interval is open and non-null, this operator returns the <span class="kw">successor</span> of the low value of the interval. If the low boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the <span class="kw">minimum</span> value for the point type of the interval to the high boundary of the interval (using <span class="id">[End](#end)</span> operator semantics to determine the high boundary).
+
+If the low boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
 
 The following examples illustrate the behavior of the <span class="id">Start</span> operator:
 
 ```cql
-define "StartOfInterval": start of Interval[1, 5] // 1
-define "StartIsNull": start of (null as Interval<Integer>)
+define "StartOfClosedInterval": start of Interval[1, 5] // 1
+define "StartOfOpenLowInterval": start of Interval(1, 5] // 2
+define "StartOfClosedNullLowInterval": start of Interval[null, 5] // -2147483648
+define "StartOfOpenNullLowInterval": start of Interval(null, 5] // uncertainty[-2147483648, 5]
+define "StartOfOpenNullLowOpenHighInterval": start of Interval(null, 5) // uncertainty[-2147483648, 4]
+define "StartOfBoundlessDateInterval": start of Interval[null, null] as Interval<Date> // @0001-01-01
+define "StartOfAnyPointTypeInterval": start of Interval[null, null] as Interval<Any> // null
+define "StartOfNullInterval": start of (null as Interval<Integer>) // null
 ```
 
 #### Starts
@@ -4628,7 +4644,7 @@ starts _precision_ (left Interval<T>, right Interval<T>) Boolean
 
 The <span class="kw">starts</span> operator returns <span class="kw">true</span> if the first interval starts the second. More precisely, if the starting point of the first is equal to the starting point of the second interval and the ending point of the first interval is less than or equal to the ending point of the second interval.
 
-This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries. In particular, the _maximum interval_ with closed (inclusive) `null` boundaries: `Interval[null, null]`, and the _unknown interval_ with open (exclusive) `null` boundaries: `Interval(null, null)`.
+This operator uses the semantics described in the <span class="id">[Start](#start)</span> and <span class="id">[End](#end)</span> operators to determine interval boundaries, particularly when those boundaries are `null`.
 
 If precision is specified and the point type is a Date, DateTime, or Time type, comparisons used in the operation are performed at the specified precision.
 
