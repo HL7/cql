@@ -767,7 +767,34 @@ Allowing multiple versions of the same model to be referenced within the same li
 > It is possible for multiple versions of the same model to be introduced through included libraries. In these cases it is up to the implementation environment to deal with version discrepancies. The simplest implementation just raises an error whenever the situation is encountered. However, this is not ideal, and more sophisticated implementation strategies (such as using a [manifest](https://hl7.org/fhir/uv/crmi/version-manifest.html) to resolve version discrepancies) should be developed.
 {: .stu-note}
 
-As a best practice, dealing with multiple versions of the same model can be accomplished by including the specification version (usually just major version number) in the name of the model. For example, `USCore7` and `USCore8`, rather than `USCore version 7` and `USCore version 8`.
+As a best practice, dealing with multiple versions of the same model can be accomplished by including the specification version (usually just major version number) in the name of the model. For example, `USCore7` and `USCore8`, rather than `USCore version 7` and `USCore version 8`. This would allow, for example, conversion logic to be written in CQL, such as:
+
+```cql
+using hl7.fhir.us.core.USCore3
+using hl7.fhir.us.core.USCore6
+
+define Condition: [USCore3.Condition]
+
+define ConditionEncounterDiagnosis:
+  Condition C
+    where C.category ~ "encounter-diagnosis"
+    return USCore6.ConditionEncounterDiagnosis {
+      id: C.id,
+      category: C.category,
+      code: C.code,
+      ...
+    }
+
+define ConditionProblemHealthConcern:
+  Condition C
+    where C.category !~ "encounter-diagnosis"
+    return USCore6.ConditionProblemHealthConcern {
+      id: C.id,
+      category: C.category,
+      code: C.code,
+      ...
+    }
+```
 
 #### Alternate Data Models
 
