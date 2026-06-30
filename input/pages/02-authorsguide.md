@@ -1,4 +1,4 @@
-{::options toc_levels="1..6"/}
+{::options toc_levels="1..3"/}
 
 This chapter introduces the high-level syntax for the Clinical Quality Language focused on measure and decision support authors. This syntax provides a human-readable, yet precise mechanism for expressing logic in both the measurement and improvement domains of clinical quality.
 
