@@ -186,8 +186,12 @@ functionBody
     : expression
     ;
 
+qualifiedIdentifierOrFunctionIdentifier
+    : (qualifierExpression '.')* identifierOrFunctionIdentifier
+    ;
+
 contextInfoDefinition
-    : 'define' 'context' identifier 'of' 'type' namedTypeSpecifier 'with' 'key' '{' identifier (',' identifier)* '}'
+    : 'define' 'context' identifier 'of' 'type' namedTypeSpecifier 'with' 'key' '{' qualifiedIdentifierOrFunctionIdentifier (',' qualifiedIdentifierOrFunctionIdentifier)* '}'
     ;
 
 typeInfoDefinition
@@ -211,11 +215,11 @@ typeInfo
     ;
 
 contextRelationship
-    : 'related' 'to' qualifiedIdentifier 'by' '{' identifier (',' identifier)* '}'
+    : 'related' 'to' qualifiedIdentifier 'by' '{' qualifiedIdentifierOrFunctionIdentifier (',' qualifiedIdentifierOrFunctionIdentifier)* '}'
     ;
 
 conversionInfoDefinition
-    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' (qualifierExpression '.')* identifierOrFunctionIdentifier
+    : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' qualifiedIdentifierOrFunctionIdentifier
     ;
 
 /*

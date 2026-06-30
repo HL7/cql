@@ -771,7 +771,7 @@ As a best practice, dealing with multiple versions of the same model can be acco
 
 #### Alternate Data Models
 
-Although the examples in this specification generally use the QUICK model (part of the Clinical Quality Framework), CQL itself does not require or depend on a specific data model. For example, the following sample is taken from the CMS146v2_using_QDM.cql file in the Examples section of the specification:
+Although the examples in this specification generally use the QUICK model (part of the Clinical Quality Framework), CQL itself does not require or depend on a specific data model. For example, the following sample is taken from the CMS146v2QDM.cql file in the Examples section of the specification:
 
 ```cql
 ["Encounter, Performed": "Ambulatory/ED Visit"] E
@@ -784,7 +784,7 @@ In this example, QDM is used as the data model. Note the use of quoted attribute
 
 #### Multiple Data Models
 
-Because CQL allows multiple <span class="kw">using</span> declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name <span class="id">Encounter</span>. In general, the resolution process for class names within CQL proceeds as follows:
+Because CQL allows multiple <span class="kw">using</span> and <span class="kw">include</span> declarations, the possibility exists for clashes within retrieve expressions. For example, a library that used both QUICK and vMR may clash on the name <span class="id">Encounter</span>. In general, the resolution process for class names within CQL proceeds as follows:
 
 * If the class name has no qualifier, then each model used in the current library is searched for an exact match.
     * If an exact match is found in more than one model, the reference is considered ambiguous and an error is thrown that the class reference is ambiguous among the matches found.
@@ -794,6 +794,8 @@ Because CQL allows multiple <span class="kw">using</span> declarations, the poss
     * If the qualifier specifies the name of a model that cannot be found in the current library, an error is thrown that the referenced model cannot be found.
     * If an exact match is found in the referenced model, that class is used.
     * If no exact match is found, an error is thrown that the qualified class name cannot be resolved.
+
+When included libraries contain model components (type declarations, conversions, or contexts), those libraries are considered _models_ for the purposes of type resolution in the above algorithm, with the namespace, name, and version of the library being used as the namespace, name, and version of the model.
 
 Note that when the <span class="id">System</span> model declaration is implicit, it is not considered as part of determining ambiguity. In other words, in the following library:
 
@@ -1820,6 +1822,30 @@ In this example, since the starting clause is omitted, Result is initially <span
 
 CQL allows authors to define models consisting of named class types, functions that operate on those types, conversions, and contexts. The following sections discuss each of these constructs in more detail.
 
+Because the components of models are just declarations available in libraries, these constructs can all be used by just including the library in which they are defined. The `using` declaration can still be used to reference models defined in the 1.X version of CQL.
+
+> Implementations are encouraged to implement the 2.0 model definition features by constructing 1.X compatible model info. This would allow 2.0 model definition features to be implemented by the translator, rather than forcing ELM engines to process type definitions. In other words, the 2.0 model definition capabilities represent a syntax for defining ModelInfo that should be usable by 1.X ELM engines.
+
+#### Model Metadata
+
+When defining the components of a model in CQL, the library defines the complete model. The name of the model is the unqualified name of the library, the model version is defined by the library, and the namespace name and uri of the model is defined by the library. 
+
+Any library that defines model constructs (class types, conversions, and contexts) can be used as a model. However, models defined in this way are always referenced by including the defining library, rather than a using declaration. This is because the library may include more than just the model declarations (such as functions and even terminology and expression declarations), and those need to be brought in by referencing the library.
+
+In addition, other model attributes are provided as tags on the library declaration. For example:
+
+```cql
+/*
+@targetUrl: http://hl7.org/fhir
+@targetQualifier: mymodel
+@patientClassName: Patient
+@patientBirthDatePropertyName: birthDate
+*/
+library MyModel
+```
+
+Note that `requiredModelInfo` is determined by library dependencies.
+
 #### Defining Class Types
 
 > The ability to define class types was introduced in CQL 2.0, and is trial-use. For a complete list of changes, see the [Change Log](changes.html).
@@ -1849,7 +1875,23 @@ A complete syntax diagram of a type definition can be seen [here](19-l-cqlsyntax
 
 Types can be public or private. A private type is only accessible within the library in which it is declared.
 
+As with other declarations, types take on the namespace of the library in which they are defined.
+
 When a class type `extends` a base type, it inherits all of the elements from its base type, recursively. Derived types cannot redeclare elements that are defined in its base types.
+
+Additional model info metadata can be provided on the class or element using tags:
+
+```cql
+/*
+@identifier: http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-adverseevent
+@label: Adverse Event
+@retrievable: true
+@primaryCodePath: event
+*/
+define type AdverseEvent extends FHIR.AdverseEvent {
+  ...
+}
+```
 
 #### Defining Conversions
 
@@ -1885,19 +1927,21 @@ Once this definition is provided, it can be used in a [context](02-authorsguide.
 
 It is not legal to declare more than one context with the same type. This is determined when model libraries are included. If, across all included libraries, more than one context definition of the same type is defined, an error on the include statement is raised.
 
-Note that if a context is defined in library C, it is only defined for a library L if L has an include C statement in it. A library M which includes L but does _not_ include C will not be able to use the contexts in C. In other words, as with all library components, inclusion is not transitive; in order to make use of the components of a library, it must be included directly.
+Note that if a context is defined in library `C`, it is only defined for a library `L` if `L` has an `include C` statement in it. A library `M` which includes `L` but does _not_ include `C` will not be able to use the contexts in `C`. In other words, as with all library components, inclusion is not transitive; in order to make use of the components of a library, it must be included directly.
 
 The context can also be referenced in a context relationship as part of a class type definition, allowing the relationship of the class type to the context to be expressed:
 
 ```cql
 define type Observation extends DomainResource {
-  subject Patient,
+  subject Reference,
   code CodeableConcept,
   value Choice<CodeableConcept, Quantity>
   ...
 }
-related to Patient by { subject }
+related to Patient by { subject.references() }
 ```
+
+Because CQL does not have reference types, the semantics of reference must be represented in the model. This is why the `subject` element in the above example is declared as type `Reference` and the context relationship is characterised by the `references()` function, rather than just naming a specific element that establishes the relationship.
 
 ### Defining Functions
 
