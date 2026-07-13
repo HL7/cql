@@ -1,12 +1,12 @@
 
 ### Clinical Quality Language (CQL)
 
-*HL7 Standard: Clinical Quality Language Specification, Release 2 Trial-Use Ballot (CQL 2.0.0-ballot)*
+*HL7 Standard: Clinical Quality Language Specification, Release 2 Trial-Use Publication (CQL 2.0.0)*
 
 *HL7 Trial-Use Specification*
 
 {: .stu-note}
-> This is a trial-use ballot of the CQL specification that introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes. Normative elements of the specification remain normative from a maturity perspective (i.e. normative aspects of the specification will not change in backwards-incompatible ways). New content introduced in this trial-use are marked as such, and trial-use content that was introduced in 1.5 remains trial-use in this version.
+> This is a trial-use publication of the CQL specification that introduces substantive new features, numerous corrections, clarifications, and enhancements, and no breaking changes. Normative elements of the specification remain normative from a maturity perspective (i.e. normative aspects of the specification will not change in backwards-incompatible ways). New content introduced in this trial-use are marked as such, and trial-use content that was introduced in 1.5 remains trial-use in this version.
 
 Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality and targeted at measure and decision support artifact authors.
 

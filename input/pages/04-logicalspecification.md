@@ -526,6 +526,9 @@ The `name` attribute specifies the fully qualified name of the model. If this is
 
 #### DirectiveDef
 
+> Directives were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 DirectiveDef : Element
   ¦
@@ -536,6 +539,9 @@ DirectiveDef : Element
 
 #### InfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 InfoDef : Element
 ```
@@ -543,6 +549,9 @@ InfoDef : Element
 The InfoDef is base structure for all model info definitions.
 
 #### ContextInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ContextInfoDef : InfoDef
@@ -564,6 +573,9 @@ The `name` element specifies the name of the context. This is the name that will
 
 #### RelationshipInfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 RelationshipInfoDef : InfoDef
   ¦
@@ -579,6 +591,9 @@ The `relatedKeyElement` specifies the related key elements, in order, of the typ
 The `context` specifies the target context of the relationship.
 
 #### ClassInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ClassInfoDef : TypeInfoDef
@@ -622,6 +637,9 @@ The primaryValueSetPath attribute specifies the path relative to the class that 
 
 #### ClassInfoDefElement
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 ClassInfoDefElement : InfoDef
   ¦
@@ -638,6 +656,9 @@ The `oneBased` indicates that the starting index for a list-valued element is on
 
 #### TypeInfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 TypeInfoDef : InfoDef
   ¦
@@ -645,6 +666,9 @@ TypeInfoDef : InfoDef
 ```
 
 #### SimpleTypeInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 SimpleTypeInfoDef : TypeInfoDef
@@ -660,6 +684,9 @@ Name is the unqualified name of the type within this model.
 
 #### IntervalTypeInfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 IntervalTypeInfoDef : TypeInfoDef
   ¦
@@ -667,6 +694,9 @@ IntervalTypeInfoDef : TypeInfoDef
 ```
 
 #### ListTypeInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ListTypeInfoDef : TypeInfoDef
@@ -676,6 +706,9 @@ ListTypeInfoDef : TypeInfoDef
 
 #### TupleTypeInfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 TupleTypeInfoDef : TypeInfoDef
   ¦
@@ -683,6 +716,9 @@ TupleTypeInfoDef : TypeInfoDef
 ```
 
 #### TupleTypeInfoDefElement
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 TupleTypeInfoDefElement : InfoDef
@@ -700,11 +736,17 @@ Indicates that the starting index for a list-valued element is one. By default, 
 
 #### ProfileInfoDef
 
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 ProfileInfoDef : ClassInfoDef
 ```
 
 #### ConversionInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ConversionInfoDef : InfoDef
@@ -717,6 +759,9 @@ ConversionInfoDef : InfoDef
 ```
 
 #### ChoiceTypeInfoDef
+
+> Model information definitions were introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ChoiceTypeInfoDef : TypeInfoDef
@@ -2148,6 +2193,9 @@ If the result of the operation cannot be represented (i.e. would result in under
 
 #### Round
 
+> The Quantity overload of the Round operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 Round : OperatorExpression
   ¦
@@ -2999,6 +3047,9 @@ Refer to the [Equivalent section](#equivalent) in the Comparison Operators.
 
 #### EquivalentIn
 
+> The EquivalentIn operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 EquivalentIn : BinaryExpression
 ```
@@ -3008,6 +3059,9 @@ The EquivalentIn operator tests for membership in a list using equivalent, rathe
 This operator returns true if the given element is in the given list, using equivalent semantics. If the first argument is null, the result is true if the list contains any null elements, and false otherwise. If the second argument is null the result is false.
 
 #### EquivalentContains
+
+> The EquivalentContains operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 EquivalentContains : BinaryExpression
@@ -3729,6 +3783,9 @@ SingletonFrom : UnaryExpression
 The SingletonFrom expression extracts a single element from the source list. If the source list is empty, the result is null. If the source list contains one element, that element is returned. If the list contains more than one element, a run-time error is thrown. If the source list is null, the result is null.
 
 #### Slice
+
+> The Slice operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 Slice : OperatorExpression
@@ -4722,6 +4779,9 @@ For the DateTime overload, the result is the number of whole calendar periods th
 
 #### CodeSystemContains
 
+> The CodeSystemContains operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 CodeSystemContains : OperatorExpression
   ¦
@@ -4741,6 +4801,9 @@ The second argument is expected to be a CodeSystem, allowing references to code 
 The third argument is expected to be a String, Code, or Concept.
 
 #### CodeSystemContainsAny
+
+> The CodeSystemContainsAny operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 CodeSystemContainsAny : OperatorExpression
@@ -4882,6 +4945,9 @@ If the severity is Message, the operator is expected to provide the message as i
 
 #### ValueSetContains
 
+> The ValueSetContains operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
+
 ```
 ValueSetContains : OperatorExpression
   ¦
@@ -4901,6 +4967,9 @@ The second argument is expected to be a ValueSet, allowing references to value s
 The third argument is expected to be a String, Code, or Concept.
 
 #### ValueSetContainsAny
+
+> The ValueSetContainsAny operator was introduced in CQL 2.0, and has trial-use status. For a complete list of changes, see the [Change Log](changes.html).
+{: .note-info}
 
 ```
 ValueSetContainsAny : OperatorExpression

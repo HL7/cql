@@ -20,6 +20,9 @@ library
     EOF
     ;
 
+/*
+ * Note: The directive rule was introduced as trial-use in version 2.0
+ */
 directive
     : '#' identifier (':' STRING)?
     ;
@@ -190,34 +193,58 @@ qualifiedIdentifierOrFunctionIdentifier
     : (qualifierExpression '.')* identifierOrFunctionIdentifier
     ;
 
+/*
+ * Note: The contextInfoDefinition rule was introduced as trial-use in version 2.0
+ */
 contextInfoDefinition
     : 'define' 'context' identifier 'of' 'type' namedTypeSpecifier 'with' 'key' '{' qualifiedIdentifierOrFunctionIdentifier (',' qualifiedIdentifierOrFunctionIdentifier)* '}'
     ;
 
+/*
+ * Note: The typeInfoDefinition rule was introduced as trial-use in version 2.0
+ */
 typeInfoDefinition
     : 'define' accessModifier? 'type' qualifiedIdentifier baseTypeSpecifier? typeElements? typeInfo contextRelationship*
     ;
 
+/*
+ * Note: The baseTypeSpecifier rule was introduced as trial-use in version 2.0
+ */
 baseTypeSpecifier
     : 'extends' namedTypeSpecifier
     ;
 
+/*
+ * Note: The typeElements rule was introduced as trial-use in version 2.0
+ */
 typeElements
     : '{' typeElementDefinition (',' typeElementDefinition)* '}'
     ;
 
+/*
+ * Note: The typeElementDefinition rule was introduced as trial-use in version 2.0
+ */
 typeElementDefinition
     : referentialIdentifier typeSpecifier
     ;
 
+/*
+ * Note: The typeInfo rule was introduced as trial-use in version 2.0
+ */
 typeInfo
     : ('label' identifier)? ('identifier' STRING)? 'retrievable'? ('primary' 'code' 'path' simplePath)?
     ;
 
+/*
+ * Note: The contextRelationship rule was introduced as trial-use in version 2.0
+ */
 contextRelationship
     : 'related' 'to' qualifiedIdentifier 'by' '{' qualifiedIdentifierOrFunctionIdentifier (',' qualifiedIdentifierOrFunctionIdentifier)* '}'
     ;
 
+/*
+ * Note: The conversionInfoDefinition rule was introduced as trial-use in version 2.0
+ */
 conversionInfoDefinition
     : 'define' accessModifier? ('implicit' | 'explicit') 'conversion' 'from' typeSpecifier 'to' typeSpecifier 'using' qualifiedIdentifierOrFunctionIdentifier
     ;
@@ -265,8 +292,14 @@ codePath
     : simplePath
     ;
 
+/*
+ * Note: The ~in and ~contains operators were introduced as trial-use in version 2.0
+ */
 codeComparator
     : 'in'
+    | 'contains'
+    | '~in'
+    | '~contains'
     | '='
     | '~'
     ;
@@ -348,6 +381,9 @@ simpleLiteral
     | NUMBER                                           #simpleNumberLiteral
     ;
 
+/*
+ * Note: The ~in and ~contains operators were introduced as trial-use in version 2.0
+ */
 expression
     : expressionTerm                                                                                #termExpression
     | retrieve                                                                                      #retrieveExpression
