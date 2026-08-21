@@ -395,7 +395,7 @@ The low and high bounds of the interval may each be defined as open or closed. F
 
 The low and high elements are both optional. If the low element is not specified, the low bound of the resulting interval is null. If the high element is not specified, the high bound of the resulting interval is null.
 
-The static type of the low bound determines the type of the interval, and the high bound must be of the same type.
+The static type of the low bound determines the type of the interval, and the high bound must be of the same type. If the low bound is null, the static type of the high bound determines the type of the interval. For intervals whose type is Quantity, the low bound and high bound values must use dimensionally compatible units.
 
 If the low bound of the interval is null and open, the low bound of the interval is interpreted as unknown and represented as an uncertainty from the minimum value for the point type to the high bound (see below); computations involving the low bound may result in null.
 
@@ -2318,6 +2318,8 @@ If the low boundary of the interval is closed and non-null, this operator return
 
 If the low boundary of the interval is open and non-null, this operator returns the successor of the low value of the interval. If the low boundary of the interval is open and null, this operator returns an uncertainty from the minimum value for the point type of the interval to the high boundary of the interval (using End operator semantics to determine the high boundary).
 
+If the low boundary is null and the interval point type is Quantity, the returned value adopts the unit of the high boundary. If the high boundary is also null, the returned value uses the default unit ('1').
+
 If the low boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
 If the argument is null, the result is null.</xs:documentation>
@@ -2334,6 +2336,8 @@ If the argument is null, the result is null.</xs:documentation>
 If the high boundary of the interval is closed and non-null, this operator returns the high value of the interval. If the high boundary of the interval is closed and null, this operator returns the maximum value for the point type of the interval.
 
 If the high boundary of the interval is open and non-null, this operator returns the predecessor of the high value of the interval. If the high boundary of the interval is open and null, this operator returns an uncertainty from the low boundary of the interval (using Start operator semantics to determine the low boundary) to the maximum value for the point type of the interval.
+
+If the high boundary is null and the interval point type is Quantity, the returned value adopts the unit of the low boundary. If the low boundary is also null, the returned value uses the default unit ('1').
 
 If the high boundary is null and the interval point type is unknown, a choice of types, or Any, then the result cannot be determined and this operator returns null.
 
