@@ -3887,6 +3887,8 @@ If the high boundary of the interval is closed and non-null, this operator retur
 
 If the high boundary of the interval is open and non-null, this operator returns the <span class="kw">predecessor</span> of the high value of the interval. If the high boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the low boundary of the interval (using <span class="id">[Start](#start)</span> operator semantics to determine the low boundary) to the <span class="kw">maximum</span> value for the point type of the interval.
 
+If the high boundary is <span class="kw">null</span> and the interval point type is <span class="id">Quantity</span>, the returned value adopts the unit of the low boundary. If the low boundary is also <span class="kw">null</span>, the returned value uses the default unit (<span class="lit">'1'</span>).
+
 If the high boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
@@ -3897,6 +3899,7 @@ The following examples illustrate the behavior of the <span class="id">End</span
 define "EndOfClosedInterval": end of Interval[1, 5] // 5
 define "EndOfOpenHighInterval": end of Interval[1, 5) // 4
 define "EndOfClosedNullHighInterval": end of Interval[1, null] // 2147483647
+define "EndOfClosedNullHighQuantityInterval": end of Interval[1.2 'L', null] // 99999999999999999999.99999999 'L'
 define "EndOfOpenNullHighInterval": end of Interval[1, null) // uncertainty[1, 2147483647]
 define "EndOfOpenNullHighOpenLowInterval": end of Interval(1, null) // uncertainty[2, 2147483647]
 define "EndOfBoundlessDateInterval": end of Interval[null, null] as Interval<Date> // @9999-12-31
@@ -4615,6 +4618,8 @@ If the low boundary of the interval is closed and non-null, this operator return
 
 If the low boundary of the interval is open and non-null, this operator returns the <span class="kw">successor</span> of the low value of the interval. If the low boundary of the interval is open and <span class="kw">null</span>, this operator returns an _uncertainty_ from the <span class="kw">minimum</span> value for the point type of the interval to the high boundary of the interval (using <span class="id">[End](#end)</span> operator semantics to determine the high boundary).
 
+If the low boundary is <span class="kw">null</span> and the interval point type is <span class="id">Quantity</span>, the returned value adopts the unit of the high boundary. If the high boundary is also <span class="kw">null</span>, the returned value uses the default unit (<span class="lit">'1'</span>).
+
 If the low boundary is <span class="kw">null</span> and the interval point type is unknown, a choice of types, or <span class="id">Any</span>, then the result cannot be determined and this operator returns <span class="kw">null</span>.
 
 If the argument is <span class="kw">null</span>, the result is <span class="kw">null</span>.
@@ -4625,6 +4630,7 @@ The following examples illustrate the behavior of the <span class="id">Start</sp
 define "StartOfClosedInterval": start of Interval[1, 5] // 1
 define "StartOfOpenLowInterval": start of Interval(1, 5] // 2
 define "StartOfClosedNullLowInterval": start of Interval[null, 5] // -2147483648
+define "StartOfClosedNullLowQuantityInterval": start of Interval[null, 1.2 'L'] // -99999999999999999999.99999999 'L'
 define "StartOfOpenNullLowInterval": start of Interval(null, 5] // uncertainty[-2147483648, 5]
 define "StartOfOpenNullLowOpenHighInterval": start of Interval(null, 5) // uncertainty[-2147483648, 4]
 define "StartOfBoundlessDateInterval": start of Interval[null, null] as Interval<Date> // @0001-01-01
