@@ -2219,6 +2219,15 @@
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/09-b-cqlreference.html#interval-operators-3" }
       ]
+    },
+    {
+      "code": "default-timezone-offset-to-request",
+      "display": "Default timezone offset to the evaluation request",
+      "definition": "If a DateTime has no timezone offset, it takes the timezone offset of the evaluation request timestamp.",
+      "property": [
+        { "code": "version", "valueString": "1.0" },
+        { "code": "reference", "valueString": "https://cql.hl7.org/02-authorsguide.html#date-datetime-and-time" }
+      ]
     }
   ]
 }
