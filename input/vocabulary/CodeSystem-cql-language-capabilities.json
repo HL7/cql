@@ -191,6 +191,15 @@
     },
 
     {
+      "code": "literals",
+      "display": "Literals and selectors",
+      "definition": "Literal values of the System types, and selectors for lists, intervals, tuples, codes, concepts and instances.",
+      "property": [
+        { "code": "version", "valueString": "1.0" },
+        { "code": "reference", "valueString": "https://cql.hl7.org/03-developersguide.html#literals" }
+      ]
+    },
+    {
       "code": "system-data-types",
       "display": "System Data Types",
       "definition": "Primitive, structured, and collection types defined by the System namespace.",
@@ -1157,6 +1166,24 @@
       ]
     },
     {
+      "code": "timezone-offset",
+      "display": "Timezone offset",
+      "definition": "DateTime values with a timezone offset: offsets in literals and constructors, comparison and arithmetic across offsets, and extracting the offset with timezoneoffset from.",
+      "property": [
+        { "code": "version", "valueString": "1.0" },
+        { "code": "reference", "valueString": "https://cql.hl7.org/02-authorsguide.html#date-datetime-and-time" }
+      ]
+    },
+    {
+      "code": "uncertainty-intervals",
+      "display": "Uncertainty",
+      "definition": "Comparison and duration semantics for Date, DateTime and Time values of differing precision, defined in terms of uncertainty intervals.",
+      "property": [
+        { "code": "version", "valueString": "1.0" },
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#uncertainty" }
+      ]
+    },
+    {
       "code": "date-and-time-operators",
       "display": "Date and Time Operators",
       "definition": "Date/time arithmetic, components, now/today, comparisons, etc.",
@@ -2036,6 +2063,15 @@
       "property": [
         { "code": "version", "valueString": "1.0" },
         { "code": "reference", "valueString": "https://cql.hl7.org/74-queryevaluation.html#return-clause" }
+      ]
+    },
+    {
+      "code": "sort-clause-query",
+      "display": "Sort clause query",
+      "definition": "Order the results of a query with a sort clause.",
+      "property": [
+        { "code": "version", "valueString": "1.0" },
+        { "code": "reference", "valueString": "https://cql.hl7.org/05-languagesemantics.html#sort" }
       ]
     },
     {
